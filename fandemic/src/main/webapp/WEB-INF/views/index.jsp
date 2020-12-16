@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 		<section class="home">
+		
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-sm-12 col-xs-12">
@@ -193,6 +194,7 @@
 								<img src="images/ads.png" alt="Sample Article">
 							</a>
 						</div>
+						<a href="sns">sns로 가기</a>
 						<div class="line transparent little"></div>
 						<div class="row">
 							<div class="col-md-6 col-sm-6 trending-tags">

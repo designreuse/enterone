@@ -12,8 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeController {
 
 	@RequestMapping(value="/")
-	public ModelAndView test(HttpServletResponse response) throws IOException{
+	public ModelAndView Main(HttpServletResponse response) throws IOException{
 		return new ModelAndView("index");
+	}
+	@RequestMapping(value="/adminMain")
+	public ModelAndView Admin(HttpServletResponse response) throws IOException{
+		return new ModelAndView("adminIndex");
 	}
 	
 	@RequestMapping(value="/login")

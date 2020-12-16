@@ -11,6 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class SnsController {
 	@RequestMapping(value = "/sns")
 	public ModelAndView sns(HttpServletResponse response) throws IOException {
-		return new ModelAndView("sns");
+		return new ModelAndView("sns/sns");
 	}
 }
