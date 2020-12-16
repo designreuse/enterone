@@ -14,9 +14,9 @@
 			<put-attribute name="header"></put-attribute>
 	</definition>
 
-	<definition name="admin/*" template="/WEB-INF/views/layout/admin.jsp">
+	<definition name="mgt/*" template="/WEB-INF/views/layout/management.jsp">
 		<put-attribute name="body"
-			value="/WEB-INF/views/{1}.jsp" />
+			value="/WEB-INF/views/management/{1}.jsp" />
 	</definition>
 	<definition name="*/*" template="/WEB-INF/views/layout/base.jsp">
 		<put-attribute name="body"

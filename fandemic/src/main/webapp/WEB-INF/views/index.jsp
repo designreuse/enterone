@@ -31,7 +31,7 @@
 								<article class="featured">
 									<div class="overlay"></div>
 									<figure>
-										<img src="images/news/img04.jpg" alt="Sample Article">
+										<img src="${pageContext.request.contextPath}/resources/images/news/img04.jpg" alt="Sample Article">
 									</figure>
 									<div class="details">
 										<div class="category"><a href="category.html">Computer</a></div>
@@ -44,7 +44,7 @@
 								<article class="featured">
 									<div class="overlay"></div>
 									<figure>
-										<img src="images/news/img14.jpg" alt="Sample Article">
+										<img src="${pageContext.request.contextPath}/resources/images/news/img14.jpg" alt="Sample Article">
 									</figure>
 									<div class="details">
 										<div class="category"><a href="category.html">Travel</a></div>
@@ -57,7 +57,7 @@
 								<article class="featured">
 									<div class="overlay"></div>
 									<figure>
-										<img src="images/news/img13.jpg" alt="Sample Article">
+										<img src="${pageContext.request.contextPath}/resources/images/news/img13.jpg" alt="Sample Article">
 									</figure>
 									<div class="details">
 										<div class="category"><a href="category.html">International</a></div>
@@ -70,7 +70,7 @@
 								<article class="featured">
 									<div class="overlay"></div>
 									<figure>
-										<img src="images/news/img05.jpg" alt="Sample Article">
+										<img src="${pageContext.request.contextPath}/resources/images/news/img05.jpg" alt="Sample Article">
 									</figure>
 									<div class="details">
 										<div class="category"><a href="category.html">Lifestyle</a></div>
@@ -90,7 +90,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img10.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img10.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -114,7 +114,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img06.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img06.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -142,7 +142,7 @@
 										<div class="inner">
 											<figure>                                
 												<a href="single.html">
-													<img src="images/news/img05.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img05.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -166,7 +166,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img07.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img07.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -191,7 +191,7 @@
 						</div>
 						<div class="banner">
 							<a href="#">
-								<img src="images/ads.png" alt="Sample Article">
+								<img src="${pageContext.request.contextPath}/resources/images/ads.png" alt="Sample Article">
 							</a>
 						</div>
 						<a href="sns">sns로 가기</a>
@@ -231,7 +231,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img09.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img09.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -247,7 +247,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img01.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img01.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -263,7 +263,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img05.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img05.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -279,7 +279,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img02.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img02.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -295,7 +295,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img13.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img13.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -311,7 +311,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img08.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img08.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -334,7 +334,7 @@
 								<div class="inner">
 									<figure>
 										<a href="single.html">
-											<img src="images/news/img11.jpg" alt="Sample Article">
+											<img src="${pageContext.request.contextPath}/resources/images/news/img11.jpg" alt="Sample Article">
 										</a>
 									</figure>
 									<div class="details">
@@ -365,7 +365,7 @@
 									</div>
 									<figure>
 										<a href="single.html">
-											<img src="images/news/img02.jpg" alt="Sample Article">
+											<img src="${pageContext.request.contextPath}/resources/images/news/img02.jpg" alt="Sample Article">
 										</a>
 									</figure>
 									<div class="details">
@@ -393,7 +393,7 @@
 								<div class="inner">
 									<figure>
 										<a href="single.html">
-											<img src="images/news/img03.jpg" alt="Sample Article">
+											<img src="${pageContext.request.contextPath}/resources/images/news/img03.jpg" alt="Sample Article">
 										</a>
 									</figure>
 									<div class="details">
@@ -421,7 +421,7 @@
 								<div class="inner">
 									<figure>
 										<a href="single.html">
-											<img src="images/news/img09.jpg" alt="Sample Article">
+											<img src="${pageContext.request.contextPath}/resources/images/news/img09.jpg" alt="Sample Article">
 										</a>
 									</figure>
 									<div class="details">
@@ -459,7 +459,7 @@
 											</div>
 											<div class="featured-author-center">
 												<figure class="featured-author-picture">
-													<img src="images/img01.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/img01.jpg" alt="Sample Article">
 												</figure>
 												<div class="featured-author-info">
 													<h2 class="name">John Doe</h2>
@@ -524,7 +524,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img07.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img07.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -536,7 +536,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img14.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img14.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -548,7 +548,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img09.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img09.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -560,7 +560,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img11.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img11.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -572,7 +572,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img06.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img06.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -584,7 +584,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img03.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img03.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -630,7 +630,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img16.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img16.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="details">
@@ -650,7 +650,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img05.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img05.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -666,7 +666,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img02.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img02.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -682,7 +682,7 @@
 										<div class="inner">
 											<figure>
 												<a href="single.html">
-													<img src="images/news/img10.jpg" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/news/img10.jpg" alt="Sample Article">
 												</a>
 											</figure>
 											<div class="padding">
@@ -700,7 +700,7 @@
 										<div class="item">
 											<div class="user">                                
 												<figure>
-													<img src="images/img01.jpg" alt="User Picture">
+													<img src="${pageContext.request.contextPath}/resources/images/img01.jpg" alt="User Picture">
 												</figure>
 												<div class="details">
 													<h5 class="name">Mark Otto</h5>
@@ -714,7 +714,7 @@
 										<div class="item">
 											<div class="user">                                
 												<figure>
-													<img src="images/img01.jpg" alt="User Picture">
+													<img src="${pageContext.request.contextPath}/resources/images/img01.jpg" alt="User Picture">
 												</figure>
 												<div class="details">
 													<h5 class="name">Mark Otto</h5>
@@ -728,7 +728,7 @@
 										<div class="item">
 											<div class="user">                                
 												<figure>
-													<img src="images/img01.jpg" alt="User Picture">
+													<img src="${pageContext.request.contextPath}/resources/images/img01.jpg" alt="User Picture">
 												</figure>
 												<div class="details">
 													<h5 class="name">Mark Otto</h5>
@@ -764,22 +764,22 @@
 								<ul class="sponsored">
 									<li>
 										<a href="#">
-											<img src="images/sponsored.png" alt="Sponsored">
+											<img src="${pageContext.request.contextPath}/resources/images/sponsored.png" alt="Sponsored">
 										</a>
 									</li> 
 									<li>
 										<a href="#">
-											<img src="images/sponsored.png" alt="Sponsored">
+											<img src="${pageContext.request.contextPath}/resources/images/sponsored.png" alt="Sponsored">
 										</a>
 									</li> 
 									<li>
 										<a href="#">
-											<img src="images/sponsored.png" alt="Sponsored">
+											<img src="${pageContext.request.contextPath}/resources/images/sponsored.png" alt="Sponsored">
 										</a>
 									</li> 
 									<li>
 										<a href="#">
-											<img src="images/sponsored.png" alt="Sponsored">
+											<img src="${pageContext.request.contextPath}/resources/images/sponsored.png" alt="Sponsored">
 										</a>
 									</li> 
 								</ul>
@@ -807,7 +807,7 @@
 						<div class="inner">
 							<figure>
 								<a href="single.html">
-									<img src="images/news/img03.jpg" alt="Sample Article">
+									<img src="${pageContext.request.contextPath}/resources/images/news/img03.jpg" alt="Sample Article">
 								</a>
 							</figure>
 							<div class="padding">
@@ -824,7 +824,7 @@
 						<div class="inner">
 							<figure>
 								<a href="single.html">
-									<img src="images/news/img16.jpg" alt="Sample Article">
+									<img src="${pageContext.request.contextPath}/resources/images/news/img16.jpg" alt="Sample Article">
 								</a>
 							</figure>
 							<div class="padding">
@@ -841,7 +841,7 @@
 						<div class="inner">
 							<figure>
 								<a href="single.html">
-									<img src="images/news/img15.jpg" alt="Sample Article">
+									<img src="${pageContext.request.contextPath}/resources/images/news/img15.jpg" alt="Sample Article">
 								</a>
 							</figure>
 							<div class="padding">
@@ -858,7 +858,7 @@
 						<div class="inner">
 							<figure>
 								<a href="single.html">
-									<img src="images/news/img14.jpg" alt="Sample Article">
+									<img src="${pageContext.request.contextPath}/resources/images/news/img14.jpg" alt="Sample Article">
 								</a>
 							</figure>
 							<div class="padding">
@@ -875,7 +875,7 @@
 						<div class="inner">
 							<figure>
 								<a href="single.html">
-									<img src="images/news/img01.jpg" alt="Sample Article">
+									<img src="${pageContext.request.contextPath}/resources/images/news/img01.jpg" alt="Sample Article">
 								</a>
 							</figure>
 							<div class="padding">
@@ -892,7 +892,7 @@
 						<div class="inner">
 							<figure>
 								<a href="single.html">
-									<img src="images/news/img11.jpg" alt="Sample Article">
+									<img src="${pageContext.request.contextPath}/resources/images/news/img11.jpg" alt="Sample Article">
 								</a>
 							</figure>
 							<div class="padding">

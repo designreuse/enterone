@@ -42,15 +42,15 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="index3.html" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
+      </li> -->
     </ul>
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
-      <li class="nav-item">
+       <!-- Navbar Search -->
+      <!-- <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
         </a>
@@ -69,7 +69,7 @@
             </div>
           </form>
         </div>
-      </li>
+      </li>  -->
 
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
@@ -175,10 +175,10 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="${pageContext.request.contextPath}/resourcesAdmin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">소속사명</span>
     </a>
 
-    <!-- Sidebar -->
+    <!-- 왼쪽메뉴 바  -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -186,7 +186,7 @@
           <img src="${pageContext.request.contextPath}/resourcesAdmin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">관리자 ID</a>
         </div>
       </div>
 
@@ -202,14 +202,15 @@
         </div>
       </div>
 
-      <!-- Sidebar Menu -->
+      <!-- 왼쪽메뉴들 -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           
+          <!-- 공지 -->
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="management/notices" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 	공지사항
@@ -218,42 +219,69 @@
             </a>
           </li>
           
-          <!--  검색기능 -->
+          <!--스타관리  -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-search"></i>
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
               <p>
-                Search
-                <i class="fas fa-angle-left right"></i>
+                	스타관리
+                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/search/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Search</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/search/enhanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Enhanced</p>
-                </a>
-              </li>
-            </ul>
           </li>
           
-          <li class="nav-header">굿즈관리</li>
+          <!--굿즈관리  -->
           <li class="nav-item">
-            <a href="iframe.html" class="nav-link">
-              <i class="nav-icon fas fa-ellipsis-h"></i>
-              <p>Tabbed IFrame Plugin</p>
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                	굿즈관리
+                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
+              </p>
             </a>
           </li>
+          
+          <!--오디션관리  -->
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.1/" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
-              <p>Documentation</p>
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                	오디션관리
+                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
+              </p>
+            </a>
+          </li>
+          
+          <!--소속사정보관리  -->
+          <li class="nav-item">
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                	소속사정보관리
+                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
+              </p>
+            </a>
+          </li>
+          
+          <!--언택트행사관리  -->
+          <li class="nav-item">
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                	언택트행사관리
+                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
+              </p>
+            </a>
+          </li>
+          
+          <!--팬관리  -->
+          <li class="nav-item">
+            <a href="pages/widgets.html" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                	팬관리
+                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
+              </p>
             </a>
           </li>
           <li class="nav-header">MULTI LEVEL EXAMPLE</li>

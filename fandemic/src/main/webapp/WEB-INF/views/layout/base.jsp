@@ -17,21 +17,21 @@
 		<meta property="og:image" content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
 		<title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
 		<!-- Bootstrap -->
-		<link rel="stylesheet" href="resources/scripts/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.css">
 		<!-- IonIcons -->
-		<link rel="stylesheet" href="resources/scripts/ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/ionicons/css/ionicons.min.css">
 		<!-- Toast -->
-		<link rel="stylesheet" href="resources/scripts/toast/jquery.toast.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.css">
 		<!-- OwlCarousel -->
-		<link rel="stylesheet" href="resources/scripts/owlcarousel/dist/assets/owl.carousel.min.css">
-		<link rel="stylesheet" href="resources/scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/assets/owl.carousel.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
 		<!-- Magnific Popup -->
-		<link rel="stylesheet" href="resources/scripts/magnific-popup/dist/magnific-popup.css">
-		<link rel="stylesheet" href="resources/scripts/sweetalert/dist/sweetalert.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/magnific-popup.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.css">
 		<!-- Custom style -->
-		<link rel="stylesheet" href="resources/css/style.css">
-		<link rel="stylesheet" href="resources/css/skins/all.css">
-		<link rel="stylesheet" href="resources/css/demo.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skins/all.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/demo.css">
 </head>
 <body>
 <header class="primary">
@@ -41,7 +41,7 @@
 						<div class="col-md-3 col-sm-12">
 							<div class="brand">
 								<a href="index.html">
-									<img src="images/logo.png" alt="Magz Logo">
+									<img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Magz Logo">
 								</a>
 							</div>						
 						</div>
@@ -82,7 +82,7 @@
 				<div class="container">
 					<div class="brand">
 						<a href="#">
-							<img src="images/logo.png" alt="Magz Logo">
+							<img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Magz Logo">
 						</a>
 					</div>
 					<div class="mobile-toggle">
@@ -193,7 +193,7 @@
 														<div class="inner">
 															<figure>
 																<a href="single.html">
-																	<img src="images/news/img10.jpg" alt="Sample Article">
+																	<img src="${pageContext.request.contextPath}/resources/images/news/img10.jpg" alt="Sample Article">
 																</a>
 															</figure>
 															<div class="padding">
@@ -209,7 +209,7 @@
 														<div class="inner">
 															<figure>
 																<a href="single.html">
-																	<img src="images/news/img11.jpg" alt="Sample Article">
+																	<img src="${pageContext.request.contextPath}/resources/images/news/img11.jpg" alt="Sample Article">
 																</a>
 															</figure>
 															<div class="padding">
@@ -225,7 +225,7 @@
 														<div class="inner">
 															<figure>
 																<a href="single.html">
-																	<img src="images/news/img14.jpg" alt="Sample Article">
+																	<img src="${pageContext.request.contextPath}/resources/images/news/img14.jpg" alt="Sample Article">
 																</a>
 															</figure>
 															<div class="padding">
@@ -321,7 +321,7 @@
 							<h1 class="block-title">Company Info</h1>
 							<div class="block-body">
 								<figure class="foot-logo">
-									<img src="images/logo-light.png" class="img-responsive" alt="Logo">
+									<img src="${pageContext.request.contextPath}/resources/images/logo-light.png" class="img-responsive" alt="Logo">
 								</figure>
 								<p class="brand-description">
 									Magz is a HTML5 &amp; CSS3 magazine template based on Bootstrap 3.
@@ -370,7 +370,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img12.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img12.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -382,7 +382,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img14.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img14.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -394,7 +394,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img15.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img15.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -406,7 +406,7 @@
 									<div class="inner">
 										<figure>
 											<a href="single.html">
-												<img src="images/news/img16.jpg" alt="Sample Article">
+												<img src="${pageContext.request.contextPath}/resources/images/news/img16.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
@@ -515,17 +515,17 @@
 		<!-- End Footer -->
 
 		<!-- JS -->
-		<script src="resources/js/jquery.js"></script>
-		<script src="resources/js/jquery.migrate.js"></script>
-		<script src="resources/scripts/bootstrap/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/jquery.migrate.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.js"></script>
 		<script>var $target_end=$(".best-of-the-week");</script>
-		<script src="resources/scripts/jquery-number/jquery.number.min.js"></script>
-		<script src="resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
-		<script src="resources/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-		<script src="resources/scripts/easescroll/jquery.easeScroll.js"></script>
-		<script src="resources/scripts/sweetalert/dist/sweetalert.min.js"></script>
-		<script src="resources/scripts/toast/jquery.toast.min.js"></script>
-		<script src="resources/js/demo.js"></script>
-		<script src="resources/js/e-magz.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/scripts/jquery-number/jquery.number.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/scripts/easescroll/jquery.easeScroll.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/e-magz.js"></script>
 </body>
 </html>
