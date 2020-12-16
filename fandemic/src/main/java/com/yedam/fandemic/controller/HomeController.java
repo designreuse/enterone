@@ -24,4 +24,9 @@ public class HomeController {
 	public ModelAndView login(HttpServletResponse response) throws IOException{
 		return new ModelAndView("login");
 	}
+	
+	@RequestMapping(value = "/starMain")
+	public ModelAndView sns(HttpServletResponse response) throws IOException {
+		return new ModelAndView("star/starMain");
+	}
 }
