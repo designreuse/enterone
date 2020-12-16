@@ -1,5 +1,8 @@
 package com.yedam.fandemic.vo;
 
+import lombok.Data;
+
+@Data
 public class Filter {
 
 	String fil_prohibited;	//금칙어

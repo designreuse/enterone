@@ -1,5 +1,8 @@
 package com.yedam.fandemic.vo;
 
+import lombok.Data;
+
+@Data
 public class Trainee {
 	
 	String mem_id;		//회원ID

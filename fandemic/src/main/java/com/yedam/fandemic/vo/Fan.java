@@ -1,5 +1,8 @@
 package com.yedam.fandemic.vo;
 
+import lombok.Data;
+
+@Data
 public class Fan {
 	
 	String fan_no;		//팬번호

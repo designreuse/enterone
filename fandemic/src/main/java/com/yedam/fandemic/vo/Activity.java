@@ -1,5 +1,8 @@
 package com.yedam.fandemic.vo;
 
+import lombok.Data;
+
+@Data
 public class Activity {
 
 	String ac_no;		//활동게시판 번호

@@ -1,5 +1,8 @@
 package com.yedam.fandemic.vo;
 
+import lombok.Data;
+
+@Data
 public class Fboard {
 
 	String fbo_no;		//게시물번호
