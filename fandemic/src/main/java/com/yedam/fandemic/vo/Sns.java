@@ -1,5 +1,8 @@
 package com.yedam.fandemic.vo;
 
+import lombok.Data;
+
+@Data
 public class Sns {
 
 	String sns_no;		//SNS 게시물 번호
