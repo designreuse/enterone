@@ -17,7 +17,7 @@ public class HomeController {
 	}
 	@RequestMapping(value="/adminMain")
 	public ModelAndView Admin(HttpServletResponse response) throws IOException{
-		return new ModelAndView("adminIndex");
+		return new ModelAndView("admin/adminIndex");
 	}
 	
 	@RequestMapping(value="/login")
