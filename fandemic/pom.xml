@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.yedam</groupId>
@@ -17,6 +19,7 @@
 	</properties>
 
 	<dependencies>
+
 		<!-- Spring core & mvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -51,6 +54,59 @@
 			<artifactId>cglib-nodep</artifactId>
 			<version>${cglib.version}</version>
 			<scope>runtime</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.oracle.ojdbc/ojdbc10 -->
+		<dependency>
+			<groupId>com.oracle.ojdbc</groupId>
+			<artifactId>ojdbc10</artifactId>
+			<version>19.3.0.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.oracle.database.ha</groupId>
+					<artifactId>simplefan</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.oracle.database.ha</groupId>
+					<artifactId>ons</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.security/oraclepki -->
+		<dependency>
+			<groupId>com.oracle.database.security</groupId>
+			<artifactId>oraclepki</artifactId>
+			<version>19.7.0.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.nls/orai18n -->
+		<dependency>
+			<groupId>com.oracle.database.nls</groupId>
+			<artifactId>orai18n</artifactId>
+			<version>19.7.0.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.security/osdt_cert -->
+		<dependency>
+			<groupId>com.oracle.database.security</groupId>
+			<artifactId>osdt_cert</artifactId>
+			<version>19.7.0.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.security/osdt_core -->
+		<dependency>
+			<groupId>com.oracle.database.security</groupId>
+			<artifactId>osdt_core</artifactId>
+			<version>19.7.0.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ucp -->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ucp</artifactId>
+			<version>19.7.0.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.xml/xdb -->
+		<dependency>
+			<groupId>com.oracle.database.xml</groupId>
+			<artifactId>xdb</artifactId>
+			<version>19.7.0.0</version>
 		</dependency>
 
 
