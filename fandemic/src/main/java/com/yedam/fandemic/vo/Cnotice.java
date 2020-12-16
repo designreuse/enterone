@@ -1,5 +1,8 @@
 package com.yedam.fandemic.vo;
 
+import lombok.Data;
+
+@Data
 public class Cnotice {
 
 	String cnoc_no;			//게시글번호
