@@ -762,12 +762,12 @@ section.search .search-result {
 }
 
 .btn-primary {
-  background-color: #F73F52;
-  border-color: #F73F52;
+  background-color: #111726;
+  border-color: #111726;
 }
 .btn-primary:disabled, .btn-primary.disabled, .btn-primary:hover, .btn-primary:active, .btn-primary:active:hover, .btn-primary:active:focus, .btn-primary:focus {
-  background-color: #c8081c;
-  border-color: #c8081c;
+  background-color: #4176E0  ;
+  border-color: #4176E0  ;
   box-shadow: none;
   outline: 0;
 }
@@ -1440,8 +1440,8 @@ article footer {
 }
 article footer .btn-primary {
   background-color: transparent;
-  border-color: #F73F52;
-  color: #F73F52;
+  border-color: #111726;
+  color: #111726;
   padding-left: 15px;
   padding-right: 15px;
   position: relative;
