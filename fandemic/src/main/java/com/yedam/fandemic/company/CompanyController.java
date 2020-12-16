@@ -1,5 +1,5 @@
 package com.yedam.fandemic.company;
 
-public class Controller {
+public class CompanyController {
 
 }

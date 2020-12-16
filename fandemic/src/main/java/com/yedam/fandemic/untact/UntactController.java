@@ -1,5 +1,5 @@
 package com.yedam.fandemic.untact;
 
-public class Controller {
+public class UntactController {
 
 }

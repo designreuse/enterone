@@ -1,5 +1,5 @@
 package com.yedam.fandemic.notice;
 
-public class Controller {
+public class NoticeController {
 
 }

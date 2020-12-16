@@ -1,5 +1,5 @@
 package com.yedam.fandemic.audition;
 
-public class Controller {
+public class AuditionController {
 
 }
