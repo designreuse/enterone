@@ -16,21 +16,21 @@
 		<meta property="og:image" content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
 		<title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
 		<!-- Bootstrap -->
-		<link rel="stylesheet" href="scripts/bootstrap/bootstrap.min.css">
+		<link rel="stylesheet" href="resources/scripts/bootstrap/bootstrap.min.css">
 		<!-- IonIcons -->
-		<link rel="stylesheet" href="scripts/ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" href="resources/scripts/ionicons/css/ionicons.min.css">
 		<!-- Toast -->
-		<link rel="stylesheet" href="scripts/toast/jquery.toast.min.css">
+		<link rel="stylesheet" href="resources/scripts/toast/jquery.toast.min.css">
 		<!-- OwlCarousel -->
-		<link rel="stylesheet" href="scripts/owlcarousel/dist/assets/owl.carousel.min.css">
-		<link rel="stylesheet" href="scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
+		<link rel="stylesheet" href="resources/scripts/owlcarousel/dist/assets/owl.carousel.min.css">
+		<link rel="stylesheet" href="resources/scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
 		<!-- Magnific Popup -->
-		<link rel="stylesheet" href="scripts/magnific-popup/dist/magnific-popup.css">
-		<link rel="stylesheet" href="scripts/sweetalert/dist/sweetalert.css">
+		<link rel="stylesheet" href="resources/scripts/magnific-popup/dist/magnific-popup.css">
+		<link rel="stylesheet" href="resources/scripts/sweetalert/dist/sweetalert.css">
 		<!-- Custom style -->
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/skins/all.css">
-		<link rel="stylesheet" href="css/demo.css">
+		<link rel="stylesheet" href="resources/css/style.css">
+		<link rel="stylesheet" href="resources/css/skins/all.css">
+		<link rel="stylesheet" href="resources/css/demo.css">
 </head>
 <body>
 	<header class="primary">
@@ -69,7 +69,7 @@
 						<div class="col-md-3 col-sm-12 text-right">
 							<ul class="nav-icons">
 								<li><a href="register.html"><i class="ion-person-add"></i><div>Register</div></a></li>
-								<li><a href="login.html"><i class="ion-person"></i><div>Login</div></a></li>
+								<li><a href="login"><i class="ion-person"></i><div>Login</div></a></li>
 							</ul>
 						</div>
 					</div>
