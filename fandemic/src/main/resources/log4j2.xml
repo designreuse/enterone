@@ -7,7 +7,7 @@ pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
 </Console>
 </Appenders>
 <Loggers>
-<Root level="debug" additivity="false">
+<Root level="error" additivity="false">
 <AppenderRef ref="console" />
 </Root>
 </Loggers>

@@ -28,6 +28,12 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesAdmin/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesAdmin/plugins/summernote/summernote-bs4.min.css">
+  <style>
+  	.cnotices-button{
+  		float:right;	
+  		padding:5px;
+  	}
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -210,7 +216,7 @@
           
           <!-- 공지 -->
           <li class="nav-item">
-            <a href="management/notices" class="nav-link">
+            <a href="${pageContext.request.contextPath}/management/notices" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 	공지사항
