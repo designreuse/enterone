@@ -1945,7 +1945,6 @@ article footer .btn-primary:focus {
   border-radius: 0;
   border: none;
   top: 54px;
-  box-shadow: 0 20px 60px #ddd;
   opacity: 0;
   visibility: hidden;
   transform: scale(0.5);

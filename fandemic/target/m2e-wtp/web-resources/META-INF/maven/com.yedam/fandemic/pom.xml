@@ -71,7 +71,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 
 
 		<!-- Servlet Spec -->
@@ -87,7 +87,7 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- tiles -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
@@ -119,6 +119,68 @@
 			<version>1.18.16</version>
 			<scope>provided</scope>
 		</dependency>
+
+
+		<!-- SPRING JDBC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+
+		<!-- DBCP -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-dbcp</artifactId>
+			<version>8.5.27</version>
+		</dependency>
+
+
+		<!-- MyBatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.6</version>
+		</dependency>
+
+
+		<!-- MyBatis와 SPRING 연동 -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>2.0.6</version>
+		</dependency>
+
+
+		<!-- ORACLE JDBC -->
+		<dependency>
+			<groupId>com.oracle.ojdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>19.3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.10.0</version>
+		</dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	</dependencies>
 
 	<repositories>
