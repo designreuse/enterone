@@ -10,5 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class StarController {
-	
+	@RequestMapping(value = "/starMain")
+	public ModelAndView sns(HttpServletResponse response) throws IOException {
+		return new ModelAndView("star/starMain");
+	}
 }
