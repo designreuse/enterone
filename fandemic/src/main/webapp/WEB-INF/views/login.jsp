@@ -42,7 +42,7 @@ ul.tabs li.current {
 
 		checkUser(user);
 
-		$('ul.tabs li').click(function() {
+		$('ul.tabs li').click(function() { //기업회원, 개인회원 선택클릭
 			user = $(this).text();
 			var tab_id = $(this).attr('data-tab');
 
@@ -52,24 +52,28 @@ ul.tabs li.current {
 			$(this).addClass('current');
 			$("#" + tab_id).addClass('current');
 
-			checkUser(user);
-
-		})
-	})
+			checkUser(user);			
+		});
+		$(".btn.btn-primary.btn-block").on("click",function(){
+			return formCheck();
+		});
+	}); //end ready function
 
 	function checkUser(user) {
-		if (user == "개인회원") {
+		if (user == "개인회원") { //개인회원선택시
 			console.log(user);
 			$("#memFrm").attr("action",
 					"${pageContext.request.contextPath}/memberLogin");
 
-		} else {
-
+		} else { //기업회원일때
+			
+			//소속사,스타체크
 			var chk = $(".login:checked").val();
 			console.log(chk);
 
 			$(".login").change(function() {
 				chk = $(".login:checked").val();
+				console.log(chk);
 				checkId(chk);
 			});
 
@@ -89,9 +93,46 @@ ul.tabs li.current {
 
 			$("#comFrm").attr("action",
 					"${pageContext.request.contextPath}/companyLogin");
+			
 		}
+	
+	}
+	
+	function formCheck() { //수정중
+		var frm = document.forms[2];
+		console.log(document.forms[2].id);
+		if(frm.id=="comFrm"){
+			if(frm.comId.value==""){
+				alert("개인사용자 아이디를 입력하세요.");
+				frm.comId.focus();
+				return false;
+			}
+			if(frm.comPw.value==""){
+				alert("사용자 아이디를 입력하세요.");
+				frm.comPw.focus();
+				return false;
+			}
+			return true;
+		}
+		
+		if(frm.id=="memFrm"){
+			if(frm.memId.value==""){
+				alert("기업사용자 아이디를 입력하세요.");
+				frm.memId.focus();
+				return false;
+			}
+			if(frm.memPw.value==""){
+				alert("사용자 아이디를 입력하세요.");
+				frm.memPw.focus();
+				return false;
+			}
+			return true;
+		}
+		
 
 	}
+	
+	
 </script>
 
 <section class="login first grey">
