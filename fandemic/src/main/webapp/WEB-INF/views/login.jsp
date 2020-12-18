@@ -25,7 +25,7 @@ ul.tabs li.current {
 .tab-content {
 	display: none;
 	padding: 15px 0;
-	border-top: 3px solid #A4B7D4;
+
 }
 
 .tab-content.current {
@@ -33,23 +33,27 @@ ul.tabs li.current {
 }
 
 
+
 </style>
 
 <script>
 	$(document).ready(function() {
 		
+		// 로그인 했을 때
 		var fail = "${login}"
-		console.log(fail)
+		
 		if (  fail == "fail") {
 			alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 			fail = "";
 		}
+		
+		$('#memId').focus();
+		
 
-		var user = "개인회원";
-		checkUser(user);
+		checkUser("개인회원");
 
 		$('ul.tabs li').click(function() { //기업회원, 개인회원 선택클릭
-			user = $(this).text();
+			var user = $(this).text();
 			
 			var tab_id = $(this).attr('data-tab');
 
@@ -58,84 +62,78 @@ ul.tabs li.current {
 
 			$(this).addClass('current');
 			$("#" + tab_id).addClass('current');
-
+			
 			checkUser(user);			
 		});
 		
-/* 		$(".btn.btn-primary.btn-block").on("click",function(){
-			return formCheck();
-		}); */
+ 		
 		
 	}); //end ready function
-
+	
 	function checkUser(user) {
+		
 		if (user == "개인회원") { //개인회원선택시
+			var id = $('#memId');
+			var pw = $('#memPw')
+			id.focus();
+			
+			checkform($('#memlogin'), id, pw); // 유효성
 			
 			$("#memFrm").attr("action", "${pageContext.request.contextPath}/memberLogin");
-			
 
 		} else { //기업회원일때
 			
+			var id = $('#comId');
+			var pw = $('#comPw');
+			id.focus();
+			
+			checkform($('#comlogin'), id, pw); // 유효성
+
 			//소속사,스타체크
 			var chk = $(".login:checked").val();
-			// console.log(chk);
 
 			$(".login").change(function() {
 				chk = $(".login:checked").val();
-				// console.log(chk);
 				checkId(chk);
 			});
-
 			checkId(chk);
-
 		}
 	}
 
 	function checkId(chk) {
 
 		if (chk == "star") {
+
 			$("#comFrm").attr("action","${pageContext.request.contextPath}/starLogin");
+			
 		} else {
 
 			$("#comFrm").attr("action","${pageContext.request.contextPath}/companyLogin");
 		}
 		
-		
 	}
 	
-	function formCheck() { //수정중
-		var frm = document.forms[2];
-		console.log(document.forms[2].id);
-		if(frm.id=="comFrm"){
-			if(frm.comId.value==""){
-				alert("개인사용자 아이디를 입력하세요.");
-				frm.comId.focus();
-				return false;
-			}
-			if(frm.comPw.value==""){
-				alert("사용자 아이디를 입력하세요.");
-				frm.comPw.focus();
-				return false;
-			}
-			return true;
-		}
+	
+	// 유효성 검사
+	function checkform(frm, id, pw) {
 		
-		if(frm.id=="memFrm"){
-			if(frm.memId.value==""){
-				alert("기업사용자 아이디를 입력하세요.");
-				frm.memId.focus();
-				return false;
+		$(frm).on('click', function(event) {
+			
+			if ($(id).val() == null || $(id).val() == '') {
+				alert("아이디를 입력하세요");
+				$(id).focus();
+				event.preventDefault();
+				
+				
+			} else if ($(pw).val() == null || $(pw).val() == '') {
+				alert("비밀번호를 입력하세요");
+				$(pw).focus();
+				event.preventDefault();
 			}
-			if(frm.memPw.value==""){
-				alert("사용자 아이디를 입력하세요.");
-				frm.memPw.focus();
-				return false;
-			}
-			return true;
-		}
-		
-
+			
+		});
 	}
+
 	
 	
 </script>
@@ -158,7 +156,7 @@ ul.tabs li.current {
 			<div class="container">
 				<div class="box-wrapper">
 					<div class="box box-border">
-						<div class="box-body">
+						<div class="box-body" style="border: 3px solid #A4B7D4;">
 							<h4>LOGIN</h4>
 							<form id="memFrm" name="memFrm" method="post">
 								<div class="form-group">
@@ -173,7 +171,7 @@ ul.tabs li.current {
 									<a href="forgot.html" class="pull-right">비밀번호 찾기</a><br>
 								</div>
 								<div class="form-group text-right">
-									<button id="login" class="btn btn-primary btn-block">로그인</button>
+									<button name="btnlogin" id="memlogin" class="btn btn-primary btn-block">로그인</button>
 								</div>
 								<div class="form-group text-center">
 									<a href="register">회원가입</a>
@@ -195,7 +193,7 @@ ul.tabs li.current {
 			<div class="container">
 				<div class="box-wrapper">
 					<div class="box box-border">
-						<div class="box-body">
+						<div class="box-body" style="border: 3px solid #A4B7D4;">
 
 							<div style="text-align: right;">
 								<input type="radio" class="login" name="login" value="company" checked="checked">&nbsp;소속사 &nbsp;&nbsp; 
@@ -215,7 +213,7 @@ ul.tabs li.current {
 									<a href="forgot.html" class="pull-right">비밀번호 찾기</a><br>
 								</div>
 								<div class="form-group text-right">
-									<button id="login" class="btn btn-primary btn-block">로그인</button>
+									<button name="btnlogin" id="comlogin" class="btn btn-primary btn-block">로그인</button>
 								</div>
 								<div class="form-group text-center">
 									<a href="register">회원가입</a>
