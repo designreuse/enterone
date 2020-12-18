@@ -4,10 +4,16 @@
 
 <mapper namespace="com.yedam.fandemic.impl.MemberMapper">
 
-<!-- 단건조회  -->
-	<select id="memList" resultType="Member">
-		SELECT * FROM MEMBER
+
+
+
+<!-- 로그인  -->
+	<select id="memLogin" parameterType="Member" resultType="Member">
+		SELECT * FROM MEMBER 
+		WHERE MEM_ID= #{mem_id} 
+		AND MEM_PW= #{mem_pw}
 	</select>
+	
 	
 
 

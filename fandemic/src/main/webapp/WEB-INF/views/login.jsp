@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 <style>
 ul.tabs {
 	margin: 0px;
@@ -37,13 +37,20 @@ ul.tabs li.current {
 
 <script>
 	$(document).ready(function() {
+		
+		var fail = "${login}"
+		console.log(fail)
+		if (  fail == "fail") {
+			alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+			fail = "";
+		}
 
-		var user = $(this).text();
-
+		var user = "개인회원";
 		checkUser(user);
 
 		$('ul.tabs li').click(function() { //기업회원, 개인회원 선택클릭
 			user = $(this).text();
+			
 			var tab_id = $(this).attr('data-tab');
 
 			$('ul.tabs li').removeClass('current');
@@ -54,26 +61,28 @@ ul.tabs li.current {
 
 			checkUser(user);			
 		});
-		$(".btn.btn-primary.btn-block").on("click",function(){
+		
+/* 		$(".btn.btn-primary.btn-block").on("click",function(){
 			return formCheck();
-		});
+		}); */
+		
 	}); //end ready function
 
 	function checkUser(user) {
 		if (user == "개인회원") { //개인회원선택시
-			console.log(user);
-			$("#memFrm").attr("action",
-					"${pageContext.request.contextPath}/memberLogin");
+			
+			$("#memFrm").attr("action", "${pageContext.request.contextPath}/memberLogin");
+			
 
 		} else { //기업회원일때
 			
 			//소속사,스타체크
 			var chk = $(".login:checked").val();
-			console.log(chk);
+			// console.log(chk);
 
 			$(".login").change(function() {
 				chk = $(".login:checked").val();
-				console.log(chk);
+				// console.log(chk);
 				checkId(chk);
 			});
 
@@ -85,17 +94,13 @@ ul.tabs li.current {
 	function checkId(chk) {
 
 		if (chk == "star") {
-
-			$("#comFrm").attr("action",
-					"${pageContext.request.contextPath}/starLogin");
-
+			$("#comFrm").attr("action","${pageContext.request.contextPath}/starLogin");
 		} else {
 
-			$("#comFrm").attr("action",
-					"${pageContext.request.contextPath}/companyLogin");
-			
+			$("#comFrm").attr("action","${pageContext.request.contextPath}/companyLogin");
 		}
-	
+		
+		
 	}
 	
 	function formCheck() { //수정중

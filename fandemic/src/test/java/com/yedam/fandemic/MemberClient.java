@@ -26,13 +26,13 @@ public class MemberClient {
 	private static Logger LOGGER = LoggerFactory.getLogger(Log4j2.class);
 	
 	
-	@Test
-	public void deptListTest() {
-		List<Member> list = memMapper.memList();
-		for(Member mem : list) {
-			System.out.println(mem.getMem_id() + " , " + mem.getMem_name());
-		}
-	}
+//	@Test
+//	public void deptListTest() {
+//		List<Member> list = memMapper.memList();
+//		for(Member mem : list) {
+//			System.out.println(mem.getMem_id() + " , " + mem.getMem_name());
+//		}
+//	}
 	
 	
 

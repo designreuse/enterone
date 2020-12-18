@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,8 +67,17 @@
                   </div>
                   <div class="col-md-3 col-sm-12 text-right">
                      <ul class="nav-icons">
-                        <li><a href="register"><i class="ion-person-add"></i><div>회 원 가 입</div></a></li>
-                        <li><a href="login"><i class="ion-person"></i><div>로 그 인</div></a></li>
+                     	<c:if test="${login eq null }" >
+	                        <li><a href="register"><i class="ion-person-add"></i><div>회 원 가 입</div></a></li>
+	                        <li><a href="login"><i class="ion-person"></i><div>로 그 인</div></a></li>
+                        </c:if>
+                        <c:if test="${login ne null }">
+                        	<!-- <li><a href="#"><i class="ion-person-add"></i><div>마 이 페 이 지</div></a></li> -->
+	                        <li><a href="logout"><i class="ion-person"></i><div>로 그 아 웃</div></a></li>
+                        </c:if>
+                        
+                        
+                        
                      </ul>
                   </div>
                </div>
