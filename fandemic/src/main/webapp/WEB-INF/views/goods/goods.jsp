@@ -229,6 +229,46 @@ ol {
 	font-weight: 700;
 }
 
+/*---------------------
+  product__pagination
+-----------------------*/
+
+.product__pagination,
+.blog__pagination {
+	padding-top: 10px;
+}
+
+.product__pagination a,
+.blog__pagination a {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	border: 1px solid #b2b2b2;
+	font-size: 14px;
+	color: #b2b2b2;
+	font-weight: 700;
+	line-height: 28px;
+	text-align: center;
+	margin-right: 16px;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
+	-ms-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+
+.product__pagination a:hover,
+.blog__pagination a:hover {
+	background: #7fad39;
+	border-color: #7fad39;
+	color: #ffffff;
+}
+
+.product__pagination a:last-child,
+.blog__pagination a:last-child {
+	margin-right: 0;
+}
+
 </style>
 </head>
 
@@ -237,19 +277,19 @@ ol {
 
 
     <!-- Featured Section Begin -->
-    <section class="featured spad">
+    <section class="home">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h3>GOODS SHOP</h3>
+                        <h3 align="center" style="padding: 15px">GOODS SHOP</h3>
                     </div>
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
                             <li data-filter=".cheering">CHEERING</li>
                             <li data-filter=".music">MUSIC</li>
-                            <li data-filter=".fasion">FASHION</li>
+                            <li data-filter=".fashion">FASHION</li>
                             <li data-filter=".acc">ACC</li>
                             <li data-filter=".tech">TECH</li>
                             <li data-filter=".etc">ETC</li>
@@ -258,9 +298,9 @@ ol {
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix cheering music">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/resources/images/featured/feature-1.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -273,9 +313,9 @@ ol {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix fashion acc">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-2.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -288,9 +328,9 @@ ol {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix fashion music">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-3.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-3.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -303,9 +343,9 @@ ol {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix acc cheering">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-4.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-4.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -318,9 +358,9 @@ ol {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix music fashion">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-5.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-5.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -333,9 +373,9 @@ ol {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix cheering acc">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-6.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-6.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -348,9 +388,9 @@ ol {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix music fashion">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-7.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-7.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -363,9 +403,9 @@ ol {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix acc fashion">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-8.jpg">
+                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-8.jpg">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -378,6 +418,14 @@ ol {
                         </div>
                     </div>
                 </div>
+                
+                <div class="product__pagination">
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">></a>
+                </div>
+                
             </div>
         </div>
     </section>
