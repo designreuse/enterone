@@ -52,7 +52,7 @@
 				<div class="col-md-4 sidebar" id="sidebar">
 					<!-- 						side bar -->
 					<aside>
-						<div class="aside-body">
+						<div class="aside-body" style="position: fixed ">
 							<h1>마이페이지</h1>
 							<table>
 								<tr>
@@ -64,142 +64,32 @@
 									<td>vip</td>
 								</tr>
 								<tr>
-									<td><a>내정보 수정</a></td>
+									<td><a href="mypagemain">내정보 수정</a></td>
 								</tr>
 								<tr>
-									<td><a>내 스타 관리</a></td>
+									<td><a href="my_star">내 스타 관리</a></td>
 								</tr>
 								<tr>
-									<td><a>연습생 정보 관리</a></td>
+									<td><a href="my_trainee_update">연습생 정보 관리</a></td>
 								</tr>
 								<tr>
-									<td><a>결제내역</a></td>
+									<td><a href="my_purchase_history">결제내역</a></td>
 								</tr>
 								<tr>
-									<td><a>이벤트 참여내역</a></td>
+									<td><a href="my_event">이벤트 참여내역</a></td>
 								</tr>
 								<tr>
-									<td><a>쪽지함</a></td>
+									<td><a href="my_mail">쪽지함</a></td>
 								</tr>
 								<tr>
-									<td><a>1:1 문의 내역</a></td>
+									<td><a href="my_1o1">1:1 문의 내역</a></td>
 								</tr>
 							</table>
 
 						</div>
 					</aside>
-					<aside>
-						<h1 class="aside-title">Recent Post</h1>
-						<div class="aside-body">
-							<article class="article-fw">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img src="images/news/img16.jpg">
-										</a>
-									</figure>
-									<div class="details">
-										<h1>
-											<a href="single.html">Lorem Ipsum Dolor Sit Amet
-												Consectetur Adipisicing Elit</a>
-										</h1>
-										<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-											elit, sed do eiusmod tempor incididunt ut labore et dolore
-											magna aliqua.</p>
-										<div class="detail">
-											<div class="time">December 26, 2016</div>
-											<div class="category">
-												<a href="category.html">Lifestyle</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<div class="line"></div>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img src="images/news/img05.jpg">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Lifestyle</a>
-											</div>
-											<div class="time">December 22, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img src="images/news/img02.jpg">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Fusce ullamcorper elit at felis
-												cursus suscipit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Travel</a>
-											</div>
-											<div class="time">December 21, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img src="images/news/img13.jpg">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">International</a>
-											</div>
-											<div class="time">December 20, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-						</div>
-					</aside>
-					<aside>
-						<div class="aside-body">
-							<form class="newsletter">
-								<div class="icon">
-									<i class="ion-ios-email-outline"></i>
-									<h1>Newsletter</h1>
-								</div>
-								<div class="input-group">
-									<input type="email" class="form-control email"
-										placeholder="Your mail">
-									<div class="input-group-btn">
-										<button class="btn btn-primary">
-											<i class="ion-paper-airplane"></i>
-										</button>
-									</div>
-								</div>
-								<p>By subscribing you will receive new articles in your
-									email.</p>
-							</form>
-						</div>
-					</aside>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-8" style="margin-left: 30%">
 					<ol class="breadcrumb">
 						<li><a href="#">Home</a></li>
 						<li class="active">Film</li>

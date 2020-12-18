@@ -14,4 +14,25 @@ public class MypageController {
 		public ModelAndView mymain(HttpServletResponse response) throws IOException {
 			return new ModelAndView("mypage/my_main");
 }
+		@RequestMapping(value = "/mypagemain")
+		public ModelAndView mymain(HttpServletResponse response) throws IOException {
+			return new ModelAndView("mypage/my_main");
+}
+		@RequestMapping(value = "/mypagemain")
+		public ModelAndView mymain(HttpServletResponse response) throws IOException {
+			return new ModelAndView("mypage/my_main");
+}
+		@RequestMapping(value = "/mypagemain")
+		public ModelAndView mymain(HttpServletResponse response) throws IOException {
+			return new ModelAndView("mypage/my_main");
+}
+		@RequestMapping(value = "/mypagemain")
+		public ModelAndView mymain(HttpServletResponse response) throws IOException {
+			return new ModelAndView("mypage/my_main");
+}
+		@RequestMapping(value = "/mypagemain")
+		public ModelAndView mymain(HttpServletResponse response) throws IOException {
+			return new ModelAndView("mypage/my_main");
+}
+		
 }
