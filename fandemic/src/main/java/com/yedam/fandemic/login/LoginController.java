@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.MemberMapper;
+import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Member;
 
 
@@ -59,10 +60,35 @@ public class LoginController {
 			return new ModelAndView("login");
 		}
 		
+	} // 개인 로그인
+	
+	@RequestMapping(value="/companyLogin")
+	public ModelAndView companyLogin(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
+		Company company = new Company();
+		
+		company.setCom_id(request.getParameter("comId"));
+		company.setCom_pw(request.getParameter("comPw"));
+		company = memMapper.comLogin(company);
+		
+		if ( company != null) {
+			
+			HttpSession session = request.getSession(false);
+			session.setAttribute("comId", company.getCom_id());
+			session.setAttribute("comPw", company.getCom_pw());
+			
+			request.setAttribute("login", "success");
+			
+			return new ModelAndView("mgt/main");
+			
+		} else {
+			
+			request.setAttribute("login", "fail");
+			return new ModelAndView("login");
+		}
 		
 		
-		
-	}
+	}// 소속사 로그인
 	
 	@RequestMapping("/register")
 	public ModelAndView register(HttpServletResponse response) throws IOException{
@@ -82,14 +108,7 @@ public class LoginController {
 	
 	
 
-	@RequestMapping(value="/companyLogin")
-	public ModelAndView companyLogin(HttpServletResponse response) throws IOException{
-		System.out.println("소속사 로그인");
-		
-		
-		
-		return new ModelAndView("index");
-	}
+	
 	
 	@RequestMapping(value="/starLogin")
 	public ModelAndView starLogin(HttpServletResponse response) throws IOException{
