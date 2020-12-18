@@ -16,9 +16,14 @@ public class NoticeController {
 	
 	}	
 	
-	@RequestMapping(value = "/one") //주소
-	public ModelAndView one(HttpServletResponse response) throws IOException {
-		return new ModelAndView("notice/one_list");
+	@RequestMapping(value = "/question") //주소
+	public ModelAndView question(HttpServletResponse response) throws IOException {
+		return new ModelAndView("notice/question_list");
+	
+	}	
+	@RequestMapping(value = "/questioninsert") //주소
+	public ModelAndView questioninsert(HttpServletResponse response) throws IOException {
+		return new ModelAndView("notice/question_insert");
 	
 	}	
 

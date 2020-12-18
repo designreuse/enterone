@@ -10,8 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CompanyController {
-	@RequestMapping(value="/company")
-	public ModelAndView login(HttpServletResponse response) throws IOException{
-		return new ModelAndView("company/company");
+	@RequestMapping(value="/companyMain")
+	public ModelAndView companyMain(HttpServletResponse response) throws IOException{
+		return new ModelAndView("company/company_main");
+	}
+	
+	@RequestMapping(value="/companyHome")
+	public ModelAndView companyHome(HttpServletResponse response) throws IOException{
+		return new ModelAndView("company/company_home");
 	}
 }

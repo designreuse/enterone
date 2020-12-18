@@ -105,14 +105,14 @@
                      <li class="for-tablet"><a href="register">Register</a></li>
                      
                      
-                     <li><a href="company">소 속 사</a></li>
+                     <li><a href="companyMain">소 속 사</a></li>
                      
                      
                      <li><a href="company">언 택 트</a></li>
 
                      
-                     
-                     <li class="dropdown magz-dropdown"><a href="#">연 습 생<i class="ion-ios-arrow-right"></i></a>
+<!--                      magz-dropdown 클래스 제거 -->
+                     <li class="dropdown"><a href="#">연 습 생<i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                            <li><a href="#">연습생 등록</a></li>
                            <li><a href="#">연습생 활동</a></li>
@@ -120,8 +120,8 @@
                            
                         </ul>
                      </li>
-                     
-                     <li class="dropdown magz-dropdown"><a href="goods">굿 즈 샵<i class="ion-ios-arrow-right"></i></a>
+<!--                      magz-dropdown 클래스 제거 -->
+                     <li class="dropdown "><a href="goods">굿 즈 샵<i class="ion-ios-arrow-right"></i></a>
                      
                         <ul class="dropdown-menu">
                            <li><a href="#">CHEERING</a></li>
@@ -136,17 +136,16 @@
                      <li><a href="#">연 예 뉴 스</a></li>   
                      
                      <li><a href="sns">S N S</a></li>
-                                       
-                     </li>
-                     <li class="dropdown magz-dropdown"><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
+<!--                     magz-dropdown 클래스 제거ㅊ -->
+                     <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
-                           <li><a href="mypagemain"><i class="icon ion-person"></i> 회원정보</a></li>
-                           <li><a href="my_star"><i class="icon ion-heart"></i> 내 스타</a></li>
-                           <li><a href="my_trainee_update"><i class="icon ion-chatbox"></i> 연습생</a></li>
-                           <li><a href="my_purchase_history"><i class="icon ion-key"></i> 결제내역</a></li>
-                           <li><a href="my_event"><i class="icon ion-settings"></i> 이벤트 참여</a></li>
-                           <li><a href="my_mail"><i class="icon ion-chatbox"></i> 쪽지함</a></li>
-                           <li><a href="my_1o1"><i class="icon ion-chatbox"></i> 1:1문의 내역</a></li>
+                           <li><a href="myupdate"><i class="icon ion-person"></i> 회원정보</a></li>
+                           <li><a href="mystar"><i class="icon ion-heart"></i> 내 스타</a></li>
+                           <li><a href="mytrainee"><i class="icon ion-chatbox"></i> 연습생</a></li>
+                           <li><a href="mypurchase"><i class="icon ion-key"></i> 결제내역</a></li>
+                           <li><a href="myevent"><i class="icon ion-settings"></i> 이벤트 참여</a></li>
+                           <li><a href="mymail"><i class="icon ion-chatbox"></i> 쪽지함</a></li>
+                           <li><a href="my1o1"><i class="icon ion-chatbox"></i> 1:1문의 내역</a></li>
                            <li class="divider"></li>
                            <li><a href="#"><i class="icon ion-log-out"></i> 로그아웃</a></li>
                         </ul>
