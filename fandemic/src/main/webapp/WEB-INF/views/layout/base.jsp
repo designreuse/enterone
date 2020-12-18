@@ -101,8 +101,8 @@
                      <li><a href="company">언 택 트</a></li>
 
                      
-                     
-                     <li class="dropdown magz-dropdown"><a href="#">연 습 생<i class="ion-ios-arrow-right"></i></a>
+<!--                      magz-dropdown 클래스 제거 -->
+                     <li class="dropdown"><a href="#">연 습 생<i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                            <li><a href="#">연습생 등록</a></li>
                            <li><a href="#">연습생 활동</a></li>
@@ -110,8 +110,8 @@
                            
                         </ul>
                      </li>
-                     
-                     <li class="dropdown magz-dropdown"><a href="goods">굿 즈 샵<i class="ion-ios-arrow-right"></i></a>
+<!--                      magz-dropdown 클래스 제거 -->
+                     <li class="dropdown "><a href="goods">굿 즈 샵<i class="ion-ios-arrow-right"></i></a>
                      
                         <ul class="dropdown-menu">
                            <li><a href="#">CHEERING</a></li>
@@ -126,9 +126,8 @@
                      <li><a href="#">연 예 뉴 스</a></li>   
                      
                      <li><a href="sns">S N S</a></li>
-                                       
-                     </li>
-                     <li class="dropdown magz-dropdown"><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
+<!--                     magz-dropdown 클래스 제거ㅊ -->
+                     <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                            <li><a href="myupdate"><i class="icon ion-person"></i> 회원정보</a></li>
                            <li><a href="mystar"><i class="icon ion-heart"></i> 내 스타</a></li>

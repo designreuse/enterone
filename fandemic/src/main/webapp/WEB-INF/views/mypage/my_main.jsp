@@ -64,25 +64,25 @@
 									<td>vip</td>
 								</tr>
 								<tr>
-									<td><a href="mypagemain">내정보 수정</a></td>
+									<td><a href="myupdate">내정보 수정</a></td>
 								</tr>
 								<tr>
-									<td><a href="my_star">내 스타 관리</a></td>
+									<td><a href="mystar">내 스타 관리</a></td>
 								</tr>
 								<tr>
-									<td><a href="my_trainee_update">연습생 정보 관리</a></td>
+									<td><a href="mytrainee">연습생 정보 관리</a></td>
 								</tr>
 								<tr>
-									<td><a href="my_purchase_history">결제내역</a></td>
+									<td><a href="mypurchase">결제내역</a></td>
 								</tr>
 								<tr>
-									<td><a href="my_event">이벤트 참여내역</a></td>
+									<td><a href="myevent">이벤트 참여내역</a></td>
 								</tr>
 								<tr>
-									<td><a href="my_mail">쪽지함</a></td>
+									<td><a href="mymail">쪽지함</a></td>
 								</tr>
 								<tr>
-									<td><a href="my_1o1">1:1 문의 내역</a></td>
+									<td><a href="my1o1">1:1 문의 내역</a></td>
 								</tr>
 							</table>
 
