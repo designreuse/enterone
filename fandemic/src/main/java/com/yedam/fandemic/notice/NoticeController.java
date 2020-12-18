@@ -21,5 +21,10 @@ public class NoticeController {
 		return new ModelAndView("notice/question_list");
 	
 	}	
+	@RequestMapping(value = "/questioninsert") //주소
+	public ModelAndView questioninsert(HttpServletResponse response) throws IOException {
+		return new ModelAndView("notice/question_insert");
+	
+	}	
 
 }
