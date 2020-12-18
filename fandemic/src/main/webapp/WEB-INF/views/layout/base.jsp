@@ -95,7 +95,7 @@
                      <li class="for-tablet"><a href="register">Register</a></li>
                      
                      
-                     <li><a href="company">소 속 사</a></li>
+                     <li><a href="companyMain">소 속 사</a></li>
                      
                      
                      <li><a href="company">언 택 트</a></li>
