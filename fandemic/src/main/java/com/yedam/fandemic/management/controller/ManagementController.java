@@ -19,5 +19,9 @@ public class ManagementController {
 	public ModelAndView Notices(HttpServletResponse response) throws IOException{
 		return new ModelAndView("mgt/notices");
 	}
+	@RequestMapping(value="/management/editors")
+	public ModelAndView Editors(HttpServletResponse response) throws IOException{
+		return new ModelAndView("mgt/editors");
+	}
 	
 }
