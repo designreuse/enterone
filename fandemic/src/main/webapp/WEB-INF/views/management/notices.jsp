@@ -1,25 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- <div class="content-wrapper">
-공지사항이라고
-</div> -->
-<div class="content-wrapper" style="min-height: 1367.44px;">
-	<!-- 상단바 -->
-	<section class="content-header">
-	      <div class="container-fluid">
-	        <div class="row mb-2">
-	          <div class="col-sm-6">
-	            <h1>공지사항</h1>
-	          </div>
-	          <div class="col-sm-6">
-	            <ol class="breadcrumb float-sm-right">
-	              <li class="breadcrumb-item"><a href="#">Home</a></li>
-	              <li class="breadcrumb-item active">공지사항</li>
-	            </ol>
-	          </div>
-	        </div>
-	      </div><!-- /.container-fluid -->
-    </section>
+
+
     
     <!--  공지 게시판 -->
     <div class="row">
@@ -57,7 +39,7 @@
               <div>
               	<div class="cnotices-button">
               		<button>목록</button>
-              		<button>등록</button>
+              		<button class="btn-register">등록</button>
               	</div>
               </div>
             </div>

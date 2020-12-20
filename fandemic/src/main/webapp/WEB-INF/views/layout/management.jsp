@@ -34,6 +34,20 @@
   		padding:5px;
   	}
   </style>
+  <!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+  <!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jquery/jquery.min.js"></script>	
+  <script type="text/javascript">
+		
+	$(function(){
+		$(".btn-register").on("click",function(){
+			location.href="${pageContext.request.contextPath}/management/editors";
+		});
+		
+	});
+	
+  </script>	
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -380,9 +394,28 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  
+  <div class="content-wrapper" style="min-height: 1718.13px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Widgets</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Widgets</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    
   <!--  main 들어가는 자리 -->
   <tiles:insertAttribute name="body"/>
+  
+  </div>
   
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
