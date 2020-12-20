@@ -32,7 +32,7 @@ public class LoginController {
 		
 		return new ModelAndView("login");
 	}
-	
+	    
 	// 개인 로그인
 	@RequestMapping(value="/memberLogin")
 	public ModelAndView memberLogin(HttpServletRequest request , HttpServletResponse response) throws IOException{
