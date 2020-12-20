@@ -16,7 +16,7 @@ import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Member;
 
 
-
+   
 @Controller
 public class LoginController {
 	@Autowired MemberMapper memMapper;
