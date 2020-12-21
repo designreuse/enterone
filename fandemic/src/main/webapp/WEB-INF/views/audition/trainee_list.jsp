@@ -65,7 +65,7 @@ footer {
 
 		<div class="card">
 
-			<img src="suzy.jpg">
+			<img src="${pageContext.request.contextPath}/views/audition/img/suzy.jpg">
 
 			<p>수지</p>
 
