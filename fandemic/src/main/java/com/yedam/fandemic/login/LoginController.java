@@ -114,6 +114,7 @@ public class LoginController {
 	@ResponseBody
 	public int checkId(Model model, Member member) throws IOException{
 		
+			System.out.println("개인 중복확인");
 			return memMapper.memIdCheck(member);
 			
 	}
@@ -123,8 +124,9 @@ public class LoginController {
 	@ResponseBody
 	public int checkIdcom(Model model, Company company) throws IOException{
 
+			System.out.println("기업 중복확인");
 			return memMapper.comIdCheck(company);
-			
+
 	}
 	
 	

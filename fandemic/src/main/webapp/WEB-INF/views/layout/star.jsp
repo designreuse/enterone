@@ -37,29 +37,18 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(images/author.jpg);"></span>Louie Smith</a></h1>
+			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(resourcesStar/images/author.jpg);"></span>스타이름</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li class="colorlib-active"><a href="index.html">Home</a></li>
-					<li><a href="collection.html">Collection</a></li>
-					<li><a href="about.html">About Me</a></li>
-					<li><a href="services.html">My Services</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="contact.html">Contact</a></li>
+					<li class="colorlib-active"><a href="starMain">Home</a></li>
+					<li><a href="#">스케줄</a></li>
+					<li><a href="#">스타라이브</a></li>
+					<li><a href="#">소식</a></li>
+					<li><a href="#">스타게시판</a></li>
+					<li><a href="#">팬게시판</a></li>
+					<li><a href="#">사진게시판</a></li>
 				</ul>
 			</nav>
-
-			<div class="colorlib-footer">
-				<h3>Newsletter</h3>
-				<div class="d-flex justify-content-center">
-					<form action="#" class="colorlib-subscribe-form">
-            <div class="form-group d-flex">
-            	<div class="icon"><span class="icon-paper-plane"></span></div>
-              <input type="text" class="form-control" placeholder="Enter Email Address">
-            </div>
-          </form>
-				</div>
-			</div>
 		</aside> <!-- END COLORLIB-ASIDE -->
 		<div id="colorlib-main">
 			<!--  body 추가 부분 -->
@@ -69,8 +58,8 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
-
+	
+	
   <script src="resourcesStar/js/jquery.min.js"></script>
   <script src="resourcesStar/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="resourcesStar/js/popper.min.js"></script>

@@ -7,6 +7,13 @@
 <title>Goods 구매 상세보기 페이지</title>
 </head>
 <body>
-
+	<section class="home">
+		<div class="container">	
+			<div class="row">
+			
+			
+			</div>
+		</div>
+	</section>
 </body>
 </html>
