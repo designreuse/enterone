@@ -120,7 +120,7 @@ ul.tabs li.current {
 	       $('.pw').focusout(function () {
 	              var pwd1 = $(pw1).val();
 	              var pwd2 = $(pw2).val();
-	       
+	         
 	              if ( pwd1 != '' && pwd2 == '' ) {
 	                  null;
 	              } else if (pwd1 != "" || pwd2 != "") {
