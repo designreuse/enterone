@@ -4,6 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+.sidebutton {
+	width: 90%;
+	margin: 1%;
+}
+</style>
 </head>
 <body>
 	<section class="single">
@@ -11,39 +17,38 @@
 			<div class="row">
 				<div class="col-md-8" style="margin-left: 30%">
 					<div class="line">
-						<div>내 스타 목록</div>
-					</div>
-					<div class="w3-content w3-display-container">
-						<img class="mySlides" src="img_nature.jpg"> <img
-							class="mySlides" src="img_snowtops.jpg"> <img
-							class="mySlides" src="img_mountains.jpg">
-						<h1>여기에 스타 목록</h1>
-						<div class="w3-center w3-display-bottommiddle" style="width: 100%">
-							<div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
-							<div class="w3-right" onclick="plusDivs(1)">&#10095;</div>
-							<span class="w3-badge demo w3-border" onclick="currentDiv(1)"></span>
-							<span class="w3-badge demo w3-border" onclick="currentDiv(2)"></span>
-							<span class="w3-badge demo w3-border" onclick="currentDiv(3)"></span>
-						</div>
-					</div>
-
-					<div class="line">
 						<div>최근 구매 내역</div>
 					</div>
 					<div class="row">
-						<h1>최근 구매내역 들어가는곳</h1>
-					</div>
-					<div class="line">
-						<div>이벤트 참여 내역</div>
-					</div>
-					<div class="row">
-						<h1>이벤트</h1>
-					</div>
-					<div class="line">
-						<div>쪽지</div>
-					</div>
-					<div class="row">
-						<h1>쪽지 나오는곳</h1>
+						<div>
+							<table style="width: 100%" border="1">
+								<tr>
+									<td colspan="2" width="70%">배송완료/배송중/배송준비중</td>
+									<td width="30%" rowspan="2"><input
+										class="sidebutton btn-primary" type="button"
+										onclick="location.href='#'" value="배송조회"><br> <input
+										class="sidebutton btn-primary" type="button"
+										onclick="location.href='#'" value="교환 신청"><br> <input
+										class="sidebutton btn-primary" type="button"
+										onclick="location.href='#'" value="반품 신청"><br> <input
+										class="sidebutton btn-primary" type="button"
+										onclick="location.href='#'" value="구매후기 쓰기"><br>
+									</td>
+								</tr>
+								<tr>
+									<td><img alt="상품이미지"
+										src="https://thumbnail10.coupangcdn.com/thumbnails/remote/96x96ex/image/retail/images/2020/05/07/17/3/9d59a462-8680-4bc2-8ae4-f6177cd7193e.jpg">
+									</td>
+									<td align="right">
+										<h5 style="margin-right: 5%">던킨 딸기 듬뿍 미니도넛 (냉동)</h5> <a
+										style="margin-right: 20px">6,770원 · 1개</a> <input
+										style="margin-right: 5%" width="10%" type="button"
+										onclick="location.href='#'" value="장바구니에 담기">
+									</td>
+								</tr>
+
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
