@@ -6,10 +6,10 @@
 
 	<div class="row">
 		<div class="slide">
-			<input type="radio" name="pos" id="pos1" checked> <input
-				type="radio" name="pos" id="pos2"> <input type="radio"
-				name="pos" id="pos3"> <input type="radio" name="pos"
-				id="pos4">
+			<input type="radio" name="pos" id="pos1" checked> 
+			<input type="radio" name="pos" id="pos2"> 
+			<input type="radio" name="pos" id="pos3"> 
+			<input type="radio" name="pos" id="pos4">
 			<ul>
 				<li>
 				<img class="companyBanner col-md-12 col-sm-12 col-xs-12"
