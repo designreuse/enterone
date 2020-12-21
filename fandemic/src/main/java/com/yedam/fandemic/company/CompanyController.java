@@ -19,4 +19,24 @@ public class CompanyController {
 	public ModelAndView companyHome(HttpServletResponse response) throws IOException{
 		return new ModelAndView("company/company_home");
 	}
+	
+	@RequestMapping(value="/companyIntro")
+	public ModelAndView companyIntro(HttpServletResponse response) throws IOException{
+		return new ModelAndView("company/company_intro");
+	}
+	
+	@RequestMapping(value="/companyNotify")
+	public ModelAndView companyNotify(HttpServletResponse response) throws IOException{
+		return new ModelAndView("company/company_notify");
+	}
+	
+	@RequestMapping(value="/companyStarProfile")
+	public ModelAndView companyStarProfile(HttpServletResponse response) throws IOException{
+		return new ModelAndView("company/company_star_profile");
+	}
+	
+	@RequestMapping(value="/companyStarMembers")
+	public ModelAndView companyStarMembers(HttpServletResponse response) throws IOException{
+		return new ModelAndView("company/company_star-members");
+	}
 }
