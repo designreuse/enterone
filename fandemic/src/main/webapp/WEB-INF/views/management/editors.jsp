@@ -12,8 +12,23 @@
 </style>
 <script>
 	$(function() {
-		// Summernote
+		// Summernote 출력
 		$('#summernote').summernote();
+		
+		//공지사항/이벤트 분류에 따라 이벤트인원 칼럼 출력
+		$(".custom-select").on("change",function(){
+			if($(this).val()=="이벤트"){
+				$("table .event").css("display","");
+			}else{
+				$("table .event").css("display","none");
+			}
+		});
+		
+		$("#btnCancel").on("click",function(){
+			location.href="${pageContext.request.contextPath}/management/notices";
+		});
+		
+		
 
 	})
 </script>
@@ -31,20 +46,22 @@
 							style="text-align: center; border: 1px solid #dddddd">
 							<thead>
 								<tr>
-									<th colspan="4"	style="background-color: #eeeeee; text-align: center;"></th>
+									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
+										<input type="hidden" name="companyId" />
+									</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr width="100%">
 									<td width="10%" align="left"><label>분류</label></td>
 									<td width="40%" align="left">								
-				                        <select class="custom-select"  style="width: auto;">
+				                        <select class="custom-select" style="width: auto;">
 				                          <option>공지사항</option>
 				                          <option>이벤트</option>				                          
 				                        </select>                     
 									</td>
-									<td style="display: ;"><label>인원</label></td>
-									<td style="display: ;"><input type="text" class="form-control"/></td>
+									<td class="event" style="display: none;"><label>인원</label></td>
+									<td class="event" style="display: none;"><input type="text" class="form-control"/></td>
 								</tr>
 								<tr width="100%">
 									<td colspan="1" align="left"><label>제목</label></td>
@@ -65,10 +82,14 @@
                       					<input type="file"  multiple>                     					
                      				</td>
 								</tr>
+								<tr >
+									<td colspan="4" align="right" style="padding:5px;">
+									<input type="submit" class="btn btn-primary pull-right" value="등록" />
+									<input type="button" id="btnCancel" class="btn btn-primary pull-right" value="취소" /></td>
+								</tr>
 							</tbody>
 						</table>
-						<input type="submit" class="btn btn-primary pull-right"
-							value="글쓰기" />
+						
 					</form>
 					<textarea id="summernote" style="display: none;"
 						placeholder="내용을 입력하세요.">

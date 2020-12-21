@@ -1,7 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<style>
+	.center {
+  text-align: center;
+}
 
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>
+<script>
+	$(function() {
+		$(".pagination a").on("click",function(){
+			$(".pagination a").removeClass("active");
+			$(this).addClass("active");
+		});
+	});
+</script>
     
     <!--  공지 게시판 -->
     <div class="row">
@@ -37,8 +70,18 @@
               </div>
               <!-- /.card-body -->
               <div>
+              	<div class="center">
+				  <div class="pagination">
+					  <a href="#">&laquo;</a>
+					  <a href="#" class="active">1</a>
+					  <a href="#">2</a>
+					  <a href="#">3</a>
+					  <a href="#">4</a>
+					  <a href="#">5</a>
+					  <a href="#">&raquo;</a>
+				  </div>
+				</div>
               	<div class="cnotices-button">
-              		<button>목록</button>
               		<button class="btn-register">등록</button>
               	</div>
               </div>

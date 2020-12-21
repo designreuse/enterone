@@ -47,7 +47,7 @@ ul.tabs li.current {
 			fail = "";
 		}
 		
-		$('#memId').focus();
+		$('#mem_id').focus();
 		
 
 		checkUser("개인회원");
@@ -73,21 +73,18 @@ ul.tabs li.current {
 	function checkUser(user) {
 		
 		if (user == "개인회원") { //개인회원선택시
-			var id = $('#memId');
-			var pw = $('#memPw')
-			id.focus();
+
+			$('#mem_id').focus();
 			
-			checkform($('#memlogin'), id, pw); // 유효성
+			checkform($('#memlogin'), $('#mem_id'), $('#mem_pw')); // 유효성
 			
 			$("#memFrm").attr("action", "${pageContext.request.contextPath}/memberLogin");
-
+		
 		} else { //기업회원일때
 			
-			var id = $('#comId');
-			var pw = $('#comPw');
-			id.focus();
+			$('#com_id').focus();
 			
-			checkform($('#comlogin'), id, pw); // 유효성
+			checkform($('#comlogin'), $('#com_id'), $('#com_pw')); // 유효성
 
 			//소속사,스타체크
 			var chk = $(".login:checked").val();
@@ -161,11 +158,11 @@ ul.tabs li.current {
 							<form id="memFrm" name="memFrm" method="post">
 								<div class="form-group">
 									<label class="fw" style="text-align: left;">아이디</label> <input
-										type="text" id="memId" name="memId" class="form-control">
+										type="text" id="mem_id" name="mem_id" class="form-control">
 								</div>
 								<div class="form-group">
 									<label class="fw" style="text-align: left;">비밀번호<br></label>
-									<input type="password" id="memPw" name="memPw"
+									<input type="password" id="mem_pw" name="mem_pw"
 										class="form-control">
 									<p></p>
 									<a href="forgot.html" class="pull-right">비밀번호 찾기</a><br>
@@ -203,11 +200,11 @@ ul.tabs li.current {
 							<form id="comFrm" name="comFrm" method="post">
 								<div class="form-group">
 									<label class="fw" style="text-align: left;">아이디</label> <input
-										type="text" id="comId" name="comId" class="form-control">
+										type="text" id="com_id" name="com_id" class="form-control">
 								</div>
 								<div class="form-group">
 									<label class="fw" style="text-align: left;">비밀번호<br></label>
-									<input type="password" id="comPw" name="comPw"
+									<input type="password" id="com_pw" name="com_pw"
 										class="form-control">
 									<p></p>
 									<a href="forgot.html" class="pull-right">비밀번호 찾기</a><br>
@@ -218,9 +215,7 @@ ul.tabs li.current {
 								<div class="form-group text-center">
 									<a href="register">회원가입</a>
 								</div>
-								<div class="title-line">or</div>
-								<a href="#" class="btn btn-social btn-block facebook"><i
-									class="ion-social-facebook"></i> 소셜로그인 </a>
+								
 							</form>
 						</div>
 					</div>
