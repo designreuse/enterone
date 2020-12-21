@@ -11,5 +11,6 @@ public interface MemberMapper {
 	
 	public Member memLogin(Member member); // 개인 로그인
 	public Company comLogin(Company company); // 소속사 로그인
-
+	public int memIdCheck(Member member); 
+	public int comIdCheck(Company company);
 }

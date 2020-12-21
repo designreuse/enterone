@@ -22,8 +22,18 @@
 		AND COM_PW= #{com_pw}
 	</select> 
 	
+<!-- 아이디 중복확인 -->
+	<select id="memIdCheck" parameterType="Member" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER 
+		WHERE MEM_ID=#{mem_id}
+	</select>
 
-
-
+<!-- 아이디 중복확인 -->
+	<select id="comIdCheck" parameterType="Company" resultType="int">
+		SELECT COUNT(*) 
+		FROM COMPANY
+		WHERE COM_ID=#{com_id}
+	</select>
 
 </mapper>
