@@ -45,11 +45,14 @@ public class MypageController {
 		public ModelAndView mymail(HttpServletResponse response) throws IOException {
 			return new ModelAndView("mypage/my_mail");
 }
-		//my1:1문의
+		//my1:1main
 		@RequestMapping(value = "/my1o1")
 		public ModelAndView my1o1(HttpServletResponse response) throws IOException {
 			return new ModelAndView("mypage/my_1o1");
 }
-		
-		
+		//my1:1ask
+		@RequestMapping(value = "/my1o1ask")
+		public ModelAndView my1o1ask(HttpServletResponse response) throws IOException {
+			return new ModelAndView("mypage/my_1o1_ask");
+		}
 }
