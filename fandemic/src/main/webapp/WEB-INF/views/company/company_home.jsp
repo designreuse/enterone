@@ -54,9 +54,9 @@
 						</div>
 						<div>
 							<a href="companyStarProfile"
-								class="btn btn-info btn-rounded companyMinButton">프로필</a> <a
+								class="btn btn-magz companyMinButton">프로필</a> <a
 								href="starMain"
-								class="btn btn-info btn-rounded companyMinButton">채널</a>
+								class="btn btn-magz companyMinButton">채널</a>
 						</div>
 					</div>
 				</div>

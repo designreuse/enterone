@@ -9,10 +9,8 @@
 		<div
 			class="row no-gutters slider-text justify-content-center align-items-center">
 			<div class="col-md-8 ftco-animate">
-				<p class="breadcrumbs">
-					<span class="mr-2"><a href="starMain">Home</a></span> <span>Blog</span>
-				</p>
-				<h1 class="bread">Read Our Blog</h1>
+
+				<h1 class="bread">스타게시판</h1>
 			</div>
 		</div>
 	</div>
@@ -22,7 +20,7 @@
 <section class="ftco-section">
 	<div class="container">
 		<div class="row d-flex">
-			<div class="col-lg-8">
+			<div class="col-lg-10">
 			<div class="sidebar-box ftco-animate">
 					<h3 class="sidebar-heading">Tag Cloud</h3>
 					<ul class="tagcloud">
@@ -47,7 +45,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> <span><a href="single.html">Photography</a></span>
+										<span>Dec 14, 2018</span> 
+										<span>Photography</span>
 										<span>5 Comment</span>
 									</p>
 								</div>
@@ -70,7 +69,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> <span><a href="single.html">Photography</a></span>
+										<span>Dec 14, 2018</span> 
+										<span>Photography</span>
 										<span>5 Comment</span>
 									</p>
 								</div>
@@ -93,7 +93,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> <span><a href="single.html">Photography</a></span>
+										<span>Dec 14, 2018</span> 
+										<span>Photography</span>
 										<span>5 Comment</span>
 									</p>
 								</div>
@@ -116,7 +117,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> <span><a href="#">Photography</a></span>
+										<span>Dec 14, 2018</span> 
+										<span>Photography</span>
 										<span>5 Comment</span>
 									</p>
 								</div>
@@ -139,7 +141,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> <span><a href="#">Photography</a></span>
+										<span>Dec 14, 2018</span> 
+										<span>Photography</span>
 										<span>5 Comment</span>
 									</p>
 								</div>

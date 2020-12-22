@@ -40,7 +40,7 @@
 			<h1 id="colorlib-logo"><a href="index.html"><span class="img" style="background-image: url(resourcesStar/images/author.jpg);"></span>스타이름</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li class="colorlib-active"><a href="starMain">Home</a></li>
+					<li><a href="starMain">Home</a></li>
 					<li><a href="#">스케줄</a></li>
 					<li><a href="#">스타라이브</a></li>
 					<li><a href="#">소식</a></li>

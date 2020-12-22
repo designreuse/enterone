@@ -57,7 +57,7 @@
 							<p>빅히트 엔터테인먼트</p>
 						</div>
 						<div class="row">
-							<a href="companyHome" class="btn btn-info btn-rounded companyMinButton">방문하기</a>
+							<a href="companyHome" class="btn btn-magz companyMinButton">방문하기</a>
 						</div>
 					</div>
 				</div>
@@ -75,7 +75,7 @@
 							<p>빅히트 엔터테인먼트</p>
 						</div>
 						<div class="row">
-							<a href="companyHome" class="btn btn-info btn-rounded companyMinButton">방문하기</a>
+							<a href="companyHome" class="btn btn-magz companyMinButton">방문하기</a>
 						</div>
 					</div>
 				</div>
@@ -91,7 +91,7 @@
 							<p>빅히트 엔터테인먼트</p>
 						</div>
 						<div class="row">
-							<a href="companyHome" class="btn btn-info btn-rounded companyMinButton">방문하기</a>
+							<a href="companyHome" class="btn btn-magz companyMinButton">방문하기</a>
 						</div>
 					</div>
 				</div>
@@ -107,7 +107,7 @@
 							<p>빅히트 엔터테인먼트</p>
 						</div>
 						<div class="row">
-							<a href="companyHome" class="btn btn-info btn-rounded companyMinButton">방문하기</a>
+							<a href="companyHome" class="btn btn-magz companyMinButton">방문하기</a>
 						</div>
 					</div>
 				</div>
@@ -123,7 +123,7 @@
 							<p>빅히트 엔터테인먼트</p>
 						</div>
 						<div class="row">
-							<a href="companyHome" class="btn btn-info btn-rounded companyMinButton">방문하기</a>
+							<a href="companyHome" class="btn btn-magz companyMinButton">방문하기</a>
 						</div>
 					</div>
 				</div>
