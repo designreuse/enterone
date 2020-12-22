@@ -34,6 +34,20 @@
   		padding:5px;
   	}
   </style>
+  <!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+  <!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jquery/jquery.min.js"></script>	
+  <script type="text/javascript">
+		
+	$(function(){
+		$(".btn-register").on("click",function(){
+			location.href="${pageContext.request.contextPath}/management/editors";
+		});
+		
+	});
+	
+  </script>	
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -46,7 +60,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="${pageContext.request.contextPath}/management" class="nav-link">Home</a>
       </li>
       <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -181,7 +195,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="${pageContext.request.contextPath}/resourcesAdmin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">소속사명</span>
+      <span class="brand-text font-weight-light"><!-- 소속사ID -->${comId }</span>
     </a>
 
     <!-- 왼쪽메뉴 바  -->
@@ -192,7 +206,7 @@
           <img src="${pageContext.request.contextPath}/resourcesAdmin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">관리자 ID</a>
+          <a href="#" class="d-block"><!-- 소속사명 -->${comName }</a>
         </div>
       </div>
 
@@ -227,7 +241,7 @@
           
           <!--스타관리  -->
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="${pageContext.request.contextPath}/management/starRM" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 	스타관리
@@ -380,9 +394,13 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  
+  <div class="content-wrapper" style="min-height: 1718.13px;">
+   
+    
   <!--  main 들어가는 자리 -->
   <tiles:insertAttribute name="body"/>
+  
+  </div>
   
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>

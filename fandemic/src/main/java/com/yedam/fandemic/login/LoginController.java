@@ -67,17 +67,22 @@ public class LoginController {
 		company = memMapper.comLogin(company); //id와 pw를 받아서 값이 있는지 DB조회
 		
 		// 아이디가 있을 때
-		if ( company != null) { 
+		if ( company != null) {
+			
 			// 일반기업(소속사) 일 때
-			if (company.getCom_class() == "1") {
+			System.out.println("권한: " + company.getCom_class());
+			
+			if (Integer.parseInt(company.getCom_class()) == 1) {
+				System.out.println("1일 때");
 				session.setAttribute("company", company);
 				model.addAttribute("login", "success");
-				return "mgt/main"; // redirect:
+				return "redirect:management"; 
 				
-			} else { // admin 일 때	
+			} else { // admin 일 때
+				System.out.println("0일 때");
 				session.setAttribute("company", company);
 				model.addAttribute("login", "success");
-				return "admin/main";
+				return "redirect:adminMain";
 			}
 		//아이디가 DB에없을때
 		} else {
