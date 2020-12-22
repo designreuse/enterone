@@ -10,18 +10,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ManagementController {
+//	@RequestMapping(value="/management")
+//	public ModelAndView Main(HttpServletResponse response) throws IOException{
+//		return new ModelAndView("mgt/main");
+//	}
 	@RequestMapping(value="/management")
-	public ModelAndView Main(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mgt/main");
+	public String Main(){
+		return "mgt/main";
 	}
-	
 	@RequestMapping(value="/management/notices")
-	public ModelAndView Notices(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mgt/notices");
+	public String Notices(){
+		return "mgt/notices";
 	}
 	@RequestMapping(value="/management/editors")
-	public ModelAndView Editors(HttpServletResponse response) throws IOException{
-		return new ModelAndView("mgt/editors");
+	public String Editors(){
+		return "mgt/editors";
+	}
+	@RequestMapping(value="/management/starRM")
+	public String StarRM(){
+		return "mgt/starRM";
 	}
 	
 }

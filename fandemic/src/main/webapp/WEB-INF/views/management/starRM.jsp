@@ -40,12 +40,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>공지사항</h1>
+            <h1>스타관리</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">공지사항</li>
+              <li class="breadcrumb-item active">스타관리</li>
             </ol>
           </div>
         </div>
@@ -64,21 +64,19 @@
                   <thead>
                     <tr>
                       <th></th>
-                      <th>번호</th>
-                      <th>제목</th>
-                      <th>글쓴이</th>
-                      <th>등록일</th>
-                      <th>분류(이벤트/공지)</th>
+                      <th>스타이름</th>
+                      <th>ID</th>
+                      <th>PW</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr data-widget="expandable-table" aria-expanded="false">
                       <td><input type="checkbox"></td>
-                      <td>1</td>
-                      <td>니얼굴쩔어 !!!!!!!!!!!!!!!</td>
-                      <td>YG관리자</td>
-                      <td>2020-12-17</td>
-                      <td>공지사항</td>
+                      <td>마미손</td>
+                      <td>Mom</td>
+                      <td>Mom</td>
+                      <td>아젠장할망할버튼추가</td>                     
                     </tr>                   
                   </tbody>
                 </table>
@@ -98,8 +96,6 @@
 				</div>
               	<div class="cnotices-button">
               		<button class="btn-register">등록</button>
-              		<button class="btn-update">수정</button>
-              		<button class="btn-delete">삭제</button>
               	</div>
               </div>
             </div>

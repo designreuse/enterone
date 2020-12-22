@@ -241,7 +241,7 @@
           
           <!--스타관리  -->
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="${pageContext.request.contextPath}/management/starRM" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 	스타관리
@@ -395,22 +395,7 @@
     <!-- /.sidebar -->
   </aside>
   <div class="content-wrapper" style="min-height: 1718.13px;">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Widgets</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Widgets</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+   
     
   <!--  main 들어가는 자리 -->
   <tiles:insertAttribute name="body"/>
