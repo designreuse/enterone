@@ -6,14 +6,15 @@
 
 
 <section class="page">
-
-	<div class="row">
-		<div class="companySlide">
-			<ul>
-				<li><img class="companyBanner col-md-12 col-sm-12 col-xs-12"
-					src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
-					alt="company_main" /></li>
-			</ul>
+	<div class="container">
+		<div class="row">
+			<div class="companySlide">
+				<ul>
+					<li><img class="companyBanner col-md-12 col-sm-12 col-xs-12"
+						src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
+						alt="company_main" /></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div class="container">

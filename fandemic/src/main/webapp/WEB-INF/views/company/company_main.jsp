@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/company.css">
+	
+	
 <section class="page">
-
-	<div class="row">
+	<div class="container">
 		<div class="slide">
 			<input type="radio" name="pos" id="pos1" checked> 
 			<input type="radio" name="pos" id="pos2"> 
@@ -52,7 +53,7 @@
 								src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
 								alt="company_main" />
 						</div>
-						<div class="row">
+						<div class="row companyName">
 							<p>빅히트 엔터테인먼트</p>
 						</div>
 						<div class="row">
@@ -70,7 +71,7 @@
 								src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
 								alt="company_main" />
 						</div>
-						<div class="row">
+						<div class="row companyName">
 							<p>빅히트 엔터테인먼트</p>
 						</div>
 						<div class="row">
@@ -86,8 +87,11 @@
 								src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
 								alt="company_main" />
 						</div>
+						<div class="row companyName">
+							<p>빅히트 엔터테인먼트</p>
+						</div>
 						<div class="row">
-							<a href class="btn btn-info btn-rounded companyMinButton">SM</a>
+							<a href="companyHome" class="btn btn-info btn-rounded companyMinButton">방문하기</a>
 						</div>
 					</div>
 				</div>
@@ -99,8 +103,11 @@
 								src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
 								alt="company_main" />
 						</div>
+						<div class="row companyName">
+							<p>빅히트 엔터테인먼트</p>
+						</div>
 						<div class="row">
-							<a href class="btn btn-info btn-rounded companyMinButton">SM</a>
+							<a href="companyHome" class="btn btn-info btn-rounded companyMinButton">방문하기</a>
 						</div>
 					</div>
 				</div>
@@ -112,8 +119,11 @@
 								src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
 								alt="company_main" />
 						</div>
+						<div class="row companyName">
+							<p>빅히트 엔터테인먼트</p>
+						</div>
 						<div class="row">
-							<a href class="btn btn-info btn-rounded companyMinButton">SM</a>
+							<a href="companyHome" class="btn btn-info btn-rounded companyMinButton">방문하기</a>
 						</div>
 					</div>
 				</div>

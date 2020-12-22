@@ -11,10 +11,16 @@
 	height: 600px;
 } */
 
+.companyBanner {
+	opacity: 0.7;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
 .companyContainer {
 	float: inherit !important;
 	opacity: 0.99;
-	margin: 10px;
+	margin-top: 20px;
 	text-align: center;
 	justify-content: center;
 	align-items: center;
@@ -23,45 +29,48 @@
 	border: 1px solid #e6e6e6;
 }
 
-.companyBanner {
-	opacity: 0.7;
-	background-size: contain;
-	background-repeat: no-repeat;
-}
-
 .companyMinBanner {
 	background-size: contain;
 	background-repeat: no-repeat;
 }
 
+.companyName {
+	margin-top: 20px;
+	color: #111726;
+	font-weight: 550;
+	font-family: 'Raleway', sans-serif;
+}
+
 .companyMinIcon {
-    position: relative;
-    display: inline-block;
-    width: 30%;
-    height: 25%;
-    border-radius: 10px;
-    background-size: cover;
-    vertical-align: top;
-    top: -24px;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+	position: relative;
+	display: inline-block;
+	width: 30%;
+	height: 25%;
+	border-radius: 10px;
+	background-size: cover;
+	vertical-align: top;
+	top: -24px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
 }
+
 .companyMinIcon img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    background: #fff;
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
+	background: #fff;
 }
+
 .companyMinIcon:before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    content: "";
-    border: 1px solid rgba(0,0,0,0.05);
-    border-radius: 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	content: "";
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
 }
 
 /* .companyMinIcon{
@@ -73,26 +82,18 @@
 	margin: 10px auto;
 	border-radius: 40%;
 } */
-
-.companyMinButton{
+.companyMinButton {
 	margin: 10px;
 }
 
-.companySector{
+.companySector {
 	height: 10%;
 }
 
-.companyInfoImg{
+.companyInfoImg {
 	margin: 0;
 	padding: 0;
 }
-
-
-
-
-
-
-
 
 /* 소속사 홈페이지 */
 * {
@@ -103,6 +104,7 @@
 ul, li {
 	list-style: none;
 }
+
 .slide {
 	height: 300px;
 	overflow: hidden;
@@ -129,8 +131,6 @@ ul, li {
 	width: calc(100%/ 4);
 	height: 300px;
 }
-
-
 
 .slide input {
 	display: none;
