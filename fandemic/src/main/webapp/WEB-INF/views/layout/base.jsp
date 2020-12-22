@@ -108,7 +108,7 @@
                      <li><a href="companyMain">소 속 사</a></li>
                      
                      
-                     <li><a href="company">언 택 트</a></li>
+                     <li><a href="untact">언 택 트</a></li>
 
                      
 <!--                      magz-dropdown 클래스 제거 -->
