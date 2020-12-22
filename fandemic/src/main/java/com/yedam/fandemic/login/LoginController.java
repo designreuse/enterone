@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,42 +63,26 @@ public class LoginController {
 	
 	//소속사
 	@RequestMapping(value="/companyLogin")
-	public ModelAndView companyLogin(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		
-		Company company = new Company();
-		
-		company.setCom_id(request.getParameter("com_id"));
-		company.setCom_pw(request.getParameter("com_pw"));
-		company = memMapper.comLogin(company);
+	public String companyLogin(Model model, Company company, HttpSession session) {
+		company = memMapper.comLogin(company); //id와 pw를 받아서 값이 있는지 DB조회
 		
 		// 아이디가 있을 때
 		if ( company != null) { 
-			
-			// 일반기업 일 때
+			// 일반기업(소속사) 일 때
 			if (company.getCom_class() == "1") {
+				session.setAttribute("company", company);
+				model.addAttribute("login", "success");
+				return "mgt/main"; // redirect:
 				
-				HttpSession session = request.getSession(false);
-				session.setAttribute("com_id", company.getCom_id());
-				session.setAttribute("com_pw", company.getCom_pw());
-				
-				request.setAttribute("login", "success");
-				
-				return new ModelAndView("mgt/main"); // redirect:
-				
-			} else { // admin 일 때
-				
-				HttpSession session = request.getSession(false);
-				session.setAttribute("com_id", company.getCom_id());
-				
-				request.setAttribute("login", "success");
-				return new ModelAndView("admin/main");
-				
+			} else { // admin 일 때	
+				session.setAttribute("company", company);
+				model.addAttribute("login", "success");
+				return "admin/main";
 			}
-
+		//아이디가 DB에없을때
 		} else {
-			
-			request.setAttribute("login", "fail");
-			return new ModelAndView("login");
+			model.addAttribute("login", "fail");
+			return "login";
 		}
 		
 		
