@@ -67,7 +67,7 @@
                   </div>
                   <div class="col-md-3 col-sm-12 text-right">
                      <ul class="nav-icons">
-                     	<c:if test="${login eq null or login eq 'fail' }" >
+                     	<c:if test="${login eq null or login ne 'success' }" >
 	                        <li><a href="register"><i class="ion-person-add"></i><div>회 원 가 입</div></a></li>
 	                        <li><a href="login"><i class="ion-person"></i><div>로 그 인</div></a></li>
                         </c:if>

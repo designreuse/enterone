@@ -17,11 +17,6 @@ import com.yedam.fandemic.impl.MemberMapper;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Member;
 
-
-
-
-
-   
 @Controller
 public class LoginController {
 	@Autowired MemberMapper memMapper;
@@ -83,7 +78,7 @@ public class LoginController {
 			
 			request.setAttribute("login", "success");
 			
-			return new ModelAndView("mgt/main");
+			return new ModelAndView("mgt/main"); // redirect:
 			
 		} else {
 			
@@ -103,7 +98,7 @@ public class LoginController {
 	}
 
 	
-	
+	// 회원가입 페이지
 	@RequestMapping("/register")
 	public ModelAndView register(HttpServletResponse response) throws IOException{
 		return new ModelAndView("login/register");
@@ -131,10 +126,13 @@ public class LoginController {
 	
 	
 	
+	// 개인 회원가입 처리
 	@RequestMapping("/memRegister")
-	public ModelAndView memRegister(HttpServletResponse response) throws IOException{
-		System.out.println("멤버 회원가입 처리");
+	public ModelAndView memRegister(Model model, Member member) throws IOException{
 		
+		memMapper.memInsert(member);
+		
+		model.addAttribute("login", "insert");
 		
 		return new ModelAndView("login");
 	}

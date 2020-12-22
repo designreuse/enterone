@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 
 <style>
@@ -54,58 +55,31 @@ ul.tabs li.current {
 		});
 		
 		
-
 		
-
-		
-		// 개인 중복확인
+		// 중복확인
 		$('#btnCheckm').on('click',function(){
-			
-			$.ajax({
-                url :'${pageContext.request.contextPath}/checkId',
-                type:"post",
-                data : {mem_id : $("#mem_id").val() },
-                
-                success:function(data){
-
-                   if (data == 0) {
-                	   $("#checkId").html("");
-                	   $("#checkId").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#divId");
-
-                   } else {
-                	   $("#checkId").html("");
-                	   $("#checkId").html("중복된 아이디입니다.").css("color","red").appendTo("#divId")
-                   }
-
-                },error:function(){ alert("실패"); }
-             });
-
-			
+			memIdCheck();
 		});
 		
-		// 기업 중복확인
 		$('#btnCheckc').on('click',function(){
-			
-			$.ajax({
-                url :'${pageContext.request.contextPath}/checkIdcom',
-                type:"post",
-                data : {com_id : $("#com_id").val() },
-                
-                success:function(data){
-
-                   if (data == 0) {
-                	   $("#checkIdcom").html("");
-                	   $("#checkIdcom").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#comDiv");
-                   } else {
-                	   $("#checkIdcom").html("");
-                	   $("#checkIdcom").html("중복된 아이디입니다.").css("color","red").appendTo("#comDiv")
-                   }
-
-                },error:function(){ alert("실패"); }
-             });
-
+			comIdCheck();
 		});
 		
+		
+		
+		// 주소검색
+		$('#btnAddr').on('click',function(){ 
+			openDaumZipAddress();
+		});  
+		
+		// 유효성
+		$('#btnAddMem').on('click',function(){ 
+			checkformMem();
+		}); 
+		
+		$('#btnAddCom').on('click',function(){ 
+			
+		}); 
 		
 		
 		
@@ -113,7 +87,7 @@ ul.tabs li.current {
 	
 	
 	// 비밀번호 확인
-   	function passwordChk(pw1, pw2, btn, divv) {
+   	function passwordChk(pw1, pw2, btn, div1, bTag) {
 	      $(pw1).addClass('pw');
 	      $(pw2).addClass('pw');
 	      
@@ -126,19 +100,20 @@ ul.tabs li.current {
 	              } else if (pwd1 != "" || pwd2 != "") {
 	                  if (pwd1 == pwd2) {
 	                      // 비밀번호 일치 이벤트 실행
-	                      $(btn).attr("disabled", false);
-	                      $("#bTag").html("").attr("id","bTag"); // 안됨
-	                      $("<b>").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#comDiv");
+	                      $(bTag).html(""); 
+	                      $(bTag).html("일치합니다.").css("color","blue");
+	                      $(div1).css("display", "none");
 	                  } else {
 	                      // 비밀번호 불일치 이벤트 실행
-	                     $(btn).attr("disabled", true);
-	                     $("<b>").html("").attr("id","bTag");
-	                	 $("#bTag").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#comDiv");
+	                     $(bTag).html("");
+	                	 $(bTag).html("일치하지 않습니다.").css("color","red");
 	                     $(pw2).focus();
+	                     $(div1).css("display", "");
 	                  }
 	              }
        });
-}
+	}
+	
 	
 	
 	// 개인/기업 나누기
@@ -146,17 +121,157 @@ ul.tabs li.current {
 		
 		if (user == "개인회원") { 
 			
-			passwordChk($("#mem_pw"), $("#mem_pwCheck"), $("#btnAddMem"), $("#memPwd"));
+			passwordChk($("#mem_pw"), $("#mem_pwCheck"), $("#btnAddMem"), $("#memPwd"), $("#membTag"));
 			
 			$("#memFrm").attr("action", "${pageContext.request.contextPath}/memRegister");
 			
 		} else { 
 		
-			passwordChk($("#com_pw"), $("#com_pwCheck"), $("#btnAddCom"), $("#comPwd"));
+			passwordChk($("#com_pw"), $("#com_pwCheck"), $("#btnAddCom"), $("#comPwd"), $("#combTag"));	
 			
 			$("#comFrm").attr("action", "${pageContext.request.contextPath}/comRegister");
 		}
 	}
+	
+	function openDaumZipAddress() {
+
+		new daum.Postcode({
+
+			oncomplete:function(data) {
+
+				$("#mem_zipAddress").val(data.zonecode); 
+
+				$("#mem_address").val(data.address); // 주소
+
+				$("#mem_address2").css("display","");
+			}
+
+		}).open();
+	}
+
+	// 개인
+	function checkformMem() {
+		
+			
+					
+			if ($("#mem_name").val() == null || $("#mem_name").val() == '') {
+				alert("이름을 입력하세요");
+				$("#mem_name").focus();
+				event.preventDefault();
+				
+			} else if ($(':radio[name="mem_gender"]:checked').length < 1) {
+				alert("성별을 선택하세요");
+				event.preventDefault();
+				
+			} else if ($("#mem_pw").val() == null || $("#mem_pw").val() == '') {
+				alert("비밀번호를 입력하세요");
+				$("#mem_pw").focus();
+				event.preventDefault();
+				
+			}  else if ($("#mem_birth").val() == null || $("#mem_birth").val() == '') {
+				alert("생년월일을 입력하세요");
+				$("#mem_birth").focus();
+				event.preventDefault();
+				
+			} else if ($("#mem_phone").val() == null || $("#mem_phone").val() == '') {
+				alert("연락처를 입력하세요");
+				$("#mem_phone").focus();
+				event.preventDefault();
+				 
+			} else if ($("#mem_email").val() == null || $("#mem_email").val() == '') {
+				alert("이메일을 입력하세요");
+				$("#mem_email").focus();
+				event.preventDefault();
+				 
+			} else if ($("#mem_address2").val() == null || $("#mem_address2").val() == '') {
+				alert("주소를 입력하세요");
+				$("#mem_address2").focus();
+				event.preventDefault();
+				
+			}
+			
+			
+		
+	}
+	
+	// 기업
+	function checkformCom() {
+	
+		
+			
+			if ($("#com_name").val() == null || $("#com_name").val() == '') {
+				alert("이름을 입력하세요");
+				$("#com_name").focus();
+				event.preventDefault();
+				
+			} else if ($("#com_pw1").val() == null || $("#com_pw1").val() == '') {
+				alert("비밀번호를 입력하세요");
+				$("#com_pw1").focus();
+				event.preventDefault();
+				
+			} else if ($("#com_phone").val() == null || $("#com_phone").val() == '') {
+				alert("연락처를 입력하세요");
+				$("#com_pw1").focus();
+				event.preventDefault();
+				
+			} else if ($("#com_email").val() == null || $("#com_email").val() == '') {
+				alert("이메일을 입력하세요");
+				$("#com_email").focus();
+				event.preventDefault();
+			}
+			
+		
+	}
+	
+	// 중복확인
+	
+	function memIdCheck() {
+		
+		$.ajax({
+            url :'${pageContext.request.contextPath}/checkId',
+            type:"post",
+            data : {mem_id : $("#mem_id").val() },
+            
+            success:function(data){
+
+               if (data == 0) {
+            	   $("#checkId").html("");
+            	   $("#checkId").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#divId");
+            	   $('#btnAddMem').attr("disabled", false);
+            	   
+               } else {
+            	   $("#checkId").html("");
+            	   $("#checkId").html("중복된 아이디입니다.").css("color","red").appendTo("#divId");
+            	   
+               }
+
+            },error:function(){ alert("실패"); }
+         });
+		
+	}
+	
+	function comIdCheck() {
+		$.ajax({
+            url :'${pageContext.request.contextPath}/checkIdcom',
+            type:"post",
+            data : {com_id : $("#com_id").val() },
+            
+            success:function(data){
+
+               if (data == 0) {
+            	   $("#checkIdcom").html("");
+            	   $("#checkIdcom").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#comDiv");
+            	   $('#btnAddCom').attr("disabled", false);
+            	   
+               } else {
+            	   $("#checkIdcom").html("");
+            	   $("#checkIdcom").html("중복된 아이디입니다.").css("color","red").appendTo("#comDiv")
+               }
+
+            },error:function(){ alert("실패"); }
+         });
+	}
+	
 </script>
 
 
@@ -180,8 +295,8 @@ ul.tabs li.current {
 					<form id="memFrm" name="memFrm" method="post">
 						<div class="form-group" id="divId">
 							<div style="text-align: right;">
-								<input type="radio" id="gender" name="gender" value="남" class="gender" checked="checked"> &nbsp; 남 &nbsp;&nbsp;
-								<input type="radio" id="gender" name="gender" value="여" class="gender"> &nbsp; 여 &nbsp;&nbsp;
+								<input type="radio" id="mem_gender" name="mem_gender" value="남" class="gender"> &nbsp; 남 &nbsp;&nbsp;
+								<input type="radio" id="mem_gender" name="mem_gender" value="여" class="gender"> &nbsp; 여 &nbsp;&nbsp;
 							</div>
 							<label>아이디</label>
 							<div style="position:relative">
@@ -195,18 +310,18 @@ ul.tabs li.current {
 								id="mem_name" class="form-control">
 						</div>
 
-						<div class="form-group">
-							<label class="fw">비밀번호</label> <input type="password" id="mem_pw"
-								name="mem_pw" class="form-control">
+						<div class="form-group" id="mem_pw1" >
+							<label class="fw">비밀번호</label> 
+							<input type="password" id="mem_pw" name="mem_pw" class="form-control" >
+							<b id="membTag"></b>
 						</div>
-						<div class="form-group" id="memPwd">
-							<label class="fw">비밀번호 확인</label> <input type="password" id="mem_pwCheck"
-								name="mem_pwCheck" class="form-control">
+						<div class="form-group" id="memPwd" >
+							<label class="fw">비밀번호 확인</label> 
+							<input type="password" id="mem_pwCheck" name="mem_pwCheck" class="form-control" >
 						</div>
 
 						<div class="form-group">
-							<label>생년월일</label> <input type="date" name="mem_birth"
-								id="mem_birth" class="form-control">
+							<label>생년월일</label> <input type="date" name="mem_birth" id="mem_birth" class="form-control">
 						</div>
 
 						<div class="form-group">
@@ -219,11 +334,18 @@ ul.tabs li.current {
 								name="mem_email" class="form-control">
 						</div>
 
+
 						<div class="form-group">
-							<label>주소</label> <input type="text" id="mem_address"
-								name="mem_address" class="form-control"> <input
-								type="text" id="mem_address2" name="mem_address2"
-								class="form-control">
+							<label>주소</label><br>
+							
+							<div style="position:relative">
+								<input type="text" id="mem_address" name="mem_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="readonly">
+								<input type="button" value="주소검색" id="btnAddr" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;"><br>
+							</div>
+							
+							<input type="text" id="mem_address2" name="mem_address2" class="form-control" style="display:none; margin: 5px 0px;" >
+							<label>우편번호</label> &nbsp; &nbsp;
+							<input type="text" id="mem_zipAddress" name=mem_zipAddress class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly">
 						</div>
 
 						<div class="form-group text-right">
@@ -260,14 +382,13 @@ ul.tabs li.current {
 								id="com_name" class="form-control">
 						</div>
 
-						<div class="form-group">
-							<label class="fw">비밀번호</label> <input type="password" id="com_pw"
-								name="com_pw" class="form-control">
+						<div class="form-group" id="com_pw1" >
+							<label class="fw">비밀번호</label> <input type="password" id="com_pw" name="com_pw" class="form-control">
+							<b id="combTag"></b>
 						</div>
 						
-						<div class="form-group" id="comPwd">
-							<label class="fw">비밀번호 확인</label> <input type="password" id="com_pwCheck"
-								name="com_pwCheck" class="form-control">
+						<div class="form-group" id="comPwd" >
+							<label class="fw">비밀번호 확인</label> <input type="password" id="com_pwCheck" name="com_pwCheck" class="form-control" >
 						</div>
 
 						<div class="form-group">

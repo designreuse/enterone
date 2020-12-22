@@ -45,6 +45,10 @@ ul.tabs li.current {
 		if (  fail == "fail") {
 			alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 			fail = "";
+			
+		} else if( fail == "insert") {
+			alert("가입되었습니다.");
+			fail = "";
 		}
 		
 		$('#mem_id').focus();

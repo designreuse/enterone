@@ -20,4 +20,6 @@ public class Member {
 	String mem_gender;		//성별
 	String mem_pic;			//프사
 	
+	String mem_zipAddress;  //우편번호
+	
 }

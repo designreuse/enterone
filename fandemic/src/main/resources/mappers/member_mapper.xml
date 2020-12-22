@@ -35,5 +35,17 @@
 		FROM COMPANY  
 		WHERE COM_ID=#{com_id}
 	</select>
+	
+<!-- 개인 회원가입 -->
+	<insert id="memInsert" parameterType="Member">
+		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_PW, MEM_BIRTH, MEM_PHONE, MEM_EMAIL, MEM_ADDRESS, 
+							MEM_ADDRESS2,MEM_TYPE, MEM_GENDER, MEM_ZIPADDRESS)
+		VALUES(
+							#{mem_id}, #{mem_name}, #{mem_pw}, #{mem_birth}, #{mem_phone},
+							#{mem_email}, #{mem_address}, #{mem_address2}, 1, #{mem_gender}, #{mem_zipAddress} )
+
+		
+	</insert>
+
 
 </mapper>
