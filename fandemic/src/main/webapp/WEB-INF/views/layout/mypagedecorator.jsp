@@ -49,10 +49,16 @@
 	href="${pageContext.request.contextPath}/resources/css/skins/all.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/demo.css">
+<style type="text/css">
+tr {
+	margin: 5%;
+	font-size: 18px;
+}
+</style>
 </head>
 <body>
 	<header class="primary">
-		<div class="firstbar">
+		<div class="firstbar" style="padding: 0px">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-3 col-sm-12">
@@ -89,14 +95,14 @@
 						<ul class="nav-icons">
 							<c:if test="${login eq null or login eq 'fail' }">
 								<li><a href="register"><i class="ion-person-add"></i>
-									<div>회 원 가 입</div></a></li>
+										<div>회 원 가 입</div></a></li>
 								<li><a href="login"><i class="ion-person"></i>
-									<div>로 그 인</div></a></li>
+										<div>로 그 인</div></a></li>
 							</c:if>
 							<c:if test="${login eq 'success' }">
 								<!-- <li><a href="#"><i class="ion-person-add"></i><div>마 이 페 이 지</div></a></li> -->
 								<li><a href="logout"><i class="ion-person"></i>
-									<div>로 그 아 웃</div></a></li>
+										<div>로 그 아 웃</div></a></li>
 							</c:if>
 
 
@@ -194,53 +200,53 @@
 			<div class="row">
 				<div class="col-md-8">
 					<!--  body 추가 부분 -->
-					
-				<div class="col-md-4 sidebar" id="sidebar">
-					<!-- 						side bar -->
-					<aside>
-						<div class="aside-body" style="position: fixed">
-							<h1>마이페이지</h1>
-							<table>
-								<tr>
-									<td>회원등급</td>
-									<td>vip</td>
-								</tr>
-								<tr>
-									<td>활동포인트</td>
-									<td>vip</td>
-								</tr>
-								<tr>
-									<td><a href="myupdate">내정보 수정</a></td>
-								</tr>
-								<tr>
-									<td><a href="mystar">내 스타 관리</a></td>
-								</tr>
-								<tr>
-									<td><a href="mytrainee">연습생 정보 관리</a></td>
-								</tr>
-								<tr>
-									<td><a href="mypurchase">결제내역</a></td>
-								</tr>
-								<tr>
-									<td><a href="myevent">이벤트 참여내역</a></td>
-								</tr>
-								<tr>
-									<td><a href="mymail">쪽지함</a></td>
-								</tr>
-								<tr>
-									<td><a href="my1o1">1:1 문의 내역</a></td>
-								</tr>
-							</table>
 
-						</div>
-					</aside>
-				</div>
+					<div class="col-md-4 sidebar" id="sidebar">
+						<!-- 						side bar -->
+						<aside>
+							<div class="aside-body" style="position: fixed">
+								<h1>마이페이지</h1>
+								<table style="width: 90%; text-align: left">
+									<tr>
+										<td>회원등급</td>
+										<td>vip</td>
+									</tr>
+									<tr>
+										<td>활동포인트</td>
+										<td>vip</td>
+									</tr>
+									<tr>
+										<td colspan="2"><a href="myupdate">내정보 수정</a></td>
+									</tr>
+									<tr>
+										<td colspan="2"><a href="mystar">내 스타 관리</a></td>
+									</tr>
+									<tr>
+										<td colspan="2"><a href="mytrainee">연습생 정보 관리</a></td>
+									</tr>
+									<tr>
+										<td colspan="2"><a href="mypurchase">결제내역</a></td>
+									</tr>
+									<tr>
+										<td colspan="2"><a href="myevent">이벤트 참여내역</a></td>
+									</tr>
+									<tr>
+										<td colspan="2"><a href="mymail">쪽지함</a></td>
+									</tr>
+									<tr>
+										<td colspan="2"><a href="my1o1">1:1 문의 내역</a></td>
+									</tr>
+								</table>
+
+							</div>
+						</aside>
+					</div>
 				</div>
 				<div style="min-height: 500px">
-				<tiles:insertAttribute name="body" />
-				</div>
+					<tiles:insertAttribute name="body" />
 				</div>
 			</div>
+		</div>
 	</section>
 	<!-- Start footer -->
 	<footer class="footer">
@@ -252,7 +258,7 @@
 						<div class="block-body">
 							<figure class="foot-logo">
 								<img
-									src="${pageContext.request.contextPath}/resources/images/logo-light.png"
+									src="${pageContext.request.contextPath}/resources/images/logo.png"
 									class="img-responsive" alt="Logo">
 							</figure>
 							<p class="brand-description">Magz is a HTML5 &amp; CSS3
@@ -283,97 +289,9 @@
 						</div>
 					</div>
 					<div class="line"></div>
-					<div class="block">
-						<h1 class="block-title">Newsletter</h1>
-						<div class="block-body">
-							<p>By subscribing you will receive new articles in your
-								email.</p>
-							<form class="newsletter">
-								<div class="input-group">
-									<div class="input-group-addon">
-										<i class="ion-ios-email-outline"></i>
-									</div>
-									<input type="email" class="form-control email"
-										placeholder="Your mail">
-								</div>
-								<button class="btn btn-primary btn-block white">Subscribe</button>
-							</form>
-						</div>
-					</div>
+
 				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12">
-					<div class="block">
-						<h1 class="block-title">Latest News</h1>
-						<div class="block-body">
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img12.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Donec consequat lorem quis augue
-												pharetra</a>
-										</h1>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img14.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">eu dapibus risus aliquam etiam ut
-												venenatis</a>
-										</h1>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img15.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Nulla facilisis odio quis gravida
-												vestibulum </a>
-										</h1>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img16.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Proin venenatis pellentesque arcu
-												vitae </a>
-										</h1>
-									</div>
-								</div>
-							</article>
-							<a href="#" class="btn btn-magz white btn-block">See All <i
-								class="ion-ios-arrow-thin-right"></i></a>
-						</div>
-					</div>
-				</div>
+
 				<div class="col-md-3 col-xs-12 col-sm-6">
 					<div class="block">
 						<h1 class="block-title">Follow Us</h1>
@@ -426,17 +344,6 @@
 								<li><a href="contact.html">Contact</a></li>
 								<li><a href="page.html">About</a></li>
 							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="copyright">
-						COPYRIGHT &copy; MAGZ 2017. ALL RIGHT RESERVED.
-						<div>
-							Made with <i class="ion-heart"></i> by <a
-								href="http://kodinger.com">Kodinger</a>
 						</div>
 					</div>
 				</div>
