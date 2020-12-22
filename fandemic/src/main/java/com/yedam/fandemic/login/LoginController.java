@@ -70,16 +70,30 @@ public class LoginController {
 		company.setCom_pw(request.getParameter("com_pw"));
 		company = memMapper.comLogin(company);
 		
-		if ( company != null) {
+		// 아이디가 있을 때
+		if ( company != null) { 
 			
-			HttpSession session = request.getSession(false);
-			session.setAttribute("com_id", company.getCom_id());
-			session.setAttribute("com_pw", company.getCom_pw());
-			
-			request.setAttribute("login", "success");
-			
-			return new ModelAndView("mgt/main"); // redirect:
-			
+			// 일반기업 일 때
+			if (company.getCom_class() == "1") {
+				
+				HttpSession session = request.getSession(false);
+				session.setAttribute("com_id", company.getCom_id());
+				session.setAttribute("com_pw", company.getCom_pw());
+				
+				request.setAttribute("login", "success");
+				
+				return new ModelAndView("mgt/main"); // redirect:
+				
+			} else { // admin 일 때
+				
+				HttpSession session = request.getSession(false);
+				session.setAttribute("com_id", company.getCom_id());
+				
+				request.setAttribute("login", "success");
+				return new ModelAndView("admin/main");
+				
+			}
+
 		} else {
 			
 			request.setAttribute("login", "fail");
@@ -137,11 +151,12 @@ public class LoginController {
 		return new ModelAndView("login");
 	}
 	
-	
+	// 기업 회원가입
 	@RequestMapping("/comRegister")
-	public ModelAndView comRegister(HttpServletResponse response) throws IOException{
-		System.out.println("기업 회원가입 처리");
+	public ModelAndView comRegister(Model model, Company company) throws IOException{
+		memMapper.comInsert(company);
 		
+		model.addAttribute("login", "insert");
 		
 		return new ModelAndView("login");
 	}

@@ -67,10 +67,16 @@ ul.tabs li.current {
 		
 		
 		
-		// 주소검색
+		// 개인 주소검색
 		$('#btnAddr').on('click',function(){ 
-			openDaumZipAddress();
+			openDaumZipAddress($("#mem_zipAddress"), $("#mem_address"), $("#mem_address2"));
 		});  
+		
+		// 기업 주소검색
+		$('#btnAddrcom').on('click',function(){ 
+			openDaumZipAddress($("#com_zipAddress"), $("#com_address"), $("#com_address2"));
+		});  
+		
 		
 		// 유효성
 		$('#btnAddMem').on('click',function(){ 
@@ -133,17 +139,18 @@ ul.tabs li.current {
 		}
 	}
 	
-	function openDaumZipAddress() {
+	// 주소검색
+	function openDaumZipAddress(zipAddress, address, address2 ) {
 
 		new daum.Postcode({
 
 			oncomplete:function(data) {
 
-				$("#mem_zipAddress").val(data.zonecode); 
+				$(zipAddress).val(data.zonecode); 
 
-				$("#mem_address").val(data.address); // 주소
+				$(address).val(data.address); // 주소
 
-				$("#mem_address2").css("display","");
+				$(address2).css("display","");
 			}
 
 		}).open();
@@ -204,20 +211,25 @@ ul.tabs li.current {
 				$("#com_name").focus();
 				event.preventDefault();
 				
-			} else if ($("#com_pw1").val() == null || $("#com_pw1").val() == '') {
+			} else if ($("#com_pw").val() == null || $("#com_pw").val() == '') {
 				alert("비밀번호를 입력하세요");
-				$("#com_pw1").focus();
+				$("#com_pw").focus();
 				event.preventDefault();
 				
 			} else if ($("#com_phone").val() == null || $("#com_phone").val() == '') {
 				alert("연락처를 입력하세요");
-				$("#com_pw1").focus();
+				$("#com_phone").focus();
 				event.preventDefault();
 				
 			} else if ($("#com_email").val() == null || $("#com_email").val() == '') {
 				alert("이메일을 입력하세요");
 				$("#com_email").focus();
 				event.preventDefault();
+			} else if ($("#com_address2").val() == null || $("#com_address2").val() == '') {
+				alert("주소를 입력하세요");
+				$("#com_address2").focus();
+				event.preventDefault();
+				
 			}
 			
 		
@@ -382,7 +394,7 @@ ul.tabs li.current {
 								id="com_name" class="form-control">
 						</div>
 
-						<div class="form-group" id="com_pw1" >
+						<div class="form-group"  >
 							<label class="fw">비밀번호</label> <input type="password" id="com_pw" name="com_pw" class="form-control">
 							<b id="combTag"></b>
 						</div>
@@ -400,7 +412,20 @@ ul.tabs li.current {
 							<label>이메일</label> <input type="text" id="com_email"
 								name="com_email" class="form-control">
 						</div>
-
+						
+						<div class="form-group">
+							<label>주소</label><br>
+							
+							<div style="position:relative">
+								<input type="text" id="com_address" name="com_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="readonly">
+								<input type="button" value="주소검색" id="btnAddrcom" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;"><br>
+							</div>
+							
+							<input type="text" id="com_address2" name="com_address2" class="form-control" style="display:none; margin: 5px 0px;" >
+							<label>우편번호</label> &nbsp; &nbsp;
+							<input type="text" id="com_zipAddress" name=com_zipAddress class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly">
+						</div>
+						
 						<div class="form-group text-right">
 							<button class="btn btn-primary btn-block" id="btnAddCom" disabled="disabled">가입</button>
 						</div>

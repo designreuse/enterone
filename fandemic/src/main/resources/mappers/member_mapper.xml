@@ -47,5 +47,14 @@
 		
 	</insert>
 
+<!-- 기업 회원가입 -->
+	<insert id="comInsert" parameterType="Company">
+		INSERT INTO COMPANY (COM_ID, COM_PW, COM_NAME, COM_PHONE, COM_ADDRESS, 
+							 COM_ADDRESS2, COM_EMAIL, COM_ZIPADDRESS) 
+		VALUES( 
+							#{com_id}, #{com_pw}, #{com_name}, #{com_phone}, #{com_address}, 
+							#{com_address2}, #{com_email}, #{com_zipAddress} )
+
+	</insert>
 
 </mapper>

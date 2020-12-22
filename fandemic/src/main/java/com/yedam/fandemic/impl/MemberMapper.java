@@ -20,4 +20,17 @@ public interface MemberMapper {
 	
 	// 회원가입
 	public void memInsert(Member member); 
+	public void comInsert(Company company);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
