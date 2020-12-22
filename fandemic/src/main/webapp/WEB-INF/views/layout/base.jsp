@@ -16,7 +16,7 @@
       <meta property="og:type" content="article" />
       <meta property="og:url" content="http://github.com/nauvalazhar/Magz" />
       <meta property="og:image" content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
-      <title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
+      <title>Enter One</title>
       <!-- Bootstrap -->
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.css">
       <!-- IonIcons -->
@@ -112,7 +112,7 @@
 
                      
 <!--                      magz-dropdown 클래스 제거 -->
-                     <li class="dropdown"><a href="#">연 습 생<i class="ion-ios-arrow-right"></i></a>
+                     <li class="dropdown"><a href="auditionwork">연 습 생<i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                            <li><a href="#">연습생 등록</a></li>
                            <li><a href="#">연습생 활동</a></li>
