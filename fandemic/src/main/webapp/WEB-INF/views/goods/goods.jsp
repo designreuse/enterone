@@ -5,270 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Goods</title>
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
 <style>
-
 *, ::after, ::before {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
-
-/*----------------------------------------*/
-/* Template default CSS
-/*----------------------------------------*/
-
-html,
-body {
-	height: 100%;
-	font-family: "Cairo", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0;
-	color: #111111;
-	font-weight: 400;
-	font-family: "Cairo", sans-serif;
-}
-
-h1 {
-	font-size: 70px;
-}
-
-h2 {
-	font-size: 36px;
-}
-
-h3 {
-	font-size: 30px;
-}
-
-h4 {
-	font-size: 24px;
-}
-
-h5 {
-	font-size: 18px;
-}
-
-h6 {
-	font-size: 16px;
-}
-
-p {
-	font-size: 16px;
-	font-family: "Cairo", sans-serif;
-	color: #6f6f6f;
-	font-weight: 400;
-	line-height: 26px;
-	margin: 0 0 15px 0;
-}
-
-img {
-	max-width: 100%;
-}
-
-input:focus,
-select:focus,
-button:focus,
-textarea:focus {
-	outline: none;
-}
-
-a:hover,
-a:focus {
-	text-decoration: none;
-	outline: none;
-	color: #ffffff;
-}
-
-ul,
-ol {
-	padding: 0;
-	margin: 0;
-}
-
-/*---------------------
-  Featured
------------------------*/
-
-.featured {
-	padding-top: 80px;
-	padding-bottom: 40px;
-}
-
-.featured__controls {
-	text-align: center;
-	margin-bottom: 50px;
-}
-
-.featured__controls ul li {
-	list-style: none;
-	font-size: 18px;
-	color: #1c1c1c;
-	display: inline-block;
-	margin-right: 25px;
-	position: relative;
-	cursor: pointer;
-}
-
-.featured__controls ul li.active:after {
-	opacity: 1;
-}
-
-.featured__controls ul li:after {
-	position: absolute;
-	left: 0;
-	bottom: -2px;
-	width: 100%;
-	height: 2px;
-	background: #7fad39;
-	content: "";
-	opacity: 0;
-}
-
-.featured__controls ul li:last-child {
-	margin-right: 0;
-}
-
-.featured__item {
-	margin-bottom: 50px;
-}
-
-.featured__item:hover .featured__item__pic .featured__item__pic__hover {
-	bottom: 20px;
-}
-
-.featured__item__pic {
-	height: 270px;
-	position: relative;
-	overflow: hidden;
-	background-position: center center;
-}
-
-.featured__item__pic__hover {
-	position: absolute;
-	left: 0;
-	bottom: -50px;
-	width: 100%;
-	text-align: center;
-	-webkit-transition: all, 0.5s;
-	-moz-transition: all, 0.5s;
-	-ms-transition: all, 0.5s;
-	-o-transition: all, 0.5s;
-	transition: all, 0.5s;
-}
-
-.featured__item__pic__hover li {
-	list-style: none;
-	display: inline-block;
-	margin-right: 6px;
-}
-
-.featured__item__pic__hover li:last-child {
-	margin-right: 0;
-}
-
-.featured__item__pic__hover li:hover a {
-	background: #7fad39;
-	border-color: #7fad39;
-}
-
-.featured__item__pic__hover li:hover a i {
-	color: #ffffff;
-	transform: rotate(360deg);
-}
-
-.featured__item__pic__hover li a {
-	font-size: 16px;
-	color: #1c1c1c;
-	height: 40px;
-	width: 40px;
-	line-height: 40px;
-	text-align: center;
-	border: 1px solid #ebebeb;
-	background: #ffffff;
-	display: block;
-	border-radius: 50%;
-	-webkit-transition: all, 0.5s;
-	-moz-transition: all, 0.5s;
-	-ms-transition: all, 0.5s;
-	-o-transition: all, 0.5s;
-	transition: all, 0.5s;
-}
-
-.featured__item__pic__hover li a i {
-	position: relative;
-	transform: rotate(0);
-	-webkit-transition: all, 0.3s;
-	-moz-transition: all, 0.3s;
-	-ms-transition: all, 0.3s;
-	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
-}
-
-.featured__item__text {
-	text-align: center;
-	padding-top: 15px;
-}
-
-.featured__item__text h6 {
-	margin-bottom: 10px;
-}
-
-.featured__item__text h6 a {
-	color: #252525;
-}
-
-.featured__item__text h5 {
-	color: #252525;
-	font-weight: 700;
-}
-
-/*---------------------
-  product__pagination
------------------------*/
-
-.product__pagination,
-.blog__pagination {
-	padding-top: 10px;
-}
-
-.product__pagination a,
-.blog__pagination a {
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	border: 1px solid #b2b2b2;
-	font-size: 14px;
-	color: #b2b2b2;
-	font-weight: 700;
-	line-height: 28px;
-	text-align: center;
-	margin-right: 16px;
-	-webkit-transition: all, 0.3s;
-	-moz-transition: all, 0.3s;
-	-ms-transition: all, 0.3s;
-	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
-}
-
-.product__pagination a:hover,
-.blog__pagination a:hover {
-	background: #7fad39;
-	border-color: #7fad39;
-	color: #ffffff;
-}
-
-.product__pagination a:last-child,
-.blog__pagination a:last-child {
-	margin-right: 0;
-}
-
 </style>
 </head>
 
@@ -276,160 +17,208 @@ ol {
 <body>
 
 
-    <!-- Featured Section Begin -->
-    <section class="home">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h3 align="center" style="padding: 15px">GOODS SHOP</h3>
-                    </div>
-                    <div class="featured__controls">
-                        <ul>
-                            <li class="active" data-filter="*">All</li>
-                            <li data-filter=".cheering">CHEERING</li>
-                            <li data-filter=".music">MUSIC</li>
-                            <li data-filter=".fashion">FASHION</li>
-                            <li data-filter=".acc">ACC</li>
-                            <li data-filter=".tech">TECH</li>
-                            <li data-filter=".etc">ETC</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix cheering music">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/resources/images/featured/feature-1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fashion acc">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-2.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fashion music">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-3.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix acc cheering">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-4.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix music fashion">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-5.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix cheering acc">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-6.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix music fashion">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-7.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix acc fashion">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="${pageContext.request.contextPath}/img/featured/feature-8.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="product__pagination">
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">></a>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-    <!-- Featured Section End -->
-    
+	<!-- Featured Section Begin -->
+	<section class="home">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h3 align="center" style="padding: 15px">GOODS SHOP</h3>
+					</div>
+					<div class="featured__controls">
+						<ul>
+							<li class="active" data-filter="*">All</li>
+							<li data-filter=".cheering">CHEERING</li>
+							<li data-filter=".music">MUSIC</li>
+							<li data-filter=".fashion">FASHION</li>
+							<li data-filter=".acc">ACC</li>
+							<li data-filter=".tech">TECH</li>
+							<li data-filter=".etc">ETC</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row featured__filter">
+				<div class="col-lg-3 col-md-4 col-sm-6 mix cheering music">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="${pageContext.request.contextPath}/resources/images/featured/feature-1.jpg">
+							<a href="goodsDetail">
+							<img alt="" src="https://ygselect.com/web/product/tiny/202011/f2287d2606d8f8b6662ac945ecfb9679.jpg"></a>
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">BLACKPINK OFFICIAL LIGHT STICK Ver.2 LIMITED EDITION</a>
+							</h6>
+							<h5>39,000원</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix fashion acc">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="${pageContext.request.contextPath}/img/featured/feature-2.jpg">
+							<a href="goodsDetail">
+							<img alt="" src="https://ygselect.com/web/product/tiny/shop1_c33729a601d62f88e2a44bb41dcabf3a.jpg"></a>
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">[iDECIDE] iKON SLOGAN TOWEL</a>
+							</h6>
+							<h5>18,000원</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix fashion music">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="${pageContext.request.contextPath}/img/featured/feature-3.jpg">
+							<a href="goodsDetail">
+							<img alt="" src="https://ygselect.com/web/product/tiny/shop1_2c000855bae1eedc46bbd4e3a7d70ee5.jpg"></a>
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">[SAILING] AKMU SAILING LIGHT STICK VER.2</a>
+							</h6>
+							<h5>12,000원</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix acc cheering">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="${pageContext.request.contextPath}/img/featured/feature-4.jpg">
+							<a href="goodsDetail">
+							<img alt="" src="https://ygselect.com/web/product/tiny/shop1_58a00de68f7fad7aa67de3f4a827bd3f.jpg"></a>
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">[CROSS] WINNER LIGHT STICK POUCH</a>
+							</h6>
+							<h5>25,000원</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix cheering music">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="${pageContext.request.contextPath}/resources/images/featured/feature-1.jpg">
+							<a href="goodsDetail">
+							<img alt="" src="https://ygselect.com/web/product/tiny/202011/f2287d2606d8f8b6662ac945ecfb9679.jpg"></a>
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">BLACKPINK OFFICIAL LIGHT STICK Ver.2 LIMITED EDITION</a>
+							</h6>
+							<h5>39,000원</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix fashion acc">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="${pageContext.request.contextPath}/img/featured/feature-2.jpg">
+							<a href="goodsDetail">
+							<img alt="" src="https://ygselect.com/web/product/tiny/shop1_c33729a601d62f88e2a44bb41dcabf3a.jpg"></a>
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">[iDECIDE] iKON SLOGAN TOWEL</a>
+							</h6>
+							<h5>18,000원</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix fashion music">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="${pageContext.request.contextPath}/img/featured/feature-3.jpg">
+							<a href="goodsDetail">
+							<img alt="" src="https://ygselect.com/web/product/tiny/shop1_2c000855bae1eedc46bbd4e3a7d70ee5.jpg"></a>
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">[SAILING] AKMU SAILING LIGHT STICK VER.2</a>
+							</h6>
+							<h5>12,000원</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-4 col-sm-6 mix acc cheering">
+					<div class="featured__item">
+						<div class="featured__item__pic set-bg"
+							data-setbg="${pageContext.request.contextPath}/img/featured/feature-4.jpg">
+							<a href="goodsDetail">
+							<img alt="" src="https://ygselect.com/web/product/tiny/shop1_58a00de68f7fad7aa67de3f4a827bd3f.jpg"></a>
+							<ul class="featured__item__pic__hover">
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>
+								<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+								<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+							</ul>
+						</div>
+						<div class="featured__item__text">
+							<h6>
+								<a href="#">[CROSS] WINNER LIGHT STICK POUCH</a>
+							</h6>
+							<h5>25,000원</h5>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-12 text-center">
+					<ul class="pagination">
+						<li class="prev"><a href="#"><i
+								class="ion-ios-arrow-left"></i></a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">...</a></li>
+						<li><a href="#">97</a></li>
+						<li class="next"><a href="#"><i
+								class="ion-ios-arrow-right"></i></a></li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- Featured Section End -->
+
 </body>
 </html>

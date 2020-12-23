@@ -5,146 +5,106 @@
 <head>
 <meta charset="UTF-8">
 <title>Goods 상세보기 페이지</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<style>
+*, ::after, ::before {
+	box-sizing: border-box;
+}
+.product__details__text ul {
+    border-top: 1px solid #ebebeb;
+    padding-top: 30px;
+    margin-top: 36px;
+}
+</style>
 </head>
 <body>
+	<!-- Product Details Section Begin -->
 	<section class="home">
 		<div class="container">
-		
-		
-		<div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__pic">
-                        <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large" src="img/product/details/product-details-1.jpg" alt="">
-                        </div>
-                        <div class="product__details__pic__slider owl-carousel owl-loaded owl-drag">
-                            
-                            
-                            
-                            
-                        <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-525px, 0px, 0px); transition: all 1.2s ease 0s; width: 1050px;"><div class="owl-item cloned" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-2.jpg" src="img/product/details/thumb-1.jpg" alt=""></div><div class="owl-item cloned" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-3.jpg" src="img/product/details/thumb-2.jpg" alt=""></div><div class="owl-item cloned" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-5.jpg" src="img/product/details/thumb-3.jpg" alt=""></div><div class="owl-item cloned" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-4.jpg" src="img/product/details/thumb-4.jpg" alt=""></div><div class="owl-item" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-2.jpg" src="img/product/details/thumb-1.jpg" alt=""></div><div class="owl-item" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-3.jpg" src="img/product/details/thumb-2.jpg" alt=""></div><div class="owl-item active" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-5.jpg" src="img/product/details/thumb-3.jpg" alt=""></div><div class="owl-item active" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-4.jpg" src="img/product/details/thumb-4.jpg" alt=""></div><div class="owl-item cloned active" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-2.jpg" src="img/product/details/thumb-1.jpg" alt=""></div><div class="owl-item cloned active" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-3.jpg" src="img/product/details/thumb-2.jpg" alt=""></div><div class="owl-item cloned" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-5.jpg" src="img/product/details/thumb-3.jpg" alt=""></div><div class="owl-item cloned" style="width: 67.5px; margin-right: 20px;"><img data-imgbigurl="img/product/details/product-details-4.jpg" src="img/product/details/thumb-4.jpg" alt=""></div></div></div><div class="owl-nav disabled"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"><button role="button" class="owl-dot active"><span></span></button></div></div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__text">
-                        <h3>Vetgetable’s Package</h3>
-                        <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 reviews)</span>
-                        </div>
-                        <div class="product__details__price">$50.00</div>
-                        <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
-                            vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
-                            quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty"><span class="dec qtybtn">-</span>
-                                    <input type="text" value="1">
-                                <span class="inc qtybtn">+</span></div>
-                            </div>
-                        </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                        <ul>
-                            <li><b>Availability</b> <span>In Stock</span></li>
-                            <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
-                            <li><b>Weight</b> <span>0.5 kg</span></li>
-                            <li><b>Share on</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="product__details__tab">
-                        <ul class="nav nav-tabs" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab" aria-selected="true">Description</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab" aria-selected="false">Information</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab" aria-selected="false">Reviews <span>(1)</span></a>
-                            </li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus. Vivamus
-                                        suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam
-                                        vehicula elementum sed sit amet dui. Donec rutrum congue leo eget malesuada.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat,
-                                        accumsan id imperdiet et, porttitor at sem. Praesent sapien massa, convallis a
-                                        pellentesque nec, egestas non nisi. Vestibulum ac diam sit amet quam vehicula
-                                        elementum sed sit amet dui. Vestibulum ante ipsum primis in faucibus orci luctus
-                                        et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam
-                                        vel, ullamcorper sit amet ligula. Proin eget tortor risus.</p>
-                                        <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-                                        Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Sed
-                                        porttitor lectus nibh. Vestibulum ac diam sit amet quam vehicula elementum
-                                        sed sit amet dui. Proin eget tortor risus.</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-2" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
-                                    <p>Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Lorem
-                                        ipsum dolor sit amet, consectetur adipiscing elit. Mauris blandit aliquet
-                                        elit, eget tincidunt nibh pulvinar a. Cras ultricies ligula sed magna dictum
-                                        porta. Cras ultricies ligula sed magna dictum porta. Sed porttitor lectus
-                                        nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane" id="tabs-3" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <h6>Products Infomation</h6>
-                                    <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-                                        Pellentesque in ipsum id orci porta dapibus. Proin eget tortor risus.
-                                        Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam
-                                        sit amet quam vehicula elementum sed sit amet dui. Donec rutrum congue leo
-                                        eget malesuada. Vivamus suscipit tortor eget felis porttitor volutpat.
-                                        Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Praesent
-                                        sapien massa, convallis a pellentesque nec, egestas non nisi. Vestibulum ac
-                                        diam sit amet quam vehicula elementum sed sit amet dui. Vestibulum ante
-                                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-                                        Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
-                                        Proin eget tortor risus.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-		
-		
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="product__details__pic">
+						<div class="product__details__pic__item">
+							<img class="product__details__pic__item--large"
+								src="https://ygselect.com/web/product/extra/small/202011/8295548b9dc27357a7304086ec6b6340.jpg"
+								alt="" style="width: 555px; height: 555px;">
+						</div>
+						<div class="product__details__pic__slider owl-carousel">
+							<img data-imgbigurl="img/product/details/product-details-2.jpg"
+								src="img/product/details/thumb-1.jpg" alt=""> <img
+								data-imgbigurl="img/product/details/product-details-3.jpg"
+								src="img/product/details/thumb-2.jpg" alt=""> <img
+								data-imgbigurl="img/product/details/product-details-5.jpg"
+								src="img/product/details/thumb-3.jpg" alt=""> <img
+								data-imgbigurl="img/product/details/product-details-4.jpg"
+								src="img/product/details/thumb-4.jpg" alt="">
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="product__details__text">
+						<h3>BLACKPINK OFFICIAL LIGHT STICK Ver.2 LIMITED EDITION</h3>
+
+						<div class="product__details__price">39,000원</div>
+						<p>
+							제품 구성 : 응원봉 + 크래들 + 스트랩<br>* 1회 최대 구매가능 수량은 19개입니다.<br>*
+							한 ID당 여러 건 주문 가능합니다.<br>* 상품은 출고일 이후 순차 출고됩니다.
+						</p>
+						<div class="product__details__quantity">
+							<div class="quantity">
+								<div class="pro-qty">
+									<span class="dec qtybtn">-</span> <input type="text" value="1">
+									<span class="inc qtybtn">+</span>
+								</div>
+							</div>
+						</div>
+						<a href="#" class="primary-btn">ADD TO CART</a>
+						<ul>
+							<li><b>카테고리</b> <span>CHEERING</span></li>
+							<li><b>소속사</b> <span>YG Entertainment</span></li>
+							<li><b>스타</b> <span>BLACK PINK</span></li>
+							<li><b>등록일</b> <span>2020년 12월 24일</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<div class="line">
+						<div>상품정보</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="tab-content">
+					<div class="tab-pane active" id="tabs-1" role="tabpanel">
+						<div class="product__details__tab__desc">
+							<p>
+								블랙핑크 라이브스트림 콘서트 'THE SHOW' 멤버십 오픈 기념 블랙핑크 응원봉 Ver.2 LIMITED
+								EDITION 추가 제작!<br> * 1회 구매당 최대 주문가능수량은 19개입니다. (한 ID당 여러 건
+								주문 가능)<br> * 상품은 결제완료 기준으로 순차 출고됩니다.<br> * 상품 판매일정 :
+								12월 8일(화) 이후 주문건 → 12월 21일(월) 순차 출고<br>
+								<br> YG PALM STAGE - 2020 BLACKPINK: THE SHOW<br>
+								▸2021.01.31 2PM (KST)<br> ▸On YouTube<br> Buy Access @
+								www.youtube.com/c/BlackPinkOfficial/join<br> More info @
+								https://bit.ly/THESHOWMOREINFO<br>
+								<br> [NOTICE]<br> * 배터리 저전력 시, 색상이 흐려지거나 색상이 다소 다르게
+								출력될 수 있습니다.<br> * 본 제품은 특정 음원에 반응하는 응원봉으로 최초 구매하신 제품에는 음원
+								반응 데이터가 입력되어 있지 않습니다.<br> * 사용 전, APP을 이용하여 소프트웨어,
+								공연정보(음원반응 데이터)를 업데이트를 해주세요. 업데이트 후, 재부팅 시에는 버튼을 길게 2초 동안 눌러 전원을
+								켭니다.<br> * 해당하는 데이터를 다운로드 하지 않을 시, 반응이 없거나 연출이 상이할 수 있습니다.<br>
+								* 응원봉에 음원을 인식하는 MIC가 내장 되어 있습니다. 인식을 방해하는 이어폰 착용이나 주변의 시끄러운 소음으로
+								인하여 반응이 원활하지 않을 수 있습니다.<br> * 작동 환경에 따라 응원봉 음원 인식 반응이 원활하지
+								않을 수 있으며, 이는 상품 불량이 아니므로 교환, 반품 대상이 되지 않습니다.
+							</p>
+							<br> <img alt="상품상세사진"
+								src="https://ygselect.com/web/upload/NNEditor/20201112/detail_01_shop1_140904.jpg">
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
+	<!-- Product Details Section End -->
 </body>
 </html>
