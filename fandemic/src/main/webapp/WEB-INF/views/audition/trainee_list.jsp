@@ -7,6 +7,7 @@
 <head>
 
 <style>
+
 .auditionimage {
 	margin: 10px;
 	height: 264px;
@@ -85,7 +86,7 @@
 
 		<div class="wrapper">
 			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="col-md-2 col-sm-2 col-xs-2">
+				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:20px 45px">
 					<button class="btn btn-primary" type="button">TOP05/NEW05</button>
 
 				</div>
@@ -154,15 +155,15 @@
 
 			<div class="col-md-12 col-sm-12 col-xs-12">
 
-				<div class="col-md-2 col-sm-2 col-xs-2">
+				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:10px;">
 					<button class="btn btn-primary" type="button">전체</button>
 
 				</div>
-				<div class="col-md-2 col-sm-2 col-xs-2">
+				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:10px 10px;">
 					<button class="btn btn-primary" type="button">연습생 활동</button>
 				</div>
 
-				<div class="col-md-2 col-sm-2 col-xs-2"></div>
+				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:10px 10px"></div>
 				<form class="navbar-form navbar-left" role="search">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="Search">
@@ -170,7 +171,7 @@
 					<button type="submit" class="btn btn-primary" style="align: right">검색</button>
 				</form>
 
-				<div class="col-md-2 col-sm-2 col-xs-2"></div>
+				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:10px 10px"></div>
 				<div class="btn-group">
 					<a class="btn btn-primary dropdown-toggle btn-select" href="#"
 						data-toggle="dropdown">전체 <span class="caret"></span></a>
@@ -223,10 +224,18 @@
 					<button class="btn-like">👍</button>
 				</div>
 			</div>
+			<div class="col-md-12 text-center">
+						<ul class="pagination">
+							<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">...</a></li>
+							<li><a href="#">10</a></li>
+							<li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+						</ul>
+					</div>
 		</div>
 	</div>
-
 </section>
-
-
 </html>
