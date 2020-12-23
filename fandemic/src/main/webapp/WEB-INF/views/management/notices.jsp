@@ -29,11 +29,47 @@
 </style>
 <script>
 	$(function() {
+		
+		cnoticeList();//공지사항 목록요청
 		$(".pagination a").on("click",function(){
 			$(".pagination a").removeClass("active");
 			$(this).addClass("active");
 		});
-	});
+		
+		$(".btn-register").on("click",function(){
+			location.href="${pageContext.request.contextPath}/management/noticesInsertForm";
+		});
+	}); //end document ready
+	
+	//공지사항 목록 조회 요청
+	function cnoticeList() {
+		$.ajax({
+			url:'${pageContext.request.contextPath}/management/noticesList', //요청할 url
+			type:'POST',
+			//contentType:'application/json;charset=utf-8',
+			dataType:'json', //값이 넘어오는 형식
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:cnoticeListResult
+		});
+	}//end cnoticeList
+	
+	function cnoticeListResult(data){
+		console.log(data);
+		$("tbody").empty();
+		$.each(data,function(idx,item){//idx=index, item=value
+			$('<tr>')
+			.append($('<td>').html('<input type="checkbox">'))
+			.append($('<td>').html(item.cnoc_no))
+			.append($('<td>').html(item.cnoc_title))
+			.append($('<td>').html(item.com_id))
+			.append($('<td>').html(item.cnoc_time))
+			.append($('<td>').html(item.cnoc_subject))
+			.appendTo('tbody');
+			
+		});//end each
+	}//end cnoticeListResult
 </script>
      <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -72,14 +108,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr data-widget="expandable-table" aria-expanded="false">
+                    <!-- <tr data-widget="expandable-table" aria-expanded="false">
                       <td><input type="checkbox"></td>
                       <td>1</td>
                       <td>니얼굴쩔어 !!!!!!!!!!!!!!!</td>
                       <td>YG관리자</td>
                       <td>2020-12-17</td>
                       <td>공지사항</td>
-                    </tr>                   
+                    </tr>     -->               
                   </tbody>
                 </table>
               </div>
