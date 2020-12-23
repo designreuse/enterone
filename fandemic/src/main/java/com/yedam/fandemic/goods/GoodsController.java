@@ -29,4 +29,9 @@ public class GoodsController {
 	public ModelAndView test3(HttpServletResponse response) throws IOException{
 		return new ModelAndView("goods/goods_buy_detail");
 	}
+	
+	@RequestMapping(value="/goodsCart")
+	public ModelAndView test4(HttpServletResponse response) throws IOException{
+		return new ModelAndView("goods/goods_cart");
+	}
 }

@@ -116,19 +116,19 @@ h6 {
 					<article class="col-md-12 article-list">
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
-									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
+								<a href="ticket"> <img
+									src="http://ticketimage.interpark.com/Play/image/large/20/20007700_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
 							</figure>
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣]</a>
+									<a href="ticket">뮤지컬 〈블랙메리포핀스〉</a>
 								</h1>
 								<p style="height: 44%">
 									2020 XIA Online Concert<br> 예매일 : 2020년 12월 24일<br>
@@ -136,7 +136,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -147,7 +147,7 @@ h6 {
 						</div>
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
+								<a href="ticket"> <img
 									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
@@ -155,11 +155,11 @@ h6 {
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">2020 XIA Ballad＆Musical Online
+									<a href="ticket">2020 XIA Ballad＆Musical Online
 										Concert with Orchestra</a>
 								</h1>
 								<p style="height: 44%">
@@ -168,7 +168,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -182,7 +182,7 @@ h6 {
 					<article class="col-md-12 article-list">
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
+								<a href="ticket"> <img
 									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
@@ -190,11 +190,11 @@ h6 {
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣]</a>
+									<a href="ticket">뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣]</a>
 								</h1>
 								<p style="height: 44%">
 									2020 XIA Online Concert<br> 예매일 : 2020년 12월 24일<br>
@@ -202,7 +202,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -213,7 +213,7 @@ h6 {
 						</div>
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
+								<a href="ticket"> <img
 									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
@@ -221,11 +221,11 @@ h6 {
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">2020 XIA Ballad＆Musical Online
+									<a href="ticket">2020 XIA Ballad＆Musical Online
 										Concert with Orchestra</a>
 								</h1>
 								<p style="height: 44%">
@@ -234,7 +234,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -248,7 +248,7 @@ h6 {
 					<article class="col-md-12 article-list">
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
+								<a href="ticket"> <img
 									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
@@ -256,11 +256,11 @@ h6 {
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣]</a>
+									<a href="ticket">뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣]</a>
 								</h1>
 								<p style="height: 44%">
 									2020 XIA Online Concert<br> 예매일 : 2020년 12월 24일<br>
@@ -268,7 +268,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -279,7 +279,7 @@ h6 {
 						</div>
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
+								<a href="ticket"> <img
 									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
@@ -287,11 +287,11 @@ h6 {
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">2020 XIA Ballad＆Musical Online
+									<a href="ticket">2020 XIA Ballad＆Musical Online
 										Concert with Orchestra</a>
 								</h1>
 								<p style="height: 44%">
@@ -300,7 +300,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -314,7 +314,7 @@ h6 {
 					<article class="col-md-12 article-list">
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
+								<a href="ticket"> <img
 									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
@@ -322,11 +322,11 @@ h6 {
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣]</a>
+									<a href="ticket">뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣]</a>
 								</h1>
 								<p style="height: 44%">
 									2020 XIA Online Concert<br> 예매일 : 2020년 12월 24일<br>
@@ -334,7 +334,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -345,7 +345,7 @@ h6 {
 						</div>
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
+								<a href="ticket"> <img
 									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
@@ -353,11 +353,11 @@ h6 {
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">2020 XIA Ballad＆Musical Online
+									<a href="ticket">2020 XIA Ballad＆Musical Online
 										Concert with Orchestra</a>
 								</h1>
 								<p style="height: 44%">
@@ -366,7 +366,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -380,7 +380,7 @@ h6 {
 					<article class="col-md-12 article-list">
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
+								<a href="ticket"> <img
 									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
@@ -388,11 +388,11 @@ h6 {
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣]</a>
+									<a href="ticket">뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣] 뮤지컬 [듀엣]</a>
 								</h1>
 								<p style="height: 44%">
 									2020 XIA Online Concert<br> 예매일 : 2020년 12월 24일<br>
@@ -400,7 +400,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -411,7 +411,7 @@ h6 {
 						</div>
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="single.html"> <img
+								<a href="ticket"> <img
 									src="http://ticketimage.interpark.com/Play/image/large/20/20010887_p.gif"
 									style="width: 100%; height: 100%;">
 								</a>
@@ -419,11 +419,11 @@ h6 {
 							<div class="details" style="margin-left: 210px;">
 								<div class="detail">
 									<div class="category" style="font-size: 15px;">
-										<a href="category.html">D - 4</a>
+										<a href="ticket">D - 4</a>
 									</div>
 								</div>
 								<h1 style="height: 23%">
-									<a href="single.html">2020 XIA Ballad＆Musical Online
+									<a href="ticket">2020 XIA Ballad＆Musical Online
 										Concert with Orchestra</a>
 								</h1>
 								<p style="height: 44%">
@@ -432,7 +432,7 @@ h6 {
 									공연없음
 								</p>
 								<div style="height: 20%">
-									<a class="btn btn-primary more" href="single.html">
+									<a class="btn btn-primary more" href="ticket">
 										<div>More</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>

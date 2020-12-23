@@ -59,7 +59,7 @@
 								</div>
 							</div>
 						</div>
-						<a href="#" class="primary-btn">ADD TO CART</a>
+						<a href="goodsCart" class="primary-btn">ADD TO CART</a>
 						<ul>
 							<li><b>카테고리</b> <span>CHEERING</span></li>
 							<li><b>소속사</b> <span>YG Entertainment</span></li>
