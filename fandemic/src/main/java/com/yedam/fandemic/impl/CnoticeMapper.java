@@ -7,5 +7,5 @@ import com.yedam.fandemic.vo.Cnotice;
 public interface CnoticeMapper {
 
 	public int insertCnotice(Cnotice cnotice);
-	public List<Cnotice> getCnoticeList();
+	public List<Cnotice> getCnoticeList(Cnotice cnotice);
 }

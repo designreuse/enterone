@@ -43,9 +43,11 @@
 	
 	//공지사항 목록 조회 요청
 	function cnoticeList() {
+		var com_id = "${company.com_id }"
 		$.ajax({
 			url:'${pageContext.request.contextPath}/management/noticesList', //요청할 url
 			type:'POST',
+			data: {com_id:com_id},
 			//contentType:'application/json;charset=utf-8',
 			dataType:'json', //값이 넘어오는 형식
 			error:function(xhr,status,msg){

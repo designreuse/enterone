@@ -37,7 +37,7 @@ public class CnoticeController {
 	@RequestMapping(value="/management/noticesList")
 	@ResponseBody
 	public List<Cnotice> getCnoticeList(Cnotice cnotice) {	
-		return cnoticedao.getCnoticeList();
+		return cnoticedao.getCnoticeList(cnotice);
 	}
 	
 }
