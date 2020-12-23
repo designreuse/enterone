@@ -1,6 +1,7 @@
 package com.yedam.fandemic.login;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,11 +25,11 @@ import com.yedam.fandemic.vo.Member;
 public class LoginController {
 	@Autowired MemberMapper memMapper;
 	
+	
 	@RequestMapping("/logout") // 로그아웃
-	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException{
 		System.out.println("로그아웃");
-		   
-		HttpSession session = request.getSession();
+		
 		session.invalidate();
 		
 		request.setAttribute("login", null);
@@ -36,13 +39,12 @@ public class LoginController {
 	    
 	// 개인 로그인
 	@RequestMapping(value="/memberLogin")
-	public String memberLogin(HttpServletRequest request, Model model, Member member) throws IOException{
+	public String memberLogin(HttpServletRequest request,HttpSession session,  Model model, Member member) throws IOException{
 		
 		member = memMapper.memLogin(member);
 		
 		if ( member != null) {
 			
-			HttpSession session = request.getSession(false);
 			session.setAttribute("mem_id", member.getMem_id());
 			session.setAttribute("mem_pw", member.getMem_pw());
 			session.setAttribute("mem_name", member.getMem_name());
@@ -72,14 +74,13 @@ public class LoginController {
 			// 일반기업(소속사) 일 때
 			System.out.println("권한: " + company.getCom_class());
 			
-			if (Integer.parseInt(company.getCom_class()) == 1) {
-				System.out.println("1일 때");
+
+			if (company.getCom_class().equals("1")) {
 				session.setAttribute("company", company);
 				model.addAttribute("login", "success");
 				return "redirect:management"; 
 				
 			} else { // admin 일 때
-				System.out.println("0일 때");
 				session.setAttribute("company", company);
 				model.addAttribute("login", "success");
 				return "redirect:adminMain";
@@ -104,7 +105,17 @@ public class LoginController {
 	
 	// 회원가입 페이지
 	@RequestMapping("/register")
-	public ModelAndView register(HttpServletResponse response) throws IOException{
+	public ModelAndView register(Model model, Member member, Company company) throws IOException{
+		
+		model.addAttribute(member);
+		model.addAttribute(company);
+		
+		String[] gender = {"남","여"};
+		
+		model.addAttribute(gender);
+		
+		
+		
 		return new ModelAndView("login/register");
 	}
 	
@@ -132,18 +143,27 @@ public class LoginController {
 	
 	// 개인 회원가입 처리
 	@RequestMapping("/memRegister")
-	public ModelAndView memRegister(Model model, Member member) throws IOException{
+	public String memRegister(Model model, Member member, Errors errors) throws IOException{
+		
+		new MemberValidator().validate(member, errors);
+		
+		if(errors.hasErrors()) {
+			
+			return "login/register";
+		}
 		
 		memMapper.memInsert(member);
+		//model.addAttribute("login", "insert");
 		
-		model.addAttribute("login", "insert");
-		
-		return new ModelAndView("login");
+		return "login";
 	}
+	
+	
 	
 	// 기업 회원가입
 	@RequestMapping("/comRegister")
 	public ModelAndView comRegister(Model model, Company company) throws IOException{
+		
 		memMapper.comInsert(company);
 		
 		model.addAttribute("login", "insert");

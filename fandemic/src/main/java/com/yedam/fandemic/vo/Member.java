@@ -1,14 +1,18 @@
 package com.yedam.fandemic.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Member {
 
 	String mem_id;			//개인회원ID
 	String mem_name;		//회원이름
 	String mem_pw;			//회원PW
-	String mem_birth;		//생년월일
+	String mem_birth;		//생년월일mem_birth
 	String mem_phone;		//연락처
 	String mem_email;		//이메일
 	String mem_address;		//주소

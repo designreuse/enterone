@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+	
+	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 
 <style>
+.error {
+	color: red;
+	font-weight: bold;
+}
 ul.tabs {
 	margin: 0px;
 	padding: 0px;
@@ -80,11 +90,12 @@ ul.tabs li.current {
 		
 		// 유효성
 		$('#btnAddMem').on('click',function(){ 
-			checkformMem();
-		}); 
-		
-		$('#btnAddCom').on('click',function(){ 
 			
+			if ($(':radio[name="mem_gender"]:checked').length < 1) {
+				alert("성별을 선택하세요");
+				event.preventDefault();
+			}
+
 		}); 
 		
 		
@@ -156,84 +167,6 @@ ul.tabs li.current {
 		}).open();
 	}
 
-	// 개인
-	function checkformMem() {
-		
-			
-					
-			if ($("#mem_name").val() == null || $("#mem_name").val() == '') {
-				alert("이름을 입력하세요");
-				$("#mem_name").focus();
-				event.preventDefault();
-				
-			} else if ($(':radio[name="mem_gender"]:checked').length < 1) {
-				alert("성별을 선택하세요");
-				event.preventDefault();
-				
-			} else if ($("#mem_pw").val() == null || $("#mem_pw").val() == '') {
-				alert("비밀번호를 입력하세요");
-				$("#mem_pw").focus();
-				event.preventDefault();
-				
-			}  else if ($("#mem_birth").val() == null || $("#mem_birth").val() == '') {
-				alert("생년월일을 입력하세요");
-				$("#mem_birth").focus();
-				event.preventDefault();
-				
-			} else if ($("#mem_phone").val() == null || $("#mem_phone").val() == '') {
-				alert("연락처를 입력하세요");
-				$("#mem_phone").focus();
-				event.preventDefault();
-				 
-			} else if ($("#mem_email").val() == null || $("#mem_email").val() == '') {
-				alert("이메일을 입력하세요");
-				$("#mem_email").focus();
-				event.preventDefault();
-				 
-			} else if ($("#mem_address2").val() == null || $("#mem_address2").val() == '') {
-				alert("주소를 입력하세요");
-				$("#mem_address2").focus();
-				event.preventDefault();
-				
-			}
-			
-			
-		
-	}
-	
-	// 기업
-	function checkformCom() {
-	
-		
-			
-			if ($("#com_name").val() == null || $("#com_name").val() == '') {
-				alert("이름을 입력하세요");
-				$("#com_name").focus();
-				event.preventDefault();
-				
-			} else if ($("#com_pw").val() == null || $("#com_pw").val() == '') {
-				alert("비밀번호를 입력하세요");
-				$("#com_pw").focus();
-				event.preventDefault();
-				
-			} else if ($("#com_phone").val() == null || $("#com_phone").val() == '') {
-				alert("연락처를 입력하세요");
-				$("#com_phone").focus();
-				event.preventDefault();
-				
-			} else if ($("#com_email").val() == null || $("#com_email").val() == '') {
-				alert("이메일을 입력하세요");
-				$("#com_email").focus();
-				event.preventDefault();
-			} else if ($("#com_address2").val() == null || $("#com_address2").val() == '') {
-				alert("주소를 입력하세요");
-				$("#com_address2").focus();
-				event.preventDefault();
-				
-			}
-			
-		
-	}
 	
 	// 중복확인
 	
@@ -254,7 +187,7 @@ ul.tabs li.current {
                } else {
             	   $("#checkId").html("");
             	   $("#checkId").html("중복된 아이디입니다.").css("color","red").appendTo("#divId");
-            	   
+            	   $('#btnAddMem').attr("disabled", true);
                }
 
             },error:function(){ alert("실패"); }
@@ -278,6 +211,7 @@ ul.tabs li.current {
                } else {
             	   $("#checkIdcom").html("");
             	   $("#checkIdcom").html("중복된 아이디입니다.").css("color","red").appendTo("#comDiv")
+            	   $('#btnAddCom').attr("disabled", true);
                }
 
             },error:function(){ alert("실패"); }
@@ -304,46 +238,54 @@ ul.tabs li.current {
 			<div class="box box-border">
 				<div class="box-body" style="border: 3px solid #A4B7D4;">
 					<h4>회원가입</h4>
-					<form id="memFrm" name="memFrm" method="post">
+					<form:form id="memFrm" name="memFrm" method="post" modelAttribute="member">
 						<div class="form-group" id="divId">
 							<div style="text-align: right;">
-								<input type="radio" id="mem_gender" name="mem_gender" value="남" class="gender"> &nbsp; 남 &nbsp;&nbsp;
-								<input type="radio" id="mem_gender" name="mem_gender" value="여" class="gender"> &nbsp; 여 &nbsp;&nbsp;
+								<form:radiobutton path="mem_gender" value="남" label="남자"/>&nbsp;&nbsp;
+								<form:radiobutton path="mem_gender" value="여" label="여자"/>
+								
+								
 							</div>
 							<label>아이디</label>
 							<div style="position:relative">
-								<input type="text" name="mem_id" id="mem_id" Class="form-control" style="papadding: 50px; display: inline-block;">
-								<input type="button" value="중복확인" id="btnCheckm" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;"><br>
+								<form:input type="text" path="mem_id" id="mem_id" Class="form-control" style="papadding: 50px; display: inline-block;" />
+								<form:input type="button" path="" value="중복확인" id="btnCheckm" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 								<b id="checkId"></b>
 							</div>
 						</div>
 						<div class="form-group">
-							<label>이름</label> <input type="text" name="mem_name"
-								id="mem_name" class="form-control">
+							<label>이름</label> 
+							<form:input type="text" path="mem_name" id="mem_name" class="form-control" />
+							<form:errors path="mem_name" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 						<div class="form-group" id="mem_pw1" >
 							<label class="fw">비밀번호</label> 
-							<input type="password" id="mem_pw" name="mem_pw" class="form-control" >
+							<form:input type="password" id="mem_pw" path="mem_pw" class="form-control" />
 							<b id="membTag"></b>
+							<form:errors path="mem_pw" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 						<div class="form-group" id="memPwd" >
 							<label class="fw">비밀번호 확인</label> 
-							<input type="password" id="mem_pwCheck" name="mem_pwCheck" class="form-control" >
+							<form:input type="password" id="mem_pwCheck" path="" class="form-control" />
 						</div>
 
 						<div class="form-group">
-							<label>생년월일</label> <input type="date" name="mem_birth" id="mem_birth" class="form-control">
+							<label>생년월일</label> 
+							<form:input type="date" path="mem_birth" id="mem_birth" class="form-control" />
+							<form:errors path="mem_birth" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 						<div class="form-group">
-							<label>연락처</label> <input type="text" name="mem_phone"
-								id="mem_phone" class="form-control">
+							<label>연락처</label> 
+							<form:input type="text" path="mem_phone" id="mem_phone" class="form-control" />
+							<form:errors path="mem_phone" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 						<div class="form-group">
-							<label>이메일</label> <input type="text" id="mem_email"
-								name="mem_email" class="form-control">
+							<label>이메일</label> 
+							<form:input type="text" id="mem_email" path="mem_email" class="form-control" />
+							<form:errors path="mem_email" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 
@@ -351,13 +293,14 @@ ul.tabs li.current {
 							<label>주소</label><br>
 							
 							<div style="position:relative">
-								<input type="text" id="mem_address" name="mem_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="readonly">
-								<input type="button" value="주소검색" id="btnAddr" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;"><br>
+								<form:input type="text" id="mem_address" path="mem_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="readonly" />
+								<form:input type="button" path="" value="주소검색" id="btnAddr" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 							</div>
 							
-							<input type="text" id="mem_address2" name="mem_address2" class="form-control" style="display:none; margin: 5px 0px;" >
+							<form:input type="text" id="mem_address2" path="mem_address2" class="form-control" style="display:none; margin: 5px 0px;" />
+							<form:errors path="mem_address2" cssClass="error" htmlEscape="false"/> <br>
 							<label>우편번호</label> &nbsp; &nbsp;
-							<input type="text" id="mem_zipAddress" name=mem_zipAddress class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly">
+							<form:input type="text" id="mem_zipAddress" path="mem_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly" />
 						</div>
 
 						<div class="form-group text-right">
@@ -366,7 +309,7 @@ ul.tabs li.current {
 						<div class="form-group text-right">
 							<a href="login">로그인</a>
 						</div>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
