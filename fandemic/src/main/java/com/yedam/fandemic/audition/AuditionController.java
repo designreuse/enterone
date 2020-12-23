@@ -11,8 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AuditionController {
 	@RequestMapping(value = "/auditionwork") //주소
-	public ModelAndView notice(HttpServletResponse response) throws IOException {
+	public ModelAndView auditionwork(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/trainee_list");
+	
+	}	
+	
+	@RequestMapping(value = "/auditioninsert") //주소
+	public ModelAndView auditioninsert(HttpServletResponse response) throws IOException {
+		return new ModelAndView("audition/trainee_insert");
 	
 	}	
 	
