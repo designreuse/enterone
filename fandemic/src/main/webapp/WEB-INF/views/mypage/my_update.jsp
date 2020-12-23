@@ -4,6 +4,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+
+/* 수정 테이블 스타일 */
+.myinfo {
+	width: 100%
+}
+
+/* readonly 스타일 */
+.readolytexttd {
+	
+}
+
+.tilt {
+	width: 140px;
+	margin: 5%
+}
+
+/*수정가능한 text필드*/
+.updatetext {
+	
+}
+/*수정불가능한 text필드*/
+.readolytext {
+	
+}
+</style>
 </head>
 <body>
 	<section class="single">
@@ -11,37 +37,70 @@
 			<div class="row">
 				<div class="col-md-8" style="margin-left: 30%">
 					<div class="line">
-						<div>내 스타 목록</div>
+						<div>내정보 수정</div>
 					</div>
-					<div class="w3-content w3-display-container">
-						<img class="mySlides" src="img_nature.jpg"> <img
-							class="mySlides" src="img_snowtops.jpg"> <img
-							class="mySlides" src="img_mountains.jpg">
-						<h1>여기에 스타 목록</h1>
-						<div class="w3-center w3-display-bottommiddle" style="width: 100%">
-							<div class="w3-left" onclick="plusDivs(-1)">&#10094;</div>
-							<div class="w3-right" onclick="plusDivs(1)">&#10095;</div>
-							<span class="w3-badge demo w3-border" onclick="currentDiv(1)"></span>
-							<span class="w3-badge demo w3-border" onclick="currentDiv(2)"></span>
-							<span class="w3-badge demo w3-border" onclick="currentDiv(3)"></span>
-						</div>
-					</div>
+					<table class="myinfo">
+						<tr>
+							<td class="tilt"><b>사진</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="updatetext"></td>
+						</tr>
+						<tr>
+							<td class="tilt"><b>아이디</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="readolytext"></td>
+						</tr>
+						<tr>
+							<td class="tilt"><b>비밀번호</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="updatetext"></td>
+						</tr>
+						<tr>
+							<td class="tilt"><b>비밀번호확인</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="updatetext"></td>
+						</tr>
+						<tr>
+							<td class="tilt"><b>이름</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="readolytext"></td>
+						</tr>
+						<tr>
+							<td class="tilt"><b>생년월일</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="updatetext"></td>
+						</tr>
 
-					<div class="line">
-						<div>최근 구매 내역</div>
-					</div>
-					<div class="row">
-						<h1>최근 구매내역 들어가는곳</h1>
-					</div>
-					<div class="line">
-						<div>이벤트 참여 내역</div>
-					</div>
-					<div class="row">
-						<h1>이벤트</h1>
-					</div>
-					<div class="line">
-						<div>쪽지</div>
-					</div>
+
+
+						<tr>
+							<td class="tilt"><b>휴대폰 번호</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="updatetext"></td>
+						</tr>
+						<tr>
+							<td class="tilt"><b>이메일</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="updatetext"></td>
+						</tr>
+
+						<tr>
+							<td class="tilt"><b>우편번호</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="readolytext"></td>
+						</tr>
+						<tr>
+							<td class="tilt"><b>주소</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="updatetext"></td>
+						</tr>
+						<tr>
+							<td class="tilt"><b>가입일</b></td>
+							<td class="readolytexttd"><input type="text"
+								class="updatetext"></td>
+						</tr>
+					</table>
+
 					<div class="row">
 						<h1>쪽지 나오는곳</h1>
 					</div>

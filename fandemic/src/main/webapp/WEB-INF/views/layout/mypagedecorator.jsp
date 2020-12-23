@@ -58,143 +58,126 @@ tr {
 </head>
 <body>
 	<header class="primary">
-		<div class="firstbar" style="padding: 0px">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-sm-12">
-						<div class="brand">
-							<a href="${pageContext.request.contextPath}/"> <img
-								src="${pageContext.request.contextPath}/resources/images/logo.png"
-								alt="Magz Logo">
-							</a>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12">
-						<form class="search" autocomplete="off">
-							<div class="form-group">
-								<div class="input-group">
-									<input type="text" name="q" class="form-control"
-										placeholder="Type something here">
-									<div class="input-group-btn">
-										<button class="btn btn-primary">
-											<i class="ion-search"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-							<div class="help-block">
-								<div>Popular:</div>
-								<ul>
-									<li><a href="#">소속사</a></li>
-									<li><a href="#">스타</a></li>
-								</ul>
-							</div>
-						</form>
-					</div>
-					<div class="col-md-3 col-sm-12 text-right">
-						<ul class="nav-icons">
-							<c:if test="${login eq null or login eq 'fail' }">
-								<li><a href="register"><i class="ion-person-add"></i>
-										<div>회 원 가 입</div></a></li>
-								<li><a href="login"><i class="ion-person"></i>
-										<div>로 그 인</div></a></li>
-							</c:if>
-							<c:if test="${login eq 'success' }">
-								<!-- <li><a href="#"><i class="ion-person-add"></i><div>마 이 페 이 지</div></a></li> -->
-								<li><a href="logout"><i class="ion-person"></i>
-										<div>로 그 아 웃</div></a></li>
-							</c:if>
+         <div class="firstbar" style="padding: 0px">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-3 col-sm-12">
+                     <div class="brand">
+                        <a href="${pageContext.request.contextPath}/">
+                           <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Magz Logo">
+                        </a>
+                     </div>                  
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                     <form class="search" autocomplete="off">
+                        <div class="form-group">
+                           <div class="input-group">
+                              <input type="text" name="q" class="form-control" placeholder="Type something here">                           
+                              <div class="input-group-btn">
+                                 <button class="btn btn-primary"><i class="ion-search"></i></button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="help-block">
+                           <div>Popular:</div>
+                           <ul>
+                              <li><a href="#">소속사</a></li>
+                              <li><a href="#">스타</a></li>
+                           </ul>
+                        </div>
+                     </form>                        
+                  </div>
+                  <div class="col-md-3 col-sm-12 text-right">
+                     <ul class="nav-icons">
+                     	<c:if test="${login eq null or login ne 'success' }" >
+	                        <li><a href="register"><i class="ion-person-add"></i><div>회 원 가 입</div></a></li>
+	                        <li><a href="login"><i class="ion-person"></i><div>로 그 인</div></a></li>
+                        </c:if>
+                        <c:if test="${login eq 'success' }">
+                        	<!-- <li><a href="#"><i class="ion-person-add"></i><div>마 이 페 이 지</div></a></li> -->
+	                        <li><a href="logout"><i class="ion-person"></i><div>로 그 아 웃</div></a></li>
+                        </c:if>
+                        
+                        
+                        
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
 
+         <!-- Start nav -->
+         <nav class="menu">
+            <div class="container">
+               <div class="brand">
+                  <a href="#">
+                     <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Magz Logo">
+                  </a>
+               </div>
+               <div class="mobile-toggle">
+                  <a href="#" data-toggle="menu" data-target="#menu-list"><i class="ion-navicon-round"></i></a>
+               </div>
+               <div class="mobile-toggle">
+                  <a href="#" data-toggle="sidebar" data-target="#sidebar"><i class="ion-ios-arrow-left"></i></a>
+               </div>
+               <div id="menu-list">
+                  <ul class="nav-list">
+                     <li class="for-tablet nav-title"><a>Menu</a></li>
+                     <li class="for-tablet"><a href="login.html">Login</a></li>
+                     <li class="for-tablet"><a href="register">Register</a></li>
+                     
+                     
+                     <li><a href="companyMain">소 속 사</a></li>
+                     
+                     
+                     <li><a href="untact">언 택 트</a></li>
 
-
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Start nav -->
-		<nav class="menu">
-			<div class="container">
-				<div class="brand">
-					<a href="#"> <img
-						src="${pageContext.request.contextPath}/resources/images/logo.png"
-						alt="Magz Logo">
-					</a>
-				</div>
-				<div class="mobile-toggle">
-					<a href="#" data-toggle="menu" data-target="#menu-list"><i
-						class="ion-navicon-round"></i></a>
-				</div>
-				<div class="mobile-toggle">
-					<a href="#" data-toggle="sidebar" data-target="#sidebar"><i
-						class="ion-ios-arrow-left"></i></a>
-				</div>
-				<div id="menu-list">
-					<ul class="nav-list">
-						<li class="for-tablet nav-title"><a>Menu</a></li>
-						<li class="for-tablet"><a href="login.html">Login</a></li>
-						<li class="for-tablet"><a href="register">Register</a></li>
-
-
-						<li><a href="companyMain">소 속 사</a></li>
-
-
-						<li><a href="company">언 택 트</a></li>
-
-
-						<!--                      magz-dropdown 클래스 제거 -->
-						<li class="dropdown"><a href="#">연 습 생<i
-								class="ion-ios-arrow-right"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">연습생 등록</a></li>
-								<li><a href="#">연습생 활동</a></li>
-								<li><a href="#">오디션 공고</a></li>
-
-							</ul></li>
-						<!--                      magz-dropdown 클래스 제거 -->
-						<li class="dropdown "><a href="goods">굿 즈 샵<i
-								class="ion-ios-arrow-right"></i></a>
-
-							<ul class="dropdown-menu">
-								<li><a href="#">CHEERING</a></li>
-								<li><a href="#">MUSIC</a></li>
-								<li><a href="#">FASHION</a></li>
-								<li><a href="#">ACC</a></li>
-								<li><a href="#">TECH</a></li>
-								<li><a href="#">ETC</a></li>
-							</ul></li>
-
-						<li><a href="#">연 예 뉴 스</a></li>
-
-						<li><a href="sns">S N S</a></li>
-						<!--                     magz-dropdown 클래스 제거ㅊ -->
-						<li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i
-								class="ion-ios-arrow-right"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="myupdate"><i class="icon ion-person"></i>
-										회원정보</a></li>
-								<li><a href="mystar"><i class="icon ion-heart"></i> 내
-										스타</a></li>
-								<li><a href="mytrainee"><i class="icon ion-chatbox"></i>
-										연습생</a></li>
-								<li><a href="mypurchase"><i class="icon ion-key"></i>
-										결제내역</a></li>
-								<li><a href="myevent"><i class="icon ion-settings"></i>
-										이벤트 참여</a></li>
-								<li><a href="mymail"><i class="icon ion-chatbox"></i>
-										쪽지함</a></li>
-								<li><a href="my1o1"><i class="icon ion-chatbox"></i>
-										1:1문의 내역</a></li>
-								<li class="divider"></li>
-								<li><a href="#"><i class="icon ion-log-out"></i> 로그아웃</a></li>
-							</ul></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-		<!-- End nav -->
-	</header>
+                     
+<!--                      magz-dropdown 클래스 제거 -->
+                     <li class="dropdown"><a href="auditionwork">연 습 생<i class="ion-ios-arrow-right"></i></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="#">연습생 등록</a></li>
+                           <li><a href="#">연습생 활동</a></li>
+                           <li><a href="#">오디션 공고</a></li>
+                           
+                        </ul>
+                     </li>
+<!--                      magz-dropdown 클래스 제거 -->
+                     <li class="dropdown "><a href="goods">굿 즈 샵<i class="ion-ios-arrow-right"></i></a>
+                     
+                        <ul class="dropdown-menu">
+                           <li><a href="#">CHEERING</a></li>
+                           <li><a href="#">MUSIC</a></li>
+                           <li><a href="#">FASHION</a></li>
+                           <li><a href="#">ACC</a></li>
+                           <li><a href="#">TECH</a></li>
+                           <li><a href="#">ETC</a></li>
+                        </ul>
+                     </li>
+                     
+                     <li><a href="#">연 예 뉴 스</a></li>   
+                     
+                     <li><a href="sns">S N S</a></li>
+<!--                     magz-dropdown 클래스 제거ㅊ -->
+                     <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
+                        <ul class="dropdown-menu">
+                           <li><a href="myupdate"><i class="icon ion-person"></i> 회원정보</a></li>
+                           <li><a href="mystar"><i class="icon ion-heart"></i> 내 스타</a></li>
+                           <li><a href="mytrainee"><i class="icon ion-chatbox"></i> 연습생</a></li>
+                           <li><a href="mypurchase"><i class="icon ion-key"></i> 결제내역</a></li>
+                           <li><a href="myevent"><i class="icon ion-settings"></i> 이벤트 참여</a></li>
+                           <li><a href="mymail"><i class="icon ion-chatbox"></i> 쪽지함</a></li>
+                           <li><a href="my1o1"><i class="icon ion-chatbox"></i> 1:1문의 내역</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#"><i class="icon ion-log-out"></i> 로그아웃</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <!-- End nav -->
+      </header>
 	<section class="page">
 		<div class="container">
 			<div class="row">
