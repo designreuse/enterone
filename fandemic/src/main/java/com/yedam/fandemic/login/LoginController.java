@@ -25,7 +25,7 @@ public class LoginController {
 	@RequestMapping("/logout") // 로그아웃
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		System.out.println("로그아웃");
-		
+		   
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
