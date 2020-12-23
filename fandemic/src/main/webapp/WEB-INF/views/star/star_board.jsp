@@ -4,20 +4,9 @@
 
 
 
-<section class="ftco-section ftco-bread">
-	<div class="container">
-		<div
-			class="row no-gutters slider-text justify-content-center align-items-center">
-			<div class="col-md-8 ftco-animate">
-
-				<h1 class="bread">스타게시판</h1>
-			</div>
-		</div>
-	</div>
-</section>
 
 
-<section class="ftco-section">
+<section class="ftco-section-3">
 	<div class="container">
 		<div class="row d-flex">
 			<div class="col-lg-10">

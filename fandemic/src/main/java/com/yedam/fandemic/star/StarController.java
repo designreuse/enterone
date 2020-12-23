@@ -30,8 +30,14 @@ public class StarController {
 	public ModelAndView starFanBoard(HttpServletResponse response) throws IOException {
 		return new ModelAndView("star/star_fan_board");
 	}
+	@RequestMapping(value = "/starFanBoardWrite")
+	public ModelAndView starFanBoardWrite(HttpServletResponse response) throws IOException {
+		return new ModelAndView("star/star_fan_board_write");
+	}
+	
 	@RequestMapping(value = "/starAlbum")
 	public ModelAndView starAlbum(HttpServletResponse response) throws IOException {
 		return new ModelAndView("star/star_album");
 	}
+	
 }
