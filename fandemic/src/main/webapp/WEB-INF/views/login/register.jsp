@@ -321,52 +321,54 @@ ul.tabs li.current {
 			<div class="box box-border">
 				<div class="box-body" style="border: 3px solid #A4B7D4;">
 					<h4>회원가입</h4>
-					<form id="comFrm" name="comFrm" method="post">
+					<form:form id="comFrm" name="comFrm" method="post" modelAttribute="company">
 						<div id="comDiv" class="form-group">
 
 							<label>아이디</label>
 							<div style="position:relative">
-								<input type="text" name="com_id" id="com_id" Class="form-control" style="papadding: 50px; display: inline-block;">
-								<input type="button" value="중복확인" id="btnCheckc" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;"><br>
+								<form:input type="text" path="com_id" id="com_id" class="form-control" style="papadding: 50px; display: inline-block;" />
+								<form:input path="" type="button" value="중복확인" id="btnCheckc" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 								<b id="checkIdcom"></b>
 							</div>
 							
 						</div>
 						<div class="form-group">
-							<label>이름</label> <input type="text" name="com_name"
-								id="com_name" class="form-control">
+							<label>이름</label> 
+							<form:input type="text" path="com_name" id="com_name" class="form-control" />
 						</div>
 
 						<div class="form-group"  >
-							<label class="fw">비밀번호</label> <input type="password" id="com_pw" name="com_pw" class="form-control">
+							<label class="fw">비밀번호</label> 
+							<form:input type="password" id="com_pw" path="com_pw" class="form-control" />
 							<b id="combTag"></b>
 						</div>
 						
 						<div class="form-group" id="comPwd" >
-							<label class="fw">비밀번호 확인</label> <input type="password" id="com_pwCheck" name="com_pwCheck" class="form-control" >
+							<label class="fw">비밀번호 확인</label> 
+							<form:input type="password" id="com_pwCheck" path="" class="form-control" />
 						</div>
 
 						<div class="form-group">
-							<label>연락처</label> <input type="text" name="com_phone"
-								id="com_phone" class="form-control">
+							<label>연락처</label> 
+							<form:input type="text" path="com_phone" id="com_phone" class="form-control" />
 						</div>
 
 						<div class="form-group">
-							<label>이메일</label> <input type="text" id="com_email"
-								name="com_email" class="form-control">
+							<label>이메일</label> 
+							<form:input type="text" id="com_email" path="com_email" class="form-control" />
 						</div>
 						
 						<div class="form-group">
 							<label>주소</label><br>
 							
 							<div style="position:relative">
-								<input type="text" id="com_address" name="com_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="readonly">
-								<input type="button" value="주소검색" id="btnAddrcom" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;"><br>
+								<form:input type="text" id="com_address" path="com_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="readonly" />
+								<form:input path="" type="button" value="주소검색" id="btnAddrcom" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 							</div>
 							
-							<input type="text" id="com_address2" name="com_address2" class="form-control" style="display:none; margin: 5px 0px;" >
+							<form:input type="text" id="com_address2" path="com_address2" class="form-control" style="display:none; margin: 5px 0px;" />
 							<label>우편번호</label> &nbsp; &nbsp;
-							<input type="text" id="com_zipAddress" name=com_zipAddress class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly">
+							<form:input type="text" id="com_zipAddress" path=com_zipAddress class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly" />
 						</div>
 						
 						<div class="form-group text-right">
@@ -375,7 +377,7 @@ ul.tabs li.current {
 						<div class="form-group text-right">
 							<a href="login">로그인</a>
 						</div>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
