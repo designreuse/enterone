@@ -27,6 +27,18 @@
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
+<link
+   href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+      crossorigin="anonymous" />
+   
+<script
+      src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+      crossorigin="anonymous"></script>
+   <script
+      src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+      crossorigin="anonymous"></script>
+   
+   <!-- 페이지네이션 날로먹는 빌드 끝 -->
 <script>
 	$(function() {
 		
@@ -71,6 +83,7 @@
 			.appendTo('tbody');
 			
 		});//end each
+		$('#dataTable').DataTable();
 	}//end cnoticeListResult
 </script>
      <!-- Content Header (Page header) -->
@@ -98,7 +111,7 @@
               </div>
               <!-- ./card-header -->
               <div class="card-body">
-                <table class="table table-bordered table-hover">
+                <table id="dataTable" class="table table-bordered table-hover">
                   <thead>
                     <tr>
                       <th></th>
@@ -110,14 +123,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- <tr data-widget="expandable-table" aria-expanded="false">
-                      <td><input type="checkbox"></td>
-                      <td>1</td>
-                      <td>니얼굴쩔어 !!!!!!!!!!!!!!!</td>
-                      <td>YG관리자</td>
-                      <td>2020-12-17</td>
-                      <td>공지사항</td>
-                    </tr>     -->               
+                                 
                   </tbody>
                 </table>
               </div>

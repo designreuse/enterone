@@ -146,6 +146,7 @@ public class LoginController {
 	public String memRegister(Model model, Member member, Errors errors) throws IOException{
 		
 		new MemberValidator().validate(member, errors);
+
 		
 		if(errors.hasErrors()) {
 			
@@ -162,13 +163,20 @@ public class LoginController {
 	
 	// 기업 회원가입
 	@RequestMapping("/comRegister")
-	public ModelAndView comRegister(Model model, Company company) throws IOException{
+	public String comRegister(Model model, Company company, Errors errors) throws IOException{
+		
+		new CompanyValidator().validate(company, errors);
+		
+		if(errors.hasErrors()) {
+			
+			return "login/register";
+		}
 		
 		memMapper.comInsert(company);
 		
-		model.addAttribute("login", "insert");
+		// model.addAttribute("login", "insert");
 		
-		return new ModelAndView("login");
+		return "login";
 	}
 	
 	
