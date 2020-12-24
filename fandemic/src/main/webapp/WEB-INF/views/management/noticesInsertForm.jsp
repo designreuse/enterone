@@ -14,7 +14,9 @@
 
 	$(function() {
 		// Summernote 출력
-		$('#summernote').summernote();
+		$('#summernote').summernote({
+			height : 500
+		});
 		
 		//공지사항/이벤트 분류에 따라 이벤트인원 칼럼 출력
 		$(".custom-select").on("change",function(){

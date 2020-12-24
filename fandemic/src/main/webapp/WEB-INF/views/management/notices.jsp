@@ -66,7 +66,7 @@
 	
 	//공지사항 목록 조회 요청
 	function cnoticeList() {
-		var com_id = "${company.com_id }"
+		var com_id = "${company.com_id }";
 		$.ajax({
 			url:'${pageContext.request.contextPath}/management/noticesList', //요청할 url
 			type:'POST',

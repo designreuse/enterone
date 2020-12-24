@@ -9,15 +9,15 @@
 	.table tr{
 		background-color:rgba(0,0,0,.05);
 	}
-	#summernote{
-		height:500px;
-	}
+	
 </style>
 <script>
 
 	$(function() {
 		// Summernote 출력
-		$('#summernote').summernote();
+		$('#summernote').summernote({
+			height : 500
+		});
 		
 		//공지사항/이벤트 분류에 따라 이벤트인원 칼럼 출력
 		$(".custom-select").on("change",function(){
@@ -38,6 +38,11 @@
 			/* alert("등록버튼눌림"); */
 			CnoticeFormCheck(); //유효성검사
 		});
+		$(".cnoc_file").text("${cnotice.cnoc_file}");
+		
+
+
+	
 	});//end ready function
 	
 	function CnoticeFormCheck(){
@@ -119,7 +124,9 @@
 								<tr>
 									<td colspan="1" align="left"><label>첨부파일</label></td>
 									<td colspan="3">
-                      					<input type="file" name="cnoc_file" value="${cnotice.cnoc_file}" multiple>                     					
+                      					<input type="file" name="cnoc_file" id="uf" multiple>
+                      					
+                      					              					
                      				</td>
 								</tr>
 								<tr >
