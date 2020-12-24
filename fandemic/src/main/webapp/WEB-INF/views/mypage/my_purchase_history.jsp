@@ -69,13 +69,17 @@ $(document).ready(function(){
 									</td>
 									<td align="right">
 										<h5 style="margin-right: 5%">던킨 딸기 듬뿍 미니도넛 (냉동)</h5> <a
-										style="margin-right: 20px">6,770원 · 1개</a> <input
-										style="margin-right: 5%" width="10%" type="button"
+										style="margin-right: 20px">6,770원 · 1개</a> <input class="sidebutton btn-primary" style="margin-right: 5%;" type="button"
 										onclick="location.href='#'" value="장바구니에 담기">
 									</td>
 								</tr>
 
 							</table>
+							
+							
+							
+							
+							s
 						</div>
 					</div>
 					<div class="line">

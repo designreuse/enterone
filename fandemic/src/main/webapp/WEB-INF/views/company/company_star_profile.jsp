@@ -19,11 +19,11 @@
 	<div class="container">
 		<div class="nav-tabs-group">
 			<ul class="nav-tabs-list">
-				<li><a href="company/info">소 속 사 소 개</a></li>
+				<li><a href="info">소 속 사 소 개</a></li>
 
-				<li><a href="company/notify">공 지 사 항</a></li>
+				<li><a href="notify">공 지 사 항</a></li>
 
-				<li><a href="company/home">스 타</a></li>
+				<li><a href="home">스 타</a></li>
 			</ul>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 							일을 겪고 편견과 억압을 받는다. 우리가 그것을 막아내겠다는 심오한 뜻을 담아냈다"</p>
 						<p>
 							맴버: <span class="bold">RM(리더), 진, 슈가, 제이홉, 지민, 뷔, 정국</span> <br>
-							<a href="companyStarMembers">맴버상세</a><br> 소속사: <span
+							<a href="starMembers">맴버상세</a><br> 소속사: <span
 								class="bold">빅히트 엔터테인먼트</span> <br> 스타채널: <span
 								class="bold"><a href="starMain">방탄소년단</a></span> <br>
 						</p>

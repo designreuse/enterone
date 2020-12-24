@@ -61,7 +61,7 @@
 								<p>빅히트 엔터테인먼트</p>
 							</div>
 							<div class="row">
-								<a href="company/home" class="btn btn-magz companyMinButton">방문하기</a>
+								<a href="${pageContext.request.contextPath}/company/home" class="btn btn-magz companyMinButton">방문하기</a>
 							</div>
 						</div>
 					</div>
