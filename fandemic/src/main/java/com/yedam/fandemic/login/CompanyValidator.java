@@ -50,21 +50,21 @@ public class CompanyValidator implements Validator {
 		
 		// 널값 and 형식
 		if(company.getCom_email() == null || company.getCom_email().trim().isEmpty() ) {
-			errors.rejectValue("mem_email", "required",notnull);
+			errors.rejectValue("com_email", "required",notnull);
 		} else {
 			Matcher matcher = emailPattern.matcher(company.getCom_email());
 			if( !matcher.matches()) {
-				errors.rejectValue("mem_email", "bad", typemsg);
+				errors.rejectValue("com_email", "bad", typemsg);
 			}
 		}
 		
 
 		if(company.getCom_phone() == null || company.getCom_phone().trim().isEmpty() ) {
-			errors.rejectValue("mem_phone", "required",notnull);
+			errors.rejectValue("com_phone", "required",notnull);
 		} else {
 			Matcher matcher = phonePattern.matcher(company.getCom_phone());
 			if( !matcher.matches()) {
-				errors.rejectValue("mem_phone", "bad", typemsg);
+				errors.rejectValue("com_phone", "bad", typemsg);
 			}
 		}
 		

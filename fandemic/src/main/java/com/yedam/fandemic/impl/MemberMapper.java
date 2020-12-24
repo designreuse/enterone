@@ -17,12 +17,21 @@ public interface MemberMapper {
 	public int memIdCheck(Member member);  
 	public int comIdCheck(Company company);  
 	
+	// 이메일 중복확인
+	public int memMailCheck(Member member);  
+	public int comMailCheck(Company company); 
+	
+	
 	
 	// 회원가입
 	public void memInsert(Member member); 
 	public void comInsert(Company company);
 	
 	
+	// 아이디 찾기
+	
+	
+	//비밀번호 찾기
 	
 	
 	

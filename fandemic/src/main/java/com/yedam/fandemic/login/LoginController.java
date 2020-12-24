@@ -45,9 +45,7 @@ public class LoginController {
 		
 		if ( member != null) {
 			
-			session.setAttribute("mem_id", member.getMem_id());
-			session.setAttribute("mem_pw", member.getMem_pw());
-			session.setAttribute("mem_name", member.getMem_name());
+			session.setAttribute("member", member);
 			
 			request.setAttribute("login", "success");
 			
@@ -78,11 +76,13 @@ public class LoginController {
 			if (company.getCom_class().equals("1")) {
 				session.setAttribute("company", company);
 				model.addAttribute("login", "success");
+				
 				return "redirect:management"; 
 				
 			} else { // admin 일 때
 				session.setAttribute("company", company);
 				model.addAttribute("login", "success");
+				
 				return "redirect:adminMain";
 			}
 		//아이디가 DB에없을때
@@ -106,16 +106,7 @@ public class LoginController {
 	// 회원가입 페이지
 	@RequestMapping("/register")
 	public ModelAndView register(Model model, Member member, Company company) throws IOException{
-		
-		model.addAttribute(member);
-		model.addAttribute(company);
-		
-		String[] gender = {"남","여"};
-		
-		model.addAttribute(gender);
-		
-		
-		
+
 		return new ModelAndView("login/register");
 	}
 	
@@ -139,14 +130,33 @@ public class LoginController {
 
 	}
 	
+	// 개인 메일 중복 확인
+	@RequestMapping("/memMail")
+	@ResponseBody
+	public int memMail(Model model, Member member) throws IOException{
+		
+			System.out.println("개인 메일");
+			return memMapper.memMailCheck(member);
+			
+	}
+	
+	
+	// 기업 메일 중복 확인
+	@RequestMapping("/comMail")
+	@ResponseBody
+	public int comMail(Model model, Company company) throws IOException{
+		
+			System.out.println("기업 메일");
+			return memMapper.comMailCheck(company);
+			
+	}
 	
 	
 	// 개인 회원가입 처리
 	@RequestMapping("/memRegister")
-	public String memRegister(Model model, Member member, Errors errors) throws IOException{
+	public String memRegister(Model model,  Company company, Member member, Errors errors) throws IOException{
 		
 		new MemberValidator().validate(member, errors);
-
 		
 		if(errors.hasErrors()) {
 			
@@ -154,7 +164,7 @@ public class LoginController {
 		}
 		
 		memMapper.memInsert(member);
-		//model.addAttribute("login", "insert");
+		model.addAttribute("login", "insert"); // 세션으로 바꿔야 함
 		
 		return "login";
 	}
@@ -163,18 +173,20 @@ public class LoginController {
 	
 	// 기업 회원가입
 	@RequestMapping("/comRegister")
-	public String comRegister(Model model, Company company, Errors errors) throws IOException{
+	public String comRegister(Model model, Member member,  Company company, Errors errors) throws IOException{
 		
 		new CompanyValidator().validate(company, errors);
+		model.addAttribute("tab", "tab-2");
 		
 		if(errors.hasErrors()) {
 			
 			return "login/register";
+			
 		}
 		
 		memMapper.comInsert(company);
 		
-		// model.addAttribute("login", "insert");
+		model.addAttribute("login", "insert");
 		
 		return "login";
 	}
@@ -183,7 +195,7 @@ public class LoginController {
 	
 	
 	
-	@RequestMapping(value="/adminLogin")
+	@RequestMapping("/adminLogin")
 	public ModelAndView adminLogin(HttpServletResponse response) throws IOException{
 		System.out.println("어드민 로그인");
 		return new ModelAndView("adminLogin");

@@ -35,7 +35,25 @@
 		FROM COMPANY  
 		WHERE COM_ID=#{com_id}
 	</select>
-	
+
+
+<!-- 메일 중복확인 -->
+	<select id="memMailCheck" parameterType="Member" resultType="int">
+		SELECT COUNT(*) 
+		FROM MEMBER 
+		WHERE MEM_EMAIL =#{mem_email}
+	</select>
+
+<!-- 아이디 중복확인 -->
+	<select id="comMailCheck" parameterType="Company" resultType="int">
+		SELECT COUNT(*) 
+		FROM COMPANY 
+		WHERE COM_EMAIL =#{com_email}
+	</select>
+
+
+
+
 <!-- 개인 회원가입 -->
 	<insert id="memInsert" parameterType="Member">
 		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_PW, MEM_BIRTH, MEM_PHONE, MEM_EMAIL, MEM_ADDRESS, 

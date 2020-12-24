@@ -60,7 +60,8 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="${pageContext.request.contextPath}/management" class="nav-link">Home</a>
+        <a href="/fandemic/" class="nav-link" target="_blank">Main Page</a>
+        <a href="adminMain" class="nav-link">Home</a>
       </li>
       <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -195,7 +196,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="${pageContext.request.contextPath}/resourcesAdmin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><!-- 소속사ID -->${comId }</span>
+      <span class="brand-text font-weight-light">${comId}</span>
     </a>
 
     <!-- 왼쪽메뉴 바  -->
@@ -206,7 +207,7 @@
           <img src="${pageContext.request.contextPath}/resourcesAdmin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><!-- 소속사명 -->${comName }</a>
+          <a href="#" class="d-block">${comName}</a>
         </div>
       </div>
 
@@ -225,85 +226,58 @@
       <!-- 왼쪽메뉴들 -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           
           <!-- 공지 -->
           <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/management/notices" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>
-                	공지사항
+              <p>공지관리
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>
           </li>
           
-          <!--스타관리  -->
           <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/management/starRM" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>
-                	스타관리
+              <p>1:1문의
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>
           </li>
           
-          <!--굿즈관리  -->
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>
-                	굿즈관리
+              <p>기업회원
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>
           </li>
           
-          <!--오디션관리  -->
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>
-                	오디션관리
+              <p>개인회원
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>
           </li>
           
-          <!--소속사정보관리  -->
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p>
-                	소속사정보관리
+              <p>금칙어 관리
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>
           </li>
           
-          <!--언택트행사관리  -->
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                	언택트행사관리
-                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
-              </p>
-            </a>
-          </li>
+      
           
-          <!--팬관리  -->
-          <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                	팬관리
-                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
-              </p>
-            </a>
-          </li>
+          
+          
+          
           <li class="nav-header">MULTI LEVEL EXAMPLE</li>
           <li class="nav-item">
             <a href="#" class="nav-link">

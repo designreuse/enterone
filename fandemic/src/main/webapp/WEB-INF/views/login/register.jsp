@@ -48,12 +48,29 @@ ul.tabs li.current {
 <script>
 	$(document).ready(function() {
 		
-		checkUser("개인회원");
+		checkUser("개인회원");		
+		
+ 		
+		
+ 		// 유효성 검사 후 텝 고정
+ 		var tblId = "${tab}";
+ 		if(tblId != "") {
+ 			console.log(tblId);
+ 			
+			$('ul.tabs li').removeClass('current');
+			$('.tab-content').removeClass('current'); 
+			
+			$("#li2").addClass('current');
+			$("#" + tblId).addClass('current');
+			
+		} 
+		 
 
 		$('ul.tabs li').click(function() { //기업회원, 개인회원 선택클릭
 			var user = $(this).text();
 			
 			var tab_id = $(this).attr('data-tab');
+			console.log($(this));
 
 			$('ul.tabs li').removeClass('current');
 			$('.tab-content').removeClass('current');
@@ -66,26 +83,36 @@ ul.tabs li.current {
 		
 		
 		
-		// 중복확인
+		// 아이디 중복확인
 		$('#btnCheckm').on('click',function(){
+			
 			memIdCheck();
 		});
-		
 		$('#btnCheckc').on('click',function(){
 			comIdCheck();
 		});
 		
+		
+		// 메일 중복 확인
+		$('#memEmail').on('click',function(){
+			memMail();
+		});
+		$('#comEmail').on('click',function(){
+			comMail();
+		});
 		
 		
 		// 개인 주소검색
 		$('#btnAddr').on('click',function(){ 
 			openDaumZipAddress($("#mem_zipAddress"), $("#mem_address"), $("#mem_address2"));
 		});  
-		
-		// 기업 주소검색
+		// 기업 주소검색 
 		$('#btnAddrcom').on('click',function(){ 
 			openDaumZipAddress($("#com_zipAddress"), $("#com_address"), $("#com_address2"));
 		});  
+
+		
+		
 		
 		
 		// 유효성
@@ -93,6 +120,20 @@ ul.tabs li.current {
 			
 			if ($(':radio[name="mem_gender"]:checked').length < 1) {
 				alert("성별을 선택하세요");
+				event.preventDefault();
+			}
+			
+			if($("#checkId").text() == null || $("#checkId").text() == "") {
+				alert("아이디 중복확인을 해주세요");
+				event.preventDefault();
+			}
+
+		}); 
+		
+		$('#btnAddCom').on('click',function(){ 
+			
+			if($("#checkIdcom").text() == null || $("#checkIdcom").text() == "") {
+				alert("아이디 중복확인을 해주세요");
 				event.preventDefault();
 			}
 
@@ -137,15 +178,15 @@ ul.tabs li.current {
 	function checkUser(user) {
 		
 		if (user == "개인회원") { 
-			
+
 			passwordChk($("#mem_pw"), $("#mem_pwCheck"), $("#btnAddMem"), $("#memPwd"), $("#membTag"));
-			
+
 			$("#memFrm").attr("action", "${pageContext.request.contextPath}/memRegister");
 			
 		} else { 
 		
 			passwordChk($("#com_pw"), $("#com_pwCheck"), $("#btnAddCom"), $("#comPwd"), $("#combTag"));	
-			
+
 			$("#comFrm").attr("action", "${pageContext.request.contextPath}/comRegister");
 		}
 	}
@@ -168,7 +209,7 @@ ul.tabs li.current {
 	}
 
 	
-	// 중복확인
+	// 아이디 중복확인
 	
 	function memIdCheck() {
 		
@@ -182,12 +223,10 @@ ul.tabs li.current {
                if (data == 0) {
             	   $("#checkId").html("");
             	   $("#checkId").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#divId");
-            	   $('#btnAddMem').attr("disabled", false);
             	   
                } else {
             	   $("#checkId").html("");
             	   $("#checkId").html("중복된 아이디입니다.").css("color","red").appendTo("#divId");
-            	   $('#btnAddMem').attr("disabled", true);
                }
 
             },error:function(){ alert("실패"); }
@@ -206,11 +245,58 @@ ul.tabs li.current {
                if (data == 0) {
             	   $("#checkIdcom").html("");
             	   $("#checkIdcom").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#comDiv");
-            	   $('#btnAddCom').attr("disabled", false);
             	   
                } else {
             	   $("#checkIdcom").html("");
             	   $("#checkIdcom").html("중복된 아이디입니다.").css("color","red").appendTo("#comDiv")
+               }
+
+            },error:function(){ alert("실패"); }
+         });
+	}
+	
+	// 이메일 중복확인
+	function memMail() {
+		
+		$.ajax({
+            url :'${pageContext.request.contextPath}/memMail',
+            type:"post",
+            data : {mem_email : $("#mem_email").val() },
+            
+            success:function(data){
+
+               if (data == 0) {
+            	   $("#chkMemMail").html("");
+            	   $("#chkMemMail").html("사용 가능한 메일입니다.").css("color","blue").appendTo("#divMemEmail");
+            	   $('#btnAddMem').attr("disabled", false);
+            	   
+               } else {
+            	   $("#chkMemMail").html("");
+            	   $("#chkMemMail").html("중복된 메일입니다.").css("color","red").appendTo("#divMemEmail");
+            	   $('#btnAddMem').attr("disabled", true);
+               }
+
+            },error:function(){ alert("실패"); }
+         });
+	}
+	
+	function comMail() {
+		
+		$.ajax({
+            url :'${pageContext.request.contextPath}/comMail',
+            type:"post",
+            data : {com_email : $("#com_email").val() },
+            
+            success:function(data){
+
+               if (data == 0) {
+            	   $("#chkComMail").html("");
+            	   $("#chkComMail").html("사용 가능한 메일입니다.").css("color","blue").appendTo("#divComEmail");
+            	   $('#btnAddCom').attr("disabled", false);
+            	   
+               } else {
+            	   $("#chkComMail").html("");
+            	   $("#chkComMail").html("중복된 메일입니다.").css("color","red").appendTo("#divComEmail");
             	   $('#btnAddCom').attr("disabled", true);
                }
 
@@ -227,7 +313,7 @@ ul.tabs li.current {
 		<div>
 			<ul class="tabs">
 				<li class="tab-link current" data-tab="tab-1">개인회원</li>
-				<li class="tab-link" data-tab="tab-2" ">기업회원</li>
+				<li id="li2" class="tab-link" data-tab="tab-2" >기업회원</li>
 			</ul>
 		</div>
 	</div>
@@ -238,7 +324,7 @@ ul.tabs li.current {
 			<div class="box box-border">
 				<div class="box-body" style="border: 3px solid #A4B7D4;">
 					<h4>회원가입</h4>
-					<form:form id="memFrm" name="memFrm" method="post" modelAttribute="member">
+					<form:form id="memFrm" name="memFrm" method="post" modelAttribute="member" >
 						<div class="form-group" id="divId">
 							<div style="text-align: right;">
 								<form:radiobutton path="mem_gender" value="남" label="남자"/>&nbsp;&nbsp;
@@ -282,10 +368,18 @@ ul.tabs li.current {
 							<form:errors path="mem_phone" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
-						<div class="form-group">
-							<label>이메일</label> 
-							<form:input type="text" id="mem_email" path="mem_email" class="form-control" />
-							<form:errors path="mem_email" cssClass="error" htmlEscape="false"/> <br>
+						<div class="form-group" id="divMemEmail">
+							
+							
+							<div style="position:relative">
+							<label>이메일</label> <b id="chkMemMail"></b>
+								<form:input type="text" id="mem_email" path="mem_email" class="form-control" style="papadding: 50px;"/>
+								<form:input type="button" path="" value="중복확인" id="memEmail" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
+								
+							</div>
+							<form:errors path="mem_email" cssClass="error" htmlEscape="false"/><br>
+							
+							
 						</div>
 
 
@@ -321,7 +415,7 @@ ul.tabs li.current {
 			<div class="box box-border">
 				<div class="box-body" style="border: 3px solid #A4B7D4;">
 					<h4>회원가입</h4>
-					<form:form id="comFrm" name="comFrm" method="post" modelAttribute="company">
+					<form:form id="comFrm" name="comFrm" method="post" modelAttribute="company" >
 						<div id="comDiv" class="form-group">
 
 							<label>아이디</label>
@@ -335,12 +429,14 @@ ul.tabs li.current {
 						<div class="form-group">
 							<label>이름</label> 
 							<form:input type="text" path="com_name" id="com_name" class="form-control" />
+							<form:errors path="com_name" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 						<div class="form-group"  >
 							<label class="fw">비밀번호</label> 
 							<form:input type="password" id="com_pw" path="com_pw" class="form-control" />
 							<b id="combTag"></b>
+							<form:errors path="com_pw" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 						
 						<div class="form-group" id="comPwd" >
@@ -351,11 +447,20 @@ ul.tabs li.current {
 						<div class="form-group">
 							<label>연락처</label> 
 							<form:input type="text" path="com_phone" id="com_phone" class="form-control" />
+							<form:errors path="com_phone" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
-						<div class="form-group">
-							<label>이메일</label> 
-							<form:input type="text" id="com_email" path="com_email" class="form-control" />
+						<div class="form-group" id="divComEmail">
+							
+							
+							<div style="position:relative">
+								<label>이메일</label> <b id="chkComMail"></b>
+								<form:input type="text" id="com_email" path="com_email" class="form-control" />
+								<form:input type="button" path="" value="중복확인" id="comEmail" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
+								
+							</div>
+							<form:errors path="com_email" cssClass="error" htmlEscape="false"/><br>
+							
 						</div>
 						
 						<div class="form-group">
@@ -367,8 +472,10 @@ ul.tabs li.current {
 							</div>
 							
 							<form:input type="text" id="com_address2" path="com_address2" class="form-control" style="display:none; margin: 5px 0px;" />
+							<form:errors path="com_address2" cssClass="error" htmlEscape="false"/> <br>
+							
 							<label>우편번호</label> &nbsp; &nbsp;
-							<form:input type="text" id="com_zipAddress" path=com_zipAddress class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly" />
+							<form:input type="text" id="com_zipAddress" path="com_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly" />
 						</div>
 						
 						<div class="form-group text-right">

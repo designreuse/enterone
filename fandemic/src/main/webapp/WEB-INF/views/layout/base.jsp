@@ -67,11 +67,11 @@
                   </div>
                   <div class="col-md-3 col-sm-12 text-right">
                      <ul class="nav-icons">
-                     	<c:if test="${login eq null or login ne 'success' }" >
+                     	<c:if test="${member.mem_id eq null and company.com_id eq null }" >
 	                        <li><a href="register"><i class="ion-person-add"></i><div>회 원 가 입</div></a></li>
 	                        <li><a href="login"><i class="ion-person"></i><div>로 그 인</div></a></li>
                         </c:if>
-                        <c:if test="${login eq 'success' }">
+                        <c:if test="${member.mem_id ne null or company.com_id ne null }">
                         	<!-- <li><a href="#"><i class="ion-person-add"></i><div>마 이 페 이 지</div></a></li> -->
 	                        <li><a href="logout"><i class="ion-person"></i><div>로 그 아 웃</div></a></li>
                         </c:if>
