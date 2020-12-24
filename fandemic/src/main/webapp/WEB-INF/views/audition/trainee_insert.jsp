@@ -72,20 +72,29 @@ ul.tabs li.current {
 		$("#btn_next_apply1").on("click", function() {
 			
 			var ok = agreeChk(); //변수=메소드()
+			var agr= agChk();
 			
-			if (ok) { //만약 이 메소드가 yes라면 
+			if (ok && agr) { //만약 이 메소드가 yes라면 
 				$('.tab-content').removeClass('current');
 				$('.tab-link').removeClass('current');
 
 				$('.tab-link2').addClass('current');
 				$("#tab-2").addClass('current');
 				
-			}
+			} 
 
 
 		});
 	});
-	
+	function agChk() {
+		var ccc = $(':radio[name="pro_terms_privacy_must_yn"]:checked').val();
+		if (ccc=='N') {
+			alert("약관에 동의하여 주십시오");
+			return false;
+		} else {
+			return true;
+		}
+	}
 	
 	
     function agreeChk(){
