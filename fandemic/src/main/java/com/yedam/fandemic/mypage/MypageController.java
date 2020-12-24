@@ -15,6 +15,13 @@ public class MypageController {
 		public ModelAndView mymain(HttpServletResponse response) throws IOException {
 			return new ModelAndView("mypage/my_main");
 }
+		//mypage메인
+		@RequestMapping(value = "/newmail")
+		public ModelAndView newmail(HttpServletResponse response) throws IOException {
+			return new ModelAndView("mypage/my_mail_new");}
+		
+		
+		
 		//my정보 수정
 		@RequestMapping(value = "/myupdate")
 		public ModelAndView myupdate(HttpServletResponse response) throws IOException {

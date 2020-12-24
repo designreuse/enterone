@@ -21,8 +21,7 @@
 <meta property="og:url" content="http://github.com/nauvalazhar/Magz" />
 <meta property="og:image"
 	content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
-<title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine
-	Template</title>
+<title>Enter One</title>
 <!-- Bootstrap -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.css">
