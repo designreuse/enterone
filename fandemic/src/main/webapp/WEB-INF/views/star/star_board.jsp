@@ -9,8 +9,8 @@
 <section class="ftco-section-3">
 	<div class="container">
 		<div class="row d-flex">
-			<div class="col-lg-10">
-			<div class="sidebar-box ftco-animate">
+			<div class="row">
+				<div class="sidebar-box ftco-animate">
 					<h3 class="sidebar-heading">Tag Cloud</h3>
 					<ul class="tagcloud">
 						<a href="#" class="tag-cloud-link">animals</a>
@@ -34,9 +34,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> 
-										<span>Photography</span>
-										<span>5 Comment</span>
+										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
+											Comment</span>
 									</p>
 								</div>
 								<p class="mb-4">A small river named Duden flows by their
@@ -58,9 +57,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> 
-										<span>Photography</span>
-										<span>5 Comment</span>
+										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
+											Comment</span>
 									</p>
 								</div>
 								<p class="mb-4">A small river named Duden flows by their
@@ -82,9 +80,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> 
-										<span>Photography</span>
-										<span>5 Comment</span>
+										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
+											Comment</span>
 									</p>
 								</div>
 								<p class="mb-4">A small river named Duden flows by their
@@ -106,9 +103,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> 
-										<span>Photography</span>
-										<span>5 Comment</span>
+										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
+											Comment</span>
 									</p>
 								</div>
 								<p class="mb-4">A small river named Duden flows by their
@@ -130,9 +126,8 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> 
-										<span>Photography</span>
-										<span>5 Comment</span>
+										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
+											Comment</span>
 									</p>
 								</div>
 								<p class="mb-4">A small river named Duden flows by their

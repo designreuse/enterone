@@ -40,6 +40,21 @@
 <link rel="stylesheet" href="resourcesStar/css/flaticon.css">
 <link rel="stylesheet" href="resourcesStar/css/icomoon.css">
 <link rel="stylesheet" href="resourcesStar/css/style.css">
+<link rel="stylesheet" href="resourcesStar/css/star.css">
+
+<script>
+	//모달 팝업 띄울 시 발생하는 이벤트  (이벤트명 : show.bs.modal) 
+	$('#exampleModal').on('show.bs.modal', function(event) {
+		var button = $(event.relatedTarget);
+		var what = button.data('what');
+		
+		// 모달 팝업에 데이터 집어넣기 
+		var modal = $(this);
+		modal.find('.modal-body input').val(what)
+	});
+	
+	
+</script>
 </head>
 
 <body>
@@ -51,6 +66,11 @@
 				<a href="index.html"><span class="img"
 					style="background-image: url(resourcesStar/images/author.jpg);"></span>스타이름</a>
 			</h1>
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#exampleModal" data-what="hello">채널가입</button>
+
+			<br> <br>
+
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li><a href="starMain">Home</a></li>
@@ -144,6 +164,40 @@
 		<!-- END COLORLIB-MAIN -->
 	</div>
 	<!-- END COLORLIB-PAGE -->
+
+	<!-- 모달창 -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">채널가입</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="recipient-name" class="col-form-label">채널 닉네임:</label>
+							<input type="text" class="form-control" id="recipient-name">
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						닫기
+					</button>
+					<button type="button" class="btn btn-primary">가입</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
 
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">

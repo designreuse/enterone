@@ -9,7 +9,7 @@
 <section class="ftco-section-3">
 	<div class="container">
 		<div class="row d-flex">
-			<div class="col-lg-10">
+			<div class="col-lg-12">
 				<div class="sidebar-box ftco-animate">
 					<h3 class="sidebar-heading">Tag Cloud</h3>
 					<ul class="tagcloud">
