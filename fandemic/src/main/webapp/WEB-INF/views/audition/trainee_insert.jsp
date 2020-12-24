@@ -90,7 +90,7 @@ ul.tabs li.current {
 	
     function agreeChk(){
         
-       	if ($(':radio[name="pro_terms_privacy_must_yn"]:checked').length < 1) {
+       	if ($(':radio[name="pro_terms_privacy_must_yn1"]:checked').length < 1) {
        		//체크를 안했으니 0
        		alert("약관에 체크 하셔야 다음 단계로 진행 가능합니다."); 
        		return false;
