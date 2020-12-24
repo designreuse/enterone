@@ -5,66 +5,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>스타</title>
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff"
-	rel="stylesheet">
-
-<link rel="stylesheet"
-	href="resourcesStar/css/open-iconic-bootstrap.min.css">
-<link rel="stylesheet" href="resourcesStar/css/animate.css">
-
-<link rel="stylesheet" href="resourcesStar/css/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="resourcesStar/css/owl.theme.default.min.css">
-<link rel="stylesheet" href="resourcesStar/css/magnific-popup.css">
-
-<link rel="stylesheet" href="resourcesStar/css/aos.css">
-
-<link rel="stylesheet" href="resourcesStar/css/ionicons.min.css">
-
-<link rel="stylesheet" href="resourcesStar/css/bootstrap-datepicker.css">
-<link rel="stylesheet" href="resourcesStar/css/jquery.timepicker.css">
-
-
-<link rel="stylesheet" href="resourcesStar/css/flaticon.css">
-<link rel="stylesheet" href="resourcesStar/css/icomoon.css">
-<link rel="stylesheet" href="resourcesStar/css/style.css">
-<link rel="stylesheet" href="resourcesStar/css/star.css">
-
-<script>
-	//모달 팝업 띄울 시 발생하는 이벤트  (이벤트명 : show.bs.modal) 
-	$('#exampleModal').on('show.bs.modal', function(event) {
-		var button = $(event.relatedTarget);
-		var what = button.data('what');
-		
-		// 모달 팝업에 데이터 집어넣기 
-		var modal = $(this);
-		modal.find('.modal-body input').val(what)
-	});
+	<title>스타</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
 	
-</script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/animate.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/magnific-popup.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/aos.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/ionicons.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/jquery.timepicker.css">
+	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/flaticon.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/icomoon.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/style.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/star.css">
+
+	<script>
+		//모달 팝업 띄울 시 발생하는 이벤트  (이벤트명 : show.bs.modal) 
+		$('#exampleModal').on('show.bs.modal', function(event) {
+			var button = $(event.relatedTarget);
+			var what = button.data('what');
+			
+			// 모달 팝업에 데이터 집어넣기 
+			var modal = $(this);
+			modal.find('.modal-body input').val(what)
+		});
+	</script>
 </head>
 
 <body>
+	<!-- 메뉴화면 -->
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary"
 			class="js-fullheight text-center">
 			<h1 id="colorlib-logo">
 				<a href="#"><span class="img"
-					style="background-image: url(resourcesStar/images/author.jpg);"></span>스타이름</a>
+					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/author.jpg);"></span>스타이름</a>
 			</h1>
 			<button type="button" class="btn btn-primary" data-toggle="modal"
 				data-target="#exampleModal" data-what="hello">채널가입</button>
@@ -73,24 +58,26 @@
 
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="star/main">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/star">Home</a></li>
 					<li><a href="#">스케줄</a></li>
 					<li><a href="#">스타라이브</a></li>
 					<li><a href="#">소식</a></li>
-					<li><a href="star/board">스타게시판</a></li>
-					<li><a href="star/fanBoard">팬게시판</a></li>
-					<li><a href="star/album">사진게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/board">스타게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/fanBoard">팬게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/album">사진게시판</a></li>
 				</ul>
 			</nav>
 		</aside>
-		<!-- END COLORLIB-ASIDE -->
+		
+		
+		<!-- 메뉴 제외 화면 -->
 		<div id="colorlib-main">
 
 
 			<!--  body 추가 부분 -->
 			<tiles:insertAttribute name="body" />
 
-
+			<!-- footer -->
 			<footer class="ftco-footer ftco-bg-dark ftco-section">
 				<div class="container px-md-5">
 					<div class="row mb-5">
@@ -99,17 +86,17 @@
 								<h2 class="ftco-heading-2">Recent Photos</h2>
 								<ul class="list-unstyled photo">
 									<li><a href="#" class="img"
-										style="background-image: url(resourcesStar/images/image_1.jpg);"></a></li>
+										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg);"></a></li>
 									<li><a href="#" class="img"
-										style="background-image: url(resourcesStar/images/image_2.jpg);"></a></li>
+										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_2.jpg);"></a></li>
 									<li><a href="#" class="img"
-										style="background-image: url(resourcesStar/images/image_3.jpg);"></a></li>
+										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_3.jpg);"></a></li>
 									<li><a href="#" class="img"
-										style="background-image: url(resourcesStar/images/image_4.jpg);"></a></li>
+										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_4.jpg);"></a></li>
 									<li><a href="#" class="img"
-										style="background-image: url(resourcesStar/images/image_5.jpg);"></a></li>
+										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_5.jpg);"></a></li>
 									<li><a href="#" class="img"
-										style="background-image: url(resourcesStar/images/image_6.jpg);"></a></li>
+										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_6.jpg);"></a></li>
 								</ul>
 							</div>
 						</div>
@@ -161,9 +148,10 @@
 				</div>
 			</footer>
 		</div>
-		<!-- END COLORLIB-MAIN -->
+		<!-- footer종료 -->
+		
 	</div>
-	<!-- END COLORLIB-PAGE -->
+	<!-- 화면 종료 -->
 
 	<!-- 모달창 -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -172,23 +160,20 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">채널가입</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">채널 닉네임:</label>
+							<label for="recipient-name" class="col-form-label">채널 닉네임 : </label>
 							<input type="text" class="form-control" id="recipient-name">
 						</div>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">
-						닫기
-					</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 					<button type="button" class="btn btn-primary">가입</button>
 				</div>
 			</div>
@@ -210,24 +195,23 @@
 	</div>
 
 
-	<script src="resourcesStar/js/jquery.min.js"></script>
-	<script src="resourcesStar/js/jquery-migrate-3.0.1.min.js"></script>
-	<script src="resourcesStar/js/popper.min.js"></script>
-	<script src="resourcesStar/js/bootstrap.min.js"></script>
-	<script src="resourcesStar/js/jquery.easing.1.3.js"></script>
-	<script src="resourcesStar/js/jquery.waypoints.min.js"></script>
-	<script src="resourcesStar/js/jquery.stellar.min.js"></script>
-	<script src="resourcesStar/js/owl.carousel.min.js"></script>
-	<script src="resourcesStar/js/jquery.magnific-popup.min.js"></script>
-	<script src="resourcesStar/js/aos.js"></script>
-	<script src="resourcesStar/js/jquery.animateNumber.min.js"></script>
-	<script src="resourcesStar/js/bootstrap-datepicker.js"></script>
-	<script src="resourcesStar/js/jquery.timepicker.min.js"></script>
-	<script src="resourcesStar/js/scrollax.min.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-	<script src="resourcesStar/js/google-map.js"></script>
-	<script src="resourcesStar/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/popper.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.easing.1.3.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.waypoints.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.stellar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/owl.carousel.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.magnific-popup.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/aos.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.animateNumber.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/bootstrap-datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.timepicker.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/scrollax.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/google-map.js"></script>
+	<script src="${pageContext.request.contextPath}/resourcesStar/js/main.js"></script>
 
 </body>
 </html>

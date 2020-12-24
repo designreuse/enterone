@@ -77,35 +77,35 @@ pageEncoding="UTF-8"%>
 	        </div>  
 					<div class="row no-gutters">
 		        <div class="col-sm-12 col-md ftco-animate">
-		          <a href="resourcesStar/images/image_1.jpg" class="insta-img image-popup" style="background-image: url(resourcesStar/images/image_1.jpg);">
+		          <a href="${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg" class="insta-img image-popup" style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg);">
 		            <div class="icon d-flex justify-content-center">
 		              <span class="icon-instagram align-self-center"></span>
 		            </div>
 		          </a>
 		        </div>
 		        <div class="col-sm-12 col-md ftco-animate">
-		          <a href="resourcesStar/images/image_2.jpg" class="insta-img image-popup" style="background-image: url(resourcesStar/images/image_2.jpg);">
+		          <a href="${pageContext.request.contextPath}/resourcesStar/images/image_2.jpg" class="insta-img image-popup" style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_2.jpg);">
 		            <div class="icon d-flex justify-content-center">
 		              <span class="icon-instagram align-self-center"></span>
 		            </div>
 		          </a>
 		        </div>
 		        <div class="col-sm-12 col-md ftco-animate">
-		          <a href="resourcesStar/images/image_3.jpg" class="insta-img image-popup" style="background-image: url(resourcesStar/images/image_3.jpg);">
+		          <a href="${pageContext.request.contextPath}/resourcesStar/images/image_3.jpg" class="insta-img image-popup" style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_3.jpg);">
 		            <div class="icon d-flex justify-content-center">
 		              <span class="icon-instagram align-self-center"></span>
 		            </div>
 		          </a>
 		        </div>
 		        <div class="col-sm-12 col-md ftco-animate">
-		          <a href="resourcesStar/images/image_4.jpg" class="insta-img image-popup" style="background-image: url(resourcesStar/images/image_4.jpg);">
+		          <a href="${pageContext.request.contextPath}/resourcesStar/images/image_4.jpg" class="insta-img image-popup" style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_4.jpg);">
 		            <div class="icon d-flex justify-content-center">
 		              <span class="icon-instagram align-self-center"></span>
 		            </div>
 		          </a>
 		        </div>
 		        <div class="col-sm-12 col-md ftco-animate">
-		          <a href="resourcesStar/images/image_5.jpg" class="insta-img image-popup" style="background-image: url(resourcesStar/images/image_5.jpg);">
+		          <a href="${pageContext.request.contextPath}/resourcesStar/images/image_5.jpg" class="insta-img image-popup" style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_5.jpg);">
 		            <div class="icon d-flex justify-content-center">
 		              <span class="icon-instagram align-self-center"></span>
 		            </div>

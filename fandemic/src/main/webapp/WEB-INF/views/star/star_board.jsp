@@ -27,7 +27,7 @@
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<a href="#" class="img img-2"
-								style="background-image: url(resourcesStar/images/image_1.jpg);"></a>
+								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg);"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
 									<a href="single.html">The Photography Technique</a>
@@ -50,7 +50,7 @@
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<a href="#" class="img img-2"
-								style="background-image: url(resourcesStar/images/image_2.jpg);"></a>
+								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_2.jpg);"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
 									<a href="#">The Photography Technique</a>
@@ -73,7 +73,7 @@
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<a href="#" class="img img-2"
-								style="background-image: url(resourcesStar/images/image_3.jpg);"></a>
+								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_3.jpg);"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
 									<a href="#">The Photography Technique</a>
@@ -96,7 +96,7 @@
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<a href="#" class="img img-2"
-								style="background-image: url(resourcesStar/images/image_4.jpg);"></a>
+								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_4.jpg);"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
 									<a href="single.html">The Photography Technique</a>
@@ -119,7 +119,7 @@
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<a href="#" class="img img-2"
-								style="background-image: url(resourcesStar/images/image_5.jpg);"></a>
+								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_5.jpg);"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
 									<a href="#">The Photography Technique</a>
@@ -142,7 +142,7 @@
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<a href="#" class="img img-2"
-								style="background-image: url(resourcesStar/images/image_6.jpg);"></a>
+								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_6.jpg);"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
 									<a href="#">The Photography Technique</a>
@@ -165,7 +165,7 @@
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<a href="single.html" class="img img-2"
-								style="background-image: url(resourcesStar/images/image_7.jpg);"></a>
+								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_7.jpg);"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
 									<a href="single.html">The Photography Technique</a>
@@ -188,7 +188,7 @@
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<a href="single.html" class="img img-2"
-								style="background-image: url(resourcesStar/images/image_8.jpg);"></a>
+								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_8.jpg);"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
 									<a href="single.html">The Photography Technique</a>
