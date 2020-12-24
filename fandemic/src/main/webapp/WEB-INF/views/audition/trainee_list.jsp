@@ -174,12 +174,12 @@
 				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:10px 10px"></div>
 				<div class="btn-group">
 					<a class="btn btn-primary dropdown-toggle btn-select" href="#"
-						data-toggle="dropdown">전체 <span class="caret"></span></a>
+						data-toggle="dropdown">최신순 <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 
 						<li class="divider"></li>
-						<li><a href="#">최신순</a></li>
 						<li><a href="#">인기순</a></li>
+						
 					</ul>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-4"></div>
@@ -238,4 +238,15 @@
 		</div>
 	</div>
 </section>
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    최신순/인기순
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">최신순</a></li>
+    <li><a href="#">인기순</a></li>
+    <li role="separator" class="divider"></li>
+  </ul>
+</div>
 </html>
