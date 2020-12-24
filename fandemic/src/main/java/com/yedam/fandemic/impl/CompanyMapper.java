@@ -3,10 +3,11 @@ package com.yedam.fandemic.impl;
 import java.util.List;
 
 import com.yedam.fandemic.vo.Company;
+import com.yedam.fandemic.vo.Star;
 
 public interface CompanyMapper {
-
-	//public int insertCnotice(Cnotice cnotice);
-	public List<Company> getCompanyName(Company company);
+	public Company getCompanyTest(Company company);
+	public List<Company> getCompanyMinInfo(Company company);
 	public Company getCompanyInfo(Company comapany);
+	public List<Star> getCompanyStarMin(Star star);
 }
