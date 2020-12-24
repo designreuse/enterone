@@ -9,6 +9,9 @@
 	.table tr{
 		background-color:rgba(0,0,0,.05);
 	}
+	#summernote{
+		height:500px;
+	}
 </style>
 <script>
 
@@ -62,7 +65,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item">공지사항</li>
-              <li class="breadcrumb-item">공지등록</li>
+              <li class="breadcrumb-item">상세보기</li>
             </ol>
           </div>
         </div>
@@ -83,7 +86,8 @@
 							<thead>
 								<tr>
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="com_id" value="${company.com_id }"/>
+										<input type="text" name="cnoc_no" value="${cnotice.cnoc_no }"/>
+										<input type="text" name="com_id" value="${cnotice.com_id }"/>
 									</th>
 								</tr>
 							</thead>
@@ -91,31 +95,31 @@
 								<tr width="100%">
 									<td width="10%" align="left"><label>분류</label></td>
 									<td width="40%" align="left">								
-				                        <select name="cnoc_subject" class="custom-select" style="width: auto;">
+				                        <select name="cnoc_subject" class="custom-select" style="width: auto; value="${cnotice.cnoc_subject }">
 				                          <option>공지사항</option>
 				                          <option>이벤트</option>				                          
 				                        </select>                     
 									</td>
 									<td class="event" style="display: none;"><label>인원</label></td>
-									<td class="event" style="display: none;"><input type="text" name="cnoc_limit" class="form-control"/></td>
+									<td class="event" style="display: none;"><input type="text" name="cnoc_limit" class="form-control"/>${cnotice.cnoc_limit} </td>
 								</tr>
 								<tr width="100%">
 									<td colspan="1" align="left"><label>제목</label></td>
 									<td colspan="3"><input type="text" name="cnoc_title" class="notice-title form-control"
-										placeholder="글 제목" maxlength="50" />
+										placeholder="글 제목" maxlength="50" value="${cnotice.cnoc_title}"/>
 									</td>
 								</tr>
 								<tr >
 									<td colspan="1" align="left"><label>내용</label></td>
 									<td colspan="3">
-										<textarea id="summernote" name="cnoc_content" class="notice-content"></textarea>
+										<textarea id="summernote" name="cnoc_content" class="notice-content" >${cnotice.cnoc_content}</textarea>
 									</td>
 								</tr>
 								
 								<tr>
 									<td colspan="1" align="left"><label>첨부파일</label></td>
 									<td colspan="3">
-                      					<input type="file" name="cnoc_file" multiple>                     					
+                      					<input type="file" name="cnoc_file" value="${cnotice.cnoc_file}" multiple>                     					
                      				</td>
 								</tr>
 								<tr >

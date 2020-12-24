@@ -33,11 +33,19 @@ public class CnoticeController {
 		return "mgt/notices";
 	}
 	
-	//소속사 공지사항 목록 조회
+	//소속사 공지사항 목록 조회, ajax
 	@RequestMapping(value="/management/noticesList")
 	@ResponseBody
 	public List<Cnotice> getCnoticeList(Cnotice cnotice) {	
 		return cnoticedao.getCnoticeList(cnotice);
 	}
+	
+	// 소속사 공지사항 상세보기
+		@RequestMapping(value = "/management/noticesDetail")
+		public String noticesDetail(Model model, Cnotice cnotice) {
+			System.out.println(cnotice.getCnoc_no()); //클릭한게시물번호받아와서
+			model.addAttribute("cnotice", cnoticedao.getCnoticeDetail(cnotice));//조회한후 값던짐
+			return "mgt/noticesDetail";
+		}
 	
 }
