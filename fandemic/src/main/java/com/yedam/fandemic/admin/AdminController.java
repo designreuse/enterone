@@ -18,7 +18,7 @@ public class AdminController {
 	public ModelAndView Main() throws IOException{
 		return new ModelAndView("admin/adminmain");
 	}
-	
+	     
 	
 	@RequestMapping("/adminNotic")
 	public String adminNotic() throws IOException{
