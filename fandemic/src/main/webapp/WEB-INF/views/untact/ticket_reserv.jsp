@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,11 +12,29 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>예매 결제</title>
 <!-- Google Font -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	
+<script>
+$(document).ready(function() {
+	// 주소검색 버튼클릭
+	$('#btnAddrUn').on('click',function(){ 
+		openDaumZipAddress($("#un_zipAddress"), $("#un_address"));
+	});  
+});
+
+// 주소검색
+function openDaumZipAddress(un_zipAddress, un_address) {
+	new daum.Postcode({
+		oncomplete:function(data) {
+			$(un_zipAddress).val(data.zonecode); 
+			$(un_address).val(data.address); // 주소
+		}
+	}).open();
+}
+</script>
 </head>
 
 <body>
@@ -23,7 +43,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
-						<h5 align="center" style="padding-top: 15px; padding-bottom: 5px;">TICKET</h3>
+						<h5 align="center" style="padding-top: 15px; padding-bottom: 5px;">TICKET</h5>
 							<h3 align="center" style="padding-bottom: 15px">주문 / 결제</h3>
 					</div>
 				</div>
@@ -136,12 +156,12 @@
 								<div class="checkout__input">
 									<p>
 										주소<span>*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<button>주소찾기</button>
+										<button id="btnAddrUn" class="site-btn"
+										style="padding: 5px 10px 5px 10px; border: solid 1px #4176E0; background-color: white; color: #4176E0;">주소찾기</button>
 									</p>
-									<input type="text" placeholder="주소"
-										class="checkout__input__add"> <input type="text"
-										placeholder="상세 주소 및 상세 건물명" class="checkout__input__add">
-									<input type="text" placeholder="우편번호">
+									<input type="text" placeholder="주소" class="checkout__input__add" id="un_address">
+									<input type="text" placeholder="상세 주소 및 상세 건물명" class="checkout__input__add">
+									<input type="text" placeholder="우편번호" id="un_zipAddress">
 								</div>
 							</div>
 						</div>

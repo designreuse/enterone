@@ -5,8 +5,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Goods 상세보기 페이지</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<!-- <script>
+$(function(){
+	$('#decreaseQuantity').click(function(e){
+	e.preventDefault();
+	var stat = $('#numberUpDown').text();
+	var num = parseInt(stat,10);
+	num--;
+	if(num<=0){
+	alert('더이상 줄일수 없습니다.');
+	num =1;
+	}
+	$('#numberUpDown').text(num);
+	});
+	$('#increaseQuantity').click(function(e){
+	e.preventDefault();
+	var stat = $('#numberUpDown').text();
+	var num = parseInt(stat,10);
+	num++;
+
+	if(num>5){
+	alert('더이상 늘릴수 없습니다.');
+	num=5;
+	}
+	$('#numberUpDown').text(num);
+	});
+	});
+
+</script> -->
 <style>
 *, ::after, ::before {
 	box-sizing: border-box;
@@ -57,6 +84,17 @@
 									<span class="dec qtybtn">-</span> <input type="text" value="1">
 									<span class="inc qtybtn">+</span>
 								</div>
+								
+								<!-- 
+								<div class="number">
+									<span id="numberUpDown">1</span>
+									<a href="#" id="increaseQuantity">수량 올림</a>
+ 									<a href="#" id="decreaseQuantity">수량 내림</a>
+
+								</div>
+								 -->
+								
+								
 							</div>
 						</div>
 						<a href="goodsCart" class="primary-btn">장바구니</a>

@@ -20,7 +20,7 @@
 <script>
 $(document).ready(function() {
 	// 주소검색 버튼클릭
-	$('#btnAddr').on('click',function(){ 
+	$('#btnAddrGo').on('click',function(){ 
 		openDaumZipAddress($("#go_zipAddress"), $("#go_address"));
 	});  
 });
@@ -43,7 +43,7 @@ function openDaumZipAddress(go_zipAddress, go_address) {
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title">
-						<h5 align="center" style="padding-top: 15px; padding-bottom: 5px;">GOODS</h3>
+						<h5 align="center" style="padding-top: 15px; padding-bottom: 5px;">GOODS</h5>
 						<h3 align="center" style="padding-bottom: 15px">주문 / 결제</h3>
 					</div>
 				</div>
@@ -157,7 +157,7 @@ function openDaumZipAddress(go_zipAddress, go_address) {
 								<div class="checkout__input">
 									<p>
 										주소<span>*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<button id="btnAddr" class="site-btn"
+										<button id="btnAddrGo" class="site-btn"
 										style="padding: 5px 10px 5px 10px; border: solid 1px #4176E0; background-color: white; color: #4176E0;">주소찾기</button>
 									</p>
 									<input type="text" placeholder="주소" class="checkout__input__add" id="go_address">
