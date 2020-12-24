@@ -59,7 +59,8 @@
 								</div>
 							</div>
 						</div>
-						<a href="goodsCart" class="primary-btn">ADD TO CART</a>
+						<a href="goodsCart" class="primary-btn">장바구니</a>
+						<a href="goodsBuy" class="primary-btn" style="background-color: #022AD5;">바로구매</a>
 						<ul>
 							<li><b>카테고리</b> <span>CHEERING</span></li>
 							<li><b>소속사</b> <span>YG Entertainment</span></li>

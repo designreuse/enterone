@@ -29,7 +29,7 @@
 						<div class="product__details__pic__item">
 							<img class="product__details__pic__item--large"
 								src="http://tkfile.yes24.com/upload2/PerfBlog/202012/20201214/20201214-38170.jpg"
-								alt="">
+								alt="" style="min-width: 80%">
 						</div>
 						<div class="product__details__pic__slider owl-carousel">
 							<img data-imgbigurl="img/product/details/product-details-2.jpg"
@@ -61,7 +61,7 @@
 								</div>
 							</div>
 						</div>
-						<a href="goodsCart" class="primary-btn">ADD TO CART</a>
+						<a href="ticketReserv" class="primary-btn">결제하기</a>
 						<ul>
 							<li><b>카테고리</b> <span>CHEERING</span></li>
 							<li><b>소속사</b> <span>YG Entertainment</span></li>
@@ -87,7 +87,7 @@
 								공연시간 : 화~금 8시 / 토~일 2시, 6시 30분 / 월 공연없음
 							</p>
 							<br> <img alt="상품상세사진"
-								src="http://ticketimage.interpark.com/Play/image/etc/20/20007700-03.jpg">
+								src="http://tkfile.yes24.com/Upload2/Board/202012/20201214/38170_01_1.jpg" style="min-width: -webkit-fill-available;">
 						</div>
 					</div>
 				</div>
