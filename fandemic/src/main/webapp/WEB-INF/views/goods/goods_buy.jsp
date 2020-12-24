@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,25 +12,42 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Goods 구매/결제 페이지</title>
 <!-- Google Font -->
-<link
-	href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	
+<script>
+$(document).ready(function() {
+	// 주소검색 버튼클릭
+	$('#btnAddr').on('click',function(){ 
+		openDaumZipAddress($("#go_zipAddress"), $("#go_address"));
+	});  
+});
+
+// 주소검색
+function openDaumZipAddress(go_zipAddress, go_address) {
+	new daum.Postcode({
+		oncomplete:function(data) {
+			$(go_zipAddress).val(data.zonecode); 
+			$(go_address).val(data.address); // 주소
+		}
+	}).open();
+}
+</script>
 </head>
 
 <body>
 	<section class="home">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="section-title">
-							<h5 align="center" style="padding-top: 15px; padding-bottom: 5px;">GOODS</h3>
-							<h3 align="center" style="padding-bottom: 15px">주문 / 결제</h3>
-						</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title">
+						<h5 align="center" style="padding-top: 15px; padding-bottom: 5px;">GOODS</h3>
+						<h3 align="center" style="padding-bottom: 15px">주문 / 결제</h3>
 					</div>
 				</div>
-
+			</div>
 			<!-- 주문자 정보 (Member 테이블에서 불러오기) -->
 			<div class="row">
 				<div class="checkout__form">
@@ -72,7 +91,7 @@
 										class="checkout__input__add"> <input type="text"
 										placeholder="상세 주소 및 상세 건물명" class="checkout__input__add">
 									<input type="text" placeholder="우편번호">
-
+	
 								</div>
 								
 							</div>
@@ -105,15 +124,15 @@
 				</div>
 			</div>
 			<!-- 주문자 정보 끝 -->
-
+	
 			<!-- 배송 정보 입력 -->
 			<div class="row" style="padding-bottom: 20px; margin-bottom: 25px;">
 				<div class="checkout__form">
 					<h4 style="padding-top: 20px; margin-top: 25px;">배송 정보</h4>
 					<label class="c_order_checkbox" style="padding-bottom: 15px;">
-                        <input type="checkbox" onclick="javascript:copyOrgInfo(true);">
-                        <span>주문자 정보와 동일</span>
-                    </label>
+	                       <input type="checkbox" onclick="javascript:copyOrgInfo(true);">
+	                       <span>주문자 정보와 동일</span>
+	                   </label>
 					<form action="#">
 						<div class="row">
 							<div class="col-lg-8 col-md-6">
@@ -138,12 +157,12 @@
 								<div class="checkout__input">
 									<p>
 										주소<span>*</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<button>주소찾기</button>
+										<button id="btnAddr" class="site-btn"
+										style="padding: 5px 10px 5px 10px; border: solid 1px #4176E0; background-color: white; color: #4176E0;">주소찾기</button>
 									</p>
-									<input type="text" placeholder="주소"
-										class="checkout__input__add"> <input type="text"
-										placeholder="상세 주소 및 상세 건물명" class="checkout__input__add">
-									<input type="text" placeholder="우편번호">
+									<input type="text" placeholder="주소" class="checkout__input__add" id="go_address">
+									<input type="text" placeholder="상세 주소 및 상세 건물명" class="checkout__input__add">
+									<input type="text" placeholder="우편번호" id="go_zipAddress">
 								</div>
 							</div>
 						</div>
@@ -151,7 +170,6 @@
 				</div>
 			</div>
 			<!-- 배송 정보 입력 끝 -->
-
 		</div>
 	</section>
 </body>
