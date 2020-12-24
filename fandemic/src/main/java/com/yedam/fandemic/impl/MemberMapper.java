@@ -3,6 +3,7 @@ package com.yedam.fandemic.impl;
 
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Star;
 
 public interface MemberMapper {
 	// 멤버 매퍼 아니고 로그인 매퍼 입니다~~~~~~~
@@ -10,8 +11,8 @@ public interface MemberMapper {
 	
 	// 로그인 
 	public Member memLogin(Member member); 
-	public Company comLogin(Company company); 	// + 스타 로그인 
-
+	public Company comLogin(Company company); 	
+	public Star starLogin(Star star);
 	
 	// 아이디 중복확인
 	public int memIdCheck(Member member);  

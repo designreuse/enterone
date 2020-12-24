@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yedam.fandemic.impl.MemberMapper;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Star;
 
 @Controller
 public class LoginController {
@@ -47,8 +48,6 @@ public class LoginController {
 			
 			session.setAttribute("member", member);
 			
-			request.setAttribute("login", "success");
-			
 			return "index";
 			
 		} else {
@@ -64,6 +63,7 @@ public class LoginController {
 	//소속사
 	@RequestMapping(value="/companyLogin")
 	public String companyLogin(Model model, Company company, HttpSession session) {
+		
 		company = memMapper.comLogin(company); //id와 pw를 받아서 값이 있는지 DB조회
 		
 		// 아이디가 있을 때
@@ -75,13 +75,11 @@ public class LoginController {
 
 			if (company.getCom_class().equals("1")) {
 				session.setAttribute("company", company);
-				model.addAttribute("login", "success");
 				
 				return "redirect:management"; 
 				
 			} else { // admin 일 때
 				session.setAttribute("company", company);
-				model.addAttribute("login", "success");
 				
 				return "redirect:adminMain";
 			}
@@ -96,10 +94,24 @@ public class LoginController {
 	
 	
 	@RequestMapping(value="/starLogin")
-	public ModelAndView starLogin(HttpServletResponse response) throws IOException{
-		System.out.println("스타 로그인");
-
-		return new ModelAndView("index");
+	public String starLogin(HttpServletRequest request, Model model, Star star,  HttpSession session) throws IOException{
+		System.out.println("스타로그인");
+		
+		star.setSt_id(request.getParameter("com_id"));
+		star.setSt_pw(request.getParameter("com_pw"));
+		
+		star = memMapper.starLogin(star);
+		
+		// 아이디가 있을 때
+		if ( star != null) {
+			
+			session.setAttribute("star", star);
+			return "redirect:starMain"; 
+				
+		} else {
+			model.addAttribute("login", "fail");
+			return "login";
+		}
 	}
 
 	
