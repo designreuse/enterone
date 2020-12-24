@@ -9,6 +9,32 @@
 	.table tr{
 		background-color:rgba(0,0,0,.05);
 	}
+	td .cnoc_file{
+		position: absolute;
+		width: 0;
+		height: 0;
+		padding: 0;
+		overflow: hidden;
+		border: 0;
+	}
+	td .upload-name{
+		border: 2px inset rgba(0,0,0,.10);
+	}
+	td .filebox{
+		display:inline-block;
+		padding:5px;
+		margin:5px;
+		border: 2px inset rgba(0,0,0,.05);
+		border-radius: 10px;
+	}
+	td.fileboxi{
+		text-align:left;
+	}
+	td .filetext{
+		background-color:rgba(0,0,0,.05);
+		border: 2px inset rgba(0,0,0,.10);
+		width:100%;
+	}
 	
 </style>
 <script>
@@ -40,7 +66,11 @@
 		});
 		$(".cnoc_file").text("${cnotice.cnoc_file}");
 		
-
+	 	var fileTarget = $("#file"); //input type=file
+	 	fileTarget.on("change",function(){ // 값이변경되면
+	 		var cur=$(".fileboxi input[type='file']").val();
+	 		$(".upload-name").val(cur);
+	 	});
 
 	
 	});//end ready function
@@ -122,9 +152,13 @@
 								</tr>
 								
 								<tr>
-									<td colspan="1" align="left"><label>첨부파일</label></td>
-									<td colspan="3">
-                      					<input type="file" name="cnoc_file" id="uf" multiple>
+									<td colspan="1" align="left"></td>
+									<td colspan="3" class="fileboxi">
+										<label class="filebox" for="file">업로드</label>
+                      					<input type="file" id="file" class="cnoc_file" name="cnoc_file" multiple>
+                      					<input class="upload-name" value="파일선택"><br>
+                      					<input type="text" class="filetext" style="display:none;"><!--  여기 업로드된 파일 조회목록 -->
+                      					
                       					
                       					              					
                      				</td>
