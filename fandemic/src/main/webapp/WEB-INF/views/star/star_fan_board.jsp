@@ -25,7 +25,7 @@
 				</div>
 				
 				<div class = "row">
-					<a href="starFanBoardWrite" class="tag-cloud-link">글쓰기</a>
+					<a href="star/fanBoard/write" class="tag-cloud-link">글쓰기</a>
 				</div>
 				
 				

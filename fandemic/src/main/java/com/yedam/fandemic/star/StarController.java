@@ -10,32 +10,32 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class StarController {
-	@RequestMapping(value = "/starMain")
+	@RequestMapping(value = "/star")
 	public ModelAndView starMain(HttpServletResponse response) throws IOException {
 		return new ModelAndView("star/star_main");
 	}
-	@RequestMapping(value = "/starSchedule ")
+	@RequestMapping(value = "/star/schedule ")
 	public ModelAndView starSchedule(HttpServletResponse response) throws IOException {
 		return new ModelAndView("star/star_schedule");
 	}
-	@RequestMapping(value = "/starLive")
+	@RequestMapping(value = "/star/live")
 	public ModelAndView starLive(HttpServletResponse response) throws IOException {
 		return new ModelAndView("star/star_live");
 	}
-	@RequestMapping(value = "/starBoard")
+	@RequestMapping(value = "/star/board")
 	public ModelAndView starBoard(HttpServletResponse response) throws IOException {
 		return new ModelAndView("star/star_board");
 	}
-	@RequestMapping(value = "/starFanBoard")
+	@RequestMapping(value = "/star/fanBoard")
 	public ModelAndView starFanBoard(HttpServletResponse response) throws IOException {
 		return new ModelAndView("star/star_fan_board");
 	}
-	@RequestMapping(value = "/starFanBoardWrite")
+	@RequestMapping(value = "/star/fanBoard/write")
 	public ModelAndView starFanBoardWrite(HttpServletResponse response) throws IOException {
 		return new ModelAndView("star/star_fan_board_write");
 	}
 	
-	@RequestMapping(value = "/starAlbum")
+	@RequestMapping(value = "/star/album")
 	public ModelAndView starAlbum(HttpServletResponse response) throws IOException {
 		return new ModelAndView("star/star_album");
 	}

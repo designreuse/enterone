@@ -19,11 +19,11 @@
 	<div class="container">
 		<div class="nav-tabs-group">
 			<ul class="nav-tabs-list">
-				<li><a href="companyIntro">소 속 사 소 개</a></li>
+				<li><a href="company/info">소 속 사 소 개</a></li>
 
-				<li><a href="companyNotify">공 지 사 항</a></li>
+				<li><a href="company/notify">공 지 사 항</a></li>
 
-				<li><a href="companyHome">스 타</a></li>
+				<li><a href="company/home">스 타</a></li>
 			</ul>
 		</div>
 	</div>

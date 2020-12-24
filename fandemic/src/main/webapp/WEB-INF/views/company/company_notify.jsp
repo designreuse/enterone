@@ -20,11 +20,11 @@
 	<div class="container">
 		<div class="nav-tabs-group">
 			<ul class="nav-tabs-list">
-				<li><a href="companyIntro">소 속 사 소 개</a></li>
+				<li><a href="company/info">소 속 사 소 개</a></li>
 
-				<li><a href="companyNotify"><font style="color:#4176E0">공 지 사 항</font></a></li>
+				<li><a href="company/notify"><font style="color:#4176E0">공 지 사 항</font></a></li>
 
-				<li><a href="companyHome">스 타</a></li>
+				<li><a href="company/home">스 타</a></li>
 			</ul>
 		</div>
 	</div>

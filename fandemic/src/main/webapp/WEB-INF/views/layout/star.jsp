@@ -63,7 +63,7 @@
 		<aside id="colorlib-aside" role="complementary"
 			class="js-fullheight text-center">
 			<h1 id="colorlib-logo">
-				<a href="index.html"><span class="img"
+				<a href="#"><span class="img"
 					style="background-image: url(resourcesStar/images/author.jpg);"></span>스타이름</a>
 			</h1>
 			<button type="button" class="btn btn-primary" data-toggle="modal"
@@ -73,13 +73,13 @@
 
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="starMain">Home</a></li>
+					<li><a href="star/main">Home</a></li>
 					<li><a href="#">스케줄</a></li>
 					<li><a href="#">스타라이브</a></li>
 					<li><a href="#">소식</a></li>
-					<li><a href="starBoard">스타게시판</a></li>
-					<li><a href="starFanBoard">팬게시판</a></li>
-					<li><a href="starAlbum">사진게시판</a></li>
+					<li><a href="star/board">스타게시판</a></li>
+					<li><a href="star/fanBoard">팬게시판</a></li>
+					<li><a href="star/album">사진게시판</a></li>
 				</ul>
 			</nav>
 		</aside>

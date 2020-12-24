@@ -20,9 +20,9 @@
 	<div class="container">
 		<div class="nav-tabs-group">
 			<ul class="nav-tabs-list">
-				<li><a href="companyIntro">소 속 사 소 개</a></li>
-				<li><a href="companyNotify">공 지 사 항</a></li>
-				<li><a href="companyHome"><font style="color: #4176E0">스
+				<li><a href="info">소 속 사 소 개</a></li>
+				<li><a href="notify">공 지 사 항</a></li>
+				<li><a href="home"><font style="color: #4176E0">스
 							타</font></a></li>
 			</ul>
 		</div>
@@ -53,9 +53,9 @@
 							<h6>방탄소년단</h6>
 						</div>
 						<div>
-							<a href="companyStarProfile"
+							<a href="starProfile"
 								class="btn btn-magz companyMinButton">프로필</a> <a
-								href="starMain"
+								href="${pageContext.request.contextPath}/star"
 								class="btn btn-magz companyMinButton">채널</a>
 						</div>
 					</div>

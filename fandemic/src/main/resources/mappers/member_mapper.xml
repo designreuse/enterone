@@ -22,6 +22,13 @@
 		AND COM_PW= #{com_pw}
 	</select> 
 	
+<!-- 스타 로그인  -->
+	<select id="starLogin" parameterType="Star" resultType="Star">
+		SELECT * FROM star 
+		WHERE st_ID = #{st_id} 
+		AND st_PW = #{st_pw} 
+	</select> 
+	
 <!-- 아이디 중복확인 -->
 	<select id="memIdCheck" parameterType="Member" resultType="int">
 		SELECT COUNT(*) 

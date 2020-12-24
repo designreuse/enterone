@@ -7,7 +7,7 @@
 }
 
 .pagination {
-  display: inline-block;
+  display: ;
 }
 
 .pagination a {
@@ -51,6 +51,17 @@
 		$(".btn-register").on("click",function(){
 			location.href="${pageContext.request.contextPath}/management/noticesInsertForm";
 		});
+		
+		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
+		table.on("click","tr a",function(){
+			alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호
+			var cnoc_no = $(this).parent().prev().text();
+			location.href="${pageContext.request.contextPath}/management/noticesDetail?cnoc_no="+cnoc_no;
+		
+			
+			
+		});
+		
 	}); //end document ready
 	
 	//공지사항 목록 조회 요청
@@ -70,13 +81,13 @@
 	}//end cnoticeList
 	
 	function cnoticeListResult(data){
-		console.log(data);
+		/* console.log(data); */
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
-			$('<tr>')
+			$('<tr>').attr("class","cnoticeTr")
 			.append($('<td>').html('<input type="checkbox">'))
 			.append($('<td>').html(item.cnoc_no))
-			.append($('<td>').html(item.cnoc_title))
+			.append($('<td>').html('<a href="#">'+item.cnoc_title+'</a>'))
 			.append($('<td>').html(item.com_id))
 			.append($('<td>').html(item.cnoc_time))
 			.append($('<td>').html(item.cnoc_subject))
@@ -84,6 +95,8 @@
 			
 		});//end each
 		$('#dataTable').DataTable();
+		
+		
 	}//end cnoticeListResult
 </script>
      <!-- Content Header (Page header) -->
@@ -129,17 +142,7 @@
               </div>
               <!-- /.card-body -->
               <div>
-              	<div class="center">
-				  <div class="pagination">
-					  <a href="#">&laquo;</a>
-					  <a href="#" class="active">1</a>
-					  <a href="#">2</a>
-					  <a href="#">3</a>
-					  <a href="#">4</a>
-					  <a href="#">5</a>
-					  <a href="#">&raquo;</a>
-				  </div>
-				</div>
+              	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
               		<button class="btn-register">등록</button>
               		<button class="btn-update">수정</button>
