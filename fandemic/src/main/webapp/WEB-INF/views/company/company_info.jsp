@@ -19,9 +19,9 @@
 	<div class="container">
 		<div class="nav-tabs-group">
 			<ul class="nav-tabs-list">
-				<li><a href="company/info"><font style="color:#4176E0">소 속 사 소 개</font></a></li>
-				<li><a href="company/notify">공 지 사 항</a></li>
-				<li><a href="company/home">스 타</a></li>
+				<li><a href="info"><font style="color:#4176E0">소 속 사 소 개</font></a></li>
+				<li><a href="notify">공 지 사 항</a></li>
+				<li><a href="home">스 타</a></li>
 			</ul>
 		</div>
 	</div>
