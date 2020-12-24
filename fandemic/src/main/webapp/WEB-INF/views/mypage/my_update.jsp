@@ -1,14 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html>
 <html>
 <head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- 주소검색 -->
+<script type="text/JavaScript"
+	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <style type="text/css">
 
 /* 수정 테이블 스타일 */
 .myinfo {
-	width: 100%
+	width: 100%;
 }
 
 /* readonly 스타일 */
@@ -23,11 +31,14 @@
 
 /*수정가능한 text필드*/
 .updatetext {
-	
+	float: left;
+	border: 1px;
 }
 /*수정불가능한 text필드*/
 .readolytext {
-	
+	float: left;
+	border: none;
+	background: lightgray;
 }
 </style>
 </head>
@@ -39,71 +50,75 @@
 					<div class="line">
 						<div>내정보 수정</div>
 					</div>
-					<table class="myinfo">
+					<table class="myinfo" border="1">
 						<tr>
-							<td class="tilt"><b>사진</b></td>
-							<td class="readolytexttd"><input type="text"
-								class="updatetext"></td>
-						</tr>
-						<tr>
-							<td class="tilt"><b>아이디</b></td>
-							<td class="readolytexttd"><input type="text"
-								class="readolytext"></td>
-						</tr>
-						<tr>
-							<td class="tilt"><b>비밀번호</b></td>
-							<td class="readolytexttd"><input type="text"
-								class="updatetext"></td>
-						</tr>
-						<tr>
-							<td class="tilt"><b>비밀번호확인</b></td>
-							<td class="readolytexttd"><input type="text"
-								class="updatetext"></td>
-						</tr>
-						<tr>
-							<td class="tilt"><b>이름</b></td>
-							<td class="readolytexttd"><input type="text"
-								class="readolytext"></td>
-						</tr>
-						<tr>
-							<td class="tilt"><b>생년월일</b></td>
-							<td class="readolytexttd"><input type="text"
-								class="updatetext"></td>
+							<td class="tilt" rowspan="7"><img id="profileimg"
+								name="profileimg"
+								src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F1%2F201010121617052681.jpg"></td>
+
+							<th class="tilt"><b>이름</b></th>
+							<td colspan="3" class="readolytexttd"><input type="text"
+								class="readolytext" readonly="readonly"></td>
 						</tr>
 
-
+						<tr>
+							<th class="tilt"><b>아이디</b></th>
+							<td colspan="3" class="readolytexttd"><input type="text"
+								class="readolytext" readonly="readonly"></td>
+						</tr>
 
 						<tr>
-							<td class="tilt"><b>휴대폰 번호</b></td>
+							<th class="tilt"><b>새 비밀번호</b></th>
 							<td class="readolytexttd"><input type="text"
 								class="updatetext"></td>
-						</tr>
-						<tr>
-							<td class="tilt"><b>이메일</b></td>
+							<th class="tilt"><b>확인</b></th>
 							<td class="readolytexttd"><input type="text"
 								class="updatetext"></td>
 						</tr>
 
 						<tr>
-							<td class="tilt"><b>우편번호</b></td>
-							<td class="readolytexttd"><input type="text"
-								class="readolytext"></td>
-						</tr>
-						<tr>
-							<td class="tilt"><b>주소</b></td>
-							<td class="readolytexttd"><input type="text"
+							<th class="tilt"><b>생년월일</b></th>
+							<td colspan="3" class="readolytexttd"><input type="date"
 								class="updatetext"></td>
 						</tr>
+
 						<tr>
-							<td class="tilt"><b>가입일</b></td>
-							<td class="readolytexttd"><input type="text"
+							<th class="tilt"><b>휴대폰 번호</b></th>
+							<td colspan="3" class="readolytexttd"><input type="text"
 								class="updatetext"></td>
+						</tr>
+
+						<tr>
+							<th class="tilt"><b>이메일</b></th>
+							<td colspan="3" class="readolytexttd"><input type="text"
+								class="updatetext"></td>
+						</tr>
+
+						<tr>
+							<th class="tilt"><b>우편번호</b></th>
+							<td colspan="3" class="readolytexttd"></td>
+						</tr>
+						<tr>
+							<th class="readolytexttd"><b>첨부파일</b></th>
+							<th class="tilt"><b>주소</b></th>
+							<td colspan="3" class="readolytexttd"></td>
+						</tr>
+						<tr>
+							<td><input type="text" class="updatetext"> <input
+								type="file" name="uploadFile" /></td>
+							<th class="tilt"><b>가입일</b></th>
+							<td colspan="3" class="readolytexttd"><input type="text"
+								class="readolytext" readonly="readonly"></td>
+						</tr>
+						<tr>
+							<td colspan="5"><input class="sidebutton btn-primary"
+								style="margin-right: 5%; width: 10%; float: right;"
+								type="button" onclick="location.href='#'" value="수정하기">
+								<input class="sidebutton btn-primary"
+								style="margin-right: 1%; width: 10%; float: right;"
+								type="button" onclick="location.href='#'" value="탈퇴하기"></td>
 						</tr>
 					</table>
-
-					<div class="row">
-						<h1>쪽지 나오는곳</h1>
-					</div>
 				</div>
 			</div>
 		</div>
