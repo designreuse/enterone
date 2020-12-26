@@ -85,11 +85,13 @@ ul.tabs li.current {
 		
 		// 아이디 중복확인
 		$('#btnCheckm').on('click',function(){
-			
 			memIdCheck();
+			$("#mem_email").attr("disabled", false);
 		});
 		$('#btnCheckc').on('click',function(){
 			comIdCheck();
+			$("#com_email").attr("disabled", false);
+			
 		});
 		
 		
@@ -120,20 +122,6 @@ ul.tabs li.current {
 			
 			if ($(':radio[name="mem_gender"]:checked').length < 1) {
 				alert("성별을 선택하세요");
-				event.preventDefault();
-			}
-			
-			if($("#checkId").text() == null || $("#checkId").text() == "") {
-				alert("아이디 중복확인을 해주세요");
-				event.preventDefault();
-			}
-
-		}); 
-		
-		$('#btnAddCom').on('click',function(){ 
-			
-			if($("#checkIdcom").text() == null || $("#checkIdcom").text() == "") {
-				alert("아이디 중복확인을 해주세요");
 				event.preventDefault();
 			}
 
@@ -364,7 +352,7 @@ ul.tabs li.current {
 
 						<div class="form-group">
 							<label>연락처</label> 
-							<form:input type="text" path="mem_phone" id="mem_phone" class="form-control" />
+							<form:input type="text" path="mem_phone" id="mem_phone" class="form-control" placeholder="ex) 000-0000-0000"/>
 							<form:errors path="mem_phone" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
@@ -373,7 +361,7 @@ ul.tabs li.current {
 							
 							<div style="position:relative">
 							<label>이메일</label> <b id="chkMemMail"></b>
-								<form:input type="text" id="mem_email" path="mem_email" class="form-control" style="papadding: 50px;"/>
+								<form:input type="text" id="mem_email" path="mem_email" class="form-control" style="papadding: 50px; " disabled="true" placeholder="ex) xxx@xxx.xx"/>
 								<form:input type="button" path="" value="중복확인" id="memEmail" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 								
 							</div>
@@ -387,14 +375,14 @@ ul.tabs li.current {
 							<label>주소</label><br>
 							
 							<div style="position:relative">
-								<form:input type="text" id="mem_address" path="mem_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="readonly" />
+								<form:input type="text" id="mem_address" path="mem_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="true"/>
 								<form:input type="button" path="" value="주소검색" id="btnAddr" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 							</div>
 							
 							<form:input type="text" id="mem_address2" path="mem_address2" class="form-control" style="display:none; margin: 5px 0px;" />
 							<form:errors path="mem_address2" cssClass="error" htmlEscape="false"/> <br>
 							<label>우편번호</label> &nbsp; &nbsp;
-							<form:input type="text" id="mem_zipAddress" path="mem_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly" />
+							<form:input type="text" id="mem_zipAddress" path="mem_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="true"/>
 						</div>
 
 						<div class="form-group text-right">
@@ -446,7 +434,7 @@ ul.tabs li.current {
 
 						<div class="form-group">
 							<label>연락처</label> 
-							<form:input type="text" path="com_phone" id="com_phone" class="form-control" />
+							<form:input type="text" path="com_phone" id="com_phone" class="form-control" placeholder="ex) 000-0000-0000"/>
 							<form:errors path="com_phone" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
@@ -455,7 +443,7 @@ ul.tabs li.current {
 							
 							<div style="position:relative">
 								<label>이메일</label> <b id="chkComMail"></b>
-								<form:input type="text" id="com_email" path="com_email" class="form-control" />
+								<form:input type="text" id="com_email" path="com_email" class="form-control" disabled="true" placeholder="ex) xxx@xxx.xx"/>
 								<form:input type="button" path="" value="중복확인" id="comEmail" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 								
 							</div>
@@ -467,7 +455,7 @@ ul.tabs li.current {
 							<label>주소</label><br>
 							
 							<div style="position:relative">
-								<form:input type="text" id="com_address" path="com_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="readonly" />
+								<form:input type="text" id="com_address" path="com_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="true" />
 								<form:input path="" type="button" value="주소검색" id="btnAddrcom" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 							</div>
 							
@@ -475,7 +463,7 @@ ul.tabs li.current {
 							<form:errors path="com_address2" cssClass="error" htmlEscape="false"/> <br>
 							
 							<label>우편번호</label> &nbsp; &nbsp;
-							<form:input type="text" id="com_zipAddress" path="com_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="readonly" />
+							<form:input type="text" id="com_zipAddress" path="com_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="true" />
 						</div>
 						
 						<div class="form-group text-right">

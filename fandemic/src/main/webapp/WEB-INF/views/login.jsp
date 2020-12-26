@@ -70,7 +70,17 @@ ul.tabs li.current {
 			checkUser(user);			
 		});
 		
- 		
+		// 아이디, 비밀번호 찾기
+		 $("#memFind").click(function(){
+			 window.open("${pageContext.request.contextPath}/no-tiles/find?check=member", "memPop", "width=500, height=350");
+
+	    });
+		 
+		 $("#comFind").click(function(){
+			 window.open("${pageContext.request.contextPath}/no-tiles/find?check=company", "comPop", "width=500, height=350");
+
+	    });
+
 		
 	}); //end ready function
 	
@@ -169,7 +179,7 @@ ul.tabs li.current {
 									<input type="password" id="mem_pw" name="mem_pw"
 										class="form-control">
 									<p></p>
-									<a href="forgot.html" class="pull-right">비밀번호 찾기</a><br>
+									<a id="memFind" class="pull-right">아이디/비밀번호 찾기</a><br>
 								</div>
 								<div class="form-group text-right">
 									<button name="btnlogin" id="memlogin" class="btn btn-primary btn-block">로그인</button>
@@ -211,7 +221,7 @@ ul.tabs li.current {
 									<input type="password" id="com_pw" name="com_pw"
 										class="form-control">
 									<p></p>
-									<a href="forgot.html" class="pull-right">비밀번호 찾기</a><br>
+									<a id="comFind" class="pull-right">아이디/비밀번호 찾기</a><br>
 								</div>
 								<div class="form-group text-right">
 									<button name="btnlogin" id="comlogin" class="btn btn-primary btn-block">로그인</button>
@@ -227,5 +237,39 @@ ul.tabs li.current {
 			</div>
 		</div>
 	</div>
+	
+	
+		
+	
+	
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </section>

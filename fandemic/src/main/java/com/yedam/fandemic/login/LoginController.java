@@ -26,8 +26,87 @@ import com.yedam.fandemic.vo.Star;
 public class LoginController {
 	@Autowired MemberMapper memMapper;
 	
+
+	@RequestMapping("/no-tiles/find") // id,pw 찾기 팝업창
+	public ModelAndView findIdPw() throws IOException{
+
+		return new ModelAndView("no-tiles/find");
+	}
 	
-	@RequestMapping("/logout") // 로그아웃
+	// 개인 id 찾기
+	@RequestMapping("/memIdFind")
+	@ResponseBody
+	public String memIdFind(HttpServletRequest request, Model model, Member member) throws IOException{
+			
+			member.setMem_name(request.getParameter("mem_name"));
+			member.setMem_email(request.getParameter("mem_email"));
+			
+			member = memMapper.memIdFind(member);
+			
+			if ( member != null) {
+				return member.getMem_id(); //아이디만 넘김
+			} else {
+				return null;
+			}
+			
+			
+			
+	}
+	
+	// 기업 id찾기
+	@RequestMapping("/comIdFind")
+	@ResponseBody
+	public String comIdFind(HttpServletRequest request, Model model, Company company) throws IOException{
+		
+		company.setCom_name(request.getParameter("com_name"));
+		company.setCom_email(request.getParameter("com_email"));
+
+		company = memMapper.comIdFind(company);
+		
+		if ( company != null) {
+			return company.getCom_id();
+		} else {
+			return null;
+		}
+			
+			
+	}
+	// 개인 pw
+	@RequestMapping("/memPwFind")
+	@ResponseBody
+	public String memPwFind(HttpServletRequest request, Model model, Member member) throws IOException{
+			
+		member.setMem_id(request.getParameter("mem_id"));
+		member.setMem_email(request.getParameter("mem_email"));
+		member = memMapper.memPwFind(member);
+		
+		if(member != null) {
+			return member.getMem_pw();
+		} else {
+			return null;
+		}
+			
+			
+	}
+	
+	// 기업 pw
+	@RequestMapping("/comPwFind")
+	@ResponseBody
+	public String comPwFind(HttpServletRequest request, Model model, Company company) throws IOException{
+			
+		company.setCom_id(request.getParameter("com_id"));
+		company.setCom_email(request.getParameter("com_email"));
+		company = memMapper.comPwFind(company);
+		
+		if(company != null) {
+			return company.getCom_pw();
+		} else {
+			return null;
+		}
+			
+	}
+	
+	@RequestMapping("/logout") 
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException{
 		System.out.println("로그아웃");
 		
@@ -203,18 +282,18 @@ public class LoginController {
 		return "login";
 	}
 	
-	
-	
-	
-	
-	@RequestMapping("/adminLogin")
-	public ModelAndView adminLogin(HttpServletResponse response) throws IOException{
-		System.out.println("어드민 로그인");
-		return new ModelAndView("adminLogin");
-	}
-	
-	
-	
+//	
+//	
+//	
+//	
+//	@RequestMapping("/adminLogin")
+//	public ModelAndView adminLogin(HttpServletResponse response) throws IOException{
+//		System.out.println("어드민 로그인");
+//		return new ModelAndView("adminLogin");
+//	}
+//	
+//	
+//	
 	
 
 	

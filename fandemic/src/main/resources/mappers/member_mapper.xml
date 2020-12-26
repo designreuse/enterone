@@ -6,6 +6,36 @@
 <!-- 멤버 매퍼 아니고 로그인 메퍼!!!! -->
 
 
+<!-- 개인 id 찾기 -->
+	<select id="memIdFind" parameterType="Member" resultType="Member">
+		SELECT * FROM MEMBER 
+		WHERE MEM_NAME = #{mem_name} 
+		AND MEM_EMAIL = #{mem_email}
+	</select> 
+
+<!-- 기업 id 찾기 -->
+
+	<select id="comIdFind" parameterType="Company" resultType="Company">
+		SELECT * FROM COMPANY 
+		WHERE COM_NAME= #{com_name} 
+		AND COM_EMAIL = #{com_email}
+	</select> 
+
+<!-- 개인 pw 찾기 -->
+	<select id="memPwFind" parameterType="Member" resultType="Member">
+		SELECT * FROM MEMBER 
+		WHERE MEM_ID = #{mem_id} 
+		AND MEM_EMAIL = #{mem_email}
+	</select> 
+
+<!-- 기업 pw 찾기 -->
+
+	<select id="comPwFind" parameterType="Company" resultType="Company">
+		SELECT * FROM COMPANY 
+		WHERE COM_ID= #{com_id} 
+		AND COM_EMAIL = #{com_email}
+	</select> 
+
 
 <!-- 개인 로그인  -->
 	<select id="memLogin" parameterType="Member" resultType="Member">

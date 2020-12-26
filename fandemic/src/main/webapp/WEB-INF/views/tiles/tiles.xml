@@ -24,6 +24,13 @@
 	</definition>
 	
 	
+	<definition name="no-tiles/*" template="/WEB-INF/views/layout/no-tiles.jsp">
+		<put-attribute name="body"
+			value="/WEB-INF/views/no-tiles/{1}.jsp" />
+	</definition>
+	
+
+	
 	<definition name="*/*" template="/WEB-INF/views/layout/base.jsp">
 		<put-attribute name="body"
 			value="/WEB-INF/views/{1}/{2}.jsp" />
@@ -32,5 +39,13 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/{1}.jsp" />
 	</definition>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 </tiles-definitions>

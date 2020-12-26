@@ -28,11 +28,13 @@ public interface MemberMapper {
 	public void memInsert(Member member); 
 	public void comInsert(Company company);
 	
+	// id 찾기
+	public Member memIdFind(Member member);
+	public Company comIdFind(Company company);
 	
-	// 아이디 찾기
-	
-	
-	//비밀번호 찾기
+	// pw 찾기
+	public Member memPwFind(Member member);
+	public Company comPwFind(Company company);
 	
 	
 	
