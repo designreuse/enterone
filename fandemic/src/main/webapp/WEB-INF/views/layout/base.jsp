@@ -136,8 +136,9 @@
                      <li><a href="#">연 예 뉴 스</a></li>   
                      
                      <li><a href="${pageContext.request.contextPath}/sns">S N S</a></li>
-<!--                     magz-dropdown 클래스 제거ㅊ -->
-                     <li class="dropdown "><a href="${pageContext.request.contextPath}/mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
+                          <c:if test="${member.mem_id ne null or company.com_id ne null }">
+<!--  magz-dropdown 클래스 제거ㅊ -->
+                     <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                            <li><a href="myupdate"><i class="icon ion-person"></i> 회원정보</a></li>
                            <li><a href="mystar"><i class="icon ion-heart"></i> 내 스타</a></li>
@@ -150,6 +151,7 @@
                            <li><a href="#"><i class="icon ion-log-out"></i> 로그아웃</a></li>
                         </ul>
                      </li>
+                                    </c:if>
                   </ul>
                </div>
             </div>

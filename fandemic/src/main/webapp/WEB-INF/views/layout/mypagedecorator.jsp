@@ -105,14 +105,14 @@
                      <li class="for-tablet"><a href="register">Register</a></li>
                      
                      
-                     <li><a href="companyMain">소 속 사</a></li>
+                     <li><a href="${pageContext.request.contextPath}/company">소 속 사</a></li>
                      
                      
-                     <li><a href="untact">언 택 트</a></li>
+                     <li><a href="${pageContext.request.contextPath}/untact">언 택 트</a></li>
 
                      
 <!--                      magz-dropdown 클래스 제거 -->
-                     <li class="dropdown"><a href="auditionwork">연 습 생<i class="ion-ios-arrow-right"></i></a>
+                     <li class="dropdown"><a href="${pageContext.request.contextPath}/auditionwork">연 습 생<i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                            <li><a href="#">연습생 등록</a></li>
                            <li><a href="#">연습생 활동</a></li>
@@ -121,7 +121,7 @@
                         </ul>
                      </li>
 <!--                      magz-dropdown 클래스 제거 -->
-                     <li class="dropdown "><a href="goods">굿 즈 샵<i class="ion-ios-arrow-right"></i></a>
+                     <li class="dropdown "><a href="${pageContext.request.contextPath}/goods">굿 즈 샵<i class="ion-ios-arrow-right"></i></a>
                      
                         <ul class="dropdown-menu">
                            <li><a href="#">CHEERING</a></li>
@@ -135,11 +135,8 @@
                      
                      <li><a href="#">연 예 뉴 스</a></li>   
                      
-                     <li><a href="sns">S N S</a></li>
-                     
-                     
-               
-                        <c:if test="${member.mem_id ne null or company.com_id ne null }">
+                     <li><a href="${pageContext.request.contextPath}/sns">S N S</a></li>
+                          <c:if test="${member.mem_id ne null or company.com_id ne null }">
 <!--  magz-dropdown 클래스 제거ㅊ -->
                      <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
