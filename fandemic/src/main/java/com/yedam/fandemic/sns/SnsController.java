@@ -25,7 +25,7 @@ public class SnsController {
 	}
 	// SNS 등록
 	@RequestMapping(value = "/sns/snsInsert")
-	public String noticesInsert(Sns sns) {
+	public String snsInsert(Sns sns) {
 		snsdao.insertSns(sns);
 		return "sns/sns";
 	}

@@ -10,7 +10,7 @@ INSERT INTO SNS (
 								sns_time,
 								sns_content,
 								sns_title,
-								mem_id,
+								mem_id
 								)
 	 	                VALUES(
 	 	               			sns_ac_seq.NEXTVAL,

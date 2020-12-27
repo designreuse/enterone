@@ -83,7 +83,7 @@
 
 				<!-- SNS등록창 모달 (텍스트) -->
 				<div id="ex7" class="modal">
-					<form method="post" action="${pageContext.request.contextPath}/management/noticesInsert" enctype="multipart/form-data">
+					<form method="post" action="${pageContext.request.contextPath}/sns/snsInsert" enctype="multipart/form-data">
 					<div class="mtmtitle">
 						<table style="margin: 25px">
 							<tr>
