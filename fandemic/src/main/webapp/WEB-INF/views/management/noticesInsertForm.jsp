@@ -79,7 +79,7 @@
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
-					<form method="post" action="${pageContext.request.contextPath}/management/noticesInsert" enctype="multipart/form-data">
+					<form method="post" action="${pageContext.request.contextPath}/sns/snsInsert" enctype="multipart/form-data">
 						<table class="table table-striped"
 							style="text-align: center; border: 1px solid #dddddd">
 							<thead>
