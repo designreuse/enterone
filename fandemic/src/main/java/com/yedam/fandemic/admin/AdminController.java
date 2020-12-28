@@ -75,11 +75,20 @@ public class AdminController {
 	@ResponseBody
 	public void filterAdd(Model model, Filter filter, HttpServletRequest request) throws IOException{
 		
-		filter.setFil_prohibited(request.getParameter("fil_prohibited"));
-		filter.setFil_alternative(request.getParameter("fil_alternative"));
-
-		dao.filterAdd(filter);
-
+		filter.setFil_prohibited(request.getParameter("fil_prohibited")); // 금칙어 가져와서
+		filter = dao.filterSel(filter); // 중복 확인 후
+		
+		if (filter != null) { // 중복이면 
+			//수정
+			filter.setFil_alternative(request.getParameter("fil_alternative")); // 대체어만 넣어서
+			dao.filterUpdate(filter); // 수정
+			
+		} else { // 중복이 아니면
+			filter.setFil_prohibited(request.getParameter("fil_prohibited")); //금칙어 다시 넣고
+			filter.setFil_alternative(request.getParameter("fil_alternative")); // 대체어도 넣고
+			dao.filterAdd(filter); // 등록
+		}
+		
 	}
 	
 	

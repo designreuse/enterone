@@ -17,6 +17,7 @@
 <script>
 	$(document).ready(function() {
 		
+		//등록 수정
 		$("#btnAdd").click(function(){
 			
 			$.ajax({
@@ -35,14 +36,34 @@
 	            },error:function(){ alert("실패"); }
 	         });
 
-			
-			
 	    });
 		
-		
+		// 삭제
 		$("#btnDel").click(function(){
-			// ajax 사용 삭제 후 다시 조회
+			
+			//링크보고 다시
+			
 	    });
+		
+		
+		
+		
+		
+		
+		
+		$("td").click(function(){
+			var fil_prohibited =  $(this).parent().children().get(2).innerHTML;
+			var fil_alternative = $(this).parent().children().get(3).innerHTML;
+			
+			$("#prohibited").val(fil_prohibited);
+			$("#alternative").val(fil_alternative);
+			$("#prohibited").attr("readonly",true);
+			
+			console.log(fil_prohibited,fil_alternative);
+	    });
+		
+
+		
 		
 		// 체크박스 이벤트
 		$("#allChk").click(function(){ 
@@ -77,8 +98,8 @@
 			<tbody>
 			<c:forEach  var="fil" items="${filter}" varStatus="status">
 				<tr>
-					<th><input type="checkbox"></th>
-					<th scope="row">${fil.fil_no}</th>
+					<td><input type="checkbox" name="del" value="${fil.fil_prohibited}"></td>
+					<td scope="row">${fil.fil_no}</td>
 					<td>${fil.fil_prohibited}</td>
 					<td>${fil.fil_alternative}</td>
 				</tr>
@@ -95,10 +116,10 @@
 					<th><div style="margin:30px;"></div></th>
 				</tr>
 				<tr>
-					<td><div style="margin:10px;"><input class="form-control " type="text" id="prohibited"></div></td>
-					<td><div style="margin:10px;"><input class="form-control " type="text" id="alternative"></div></td>
-					<td><div style="margin:5px;"><button class="btn btn-primary" id="btnAdd"> 등록 </button></div></td>
-					<td><div style="margin:5px;"><button class="btn btn-primary" id="btnDel" > 삭제 </button></div></td>
+					<th><div style="margin:10px;"><input class="form-control " type="text" id="prohibited"></div></th>
+					<th><div style="margin:10px;"><input class="form-control " type="text" id="alternative"></div></th>
+					<th><div style="margin:5px;"><button class="btn btn-primary" id="btnAdd"> 등록 </button></div></th>
+					<th><div style="margin:5px;"><button class="btn btn-primary" id="btnDel" > 삭제 </button></div></th>
 				</tr>
 			</table>
 

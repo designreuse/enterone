@@ -31,5 +31,23 @@
 		INSERT INTO FILTER(FIL_ALTERNATIVE, FIL_PROHIBITED ) 
 		VALUES( #{fil_prohibited} , #{fil_alternative} )
 	</insert> 
-
+	<!-- 금칙어 (수정) 조회 -->
+	
+	<select id="filterSel" resultType="Filter">
+		select * from filter 
+		where FIL_PROHIBITED = #{fil_prohibited}
+	</select> 
+	
+	<update id="filterUpdate" parameterType="Filter" >
+		UPDATE FILTER SET 
+		FIL_ALTERNATIVE = #{fil_alternative}
+		WHERE FIL_PROHIBITED = #{fil_prohibited}
+	
+	</update>
+	
+	
+	
+	
+	
+	
 </mapper>
