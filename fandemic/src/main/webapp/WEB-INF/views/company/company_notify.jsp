@@ -50,15 +50,14 @@
 		</div>
 		<c:forEach var="cnoc" items="${companyNotices}">
 			<div class="row">
-				<div class = "col-xl-12 col-md-12 col-12 noticesList" 
-					onclick="location.href='${pageContext.request.contextPath}/company/notifyDetail/${cnoc.cnoc_no}';"
-					style='cursor: pointer;'>
+				<div class = "col-xl-12 col-md-12 col-12 noticesList" >
 					
 					<div class = "col-xl-1 col-md-1 col-1">
 						${cnoc.cnoc_no}
 					</div>
 					<div class = "col-xl-9 col-md-9 col-9">
-						<p>[${cnoc.cnoc_subject}] ${cnoc.cnoc_title}</p>
+						<p onclick="location.href='${pageContext.request.contextPath}/company/notifyDetail/${cnoc.cnoc_no}';"
+					style='cursor: pointer;'>[${cnoc.cnoc_subject}] ${cnoc.cnoc_title}</p>
 					</div>
 					<div class = "col-xl-2 col-md-2 col-2">
 						${cnoc.cnoc_time}
