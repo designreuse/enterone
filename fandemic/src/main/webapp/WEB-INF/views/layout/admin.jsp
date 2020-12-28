@@ -178,7 +178,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="${pageContext.request.contextPath}/resourcesAdmin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">${company.com_id}</span>
+      <span class="brand-text font-weight-light">${sessionScope.company.com_id}</span>
     </a>
 
     <!-- 왼쪽메뉴 바  -->
@@ -220,7 +220,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="${pageContext.request.contextPath}/adminCompany" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>기업회원
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
@@ -229,7 +229,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="${pageContext.request.contextPath}/adminMember" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>개인회원
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
@@ -238,7 +238,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="${pageContext.request.contextPath}/adminFilter" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>금칙어 관리
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>

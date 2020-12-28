@@ -1,5 +1,6 @@
 package com.yedam.fandemic.vo;
 
+
 import lombok.Data;
 
 @Data

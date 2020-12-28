@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <!DOCTYPE html>
@@ -9,6 +10,14 @@
 <title>Insert title here</title>
 </head>
 <style>
+.wtitle {
+font-size: 1em !important;
+font-weight:bold;
+color:blue;
+}
+.qtitle {
+font-size: 2em !important;
+}
 table {
 	border: 3px solid;
 	border-color: black;
@@ -70,45 +79,63 @@ ul.tabs li.current {
 	$(function() {
 
 		$("#btn_next_apply1").on("click", function() {
-			
+
 			var ok = agreeChk(); //변수=메소드()
-			var agr= agChk();
-			
+			var agr = agChk();
+
 			if (ok && agr) { //만약 이 메소드가 yes라면 
 				$('.tab-content').removeClass('current');
 				$('.tab-link').removeClass('current');
 
 				$('.tab-link2').addClass('current');
 				$("#tab-2").addClass('current');
-				
-			} 
 
+			}
 
 		});
+		$("#btn_next_apply2").on("click", function() {
+			
+				$('.tab-content').removeClass('current');
+				$('.tab-link').removeClass('current');
+
+				$('.tab-link3').addClass('current');
+				$("#tab-3").addClass('current');
+
+		});
+		
+		$("#btn_next_minus1").on("click", function() {
+			
+			$('.tab-content').removeClass('current');
+			$('.tab-link').removeClass('current');
+
+			$('.tab-link1').addClass('current');
+			$("#tab-1").addClass('current');
+
+	});
 	});
 	function agChk() {
 		var ccc = $(':radio[name="pro_terms_privacy_must_yn"]:checked').val();
-		if (ccc=='N') {
+		if (ccc == 'N') {
 			alert("약관에 동의하여 주십시오");
 			return false;
 		} else {
 			return true;
 		}
 	}
-	
-	
-    function agreeChk(){
-        
-       	if ($(':radio[name="pro_terms_privacy_must_yn1"]:checked').length < 1) {
-       		//체크를 안했으니 0
-       		alert("약관에 체크 하셔야 다음 단계로 진행 가능합니다."); 
-       		return false;
-       		
-       	} else {
-       		return true;
-       	}
-    }       
 
+	function agreeChk() {
+
+		if ($(':radio[name="pro_terms_privacy_must_yn1"]:checked').length < 1) {
+			//체크를 안했으니 0
+			alert("약관에 체크 하셔야 다음 단계로 진행 가능합니다.");
+			return false;
+
+		} else {
+			return true;
+		}
+	}
+	
+	
 </script>
 <body>
 	<section class="page">
@@ -182,8 +209,8 @@ ul.tabs li.current {
 									<div class="form-radio"
 										style="float: left; margin-left: 400px;">
 										<input type="radio" id="pro_terms_privacy_must_y"
-											name="pro_terms_privacy_must_yn" value="Y" checked="checked"> <label
-											class="form-label" for="pro_terms_privacy_must_y">동의합니다.</label>
+											name="pro_terms_privacy_must_yn" value="Y" checked="checked">
+										<label class="form-label" for="pro_terms_privacy_must_y">동의합니다.</label>
 									</div>
 								</div>
 								<div class="col">
@@ -284,61 +311,61 @@ ul.tabs li.current {
 				</div>
 			</div>
 			<div id="tab-2" class="tab-content">
-				<h1>지원자 정보</h1>
+
 				<div class="section join form">
 					<h3 class="required hr">지원자 정보</h3>
 
 					<div class="form-group row">
-						<label class="col-3 title">이름</label>
-						<div class="col"></div>
+						<label class="col-3 title qtitle">이름</label>
+						<div class="col wtitle">${member.mem_name}</div>
 					</div>
 
 					<div class="form-group row">
-						<label class="col-3 title">성별</label>
-						<div class="col"></div>
+						<label class="col-3 title qtitle">성별</label>
+						<div class="col wtitle">${member.mem_gender}</div>
 					</div>
 
 					<div class="form-group row">
-						<label class="col-3 title">생년월일</label>
-						<div class="col"></div>
+						<label class="col-3 title qtitle">생년월일</label>
+						<div class="col wtitle">${fn:substring(member.mem_birth,0,10)}</div>
 					</div>
 
 					<div class="form-group row">
-						<label class="col-3 title">국적</label>
-						<div class="col">대한민국</div>
+						<label class="col-3 title qtitle">연락처</label>
+						<div class="col wtitle">${member.mem_phone}</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-3 title qtitle">이메일</label>
+						<div class="col wtitle">${member.mem_email}</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-3 title qtitle">주소</label>
+						<div class="col wtitle">${member.mem_address}</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<button class="btn btn-primary" id="btn_save_apply">지원서
+							저장</button>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<button class="btn btn-primary" id="btn_cancle_apply">지원
+							취소</button>
+					</div>
+					<div class="col-md-5 col-sm-5 col-xs-5"></div>
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<button class="btn btn-primary" id="btn_next_minus1" rel="step2">이전
+							단계</button>
 					</div>
 
-					<div class="form-group row">
-						<label class="col-3 title">연락처</label>
-						<div class="col-3">
-							<div class="row">
-								<div class="col">
-									<input type="text" id="pro_country_code"
-										name="pro_country_code" placeholder="국가번호" maxlength="5"
-										onkeydown="javascript:return only_num(event);"
-										onkeyup="javascript:remove_char(event);"
-										oninput="javascript:chk_num_len(this); return false;"
-										value="82">
-								</div>
-								<div class="col">
-									<input type="text" id="pro_phone" name="pro_phone"
-										placeholder="전화번호" maxlength="20"
-										onkeydown="javascript:return only_num(event);"
-										onkeyup="javascript:remove_char(event);"
-										oninput="javascript:chk_num_len(this); return false;">
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label class="col-3 title">아이디(이메일)</label>
-						<div class="col"></div>
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<button class="btn btn-primary" id="btn_next_apply2" rel="step2">다음
+							단계</button>
 					</div>
 				</div>
 			</div>
 			<div id="tab-3" class="tab-content">
-				<h1>탭 메뉴 3 내용입니다.</h1>
+				<h1>지원서 입력</h1>
 				<p>대한민국은 국제평화의 유지에 노력하고 침략적 전쟁을 부인한다. 국군의 조직과 편성은 법률로 정한다. 타인의
 					범죄행위로 인하여 생명·신체에 대한 피해를 받은 국민은 법률이 정하는 바에 의하여 국가로부터 구조를 받을 수 있다. 모든
 					국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. 모든 국민은 소급입법에 의하여 참정권의 제한을 받거나 재산권을
