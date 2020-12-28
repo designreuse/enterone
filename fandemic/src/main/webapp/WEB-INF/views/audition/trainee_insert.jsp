@@ -10,10 +10,15 @@
 <title>Insert title here</title>
 </head>
 <style>
+
+.jumbotron{
+text-align:left !important;
+}
 .wtitle {
 font-size: 1em !important;
 font-weight:bold;
 color:blue;
+margin: 5px;
 }
 .qtitle {
 font-size: 2em !important;
@@ -96,13 +101,23 @@ ul.tabs li.current {
 		$("#btn_next_apply2").on("click", function() {
 			
 				$('.tab-content').removeClass('current');
-				$('.tab-link').removeClass('current');
+				$('.tab-link2').removeClass('current');
 
 				$('.tab-link3').addClass('current');
 				$("#tab-3").addClass('current');
 
 		});
 		
+		$("#btn_next_apply3").on("click", function() {
+			
+			$('.tab-content').removeClass('current');
+			$('.tab-link3').removeClass('current');
+
+			$('.tab-link4').addClass('current');
+			$("#tab-4").addClass('current');
+
+	});
+
 		$("#btn_next_minus1").on("click", function() {
 			
 			$('.tab-content').removeClass('current');
@@ -112,6 +127,17 @@ ul.tabs li.current {
 			$("#tab-1").addClass('current');
 
 	});
+		
+$("#btn_next_minus2").on("click", function() {
+			
+			$('.tab-content').removeClass('current');
+			$('.tab-link').removeClass('current');
+
+			$('.tab-link2').addClass('current');
+			$("#tab-2").addClass('current');
+
+	});
+		
 	});
 	function agChk() {
 		var ccc = $(':radio[name="pro_terms_privacy_must_yn"]:checked').val();
@@ -144,9 +170,9 @@ ul.tabs li.current {
 			<ul class="tabs">
 				<li class="tab-link current" data-tab="tab-1">이용약관</li>
 				<li class="tab-link2" data-tab="tab-2">지원자 정보</li>
-				<li class="tab-link" data-tab="tab-3">지원서 입력</li>
-				<li class="tab-link" data-tab="tab-3">파일 업로드</li>
-				<li class="tab-link" data-tab="tab-3">지원서 확인</li>
+				<li class="tab-link3" data-tab="tab-3">지원서 입력</li>
+				<li class="tab-link4" data-tab="tab-4">파일 업로드</li>
+				<li class="tab-link5" data-tab="tab-5">지원서 확인</li>
 			</ul>
 			<!-- 탭 메뉴 상단 끝 -->
 			<!-- 탭 메뉴 내용 시작 -->
@@ -311,9 +337,9 @@ ul.tabs li.current {
 				</div>
 			</div>
 			<div id="tab-2" class="tab-content">
-
+<div class="jumbotron">
 				<div class="section join form">
-					<h3 class="required hr">지원자 정보</h3>
+					<h3 class="required hr" style="margin:10px -20px;">지원자 정보</h3>
 
 					<div class="form-group row">
 						<label class="col-3 title qtitle">이름</label>
@@ -343,6 +369,7 @@ ul.tabs li.current {
 						<div class="col wtitle">${member.mem_address}</div>
 					</div>
 				</div>
+				</div>
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_save_apply">지원서
@@ -366,10 +393,139 @@ ul.tabs li.current {
 			</div>
 			<div id="tab-3" class="tab-content">
 				<h1>지원서 입력</h1>
-				<p>대한민국은 국제평화의 유지에 노력하고 침략적 전쟁을 부인한다. 국군의 조직과 편성은 법률로 정한다. 타인의
-					범죄행위로 인하여 생명·신체에 대한 피해를 받은 국민은 법률이 정하는 바에 의하여 국가로부터 구조를 받을 수 있다. 모든
-					국민은 법률이 정하는 바에 의하여 공무담임권을 가진다. 모든 국민은 소급입법에 의하여 참정권의 제한을 받거나 재산권을
-					박탈당하지 아니한다.</p>
+				<form id="frm" name="frm" method="post" enctype="multipart/form-data" onsubmit="return false;">
+        <input type="hidden" id="pro_last_save_step" name="pro_last_save_step" value="step3">
+        <input type="hidden" id="mem_idx" name="mem_idx" value="74402">
+        <input type="hidden" id="adt_idx" name="adt_idx" value="1">
+        <input type="hidden" id="pro_idx" name="pro_idx" value="77557">
+        
+        <div class="section join form">
+        <div class="jumbotron">
+            <h3 class="required hr">필수입력</h3>
+
+            <div class="form-group row">
+                <label class="col-3 title">지원분야</label>
+                <div class="col">
+
+                    <select id="adf_idx" name="adf_idx">
+                        <option value="">지원분야 선택 (1지망)</option>
+                                                        <option value="1">보컬</option>
+                                                        <option value="2">랩</option>
+                                                        <option value="3">댄스</option>
+                                                    </select>
+                </div>
+                <div class="col">
+                    <select id="adf_idx_2nd" name="adf_idx_2nd">
+                        <option value="">지원분야 선택 (2지망)</option>
+                                                        <option value="1">보컬</option>
+                                                        <option value="2">랩</option>
+                                                        <option value="3">댄스</option>
+                                                    </select>
+                </div>
+            </div>
+			
+            <div class="form-group row">
+                <label class="col-3 title">신장(cm) / 체중(kg)</label>
+                <div class="col">
+                    <input type="text" id="pro_tall" name="pro_tall" placeholder="신장 cm 단위. 숫자만 입력" maxlength="5" onkeydown="javascript:return only_num(event);" onkeyup="javascript:remove_char(event);" oninput="javascript:chk_num_len(this); return false;" value="">
+                </div>
+                <div class="col">
+                    <input type="text" id="pro_weight" name="pro_weight" placeholder="체중 kg 단위. 숫자만 입력" maxlength="5" onkeydown="javascript:return only_num(event);" onkeyup="javascript:remove_char(event);" oninput="javascript:chk_num_len(this); return false;" value="">
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="col-3 title">주소</label>
+                <div class="col">
+                    <div class="form-group row">
+                        <div class="col">
+                            <input type="text" id="pro_postcode" name="pro_postcode" placeholder="우편번호" value="">
+                            <input type="hidden" id="pro_addr_ext" name="pro_addr_ext" value="">
+                        </div>
+                        <div class="col">
+                            <button class="button btn-block yg-black" id="btn_search_postcode">우편번호찾기 (대한민국 한정)</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col">
+                            <input type="text" id="pro_addr1" name="pro_addr1" placeholder="기본주소" value="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col">
+                            <input type="text" id="pro_addr2" name="pro_addr2" placeholder="상세주소" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- //section -->
+</div>
+        <input type="hidden" id="pro_terms_privacy_select_yn" name="pro_terms_privacy_select_yn" value="Y">
+                        <div class="section join form">
+           <div class="jumbotron">
+            <h3 class="hr">선택입력</h3>
+            
+            <div class="form-group row">
+                <label class="col-3 title">직업</label>
+                <div class="col">
+                    <input type="text" id="pro_job" name="pro_job" placeholder="학생인 경우, 학교명/학년 기재" value="">
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label class="col-3 title">혈액형</label>
+                <div class="col select-box">
+                    <select id="pro_blood_type" name="pro_blood_type">
+                        <option value="">혈액형을 선택하세요.</option>
+                                                        <option value="1">A형</option>
+                                                        <option value="2">B형</option>
+                                                        <option value="3">O형</option>
+                                                        <option value="4">AB형</option>
+                                                    </select>
+                </div>
+            </div>
+
+        <div class="form-group row">
+            <label class="col-3 title">취미/특기</label>
+            <div class="col">
+                <textarea id="pro_hobby" name="pro_hobby" aria-label="With textarea" placeholder="예시. 피아노,현대무용,미디,작곡 등"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-3 title">경력사항</label>
+            <div class="col">
+                <textarea id="pro_career" name="pro_career" aria-label="With textarea" placeholder="지원 분야 관련 대회 수상 경력, 방송 출연 경험, 연습생 경력 등 기재"></textarea>
+            </div>
+        </div>
+        	
+</div><!-- //section -->
+<div class="row">
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<button class="btn btn-primary" id="btn_save_apply">지원서
+							저장</button>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<button class="btn btn-primary" id="btn_cancle_apply">지원
+							취소</button>
+					</div>
+					<div class="col-md-5 col-sm-5 col-xs-5"></div>
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<button class="btn btn-primary" id="btn_next_minus2" rel="step2">이전
+							단계</button>
+					</div>
+
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<button class="btn btn-primary" id="btn_next_apply3" rel="step2">다음
+							단계</button>
+					</div>
+				</div>
+</div>
+
+</form>
 			</div>
 			<!-- 탭 메뉴 내용 끝 -->
 		</div>
