@@ -9,7 +9,6 @@
 
 
 <section class="page">
-
 	<div class="container">
 		<div class="row">
 			<div class="companySlide">
@@ -32,26 +31,41 @@
 	</div>
 
 	<div class="container">
-
-	
-	
+		<br>
+		<br>
 		<div class="row">
-			<table class = "table">
-				<tr>
-					<td width = 5%>no</td>
-					<td width = 10%>말머리</td>
-					<td width = 70%>제목</td>
-					<td width = 10%>작성일</td>
-				</tr>
-				<c:forEach var="cnoc" items="${companyNotices}">
-					<tr>
-						<td>${cnoc.cnoc_no}</td>
-						<td>${cnoc.cnoc_subject}</td>
-						<td>${cnoc.cnoc_title}</td>
-						<td>${cnoc.cnoc_time}</td>
-					</tr>
-				</c:forEach>
-			</table>
+			<div class = "col-xl-12 col-md-12 col-12 noticesList">
+				
+				<div class = "col-xl-1 col-md-1 col-1">
+					<h6>no</h6>
+				</div>
+				<div class = "col-xl-9 col-md-9 col-9">
+					<h6>제목</h6>
+				</div>
+				<div class = "col-xl-2 col-md-2 col-2">
+					<h6>작성일</h6>
+				</div>
+				
+			</div>
+		</div>
+		<c:forEach var="cnoc" items="${companyNotices}">
+			<div class="row">
+				<div class = "col-xl-12 col-md-12 col-12 noticesList" 
+					onclick="location.href='${pageContext.request.contextPath}/company/notifyDetail/${cnoc.cnoc_no}';"
+					style='cursor: pointer;'>
+					
+					<div class = "col-xl-1 col-md-1 col-1">
+						${cnoc.cnoc_no}
+					</div>
+					<div class = "col-xl-9 col-md-9 col-9">
+						<p>[${cnoc.cnoc_subject}] ${cnoc.cnoc_title}</p>
+					</div>
+					<div class = "col-xl-2 col-md-2 col-2">
+						${cnoc.cnoc_time}
+					</div>
+				</div>
+			</div>	
+		</c:forEach>
 		</div>
 	</div>
 </section>

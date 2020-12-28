@@ -56,8 +56,10 @@ public class CompanyController {
 	}
 	
 	//소속사 공지사항 세부내용 출력
-	@RequestMapping(value="/company/notifyD")
-	public ModelAndView companyNotifyDetail(HttpServletResponse response) throws IOException{
+	@RequestMapping(value="/company/notifyDetail/{no}")
+	public ModelAndView companyNotifyDetail(@PathVariable String no, Cnotice cnocVo, Model model) throws IOException{
+		cnocVo.setCnoc_no(no);
+		model.addAttribute("companyNotice", cnoticeDao.getCnoticeDetail(cnocVo));
 		return new ModelAndView("company/company_notify_detail");
 	}
 	

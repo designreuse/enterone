@@ -34,21 +34,25 @@
 	
 	<hr>
 	<div class="container">
-		<div class = "col-xl-1 col-md-1 col-1"></div>
-		<div class = "col-xl-10 col-md-10 col-12">
+		<div class = "col-xl-12 col-md-12 col-12">
 			<div class="row">
-				<h6>제목이라고!!!</h6>
+				<h5>[${companyNotice.cnoc_subject}] ${companyNotice.cnoc_title}</h5>
 			</div>
 			
 			<div class="row alignRight">
-				<p>날짜라고 !!!!!</p>
+				<p>${companyNotice.cnoc_time}</p>
 			</div>
 			
 			<br>
 			<div class="row alignLeft textbox">
-			안녕 난 내용이야
+				${companyNotice.cnoc_content}
+			</div>
+			<br>
+			<hr>
+			<br>
+			<div class="row alignLeft textbox">
+				첨부파일
 			</div>
 		</div>
-		<div class = "col-xl-1 col-md-1 col-1"></div>
 	</div>
 </section>

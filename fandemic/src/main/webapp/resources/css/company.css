@@ -101,6 +101,13 @@
 	padding: 0;
 }
 
+/* 공지사항 목록 */
+.noticesList{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-bottom-color: #f7f7f7;
+}
+
 /* 공지사항 세부내용 */
 .alignLeft{
 	text-align: left;
@@ -109,8 +116,8 @@
 	text-align: right;
 }
 .textbox{
-	background-color: red;
-	padding : 10px;
+	background-color: #f7f7f7;
+	padding : 2em;
 }
 
 
