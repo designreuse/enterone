@@ -71,21 +71,26 @@ public class AdminController {
 	}
 	
 	// 금칙어 등록, 수정
+	
 	@RequestMapping("/filterAdd")
 	@ResponseBody
 	public void filterAdd(Model model, Filter filter, HttpServletRequest request) throws IOException{
 		
-		filter.setFil_prohibited(request.getParameter("fil_prohibited")); // 금칙어 가져와서
-		filter = dao.filterSel(filter); // 중복 확인 후
+		String fil_prohibited = request.getParameter("fil_prohibited"); //금칙어
+		String fil_alternative = request.getParameter("fil_alternative"); //대체어
 		
-		if (filter != null) { // 중복이면 
+		
+		filter.setFil_prohibited(fil_prohibited); // 금칙어 가져와서
+		
+		
+		if (dao.filterSel(filter) != 0) { // 중복이면 
 			//수정
-			filter.setFil_alternative(request.getParameter("fil_alternative")); // 대체어만 넣어서
+			filter.setFil_alternative(fil_alternative); // 대체어만 넣어서
 			dao.filterUpdate(filter); // 수정
 			
 		} else { // 중복이 아니면
-			filter.setFil_prohibited(request.getParameter("fil_prohibited")); //금칙어 다시 넣고
-			filter.setFil_alternative(request.getParameter("fil_alternative")); // 대체어도 넣고
+			filter.setFil_prohibited(fil_prohibited); //금칙어 다시 넣고
+			filter.setFil_alternative(fil_alternative); // 대체어도 넣고
 			dao.filterAdd(filter); // 등록
 		}
 		
@@ -94,12 +99,14 @@ public class AdminController {
 	
 	// 금칙어 삭제
 	@RequestMapping("/filterDel")
-	public String filterDel(Model model) throws IOException{
+	@ResponseBody
+	public String filterDel(Model model, Filter filter, HttpServletRequest request, String[] list) throws IOException{
 		
 		
-		
-		
-		
+		System.out.println("=========================" + list);
+		filter.setList(list);
+		dao.filterDelete(filter);
+		System.out.println("삭제 성공");
 		
 
 		return null;

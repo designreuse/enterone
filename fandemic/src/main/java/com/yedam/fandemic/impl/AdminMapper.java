@@ -14,10 +14,9 @@ public interface AdminMapper {
 	public List<Company> companyList();
 	
 	public void filterAdd(Filter filter); // 금칙어 등록
-	public Filter filterSel(Filter filter); // 금칙어 중복확인
+	public int filterSel(Filter filter); // 금칙어 중복확인
 	public void filterUpdate(Filter filter); // 금칙어 수정
-	
-	
+	public void filterDelete(Filter filter); // 금칙어 삭제
 	
 	
 	

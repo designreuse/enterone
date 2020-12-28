@@ -17,6 +17,10 @@
 <script>
 	$(document).ready(function() {
 		
+		var chkArray = new Array(); // 배열 선언
+
+		
+		
 		//등록 수정
 		$("#btnAdd").click(function(){
 			
@@ -41,7 +45,31 @@
 		// 삭제
 		$("#btnDel").click(function(){
 			
-			//링크보고 다시
+			chkArray = new Array();
+			 $('input:checkbox[name=del]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+	            chkArray.push(this.value);
+		        });
+			 console.log(chkArray);
+			 
+			 $.ajax({
+		            url :'${pageContext.request.contextPath}/filterDel',
+		            type:"post",
+		            traditional : true,
+		            data : { "list" : chkArray },
+		            
+		            success:function(data){
+		            	
+						alert("삭제되었습니다.");
+						$(location).attr('href','${pageContext.request.contextPath}/adminFilter');
+		             	
+		            },error:function(){ alert("실패"); }
+		         });
+			 
+			 
+			 
+			 
+			 
+	       
 			
 	    });
 		
@@ -58,8 +86,7 @@
 			$("#prohibited").val(fil_prohibited);
 			$("#alternative").val(fil_alternative);
 			$("#prohibited").attr("readonly",true);
-			
-			console.log(fil_prohibited,fil_alternative);
+
 	    });
 		
 
@@ -98,7 +125,7 @@
 			<tbody>
 			<c:forEach  var="fil" items="${filter}" varStatus="status">
 				<tr>
-					<td><input type="checkbox" name="del" value="${fil.fil_prohibited}"></td>
+					<th><input type="checkbox" name="del" value="${fil.fil_prohibited}"></th>
 					<td scope="row">${fil.fil_no}</td>
 					<td>${fil.fil_prohibited}</td>
 					<td>${fil.fil_alternative}</td>
