@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	.table td{
 		vertical-align: middle;
@@ -64,12 +65,15 @@
 			/* alert("등록버튼눌림"); */
 			CnoticeFormCheck(); //유효성검사
 		});
+		//파일등록이벤트
 		$(".cnoc_file").text("${cnotice.cnoc_file}");
 		
 	 	var fileTarget = $("#file"); //input type=file
 	 	fileTarget.on("change",function(){ // 값이변경되면
-	 		var cur=$(".fileboxi input[type='file']").val();
-	 		$(".upload-name").val(cur);
+	 		var cur=$(".fileboxi input[type='file']").val(); //input file의 value값을 받아서
+	 		$(".upload-name").val(cur); //업로드파일명 출력 
+	 		
+	 		
 	 	});
 
 	
@@ -157,8 +161,9 @@
 										<label class="filebox" for="file">업로드</label>
                       					<input type="file" id="file" class="cnoc_file" name="cnoc_file" multiple>
                       					<input class="upload-name" value="파일선택"><br>
-                      					<input type="text" class="filetext" style="display:none;"><!--  여기 업로드된 파일 조회목록 -->
-                      					
+                      					<c:forTokens items="${cnotice.cnoc_file }" delims=" " var="cnotice">
+                      						<input type="text" class="filetext" style="display:;" value="${cnotice }"><!--  여기 업로드된 파일 조회목록 -->
+                      					</c:forTokens>
                       					
                       					              					
                      				</td>
