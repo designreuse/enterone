@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Company {
 
+	String com_no;
 	String com_id;			//소속사ID
 	String com_pw;			//패스워드
 	String com_name;		//소속사명

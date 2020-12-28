@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class Member {
-
+	
+	String mem_no;			// rownum
 	String mem_id;			//개인회원ID
 	String mem_name;		//회원이름
 	String mem_pw;			//회원PW
