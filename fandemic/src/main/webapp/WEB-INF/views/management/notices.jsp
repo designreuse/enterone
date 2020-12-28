@@ -24,6 +24,9 @@
   color: white;
   border: 1px solid black;
 }
+div #dataTable_filter{
+		text-align:right;
+}
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
@@ -53,12 +56,23 @@
 		});
 		
 		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
-		table.on("click","tr a",function(){
-			alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호
+		table.on("click","tr a",function(){ //게시물 tr에 제목 클릭했을때 ~
+			/* alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호 */
 			var cnoc_no = $(this).parent().prev().text();
-			location.href="${pageContext.request.contextPath}/management/noticesDetail?cnoc_no="+cnoc_no;
+			location.href="${pageContext.request.contextPath}/management/noticesDetail?cnoc_no="+cnoc_no;	
+		});//end 게시물 제목 클릭
 		
-			
+		
+		//체크박스 클릭 이벤트
+		table.on("click","input[type=checkbox]",function(){		 	
+			if(!$(this).attr("checked")){
+				$(this).attr("checked",true);
+			}else{
+				$(this).attr("checked",false)
+			}
+		});
+		
+		$(".btn-delete").on("click",function(){
 			
 		});
 		
@@ -96,7 +110,9 @@
 		});//end each
 		$('#dataTable').DataTable();
 		
-		
+		/* $("input[type=checkbox]").click(function(){
+			alert("뭔데")
+		}) */
 	}//end cnoticeListResult
 </script>
      <!-- Content Header (Page header) -->
@@ -116,6 +132,7 @@
       </div><!-- /.container-fluid -->
     </section>
     <!--  공지 게시판 -->
+    <form method="POST">
     <div class="row">
           <div class="col-12">
             <div class="card">
@@ -124,6 +141,7 @@
               </div>
               <!-- ./card-header -->
               <div class="card-body">
+              
                 <table id="dataTable" class="table table-bordered table-hover">
                   <thead>
                     <tr>
@@ -139,6 +157,7 @@
                                  
                   </tbody>
                 </table>
+           
               </div>
               <!-- /.card-body -->
               <div>
@@ -153,4 +172,5 @@
             <!-- /.card -->
           </div>
         </div>
+    </form>
 </div>

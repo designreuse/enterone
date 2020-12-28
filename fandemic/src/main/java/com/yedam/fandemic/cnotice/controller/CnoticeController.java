@@ -61,11 +61,33 @@ public class CnoticeController {
 	}
 	
 	// 소속사 공지사항 상세보기
-		@RequestMapping(value = "/management/noticesDetail")
-		public String noticesDetail(Model model, Cnotice cnotice) {
-			System.out.println(cnotice.getCnoc_no()); //클릭한게시물번호받아와서
-			model.addAttribute("cnotice", cnoticedao.getCnoticeDetail(cnotice));//조회한후 값던짐
-			return "mgt/noticesDetail";
-		}
+	@RequestMapping(value = "/management/noticesDetail")
+	public String noticesDetail(Model model, Cnotice cnotice) {
+		System.out.println(cnotice.getCnoc_no()); //클릭한게시물번호받아와서
+		model.addAttribute("cnotice", cnoticedao.getCnoticeDetail(cnotice));//조회한후 값던짐
+		return "mgt/noticesDetail";
+	}
+	
+	@RequestMapping(value="/management/noticesUpdate")
+	public String noticesUpdate(HttpServletRequest request, Model model, Cnotice cnotice) throws IllegalStateException, IOException  {
+		// request multipart로 캐스팅
+	      MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+	      String sumFile=request.getParameter("file_name");
+	   // 이미지파일
+	      List<MultipartFile> multipartFile = multipartRequest.getFiles("uploadFile");
+	      for(int i=0; i<multipartFile.size(); i++) {
+		      if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images");
+		    	  System.out.println("path="+path);
+		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
+		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
+		         cnotice.setCnoc_file(sumFile);
+		      }
+	      }
+		cnoticedao.updateCnotice(cnotice);
+		model.addAttribute("cnotice", cnoticedao.getCnoticeDetail(cnotice));//조회한후 값던짐
+		return "mgt/noticesDetail";
+	}
+		
 	
 }

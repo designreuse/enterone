@@ -39,5 +39,15 @@
 	 	               			#{cnoc_limit},
 	 	               			#{cnoc_file})
 	</insert>
+	<!-- 공지사항 수정 -->
+	<update id="updateCnotice" parameterType="Cnotice">
+		UPDATE CNOTICE
+		<set>
+			<if test="cnoc_title != null">cnoc_title=#{cnoc_title}</if>
+			<if test="cnoc_content != null">,cnoc_content=#{cnoc_content}</if>
+		</set> 
+		WHERE CNOC_NO= #{cnoc_no}
+	
+	</update>
 
 </mapper>

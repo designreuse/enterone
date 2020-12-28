@@ -37,6 +37,7 @@
 		width:100%;
 	}
 	
+	
 </style>
 <script>
 
@@ -66,7 +67,7 @@
 			CnoticeFormCheck(); //유효성검사
 		});
 		//파일등록이벤트
-		$(".cnoc_file").text("${cnotice.cnoc_file}");
+		$(".uploadFile").text("${cnotice.cnoc_file}");
 		
 	 	var fileTarget = $("#file"); //input type=file
 	 	fileTarget.on("change",function(){ // 값이변경되면
@@ -119,7 +120,7 @@
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
-					<form method="post" action="${pageContext.request.contextPath}/management/noticesInsert" enctype="multipart/form-data">
+					<form method="post" action="${pageContext.request.contextPath}/management/noticesUpdate" enctype="multipart/form-data">
 						<table class="table table-striped"
 							style="text-align: center; border: 1px solid #dddddd">
 							<thead>
@@ -159,10 +160,10 @@
 									<td colspan="1" align="left"></td>
 									<td colspan="3" class="fileboxi">
 										<label class="filebox" for="file">업로드</label>
-                      					<input type="file" id="file" class="cnoc_file" name="cnoc_file" multiple>
+                      					<input type="file" id="file" class="cnoc_file" name="uploadFile" multiple>
                       					<input class="upload-name" value="파일선택"><br>
                       					<c:forTokens items="${cnotice.cnoc_file }" delims=" " var="cnotice">
-                      						<input type="text" class="filetext" style="display:;" value="${cnotice }"><!--  여기 업로드된 파일 조회목록 -->
+                      						<input type="text" class="filetext" name="file_name" style="display:;" value="${cnotice }"><!--  여기 업로드된 파일 조회목록 -->
                       					</c:forTokens>
                       					
                       					              					
