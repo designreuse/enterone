@@ -31,8 +31,6 @@
 
 	<div class="container">
 		<div class="row">
-			<%--<img class="companyimg col-md-12 col-sm-12 col-xs-12" src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg" alt="company_main"> --%>
-
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="row companySector"></div>
 

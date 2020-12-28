@@ -55,6 +55,13 @@ public class CompanyController {
 		return new ModelAndView("company/company_notify");
 	}
 	
+	//소속사 공지사항 세부내용 출력
+	@RequestMapping(value="/company/notifyD")
+	public ModelAndView companyNotifyDetail(HttpServletResponse response) throws IOException{
+		return new ModelAndView("company/company_notify_detail");
+	}
+	
+	
 	@RequestMapping(value="/company/starProfile")
 	public ModelAndView companyStarProfile(HttpServletResponse response) throws IOException{
 		return new ModelAndView("company/company_star_profile");

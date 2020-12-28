@@ -101,6 +101,21 @@
 	padding: 0;
 }
 
+/* 공지사항 세부내용 */
+.alignLeft{
+	text-align: left;
+}
+.alignRight{
+	text-align: right;
+}
+.textbox{
+	background-color: red;
+	padding : 10px;
+}
+
+
+
+/* 화면 넘어가는거 */
 ul, li {
 	list-style: none;
 }
