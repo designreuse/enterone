@@ -27,9 +27,11 @@ SELECT * FROM SNS order by sns_no desc
 
 </select>
 <select id="selectMySns" resultType="Sns">
-SELECT SNS_IMG FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
+SELECT SNS_PIC FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
 </select>
-
+<select id="countMySns" resultType="int">
+SELECT COUNT(*) FROM SNS where MEM_ID = #{mem_id}
+</select>
 
 
 </mapper>

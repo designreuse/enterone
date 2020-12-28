@@ -11,4 +11,6 @@ public interface SnsMapper {
 	public List<Sns> selectSns(Sns sns);
 	//My SNS
 	public List<Sns> selectMySns(Sns sns);
+	//My SNS count
+	public int countMySns(Sns sns);
 }

@@ -226,7 +226,7 @@
 						<div class="featured-author">
 							<div class="featured-a;;/uthor-inner">
 								<div class="featured-author-cover"
-									style="background-image: url('images/news/img15.jpg');">
+									style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlxjchU3nSVmv0TUW_Df4YzVhWyWtk3nHy3g&usqp=CAU');">
 									<div class="badges">
 										<div class="badge-item">
 											<i class="ion-star"></i> Featured
@@ -234,11 +234,13 @@
 									</div>
 									<div class="featured-author-center">
 										<figure class="featured-author-picture">
-											<img src="${member.mem_pic }" alt="Sample Article">
+										<p>
+											<img src="${member.mem_pic}" alt="Sample Article">
+											</p>
 										</figure>
 										<div class="featured-author-info">
-											<h2 class="name">${member.mem_id}</h2>
-											<div class="desc">${member.mem_email }</div>
+											<h2 class="name">${member.mem_id} </h2>
+											<div class="desc">${member.mem_email}</div>
 										</div>
 									</div>
 								</div>
@@ -247,7 +249,7 @@
 										<div class="item">
 											<a href="#">
 												<div class="name">Posts</div>
-												<div class="value">글 갯수 보여줌</div>
+												<div class="value">${countmysns}</div>
 											</a>
 										</div>
 										<div class="item">
@@ -271,9 +273,9 @@
 										<h2 class="block-title">Photos</h2>
 										<div class="block-body">
 											<ul class="item-list-round" data-magnific="gallery">
-												<c:forEach items="mysnslist" var="mySns" > 
-												<li><a href="images/news/img06.jpg"
-													style="background-image: url('images/news/img06.jpg');"></a></li>
+												<c:forEach items="${mysnslist }" var="mySns" > 
+												<li><a href="${mySns.sns_pic}"
+													style="background-image: url('${mySns.sns_pic}');"></a></li>
 													</c:forEach>
 											</ul>
 										</div>
