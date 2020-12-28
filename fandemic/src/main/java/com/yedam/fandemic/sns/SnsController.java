@@ -20,8 +20,12 @@ public class SnsController {
 	
 	
 	@RequestMapping(value = "/sns")
-	public ModelAndView sns(HttpServletResponse response) throws IOException {
-		return new ModelAndView("sns/sns");
+	public ModelAndView sns(HttpServletResponse response, Sns sns) throws IOException {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("snslist", snsdao.selectSns(sns));
+		mav.addObject("mysnslist", snsdao.selectMySns(sns));
+		mav.setViewName("sns/sns");
+		return mav;
 	}
 	// SNS 등록
 	@RequestMapping(value = "/sns/snsInsert")
@@ -29,4 +33,7 @@ public class SnsController {
 		snsdao.insertSns(sns);
 		return "sns/sns";
 	}
+
+		
+
 }

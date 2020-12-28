@@ -11,7 +11,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 텍스트 모달 띄우기 -->
 
@@ -83,28 +83,31 @@
 
 				<!-- SNS등록창 모달 (텍스트) -->
 				<div id="ex7" class="modal">
-					<form method="post" action="${pageContext.request.contextPath}/sns/snsInsert" enctype="multipart/form-data">
-					<div class="mtmtitle">
-						<table style="margin: 25px">
-							<tr>
-							<th><input type="text" id="mem_id" name="mem_id"
-									placeholder="" value="${member.mem_id }"></th>
-								<th><input type="text" id="sns_title" name="sns_title"
-									placeholder="제목"></th>
-							</tr>
-							<tr>
-								<td>
-									<hr>
-								<td>
-							</tr>
-							<tr>
-								<td><textarea rows="10" cols="51" placeholder="내용을 적어주세요" name="sns_content"></textarea>
-								</td>
-							</tr>
-						</table>
-						<hr>
-						<a href="#" rel="modal:close">닫기</a> <button>포스팅</button>>
-					</div>
+					<form method="post"
+						action="${pageContext.request.contextPath}/sns/snsInsert">
+						<div class="mtmtitle">
+							<table style="margin: 25px">
+								<tr>
+									<th><input type="text" id="mem_id" name="mem_id"
+										placeholder="" value="${member.mem_id }"></th>
+									<th><input type="text" id="sns_title" name="sns_title"
+										placeholder="제목"></th>
+								</tr>
+								<tr>
+									<td>
+										<hr>
+									<td>
+								</tr>
+								<tr>
+									<td><textarea rows="10" cols="51" placeholder="내용을 적어주세요"
+											name="sns_content"></textarea></td>
+								</tr>
+							</table>
+							<hr>
+							<a href="#" rel="modal:close">닫기</a>
+							<button>포스팅</button>
+							>
+						</div>
 					</form>
 				</div>
 				<script>
@@ -152,38 +155,68 @@
 				</div>
 				<div class="row">
 					<article class="col-md-12 article-list">
-						<div class="inner">
-							<figure>
-								<a href="single.html"> <img src="images/news/img09.jpg"
-									alt="사진이 출력되는 곳">
-								</a>
-							</figure>
-							<div class="details">
-								<div class="detail">
-									<div class="category">
-										<a href="#">Post Date</a>
-									</div>
-									<div class="time">SNS 글 날짜 출력되는곳</div>
-								</div>
-								<p>sns글이 출력되는 필드</p>
-								<footer>
-									<a href="#" class="love"><i
-										class="ion-android-favorite-outline"></i>
-										<div>783</div></a> <a class="btn btn-primary more"
-										href="single.html">
-										<div>더보기</div>
-										<div>
-											<i class="ion-ios-arrow-thin-right"></i>
+						<c:forEach items="${snslist}" var="sns">
+							<c:if test="${not empty sns.sns_pic}">
+								<div class="inner" style="padding-bottom: 40px;">
+									<figure>
+										<a href="single.html"> <img src="${sns.sns_pic}"
+											alt="사진이 출력되는 곳">
+										</a>
+									</figure>
+									<div class="details">
+										<div class="detail">
+											<div class="category">
+												<a href="#">Post Date</a>
+											</div>
+											<div class="time">${sns.sns_time}</div>
 										</div>
-									</a>
-								</footer>
-							</div>
-						</div>
+										<p>${sns.sns_content}${sns.sns_pic}</p>
+										<footer>
+											<a href="#" class="love"><i
+												class="ion-android-favorite-outline"></i>
+												<div>${sns.sns_likes}</div></a> <a class="btn btn-primary more"
+												href="single.html">
+												<div>더보기</div>
+												<div>
+													<i class="ion-ios-arrow-thin-right"></i>
+												</div>
+											</a>
+										</footer>
+									</div>
+								</div>
+							</c:if>
+							<c:if test="${empty sns.sns_pic}">
+								<div class="inner" style="padding-bottom: 40px;">
+									<div class="details" style="padding: 9px; margin: 0px;">
+										<div class="detail">
+											<div class="category">
+												<a href="#">Post Date</a>
+											</div>
+											<div class="time">${sns.sns_time}</div>
+										</div>
+										<p>${sns.sns_content}</p>
+										<footer>
+											<a href="#" class="love"><i
+												class="ion-android-favorite-outline"></i>
+												<div>${sns.sns_likes}</div></a> <a class="btn btn-primary more"
+												href="single.html">
+												<div>더보기</div>
+												<div>
+													<i class="ion-ios-arrow-thin-right"></i>
+												</div>
+											</a>
+										</footer>
+									</div>
+								</div>
+							</c:if>
+
+
+						</c:forEach>
 					</article>
 				</div>
 			</div>
 
-
+<!-- <!-- ㅇㄴㄹ ㅁㅇㄹ.ㅏㅜㄴㅁㄹ어ㅜㅠㅁ어나ㅠㅁㄹㅇ나ㅠㅗㄹㄴㅁ아ㅓㅗㅇㄴ머ㅜㅗㄴ아ㅓㅗㅇ누ㄹㄴㅁㄹ.ㅏㅓㄴㅁ우춘마ㅓㅠㅜ차ㅓㄴ뮤와뉴마ㅣㅓㅗㄴㅁ아ㅓㅣ롸ㅓㄴㅇㅁ롸ㅓㄴㅁㅇㄴ룀논말어ㅓㅗㄹ무ㅠㅇ니ㅏㅍㄴ머ㅠ오미나ㅣㄴㅁ아ㅗ룸ㄴㅊㅎ춞ㄷ슐챠ㅛㅂㅅㄱ츄ㅛㅑㅐㅈㅂㅅ갸슈마ㅣㅗㄴㅇㅁ라ㅓㅘㅓㅇㄴ뫈ㅇ몰ㅇ나미ㅗ라ㅓㄴ모알ㅇㄴ뫄ㅓㅇㄴ몸러 -->
 
 			<!-- 사이드바 구역 -->
 			<div class="col-xs-6 col-md-4 sidebar" id="sidebar">
@@ -201,11 +234,11 @@
 									</div>
 									<div class="featured-author-center">
 										<figure class="featured-author-picture">
-											<img src="images/img01.jpg" alt="Sample Article">
+											<img src="${member.mem_pic }" alt="Sample Article">
 										</figure>
 										<div class="featured-author-info">
-											<h2 class="name">John Doe</h2>
-											<div class="desc">@JohnDoe</div>
+											<h2 class="name">${member.mem_id}</h2>
+											<div class="desc">${member.mem_email }</div>
 										</div>
 									</div>
 								</div>
@@ -214,13 +247,13 @@
 										<div class="item">
 											<a href="#">
 												<div class="name">Posts</div>
-												<div class="value">208</div>
+												<div class="value">글 갯수 보여줌</div>
 											</a>
 										</div>
 										<div class="item">
 											<a href="#">
-												<div class="name">Stars</div>
-												<div class="value">3,729</div>
+												<div class="name">Likes</div>
+												<div class="value">좋아요 받은 개수</div>
 											</a>
 										</div>
 										<div class="item">
@@ -238,25 +271,10 @@
 										<h2 class="block-title">Photos</h2>
 										<div class="block-body">
 											<ul class="item-list-round" data-magnific="gallery">
+												<c:forEach items="mysnslist" var="mySns" > 
 												<li><a href="images/news/img06.jpg"
 													style="background-image: url('images/news/img06.jpg');"></a></li>
-												<li><a href="images/news/img07.jpg"
-													style="background-image: url('images/news/img07.jpg');"></a></li>
-												<li><a href="images/news/img08.jpg"
-													style="background-image: url('images/news/img08.jpg');"></a></li>
-												<li><a href="images/news/img09.jpg"
-													style="background-image: url('images/news/img09.jpg');"></a></li>
-												<li><a href="images/news/img10.jpg"
-													style="background-image: url('images/news/img10.jpg');"></a></li>
-												<li><a href="images/news/img11.jpg"
-													style="background-image: url('images/news/img11.jpg');"></a></li>
-												<li><a href="images/news/img12.jpg"
-													style="background-image: url('images/news/img12.jpg');"><div
-															class="more">+2</div></a></li>
-												<li class="hidden"><a href="images/news/img13.jpg"
-													style="background-image: url('images/news/img13.jpg');"></a></li>
-												<li class="hidden"><a href="images/news/img14.jpg"
-													style="background-image: url('images/news/img14.jpg');"></a></li>
+													</c:forEach>
 											</ul>
 										</div>
 									</div>
@@ -492,13 +510,11 @@
 								<div class="item">
 									<div class="user">
 										<figure>
-											<img src="images/img01.jpg" alt="User Picture">
+											<img src="${member.mem_pic }" alt="User Picture">
 										</figure>
 										<div class="details">
-											<h5 class="name">Mark Otto</h5>
-											<div class="time">24 Hours</div>
-											<div class="description">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</div>
+											<h5 class="name">${member.mem_id }</h5>
+											<div class="description">${member.mem_email }</div>
 										</div>
 									</div>
 								</div>

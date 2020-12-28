@@ -20,6 +20,15 @@ INSERT INTO SNS (
 	 	               			#{mem_id})
 
 </insert>
+<select id="selectSns" resultType="Sns">
+SELECT * FROM SNS order by sns_no desc
+
+
+
+</select>
+<select id="selectMySns" resultType="mySns">
+SELECT SNS_IMG FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
+</select>
 
 
 
