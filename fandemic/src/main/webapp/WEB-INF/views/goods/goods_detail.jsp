@@ -1,11 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Goods 상세보기 페이지</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+
+<script>
+$(function () {
+	
+/*-------------------
+Quantity change
+--------------------- */
+var proQty = $('.pro-qty');
+proQty.prepend('<span class="dec qtybtn">-</span>');
+proQty.append('<span class="inc qtybtn">+</span>');
+proQty.on('click', '.qtybtn', function () {
+var $button = $(this);
+var oldValue = $button.parent().find('input').val();
+if ($button.hasClass('inc')) {
+    var newVal = parseFloat(oldValue) + 1;
+} else {
+    // Don't allow decrementing below zero
+    if (oldValue > 0) {
+        var newVal = parseFloat(oldValue) - 1;
+    } else {
+        newVal = 0;
+    }
+}
+$button.parent().find('input').val(newVal);
+});
+
+});
+</script>
+
 <!-- <script>
 $(function(){
 	$('#decreaseQuantity').click(function(e){
@@ -78,23 +108,13 @@ $(function(){
 							제품 구성 : 응원봉 + 크래들 + 스트랩<br>* 1회 최대 구매가능 수량은 19개입니다.<br>*
 							한 ID당 여러 건 주문 가능합니다.<br>* 상품은 출고일 이후 순차 출고됩니다.
 						</p>
-						<div class="product__details__quantity">
+ 						<div class="product__details__quantity">
 							<div class="quantity">
 								<div class="pro-qty">
-									<span class="dec qtybtn">-</span> <input type="text" value="1">
+									<span class="dec qtybtn">-</span>
+										<input type="text" value="1">
 									<span class="inc qtybtn">+</span>
 								</div>
-								
-								<!-- 
-								<div class="number">
-									<span id="numberUpDown">1</span>
-									<a href="#" id="increaseQuantity">수량 올림</a>
- 									<a href="#" id="decreaseQuantity">수량 내림</a>
-
-								</div>
-								 -->
-								
-								
 							</div>
 						</div>
 						<a href="goodsCart" class="primary-btn">장바구니</a>

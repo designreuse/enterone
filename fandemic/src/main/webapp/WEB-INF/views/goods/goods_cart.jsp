@@ -8,6 +8,7 @@
 <title>Goods 장바구니 페이지</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+
 <style>
 *, ::after, ::before {
 	box-sizing: border-box;
