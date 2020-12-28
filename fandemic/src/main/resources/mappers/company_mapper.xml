@@ -3,17 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.fandemic.impl.CompanyMapper">
-
-<!-- 테스트-->
-	<select id="getCompanyTest" parameterType="Company" resultType="Company">
-		SELECT 
-			com_name
-		FROM 
-			company
-		WHERE
-			com_id = #{com_id}
-	</select>
-	
 	
 <!-- 소속사 목록 출력-->
 	<select id="getCompanyMinInfo" parameterType="Company" resultType="Company">
@@ -21,6 +10,8 @@
 			*
 		FROM 
 			company
+		WHERE
+			com_id != 'admin'
 	</select>
 	
 	

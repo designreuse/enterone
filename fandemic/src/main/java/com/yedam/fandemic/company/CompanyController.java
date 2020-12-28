@@ -11,40 +11,47 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yedam.fandemic.impl.CnoticeMapper;
 import com.yedam.fandemic.impl.CompanyMapper;
+import com.yedam.fandemic.vo.Cnotice;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Star;
 
 @Controller
 public class CompanyController {
 	@Autowired
-	CompanyMapper companyDAO;
+	CompanyMapper companyDao;
+	@Autowired
+	CnoticeMapper cnoticeDao;
 	
 	//소속사 메인페이지. 소속사 리스트를 출력한다.
 	@RequestMapping(value="/company")
-	public ModelAndView companyMain(Model model, Company company) throws IOException{
-		model.addAttribute("companyList", companyDAO.getCompanyMinInfo(company));
+	public ModelAndView companyMain(Model model, Company comVo) throws IOException{
+		model.addAttribute("companyList", companyDao.getCompanyMinInfo(comVo));
 		return new ModelAndView("company/company_main");
 	}
 	
 	//소속사 홈 메인페이지. 소속사의 스타목록 출력
 	@RequestMapping(value="/company/home/{id}")
-	public ModelAndView companyHome(@PathVariable String id, Star star, Model model) throws IOException{
-		star.setCom_id(id);
-		model.addAttribute("companyStars", companyDAO.getCompanyStarMin(star));
+	public ModelAndView companyHome(@PathVariable String id, Star stVo, Model model) throws IOException{
+		stVo.setCom_id(id);
+		model.addAttribute("companyStars", companyDao.getCompanyStarMin(stVo));
 		return new ModelAndView("company/company_home");
 	}
 	
 	//소속사 홈페이지에서 소속사의 소개화면 출력
 	@RequestMapping(value="/company/info/{id}")
-	public ModelAndView companyInfo(@PathVariable String id, Company company, Model model) throws IOException{
-		company.setCom_id(id);
-		model.addAttribute("companyInfo", companyDAO.getCompanyInfo(company));
+	public ModelAndView companyInfo(@PathVariable String id, Company comVo, Model model) throws IOException{
+		comVo.setCom_id(id);
+		model.addAttribute("companyInfo", companyDao.getCompanyInfo(comVo));
 		return new ModelAndView("company/company_info");
 	}
 	
-	@RequestMapping(value="/company/notify")
-	public ModelAndView companyNotify(HttpServletResponse response) throws IOException{
+	//소속사 공지사항 목록 출력
+	@RequestMapping(value="/company/notify/{id}")
+	public ModelAndView companyNotify(@PathVariable String id, Cnotice cnocVo, Model model) throws IOException{
+		cnocVo.setCom_id(id);
+		model.addAttribute("companyNotices", cnoticeDao.getCnoticeList(cnocVo));
 		return new ModelAndView("company/company_notify");
 	}
 	
