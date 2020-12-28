@@ -26,7 +26,7 @@ SELECT * FROM SNS order by sns_no desc
 
 
 </select>
-<select id="selectMySns" resultType="mySns">
+<select id="selectMySns" resultType="Sns">
 SELECT SNS_IMG FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
 </select>
 

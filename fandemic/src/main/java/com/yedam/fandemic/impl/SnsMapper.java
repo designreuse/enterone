@@ -9,5 +9,6 @@ public interface SnsMapper {
 	public int insertSns(Sns sns); //글자 등록
 	//SNS SELECT
 	public List<Sns> selectSns(Sns sns);
+	//My SNS
 	public List<Sns> selectMySns(Sns sns);
 }
