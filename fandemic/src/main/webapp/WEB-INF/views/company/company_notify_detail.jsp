@@ -19,15 +19,9 @@
 	<div class="container">
 		<div class="nav-tabs-group">
 			<ul class="nav-tabs-list">
-				<li><a
-					href="${pageContext.request.contextPath}/company/info/${star.com_id}">소
-						속 사 소 개</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/company/notify/${star.com_id}">공
-						지 사 항</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/company/home/${star.com_id}"><font
-						style="color: #4176E0">스 타</font></a></li>
+				<li><a href="${pageContext.request.contextPath}/company/info/${companyNotice.com_id}">소 속 사 소 개</a></li>
+				<li><a href="${pageContext.request.contextPath}/company/notify/${companyNotice.com_id}"><font style="color:#4176E0">공 지 사 항</font></a></li>
+				<li><a href="${pageContext.request.contextPath}/company/home/${companyNotice.com_id}">스 타</a></li>
 			</ul>
 		</div>
 	</div>
