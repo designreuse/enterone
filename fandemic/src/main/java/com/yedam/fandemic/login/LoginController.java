@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yedam.fandemic.config.MvcConfiguration;
 import com.yedam.fandemic.impl.MemberMapper;
+import com.yedam.fandemic.service.MailService;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Star;
@@ -25,6 +30,7 @@ import com.yedam.fandemic.vo.Star;
 @Controller
 public class LoginController {
 	@Autowired MemberMapper memMapper;
+	@Autowired MailService mailservice;
 	
 
 	@RequestMapping("/no-tiles/find") // id,pw 찾기 팝업창
@@ -74,14 +80,32 @@ public class LoginController {
 	// 개인 pw
 	@RequestMapping("/memPwFind")
 	@ResponseBody
-	public String memPwFind(HttpServletRequest request, Model model, Member member) throws IOException{
+	public String memPwFind(@ModelAttribute Mail mail, HttpServletRequest request, Model model, Member member) throws IOException{
 			
 		member.setMem_id(request.getParameter("mem_id"));
 		member.setMem_email(request.getParameter("mem_email"));
 		member = memMapper.memPwFind(member);
 		
 		if(member != null) {
-			return member.getMem_pw();
+			
+			String pw = member.getMem_pw();
+			
+			mail.setSenderName("엔터원");
+			mail.setSenderMail("haez119@gmail.com");
+			mail.setReceiveMail(member.getMem_email());
+			mail.setSubject("요청하신 비밀번호입니다.");
+			mail.setMessage(member.getMem_id() + " 님의 비밀번호는 " + pw + " 입니다.");
+			
+			try {
+				mailservice.sendEmail(mail); 
+				System.out.println("메일전송");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            System.out.println("메일실패");
+	        }
+
+			
+			return pw;
 		} else {
 			return null;
 		}
