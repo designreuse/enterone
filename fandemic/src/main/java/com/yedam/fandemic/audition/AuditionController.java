@@ -22,4 +22,10 @@ public class AuditionController {
 	
 	}	
 	
+	@RequestMapping(value = "/auditionprofile") //주소
+	public ModelAndView auditionprofile(HttpServletResponse response) throws IOException {
+		return new ModelAndView("audition/trainee_profile");
+	
+	}	
+	
 }

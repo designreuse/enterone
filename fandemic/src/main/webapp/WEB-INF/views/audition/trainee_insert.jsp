@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <!DOCTYPE html>
@@ -10,19 +11,45 @@
 <title>Insert title here</title>
 </head>
 <style>
-
-.jumbotron{
-text-align:left !important;
+.table table-hover{
+border-top: none; // 상
+border-bottom: none; // 하
+border-left: none; // 좌
+border-right: none; // 우
 }
-.wtitle {
-font-size: 1em !important;
+.vtitle{
+align:left;
+}
+.utitle {
+border-top-style: hidden;
+    border-left-style: hidden;
+    border-right-style: hidden;
+    border-bottom-style: hidden;
+}
+.font-g{
+font-size:15px;
+}
+.font-f{
+font-size:20px;
+width:20%;
+background-color:lightskyblue;
 font-weight:bold;
-color:blue;
-margin: 5px;
 }
+.jumbotron {
+	text-align: left !important;
+}
+
+.wtitle {
+	font-size: 1em !important;
+	font-weight: bold;
+	color: blue;
+	margin: 5px;
+}
+
 .qtitle {
-font-size: 2em !important;
+	font-size: 2em !important;
 }
+
 table {
 	border: 3px solid;
 	border-color: black;
@@ -99,45 +126,75 @@ ul.tabs li.current {
 
 		});
 		$("#btn_next_apply2").on("click", function() {
-			
-				$('.tab-content').removeClass('current');
-				$('.tab-link2').removeClass('current');
 
-				$('.tab-link3').addClass('current');
-				$("#tab-3").addClass('current');
+			$('.tab-content').removeClass('current');
+			$('.tab-link2').removeClass('current');
+
+			$('.tab-link3').addClass('current');
+			$("#tab-3").addClass('current');
 
 		});
-		
+
 		$("#btn_next_apply3").on("click", function() {
-			
+
 			$('.tab-content').removeClass('current');
 			$('.tab-link3').removeClass('current');
 
 			$('.tab-link4').addClass('current');
 			$("#tab-4").addClass('current');
 
-	});
+		});
+
+		$("#btn_next_apply4").on("click", function() {
+
+			$('.tab-content').removeClass('current');
+			$('.tab-link4').removeClass('current');
+
+			$('.tab-link5').addClass('current');
+			$("#tab-5").addClass('current');
+
+		});
 
 		$("#btn_next_minus1").on("click", function() {
-			
-			$('.tab-content').removeClass('current');
-			$('.tab-link').removeClass('current');
 
-			$('.tab-link1').addClass('current');
+			$('.tab-content').removeClass('current');
+			$('.tab-link2').removeClass('current');
+
+			$('.tab-link').addClass('current');
 			$("#tab-1").addClass('current');
 
-	});
-		
-$("#btn_next_minus2").on("click", function() {
-			
+		});
+
+		$("#btn_next_minus2").on("click", function() {
+
 			$('.tab-content').removeClass('current');
-			$('.tab-link').removeClass('current');
+			$('.tab-link3').removeClass('current');
 
 			$('.tab-link2').addClass('current');
 			$("#tab-2").addClass('current');
 
-	});
-		
+		});
+
+		$("#btn_next_minus3").on("click", function() {
+
+			$('.tab-content').removeClass('current');
+			$('.tab-link4').removeClass('current');
+
+			$('.tab-link3').addClass('current');
+			$("#tab-3").addClass('current');
+
+		});
+
+		$("#btn_next_minus4").on("click", function() {
+
+			$('.tab-content').removeClass('current');
+			$('.tab-link5').removeClass('current');
+
+			$('.tab-link4').addClass('current');
+			$("#tab-4").addClass('current');
+
+		});
+
 	});
 	function agChk() {
 		var ccc = $(':radio[name="pro_terms_privacy_must_yn"]:checked').val();
@@ -160,8 +217,6 @@ $("#btn_next_minus2").on("click", function() {
 			return true;
 		}
 	}
-	
-	
 </script>
 <body>
 	<section class="page">
@@ -336,39 +391,47 @@ $("#btn_next_minus2").on("click", function() {
 					</div>
 				</div>
 			</div>
+			
 			<div id="tab-2" class="tab-content">
-<div class="jumbotron">
-				<div class="section join form">
-					<h3 class="required hr" style="margin:10px -20px;">지원자 정보</h3>
-
-					<div class="form-group row">
-						<label class="col-3 title qtitle">이름</label>
-						<div class="col wtitle">${member.mem_name}</div>
-					</div>
-
-					<div class="form-group row">
-						<label class="col-3 title qtitle">성별</label>
-						<div class="col wtitle">${member.mem_gender}</div>
-					</div>
-
-					<div class="form-group row">
-						<label class="col-3 title qtitle">생년월일</label>
-						<div class="col wtitle">${fn:substring(member.mem_birth,0,10)}</div>
-					</div>
-
-					<div class="form-group row">
-						<label class="col-3 title qtitle">연락처</label>
-						<div class="col wtitle">${member.mem_phone}</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-3 title qtitle">이메일</label>
-						<div class="col wtitle">${member.mem_email}</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-3 title qtitle">주소</label>
-						<div class="col wtitle">${member.mem_address}</div>
-					</div>
-				</div>
+			<h1 class="required hr" style="align:center">지원자 정보</h1>
+				<div class="jumbotron">
+				
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      
+      <td class="font-f">이름</td>
+      <td class="font-g">${member.mem_name}</td>
+     
+    </tr>
+    <tr>
+      
+      <td class="font-f">성별</td>
+      <td class="font-g">${member.mem_gender}</td>
+     
+    </tr>
+    <tr>
+      
+      <td class="font-f">생년월일</td>
+      <td class="font-g">${fn:substring(member.mem_birth,0,10)}</td>
+     
+    </tr>
+    <tr>
+      
+      <td class="font-f">연락처</td>
+      <td class="font-g">${member.mem_phone}</td>
+     
+    </tr>
+    
+    <tr>
+      
+      <td class="font-f">이메일</td>
+      <td class="font-g">${member.mem_email}</td>
+     
+    </tr>
+    
+  </tbody>
+</table>
 				</div>
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
@@ -393,117 +456,142 @@ $("#btn_next_minus2").on("click", function() {
 			</div>
 			<div id="tab-3" class="tab-content">
 				<h1>지원서 입력</h1>
-				<form id="frm" name="frm" method="post" enctype="multipart/form-data" onsubmit="return false;">
-        <input type="hidden" id="pro_last_save_step" name="pro_last_save_step" value="step3">
-        <input type="hidden" id="mem_idx" name="mem_idx" value="74402">
-        <input type="hidden" id="adt_idx" name="adt_idx" value="1">
-        <input type="hidden" id="pro_idx" name="pro_idx" value="77557">
-        
-        <div class="section join form">
-        <div class="jumbotron">
-            <h3 class="required hr">필수입력</h3>
+				
+			<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
 
-            <div class="form-group row">
-                <label class="col-3 title">지원분야</label>
-                <div class="col">
+			</div>
+			<div id="tab-4" class="tab-content">
+				<div class="jumbotron">
+					<div class="section join form">
+						<h3 class="required hr" style="margin: 10px -20px;">파일 업로드</h3>
+						<div class="box box-light box-container">
+							<form id="frm" name="frm" method="post"
+								enctype="multipart/form-data" onsubmit="return false;">
+								<input type="hidden" id="pro_last_save_step"
+									name="pro_last_save_step" value="step4"> <input
+									type="hidden" id="mem_idx" name="mem_idx" value="74402">
+								<input type="hidden" id="adt_idx" name="adt_idx" value="1">
+								<input type="hidden" id="pro_idx" name="pro_idx" value="77557">
+								<div class="section join">
 
-                    <select id="adf_idx" name="adf_idx">
-                        <option value="">지원분야 선택 (1지망)</option>
-                                                        <option value="1">보컬</option>
-                                                        <option value="2">랩</option>
-                                                        <option value="3">댄스</option>
-                                                    </select>
-                </div>
-                <div class="col">
-                    <select id="adf_idx_2nd" name="adf_idx_2nd">
-                        <option value="">지원분야 선택 (2지망)</option>
-                                                        <option value="1">보컬</option>
-                                                        <option value="2">랩</option>
-                                                        <option value="3">댄스</option>
-                                                    </select>
-                </div>
-            </div>
-			
-            <div class="form-group row">
-                <label class="col-3 title">신장(cm) / 체중(kg)</label>
-                <div class="col">
-                    <input type="text" id="pro_tall" name="pro_tall" placeholder="신장 cm 단위. 숫자만 입력" maxlength="5" onkeydown="javascript:return only_num(event);" onkeyup="javascript:remove_char(event);" oninput="javascript:chk_num_len(this); return false;" value="">
-                </div>
-                <div class="col">
-                    <input type="text" id="pro_weight" name="pro_weight" placeholder="체중 kg 단위. 숫자만 입력" maxlength="5" onkeydown="javascript:return only_num(event);" onkeyup="javascript:remove_char(event);" oninput="javascript:chk_num_len(this); return false;" value="">
-                </div>
-            </div>
 
-            <div class="row">
-                <label class="col-3 title">주소</label>
-                <div class="col">
-                    <div class="form-group row">
-                        <div class="col">
-                            <input type="text" id="pro_postcode" name="pro_postcode" placeholder="우편번호" value="">
-                            <input type="hidden" id="pro_addr_ext" name="pro_addr_ext" value="">
-                        </div>
-                        <div class="col">
-                            <button class="button btn-block yg-black" id="btn_search_postcode">우편번호찾기 (대한민국 한정)</button>
-                        </div>
-                    </div>
+									<div class="form-group row">
+										<label class="col-3 title">프로필 사진 (필수)</label>
+										<div class="col custom-file">
+											<input type="file" class="custom-file-input upload_file"
+												id="file_profile" name="file_profile" rel="profile">
+											<label class="col-4 custom-file-label" for="file_profile">파일첨부</label>
+											<label id="loading_profile"
+												style="vertical-align: middle; display: none;">&nbsp;<img
+												src="/img/icon/loading.gif"
+												style="width: 20px; height: auto;"></label>
+											<div id="list_profile"></div>
+											<div class="invalid-feedback">- 과도한 보정이나 어플로 찍은 사진이 아닌
+												정면 사진 원본으로 첨부 (10MB 이하)</div>
+											<input type="hidden" id="uploaded_profile_file_yn"
+												name="uploaded_profile_file_yn" value="N">
+										</div>
+									</div>
 
-                    <div class="form-group row">
-                        <div class="col">
-                            <input type="text" id="pro_addr1" name="pro_addr1" placeholder="기본주소" value="">
-                        </div>
-                    </div>
+									<div class="form-group row">
+										<label class="col-3 title">사진 첨부 (선택)</label>
+										<div class="col custom-file">
+											<input type="file" class="custom-file-input upload_file"
+												id="file_visual" name="file_visual" rel="visual"> <label
+												class="col-4 custom-file-label" for="file_visual">파일첨부</label>
+											<label id="loading_visual"
+												style="vertical-align: middle; display: none;">&nbsp;<img
+												src="/img/icon/loading.gif"
+												style="width: 20px; height: auto;"></label>
+											<div id="list_visual"></div>
+											<div class="invalid-feedback">
+												- 상반신, 정면, 전신 등 본인의 사진을 추가로 첨부<br>- 과도한 보정이나 어플로 찍은 사진이
+												아닌 정면 사진 원본으로 첨부 (10MB 이하)
+											</div>
+											<input type="hidden" id="uploaded_visual_file_yn"
+												name="uploaded_visual_file_yn" value="N">
+										</div>
+									</div>
 
-                    <div class="form-group row">
-                        <div class="col">
-                            <input type="text" id="pro_addr2" name="pro_addr2" placeholder="상세주소" value="">
-                        </div>
-                    </div>
-                </div>
-            </div>
+									<div class="form-group row">
+										<label class="col-3 title">영상 첨부</label>
+										<div class="col">
+											<div class="form-group row">
+												<div class="col custom-file">
+													<input type="file" class="custom-file-input upload_file"
+														id="file_video" name="file_video" rel="video"> <label
+														class="col-4 custom-file-label" for="file_video">파일첨부
+														(필수)</label> <label id="loading_video"
+														style="vertical-align: middle; display: none;">&nbsp;<img
+														src="/img/icon/loading.gif"
+														style="width: 20px; height: auto;"></label>
+													<div id="list_video"></div>
+													<input type="hidden" id="uploaded_video_file_yn"
+														name="uploaded_video_file_yn" value="N">
+												</div>
+											</div>
 
-        </div><!-- //section -->
-</div>
-        <input type="hidden" id="pro_terms_privacy_select_yn" name="pro_terms_privacy_select_yn" value="Y">
-                        <div class="section join form">
-           <div class="jumbotron">
-            <h3 class="hr">선택입력</h3>
-            
-            <div class="form-group row">
-                <label class="col-3 title">직업</label>
-                <div class="col">
-                    <input type="text" id="pro_job" name="pro_job" placeholder="학생인 경우, 학교명/학년 기재" value="">
-                </div>
-            </div>
-            
-            <div class="form-group row">
-                <label class="col-3 title">혈액형</label>
-                <div class="col select-box">
-                    <select id="pro_blood_type" name="pro_blood_type">
-                        <option value="">혈액형을 선택하세요.</option>
-                                                        <option value="1">A형</option>
-                                                        <option value="2">B형</option>
-                                                        <option value="3">O형</option>
-                                                        <option value="4">AB형</option>
-                                                    </select>
-                </div>
-            </div>
+											<div class="row">
+												<div class="col custom-file">
+													<input type="file" class="custom-file-input upload_file"
+														id="file_video2" name="file_video2" rel="video2">
+													<label class="col-4 custom-file-label" for="file_video2">파일첨부
+														(선택)</label> <label id="loading_video2"
+														style="vertical-align: middle; display: none;">&nbsp;<img
+														src="/img/icon/loading.gif"
+														style="width: 20px; height: auto;"></label>
+													<div id="list_video2"></div>
+													<input type="hidden" id="uploaded_video2_file_yn"
+														name="uploaded_video2_file_yn" value="N">
+												</div>
+											</div>
 
-        <div class="form-group row">
-            <label class="col-3 title">취미/특기</label>
-            <div class="col">
-                <textarea id="pro_hobby" name="pro_hobby" aria-label="With textarea" placeholder="예시. 피아노,현대무용,미디,작곡 등"></textarea>
-            </div>
-        </div>
+											<div class="invalid-feedback">
+												- <strong>노래/랩 부문</strong>: 1분 30초 내에 밝은 곳, 얼굴 정면으로 상반신까지
+												나오게 촬영한 노래/랩 영상 첨부<br> - <strong>댄스 부문</strong>: 1분 30초
+												내에 밝은 곳, 전신이 나오게 촬영한 댄스 영상 첨부<br> - <strong>외모
+													부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자기소개 영상 첨부<br> -
+												<strong>연기 부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한
+												자유연기 영상 첨부
+											</div>
+										</div>
+									</div>
 
-        <div class="form-group row">
-            <label class="col-3 title">경력사항</label>
-            <div class="col">
-                <textarea id="pro_career" name="pro_career" aria-label="With textarea" placeholder="지원 분야 관련 대회 수상 경력, 방송 출연 경험, 연습생 경력 등 기재"></textarea>
-            </div>
-        </div>
-        	
-</div><!-- //section -->
-<div class="row">
+								</div>
+								<!-- //section -->
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_save_apply">지원서
 							저장</button>
@@ -514,18 +602,143 @@ $("#btn_next_minus2").on("click", function() {
 					</div>
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn btn-primary" id="btn_next_minus2" rel="step2">이전
+						<button class="btn btn-primary" id="btn_next_minus3" rel="step2">이전
 							단계</button>
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn btn-primary" id="btn_next_apply3" rel="step2">다음
+						<button class="btn btn-primary" id="btn_next_apply4" rel="step2">다음
 							단계</button>
 					</div>
 				</div>
-</div>
+			</div>
+			<div id="tab-5" class="tab-content">
+				<div class="jumbotron">
+					<div class="section join form">
+						<h3 class="required hr" style="margin: 10px -20px;">지원서 확인</h3>
+						<div class="box box-light box-container">
+							<form id="frm" name="frm" method="post"
+								enctype="multipart/form-data" onsubmit="return false;">
+								<input type="hidden" id="pro_last_save_step"
+									name="pro_last_save_step" value="step5"> <input
+									type="hidden" id="mem_idx" name="mem_idx" value="74402">
+								<input type="hidden" id="adt_idx" name="adt_idx" value="1">
+								<input type="hidden" id="pro_idx" name="pro_idx" value="77557">
 
-</form>
+								<div class="section apply-data">
+									<h3 class="hr">내 지원서</h3>
+									<div class="profile-img">
+										<img
+											src="">
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">이름</label>
+										<div class="col">${member.mem_name}</div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">성별</label>
+										<div class="col">${member.mem_gender}</div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">생년월일</label>
+										<div class="col">${fn:substring(member.mem_birth,0,10)}</div>
+									</div>
+									
+									<div class="row">
+										<label class="col-3 title">연락처</label>
+										<div class="col-3">${member.mem_phone}</div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">아이디(이메일)</label>
+										<div class="col">${member.mem_email}</div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">지원분야</label>
+										<div class="col">보컬 /</div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">신장/체중</label>
+										<div class="col-3">111cm / 111kg</div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">주소</label>
+										<div class="col">${member.mem_address}</div>
+									</div>
+
+								</div>
+								<!-- //section -->
+
+
+								<div class="section apply-data">
+									<div class="row">
+										<label class="col-3 title">직업</label>
+										<div class="col"></div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">혈액형</label>
+										<div class="col-3"></div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">사용가능 언어 및 수준</label>
+										<div class="col"></div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">취미/특기</label>
+										<div class="col"></div>
+									</div>
+
+									<div class="row">
+										<label class="col-3 title">경력사항</label>
+										<div class="col"></div>
+									</div>
+								</div>
+								<!-- //section -->
+
+								<div class="section apply-data">
+
+									<div class="row">
+										<label class="col-3 title">영상 첨부(필수)</label>
+										<div class="col">
+											<div class="video-embed-area">
+												<video
+													src=""
+													controls="" muted=""></video>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- //section -->
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						<button class="btn btn-primary" id="btn_cancle_apply">지원
+							취소</button>
+					</div>
+					<div class="col-md-5 col-sm-5 col-xs-5"></div>
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<button class="btn btn-primary" id="btn_next_minus4" rel="step2">이전
+							단계</button>
+					</div>
+
+					<div class="col-md-2 col-sm-2 col-xs-2">
+						<button class="btn btn-primary" id="btn_next_apply4" rel="step2">최종
+							지원</button>
+					</div>
+				</div>
 			</div>
 			<!-- 탭 메뉴 내용 끝 -->
 		</div>
