@@ -218,7 +218,7 @@ function incrRoundDn(num, incr) {
 }
 
 function roundDec(val, dec) {
-	return round(val * (dec = 10**dec)) / dec;
+	return round(val * (dec = 10*dec)) / dec;
 }
 
 const fixedDec = new Map();
@@ -1980,7 +1980,7 @@ function uPlot(opts, data, then) {
 			plotLft - dia,
 			plotTop - dia,
 			plotWid + dia * 2,
-			plotHgt + dia * 2,
+			plotHgt + dia * 2
 		);
 		ctx.clip();
 
@@ -2002,7 +2002,7 @@ function uPlot(opts, data, then) {
 			p.stroke,
 			width,
 			null,
-			p.fill || (isStroked ? "#fff" : s.stroke),
+			p.fill || (isStroked ? "#fff" : s.stroke)
 		);
 
 		ctx.fill(path);
@@ -2499,7 +2499,7 @@ function uPlot(opts, data, then) {
 
 					ctx.translate(
 						baseLpos,
-						round(plotTop + plotHgt / 2),
+						round(plotTop + plotHgt / 2)
 					);
 					ctx.rotate((side == 3 ? -PI : PI) / 2);
 
@@ -2529,7 +2529,7 @@ function uPlot(opts, data, then) {
 					basePos,
 					tickSize,
 					roundDec(ticks[WIDTH] * pxRatio, 3),
-					ticks.stroke,
+					ticks.stroke
 				);
 			}
 
@@ -2546,7 +2546,7 @@ function uPlot(opts, data, then) {
 					ori == 0 ? plotHgt : plotWid,
 					roundDec(grid[WIDTH] * pxRatio, 3),
 					grid.stroke,
-					grid.dash,
+					grid.dash
 				);
 			}
 		});
@@ -2884,11 +2884,11 @@ function uPlot(opts, data, then) {
 		scale == xScaleKey ?
 		getXPos(val, scales[scale],
 			can ? plotWid : plotWidCss,
-			can ? plotLft : 0,
+			can ? plotLft : 0
 		) :
 		getYPos(val, scales[scale],
 			can ? plotHgt : plotHgtCss,
-			can ? plotTop : 0,
+			can ? plotTop : 0
 		)
 	);
 
