@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Goods</title>
-<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
 <style>
 *, ::after, ::before {
 	box-sizing: border-box;
@@ -45,12 +45,13 @@
 				<div class="col-lg-3 col-md-4 col-sm-6 mix cheering music">
 					<div class="featured__item">
 						<div class="featured__item__pic set-bg">
-							<a href="goodsDetail">
+							
+							<a href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">
 							<img alt="이미지" src="https://ygselect.com/web/product/tiny/202011/f2287d2606d8f8b6662ac945ecfb9679.jpg"></a>
 						</div>
 						<div class="featured__item__text">
 							<h6>
-								<a href="goodsDetail">${goods.go_name}</a>
+								<a href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">${goods.go_name}</a>
 							</h6>
 							<h5>
 							<fmt:formatNumber value="${goods.go_price}" pattern="##,###"/>원</h5>

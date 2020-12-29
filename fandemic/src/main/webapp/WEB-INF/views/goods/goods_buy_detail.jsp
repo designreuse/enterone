@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Goods 구매 상세보기 페이지</title>
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
+
 </head>
 <body>
 	<section class="home">

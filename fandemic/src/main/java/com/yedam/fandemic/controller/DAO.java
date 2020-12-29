@@ -11,7 +11,7 @@ import oracle.jdbc.pool.OracleDataSource;
 import oracle.jdbc.OracleConnection;
 import java.sql.DatabaseMetaData;
 
-public class DAO1 {  
+public class DAO {  
    
   final static String DB_URL="jdbc:oracle:thin:@fandemic_high?TNS_ADMIN=C://Users//test//wallet_dbname";
   final static String DB_USER = "admin";

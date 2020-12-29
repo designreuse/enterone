@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 
 <title>Goods 장바구니 페이지</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
 
 <style>
 *, ::after, ::before {

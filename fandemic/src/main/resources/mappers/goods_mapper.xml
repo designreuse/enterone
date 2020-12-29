@@ -6,7 +6,12 @@
 
 <!-- Goods 전체 목록 -->
 	<select id="goodsList" parameterType="Goods" resultType="Goods">
-		select * from goods
+		SELECT * FROM GOODS
+	</select>
+	
+<!-- Goods 상세 조회 -->
+	<select id="goodsDetail" parameterType="Goods" resultType="Goods">
+		SELECT * FROM GOODS WHERE GO_NO = #{go_no}
 	</select>
 
 </mapper>
