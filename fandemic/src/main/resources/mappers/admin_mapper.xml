@@ -12,17 +12,30 @@
 	</select> 
 	
 	<!-- 개인회원 조회 -->
-	<select id="memberList" resultType="Member">
-		SELECT ROWNUM MEM_NO, M.* 
+	<select id="memberList" resultType="Member" parameterType="Member">
+		<!-- SELECT ROW_NUMBER() OVER(ORDER BY  MEM_TIME DESC) MEM_NO, M.* 
 		FROM MEMBER M 
-		ORDER BY 5 DESC
+		ORDER BY MEM_TIME DESC -->
+		
+		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
+	 		SELECT * FROM V_MEMLIST ORDER BY 1 
+			 ) A ) B WHERE RN BETWEEN #{mem_first} AND #{mem_last}
+			 
+		
 	</select> 
+	
+	<!-- 개인회원 page -->
+	<select id="memCount" resultType="int" >
+		SELECT COUNT(*) FROM V_MEMLIST
+	
+	</select>
 	
 	<!-- 기업회원 조회 -->
 	<select id="companyList" resultType="Company">
-		SELECT ROWNUM COM_NO, C.* 
-		FROM COMPANY C 
-		ORDER BY 11 DESC
+		SELECT ROW_NUMBER() OVER(ORDER BY  COM_TIME DESC) COM_NO, C.* 
+		FROM COMPANY C
+		WHERE COM_CLASS = 1 
+		ORDER BY COM_TIME DESC
 	</select> 
 	
 	

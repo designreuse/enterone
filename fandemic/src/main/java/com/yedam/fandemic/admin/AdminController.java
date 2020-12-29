@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yedam.fandemic.impl.AdminMapper;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Filter;
+import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Paging;
 
 
 
@@ -45,15 +47,39 @@ public class AdminController {
 	
 	// 개인회원 목록
 	@RequestMapping("/adminMember")
-	public String adminMember(Model model) throws IOException{
+	public String adminMember(Model model, HttpServletRequest request, Member member) throws IOException{
 		
-		model.addAttribute("member", dao.memberList());
+		String strp = request.getParameter("p");
+		int p = 1;
+		
+		if(strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+		
+		Paging paging = new Paging();
+		
+		
+		paging.setPageUnit(5); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+		
+		member.setMem_first(paging.getFirst()); //paging에 현재 페이지만 넣으면 first, lastPage를 계산함
+		member.setMem_last(paging.getLast());
+		
+		paging.setTotalRecord(dao.memCount());
+
+		//request.setAttribute("paging", paging);
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("member", dao.memberList(member));
+		
+		
 		return "admin/memberList";
 		
 	}
 	// 기업회원 목록
 	@RequestMapping("/adminCompany")
-	public String adminCompany(Model model) throws IOException{
+	public String adminCompany(Model model, HttpServletRequest request) throws IOException{
 		
 		model.addAttribute("company", dao.companyList());
 	
@@ -63,7 +89,7 @@ public class AdminController {
 	
 	// 금칙어 목록
 	@RequestMapping("/adminFilter")
-	public String adminFilter(Model model) throws IOException{
+	public String adminFilter(Model model, HttpServletRequest request) throws IOException{
 		
 		model.addAttribute("filter", dao.filterList());
 
@@ -84,7 +110,6 @@ public class AdminController {
 		
 		
 		if (dao.filterSel(filter) != 0) { // 중복이면 
-			//수정
 			filter.setFil_alternative(fil_alternative); // 대체어만 넣어서
 			dao.filterUpdate(filter); // 수정
 			
@@ -102,13 +127,9 @@ public class AdminController {
 	@ResponseBody
 	public String filterDel(Model model, Filter filter, HttpServletRequest request, String[] list) throws IOException{
 		
-		
-		System.out.println("=========================" + list);
 		filter.setList(list);
 		dao.filterDelete(filter);
-		System.out.println("삭제 성공");
 		
-
 		return null;
 	}
 	

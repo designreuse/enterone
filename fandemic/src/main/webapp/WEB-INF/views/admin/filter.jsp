@@ -64,24 +64,14 @@
 		             	
 		            },error:function(){ alert("실패"); }
 		         });
-			 
-			 
-			 
-			 
-			 
-	       
 			
 	    });
 		
-		
-		
-		
-		
-		
-		
+
 		$("td").click(function(){
 			var fil_prohibited =  $(this).parent().children().get(2).innerHTML;
 			var fil_alternative = $(this).parent().children().get(3).innerHTML;
+	
 			
 			$("#prohibited").val(fil_prohibited);
 			$("#alternative").val(fil_alternative);

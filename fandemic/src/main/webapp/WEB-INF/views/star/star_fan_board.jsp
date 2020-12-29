@@ -25,7 +25,7 @@
 				</div>
 				
 				<div class = "row">
-					<a href="${pageContext.request.contextPath}/star/fanBoard/write" class="tag-cloud-link">글쓰기</a>
+					<a href="${pageContext.request.contextPath}/star/fanBoard/write/${star.st_id}" class="tag-cloud-link">글쓰기</a>
 				</div>
 				
 				

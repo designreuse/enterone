@@ -4,39 +4,73 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yedam.fandemic.impl.StarMapper;
+import com.yedam.fandemic.vo.Star;
+
 @Controller
 public class StarController {
-	@RequestMapping(value = "/star")
-	public ModelAndView starMain(HttpServletResponse response) throws IOException {
+	@Autowired
+	StarMapper starDao;
+	
+	//스타 메인페이지
+	@RequestMapping(value = "/star/{id}")
+	public ModelAndView starMain(@PathVariable String id, Star stVo, Model model) throws IOException {
+		stVo.setSt_id(id);
+		model.addAttribute("star", starDao.getStarMain(stVo));
 		return new ModelAndView("star/star_main");
 	}
-	@RequestMapping(value = "/star/schedule ")
-	public ModelAndView starSchedule(HttpServletResponse response) throws IOException {
+	
+	
+	@RequestMapping(value = "/star/schedule/{id}")
+	public ModelAndView starSchedule(@PathVariable String id, Star stVo, Model model) throws IOException {
+		stVo.setSt_id(id);
+		model.addAttribute("star", starDao.getStarMain(stVo));
 		return new ModelAndView("star/star_schedule");
 	}
-	@RequestMapping(value = "/star/live")
-	public ModelAndView starLive(HttpServletResponse response) throws IOException {
+	
+	@RequestMapping(value = "/star/live/{id}")
+	public ModelAndView starLive(@PathVariable String id, Star stVo, Model model) throws IOException {
+		stVo.setSt_id(id);
+		model.addAttribute("star", starDao.getStarMain(stVo));
 		return new ModelAndView("star/star_live");
 	}
-	@RequestMapping(value = "/star/board")
-	public ModelAndView starBoard(HttpServletResponse response) throws IOException {
+	
+	//스타게시판 이동
+	@RequestMapping(value = "/star/board/{id}")
+	public ModelAndView starBoard(@PathVariable String id, Star stVo, Model model) throws IOException {
+		stVo.setSt_id(id);
+		model.addAttribute("star", starDao.getStarMain(stVo));
 		return new ModelAndView("star/star_board");
 	}
-	@RequestMapping(value = "/star/fanBoard")
-	public ModelAndView starFanBoard(HttpServletResponse response) throws IOException {
+	
+	//팬게시판 이동
+	@RequestMapping(value = "/star/fanBoard/{id}")
+	public ModelAndView starFanBoard(@PathVariable String id, Star stVo, Model model) throws IOException {
+		stVo.setSt_id(id);
+		model.addAttribute("star", starDao.getStarMain(stVo));
 		return new ModelAndView("star/star_fan_board");
 	}
-	@RequestMapping(value = "/star/fanBoard/write")
-	public ModelAndView starFanBoardWrite(HttpServletResponse response) throws IOException {
+	
+	//팬게시판 글 작성 이동
+	@RequestMapping(value = "/star/fanBoard/write/{id}")
+	public ModelAndView starFanBoardWrite(@PathVariable String id, Star stVo, Model model) throws IOException {
+		stVo.setSt_id(id);
+		model.addAttribute("star", starDao.getStarMain(stVo));
 		return new ModelAndView("star/star_fan_board_write");
 	}
 	
-	@RequestMapping(value = "/star/album")
-	public ModelAndView starAlbum(HttpServletResponse response) throws IOException {
+	//사진게시판 이동
+	@RequestMapping(value = "/star/album/{id}")
+	public ModelAndView starAlbum(@PathVariable String id, Star stVo, Model model) throws IOException {
+		stVo.setSt_id(id);
+		model.addAttribute("star", starDao.getStarMain(stVo));
 		return new ModelAndView("star/star_album");
 	}
 	
