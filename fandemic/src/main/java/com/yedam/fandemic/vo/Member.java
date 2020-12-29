@@ -27,4 +27,7 @@ public class Member {
 	
 	String mem_zipAddress;  //우편번호
 	
+	private int mem_first; // 페이지네이션
+	private int mem_last;
+	
 }

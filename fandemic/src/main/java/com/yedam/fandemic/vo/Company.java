@@ -18,5 +18,8 @@ public class Company {
 	String com_time;		//가입일
 	
 	String com_zipAddress;  //우편번호
+	
+	private int com_first; // 페이지네이션
+	private int com_last;
 
 }

@@ -10,7 +10,7 @@ public interface AdminMapper {
 	
 	
 	public List<Filter> filterList();
-	public List<Member> memberList();
+	public List<Member> memberList(Member member);
 	public List<Company> companyList();
 	
 	public void filterAdd(Filter filter); // 금칙어 등록
@@ -18,6 +18,8 @@ public interface AdminMapper {
 	public void filterUpdate(Filter filter); // 금칙어 수정
 	public void filterDelete(Filter filter); // 금칙어 삭제
 	
+	// 페이지네이션
+	public int memCount(); //개인
 	
 	
 	
