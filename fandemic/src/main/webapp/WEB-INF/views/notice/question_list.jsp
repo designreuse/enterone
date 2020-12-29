@@ -31,7 +31,7 @@
 									<th>Title</th>
 									<th>작성자</th>
 									<th>등록일</th>
-									<th>세션 테스트 </th>
+									
 								</tr>
 
 							</thead>

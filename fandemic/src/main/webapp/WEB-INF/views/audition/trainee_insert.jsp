@@ -11,11 +11,11 @@
 <title>Insert title here</title>
 </head>
 <style>
-.table table-hover{
-border-top: none; // 상
-border-bottom: none; // 하
-border-left: none; // 좌
-border-right: none; // 우
+.table .table-hover{
+border-top: none; 
+border-bottom: none;
+border-left: none; 
+border-right: none; 
 }
 .vtitle{
 align:left;
@@ -56,7 +56,7 @@ table {
 	width: 100%;
 }
 
-td {
+td, th {
 	border: 1px solid;
 	font-size: 15px;
 }
