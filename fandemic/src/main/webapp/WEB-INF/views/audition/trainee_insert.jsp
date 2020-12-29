@@ -11,30 +11,30 @@
 <title>Insert title here</title>
 </head>
 <style>
-.table .table-hover{
-border-top: none; 
-border-bottom: none;
-border-left: none; 
-border-right: none; 
+#pro_addr1{
+width:100%
 }
-.vtitle{
-align:left;
+#pro_postcode{
+width:50%;
 }
-.utitle {
-border-top-style: hidden;
-    border-left-style: hidden;
-    border-right-style: hidden;
-    border-bottom-style: hidden;
+#pro_tall {
+width:50%;
 }
-.font-g{
-font-size:15px;
+.table .table-hover {
+	
 }
-.font-f{
-font-size:20px;
-width:20%;
-background-color:lightskyblue;
-font-weight:bold;
+
+.font-g {
+	font-size: 15px;
 }
+
+.font-f {
+	font-size: 20px;
+	width: 20%;
+	background-color: lightskyblue;
+	font-weight: bold;
+}
+
 .jumbotron {
 	text-align: left !important;
 }
@@ -54,11 +54,6 @@ table {
 	border: 3px solid;
 	border-color: black;
 	width: 100%;
-}
-
-td, th {
-	border: 1px solid;
-	font-size: 15px;
 }
 
 .agree box-agree {
@@ -391,47 +386,47 @@ ul.tabs li.current {
 					</div>
 				</div>
 			</div>
-			
+
 			<div id="tab-2" class="tab-content">
-			<h1 class="required hr" style="align:center">지원자 정보</h1>
+				<h1 class="required hr" style="align: center">지원자 정보</h1>
 				<div class="jumbotron">
-				
-<table class="table table-striped">
-  <tbody>
-    <tr>
-      
-      <td class="font-f">이름</td>
-      <td class="font-g">${member.mem_name}</td>
-     
-    </tr>
-    <tr>
-      
-      <td class="font-f">성별</td>
-      <td class="font-g">${member.mem_gender}</td>
-     
-    </tr>
-    <tr>
-      
-      <td class="font-f">생년월일</td>
-      <td class="font-g">${fn:substring(member.mem_birth,0,10)}</td>
-     
-    </tr>
-    <tr>
-      
-      <td class="font-f">연락처</td>
-      <td class="font-g">${member.mem_phone}</td>
-     
-    </tr>
-    
-    <tr>
-      
-      <td class="font-f">이메일</td>
-      <td class="font-g">${member.mem_email}</td>
-     
-    </tr>
-    
-  </tbody>
-</table>
+
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+
+								<td class="font-f">이름</td>
+								<td class="font-g">${member.mem_name}</td>
+
+							</tr>
+							<tr>
+
+								<td class="font-f">성별</td>
+								<td class="font-g">${member.mem_gender}</td>
+
+							</tr>
+							<tr>
+
+								<td class="font-f">생년월일</td>
+								<td class="font-g">${fn:substring(member.mem_birth,0,10)}</td>
+
+							</tr>
+							<tr>
+
+								<td class="font-f">연락처</td>
+								<td class="font-g">${member.mem_phone}</td>
+
+							</tr>
+
+							<tr>
+
+								<td class="font-f">이메일</td>
+								<td class="font-g">${member.mem_email}</td>
+
+							</tr>
+
+						</tbody>
+					</table>
 				</div>
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
@@ -456,37 +451,161 @@ ul.tabs li.current {
 			</div>
 			<div id="tab-3" class="tab-content">
 				<h1>지원서 입력</h1>
-				
-			<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+				<div class="box box-light box-container">
+					<div class="jumbotron">
 
+						<h3>필수입력</h3>
+						<form id="frm" name="frm" method="post"
+							enctype="multipart/form-data" onsubmit="return false;">
+							<input type="hidden" id="pro_last_save_step"
+								name="pro_last_save_step" value="step3"> <input
+								type="hidden" id="mem_idx" name="mem_idx" value="74402">
+							<input type="hidden" id="adt_idx" name="adt_idx" value="1">
+							<input type="hidden" id="pro_idx" name="pro_idx" value="77557">
+							<table class="table table-hover">
+
+								<tr>
+
+									<td class="font-f">지원분야</td>
+									<td>
+										<div class="col">
+
+											<select id="adf_idx" name="adf_idx" style="width:50%">
+												<option value="">지원분야 (1지망)</option>
+												<option value="1">보컬</option>
+												<option value="2">랩</option>
+												<option value="3">댄스</option>
+											</select>
+										</div>
+									</td>
+									<td><div class="col">
+
+											<select id="adf_idx" name="adf_idx" style="width:50%">
+												<option value="">지원분야 선택 (2지망)</option>
+												<option value="1">보컬</option>
+												<option value="2">랩</option>
+												<option value="3">댄스</option>
+											</select>
+										</div></td>
+								</tr>
+								<tr>
+
+									<td class="font-f">신장(cm)/체중(kg)</td>
+									<td><div class="col">
+                            <input type="text" id="pro_tall" name="pro_tall" placeholder="신장 cm 단위. 숫자만 입력" maxlength="5" onkeydown="javascript:return only_num(event);" onkeyup="javascript:remove_char(event);" oninput="javascript:chk_num_len(this); return false;">
+                        </div></td>
+									<td><div class="col">
+                            <input type="text" id="pro_tall" name="pro_weight" placeholder="체중 kg 단위. 숫자만 입력" maxlength="5" onkeydown="javascript:return only_num(event);" onkeyup="javascript:remove_char(event);" oninput="javascript:chk_num_len(this); return false;">
+                        </div></td>
+								</tr>
+								<tr>
+
+									<td class="font-f">주소</td>
+									
+									<td>  <div class="col">
+                                    <input type="text" id="pro_postcode" name="pro_postcode" placeholder="우편번호"></td>
+									<td><div class="col">
+                                    <button class="button btn-primary" id="btn_search_postcode" style="width:50%">우편번호찾기 (대한민국 한정)</button>
+                                </div></td>
+								</tr>
+								
+								
+								
+								
+								
+								
+								<tr>
+									<td></td>
+									<td colspan="2">
+										<input type="text" id="pro_addr1" name="pro_addr1" placeholder="기본주소">
+									</td>
+									
+								</tr>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<tr>
+
+									<td colspan="2">Larry the Bird</td>
+									<td>@twitter</td>
+								</tr>
+
+							</table>
+						</form>
+					</div>
+
+					<div class="jumbotron">
+						<h3>선택입력</h3>
+						<table class="table table-hover">
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">First</th>
+								<th scope="col">Last</th>
+								<th scope="col">Handle</th>
+							</tr>
+
+
+							<tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>Jacob</td>
+								<td>Thornton</td>
+								<td>@fat</td>
+							</tr>
+							<tr>
+								<th scope="row">3</th>
+								<td colspan="2">Larry the Bird</td>
+								<td>@twitter</td>
+							</tr>
+
+						</table>
+
+					</div>
+					<div class="row">
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<button class="btn btn-primary" id="btn_save_apply">지원서
+								저장</button>
+						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1">
+							<button class="btn btn-primary" id="btn_cancle_apply">지원
+								취소</button>
+						</div>
+						<div class="col-md-5 col-sm-5 col-xs-5"></div>
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<button class="btn btn-primary" id="btn_next_minus2" rel="step2">이전
+								단계</button>
+						</div>
+
+						<div class="col-md-2 col-sm-2 col-xs-2">
+							<button class="btn btn-primary" id="btn_next_apply3" rel="step2">다음
+								단계</button>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div id="tab-4" class="tab-content">
 				<div class="jumbotron">
@@ -628,8 +747,7 @@ ul.tabs li.current {
 								<div class="section apply-data">
 									<h3 class="hr">내 지원서</h3>
 									<div class="profile-img">
-										<img
-											src="">
+										<img src="">
 									</div>
 
 									<div class="row">
@@ -646,7 +764,7 @@ ul.tabs li.current {
 										<label class="col-3 title">생년월일</label>
 										<div class="col">${fn:substring(member.mem_birth,0,10)}</div>
 									</div>
-									
+
 									<div class="row">
 										<label class="col-3 title">연락처</label>
 										<div class="col-3">${member.mem_phone}</div>
@@ -710,9 +828,7 @@ ul.tabs li.current {
 										<label class="col-3 title">영상 첨부(필수)</label>
 										<div class="col">
 											<div class="video-embed-area">
-												<video
-													src=""
-													controls="" muted=""></video>
+												<video src="" controls="" muted=""></video>
 											</div>
 										</div>
 									</div>
