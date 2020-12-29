@@ -4,14 +4,30 @@
 
 <mapper namespace="com.yedam.fandemic.impl.GoodsMapper">
 
-<!-- Goods 전체 목록 -->
+	<!-- Goods 전체 목록 -->
 	<select id="goodsList" parameterType="Goods" resultType="Goods">
-		SELECT * FROM GOODS
+		SELECT *
+		FROM GOODS
 	</select>
-	
-<!-- Goods 상세 조회 -->
-	<select id="goodsDetail" parameterType="Goods" resultType="Goods">
-		SELECT * FROM GOODS WHERE GO_NO = #{go_no}
+
+	<!-- Goods 전체 목록 페이징 -->
+<!-- 	<select id="goodsListPage" parameterType="Criteria" resultType="Goods">
+		SELECT *
+	    FROM (
+	        SELECT GO_NO, GO_NAME,
+	            ROW_NUMBER() OVER(ORDER BY GO_NO DESC) AS RNUM
+	        FROM GOODS
+	        ) GOODS
+	    WHERE RNUM BETWEEN #{ROWSTART} AND #{ROWEND}
+	        ORDER BY GO_NO DESC
+	</select> -->
+
+	<!-- Goods 상세 조회 -->
+	<select id="goodsDetail" parameterType="Goods"
+		resultType="Goods">
+		SELECT *
+		FROM GOODS
+		WHERE GO_NO = #{go_no}
 	</select>
 
 </mapper>

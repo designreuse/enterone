@@ -17,5 +17,5 @@ public class Goods {
 	String go_limited;	//한정판여부
 	String go_pic;		//상품대표사진
 	String go_detail;	//상품상세사진
-	
+
 }

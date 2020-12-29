@@ -9,7 +9,6 @@
 <meta charset="UTF-8">
 <title>Goods 상세보기 페이지</title>
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
-<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/css/owl.carousel.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
 $(function () {
@@ -45,7 +44,14 @@ $(function () {
 }
 .product__details__text ul {
     border-top: 1px solid #ebebeb;
-    padding-top: 30px;
+    padding-top: 40px;
+    margin-top: 36px;
+}
+
+.product__details_orderform {
+	
+    border-top: 1px solid #ebebeb;
+    padding-top: 40px;
     margin-top: 36px;
 }
 </style>
@@ -69,18 +75,6 @@ $(function () {
 						<h3>${goods.go_name}</h3>
 
 						<div class="product__details__price"><fmt:formatNumber value="${goods.go_price}" pattern="##,###"/>원</div>
-						<p>
-							${goods.go_content}
-						</p>
- 						<div class="product__details__quantity">
-							<div class="quantity">
-								<div class="pro-qty">
-									<input type="text" value="1">
-								</div>
-							</div>
-						</div>
-						<a href="goodsCart" class="primary-btn">장바구니</a>
-						<a href="goodsBuy" class="primary-btn" style="background-color: #022AD5;">바로구매</a>
 						<ul>
 							<li><b>카테고리</b> <span>${goods.go_type}</span></li>
 							<li><b>소속사</b> <span>${goods.com_id}</span></li>
@@ -91,6 +85,17 @@ $(function () {
 							</li>
 							<li><b>주문 가능 수량</b> <span>${goods.go_stock}</span></li>
 						</ul>
+						<div class="product__details_orderform">
+	 						<div class="product__details__quantity">
+								<div class="quantity">
+									<div class="pro-qty">
+										<input type="text" value="1">
+									</div>
+								</div>
+							</div>
+							<a href="goodsCart" class="primary-btn">장바구니</a>
+							<a href="goodsBuy" class="primary-btn" style="background-color: #022AD5;">바로구매</a>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-12">
@@ -108,7 +113,8 @@ $(function () {
 								${goods.go_content}
 							</p>
 							<br> <img alt="상품상세사진"
-								src="${pageContext.request.contextPath}/resourcesGoods/images/bb_sticker_detail.jpg">
+								src="${pageContext.request.contextPath}/resourcesGoods/images/${goods.go_detail}"
+								style="width: 100%;">
 						</div>
 					</div>
 				</div>

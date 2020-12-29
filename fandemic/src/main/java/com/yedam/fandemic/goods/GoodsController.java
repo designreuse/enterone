@@ -17,8 +17,7 @@ import com.yedam.fandemic.vo.Goods;
 @Controller
 public class GoodsController {
 	
-	@Autowired GoodsMapper goMapper;
-	
+	@Autowired GoodsMapper goMapper;	
 	
 	// Goods 메인 화면
 	@RequestMapping(value="/goods")

@@ -47,11 +47,11 @@
 						<div class="featured__item__pic set-bg">
 							
 							<a href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">
-							<img alt="이미지" src="https://ygselect.com/web/product/tiny/202011/f2287d2606d8f8b6662ac945ecfb9679.jpg"></a>
+							<img alt="이미지" src="${pageContext.request.contextPath}/resourcesGoods/images/${goods.go_pic}"></a>
 						</div>
 						<div class="featured__item__text">
 							<h6>
-								<a href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">${goods.go_name}</a>
+								<a href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">[${goods.st_id}] ${goods.go_name}</a>
 							</h6>
 							<h5>
 							<fmt:formatNumber value="${goods.go_price}" pattern="##,###"/>원</h5>
