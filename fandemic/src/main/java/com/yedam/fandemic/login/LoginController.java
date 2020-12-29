@@ -129,7 +129,7 @@ public class LoginController {
 			
 			return "index";
 			
-		} else {
+		} else {   
 			
 			request.setAttribute("login", "fail");
 			
