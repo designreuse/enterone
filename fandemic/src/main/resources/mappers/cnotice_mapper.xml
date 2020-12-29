@@ -49,5 +49,14 @@
 		WHERE CNOC_NO= #{cnoc_no}
 	
 	</update>
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteCnotice">
+		DELETE FROM CNOTICE
+		WHERE CNOC_NO IN 
+		<foreach collection="cnoc_nos" item="no"
+				open="(" close=")" separator=","> <!-- collection이 필드명 -->
+			#{no}
+		</foreach>
+	</delete>
 
 </mapper>

@@ -15,5 +15,6 @@ public class Cnotice {
 	String cnoc_content;	//게시물 내용
 	String cnoc_file;		//게시물 첨부파일
 	String conc_banner;		//홍보용 배너
+	String[] cnoc_nos; //삭제 체크박스들
 	
 }

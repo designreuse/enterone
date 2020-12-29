@@ -72,8 +72,23 @@ div #dataTable_filter{
 			}
 		});
 		
+		
+		//공지사항 삭제
 		$(".btn-delete").on("click",function(){
-			
+			 $.ajax({
+				url:"${pageContext.request.contextPath}/management/noticesDelete",
+				type:"POST",
+				data: $("#frm1").serialize(),
+				dataType: 'json', //결과값 Json형태로
+				success: function(response) {
+			    	if(response != null && response !="") {
+			    		cnoticeList();
+			    	}  
+			    }, 
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    } 
+			});//end ajax
 		});
 		
 	}); //end document ready
@@ -99,7 +114,7 @@ div #dataTable_filter{
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","cnoticeTr")
-			.append($('<td>').html('<input type="checkbox">'))
+			.append($('<td>').html('<input type="checkbox" name="cnoc_nos" value="'+item.cnoc_no+'">'))
 			.append($('<td>').html(item.cnoc_no))
 			.append($('<td>').html('<a href="#">'+item.cnoc_title+'</a>'))
 			.append($('<td>').html(item.com_id))
@@ -132,7 +147,7 @@ div #dataTable_filter{
       </div><!-- /.container-fluid -->
     </section>
     <!--  공지 게시판 -->
-    <form method="POST">
+    <form method="POST" id="frm1">
     <div class="row">
           <div class="col-12">
             <div class="card">
@@ -154,7 +169,7 @@ div #dataTable_filter{
                     </tr>
                   </thead>
                   <tbody>
-                                 
+                              <!-- body 들어간데 ~ -->   
                   </tbody>
                 </table>
            
@@ -165,7 +180,7 @@ div #dataTable_filter{
               	<div class="cnotices-button">
               		<button class="btn-register">등록</button>
               		<button class="btn-update">수정</button>
-              		<button class="btn-delete">삭제</button>
+              		<button type="button" class="btn-delete">삭제</button>
               	</div>
               </div>
             </div>

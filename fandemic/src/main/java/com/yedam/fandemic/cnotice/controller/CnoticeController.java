@@ -2,6 +2,7 @@ package com.yedam.fandemic.cnotice.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,12 +16,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.impl.CnoticeMapper;
+import com.yedam.fandemic.service.CnoticeService;
 import com.yedam.fandemic.vo.Cnotice;
 
 @Controller
 public class CnoticeController {
+	
 	@Autowired
-	CnoticeMapper cnoticedao;
+	CnoticeService cnoticeService;
 
 	@RequestMapping(value = "/management/notices")
 	public String Notices() {
@@ -31,7 +34,15 @@ public class CnoticeController {
 	public String noticesInsertForm() {
 		return "mgt/noticesInsertForm";
 	}
-
+	
+	//공지사항 삭제
+	@RequestMapping(value = "/management/noticesDelete")
+	@ResponseBody //결과를 Json형태로 
+	public int noticesDelete(Cnotice cnotice) {
+		int result = cnoticeService.deleteCnotice(cnotice);
+		return result;
+	}
+	
 	// 소속사 공지사항 등록
 	@RequestMapping(value = "/management/noticesInsert")
 	public String noticesInsert(HttpServletRequest request, Cnotice cnotice) throws IllegalStateException, IOException {
@@ -49,7 +60,7 @@ public class CnoticeController {
 		         cnotice.setCnoc_file(sumFile);
 		      }
 	      }
-		cnoticedao.insertCnotice(cnotice);
+	      cnoticeService.insertCnotice(cnotice);
 		return "mgt/notices";
 	}
 	
@@ -57,17 +68,18 @@ public class CnoticeController {
 	@RequestMapping(value="/management/noticesList")
 	@ResponseBody
 	public List<Cnotice> getCnoticeList(Cnotice cnotice) {	
-		return cnoticedao.getCnoticeList(cnotice);
+		return cnoticeService.getCnoticeList(cnotice);
 	}
 	
 	// 소속사 공지사항 상세보기
 	@RequestMapping(value = "/management/noticesDetail")
 	public String noticesDetail(Model model, Cnotice cnotice) {
 		System.out.println(cnotice.getCnoc_no()); //클릭한게시물번호받아와서
-		model.addAttribute("cnotice", cnoticedao.getCnoticeDetail(cnotice));//조회한후 값던짐
+		model.addAttribute("cnotice", cnoticeService.getCnoticeDetail(cnotice));//조회한후 값던짐
 		return "mgt/noticesDetail";
 	}
 	
+	//소속사 공지사항 수정
 	@RequestMapping(value="/management/noticesUpdate")
 	public String noticesUpdate(HttpServletRequest request, Model model, Cnotice cnotice) throws IllegalStateException, IOException  {
 		// request multipart로 캐스팅
@@ -84,8 +96,8 @@ public class CnoticeController {
 		         cnotice.setCnoc_file(sumFile);
 		      }
 	      }
-		cnoticedao.updateCnotice(cnotice);
-		model.addAttribute("cnotice", cnoticedao.getCnoticeDetail(cnotice));//조회한후 값던짐
+	      cnoticeService.updateCnotice(cnotice);
+		model.addAttribute("cnotice", cnoticeService.getCnoticeDetail(cnotice));//조회한후 값던짐
 		return "mgt/noticesDetail";
 	}
 		

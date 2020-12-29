@@ -1,11 +1,10 @@
-package com.yedam.fandemic.impl;
+package com.yedam.fandemic.service;
 
 import java.util.List;
 
 import com.yedam.fandemic.vo.Cnotice;
 
-public interface CnoticeMapper {
-
+public interface CnoticeService {
 	public int insertCnotice(Cnotice cnotice); //공지사항 등록
 	public int updateCnotice(Cnotice cnotice);  //공지사항 수정
 	public int deleteCnotice(Cnotice cnotice); //공지사항 삭제.
