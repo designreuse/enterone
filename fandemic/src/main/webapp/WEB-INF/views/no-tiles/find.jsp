@@ -131,7 +131,7 @@ ul.tabs li.current {
 	        success:function(data){
 	        	
 	        	if(data != null && data != "") {
-		        	$("#pwResult").css("display","").html("회원님의 메일로 비밀번호가 전송되었습니다.");
+		        	$("#pwResult").css("display","").html("메일로 비밀번호가 전송되었습니다.");
 	        	} else {
 	        		$("#pwResult").css("display","").html("아이디가 존재하지 않습니다.");
 	        	}
@@ -183,7 +183,7 @@ ul.tabs li.current {
 	        	
 	        	if(data != null && data != "") {
 	        		
-		        	$("#pwResult").css("display","").html("회원님의 비밀번호는 " + data + " 입니다.");
+		        	$("#pwResult").css("display","").html("메일로 비밀번호가 전송되었습니다.");
 	        	} else {
 	        		$("#pwResult").css("display","").html("아이디가 존재하지 않습니다.");
 	        	}

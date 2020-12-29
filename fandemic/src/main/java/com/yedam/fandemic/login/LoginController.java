@@ -116,14 +116,32 @@ public class LoginController {
 	// 기업 pw
 	@RequestMapping("/comPwFind")
 	@ResponseBody
-	public String comPwFind(HttpServletRequest request, Model model, Company company) throws IOException{
+	public String comPwFind(@ModelAttribute Mail mail, HttpServletRequest request, Model model, Company company) throws IOException{
 			
 		company.setCom_id(request.getParameter("com_id"));
 		company.setCom_email(request.getParameter("com_email"));
 		company = memMapper.comPwFind(company);
-		
+
 		if(company != null) {
-			return company.getCom_pw();
+			
+			String pw = company.getCom_pw();
+			
+			mail.setSenderName("엔터원");
+			mail.setSenderMail("haez119@gmail.com");
+			mail.setReceiveMail(company.getCom_email());
+			mail.setSubject("요청하신 비밀번호입니다.");
+			mail.setMessage(company.getCom_id() + " 님의 비밀번호는 " + pw + " 입니다.");
+			
+			try {
+				mailservice.sendEmail(mail); 
+				System.out.println("메일전송");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            System.out.println("메일실패");
+	        }
+			
+			
+			return pw;
 		} else {
 			return null;
 		}
