@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-	
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -13,6 +13,34 @@
 
 <style>
 	table {font-size: 13pt;}
+
+.pagination li {
+	display: inline-block; 
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid gray;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: rgb(53, 52, 52);
+  color: white;
+  border: 1px solid gray;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: lightgray;
+	color: black;
+	}
 </style>
 <script>
 	$(document).ready(function() {
@@ -124,6 +152,18 @@
 			</tbody>
 		</table>
 		</div>
+		
+		<div align="center">
+			<script>
+				function goPage(p) {
+					location.href="adminFilter?p="+p
+				}
+			</script>
+			
+			<my:paging paging="${paging}" jsfunc="goPage" /> 
+		</div>
+		
+		
 		<div align="center" style="padding-top: 50px;">
 			<table>
 				<tr>
@@ -142,5 +182,7 @@
 
 		</div>
 	</div>
+	
+
 
 </section>

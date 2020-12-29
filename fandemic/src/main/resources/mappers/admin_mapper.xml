@@ -5,11 +5,18 @@
 <mapper namespace="com.yedam.fandemic.impl.AdminMapper">
 	
 	<!-- 금칙어 전체 조회 -->
-	<select id="filterList" resultType="Filter">
-		SELECT ROWNUM FIL_NO, F.* 
-		FROM FILTER F
-		ORDER BY 1
+	<select id="filterList" resultType="Filter" parameterType="Filter">
+		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
+	 		SELECT ROWNUM FIL_NO, F.* FROM FILTER F ORDER BY FIL_PROHIBITED DESC
+			 ) A ) B WHERE RN BETWEEN #{fil_first} AND #{fil_last}
 	</select> 
+	
+	<!-- 금칙어 page -->
+	<select id="filCount" resultType="int" >
+		SELECT COUNT(*) FROM FILTER
+	</select>
+	
+	
 	
 	<!-- 개인회원 조회 -->
 	<select id="memberList" resultType="Member" parameterType="Member">
@@ -27,21 +34,24 @@
 	<!-- 개인회원 page -->
 	<select id="memCount" resultType="int" >
 		SELECT COUNT(*) FROM V_MEMLIST
+	</select>
 	
+	<!-- 기업회원 page -->
+	<select id="comCount" resultType="int" >
+		SELECT COUNT(*) FROM V_COMLIST
 	</select>
 	
 	<!-- 기업회원 조회 -->
-	<select id="companyList" resultType="Company">
-		SELECT ROW_NUMBER() OVER(ORDER BY  COM_TIME DESC) COM_NO, C.* 
-		FROM COMPANY C
-		WHERE COM_CLASS = 1 
-		ORDER BY COM_TIME DESC
+	<select id="companyList" resultType="Company" parameterType="Company">
+		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
+	 		SELECT * FROM V_COMLIST ORDER BY 1 
+			 ) A ) B WHERE RN BETWEEN #{com_first} AND #{com_last}
 	</select> 
 	
 	
 	<!-- 금칙어 등록 -->
 	<insert id="filterAdd" parameterType="Filter">
-		INSERT INTO FILTER(FIL_ALTERNATIVE, FIL_PROHIBITED ) 
+		INSERT INTO FILTER(FIL_PROHIBITED , FIL_ALTERNATIVE ) 
 		VALUES( #{fil_prohibited} , #{fil_alternative} )
 	</insert> 
 	

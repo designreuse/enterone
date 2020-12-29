@@ -11,4 +11,8 @@ public class Filter {
 	
 	String[] list;
 	
+	
+	private int fil_first; // 페이지네이션
+	private int fil_last;
+	
 }

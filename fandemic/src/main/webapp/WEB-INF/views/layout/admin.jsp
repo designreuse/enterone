@@ -211,7 +211,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="${pageContext.request.contextPath}/adminQna" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>1:1문의
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>

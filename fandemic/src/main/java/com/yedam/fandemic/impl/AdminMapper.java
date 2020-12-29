@@ -9,9 +9,9 @@ import com.yedam.fandemic.vo.Member;
 public interface AdminMapper {
 	
 	
-	public List<Filter> filterList();
+	public List<Filter> filterList(Filter filter);
 	public List<Member> memberList(Member member);
-	public List<Company> companyList();
+	public List<Company> companyList(Company company);
 	
 	public void filterAdd(Filter filter); // 금칙어 등록
 	public int filterSel(Filter filter); // 금칙어 중복확인
@@ -20,7 +20,8 @@ public interface AdminMapper {
 	
 	// 페이지네이션
 	public int memCount(); //개인
-	
+	public int comCount(); //기업
+	public int filCount(); //금칙어
 	
 	
 }

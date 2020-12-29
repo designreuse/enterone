@@ -68,7 +68,7 @@ public class AdminController {
 		
 		paging.setTotalRecord(dao.memCount());
 
-		//request.setAttribute("paging", paging);
+		
 		
 		model.addAttribute("paging", paging);
 		model.addAttribute("member", dao.memberList(member));
@@ -79,9 +79,28 @@ public class AdminController {
 	}
 	// 기업회원 목록
 	@RequestMapping("/adminCompany")
-	public String adminCompany(Model model, HttpServletRequest request) throws IOException{
+	public String adminCompany(Model model, HttpServletRequest request, Company company) throws IOException{
 		
-		model.addAttribute("company", dao.companyList());
+		String strp = request.getParameter("p");
+		int p = 1;
+		
+		if(strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+		
+		Paging paging = new Paging();
+		
+		paging.setPageUnit(5); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+		
+		company.setCom_first(paging.getFirst());
+		company.setCom_last(paging.getLast());
+		
+		paging.setTotalRecord(dao.comCount());
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("company", dao.companyList(company));
 	
 		return "admin/companyList";
 		
@@ -89,9 +108,30 @@ public class AdminController {
 	
 	// 금칙어 목록
 	@RequestMapping("/adminFilter")
-	public String adminFilter(Model model, HttpServletRequest request) throws IOException{
+	public String adminFilter(Model model, HttpServletRequest request, Filter filter) throws IOException{
 		
-		model.addAttribute("filter", dao.filterList());
+		
+		String strp = request.getParameter("p");
+		int p = 1;
+		
+		if(strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+		
+		Paging paging = new Paging();
+		
+		paging.setPageUnit(5); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+		
+		filter.setFil_first(paging.getFirst());
+		filter.setFil_last(paging.getLast());
+		
+		paging.setTotalRecord(dao.filCount());
+		
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("filter", dao.filterList(filter));
 
 		return "admin/filter";
 	}
@@ -134,7 +174,11 @@ public class AdminController {
 	}
 	
 	
-	
+	@RequestMapping("/adminQna")
+	public String QnaList(Model model, HttpServletRequest request) throws IOException{
+
+		return "admin/qnaList";
+	}
 	
 	
 }

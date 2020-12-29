@@ -36,17 +36,17 @@
 
 
 <section class="content">
-<div style="padding: 10px 20px 10px 20px;">
+<div align="center" style="padding: 10px 20px 10px 20px;">
 	<h1 style="padding: 10px;" align="center">개인회원 리스트</h1>
-	<table class="table table-hover">
+	<table class="table table-hover" >
 		<thead>
 			<tr>
-				<th>No</th>
-				<th>가입일</th>
-				<th>아이디</th>
-				<th>이름</th>
-				<th>연락처</th>
-				<th>메일</th>
+				<th style="width: 5%;">No</th>
+				<th style="width: 15%;">가입일</th>
+				<th style="width: 15%;">아이디</th>
+				<th style="width: 15%;">이름</th>
+				<th style="width: 15%;">연락처</th>
+				<th style="width: 20%;">메일</th>
 			</tr>
 		</thead>
 		<tbody>
