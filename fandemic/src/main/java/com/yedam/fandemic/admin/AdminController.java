@@ -19,6 +19,7 @@ import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Filter;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
+import com.yedam.fandemic.vo.QnA;
 
 
 
@@ -175,10 +176,37 @@ public class AdminController {
 	
 	
 	@RequestMapping("/adminQna")
-	public String QnaList(Model model, HttpServletRequest request) throws IOException{
+	public String QnaList(Model model, HttpServletRequest request, QnA qna) throws IOException{
 
+		List<QnA> list = dao.qnaList();
+		model.addAttribute("qna", list);
+		
 		return "admin/qnaList";
+
 	}
+	
+	@RequestMapping("/qnaInsert")
+	public String qnaInsert(Model model, HttpServletRequest request, QnA qna) throws IOException{
+		
+		qna.setQ_no(request.getParameter("no"));
+		qna = dao.qnaOne(qna);
+		model.addAttribute("qna", qna);
+		
+		return "admin/qnaOne";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

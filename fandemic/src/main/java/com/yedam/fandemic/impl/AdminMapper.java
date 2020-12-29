@@ -5,6 +5,7 @@ import java.util.List;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Filter;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.QnA;
 
 public interface AdminMapper {
 	
@@ -22,6 +23,11 @@ public interface AdminMapper {
 	public int memCount(); //개인
 	public int comCount(); //기업
 	public int filCount(); //금칙어
+	
+	public List<QnA> qnaList(); //qna 리스트
+	public QnA qnaOne(QnA qna); //qna 단건
+	
+	
 	
 	
 }

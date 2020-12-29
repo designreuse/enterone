@@ -13,4 +13,6 @@ public class QnA {
 	String q_time;		//등록일
 	String q_atime;		//답변일
 	
+	String mem_phone;
+	
 }
