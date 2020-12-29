@@ -37,7 +37,7 @@ public class CnoticeController {
 	
 	//공지사항 삭제
 	@RequestMapping(value = "/management/noticesDelete")
-	@ResponseBody //결과를 Json형태로 
+	@ResponseBody //결과를 Json형태로 변환
 	public int noticesDelete(Cnotice cnotice) {
 		int result = cnoticeService.deleteCnotice(cnotice);
 		return result;

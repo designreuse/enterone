@@ -15,11 +15,10 @@ public class ManagementController {
 	public String Main(){
 		return "mgt/main";
 	}
-	
-	@RequestMapping(value="/management/starRM")
-	public String StarRM(){
-		return "mgt/starRM";
-	}
+	/*
+	 * @RequestMapping(value="/management/starRM") public String StarRM(){ return
+	 * "mgt/starRM"; }
+	 */
 	
 	
 }

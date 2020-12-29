@@ -45,59 +45,23 @@ div #dataTable_filter{
 <script>
 	$(function() {
 		
-		cnoticeList();//공지사항 목록요청
-		$(".pagination a").on("click",function(){
-			$(".pagination a").removeClass("active");
-			$(this).addClass("active");
-		});
+		starMemberList();//스타회원 목록요청
 		
+		
+		//스타회원 등록 버튼클릭시 이벤트
 		$(".btn-register").on("click",function(){
-			location.href="${pageContext.request.contextPath}/management/noticesInsertForm";
-		});
-		
-		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
-		table.on("click","tr a",function(){ //게시물 tr에 제목 클릭했을때 ~
-			/* alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호 */
-			var cnoc_no = $(this).parent().prev().text();
-			location.href="${pageContext.request.contextPath}/management/noticesDetail?cnoc_no="+cnoc_no;	
-		});//end 게시물 제목 클릭
-		
-		
-		//체크박스 클릭 이벤트
-		table.on("click","input[type=checkbox]",function(){		 	
-			if(!$(this).attr("checked")){
-				$(this).attr("checked",true);
-			}else{
-				$(this).attr("checked",false)
-			}
+			location.href="${pageContext.request.contextPath}/management/starInsertForm";
 		});
 		
 		
-		//공지사항 삭제
-		$(".btn-delete").on("click",function(){
-			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/noticesDelete",
-				type:"POST",
-				data: $("#frm1").serialize(),
-				dataType: 'json', //결과값 Json형태로
-				success: function(response) {
-			    	if(response != null && response !="") {
-			    		cnoticeList();
-			    	}  
-			    }, 
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    } 
-			});//end ajax
-		});
 		
 	}); //end document ready
 	
-	//공지사항 목록 조회 요청
-	function cnoticeList() {
+	//스타회원 목록 조회 요청
+	function starMemberList() {
 		var com_id = "${company.com_id }";
 		$.ajax({
-			url:'${pageContext.request.contextPath}/management/noticesList', //요청할 url
+			url:'${pageContext.request.contextPath}/management/starMemberList', //요청할 url
 			type:'POST',
 			data: {com_id:com_id},
 			//contentType:'application/json;charset=utf-8',
@@ -105,42 +69,39 @@ div #dataTable_filter{
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
-			success:cnoticeListResult
+			success:starMemberListResult
 		});
-	}//end cnoticeList
+	}//end starMemberList
 	
-	function cnoticeListResult(data){
+	function starMemberListResult(data){
 		/* console.log(data); */
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
-			$('<tr>').attr("class","cnoticeTr")
-			.append($('<td>').html('<input type="checkbox" name="cnoc_nos" value="'+item.cnoc_no+'">'))
-			.append($('<td>').html(item.cnoc_no))
-			.append($('<td>').html('<a href="#">'+item.cnoc_title+'</a>'))
+			$('<tr>').attr("class","starMemberTr")
+			.append($('<td>').html('<input type="checkbox" name="st_ids" value="'+item.st_id+'">'))
+			.append($('<td>').html(item.st_name))
+			.append($('<td>').html('<a href="#">'+item.st_id+'</a>'))
+			.append($('<td>').html(item.st_pw))
 			.append($('<td>').html(item.com_id))
-			.append($('<td>').html(item.cnoc_time))
-			.append($('<td>').html(item.cnoc_subject))
 			.appendTo('tbody');
 			
 		});//end each
 		$('#dataTable').DataTable();
 		
-		/* $("input[type=checkbox]").click(function(){
-			alert("뭔데")
-		}) */
-	}//end cnoticeListResult
+		
+	}//end starMemberListResult
 </script>
      <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>공지사항</h1>
+            <h1>스타관리</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">공지사항</li>
+              <li class="breadcrumb-item active">스타관리</li>
             </ol>
           </div>
         </div>
@@ -161,11 +122,10 @@ div #dataTable_filter{
                   <thead>
                     <tr>
                       <th></th>
-                      <th>번호</th>
-                      <th>제목</th>
-                      <th>글쓴이</th>
-                      <th>등록일</th>
-                      <th>분류(이벤트/공지)</th>
+                      <th>스타이름</th>
+                      <th>ID</th>
+                      <th>PW</th>
+                      <th>소속사</th>
                     </tr>
                   </thead>
                   <tbody>
