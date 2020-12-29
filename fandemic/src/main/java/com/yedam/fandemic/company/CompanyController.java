@@ -2,6 +2,7 @@ package com.yedam.fandemic.company;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.yedam.fandemic.impl.CnoticeMapper;
 import com.yedam.fandemic.impl.CompanyMapper;
 import com.yedam.fandemic.vo.Cnotice;
 import com.yedam.fandemic.vo.Company;
+import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.Star;
 
 @Controller
@@ -49,9 +51,28 @@ public class CompanyController {
 	
 	//소속사 공지사항 목록 출력
 	@RequestMapping(value="/company/notify/{id}")
-	public ModelAndView companyNotify(@PathVariable String id, Cnotice cnocVo, Model model) throws IOException{
+	public ModelAndView companyNotify(@PathVariable String id, HttpServletRequest request, Cnotice cnocVo, Model model) throws IOException{
 		cnocVo.setCom_id(id);
-		model.addAttribute("companyNotices", cnoticeDao.getCnoticeList(cnocVo));
+		
+		String strp = request.getParameter("p");
+		int p = 1;
+		if(strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+		
+		Paging paging = new Paging();
+		
+		paging.setPageUnit(15); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+		
+		cnocVo.setCnoc_first(paging.getFirst());
+		cnocVo.setCnoc_last(paging.getLast());
+		
+		paging.setTotalRecord(companyDao.getCnoticeCount(cnocVo));
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("companyNotices", companyDao.getCnoticeListPaging(cnocVo));
 		return new ModelAndView("company/company_notify");
 	}
 	

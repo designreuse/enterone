@@ -123,7 +123,35 @@
 	padding : 2em;
 }
 
+/* 페이지네이션 */
 
+.pagination li {
+	display: inline-block; 
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid gray;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: rgb(53, 52, 52);
+  color: white;
+  border: 1px solid gray;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: lightgray;
+	color: black;
+	}
 
 /* 화면 넘어가는거 */
 ul, li {

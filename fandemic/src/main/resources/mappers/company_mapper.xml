@@ -36,5 +36,23 @@
 			com_id = #{com_id}
 	</select>
 	
+	<!-- 페이지네이션 -->
+	<select id="getCnoticeCount" parameterType="Cnotice" resultType="int" >
+		SELECT COUNT(*) 
+		FROM cnotice
+		WHERE com_id = #{com_id}
+	</select>
+	
+	<!-- 공지사항 페이지네이션으로 소속사 별 출력 -->
+	<select id="getCnoticeListPaging" resultType="Cnotice" parameterType="Cnotice">
+		SELECT * FROM 
+		( SELECT A.*, ROWNUM conc_rn FROM 
+		( SELECT * FROM cnotice ORDER BY 1 
+		) A 
+		) B 
+		WHERE conc_rn BETWEEN #{cnoc_first} AND #{cnoc_last}
+		AND com_id = #{com_id}
+		ORDER BY conc_rn DESC
+	</select> 
 	
 </mapper>
