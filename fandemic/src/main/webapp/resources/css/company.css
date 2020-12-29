@@ -107,7 +107,8 @@
     padding-bottom: 0.5em;
     border-bottom-color: #f7f7f7;
     border-bottom-style: solid;
-    border-bottom-width : 1px;
+    border-bottom-width : 2px;
+    vertical-align: middle;
 }
 
 /* 공지사항 세부내용 */

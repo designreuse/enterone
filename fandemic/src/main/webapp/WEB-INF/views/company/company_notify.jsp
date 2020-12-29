@@ -34,15 +34,14 @@
 		<br>
 		<br>
 		<div class="row">
-			<div class = "col-xl-12 col-md-12 col-12 noticesList">
-				
-				<div class = "col-xl-1 col-md-1 col-1">
+			<div class = "col-xl-12 col-md-12 col-xs-12 noticesList">
+				<div class = "col-xl-1 col-md-1 col-xs-2">
 					<h6>no</h6>
 				</div>
-				<div class = "col-xl-9 col-md-9 col-9">
+				<div class = "col-xl-9 col-md-9 col-xs-8">
 					<h6>제목</h6>
 				</div>
-				<div class = "col-xl-2 col-md-2 col-2">
+				<div class = "col-xl-2 col-md-2 col-xs-2">
 					<h6>작성일</h6>
 				</div>
 				
@@ -50,16 +49,18 @@
 		</div>
 		<c:forEach var="cnoc" items="${companyNotices}">
 			<div class="row">
-				<div class = "col-xl-12 col-md-12 col-12 noticesList" >
+				<div class = "col-xl-12 col-md-12 col-xs-12 noticesList" >
 					
-					<div class = "col-xl-1 col-md-1 col-1">
+					<div class = "col-xl-1 col-md-1 col-xs-2">
 						${cnoc.cnoc_no}
 					</div>
-					<div class = "col-xl-9 col-md-9 col-9">
-						<p onclick="location.href='${pageContext.request.contextPath}/company/notifyDetail/${cnoc.cnoc_no}';"
-					style='cursor: pointer;'>[${cnoc.cnoc_subject}] ${cnoc.cnoc_title}</p>
+					<div class = "col-xl-9 col-md-9 col-xs-10 alignLeft">
+						<a href="${pageContext.request.contextPath}/company/notifyDetail/${cnoc.cnoc_no}"
+					style='cursor: pointer;'>[${cnoc.cnoc_subject}] ${cnoc.cnoc_title}</a>
 					</div>
-					<div class = "col-xl-2 col-md-2 col-2">
+					<div class = "col-xl-none col-md-none col-xs-2"></div>
+					
+					<div class = "col-xl-2 col-md-2 col-xs-10 alignLeft">
 						${cnoc.cnoc_time}
 					</div>
 				</div>
