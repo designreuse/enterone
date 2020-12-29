@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resourcesSns/css/sns.css">
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
@@ -11,9 +13,102 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!-- 텍스트 모달 띄우기 -->
+<style>
+.drag-over {
+	background-color: #ff0;
+}
+
+.thumb {
+	width: 200px;
+	padding: 5px;
+	float: left;
+}
+
+.thumb>img {
+	width: 100%;
+}
+
+.thumb>.close {
+	position: absolute;
+	background-color: red;
+	cursor: pointer;
+}
+</style>
+<script>
+	$(function() {
+		var uploadFiles = [];
+		var $drop = $("#drop");
+		$drop.on("dragenter", function(e) { //드래그 요소가 들어왔을떄
+			$(this).addClass('drag-over');
+		}).on("dragleave", function(e) { //드래그 요소가 나갔을때
+			$(this).removeClass('drag-over');
+		}).on("dragover", function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+		}).on('drop', function(e) { //드래그한 항목을 떨어뜨렸을때
+			e.preventDefault();
+			$(this).removeClass('drag-over');
+			var files = e.originalEvent.dataTransfer.files; //드래그&드랍 항목
+			for (var i = 0; i < files.length; i++) {
+				var file = files[i];
+				var size = uploadFiles.push(file); //업로드 목록에 추가
+				preview(file, size - 1); //미리보기 만들기
+			}
+		});
+		function preview(file, idx) {
+			var reader = new FileReader();
+			reader.onload = (function(f, idx) {
+				return function(e) {
+					var div = '<div class="thumb"> \
+<div class="close" data-idx="' + idx + '">X</div> \
+<img src="'
+							+ e.target.result
+							+ '" title="'
+							+ escape(f.name)
+							+ '"/> \
+</div>';
+					$("#thumbnails").append(div);
+				};
+			})(file, idx);
+			reader.readAsDataURL(file);
+		}
+		$("#btnSubmit").on("click", function() {
+			var formData = new FormData();
+			$.each(uploadFiles, function(i, file) {
+				if (file.upload != 'disable') //삭제하지 않은 이미지만 업로드 항목으로 추가
+					formData.append('upload-file', file, file.name);
+			});
+			$.ajax({
+				url : '/api/etc/file/upload',
+				data : formData,
+				type : 'post',
+				contentType : false,
+				processData : false,
+				success : function(ret) {
+					alert("완료");
+				}
+			});
+		});
+		$("#thumbnails").on("click", ".close", function(e) {
+			var $target = $(e.target);
+			var idx = $target.attr('data-idx');
+			uploadFiles[idx].upload = 'disable'; //삭제된 항목은 업로드하지 않기 위해 플래그 생성
+			$target.parent().remove(); //프리뷰 삭제
+		});
+		$('a[href="#ex7"]').click(function(event) {
+			event.preventDefault();
+
+			$("#fade").modal({
+				fadeDuration : 250
+			});
+		});
+		$("nexttext").click(function() {
+			$(ex2).css(display, none)
+		});
+	});
+</script>
+
 
 </head>
 
@@ -82,14 +177,14 @@
 				</article>
 
 				<!-- SNS등록창 모달 (텍스트) -->
-				<div id="ex7" class="modal">
-					<form method="post"
-						action="${pageContext.request.contextPath}/sns/snsInsert">
+				<form method="post"
+					action="${pageContext.request.contextPath}/sns/snsInsert">
+					<div id="ex7" class="modal">
 						<div class="mtmtitle">
 							<table style="margin: 25px">
 								<tr>
-									<th><input type="text" id="mem_id" name="mem_id"
-										placeholder="" value="${member.mem_id }"></th>
+									<th hidden="true"><input type="text" id="mem_id"
+										name="mem_id" placeholder="" value="${member.mem_id }"></th>
 									<th><input type="text" id="sns_title" name="sns_title"
 										placeholder="제목"></th>
 								</tr>
@@ -106,45 +201,37 @@
 							<hr>
 							<a href="#" rel="modal:close">닫기</a>
 							<button>포스팅</button>
-							>
+
 						</div>
-					</form>
-				</div>
-				<script>
-					$('a[href="#ex7"]').click(function(event) {
-						event.preventDefault();
+					</div>
 
-						$("#fade").modal({
-							fadeDuration : 250
-						});
-					});
-				</script>
-
-
-
-
-				<!-- SNS등록창 모달 (사진) -->
-				<div id="ex2" class="modal">
-					<form action="">
+					<!-- SNS등록창 모달 (사진) -->
+					<div id="ex2" class="modal" style="height: 62%">
 						<h1>사진 등록</h1>
-						<a> 글 제목</a> <input type="text" id="title"> <a>글 내용</a> <input
-							type="text" id="content"> <input type="reset" value="삭제">
-						<input type="submit" value="글 등록">
-					</form>
-				</div>
+						<div id="drop"
+							style="border: 1px solid black; width: 100%; height: 67%; padding: 3px">
+							사진을 올려주세요
+							<div id="thumbnails"
+								style="overflow: auto; width: 100%; height: 94%;"></div>
+							<hr>
+								<a href="#ex7" rel="modal:open">
+									<button style="height: 29px;" type="button"
+										id="nexttext" class="_1gkvT" data-target="#modalText">글쓰기</button>
+								</a>
+						</div>
+					</div>
 
 
 
 
-				<!-- SNS등록창 모달 (동영상) -->
-				<div id="ex3" class="modal">
-					<form action="">
+					<!-- SNS등록창 모달 (동영상) -->
+					<div id="ex3" class="modal">
 						<h1>동영상 등록</h1>
 						<a> 글 제목</a> <input type="text" id="title"> <a>글 내용</a> <input
 							type="text" id="content"> <input type="reset" value="삭제">
 						<input type="submit" value="글 등록">
-					</form>
-				</div>
+					</div>
+				</form>
 
 
 
@@ -170,7 +257,7 @@
 											</div>
 											<div class="time">${sns.sns_time}</div>
 										</div>
-										<p>${sns.sns_content}${sns.sns_pic}</p>
+										<p>${sns.sns_content}</p>
 										<footer>
 											<a href="#" class="love"><i
 												class="ion-android-favorite-outline"></i>
@@ -216,7 +303,7 @@
 				</div>
 			</div>
 
-<!-- <!-- ㅇㄴㄹ ㅁㅇㄹ.ㅏㅜㄴㅁㄹ어ㅜㅠㅁ어나ㅠㅁㄹㅇ나ㅠㅗㄹㄴㅁ아ㅓㅗㅇㄴ머ㅜㅗㄴ아ㅓㅗㅇ누ㄹㄴㅁㄹ.ㅏㅓㄴㅁ우춘마ㅓㅠㅜ차ㅓㄴ뮤와뉴마ㅣㅓㅗㄴㅁ아ㅓㅣ롸ㅓㄴㅇㅁ롸ㅓㄴㅁㅇㄴ룀논말어ㅓㅗㄹ무ㅠㅇ니ㅏㅍㄴ머ㅠ오미나ㅣㄴㅁ아ㅗ룸ㄴㅊㅎ춞ㄷ슐챠ㅛㅂㅅㄱ츄ㅛㅑㅐㅈㅂㅅ갸슈마ㅣㅗㄴㅇㅁ라ㅓㅘㅓㅇㄴ뫈ㅇ몰ㅇ나미ㅗ라ㅓㄴ모알ㅇㄴ뫄ㅓㅇㄴ몸러 -->
+			<!-- <!-- ㅇㄴㄹ ㅁㅇㄹ.ㅏㅜㄴㅁㄹ어ㅜㅠㅁ어나ㅠㅁㄹㅇ나ㅠㅗㄹㄴㅁ아ㅓㅗㅇㄴ머ㅜㅗㄴ아ㅓㅗㅇ누ㄹㄴㅁㄹ.ㅏㅓㄴㅁ우춘마ㅓㅠㅜ차ㅓㄴ뮤와뉴마ㅣㅓㅗㄴㅁ아ㅓㅣ롸ㅓㄴㅇㅁ롸ㅓㄴㅁㅇㄴ룀논말어ㅓㅗㄹ무ㅠㅇ니ㅏㅍㄴ머ㅠ오미나ㅣㄴㅁ아ㅗ룸ㄴㅊㅎ춞ㄷ슐챠ㅛㅂㅅㄱ츄ㅛㅑㅐㅈㅂㅅ갸슈마ㅣㅗㄴㅇㅁ라ㅓㅘㅓㅇㄴ뫈ㅇ몰ㅇ나미ㅗ라ㅓㄴ모알ㅇㄴ뫄ㅓㅇㄴ몸러 -->
 
 			<!-- 사이드바 구역 -->
 			<div class="col-xs-6 col-md-4 sidebar" id="sidebar">
@@ -234,12 +321,12 @@
 									</div>
 									<div class="featured-author-center">
 										<figure class="featured-author-picture">
-										<p>
-											<img src="${member.mem_pic}" alt="Sample Article">
+											<p>
+												<img src="${member.mem_pic}" alt="Sample Article">
 											</p>
 										</figure>
 										<div class="featured-author-info">
-											<h2 class="name">${member.mem_id} </h2>
+											<h2 class="name">${member.mem_id}</h2>
 											<div class="desc">${member.mem_email}</div>
 										</div>
 									</div>
@@ -273,10 +360,10 @@
 										<h2 class="block-title">Photos</h2>
 										<div class="block-body">
 											<ul class="item-list-round" data-magnific="gallery">
-												<c:forEach items="${mysnslist }" var="mySns" > 
-												<li><a href="${mySns.sns_pic}"
-													style="background-image: url('${mySns.sns_pic}');"></a></li>
-													</c:forEach>
+												<c:forEach items="${mysnslist }" var="mySns">
+													<li><a href="${mySns.sns_pic}"
+														style="background-image: url('${mySns.sns_pic}');"></a></li>
+												</c:forEach>
 											</ul>
 										</div>
 									</div>
@@ -303,121 +390,26 @@
 								</figure>
 								<div class="padding">
 									<h1>
-										<a href="single.html">Fusce ullamcorper elit at felis
-											cursus suscipit</a>
+										<a href="single.html">좋아요 많이 받은 내글 </a>
 									</h1>
 								</div>
 							</div>
 						</article>
-						<article class="article-mini">
-							<div class="inner">
-								<figure>
-									<a href="single.html"> <img src="images/news/img14.jpg"
-										alt="Sample Article">
-									</a>
-								</figure>
-								<div class="padding">
-									<h1>
-										<a href="single.html">Duis aute irure dolor in
-											reprehenderit in voluptate velit</a>
-									</h1>
-								</div>
-							</div>
-						</article>
-						<article class="article-mini">
-							<div class="inner">
-								<figure>
-									<a href="single.html"> <img src="images/news/img09.jpg"
-										alt="Sample Article">
-									</a>
-								</figure>
-								<div class="padding">
-									<h1>
-										<a href="single.html">Aliquam et metus convallis tincidunt
-											velit ut rhoncus dolor</a>
-									</h1>
-								</div>
-							</div>
-						</article>
-						<article class="article-mini">
-							<div class="inner">
-								<figure>
-									<a href="single.html"> <img src="images/news/img11.jpg"
-										alt="Sample Article">
-									</a>
-								</figure>
-								<div class="padding">
-									<h1>
-										<a href="single.html">dui augue facilisis lacus fringilla
-											pulvinar massa felis quis velit</a>
-									</h1>
-								</div>
-							</div>
-						</article>
-						<article class="article-mini">
-							<div class="inner">
-								<figure>
-									<a href="single.html"> <img src="images/news/img06.jpg"
-										alt="Sample Article">
-									</a>
-								</figure>
-								<div class="padding">
-									<h1>
-										<a href="single.html">neque est semper nulla, ac elementum
-											risus quam a enim</a>
-									</h1>
-								</div>
-							</div>
-						</article>
-						<article class="article-mini">
-							<div class="inner">
-								<figure>
-									<a href="single.html"> <img src="images/news/img03.jpg"
-										alt="Sample Article">
-									</a>
-								</figure>
-								<div class="padding">
-									<h1>
-										<a href="single.html">Morbi vitae nisl ac mi luctus
-											aliquet a vitae libero</a>
-									</h1>
-								</div>
-							</div>
-						</article>
-					</div>
-				</aside>
-				<aside>
-					<div class="aside-body">
-						<form class="newsletter">
-							<div class="icon">
-								<i class="ion-ios-email-outline"></i>
-								<h1>Newsletter</h1>
-							</div>
-							<div class="input-group">
-								<input type="email" class="form-control email"
-									placeholder="Your mail">
-								<div class="input-group-btn">
-									<button class="btn btn-primary">
-										<i class="ion-paper-airplane"></i>
-									</button>
-								</div>
-							</div>
-							<p>By subscribing you will receive new articles in your
-								email.</p>
-						</form>
 					</div>
 				</aside>
 				<aside>
 					<ul class="nav nav-tabs nav-justified" role="tablist">
 						<li class="active"><a href="#recomended"
 							aria-controls="recomended" role="tab" data-toggle="tab"> <i
-								class="ion-android-star-outline"></i> Recomended
+								class="ion-android-star-outline"></i> Random Post
 						</a></li>
 						<li><a href="#comments" aria-controls="comments" role="tab"
 							data-toggle="tab"> <i class="ion-ios-chatboxes-outline"></i>
 								Comments
 						</a></li>
 					</ul>
+
+					<!-- Random Post --------------------------------------------------------------------------------- -->
 					<div class="tab-content">
 						<div class="tab-pane active" id="recomended">
 							<article class="article-fw">
@@ -435,56 +427,13 @@
 											</div>
 										</div>
 										<h1>
-											<a href="single.html">Donec congue turpis vitae mauris</a>
+											<a href="single.html">큰 랜덤 포스트</a>
 										</h1>
-										<p>Donec congue turpis vitae mauris condimentum luctus. Ut
-											dictum neque at egestas convallis.</p>
+										<p>랜덤 포스트 글</p>
 									</div>
 								</div>
 							</article>
 							<div class="line"></div>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img src="images/news/img05.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Lifestyle</a>
-											</div>
-											<div class="time">December 22, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img src="images/news/img02.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Fusce ullamcorper elit at felis
-												cursus suscipit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Travel</a>
-											</div>
-											<div class="time">December 21, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
 							<article class="article-mini">
 								<div class="inner">
 									<figure>
@@ -494,19 +443,19 @@
 									</figure>
 									<div class="padding">
 										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Healthy</a>
-											</div>
-											<div class="time">December 20, 2016</div>
-										</div>
+											<a href="single.html">램덤 글 출력됨
+												<div class="detail">
+													<div class="category">
+														<a href="category.html">PostDate</a>
+													</div>
+													<div class="time">December 20, 2016</div>
+												</div>
 									</div>
 								</div>
 							</article>
 						</div>
+
+						<!-- 댓글 확인------------------------------------------------------------------------------------------------- -->
 						<div class="tab-pane comments" id="comments">
 							<div class="comment-list sm">
 								<div class="item">
@@ -520,74 +469,8 @@
 										</div>
 									</div>
 								</div>
-								<div class="item">
-									<div class="user">
-										<figure>
-											<img src="images/img01.jpg" alt="User Picture">
-										</figure>
-										<div class="details">
-											<h5 class="name">Mark Otto</h5>
-											<div class="time">24 Hours</div>
-											<div class="description">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="user">
-										<figure>
-											<img src="images/img01.jpg" alt="User Picture">
-										</figure>
-										<div class="details">
-											<h5 class="name">Mark Otto</h5>
-											<div class="time">24 Hours</div>
-											<div class="description">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
-					</div>
-				</aside>
-				<aside>
-					<h1 class="aside-title">
-						Videos
-						<div class="carousel-nav" id="video-list-nav">
-							<div class="prev">
-								<i class="ion-ios-arrow-left"></i>
-							</div>
-							<div class="next">
-								<i class="ion-ios-arrow-right"></i>
-							</div>
-						</div>
-					</h1>
-					<div class="aside-body">
-						<ul class="video-list"
-							data-youtube='"carousel":true, "nav": "#video-list-nav"'>
-							<li><a data-youtube-id="SBjQ9tuuTJQ" data-action="magnific"></a></li>
-							<li><a data-youtube-id="9cVJr3eQfXc" data-action="magnific"></a></li>
-							<li><a data-youtube-id="DnGdoEa1tPg" data-action="magnific"></a></li>
-						</ul>
-					</div>
-				</aside>
-				<aside id="sponsored">
-					<h1 class="aside-title">Sponsored</h1>
-					<div class="aside-body">
-						<ul class="sponsored">
-							<li><a href="#"> <img src="images/sponsored.png"
-									alt="Sponsored">
-							</a></li>
-							<li><a href="#"> <img src="images/sponsored.png"
-									alt="Sponsored">
-							</a></li>
-							<li><a href="#"> <img src="images/sponsored.png"
-									alt="Sponsored">
-							</a></li>
-							<li><a href="#"> <img src="images/sponsored.png"
-									alt="Sponsored">
-							</a></li>
-						</ul>
 					</div>
 				</aside>
 			</div>
@@ -595,158 +478,7 @@
 	</div>
 </section>
 
-<section class="best-of-the-week">
-	<div class="container">
-		<h1>
-			<div class="text">Best Of The Week</div>
-			<div class="carousel-nav" id="best-of-the-week-nav">
-				<div class="prev">
-					<i class="ion-ios-arrow-left"></i>
-				</div>
-				<div class="next">
-					<i class="ion-ios-arrow-right"></i>
-				</div>
-			</div>
-		</h1>
-		<div class="owl-carousel owl-theme carousel-1">
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img src="images/news/img03.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 11, 2016</div>
-							<div class="category">
-								<a href="category.html">Travel</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">tempor interdum Praesent tincidunt</a>
-						</h2>
-						<p>Praesent tincidunt, leo vitae congue molestie.</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img src="images/news/img16.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 09, 2016</div>
-							<div class="category">
-								<a href="category.html">Sport</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Maecenas porttitor sit amet turpis a
-								semper</a>
-						</h2>
-						<p>Proin vulputate, urna id porttitor luctus, dui augue
-							facilisis lacus.</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img src="images/news/img15.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 26, 2016</div>
-							<div class="category">
-								<a href="category.html">Lifestyle</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Fusce ac odio eu ex volutpat
-								pellentesque</a>
-						</h2>
-						<p>Vestibulum ante ipsum primis in faucibus orci luctus</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img src="images/news/img14.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 26, 2016</div>
-							<div class="category">
-								<a href="category.html">Travel</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Nulla facilisis odio quis gravida
-								vestibulum</a>
-						</h2>
-						<p>Proin venenatis pellentesque arcu, ut mattis nulla placerat
-							et.</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img src="images/news/img01.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 26, 2016</div>
-							<div class="category">
-								<a href="category.html">Travel</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Fusce Ullamcorper Elit At Felis Cursus
-								Suscipit</a>
-						</h2>
-						<p>Proin venenatis pellentesque arcu, ut mattis nulla placerat
-							et.</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img src="images/news/img11.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 26, 2016</div>
-							<div class="category">
-								<a href="category.html">Travel</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Donec consequat arcu at ultrices
-								sodales</a>
-						</h2>
-						<p>Proin venenatis pellentesque arcu, ut mattis nulla placerat
-							et.</p>
-					</div>
-				</div>
-			</article>
-		</div>
-	</div>
-</section>
+
 
 
 </body>
