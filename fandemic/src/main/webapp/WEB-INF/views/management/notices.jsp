@@ -179,7 +179,7 @@ div #dataTable_filter{
               	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
               		<button type="button" class="btn-register">등록</button>
-              		<button class="btn-update">수정</button>
+              		<!--  <button class="btn-update">수정</button>-->
               		<button type="button" class="btn-delete">삭제</button>
               	</div>
               </div>

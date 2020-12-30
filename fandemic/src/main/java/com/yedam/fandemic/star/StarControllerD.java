@@ -88,4 +88,11 @@ public class StarControllerD {
 		return "mgt/star/starList"; //스타회원목록 리스트로 
 	}
 		
+	//소속사 스타회원 수정 페이지 이동, id값받아옴
+	@RequestMapping(value="/management/star/starDetail")
+	public String StarDetail(Model model, Star star) {
+		model.addAttribute("star",starService.getStarDetail(star));
+		return "mgt/star/starDetail";
+	}
+	
 }

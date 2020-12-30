@@ -53,7 +53,12 @@ div #dataTable_filter{
 			location.href="${pageContext.request.contextPath}/management/star/starInsertForm";
 		});
 		
-		
+		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
+		table.on("click","tr a",function(){ //스타회원 ID값 클릭시 이벤트
+			//alert($(this).parent().next().text());//
+			var st_id = $(this).parent().next().text();
+			location.href="${pageContext.request.contextPath}/management/star/starDetail?st_id="+st_id;	
+		});//end 게시물 제목 클릭
 		
 	}); //end document ready
 	
@@ -79,8 +84,8 @@ div #dataTable_filter{
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","starMemberTr")
 			.append($('<td>').html('<input type="checkbox" name="st_ids" value="'+item.st_id+'">'))
-			.append($('<td>').html(item.st_name))
-			.append($('<td>').html('<a href="#">'+item.st_id+'</a>'))
+			.append($('<td>').html('<a href="#">'+item.st_name+'</a>'))
+			.append($('<td>').html(item.st_id))
 			.append($('<td>').html(item.st_pw))
 			.append($('<td>').html(item.com_id))
 			.appendTo('tbody');
@@ -139,7 +144,7 @@ div #dataTable_filter{
               	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
               		<button type="button" class="btn-register">등록</button>
-              		<button class="btn-update">수정</button>
+              		<!--  <button class="btn-update">수정</button> -->
               		<button type="button" class="btn-delete">삭제</button>
               	</div>
               </div>
