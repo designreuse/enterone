@@ -12,7 +12,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/mypage/{1}.jsp" />
 	</definition>
-
+	
+	<definition name="mgt/star/*" template="/WEB-INF/views/layout/management.jsp">
+		<put-attribute name="body"
+			value="/WEB-INF/views/management/star/{1}.jsp" />
+	</definition>
+	
 	<definition name="mgt/*" template="/WEB-INF/views/layout/management.jsp">
 		<put-attribute name="body"
 			value="/WEB-INF/views/management/{1}.jsp" />

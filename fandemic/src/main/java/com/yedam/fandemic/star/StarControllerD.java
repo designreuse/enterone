@@ -23,34 +23,34 @@ public class StarControllerD {
 	@Autowired StarServiceD starService; 
 	
 	//소속사 스타관리 페이지 이동
-	@RequestMapping(value="/management/starManagement")
+	@RequestMapping(value="/management/star/starList")
 	public String StarManagement(){
-		return "mgt/starManagement";
+		return "mgt/star/starList";
 	}
 	
 	
 	//소속사 스타회원 리스트 출력
-	@RequestMapping(value="/management/starMemberList")
+	@RequestMapping(value="/management/star/starMemberList")
 	@ResponseBody //결과를 Json형태로 변환
 	public List<Star> getStarMemberList(Star star){
 		return starService.getStarMemberList(star);
 	}
 	
 	//소속사 스타회원 등록 페이지 이동
-	@RequestMapping(value="/management/starInsertForm")
+	@RequestMapping(value="/management/star/starInsertForm")
 	public String StarInsertForm() {
-		return "mgt/starInsertForm";
+		return "mgt/star/starInsertForm";
 	}
 	
 	//소속사 스타회원가입 ID 중복체크
-	@RequestMapping(value="/management/starIdCheck")
+	@RequestMapping(value="/management/star/starIdCheck")
 	@ResponseBody
 	public int StarIdCheck(Model model, Star star) {	
 		return starService.getStarIdCheck(star);
 	}
 		
 	//소속사 스타회원 등록
-	@RequestMapping(value="/management/starMemberInsert")
+	@RequestMapping(value="/management/star/starMemberInsert")
 	public String starMemberInsert(HttpServletRequest request, Star star) throws IllegalStateException, IOException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 	      //스타회원 아이콘 사진
@@ -85,7 +85,7 @@ public class StarControllerD {
 	    	  star.setSt_banner("");
 	      }
 		starService.InsertStar(star);
-		return "mgt/starManagement"; //스타회원목록 리스트로 
+		return "mgt/star/starList"; //스타회원목록 리스트로 
 	}
 		
 }
