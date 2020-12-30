@@ -37,6 +37,23 @@
 			/* alert("등록버튼눌림"); */
 			CnoticeFormCheck(); //유효성검사
 		});
+		
+		//ID중복체크 버튼
+		$("td .st_id_ck").on("click",function(){
+			var st_id=$(".st_id").val();
+			$.ajax({
+				url:"${pageContext.request.contextPath}/management/starIdCheck",
+				type:"post",
+				data:{st_id:st_id},
+				dataType: 'json',
+				success: function(response) {
+			    	alert("성공");
+			    }, 
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    } 
+			});
+		});
 	});//end ready function
 	
 	function CnoticeFormCheck(){
@@ -93,8 +110,8 @@
 								<tr>
 									<td colspan="2" width="200px" align="right" style="padding-right:10px"><label>아이디</label></td>
 									<td colspan="2" align="left">								
-				                    <input type="text" style="width:250px" placeholder="아이디를 입력하세요.">     
-				                    <input type="button" value="중복체크">                  
+				                    <input type="text" style="width:250px" name="st_id" placeholder="아이디를 입력하세요.">     
+				                    <input type="button" name="st_id_ck" value="중복체크">                  
 									</td>
 								</tr>
 								<tr>

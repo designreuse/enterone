@@ -4,12 +4,17 @@
 
 <mapper namespace="com.yedam.fandemic.impl.StarMapperD">
 	
-<!-- 소속사 정보 출력 -->	
+<!-- 소속사 스타회원목록 출력 -->	
 	<select id="getStarMemberList" parameterType="Star" resultType="Star">
 		SELECT * 
 		FROM STAR
 		WHERE COM_ID=#{com_id}
 	</select>
-
+<!-- 소속사 스타회원가입 ID중복체크-->
+	<select id="getStarIdCheck" parameterType="Star" resultType="Star">
+		SELECT ST_ID
+		FROM STAR
+		WHERE ST_ID=#{st_id}
+	</select>
 	
 </mapper>

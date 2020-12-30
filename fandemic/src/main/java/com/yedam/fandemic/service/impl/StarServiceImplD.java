@@ -19,6 +19,11 @@ public class StarServiceImplD implements StarServiceD{
 		return starDAO.getStarMemberList(star);
 	}
 
+	@Override
+	public Star getStarIdCheck(Star star) {
+		return starDAO.getStarIdCheck(star);
+	}
+
 	
 	
 }

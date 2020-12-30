@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -34,4 +35,13 @@ public class StarControllerD {
 	public String StarInsertForm() {
 		return "mgt/starInsertForm";
 	}
+	
+	//소속사 스타회원가입 ID 중복체크
+		@RequestMapping(value="/management/starIdCheck")
+		@ResponseBody
+		public String StarIdCheck(Model model, Star star) {
+			starService.getStarIdCheck(star);
+			model.addAttribute("star", starService);
+			return "mgt/starInsertForm";
+		}
 }

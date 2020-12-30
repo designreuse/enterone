@@ -78,6 +78,12 @@
 	 	});
 
 	
+	 	//이벤트/공지사항 분류 DB값 지정
+	 	$(".custom-select option").each(function(){
+	 		if($(this).val()=="${cnotice.cnoc_subject}"){
+	 			$(this).attr("selected","selected");
+	 		}
+	 	})
 	});//end ready function
 	
 	function CnoticeFormCheck(){
@@ -135,13 +141,15 @@
 								<tr width="100%">
 									<td width="10%" align="left"><label>분류</label></td>
 									<td width="40%" align="left">								
-				                        <select name="cnoc_subject" class="custom-select" style="width: auto; value="${cnotice.cnoc_subject }">
+				                        <select name="cnoc_subject" class="custom-select" style="width: auto;" value="${cnotice.cnoc_subject }">
+				                        
 				                          <option>공지사항</option>
 				                          <option>이벤트</option>				                          
 				                        </select>                     
+				                        
 									</td>
-									<td class="event" style="display: none;"><label>인원</label></td>
-									<td class="event" style="display: none;"><input type="text" name="cnoc_limit" class="form-control"/>${cnotice.cnoc_limit} </td>
+									<td class="event" style="display: ;"><label>인원</label></td>
+									<td class="event" style="display: ;"><input type="text" name="cnoc_limit" class="form-control"/ value="${cnotice.cnoc_limit}"> </td>
 								</tr>
 								<tr width="100%">
 									<td colspan="1" align="left"><label>제목</label></td>
@@ -157,7 +165,7 @@
 								</tr>
 								
 								<tr>
-									<td colspan="1" align="left"></td>
+									<td colspan="1" align="left"><label>첨부파일</label></td>
 									<td colspan="3" class="fileboxi">
 										<label class="filebox" for="file">업로드</label>
                       					<input type="file" id="file" class="cnoc_file" name="uploadFile" multiple>
@@ -169,9 +177,15 @@
                       					              					
                      				</td>
 								</tr>
+								<tr>
+									<td colspan="1" align="left"><label>메인홍보용배너</label></td>
+									<td colspan="3">
+                      					<input type="file" name="uploadbanner" >                     					
+                     				</td>
+								</tr>
 								<tr >
 									<td colspan="4" align="right" style="padding:5px;">
-									<button type="submit" id="btnCnotice-register" class="btn btn-primary pull-right">등록</button>
+									<button type="submit" id="btnCnotice-register" class="btn btn-primary pull-right">수정</button>
 									<input type="button" id="btnCancel" class="btn btn-primary pull-right" value="취소" /></td>
 								</tr>
 							</tbody>
