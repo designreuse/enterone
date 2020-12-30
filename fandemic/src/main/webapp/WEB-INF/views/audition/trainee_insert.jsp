@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <style>
+
 #pro_addr1{
 width:100%
 }
@@ -523,32 +524,13 @@ ul.tabs li.current {
 								</tr>
 								
 								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
-								
 								<tr>
-
-									<td colspan="2">Larry the Bird</td>
-									<td>@twitter</td>
+									<td></td>
+									<td colspan="2">
+										<input type="text" id="pro_addr1" name="pro_addr1" placeholder="상세주소">
+									</td>
+									
 								</tr>
-
 							</table>
 						</form>
 					</div>
