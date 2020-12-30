@@ -49,7 +49,7 @@
 			class="js-fullheight text-center">
 			<h1 id="colorlib-logo">
 				<a href="#"><span class="img"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/author.jpg);"></span>${star.st_name}</a>
+					style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_pic}"></span>${star.st_name}</a>
 			</h1>
 			<button type="button" class="btn btn-primary" data-toggle="modal"
 				data-target="#exampleModal" data-what="hello">채널가입</button>
