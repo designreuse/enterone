@@ -10,14 +10,17 @@ INSERT INTO SNS (
 								sns_time,
 								sns_content,
 								sns_title,
-								mem_id
+								mem_id,
+								sns_pic
+							
 								)
 	 	                VALUES(
 	 	               			sns_ac_seq.NEXTVAL,
 	 	              			SYSDATE,
 	 	               			#{sns_content},
 	 	               			#{sns_title},
-	 	               			#{mem_id})
+	 	               			#{mem_id},
+	 	               			#{sns_pic})
 
 </insert>
 <select id="selectSns" resultType="Sns">

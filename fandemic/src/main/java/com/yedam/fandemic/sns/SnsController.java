@@ -1,7 +1,10 @@
 package com.yedam.fandemic.sns;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -9,11 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.SnsMapper;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Sns;
+
 @Controller
 public class SnsController {
 	@Autowired
@@ -39,13 +45,31 @@ public class SnsController {
 	}
 	// SNS 등록
 	@RequestMapping(value = "/sns/snsInsert")
-	public String snsInsert(Sns sns) {
-		snsdao.insertSns(sns);
-		
-		
-		return "sns/sns";
-	}
+		public String snsInsert(HttpServletRequest request, Sns sns) throws IllegalStateException, IOException {
+			// request multipart로 캐스팅
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			// 이미지파일
+			List<MultipartFile> multipartFile = multipartRequest.getFiles("upload-file");
+			// 첨부파일
+			String imgname = "";
+			for(int i = 0; i<multipartFile.size(); i++) {
+				if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
+				String path = request.getSession().getServletContext().getRealPath("/images");
 
+				System.out.println("path=" + path);
+                 
+				multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
+				
+				imgname += multipartFile.get(i).getOriginalFilename()+",";
+				
+				}
+			}
+			sns.setSns_pic(imgname);
+			
+			snsdao.insertSns(sns);
+			return "sns/sns";
+		}
 		
-
 }
+		
+

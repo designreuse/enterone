@@ -74,13 +74,13 @@
 			reader.readAsDataURL(file);
 		}
 		$("#btnSubmit").on("click", function() {
-			var formData = new FormData();
+			var formData = new FormData(document.getElementById('uploadForm'));
 			$.each(uploadFiles, function(i, file) {
 				if (file.upload != 'disable') //삭제하지 않은 이미지만 업로드 항목으로 추가
 					formData.append('upload-file', file, file.name);
 			});
 			$.ajax({
-				url : '/api/etc/file/upload',
+				url : 'sns/snsInsert',
 				data : formData,
 				type : 'post',
 				contentType : false,
@@ -137,9 +137,7 @@
 					</div>
 				</div>
 				<!-- SNS등록창 모달 (텍스트) -->
-				<form method="post"
-					action="${pageContext.request.contextPath}/sns/snsInsert">
-
+				<form name="uploadForm" id="uploadForm" enctype="multipart/form-data" method="post">
 					<div id="ex7">
 						<div class="mtmtitle">
 							<div id="ex2" style="height: 62%">
@@ -149,6 +147,8 @@
 								type="text" id="sns_title" name="sns_title" placeholder="제목">
 							<input style="display: none;" type="text" id="mem_id"
 								name="mem_id" placeholder="" value="${member.mem_id }">
+							
+							
 							<div class="row" style="margin-top: 2%; margin-left: 6%">
 								<div class="" id="drop"
 									style="border: 1px solid black; width: 30%; height: 177.78px; float: left">
@@ -157,14 +157,15 @@
 										style="overflow: auto; width: 100%; height: 88%;"></div>
 									<a href="#ex7" rel="modal:open"> </a>
 								</div>
+								
+								
 								<div style="float: left; width: 50%; height: 191px;">
 									<textarea rows="9" cols="50" placeholder="내용을 적어주세요"
 										name="sns_content"></textarea>
 								</div>
 							</div>
 							<div>
-						<button>보내기</button>
-								</a>
+						<button type="button" id="btnSubmit">보내기</button>
 							</div>
 						</div>
 					</div>
