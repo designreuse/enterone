@@ -39,32 +39,60 @@
 		});
 		
 		//ID중복체크 버튼
-		$("td .st_id_ck").on("click",function(){
-			var st_id=$(".st_id").val();
+		$("td .st_id_ck_btn").on("click",function(){
+			var st_id=$(".st_id").val(); //id값
 			$.ajax({
 				url:"${pageContext.request.contextPath}/management/starIdCheck",
 				type:"post",
 				data:{st_id:st_id},
 				dataType: 'json',
 				success: function(response) {
-			    	alert("성공");
+			    	if(response != null && response !="") {
+			    		$(".st_id_ck").text("중복된 아이디값이 있습니다.")
+			    		$(".st_id_ck").css("display","")
+			    					  .css("color","red");
+			    	}else{
+			    		$(".st_id_ck").text("사용가능한 아이디 입니다.")
+			    		$(".st_id_ck").css("display","")
+			    		              .css("color","green"); 
+			    	}
 			    }, 
 			    error:function(xhr, status, message) { 
 			        alert(" status: "+status+" er:"+message);
 			    } 
-			});
+			}); //ajax end
+		});//ID중복체크 버튼 end
+		
+		
+		//비밀번호 확인
+		$(".st_pw").keyup(function(){ //비밀번호 입력할때
+			$(".st_pw_ck_txt").text(""); //유효성검사창 초기화
+		});
+		//비밀번호 확인
+		$(".st_pw_ck").keyup(function(){
+			if($(".st_pw").val()!=$(".st_pw_ck").val()){
+				$(".st_pw_ck_txt").text("비밀번호가 일치하지 않습니다.")
+				                  .css("color","red");
+			}else{
+				$(".st_pw_ck_txt").text("비밀번호가 일치합니다.")
+                .css("color","green");
+			}
 		});
 	});//end ready function
 	
 	function CnoticeFormCheck(){
-		if($("table .notice-title").val()==null || $("table .notice-title").val()==''){
-			alert("제목을 입력하세요.")
-			$("table .notice-title").focus();
+		if($("table .st_id").val()==null || $("table .st_id").val()==''){
+			alert("아이디를 입력하세요.")
+			$("table .st_id").focus();
 			event.preventDefault();
 		}
-		else if($("table .notice-content").val()==null||$("table .notice-content").val()==''){
-			alert("내용을 입력하세요.")
-			$("table .notice-content").focus();
+		else if($("table .st_pw").val()==null||$("table .st_pw").val()==''){
+			alert("비밀번호를 입력하세요.")
+			$("table .st_pw").focus();
+			event.preventDefault();
+		}else if($("table .st_name").val()==null||$("table .st_name").val()==''){
+			alert("이름을 입력하세요.")
+			$("table .st_name").focus();
 			event.preventDefault();
 		}
 		
@@ -96,7 +124,7 @@
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
-					<form method="post" action="${pageContext.request.contextPath}/management/noticesInsert" >
+					<form method="post" action="${pageContext.request.contextPath}/management/starMemberInsert" encType="multipart/form-data">
 						<table class="table table-striped"
 							style="text-align: center; border: 1px solid #dddddd">
 							<thead>
@@ -110,30 +138,32 @@
 								<tr>
 									<td colspan="2" width="200px" align="right" style="padding-right:10px"><label>아이디</label></td>
 									<td colspan="2" align="left">								
-				                    <input type="text" style="width:250px" name="st_id" placeholder="아이디를 입력하세요.">     
-				                    <input type="button" name="st_id_ck" value="중복체크">                  
+					                    <input type="text" style="width:250px" class="st_id" name="st_id" placeholder="아이디를 입력하세요.">     
+					                    <button type="button" class="st_id_ck_btn" value="중복체크">중복체크 </button>  
+					                    <div class="st_id_ck" style="display:none;"></div>        
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>비밀번호</label></td>
 									<td colspan="2" align="left">
-									<input type="password" name="cnoc_title" style="width:250px"
+									<input type="password" name="st_pw" class="st_pw" style="width:250px"
 										placeholder="패스워드를 입력하세요." maxlength="50" />
 									</td>
 									<td></td>
 								</tr>
 								<tr>
-									<td colspan="2" align="right" style="padding-right:10px"><label>비밀번호 확인</label></td>
+									<td colspan="2" align="right" style="padding-right:10px"><label class="pw_ck">비밀번호 확인</label></td>
 									<td colspan="2" align="left">
-									<input type="password" name="cnoc_title" style="width:250px"
-										placeholder="패스워드를 입력하세요." maxlength="50" />
+									<input type="password" name="st_pw_ck" class="st_pw_ck" style="width:250px"
+										placeholder="패스워드를 확인하세요." maxlength="50" />
+									<div class="st_pw_ck_txt"></div>
 									</td>
 									<td></td>
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>스타이름</label></td>
 									<td colspan="2" align="left">
-									<input type="text" name="cnoc_title" style="width:250px"
+									<input type="text" name="st_name" class="st_name" style="width:250px"
 										placeholder="이름을 입력하세요." maxlength="50" />
 									</td>
 									<td></td>
@@ -141,25 +171,25 @@
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>아이콘사진</label></td>
 									<td colspan="2">
-                      					<input type="file" name="uploadFile" >                     					
+                      					<input type="file" name="uploadIcon" >                     					
                      				</td>
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>프로필사진</label></td>
 									<td colspan="2">
-                      					<input type="file" name="uploadFile" >                     					
+                      					<input type="file" name="uploadProfile" >                     					
                      				</td>
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>배너사진</label></td>
 									<td colspan="2">
-                      					<input type="file" name="uploadFile" >                     					
+                      					<input type="file" name="uploadBanner" >                     					
                      				</td>
 								</tr>
 								<tr >
 									<td colspan="2" align="left"><label>스타소개</label></td>
 									<td colspan="2">
-										<textarea id="summernote" name="cnoc_content" class="notice-content"></textarea>
+										<textarea id="summernote" name="st_introduce" class="notice-content"></textarea>
 									</td>
 								</tr>
 								

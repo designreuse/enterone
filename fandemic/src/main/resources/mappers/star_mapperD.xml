@@ -11,10 +11,31 @@
 		WHERE COM_ID=#{com_id}
 	</select>
 <!-- 소속사 스타회원가입 ID중복체크-->
-	<select id="getStarIdCheck" parameterType="Star" resultType="Star">
-		SELECT ST_ID
+	<select id="getStarIdCheck" parameterType="Star" resultType="int">
+		SELECT COUNT(*)
 		FROM STAR
 		WHERE ST_ID=#{st_id}
 	</select>
-	
+<!--  스타회원등록    -->
+	<insert id="InsertStar" parameterType="Star">
+		
+		INSERT INTO STAR (	    st_id, 
+								st_pw, 
+								st_name,
+								com_id,
+								st_icon,
+								st_pic,
+								st_banner,
+								st_introduce
+								)
+	 	                VALUES(
+	 	               			#{st_id},
+	 	               			#{st_pw},
+	 	               			#{st_name},
+	 	               			#{com_id},
+	 	               			#{st_icon},
+	 	               			#{st_pic},
+	 	               			#{st_banner},
+	 	               			#{st_introduce})
+	</insert>	
 </mapper>

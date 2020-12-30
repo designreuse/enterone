@@ -20,8 +20,13 @@ public class StarServiceImplD implements StarServiceD{
 	}
 
 	@Override
-	public Star getStarIdCheck(Star star) {
+	public int getStarIdCheck(Star star) {
 		return starDAO.getStarIdCheck(star);
+	}
+
+	@Override
+	public int InsertStar(Star star) {
+		return starDAO.InsertStar(star);
 	}
 
 	

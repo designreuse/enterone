@@ -58,6 +58,8 @@ public class CnoticeController {
 		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
 		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
 		         cnotice.setCnoc_file(sumFile);
+		      }else {
+		    	  cnotice.setCnoc_file("");
 		      }
 	      }
 	      MultipartHttpServletRequest multipartRequest1 = (MultipartHttpServletRequest) request;
@@ -68,6 +70,8 @@ public class CnoticeController {
 		    	  System.out.println("path="+path);
 		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
 		         cnotice.setConc_banner(multipartFile1.getOriginalFilename());
+		      }else {
+		    	  cnotice.setConc_banner("");
 		      }
 	      
 	      cnoticeService.insertCnotice(cnotice);

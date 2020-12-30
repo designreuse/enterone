@@ -83,7 +83,12 @@
 	 		if($(this).val()=="${cnotice.cnoc_subject}"){
 	 			$(this).attr("selected","selected");
 	 		}
-	 	})
+	 	});
+	 	
+	 	//분류가 이벤트일경우 , 이벤트참가인원 출력
+	 	if($(".custom-select").val()=="이벤트"){
+			$(".event").css("display","");
+		}
 	});//end ready function
 	
 	function CnoticeFormCheck(){
@@ -148,8 +153,8 @@
 				                        </select>                     
 				                        
 									</td>
-									<td class="event" style="display: ;"><label>인원</label></td>
-									<td class="event" style="display: ;"><input type="text" name="cnoc_limit" class="form-control"/ value="${cnotice.cnoc_limit}"> </td>
+									<td class="event" style="display: none;"><label>인원</label></td>
+									<td class="event" style="display: none;"><input type="text" name="cnoc_limit" class="form-control"/ value="${cnotice.cnoc_limit}"> </td>
 								</tr>
 								<tr width="100%">
 									<td colspan="1" align="left"><label>제목</label></td>
