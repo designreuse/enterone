@@ -6,7 +6,12 @@ pageEncoding="UTF-8"%>
 				<div class="hero-wrap">
 					<div class="overlay"></div>
 					<div class="d-flex">
-						<div class="author-image text img p-md-5" style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
+						<div class = "row">
+							<img class="col-md-12 col-sm-12 col-12 author-image"
+							src="${pageContext.request.contextPath}/images/star/${star.st_banner}"
+							alt="company_main" />
+						</div>
+						<%-- <div class="author-image text img p-md-5" style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
 							
 						</div>
 						<div class="author-info text p-4 p-md-5 mt-5 mb-5">
@@ -22,7 +27,7 @@ pageEncoding="UTF-8"%>
 		              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
 		            </ul>
 	            </div>
-						</div>
+						</div> --%>
 					</div>
 				</div>
 			</section>
