@@ -27,7 +27,8 @@
 								cnoc_content,
 								cnoc_time,
 								cnoc_limit,
-								cnoc_file
+								cnoc_file,
+								conc_banner
 								)
 	 	                VALUES(
 	 	               			cnoc_seq.NEXTVAL,
@@ -37,7 +38,8 @@
 	 	               			#{cnoc_content},
 	 	               			SYSDATE,
 	 	               			#{cnoc_limit},
-	 	               			#{cnoc_file})
+	 	               			#{cnoc_file},
+	 	               			#{conc_banner})
 	</insert>
 	<!-- 공지사항 수정 -->
 	<update id="updateCnotice" parameterType="Cnotice">
@@ -45,6 +47,8 @@
 		<set>
 			<if test="cnoc_title != null">cnoc_title=#{cnoc_title}</if>
 			<if test="cnoc_content != null">,cnoc_content=#{cnoc_content}</if>
+			<if test="cnoc_file != null">,cnoc_file=#{cnoc_file}</if>
+			<if test="conc_banner != null">,conc_banner=#{conc_banner}</if>
 		</set> 
 		WHERE CNOC_NO= #{cnoc_no}
 	

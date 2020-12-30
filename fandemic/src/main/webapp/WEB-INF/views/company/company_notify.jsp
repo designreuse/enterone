@@ -57,7 +57,7 @@
 			<div class="row">
 				<div class="col-xl-12 col-md-12 col-xs-12 noticesList">
 
-					<div class="col-xl-1 col-md-1 col-xs-2">${cnoc.conc_rn}</div>
+					<div class="col-xl-1 col-md-1 col-xs-2">${cnoc.cnoc_sub_no}</div>
 					<div class="col-xl-9 col-md-9 col-xs-10 alignLeft">
 						<a
 							href="${pageContext.request.contextPath}/company/notifyDetail/${cnoc.cnoc_no}"

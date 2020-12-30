@@ -71,6 +71,8 @@ public class CompanyController {
 		
 		paging.setTotalRecord(companyDao.getCnoticeCount(cnocVo));
 		
+		System.out.println(paging);
+		
 		model.addAttribute("paging", paging);
 		model.addAttribute("companyNotices", companyDao.getCnoticeListPaging(cnocVo));
 		return new ModelAndView("company/company_notify");

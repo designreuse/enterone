@@ -1,10 +1,15 @@
 package com.yedam.fandemic.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class Goods {
 
+	String go_rnum;		// rownum	
 	String go_no;		//상품번호
 	String go_name;		//상품명
 	String go_price;	//상품가격
@@ -18,4 +23,7 @@ public class Goods {
 	String go_pic;		//상품대표사진
 	String go_detail;	//상품상세사진
 
+	// 페이지네이션
+	private int go_first;	//첫페이지
+	private int go_last;	//마지막페이지
 }

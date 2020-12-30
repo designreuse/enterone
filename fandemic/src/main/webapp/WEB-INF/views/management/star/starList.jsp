@@ -50,7 +50,7 @@ div #dataTable_filter{
 		
 		//스타회원 등록 버튼클릭시 이벤트
 		$(".btn-register").on("click",function(){
-			location.href="${pageContext.request.contextPath}/management/starInsertForm";
+			location.href="${pageContext.request.contextPath}/management/star/starInsertForm";
 		});
 		
 		
@@ -61,7 +61,7 @@ div #dataTable_filter{
 	function starMemberList() {
 		var com_id = "${company.com_id }";
 		$.ajax({
-			url:'${pageContext.request.contextPath}/management/starMemberList', //요청할 url
+			url:'${pageContext.request.contextPath}/management/star/starMemberList', //요청할 url
 			type:'POST',
 			data: {com_id:com_id},
 			//contentType:'application/json;charset=utf-8',

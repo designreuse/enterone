@@ -3,56 +3,70 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.fandemic.impl.CompanyMapper">
-	
-<!-- 소속사 목록 출력-->
-	<select id="getCompanyMinInfo" parameterType="Company" resultType="Company">
-		SELECT 
-			*
-		FROM 
-			company
+
+	<!-- 소속사 목록 출력 -->
+	<select id="getCompanyMinInfo" parameterType="Company"
+		resultType="Company">
+		SELECT
+		*
+		FROM
+		company
 		WHERE
-			com_id != 'admin'
+		com_id != 'admin'
 	</select>
-	
-	
-<!-- 소속사 정보 출력 -->	
-	<select id="getCompanyInfo" parameterType="Company" resultType="Company">
-		SELECT 
-			* 
-		FROM 
-			company
+
+
+	<!-- 소속사 정보 출력 -->
+	<select id="getCompanyInfo" parameterType="Company"
+		resultType="Company">
+		SELECT
+		*
+		FROM
+		company
 		WHERE
-			com_id = #{com_id}
+		com_id = #{com_id}
 	</select>
-	
-	
-<!-- 소속사 소속의 스타 목록 출력 -->		
-	<select id="getCompanyStarMin" parameterType="Star" resultType="Star">
-		SELECT 
-			* 
-		FROM 
-			star
-		WHERE 
-			com_id = #{com_id}
+
+
+	<!-- 소속사 소속의 스타 목록 출력 -->
+	<select id="getCompanyStarMin" parameterType="Star"
+		resultType="Star">
+		SELECT
+		*
+		FROM
+		star
+		WHERE
+		com_id = #{com_id}
 	</select>
-	
+
 	<!-- 페이지네이션 -->
-	<select id="getCnoticeCount" parameterType="Cnotice" resultType="int" >
-		SELECT COUNT(*) 
+	<select id="getCnoticeCount" parameterType="Cnotice"
+		resultType="int">
+		SELECT COUNT(*)
 		FROM cnotice
 		WHERE com_id = #{com_id}
 	</select>
-	
+
 	<!-- 공지사항 페이지네이션으로 소속사 별 출력 -->
-	<select id="getCnoticeListPaging" resultType="Cnotice" parameterType="Cnotice">
-		SELECT * FROM 
-		( SELECT A.*, ROWNUM conc_rn FROM 
-		( SELECT * FROM cnotice ORDER BY 1 
-		) A 
+	<select id="getCnoticeListPaging" resultType="Cnotice"
+		parameterType="Cnotice">
+		 SELECT B.* 
+		 FROM (
+		 	SELECT 
+		 		ROW_NUMBER() OVER(PARTITION BY com_id ORDER BY cnoc_no) CNOC_SUB_NO,
+		 		ROWNUM cnoc_rn,
+		 		A.* 
+		 	FROM( 
+		 		SELECT * 
+		 		FROM cnotice 
+		 		ORDER BY 1 DESC
+				) A 
 		) B 
-		WHERE conc_rn BETWEEN #{cnoc_first} AND #{cnoc_last}
-		AND com_id = #{com_id}
-		ORDER BY conc_rn DESC
-	</select> 
-	
+		WHERE 
+			(cnoc_rn BETWEEN #{cnoc_first} AND #{cnoc_last})
+		AND 
+			com_id = #{com_id}
+		ORDER BY cnoc_rn
+	</select>
+
 </mapper>

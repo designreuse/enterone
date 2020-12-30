@@ -40,12 +40,12 @@
 						<div class="companyContainer">
 							<div class="row">
 								<img class="companyMinBanner col-md-12 col-sm-12 col-xs-12"
-									src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
+									src="${pageContext.request.contextPath}/images/star/${star.st_pic}"
 									alt="company_main" />
 							</div>
 							<div class="col-md-12 col-sm-12 col-xs-12">
 								<span class="companyMinIcon"> <img
-									src="${pageContext.request.contextPath}/resources/images/company/star_icon.png"
+									src="${pageContext.request.contextPath}/images/star/${star.st_icon}"
 									width="52" height="52">
 								</span>
 							</div>
@@ -53,7 +53,6 @@
 								<h6>${star.st_name}</h6>
 							</div>
 							<div>
-								<a href="starProfile" class="btn btn-magz companyMinButton">프로필</a>
 								<a href="${pageContext.request.contextPath}/star/${star.st_id}"
 									class="btn btn-magz companyMinButton">채널</a>
 							</div>

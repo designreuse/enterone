@@ -65,7 +65,7 @@ $(function () {
 					<div class="product__details__pic">
 						<div class="product__details__pic__item">
 							<img class="product__details__pic__item--large"
-								src="${pageContext.request.contextPath}/resourcesGoods/images/${goods.go_pic}"
+								src="${pageContext.request.contextPath}/images/goods/${goods.go_pic}"
 								alt="사진" style="width: 555px; height: 555px;">
 						</div>
 					</div>
@@ -113,7 +113,7 @@ $(function () {
 								${goods.go_content}
 							</p>
 							<br> <img alt="상품상세사진"
-								src="${pageContext.request.contextPath}/resourcesGoods/images/${goods.go_detail}"
+								src="${pageContext.request.contextPath}/images/goods/${goods.go_detail}"
 								style="width: 100%;">
 						</div>
 					</div>

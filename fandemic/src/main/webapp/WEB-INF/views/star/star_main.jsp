@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 				<div class="hero-wrap">
 					<div class="overlay"></div>
 					<div class="d-flex">
-						<div class="author-image text img p-md-5" style="background-image: url(resourcesStar/images/author.jpg);">
+						<div class="author-image text img p-md-5" style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
 							
 						</div>
 						<div class="author-info text p-4 p-md-5 mt-5 mb-5">

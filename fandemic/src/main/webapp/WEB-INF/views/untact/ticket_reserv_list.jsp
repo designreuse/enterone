@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예매 결제 상세</title>
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
 </head>
 <body>
 

@@ -6,4 +6,7 @@ import com.yedam.fandemic.vo.Star;
 
 public interface StarServiceD {
 	public List<Star> getStarMemberList(Star star); //스타회원 전체조회
+	public int getStarIdCheck(Star star); //스타회원가입 ID중복체크
+	public int InsertStar(Star star);//스타회원 등록
+	
 }

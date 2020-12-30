@@ -49,7 +49,7 @@ public class CnoticeController {
 		// request multipart로 캐스팅
 	      MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 	      String sumFile="";
-	   // 이미지파일
+	   // 이미지파일, 공지사항 첨부파일
 	      List<MultipartFile> multipartFile = multipartRequest.getFiles("uploadFile");
 	      for(int i=0; i<multipartFile.size(); i++) {
 		      if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
@@ -58,8 +58,22 @@ public class CnoticeController {
 		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
 		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
 		         cnotice.setCnoc_file(sumFile);
+		      }else {
+		    	  cnotice.setCnoc_file("");
 		      }
 	      }
+	      MultipartHttpServletRequest multipartRequest1 = (MultipartHttpServletRequest) request;
+	      //공지사항 배너
+	      MultipartFile multipartFile1 = multipartRequest1.getFile("uploadbanner");
+		      if (!multipartFile1.isEmpty() && multipartFile1.getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images");
+		    	  System.out.println("path="+path);
+		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
+		         cnotice.setConc_banner(multipartFile1.getOriginalFilename());
+		      }else {
+		    	  cnotice.setConc_banner("");
+		      }
+	      
 	      cnoticeService.insertCnotice(cnotice);
 		return "mgt/notices";
 	}
@@ -96,6 +110,16 @@ public class CnoticeController {
 		         cnotice.setCnoc_file(sumFile);
 		      }
 	      }
+	      
+	      //공지사항 배너
+	      MultipartHttpServletRequest multipartRequest1 = (MultipartHttpServletRequest) request;
+	      MultipartFile multipartFile1 = multipartRequest1.getFile("uploadbanner");
+		      if (!multipartFile1.isEmpty() && multipartFile1.getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images");
+		    	  System.out.println("path="+path);
+		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
+		         cnotice.setConc_banner(multipartFile1.getOriginalFilename());
+		      }
 	      cnoticeService.updateCnotice(cnotice);
 		model.addAttribute("cnotice", cnoticeService.getCnoticeDetail(cnotice));//조회한후 값던짐
 		return "mgt/noticesDetail";

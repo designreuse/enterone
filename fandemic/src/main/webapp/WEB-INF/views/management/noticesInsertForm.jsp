@@ -120,6 +120,12 @@
                       					<input type="file" name="uploadFile" multiple>                     					
                      				</td>
 								</tr>
+								<tr>
+									<td colspan="1" align="left"><label>메인홍보용배너</label></td>
+									<td colspan="3">
+                      					<input type="file" name="uploadbanner" >                     					
+                     				</td>
+								</tr>
 								<tr >
 									<td colspan="4" align="right" style="padding:5px;">
 									<button type="submit" id="btnCnotice-register" class="btn btn-primary pull-right">등록</button>

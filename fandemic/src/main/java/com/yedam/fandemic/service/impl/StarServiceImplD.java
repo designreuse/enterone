@@ -19,6 +19,16 @@ public class StarServiceImplD implements StarServiceD{
 		return starDAO.getStarMemberList(star);
 	}
 
+	@Override
+	public int getStarIdCheck(Star star) {
+		return starDAO.getStarIdCheck(star);
+	}
+
+	@Override
+	public int InsertStar(Star star) {
+		return starDAO.InsertStar(star);
+	}
+
 	
 	
 }
