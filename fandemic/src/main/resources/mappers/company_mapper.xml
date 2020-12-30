@@ -45,14 +45,23 @@
 	
 	<!-- 공지사항 페이지네이션으로 소속사 별 출력 -->
 	<select id="getCnoticeListPaging" resultType="Cnotice" parameterType="Cnotice">
-		SELECT * FROM 
-		( SELECT A.*, ROWNUM conc_rn FROM 
-		( SELECT * FROM cnotice ORDER BY 1 
-		) A 
+		 SELECT B.* 
+		 FROM (
+		 	SELECT 
+		 		ROW_NUMBER() OVER(ORDER BY cnoc_no) CNOC_SUB_NO, <!-- 화면에 출력할 번호 이름 -->
+		 		ROWNUM cnoc_rn, <!-- 실제 정렬해주는 번호 -->
+		 		A.* 
+		 	FROM( 
+		 		SELECT * 
+		 		FROM cnotice 
+		 		ORDER BY 1 DESC
+			) A 
 		) B 
-		WHERE conc_rn BETWEEN #{cnoc_first} AND #{cnoc_last}
-		AND com_id = #{com_id}
-		ORDER BY conc_rn DESC
+		WHERE 
+			(cnoc_rn BETWEEN #{cnoc_first} AND #{cnoc_last})
+		AND 
+			com_id = #{com_id}
+		ORDER BY cnoc_rn
 	</select> 
 	
 </mapper>
