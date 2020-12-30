@@ -10,6 +10,7 @@
 		SELECT Q.*, M.MEM_PHONE
 		FROM QNA Q, MEMBER M
 		WHERE Q.MEM_ID = M.MEM_ID
+		ORDER BY Q_TIME DESC
 	</select>
 	
 	<!-- qna 단건 -->
@@ -20,7 +21,13 @@
 		AND Q.Q_NO = #{q_no}
 	</select>
 	
-	
+	<!-- 답변 등록 -->
+	<insert id="answerInsert" parameterType="QnA">
+		UPDATE QNA 
+		SET Q_ANSWER = #{q_answer} ,
+		Q_ATIME = SYSDATE 
+		WHERE Q_NO = #{q_no}
+	</insert>
 
 
 	<!-- 금칙어 전체 조회 -->

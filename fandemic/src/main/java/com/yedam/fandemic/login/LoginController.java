@@ -88,13 +88,13 @@ public class LoginController {
 		
 		if(member != null) {
 			
-			String pw = member.getMem_pw();
+			
 			
 			mail.setSenderName("엔터원");
 			mail.setSenderMail("haez119@gmail.com");
 			mail.setReceiveMail(member.getMem_email());
 			mail.setSubject("요청하신 비밀번호입니다.");
-			mail.setMessage(member.getMem_id() + " 님의 비밀번호는 " + pw + " 입니다.");
+			mail.setMessage(member.getMem_id() + " 님의 비밀번호는 " + member.getMem_pw() + " 입니다.");
 			
 			try {
 				mailservice.sendEmail(mail); 
@@ -105,7 +105,7 @@ public class LoginController {
 	        }
 
 			
-			return pw;
+			return member.getMem_email();
 		} else {
 			return null;
 		}
@@ -124,13 +124,13 @@ public class LoginController {
 
 		if(company != null) {
 			
-			String pw = company.getCom_pw();
+			
 			
 			mail.setSenderName("엔터원");
 			mail.setSenderMail("haez119@gmail.com");
 			mail.setReceiveMail(company.getCom_email());
 			mail.setSubject("요청하신 비밀번호입니다.");
-			mail.setMessage(company.getCom_id() + " 님의 비밀번호는 " + pw + " 입니다.");
+			mail.setMessage(company.getCom_id() + " 님의 비밀번호는 " + company.getCom_pw() + " 입니다.");
 			
 			try {
 				mailservice.sendEmail(mail); 
@@ -141,7 +141,7 @@ public class LoginController {
 	        }
 			
 			
-			return pw;
+			return company.getCom_email();
 		} else {
 			return null;
 		}

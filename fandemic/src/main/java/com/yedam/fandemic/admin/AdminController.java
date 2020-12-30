@@ -31,14 +31,6 @@ public class AdminController {
 	public ModelAndView Main() throws IOException{
 		return new ModelAndView("admin/adminmain");
 	}
-	     
-	
-	@RequestMapping("/adminNotic")
-	public String adminNotic() throws IOException{
-		
-		return "redirect:notice";
-	}
-	
 	
 	@RequestMapping("/adminQuestion")
 	public String adminQuestion() throws IOException{
@@ -185,18 +177,28 @@ public class AdminController {
 
 	}
 	
+	@ResponseBody
 	@RequestMapping("/qnaInsert")
-	public String qnaInsert(Model model, HttpServletRequest request, QnA qna) throws IOException{
+	public QnA qnaInsert(Model model, HttpServletRequest request, QnA qna) throws IOException{
 		
 		qna.setQ_no(request.getParameter("no"));
 		qna = dao.qnaOne(qna);
-		model.addAttribute("qna", qna);
 		
-		return "admin/qnaOne";
+		return qna;
 	}
 	
 	
-	
+	@RequestMapping("/qnaAns")
+public String answerInsert(Model model, HttpServletRequest request, QnA qna ) throws IOException{
+		
+		qna.setQ_answer(request.getParameter("q_answer"));
+		
+		// 매퍼 인터페이스에 등록하고 dao 불러서 테스트
+		
+		
+		
+		return "";
+	}
 	
 	
 	

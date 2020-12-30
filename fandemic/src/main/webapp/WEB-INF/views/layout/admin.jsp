@@ -200,16 +200,6 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           
-          <!-- 공지 -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>공지관리
-                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
-              </p>
-            </a>
-          </li>
-          
           <li class="nav-item">
             <a href="${pageContext.request.contextPath}/adminQna" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
