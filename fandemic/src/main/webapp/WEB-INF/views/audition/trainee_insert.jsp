@@ -11,16 +11,18 @@
 <title>Insert title here</title>
 </head>
 <style>
+#pro_addr1 {
+	width: 100%
+}
 
-#pro_addr1{
-width:100%
+#pro_postcode {
+	width: 50%;
 }
-#pro_postcode{
-width:50%;
-}
+
 #pro_tall {
-width:50%;
+	width: 50%;
 }
+
 .table .table-hover {
 	
 }
@@ -117,8 +119,8 @@ ul.tabs li.current {
 
 				$('.tab-link2').addClass('current');
 				$("#tab-2").addClass('current');
-
 			}
+			//포커스
 
 		});
 		$("#btn_next_apply2").on("click", function() {
@@ -471,7 +473,7 @@ ul.tabs li.current {
 									<td>
 										<div class="col">
 
-											<select id="adf_idx" name="adf_idx" style="width:50%">
+											<select id="adf_idx" name="adf_idx" style="width: 50%">
 												<option value="">지원분야 (1지망)</option>
 												<option value="1">보컬</option>
 												<option value="2">랩</option>
@@ -481,91 +483,134 @@ ul.tabs li.current {
 									</td>
 									<td><div class="col">
 
-											<select id="adf_idx" name="adf_idx" style="width:50%">
+											<select id="adf_idx" name="adf_idx" style="width: 50%">
 												<option value="">지원분야 선택 (2지망)</option>
 												<option value="1">보컬</option>
 												<option value="2">랩</option>
 												<option value="3">댄스</option>
 											</select>
 										</div></td>
+									<td></td>
+									<td></td>
 								</tr>
 								<tr>
 
 									<td class="font-f">신장(cm)/체중(kg)</td>
 									<td><div class="col">
-                            <input type="text" id="pro_tall" name="pro_tall" placeholder="신장 cm 단위. 숫자만 입력" maxlength="5" onkeydown="javascript:return only_num(event);" onkeyup="javascript:remove_char(event);" oninput="javascript:chk_num_len(this); return false;">
-                        </div></td>
+											<input type="text" id="pro_tall" name="pro_tall"
+												placeholder="신장 cm 단위. 숫자만 입력" maxlength="5"
+												onkeydown="javascript:return only_num(event);"
+												onkeyup="javascript:remove_char(event);"
+												oninput="javascript:chk_num_len(this); return false;">
+										</div></td>
 									<td><div class="col">
-                            <input type="text" id="pro_tall" name="pro_weight" placeholder="체중 kg 단위. 숫자만 입력" maxlength="5" onkeydown="javascript:return only_num(event);" onkeyup="javascript:remove_char(event);" oninput="javascript:chk_num_len(this); return false;">
-                        </div></td>
+											<input type="text" id="pro_tall" name="pro_weight"
+												placeholder="체중 kg 단위. 숫자만 입력" maxlength="5"
+												onkeydown="javascript:return only_num(event);"
+												onkeyup="javascript:remove_char(event);"
+												oninput="javascript:chk_num_len(this); return false;">
+										</div></td>
+									<td></td>
+									<td></td>
 								</tr>
 								<tr>
 
 									<td class="font-f">주소</td>
-									
-									<td>  <div class="col">
-                                    <input type="text" id="pro_postcode" name="pro_postcode" placeholder="우편번호"></td>
+
+									<td>
+										<div class="col">
+											<input type="text" id="pro_postcode" name="pro_postcode"
+												placeholder="우편번호">
+									</td>
 									<td><div class="col">
-                                    <button class="button btn-primary" id="btn_search_postcode" style="width:50%">우편번호찾기 (대한민국 한정)</button>
-                                </div></td>
+											<button class="button btn-primary" id="btn_search_postcode"
+												style="width: 60%">우편번호찾기 (대한민국 한정)</button>
+										</div></td>
+									<td></td>
+									<td></td>
 								</tr>
-								
-								
-								
-								
-								
-								
 								<tr>
 									<td></td>
-									<td colspan="2">
-										<input type="text" id="pro_addr1" name="pro_addr1" placeholder="기본주소">
-									</td>
-									
+									<td colspan="2"><input type="text" id="pro_addr1"
+										name="pro_addr1" placeholder="기본주소"></td>
+									<td></td>
+									<td></td>
 								</tr>
-								
-								
+
+
 								<tr>
 									<td></td>
-									<td colspan="2">
-										<input type="text" id="pro_addr1" name="pro_addr1" placeholder="상세주소">
-									</td>
-									
+									<td colspan="2"><input type="text" id="pro_addr1"
+										name="pro_addr1" placeholder="상세주소"></td>
+									<td></td>
+									<td></td>
 								</tr>
+
+
+								<tr>
+
+									<td class="font-f">취미/특기</td>
+
+									<td>
+										<div class="col">
+											<textarea id="pro_addr1" name="pro_hobby"
+												aria-label="With textarea"
+												placeholder="예시. 피아노,현대무용,미디,작곡 등"></textarea>
+										</div>
+									</td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+
 							</table>
 						</form>
 					</div>
 
 					<div class="jumbotron">
 						<h3>선택입력</h3>
-						<table class="table table-hover">
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">First</th>
-								<th scope="col">Last</th>
-								<th scope="col">Handle</th>
-							</tr>
+						<form id="frm" name="frm" method="post"
+							enctype="multipart/form-data" onsubmit="return false;">
+							<table class="table table-hover">
+								<tr>
+
+									<td class="font-f">직업</td>
+
+									<td>
+										<div class="col">
+											<input id="pro_addr1" type="text" id="pro_job" name="pro_job"
+												placeholder="학생인 경우, 학교명/학년 기재" value="">
+										</div>
+									</td>
+									<td></td>
+									<td></td>
+								</tr>
 
 
-							<tr>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td colspan="2">Larry the Bird</td>
-								<td>@twitter</td>
-							</tr>
-
-						</table>
-
+								<tr>
+									<td class="font-f">혈액형</td>
+									<td><select id="pro_addr1" name="pro_blood_type">
+											<option value="">혈액형을 선택하세요.</option>
+											<option value="1">A형</option>
+											<option value="2">B형</option>
+											<option value="3">O형</option>
+											<option value="4">AB형</option>
+									</select></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td class="font-f">경력사항</td>
+									<td><div class="col">
+											<textarea id="pro_addr1" name="pro_career"
+												aria-label="With textarea"
+												placeholder="지원 분야 관련 대회 수상 경력, 방송 출연 경험, 연습생 경력 등 기재"></textarea>
+										</div></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</table>
+						</form>
 					</div>
 					<div class="row">
 						<div class="col-md-2 col-sm-2 col-xs-2">
@@ -590,108 +635,47 @@ ul.tabs li.current {
 				</div>
 			</div>
 			<div id="tab-4" class="tab-content">
-				<div class="jumbotron">
-					<div class="section join form">
-						<h3 class="required hr" style="margin: 10px -20px;">파일 업로드</h3>
-						<div class="box box-light box-container">
-							<form id="frm" name="frm" method="post"
-								enctype="multipart/form-data" onsubmit="return false;">
-								<input type="hidden" id="pro_last_save_step"
-									name="pro_last_save_step" value="step4"> <input
-									type="hidden" id="mem_idx" name="mem_idx" value="74402">
-								<input type="hidden" id="adt_idx" name="adt_idx" value="1">
-								<input type="hidden" id="pro_idx" name="pro_idx" value="77557">
-								<div class="section join">
+
+				<table class="table table-hover">
 
 
-									<div class="form-group row">
-										<label class="col-3 title">프로필 사진 (필수)</label>
-										<div class="col custom-file">
-											<input type="file" class="custom-file-input upload_file"
-												id="file_profile" name="file_profile" rel="profile">
-											<label class="col-4 custom-file-label" for="file_profile">파일첨부</label>
-											<label id="loading_profile"
-												style="vertical-align: middle; display: none;">&nbsp;<img
-												src="/img/icon/loading.gif"
-												style="width: 20px; height: auto;"></label>
-											<div id="list_profile"></div>
-											<div class="invalid-feedback">- 과도한 보정이나 어플로 찍은 사진이 아닌
-												정면 사진 원본으로 첨부 (10MB 이하)</div>
-											<input type="hidden" id="uploaded_profile_file_yn"
-												name="uploaded_profile_file_yn" value="N">
-										</div>
-									</div>
+					<tr>
 
-									<div class="form-group row">
-										<label class="col-3 title">사진 첨부 (선택)</label>
-										<div class="col custom-file">
-											<input type="file" class="custom-file-input upload_file"
-												id="file_visual" name="file_visual" rel="visual"> <label
-												class="col-4 custom-file-label" for="file_visual">파일첨부</label>
-											<label id="loading_visual"
-												style="vertical-align: middle; display: none;">&nbsp;<img
-												src="/img/icon/loading.gif"
-												style="width: 20px; height: auto;"></label>
-											<div id="list_visual"></div>
-											<div class="invalid-feedback">
-												- 상반신, 정면, 전신 등 본인의 사진을 추가로 첨부<br>- 과도한 보정이나 어플로 찍은 사진이
-												아닌 정면 사진 원본으로 첨부 (10MB 이하)
-											</div>
-											<input type="hidden" id="uploaded_visual_file_yn"
-												name="uploaded_visual_file_yn" value="N">
-										</div>
-									</div>
+						<td class="font-f">프로필사진(필수)</td>
+						<td><div class="invalid-feedback">
+								<button class="btn btn-primary" id="btnfile">파일 첨부</button>
 
-									<div class="form-group row">
-										<label class="col-3 title">영상 첨부</label>
-										<div class="col">
-											<div class="form-group row">
-												<div class="col custom-file">
-													<input type="file" class="custom-file-input upload_file"
-														id="file_video" name="file_video" rel="video"> <label
-														class="col-4 custom-file-label" for="file_video">파일첨부
-														(필수)</label> <label id="loading_video"
-														style="vertical-align: middle; display: none;">&nbsp;<img
-														src="/img/icon/loading.gif"
-														style="width: 20px; height: auto;"></label>
-													<div id="list_video"></div>
-													<input type="hidden" id="uploaded_video_file_yn"
-														name="uploaded_video_file_yn" value="N">
-												</div>
-											</div>
+								- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)
+							</div></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
 
-											<div class="row">
-												<div class="col custom-file">
-													<input type="file" class="custom-file-input upload_file"
-														id="file_video2" name="file_video2" rel="video2">
-													<label class="col-4 custom-file-label" for="file_video2">파일첨부
-														(선택)</label> <label id="loading_video2"
-														style="vertical-align: middle; display: none;">&nbsp;<img
-														src="/img/icon/loading.gif"
-														style="width: 20px; height: auto;"></label>
-													<div id="list_video2"></div>
-													<input type="hidden" id="uploaded_video2_file_yn"
-														name="uploaded_video2_file_yn" value="N">
-												</div>
-											</div>
+						<td class="font-f">사진 첨부(선택)</td>
+						<td colspan="2"><div class="invalid-feedback">
+								<button class="btn btn-primary" id="btnfile">파일 첨부</button>
+								- 상반신, 정면, 전신 등 본인의 사진을 추가로 첨부 - 과도한 보정이나 어플로 찍은 사진이 아닌
+								정면 사진 원본으로 첨부 (10MB 이하)
+							</div></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">영상 첨부</td>
+						<td><button class="btn btn-primary" id="btnfile">파일
+								첨부(필수)</button></td>
+						<td><div class="invalid-feedback"><button class="btn btn-primary" id="btnfile">파일
+								첨부(선택)</button> - <strong>노래/랩 부문</strong>: 1분 30초 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 노래/랩 영상 첨부<br>
+                                - <strong>댄스 부문</strong>: 1분 30초 내에 밝은 곳, 전신이 나오게 촬영한 댄스 영상 첨부<br>
+                                - <strong>외모 부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자기소개 영상 첨부<br>
+                                - <strong>연기 부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자유연기 영상 첨부</div></td>
+                                <td></td>
+					</tr>
 
-											<div class="invalid-feedback">
-												- <strong>노래/랩 부문</strong>: 1분 30초 내에 밝은 곳, 얼굴 정면으로 상반신까지
-												나오게 촬영한 노래/랩 영상 첨부<br> - <strong>댄스 부문</strong>: 1분 30초
-												내에 밝은 곳, 전신이 나오게 촬영한 댄스 영상 첨부<br> - <strong>외모
-													부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자기소개 영상 첨부<br> -
-												<strong>연기 부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한
-												자유연기 영상 첨부
-											</div>
-										</div>
-									</div>
+				</table>
 
-								</div>
-								<!-- //section -->
-							</form>
-						</div>
-					</div>
-				</div>
+
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_save_apply">지원서
@@ -713,6 +697,8 @@ ul.tabs li.current {
 					</div>
 				</div>
 			</div>
+
+
 			<div id="tab-5" class="tab-content">
 				<div class="jumbotron">
 					<div class="section join form">
