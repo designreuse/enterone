@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>언택트 행사 상세내용</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resourcesGoods/style.css">
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
 <style>
 *, ::after, ::before {
 	box-sizing: border-box;

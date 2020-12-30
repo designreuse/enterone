@@ -8,6 +8,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
 <title>언택트 행사 목록</title>
 <style>
 h1, h2, h3, h4, h5, h6 {

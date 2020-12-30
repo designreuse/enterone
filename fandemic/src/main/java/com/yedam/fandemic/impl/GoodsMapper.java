@@ -10,4 +10,7 @@ public interface GoodsMapper {
 	public List<Goods> goodsList(Goods goods);
 	// Goods 상세 페이지
 	public Goods goodsDetail(Goods goods);
+	
+	// paging
+	public int goCount();	// Goods 목록
 }
