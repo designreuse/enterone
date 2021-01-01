@@ -54,7 +54,7 @@ public class SnsController {
 			String imgname = "";
 			for(int i = 0; i<multipartFile.size(); i++) {
 				if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
-				String path = request.getSession().getServletContext().getRealPath("/images");
+				String path = request.getSession().getServletContext().getRealPath("/images/snsimage");
 
 				System.out.println("path=" + path);
                  

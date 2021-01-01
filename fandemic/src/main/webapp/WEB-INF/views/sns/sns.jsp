@@ -14,6 +14,10 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
+<!-- 	슬라이드쇼 스타일 시트 -->
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <style>
 .drag-over {
 	background-color: #ff0;
@@ -106,7 +110,9 @@
 		$("nexttext").click(function() {
 			$(ex2).css(display, none)
 		});
-	});
+
+		// 		SNS슬라이드 함수
+		});
 </script>
 
 
@@ -137,7 +143,8 @@
 					</div>
 				</div>
 				<!-- SNS등록창 모달 (텍스트) -->
-				<form name="uploadForm" id="uploadForm" enctype="multipart/form-data" method="post">
+				<form name="uploadForm" id="uploadForm"
+					enctype="multipart/form-data" method="post">
 					<div id="ex7">
 						<div class="mtmtitle">
 							<div id="ex2" style="height: 62%">
@@ -147,8 +154,8 @@
 								type="text" id="sns_title" name="sns_title" placeholder="제목">
 							<input style="display: none;" type="text" id="mem_id"
 								name="mem_id" placeholder="" value="${member.mem_id }">
-							
-							
+
+
 							<div class="row" style="margin-top: 2%; margin-left: 6%">
 								<div class="" id="drop"
 									style="border: 1px solid black; width: 30%; height: 177.78px; float: left">
@@ -157,15 +164,15 @@
 										style="overflow: auto; width: 100%; height: 88%;"></div>
 									<a href="#ex7" rel="modal:open"> </a>
 								</div>
-								
-								
+
+
 								<div style="float: left; width: 50%; height: 191px;">
 									<textarea rows="9" cols="50" placeholder="내용을 적어주세요"
 										name="sns_content"></textarea>
 								</div>
 							</div>
 							<div>
-						<button type="button" id="btnSubmit">보내기</button>
+								<button type="button" id="btnSubmit">보내기</button>
 							</div>
 						</div>
 					</div>
@@ -180,9 +187,31 @@
 							<c:if test="${not empty sns.sns_pic}">
 								<div class="inner" style="padding-bottom: 40px;">
 									<figure>
-										<a href="single.html"> <img src="${sns.sns_pic}"
-											alt="사진이 출력되는 곳">
-										</a>
+										<div class="w3-content w3-section" style="max-width: 500px">
+											<c:forTokens var="cutimg" items="${sns.sns_pic}" delims=",">
+												<a href="single.html"> <img class="${sns.sns_no}mySlides"
+													src="${pageContext.request.contextPath}/images/snsimage/${cutimg}" alt="사진이 출력되는 곳" 
+													style="width: 100%; display: none;">
+												</a>
+											</c:forTokens>
+													<script type="text/javascript">
+												
+												var slideIndex = 0;
+												carousel();
+
+												function carousel() {
+												  var i;
+												  var x = document.getElementsByClassName("${sns.sns_no}mySlides");
+												  for (i = 0; i < x.length; i++) {
+												    x[i].style.display = "none";
+												  }
+												  slideIndex++;
+												  if (slideIndex > x.length) {slideIndex = 1}
+												  x[slideIndex-1].style.display = "block";
+												  setTimeout(carousel, 2000); // Change image every 2 seconds
+												}
+												</script>
+										</div>
 									</figure>
 									<div class="details">
 										<div class="detail">
@@ -296,7 +325,7 @@
 											<ul class="item-list-round" data-magnific="gallery">
 												<c:forEach items="${mysnslist }" var="mySns">
 													<li><a href="${mySns.sns_pic}"
-														style="background-image: url('${mySns.sns_pic}');"></a></li>
+														style="background-image: url('/images/snsimage/${mySns.sns_pic}');"></a></li>
 												</c:forEach>
 											</ul>
 										</div>
