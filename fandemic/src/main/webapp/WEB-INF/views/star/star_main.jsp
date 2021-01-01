@@ -4,34 +4,21 @@ pageEncoding="UTF-8"%>
 
 <section class="ftco-section-no-padding bg-light">
 				<div class="hero-wrap">
-					<div class="overlay"></div>
-					<div class="d-flex">
-						<div class = "row">
-							<img class="col-md-12 col-sm-12 col-12 author-image"
-							src="${pageContext.request.contextPath}/images/star/${star.st_banner}"
-							alt="company_main" />
+					<!-- <div class="overlay"></div> -->
+					<div class="d-flex align-items-center js-fullheight">
+						<div class="author-image text img d-flex">
+							<section class="home-slider js-fullheight owl-carousel">
+					      <div class="slider-item js-fullheight" style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
+					      </div>
+
+					      <div class="slider-item js-fullheight" style="background-image:url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
+					      </div>
+					    </section>
 						</div>
-						<%-- <div class="author-image text img p-md-5" style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
-							
-						</div>
-						<div class="author-info text p-4 p-md-5 mt-5 mb-5">
-							<div class="desc">
-								<span class="subheading">Nice To Meet You</span>
-								<h1 class="big-letter">Louie Smith</h1>
-								<h1 class="mb-4"><span>My Name is Louie Smith</span></h1>
-								<p class="mb-4">I am A Photographer from America Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-								<h3 class="signature h1">Louie Smith</h3>
-								<ul class="ftco-social mt-3">
-		              <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		              <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		              <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		            </ul>
-	            </div>
-						</div> --%>
 					</div>
 				</div>
 			</section>
-			<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(resourcesStar/images/bg_1.jpg);">
+			<section class="ftco-section-number ftco-counter img" id="section-counter" style="background-image: url(resourcesStar/images/bg_1.jpg);">
 	    	<div class="container">
 	    		<div class="row justify-content-start">
 	    			<div class="col-md-10">
@@ -40,7 +27,7 @@ pageEncoding="UTF-8"%>
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
 			                <strong class="number" data-number="120">0</strong>
-			                <span>Pounds of Equipment</span>
+			                <span>???의 팬</span>
 			              </div>
 			            </div>
 			          </div>
@@ -48,7 +35,7 @@ pageEncoding="UTF-8"%>
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
 			                <strong class="number" data-number="150">0</strong>
-			                <span>Studio Session</span>
+			                <span>팬 게시물</span>
 			              </div>
 			            </div>
 			          </div>
@@ -56,7 +43,7 @@ pageEncoding="UTF-8"%>
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
 			                <strong class="number" data-number="200">0</strong>
-			                <span>Finished Photosessions</span>
+			                <span>댓글</span>
 			              </div>
 			            </div>
 			          </div>
@@ -64,7 +51,7 @@ pageEncoding="UTF-8"%>
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
 			                <strong class="number" data-number="200">0</strong>
-			                <span>Happy Clients</span>
+			                <span>스타 게시물</span>
 			              </div>
 			            </div>
 			          </div>

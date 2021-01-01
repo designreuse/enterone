@@ -19,14 +19,24 @@
 
 	var fullHeight = function() {
 
-		$('.js-fullheight').css('height', $(window).height());
+		$('.js-fullheight').css('height', $(window).height() - ($(window).height())/2);
 		$(window).resize(function(){
-			$('.js-fullheight').css('height', $(window).height());
+			$('.js-fullheight').css('height', $(window).height() - ($(window).height())/2);
 		});
 
 	};
 	fullHeight();
+	
+	var fullHeight2 = function() {
 
+		$('.js-fullmainheight').css('height', $(window).height());
+		$(window).resize(function(){
+			$('.js-fullmainheight').css('height', $(window).height());
+		});
+
+	};
+	fullHeight2();
+	
 	// loader
 	var loader = function() {
 		setTimeout(function() { 

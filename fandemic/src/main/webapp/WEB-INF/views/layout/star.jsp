@@ -46,9 +46,9 @@
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary"
-			class="js-fullheight text-center">
+			class="js-fullmainheight text-center">
 			<h1 id="colorlib-logo">
-				<a href="#"><span class="img"
+				<a href="${pageContext.request.contextPath}/star/${star.st_id}"><span class="img"
 					style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_pic}"></span>${star.st_name}</a>
 			</h1>
 			<button type="button" class="btn btn-primary" data-toggle="modal"
@@ -167,8 +167,8 @@
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">채널 닉네임 : </label>
-							<input type="text" class="form-control" id="recipient-name">
+							<label for="recipient-name" class="col-form-label">채널 닉네임  &nbsp;:&nbsp;</label>
+							<input type="text" id="recipient-name">
 						</div>
 					</form>
 				</div>
