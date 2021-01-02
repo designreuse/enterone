@@ -14,20 +14,25 @@ $(document).ready(function() {
 		var no = $(this).parent().children().get(0).innerHTML;
 	    var modal = $("#exampleModal");
 	    
+	    modal.find('#answer').val(""); //리셋
+	    modal.find('#answerTime').text("");
 		  $.ajax({
-			  url: '${pageContext.request.contextPath}/qnaInsert?no=' + no ,
+			  url: '${pageContext.request.contextPath}/qnaOne?no=' + no ,
 			  success: function(result) {
-				  
-				  console.log(result.q_title)
 				  
 				  modal.find('.modal-title').text(result.q_title);
 				  modal.find('#user').text(result.mem_id);
 				  modal.find('#time').text(result.q_time);
 				  modal.find('#content').text(result.q_content);
+				  modal.find('#q_no').val(no);
+
+				  if(result.q_answer != null && result.q_answer != "") {
+					  // 답변
+					  modal.find('#answer').val(result.q_answer);
+					  modal.find('#answerTime').text(result.q_atime);
+				  }
 				  
-				  // 답변
-				  modal.find('#answer').text(result.q_answer);
-				  modal.find('#answerTime').text(result.q_atime);
+				  
 
 				  modal.modal('show');
 			  },
@@ -40,23 +45,19 @@ $(document).ready(function() {
 	$('#btnAnswer').on('click', function (event) {
 		
 		var content = $("#answer").val();
+		var no = $("#q_no").val();
 		
 		$.ajax({
 			  url: '${pageContext.request.contextPath}/qnaAns' ,
-			  data: {q_answer : content},
+			  data: {q_answer : content , q_no : no},
 			  success: function(result) {
-				  
+				  alert("등록되었습니다.");
+				  $(location).attr('href','${pageContext.request.contextPath}/adminQna');
 				
 			  },
 			  
 	  });
-		
-		
-		
-		
-		
-		
-		
+
 	});  
 	
 	
@@ -78,9 +79,7 @@ $(document).ready(function() {
 				<th style="width: 15%;">제목</th>
 				<th style="width: 10%;">아이디</th>
 				<th style="width: 10%;">답변여부</th>
-				<c:if  test="${s.q_answer ne null}">
-					<th style="width: 20%;">답변일</th>
-				</c:if>
+				<th style="width: 20%;">답변일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -91,10 +90,11 @@ $(document).ready(function() {
 				<td>${q.q_title}</td>
 				<td>${q.mem_id}</td>
 				
-				<c:if  test="${s.q_answer eq null}">
+				<c:if  test="${q.q_answer eq null}">
 					<td>미완료</td>
+					<td></td>
 				</c:if>
-				<c:if  test="${s.q_answer ne null}">
+				<c:if  test="${q.q_answer ne null}">
 					<td>완료</td>
 					<td>${q.q_atime}</td> 
 				</c:if>
@@ -112,7 +112,7 @@ $(document).ready(function() {
         <h5 class="modal-title" id="exampleModalLabel">
         	
         </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnClose">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -130,8 +130,9 @@ $(document).ready(function() {
 		
 		<div id="divAnswer" class="card" style="width: 95%;">
   			<div class="card-body">
-    			<p class="card-text">답변내용</p>
-    			<p class="far fa-clock" id="answerTime">답변시간</p>
+    			<h5><p class="card-text">답변</p></h5>
+    			<p class="far fa-clock" id="answerTime"></p>
+    			<input type="text" id="q_no" style="display: none;" />
     			<textarea class="form-control" id="answer" name="contents" rows="10"></textarea>
   			</div>
 		</div>

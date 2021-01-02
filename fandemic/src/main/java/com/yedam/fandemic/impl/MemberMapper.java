@@ -1,6 +1,8 @@
 package com.yedam.fandemic.impl;
 
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Star;
@@ -36,9 +38,11 @@ public interface MemberMapper {
 	public Member memPwFind(Member member);
 	public Company comPwFind(Company company);
 	
+	// 소셜
+	@Transactional
+	public void socialInsert(Member member); 
 	
-	
-	
+	public Member socialLogin(Member member); 
 	
 	
 	

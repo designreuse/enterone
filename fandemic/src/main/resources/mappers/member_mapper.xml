@@ -5,6 +5,23 @@
 <mapper namespace="com.yedam.fandemic.impl.MemberMapper">
 <!-- 멤버 매퍼 아니고 로그인 메퍼!!!! -->
 
+<!-- 소셜 회원가입 -->
+	<insert id="socialInsert" parameterType="Member">
+		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_BIRTH, MEM_PHONE, MEM_EMAIL, MEM_ADDRESS, 
+							MEM_ADDRESS2,MEM_TYPE, MEM_GENDER, MEM_ZIPADDRESS)
+		VALUES(
+							#{mem_id}, #{mem_name}, #{mem_birth}, #{mem_phone},
+							#{mem_email}, #{mem_address}, #{mem_address2}, 0, #{mem_gender}, #{mem_zipAddress} )
+
+		
+	</insert>
+
+
+<!-- 소셜로그인 -->
+	<select id="socialLogin" parameterType="Member" resultType="Member">
+		SELECT * FROM MEMBER 
+		WHERE MEM_ID = #{mem_id} 
+	</select> 
 
 <!-- 개인 id 찾기 -->
 	<select id="memIdFind" parameterType="Member" resultType="Member">

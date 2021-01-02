@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
+<script src="//t1.daumcdn.net/kas/static/na.min.js?ver=20200512"></script>
 <style>
 ul.tabs {
 	margin: 0px;
@@ -78,6 +78,11 @@ ul.tabs li.current {
 		 
 		 $("#comFind").click(function(){
 			 window.open("${pageContext.request.contextPath}/no-tiles/find?check=company", "comPop", "width=500, height=350");
+
+	    });
+		 
+		 //소셜로그인 
+		 $("#kakao").click(function(){
 
 	    });
 
@@ -188,8 +193,9 @@ ul.tabs li.current {
 									<a href="register">회원가입</a>
 								</div>
 								<div class="title-line">or</div>
-								<a href="#" class="btn btn-social btn-block facebook"><i
-									class="ion-social-facebook"></i> 소셜로그인 </a>
+								<a href="https://kauth.kakao.com/oauth/authorize?client_id=c53d1a4ed0a0459a47c2b12713d17e0c&redirect_uri=http://localhost:88/fandemic/kakaoLogin&response_type=code">
+								<img src="${pageContext.request.contextPath}/images/카카오로그인.png" id="kakao">
+								</a>
 							</form>
 						</div>
 					</div>

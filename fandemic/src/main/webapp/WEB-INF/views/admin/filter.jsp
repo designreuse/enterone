@@ -52,21 +52,35 @@
 		//등록 수정
 		$("#btnAdd").click(function(){
 			
-			$.ajax({
-	            url :'${pageContext.request.contextPath}/filterAdd',
-	            type:"post",
-	            data : {
-		            	fil_prohibited : $("#prohibited").val() ,
-		            	fil_alternative : $("#alternative").val() 
-	            	},
-	            
-	            success:function(data){
-	            	
-					alert("등록되었습니다.");
-					$(location).attr('href','${pageContext.request.contextPath}/adminFilter');
-	             	
-	            },error:function(){ alert("실패"); }
-	         });
+			if ($("#prohibited").val() == null || $("#prohibited").val() == '') {
+				alert("금칙어를 입력하세요");
+				$("#prohibited").focus();
+				event.preventDefault();
+				
+				
+			} else if ($("#alternative").val() == null || $("#alternative").val() == '') {
+				alert("대체어를 입력하세요");
+				$("#alternative").focus();
+				event.preventDefault();
+			} else {
+				$.ajax({
+		            url :'${pageContext.request.contextPath}/filterAdd',
+		            type:"post",
+		            data : {
+			            	fil_prohibited : $("#prohibited").val() ,
+			            	fil_alternative : $("#alternative").val() 
+		            	},
+		            
+		            success:function(data){
+		            	
+						alert("등록되었습니다.");
+						$(location).attr('href','${pageContext.request.contextPath}/adminFilter');
+		             	
+		            },error:function(){ alert("실패"); }
+		         });
+			}
+			
+			
 
 	    });
 		
@@ -76,23 +90,27 @@
 			chkArray = new Array();
 			 $('input:checkbox[name=del]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
 	            chkArray.push(this.value);
-		        });
-			 console.log(chkArray);
+		     });
 			 
-			 $.ajax({
-		            url :'${pageContext.request.contextPath}/filterDel',
-		            type:"post",
-		            traditional : true,
-		            data : { "list" : chkArray },
-		            
-		            success:function(data){
-		            	
-						alert("삭제되었습니다.");
-						$(location).attr('href','${pageContext.request.contextPath}/adminFilter');
-		             	
-		            },error:function(){ alert("실패"); }
-		         });
-			
+			 if(chkArray.length === 0) {
+				 alert("삭제할 데이터를 체크하세요.") ; 
+				 
+			 } else {
+				 $.ajax({
+			            url :'${pageContext.request.contextPath}/filterDel',
+			            type:"post",
+			            traditional : true,
+			            data : { "list" : chkArray },
+			            
+			            success:function(data){
+			            	
+							alert("삭제되었습니다.");
+							$(location).attr('href','${pageContext.request.contextPath}/adminFilter');
+			             	
+			            },error:function(){ alert("실패"); }
+			         });
+			 }
+
 	    });
 		
 
@@ -124,6 +142,10 @@
 
 
 	});
+	
+
+	
+	
 
 </script>
 
@@ -167,14 +189,13 @@
 		<div align="center" style="padding-top: 50px;">
 			<table>
 				<tr>
-					<th><div align="center">금칙어</div></th>
-					<th><div align="center">대체어</div></th>
+					
 					<th><div style="margin:30px;"></div></th>
 					<th><div style="margin:30px;"></div></th>
 				</tr>
 				<tr>
-					<th><div style="margin:10px;"><input class="form-control " type="text" id="prohibited"></div></th>
-					<th><div style="margin:10px;"><input class="form-control " type="text" id="alternative"></div></th>
+					<th><div style="margin:10px;"><input class="form-control " type="text" id="prohibited" placeholder="금칙어"></div></th>
+					<th><div style="margin:10px;"><input class="form-control " type="text" id="alternative" placeholder="대체어"></div></th>
 					<th><div style="margin:5px;"><button class="btn btn-primary" id="btnAdd"> 등록 </button></div></th>
 					<th><div style="margin:5px;"><button class="btn btn-primary" id="btnDel" > 삭제 </button></div></th>
 				</tr>

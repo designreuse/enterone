@@ -27,6 +27,8 @@ public interface AdminMapper {
 	public List<QnA> qnaList(); //qna 리스트
 	public QnA qnaOne(QnA qna); //qna 단건
 	
+	public void answerUpdate(QnA qna);
+	
 	
 	
 	

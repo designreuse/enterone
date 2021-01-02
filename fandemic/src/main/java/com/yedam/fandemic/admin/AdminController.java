@@ -178,7 +178,7 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/qnaInsert")
+	@RequestMapping("/qnaOne")
 	public QnA qnaInsert(Model model, HttpServletRequest request, QnA qna) throws IOException{
 		
 		qna.setQ_no(request.getParameter("no"));
@@ -187,17 +187,16 @@ public class AdminController {
 		return qna;
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping("/qnaAns")
-public String answerInsert(Model model, HttpServletRequest request, QnA qna ) throws IOException{
+	public void answerInsert(Model model, HttpServletRequest request, QnA qna ) throws IOException{
 		
 		qna.setQ_answer(request.getParameter("q_answer"));
+		qna.setQ_no(request.getParameter("q_no"));
 		
 		// 매퍼 인터페이스에 등록하고 dao 불러서 테스트
+		dao.answerUpdate(qna);
 		
-		
-		
-		return "";
 	}
 	
 	

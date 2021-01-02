@@ -22,12 +22,12 @@
 	</select>
 	
 	<!-- 답변 등록 -->
-	<insert id="answerInsert" parameterType="QnA">
+	<update id="answerUpdate" parameterType="QnA">
 		UPDATE QNA 
 		SET Q_ANSWER = #{q_answer} ,
 		Q_ATIME = SYSDATE 
 		WHERE Q_NO = #{q_no}
-	</insert>
+	</update>
 
 
 	<!-- 금칙어 전체 조회 -->
