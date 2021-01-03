@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <style>
+
 #pro_addr1 {
 	width: 100%
 }
@@ -635,19 +636,19 @@ ul.tabs li.current {
 				</div>
 			</div>
 			<div id="tab-4" class="tab-content">
-
+				
 				<table class="table table-hover">
 
 
 					<tr>
 
 						<td class="font-f">프로필사진(필수)</td>
-						<td><div class="invalid-feedback">
+						<td colspan="2"><div class="invalid-feedback">
 								<button class="btn btn-primary" id="btnfile">파일 첨부</button>
 
-								- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)
+
 							</div></td>
-						<td></td>
+						<td>- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)</td>
 						<td></td>
 					</tr>
 					<tr>
@@ -655,22 +656,26 @@ ul.tabs li.current {
 						<td class="font-f">사진 첨부(선택)</td>
 						<td colspan="2"><div class="invalid-feedback">
 								<button class="btn btn-primary" id="btnfile">파일 첨부</button>
-								- 상반신, 정면, 전신 등 본인의 사진을 추가로 첨부 - 과도한 보정이나 어플로 찍은 사진이 아닌
-								정면 사진 원본으로 첨부 (10MB 이하)
+								<br>
+
 							</div></td>
-						<td></td>
+						<td>- 상반신, 정면, 전신 등 본인의 사진을 추가로 첨부 - 과도한 보정이나 어플로 찍은 사진이 아닌
+							정면 사진 원본으로 첨부 (10MB 이하)</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td class="font-f">영상 첨부</td>
 						<td><button class="btn btn-primary" id="btnfile">파일
 								첨부(필수)</button></td>
-						<td><div class="invalid-feedback"><button class="btn btn-primary" id="btnfile">파일
-								첨부(선택)</button> - <strong>노래/랩 부문</strong>: 1분 30초 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 노래/랩 영상 첨부<br>
-                                - <strong>댄스 부문</strong>: 1분 30초 내에 밝은 곳, 전신이 나오게 촬영한 댄스 영상 첨부<br>
-                                - <strong>외모 부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자기소개 영상 첨부<br>
-                                - <strong>연기 부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자유연기 영상 첨부</div></td>
-                                <td></td>
+						<td><div class="invalid-feedback">
+								<button class="btn btn-primary" id="btnfile">파일 첨부(선택)</button></td>
+						<td>- <strong>노래/랩 부문</strong>: 1분 30초 내에 밝은 곳, 얼굴 정면으로 상반신까지
+							나오게 촬영한 노래/랩 영상 첨부<br> - <strong>댄스 부문</strong>: 1분 30초 내에
+							밝은 곳, 전신이 나오게 촬영한 댄스 영상 첨부<br> - <strong>외모 부문</strong>: 1분
+							내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자기소개 영상 첨부<br> - <strong>연기
+								부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자유연기 영상 첨부
+						</td>
+						<td></td>
 					</tr>
 
 				</table>
@@ -700,113 +705,100 @@ ul.tabs li.current {
 
 
 			<div id="tab-5" class="tab-content">
-				<div class="jumbotron">
-					<div class="section join form">
-						<h3 class="required hr" style="margin: 10px -20px;">지원서 확인</h3>
-						<div class="box box-light box-container">
-							<form id="frm" name="frm" method="post"
-								enctype="multipart/form-data" onsubmit="return false;">
-								<input type="hidden" id="pro_last_save_step"
-									name="pro_last_save_step" value="step5"> <input
-									type="hidden" id="mem_idx" name="mem_idx" value="74402">
-								<input type="hidden" id="adt_idx" name="adt_idx" value="1">
-								<input type="hidden" id="pro_idx" name="pro_idx" value="77557">
-
-								<div class="section apply-data">
-									<h3 class="hr">내 지원서</h3>
-									<div class="profile-img">
-										<img src="">
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">이름</label>
-										<div class="col">${member.mem_name}</div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">성별</label>
-										<div class="col">${member.mem_gender}</div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">생년월일</label>
-										<div class="col">${fn:substring(member.mem_birth,0,10)}</div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">연락처</label>
-										<div class="col-3">${member.mem_phone}</div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">아이디(이메일)</label>
-										<div class="col">${member.mem_email}</div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">지원분야</label>
-										<div class="col">보컬 /</div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">신장/체중</label>
-										<div class="col-3">111cm / 111kg</div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">주소</label>
-										<div class="col">${member.mem_address}</div>
-									</div>
-
-								</div>
-								<!-- //section -->
-
-
-								<div class="section apply-data">
-									<div class="row">
-										<label class="col-3 title">직업</label>
-										<div class="col"></div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">혈액형</label>
-										<div class="col-3"></div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">사용가능 언어 및 수준</label>
-										<div class="col"></div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">취미/특기</label>
-										<div class="col"></div>
-									</div>
-
-									<div class="row">
-										<label class="col-3 title">경력사항</label>
-										<div class="col"></div>
-									</div>
-								</div>
-								<!-- //section -->
-
-								<div class="section apply-data">
-
-									<div class="row">
-										<label class="col-3 title">영상 첨부(필수)</label>
-										<div class="col">
-											<div class="video-embed-area">
-												<video src="" controls="" muted=""></video>
-											</div>
-										</div>
-									</div>
-
-								</div>
-								<!-- //section -->
-							</form>
-						</div>
-					</div>
-				</div>
+			<h3>내 지원서</h3>
+				<table class="table table-hover">
+					<tr>
+						<td class="font-f">이름</td>
+						<td>${member.mem_name}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">성별</td>
+						<td>${member.mem_gender}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">생년월일</td>
+						<td>${member.mem_birth}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">연락처</td>
+						<td>${member.mem_phone}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">이메일</td>
+						<td>${member.mem_email}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">신장/체중</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">주소</td>
+						<td>${member.mem_address}</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+				<br>
+				
+				<table class="table table-hover">
+					<tr>
+						<td class="font-f">직업</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">사용가능 언어 및 수준</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">취미/특기</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="font-f">경력사항</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					
+				</table>
+				<div class="row">
+                        <label class="col-3 title">영상 첨부(필수)</label>
+                        <div class="col">
+                                                        <div class="video-embed-area">
+                                <video src="" controls="" muted=""></video>
+                            </div>
+                                                    </div>
+                    </div>
+				
 				<div class="row">
 					<div class="col-md-1 col-sm-1 col-xs-1">
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
