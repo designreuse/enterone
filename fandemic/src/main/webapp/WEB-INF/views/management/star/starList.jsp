@@ -27,19 +27,22 @@
 div #dataTable_filter{
 		text-align:right;
 }
+.btn-mgin{
+	margin-right: 2px;
+}
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
 <link
    href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
-      crossorigin="anonymous" />
+       />
    
 <script
       src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
-      crossorigin="anonymous"></script>
+     ></script>
    <script
       src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
-      crossorigin="anonymous"></script>
+     ></script>
    
    <!-- 페이지네이션 날로먹는 빌드 끝 -->
 <script>
@@ -60,41 +63,68 @@ div #dataTable_filter{
 			location.href="${pageContext.request.contextPath}/management/star/starDetail?st_id="+st_id;	
 		});//end 게시물 제목 클릭
 		
+		/*********** 스타회원 삭제*************/
+		$(".btn-delete").on("click",function(){ //체크박스 선택후 삭제버튼 클릭시 이벤트
+			 $.ajax({
+				url:"${pageContext.request.contextPath}/management/star/starDelete",
+				type:"POST",
+				data: $("#frm1").serialize(),  //from data 순서대로 읽어서 값던진다.
+				dataType: 'json', //결과값 Json형태로
+				success: function(response) {
+			    	if(response != null && response !="") {
+			    		alert("삭제되었습니다.")
+			    		starMemberList();
+			    	}  
+			    }, 
+			    error:function(xhr, status, message) { 
+			        alert(" status: "+status+" er:"+message);
+			    } 
+			});//end ajax
+		});
+		
+		/*********** 스타 스케줄 등록  **************/
+		$("body").on("click",".btn-starSchedule",function(){
+			location.href="${pageContext.request.contextPath}/management/star/starSchedule";
+		});
+		
 	}); //end document ready
 	
-	//스타회원 목록 조회 요청
-	function starMemberList() {
-		var com_id = "${company.com_id }";
-		$.ajax({
-			url:'${pageContext.request.contextPath}/management/star/starMemberList', //요청할 url
-			type:'POST',
-			data: {com_id:com_id},
-			//contentType:'application/json;charset=utf-8',
-			dataType:'json', //값이 넘어오는 형식
-			error:function(xhr,status,msg){
-				alert("상태값 :" + status + " Http에러메시지 :"+msg);
-			},
-			success:starMemberListResult
-		});
-	}//end starMemberList
+		//스타회원 목록 조회 요청
+		function starMemberList() {
+			var com_id = "${company.com_id }";
+			$.ajax({
+				url:'${pageContext.request.contextPath}/management/star/starMemberList', //요청할 url
+				type:'POST',
+				data: {com_id:com_id},
+				//contentType:'application/json;charset=utf-8',
+				dataType:'json', //값이 넘어오는 형식
+				error:function(xhr,status,msg){
+					alert("상태값 :" + status + " Http에러메시지 :"+msg);
+				},
+				success:starMemberListResult
+			});
+		}//end starMemberList
 	
-	function starMemberListResult(data){
-		/* console.log(data); */
-		$("tbody").empty();
-		$.each(data,function(idx,item){//idx=index, item=value
-			$('<tr>').attr("class","starMemberTr")
-			.append($('<td>').html('<input type="checkbox" name="st_ids" value="'+item.st_id+'">'))
-			.append($('<td>').html('<a href="#">'+item.st_name+'</a>'))
-			.append($('<td>').html(item.st_id))
-			.append($('<td>').html(item.st_pw))
-			.append($('<td>').html(item.com_id))
-			.appendTo('tbody');
+		function starMemberListResult(data){
+			/* console.log(data); */
+			$("tbody").empty();
+			$.each(data,function(idx,item){//idx=index, item=value
+				$('<tr>').attr("class","starMemberTr")
+				.append($('<td>').html('<input type="checkbox" name="st_ids" value="'+item.st_id+'">'))
+				.append($('<td>').html('<a href="#">'+item.st_name+'</a>'))
+				.append($('<td>').html(item.st_id))
+				.append($('<td>').html(item.st_pw))
+				.append($('<td>').html(item.com_id))
+				.append($('<td>').html('<input type="button" value="스케줄" class="btn-mgin btn-starSchedule"><input type="button" value="작품등록" class="btn-mgin">'))
+				.appendTo('tbody');
+				
+			});//end each
+			$('#dataTable').DataTable();
 			
-		});//end each
-		$('#dataTable').DataTable();
+			
+		}//end starMemberListResult
 		
 		
-	}//end starMemberListResult
 </script>
      <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -131,6 +161,7 @@ div #dataTable_filter{
                       <th>ID</th>
                       <th>PW</th>
                       <th>소속사</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -144,7 +175,6 @@ div #dataTable_filter{
               	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
               		<button type="button" class="btn-register">등록</button>
-              		<!--  <button class="btn-update">수정</button> -->
               		<button type="button" class="btn-delete">삭제</button>
               	</div>
               </div>

@@ -13,5 +13,6 @@ public class Star {
 	String st_pic;			//프로필사진
 	String st_banner;		//배너사진
 	String st_introduce;	//스타소개
+	String[] st_ids; 		//삭제할 id체크박스여러개 선택 !!!!
 
 }

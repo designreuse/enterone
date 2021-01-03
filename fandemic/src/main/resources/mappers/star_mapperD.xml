@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.fandemic.impl.StarMapperD">
-	
+<!-- mybatis사용 -->
 <!-- 소속사 스타회원목록 출력 -->	
 	<select id="getStarMemberList" parameterType="Star" resultType="Star">
 		SELECT * 
@@ -45,4 +45,26 @@
 	 	               			#{st_banner},
 	 	               			#{st_introduce})
 	</insert>	
+	
+<!-- 스타회원정보수정 -->
+	<update id="updateStarMember" parameterType="Star">
+		UPDATE STAR
+		<set>
+			ST_PW=#{st_pw}
+			<if test="st_icon !=null">,st_icon=#{st_icon}</if>
+			<if test="st_pic !=null">,st_pic=#{st_pic}</if>
+			<if test="st_banner !=null">,st_banner=#{st_banner}</if>
+			,ST_INTRODUCE=#{st_introduce}
+		</set>
+		WHERE ST_ID= #{st_id}
+	</update>
+<!-- 스타회원정보 삭제 -->
+	<delete id="deleteStarMember" parameterType="Star">
+		DELETE FROM STAR
+		WHERE ST_ID IN
+		<foreach collection="st_ids" item="id"
+				open="(" close=")" separator=","> <!-- collection이 필드명 -->
+			#{id}
+		</foreach>
+	</delete>
 </mapper>

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.StarServiceD;
+import com.yedam.fandemic.vo.Cnotice;
 import com.yedam.fandemic.vo.Star;
 
 @Controller
@@ -74,7 +75,7 @@ public class StarControllerD {
 	    	  star.setSt_pic("");
 	      }
 	      
-	    //스타회원 프로필 사진
+	    //스타회원 배너 사진
 	      MultipartFile uploadBanner = multipartRequest.getFile("uploadBanner");
 	      if (!uploadBanner.isEmpty() && uploadBanner.getSize() > 0) {
 	    	  String path = request.getSession().getServletContext().getRealPath("/images/star");
@@ -93,6 +94,60 @@ public class StarControllerD {
 	public String StarDetail(Model model, Star star) {
 		model.addAttribute("star",starService.getStarDetail(star));
 		return "mgt/star/starDetail";
+	}
+	
+	
+	//소속사 스타회원 정보 수정할값 DB로 넘기기
+	@RequestMapping(value="/management/star/starMemberUpdate")
+	public String StarMemberUpdate(HttpServletRequest request, Star star) throws IllegalStateException, IOException {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+	      //스타회원 아이콘 사진
+	      MultipartFile uploadIcon = multipartRequest.getFile("uploadIcon");
+		      if (!uploadIcon.isEmpty() && uploadIcon.getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/star");
+		    	  System.out.println("path="+path);
+		    	  uploadIcon.transferTo(new File(path, uploadIcon.getOriginalFilename()));
+		         star.setSt_icon(uploadIcon.getOriginalFilename());
+		      }else {
+		    	  star.setSt_icon("");
+		      }
+		  //스타회원 프로필 사진
+	      MultipartFile uploadProfile = multipartRequest.getFile("uploadProfile");
+	      if (!uploadProfile.isEmpty() && uploadProfile.getSize() > 0) {
+	    	  String path = request.getSession().getServletContext().getRealPath("/images/star");
+	    	  System.out.println("path="+path);
+	    	  uploadProfile.transferTo(new File(path, uploadProfile.getOriginalFilename()));
+	         star.setSt_pic(uploadProfile.getOriginalFilename());
+	      }else {
+	    	  star.setSt_pic("");
+	      }
+	      
+	    //스타회원 배너 사진
+	      MultipartFile uploadBanner = multipartRequest.getFile("uploadBanner");
+	      if (!uploadBanner.isEmpty() && uploadBanner.getSize() > 0) {
+	    	  String path = request.getSession().getServletContext().getRealPath("/images/star");
+	    	  System.out.println("path="+path);
+	    	  uploadBanner.transferTo(new File(path, uploadBanner.getOriginalFilename()));
+	         star.setSt_banner(uploadBanner.getOriginalFilename());
+	      }else {
+	    	  star.setSt_banner("");
+	      }
+		starService.updateStarMember(star); //star값 받아서 update문실행
+		return "mgt/star/starList"; //스타회원 목록으로 
+	}
+	
+	//스타회원 삭제
+	@RequestMapping(value = "/management/star/starDelete")
+	@ResponseBody //결과값을 JSON형태로
+	public int starMemberDelete(Star star) {
+		int result = starService.deleteStarMember(star); //성공하면 결과값을 떤진다.
+		return result;
+	}
+	
+	//소속사 스케줄 페이지 이동
+	@RequestMapping(value="/management/star/starSchedule")
+	public String StarSchedule(){
+		return "mgt/star/starSchedule";
 	}
 	
 }

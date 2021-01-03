@@ -34,6 +34,16 @@ public class StarServiceImplD implements StarServiceD{
 		return starDAO.getStarDetail(star);
 	}
 
+	@Override
+	public int updateStarMember(Star star) {
+		return starDAO.updateStarMember(star);
+	}
+
+	@Override
+	public int deleteStarMember(Star star) {
+		return starDAO.deleteStarMember(star);
+	}
+
 	
 	
 }
