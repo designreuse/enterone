@@ -9,10 +9,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
 <!-- jQuery Modal -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
 
 <!-- 	슬라이드쇼 스타일 시트 -->
 
@@ -112,7 +109,7 @@
 		});
 
 		// 		SNS슬라이드 함수
-		});
+	});
 </script>
 
 
@@ -142,6 +139,55 @@
 						</div>
 					</div>
 				</div>
+				
+				 <!-- 첫 번째 Modal을 여는 클래스 -->
+    <h1 class="btn">MODAL_1</h1>
+ 
+    <!-- 첫 번째 Modal -->
+    <div class="modal">
+ 
+      <!-- 첫 번째 Modal의 내용 -->
+      <div class="modal-content">
+        <span class="close">&times;</span>                         
+        <p>첫 번째 Modal</p>
+      </div>
+    </div>
+ 
+    <hr>
+    <!-- 두 번째 Modal을 여는 클래스 -->
+    <h1 class="btn">MODAL_2</h1>
+ 
+    <!-- 두 번째 Modal -->
+    <div class="modal">
+ 
+      <!-- 두 번째 Modal의 내용 -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>두 번째 Modal</p>
+      </div>
+    </div>
+ 
+    <hr>
+    <!-- 세 번째 Modal을 여는 클래스 -->
+    <h1 class="btn">MODAL_3</h1>
+ 
+    <!-- 세 번째 Modal -->
+    <div class="modal">
+ 
+      <!-- 세 번째 Modal의 내용 -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>세 번째 Modal</p>
+      </div>
+    </div>
+ 
+    <script src=resourcesSns/js/modal.js>
+    /*modal.js */
+    </script>
+				
+				
+				
+				
 				<!-- SNS등록창 모달 (텍스트) -->
 				<form name="uploadForm" id="uploadForm"
 					enctype="multipart/form-data" method="post">
@@ -150,27 +196,32 @@
 							<div id="ex2" style="height: 62%">
 								<h1>SNS 등록</h1>
 							</div>
-							<input style="width: 80%; font-size: 35px; margin-left: 6%;"
-								type="text" id="sns_title" name="sns_title" placeholder="제목">
-							<input style="display: none;" type="text" id="mem_id"
-								name="mem_id" placeholder="" value="${member.mem_id }">
+							<table class="inserttable" border="1">
+								<tr style="height: 20%">
+									<td><input class="snstitle"
+										type="text" id="sns_title" name="sns_title" placeholder="제목">
+										<input style="display: none;" type="text" id="mem_id"
+										name="mem_id" placeholder="" value="${member.mem_id }">
+									</td>
 
+									<tr style="height: 30%">
+								<td>
+										<div class="pickupld" id="drop">
+											사진을 올려주세요
+											<div id="thumbnails"
+												style="overflow: auto; width: 100%; height: 88%;"></div>
+											<a href="#ex7" rel="modal:open"> </a>
+										</div>
+									</td><tr style="height: 30%">
+									<td>
 
-							<div class="row" style="margin-top: 2%; margin-left: 6%">
-								<div class="" id="drop"
-									style="border: 1px solid black; width: 30%; height: 177.78px; float: left">
-									사진을 올려주세요
-									<div id="thumbnails"
-										style="overflow: auto; width: 100%; height: 88%;"></div>
-									<a href="#ex7" rel="modal:open"> </a>
-								</div>
-
-
-								<div style="float: left; width: 50%; height: 191px;">
-									<textarea rows="9" cols="50" placeholder="내용을 적어주세요"
-										name="sns_content"></textarea>
-								</div>
-							</div>
+										<div class="form-group">
+											<textarea class="form-control"
+												id="exampleFormControlTextarea1" name="sns_content" rows="3" placeholder="내용을 적어주세요"></textarea>
+										</div>
+									</td>
+								<tr>
+							</table>
 							<div>
 								<button type="button" id="btnSubmit">보내기</button>
 							</div>
@@ -189,28 +240,31 @@
 									<figure>
 										<div class="w3-content w3-section" style="max-width: 500px">
 											<c:forTokens var="cutimg" items="${sns.sns_pic}" delims=",">
-												<a href="single.html"> <img class="${sns.sns_no}mySlides"
-													src="${pageContext.request.contextPath}/images/snsimage/${cutimg}" alt="사진이 출력되는 곳" 
-													style="width: 100%; display: none;">
+												<a href="single.html"> <img
+													class="${sns.sns_no}mySlides"
+													src="${pageContext.request.contextPath}/images/snsimage/${cutimg}"
+													alt="사진이 출력되는 곳" style="width: 100%; display: none;">
 												</a>
 											</c:forTokens>
-													<script type="text/javascript">
-												
+											<script type="text/javascript">
 												var slideIndex = 0;
 												carousel();
 
 												function carousel() {
-												  var i;
-												  var x = document.getElementsByClassName("${sns.sns_no}mySlides");
-												  for (i = 0; i < x.length; i++) {
-												    x[i].style.display = "none";
-												  }
-												  slideIndex++;
-												  if (slideIndex > x.length) {slideIndex = 1}
-												  x[slideIndex-1].style.display = "block";
-												  setTimeout(carousel, 2000); // Change image every 2 seconds
+													var i;
+													var x = document
+															.getElementsByClassName("${sns.sns_no}mySlides");
+													for (i = 0; i < x.length; i++) {
+														x[i].style.display = "none";
+													}
+													slideIndex++;
+													if (slideIndex > x.length) {
+														slideIndex = 1
+													}
+													x[slideIndex - 1].style.display = "block";
+													setTimeout(carousel, 2000); // Change image every 2 seconds
 												}
-												</script>
+											</script>
 										</div>
 									</figure>
 									<div class="details">

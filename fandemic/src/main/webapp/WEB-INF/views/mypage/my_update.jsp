@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="cf" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,17 +55,19 @@
 						<tr>
 							<td class="tilt" rowspan="7"><img id="profileimg"
 								name="profileimg"
-								src="https://search.pstatic.net/common?type=a&size=120x150&quality=95&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2F1%2F201010121617052681.jpg"></td>
+								src=""></td>
 
 							<th class="tilt"><b>이름</b></th>
 							<td colspan="3" class="readolytexttd"><input type="text"
-								class="readolytext" readonly="readonly"></td>
+								class="readolytext" readonly="readonly" value="${member.mem_name }"></td>
 						</tr>
 
 						<tr>
 							<th class="tilt"><b>아이디</b></th>
 							<td colspan="3" class="readolytexttd"><input type="text"
-								class="readolytext" readonly="readonly"></td>
+								class="readolytext" readonly="readonly" value="${member.mem_id }
+								">
+							</td>
 						</tr>
 
 						<tr>
@@ -79,19 +82,19 @@
 						<tr>
 							<th class="tilt"><b>생년월일</b></th>
 							<td colspan="3" class="readolytexttd"><input type="date"
-								class="updatetext"></td>
+								class="updatetext" value="<c:set var="cutb" value="${member.mem_birth }"/>${cf:substring(cutb,0,10)}"></td>
 						</tr>
 
 						<tr>
 							<th class="tilt"><b>휴대폰 번호</b></th>
 							<td colspan="3" class="readolytexttd"><input type="text"
-								class="updatetext"></td>
+								class="updatetext" value="${member.mem_phone }"></td>
 						</tr>
 
 						<tr>
 							<th class="tilt"><b>이메일</b></th>
 							<td colspan="3" class="readolytexttd"><input type="text"
-								class="updatetext"></td>
+								class="updatetext" value="${member.mem_email }"></td>
 						</tr>
 
 						<tr>
@@ -108,7 +111,7 @@
 								type="file" name="uploadFile" /></td>
 							<th class="tilt"><b>가입일</b></th>
 							<td colspan="3" class="readolytexttd"><input type="text"
-								class="readolytext" readonly="readonly"></td>
+								class="readolytext" readonly="readonly" value="${member.mem_time }"></td>
 						</tr>
 						<tr>
 							<td colspan="5"><input class="sidebutton btn-primary"
