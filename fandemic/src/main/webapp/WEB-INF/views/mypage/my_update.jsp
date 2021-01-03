@@ -42,6 +42,48 @@
 	background: lightgray;
 }
 </style>
+<script>
+$(document).ready(function() {
+
+	function checkUser(user) {
+
+			passwordChk($("#mem_pw"), $("#mem_pwCheck"), $("#btnAddMem"), $("#memPwd"), $("#membTag"));
+
+			$("#memFrm").attr("action", "${pageContext.request.contextPath}/memRegister");
+			
+		}
+	
+	
+//비밀번호 확인
+function passwordChk(pw1, pw2, btn, div1, bTag) {
+	      $(pw1).addClass('pw');
+	      $(pw2).addClass('pw');
+	      
+	       $('.pw').focusout(function () {
+	              var pwd1 = $(pw1).val();
+	              var pwd2 = $(pw2).val();
+	           
+	              if ( pwd1 != '' && pwd2 == '' ) {
+	                  null;
+	              } else if (pwd1 != "" || pwd2 != "") {
+	                  if (pwd1 == pwd2) {
+	                      // 비밀번호 일치 이벤트 실행
+	                      $(bTag).html(""); 
+	                      $(bTag).html("일치합니다.").css("color","blue");
+	                      $(div1).css("display", "none");
+	                  } else {
+	                      // 비밀번호 불일치 이벤트 실행
+	                     $(bTag).html("");
+	                	 $(bTag).html("일치하지 않습니다.").css("color","red");
+	                     $(pw2).focus();
+	                     $(div1).css("display", "");
+	                  }
+	              }
+       });
+	}
+
+
+</script>
 </head>
 <body>
 	<section class="single">
@@ -51,6 +93,7 @@
 					<div class="line">
 						<div>내정보 수정</div>
 					</div>
+					<form:form id="memUpdate" name="memUpdate" method="post" modelAttribute="member">
 					<table class="myinfo" border="1">
 						<tr>
 							<td class="tilt" rowspan="7"><img id="profileimg"
@@ -72,11 +115,13 @@
 
 						<tr>
 							<th class="tilt"><b>새 비밀번호</b></th>
-							<td class="readolytexttd"><input type="text"
-								class="updatetext"></td>
+							<td class="readolytexttd"><form:password type="text" id="mem_pw" path="mem_pw"
+								class="updatetext" />
+								<form:errors path="mem_pw" cssClass="error" htmlEscape="false"/>
+								</td>
 							<th class="tilt"><b>확인</b></th>
-							<td class="readolytexttd"><input type="text"
-								class="updatetext"></td>
+							<td class="readolytexttd"><form:password id="mem_pwCheck" path="" class="form-control" 
+								class="updatetext" /></td>
 						</tr>
 
 						<tr>
@@ -122,6 +167,7 @@
 								type="button" onclick="location.href='#'" value="탈퇴하기"></td>
 						</tr>
 					</table>
+					</form:form>
 				</div>
 			</div>
 		</div>

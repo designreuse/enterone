@@ -4,12 +4,24 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yedam.fandemic.impl.MypageMapper;
+import com.yedam.fandemic.login.MemberValidator;
+import com.yedam.fandemic.vo.Member;
+
 @Controller
 public class MypageController {
+	
+	@Autowired MypageMapper myMapper;
+	
+	
+	
 	//mypage메인
 		@RequestMapping(value = "/mypagemain")
 		public ModelAndView mymain(HttpServletResponse response) throws IOException {
@@ -22,10 +34,27 @@ public class MypageController {
 		
 		
 		
-		//my정보 수정
+		//my정보 수정 update처리
+
+		
 		@RequestMapping(value = "/myupdate")
-		public ModelAndView myupdate(HttpServletResponse response) throws IOException {
-			return new ModelAndView("mypage/my_update");
+		public String  myupdate(Model model, Member member, Errors errors, HttpServletResponse response) throws IOException {
+			new MemberValidator().validate(member, errors);
+			
+			if(errors.hasErrors() ) {
+				return "mypage/my_update";
+			}
+			
+			myMapper.memUpdate(member);
+			model.addAttribute("memUpdate", "update");
+			return "myupdate";
+			
+			
+			
+			
+			
+			
+			
 }
 		//my스타 메인
 		@RequestMapping(value = "/mystar")
