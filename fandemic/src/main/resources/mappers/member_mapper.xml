@@ -69,6 +69,19 @@
 	</where>
 	</select>
 	
+	
+	
+	<!-- 소속사 로그인  -->
+	<select id="comLogin" parameterType="Company" resultType="Company">
+	
+		SELECT * FROM COMPANY 
+		WHERE COM_ID= #{com_id} 
+		AND COM_PW= #{com_pw}
+	</select> 
+	
+	
+	
+	
 <!-- 스타 로그인  -->
 	<select id="starLogin" parameterType="Star" resultType="Star">
 		SELECT * FROM star 
