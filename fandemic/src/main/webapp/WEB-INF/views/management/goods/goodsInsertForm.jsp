@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <style>
 	.table td{
 		vertical-align: middle;
@@ -37,7 +38,19 @@
 			/* alert("등록버튼눌림"); */
 			CnoticeFormCheck(); //유효성검사
 		});
+		
+		$(".img-print").on("click",function(){
+			$(".uploadFile").click();				
+				
+		})
 	});//end ready function
+	function changeValue(obj){
+
+        alert(obj.value);
+        $(".gc-img").attr("src")=""
+
+    }
+
 	
 	function CnoticeFormCheck(){
 		if($("table .notice-title").val()==null || $("table .notice-title").val()==''){
@@ -58,13 +71,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>공지사항</h1>
+            <h1>굿즈관리</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item">공지사항</li>
-              <li class="breadcrumb-item">공지등록</li>
+              <li class="breadcrumb-item">굿즈관리</li>
+              <li class="breadcrumb-item">굿즈등록</li>
             </ol>
           </div>
         </div>
@@ -75,7 +88,7 @@
 		<div class="col-md-12">
 			<div class="card card-outline card-info">
 				<div class="card-header">
-					<h3 class="card-title">공지사항/이벤트</h3>
+					<h3 class="card-title"><!-- 상단에 현재페이지? ex)굿즈등록 --></h3>
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
@@ -91,34 +104,61 @@
 							</thead>
 							<tbody>
 								<tr width="100%">
-									<td width="10%" align="left"><label>분류</label></td>
+									<td width="10%" align="left"><label>상품명<font size="2" color="blue">(필수)</font></label></td>
 									<td width="40%" align="left">								
-				                        <select name="cnoc_subject" class="custom-select" style="width: auto;">
-				                          <option>공지사항</option>
-				                          <option>이벤트</option>	
-				                          <option>소식</option>			                          
-				                        </select>                     
+				                        <input type="text" name="go_name" class="go_name form-control" style="width:300px; display: inline;" maxlength="250" placeholder="예시) 에코백 블랙 1020 "><label>최대 250자</label>                
 									</td>
-									<td class="event" style="display: none;"><label>인원</label></td>
-									<td class="event" style="display: none;"><input type="text" name="cnoc_limit" class="form-control"/></td>
+									<td width="15%"><label>소속연예인</label></td>
+									<td width="20%">
+										<select name="st_id" class="st_id form-control" style="width:150px;">
+											<option>선택</option>
+											<c:forEach items="${star }" var="star">
+												<option value="${star.st_id }">${star.st_name }</option>
+											</c:forEach>
+										</select>
+									</td>
 								</tr>
 								<tr width="100%">
-									<td colspan="1" align="left"><label>제목</label></td>
-									<td colspan="3"><input type="text" name="cnoc_title" class="notice-title form-control"
-										placeholder="글 제목" maxlength="50" />
+									<td colspan="1" align="left"><label>상품가격<font size="2" color="blue">(필수)</font></label></td>
+									<td colspan="3" align="left"><input type="text" name="go_price" class="go_price form-control" style="width:150px; display: inline;"
+										maxlength="50" />원
+									</td>
+								</tr>
+								<tr width="100%">
+									<td width="10%" align="left"><label>상품카테고리<font size="2" color="blue">(필수)</font></label></td>
+									<td width="40%" align="left">
+										<select name="go_type" class="form-control" style="width:150px;">
+											<option>카테고리 선택</option>
+											<c:forEach items="${category }" var="category">
+												<option>${category.gc_name }</option>
+											</c:forEach>
+										</select>
+									</td>
+									<td><label>재고<font size="2" color="blue">(필수)</font></label></td>
+									<td><input type="text" name="go_stock" class="form-control" style="width:150px;"></td>
+								</tr>
+								<tr width="100%">
+									<td colspan="1" align="left"><label>한정판여부<font size="2" color="blue">(필수)</font></label></td>
+									<td colspan="3" align="left">
+										<select name="go_limited" class="form-control" style="width:150px;">
+											<option value="">O</option>
+											<option value="">X</option>
+										</select>
 									</td>
 								</tr>
 								<tr >
-									<td colspan="1" align="left"><label>내용</label></td>
+									<td colspan="1" align="left"><label>상품설명</label></td>
 									<td colspan="3">
 										<textarea id="summernote" name="cnoc_content" class="notice-content"></textarea>
 									</td>
 								</tr>
 								
 								<tr>
-									<td colspan="1" align="left"><label>첨부파일</label></td>
+									<td colspan="1" align="left"><label>상품대표사진</label></td>
 									<td colspan="3">
-                      					<input type="file" name="uploadFile" multiple>                     					
+										<div style="width:286px; height:286px; background-color:white;" class="img-print">
+										<img src="" class="gc-img"></div>
+                      					<input type="file" name="uploadFile" class="uploadFile" style="display:none;" onchange="changeValue(this)">                     					
                      				</td>
 								</tr>
 								<tr>

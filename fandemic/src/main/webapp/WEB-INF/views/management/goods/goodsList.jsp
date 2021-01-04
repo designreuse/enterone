@@ -54,7 +54,8 @@ div #dataTable_filter{
 		
 		/***************** 상품등록페이지 이동 ******************/ 
 		$(".btn-register").on("click",function(){
-			location.href="${pageContext.request.contextPath}/management/noticesInsertForm";
+			var com_id = "${company.com_id }";
+			location.href="${pageContext.request.contextPath}/management/goods/goodsInsertForm?com_id="+com_id;
 		});
 		
 		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
