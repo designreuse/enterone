@@ -4,6 +4,7 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,6 @@
 <title>Insert title here</title>
 </head>
 <style>
-
 #pro_addr1 {
 	width: 100%
 }
@@ -193,6 +193,11 @@ ul.tabs li.current {
 			$("#tab-4").addClass('current');
 
 		});
+		
+		$('#btn_search_postcode').click(function() {
+			openDaumZipAddress($("#pro_postcode"),$("#pro_addr1"));
+		});  
+		
 
 	});
 	function agChk() {
@@ -215,6 +220,21 @@ ul.tabs li.current {
 		} else {
 			return true;
 		}
+	}
+	//주소 찾기
+	function openDaumZipAddress() {
+
+		new daum.Postcode({
+
+			oncomplete:function(data) {
+
+				$(pro_postcode).val(data.zonecode); 
+
+				$(pro_addr1).val(data.address); // 주소
+
+			}
+
+		}).open();
 	}
 </script>
 <body>
@@ -541,8 +561,8 @@ ul.tabs li.current {
 
 								<tr>
 									<td></td>
-									<td colspan="2"><input type="text" id="pro_addr1"
-										name="pro_addr1" placeholder="상세주소"></td>
+									<td colspan="2"><input type="text" id="pro_addr2"
+										name="pro_addr2" placeholder="상세주소"></td>
 									<td></td>
 									<td></td>
 								</tr>
@@ -554,7 +574,7 @@ ul.tabs li.current {
 
 									<td>
 										<div class="col">
-											<textarea id="pro_addr1" name="pro_hobby"
+											<textarea id="pro_hobby" name="pro_hobby"
 												aria-label="With textarea"
 												placeholder="예시. 피아노,현대무용,미디,작곡 등"></textarea>
 										</div>
@@ -579,7 +599,7 @@ ul.tabs li.current {
 
 									<td>
 										<div class="col">
-											<input id="pro_addr1" type="text" id="pro_job" name="pro_job"
+											<input id="pro_job" type="text" name="pro_job"
 												placeholder="학생인 경우, 학교명/학년 기재" value="">
 										</div>
 									</td>
@@ -590,7 +610,7 @@ ul.tabs li.current {
 
 								<tr>
 									<td class="font-f">혈액형</td>
-									<td><select id="pro_addr1" name="pro_blood_type">
+									<td><select id="pro_blood_type" name="pro_blood_type">
 											<option value="">혈액형을 선택하세요.</option>
 											<option value="1">A형</option>
 											<option value="2">B형</option>
@@ -603,7 +623,7 @@ ul.tabs li.current {
 								<tr>
 									<td class="font-f">경력사항</td>
 									<td><div class="col">
-											<textarea id="pro_addr1" name="pro_career"
+											<textarea id="pro_career" name="pro_career"
 												aria-label="With textarea"
 												placeholder="지원 분야 관련 대회 수상 경력, 방송 출연 경험, 연습생 경력 등 기재"></textarea>
 										</div></td>
@@ -612,8 +632,7 @@ ul.tabs li.current {
 								</tr>
 							</table>
 						</form>
-					</div>
-					<div class="row">
+						<div class="row">
 						<div class="col-md-2 col-sm-2 col-xs-2">
 							<button class="btn btn-primary" id="btn_save_apply">지원서
 								저장</button>
@@ -633,10 +652,12 @@ ul.tabs li.current {
 								단계</button>
 						</div>
 					</div>
+					</div>
+					
 				</div>
 			</div>
 			<div id="tab-4" class="tab-content">
-				
+
 				<table class="table table-hover">
 
 
@@ -705,7 +726,7 @@ ul.tabs li.current {
 
 
 			<div id="tab-5" class="tab-content">
-			<h3>내 지원서</h3>
+				<h3>내 지원서</h3>
 				<table class="table table-hover">
 					<tr>
 						<td class="font-f">이름</td>
@@ -758,7 +779,7 @@ ul.tabs li.current {
 					</tr>
 				</table>
 				<br>
-				
+
 				<table class="table table-hover">
 					<tr>
 						<td class="font-f">직업</td>
@@ -788,23 +809,29 @@ ul.tabs li.current {
 						<td></td>
 						<td></td>
 					</tr>
+
+				</table>
+				<br>
+				
+				<table class="table table-hover">
+					<tr>
+						<td class="font-f">영상첨부(필수)</td>
+						<td><div class="video-embed-area">
+                                <video src="" controls="" muted=""></video>
+                            </div></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
 					
 				</table>
-				<div class="row">
-                        <label class="col-3 title">영상 첨부(필수)</label>
-                        <div class="col">
-                                                        <div class="video-embed-area">
-                                <video src="" controls="" muted=""></video>
-                            </div>
-                                                    </div>
-                    </div>
-				
+
 				<div class="row">
 					<div class="col-md-1 col-sm-1 col-xs-1">
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
 							취소</button>
 					</div>
-					<div class="col-md-5 col-sm-5 col-xs-5"></div>
+					<div class="col-md-7 col-sm-7 col-xs-7"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_next_minus4" rel="step2">이전
 							단계</button>
