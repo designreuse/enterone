@@ -66,7 +66,7 @@ $(function () {
 						<div class="product__details__pic__item">
 							<img class="product__details__pic__item--large"
 								src="${pageContext.request.contextPath}/images/goods/${goods.go_pic}"
-								alt="사진" style="width: 555px; height: 555px;">
+								alt="사진" style="height: 555px;">
 						</div>
 					</div>
 				</div>
@@ -108,13 +108,13 @@ $(function () {
 			<div class="row">
 				<div class="tab-content">
 					<div class="tab-pane active" id="tabs-1" role="tabpanel">
-						<div class="product__details__tab__desc">
+						<div class="product__details__tab__desc" style="text-align: center;">
 							<p>
 								${goods.go_content}
 							</p>
 							<br> <img alt="상품상세사진"
 								src="${pageContext.request.contextPath}/images/goods/${goods.go_detail}"
-								style="width: 100%;">
+								style="width: 80%;">
 						</div>
 					</div>
 				</div>

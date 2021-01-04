@@ -14,7 +14,7 @@ public class Goods {
 	String go_no;		//상품번호		//행사번호
 	String go_name;		//상품명		//행사제목
 	String go_price;	//상품가격		//행사가격
-	String go_type;		//상품카테고리	//행사종류
+	String go_type;		//상품카테고리	//행사종류(TICKET)
 	String go_content;	//상품설명		//행사내용
 	String com_id;		//소속사ID	//소속사ID
 	String st_id;		//스타ID
