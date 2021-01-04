@@ -68,13 +68,13 @@
 					<div class="featured__controls">
 						<ul>
 							<li class="active" data-filter="*">All</li>
-							<li data-filter=".cheering"><div><a href="goods/goods?t=${goods.go_type}">TICKET</a></div></li>
-							<li data-filter=".cheering">CHEERING</li>
-							<li data-filter=".music">MUSIC</li>
-							<li data-filter=".fashion">FASHION</li>
-							<li data-filter=".acc">ACC</li>
-							<li data-filter=".tech">TECH</li>
-							<li data-filter=".etc">ETC</li>
+							<li data-filter=".cheering"><a href="#">TICKET</a></li>
+							<li data-filter=".cheering"><a href="#">CHEERING</a></li>
+							<li data-filter=".music"><a href="#">MUSIC</a></li>
+							<li data-filter=".fashion"><a href="#">FASHION</a></li>
+							<li data-filter=".acc"><a href="#">ACC</a></li>
+							<li data-filter=".tech"><a href="#">TECH</a></li>
+							<li data-filter=".etc"><a href="#">ETC</a></li>
 						</ul>
 					</div>
 
