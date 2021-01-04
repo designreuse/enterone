@@ -54,11 +54,13 @@ public class GoodsController {
 	}
 	
 	// Goods 메인 화면 - 필터링
-	@RequestMapping(value = "/goods/{go_type}", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Goods> goFilter(@PathVariable String go_type, Model model, Goods goods) {
-		goods.setGo_type(go_type);
-		return goMapper.goFilter(goods);
+	@RequestMapping(value = "/goodsf")
+	public ModelAndView goFilter(Model model, Goods goods, HttpServletRequest request) {
+		
+		goods.setGo_type(request.getParameter("t"));
+		model.addAttribute("goodsList", goMapper.goFilter(goods));
+		
+		return new ModelAndView("goods/goods");
 	}
 	
 	

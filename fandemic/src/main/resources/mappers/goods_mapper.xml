@@ -20,8 +20,15 @@
 	<!-- Goods 전체 목록 : 카테고리별 -->
 	<select id="goFilter" parameterType="Goods" resultType="Goods">
 		SELECT * 
-		FROM GOODS 
-		WHERE GO_TYPE = #{go_type}
+		FROM ( 
+		  SELECT A.*, ROWNUM RNUM 
+		  FROM (
+		    SELECT * 
+		    FROM V_GOODS 
+		    WHERE GO_TYPE = #{go_type}
+		    ORDER BY 1 DESC) A 
+		  ) B 
+		WHERE RNUM BETWEEN #{go_first} AND #{go_last}
 	</select>
 	
 	<!-- Goods 전체 목록 : 페이징 -->

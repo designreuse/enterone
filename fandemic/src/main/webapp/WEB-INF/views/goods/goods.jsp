@@ -58,11 +58,29 @@
 <script type="text/javascript">
 	$(function(){
 		$("li").click(function(){
-			console.log($(this).children().get(0).innerHTML);
-
+			
+			var go_type = $(this).html();
+			console.log(go_type);
+			$(location).attr('href','${pageContext.request.contextPath}/goodsf?t='+go_type);
+			
+/* 			$.ajax({
+				url:'${pageContext.request.contextPath}/goods/'+go_type, // 요청할 url
+				type:'GET',
+				data: {go_type:go_type},
+				error:function(xhr,status,msg) {
+					alert("상태값 :" + status + " Http에러메시지 :"+msg);
+				},
+				success:goFilterResult
+			}); */
 	    });
-		
-
+		/* 
+		function goFilterResult(data) {
+			console.log(data);
+			$("#featured__filter").html("");
+			$("#aaa").load()"
+			
+		}
+ */
 /* 		$(".btn-delete").on("click",function(){ 
 			var go_type = "${goods.go_type}"; 
 			$.ajax({
@@ -143,7 +161,7 @@
 						<div class="col-lg-3 col-md-4 col-sm-6 mix cheering music"
 							style="padding: 0 5px 0 5px;">
 							<div class="featured__item">
-								<div class="featured__item__pic set-bg" style="position: relative;">
+								<div id="aaa" class="featured__item__pic set-bg" style="position: relative;">
 									<a
 										href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">
 										<h7 class="goods_type">${goods.go_type}</h7>
@@ -153,9 +171,7 @@
 								</div>
 								<div class="featured__item__text">
 									<h6>
-										<a
-											href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">[${goods.st_id}]
-											${goods.go_name}</a>
+										<a href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">[${goods.st_id}]${goods.go_name}</a>
 									</h6>
 									<h5>
 										<fmt:formatNumber value="${goods.go_price}" pattern="##,###" />
