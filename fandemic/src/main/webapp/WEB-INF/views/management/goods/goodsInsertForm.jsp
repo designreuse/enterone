@@ -10,6 +10,8 @@
 	.table tr{
 		background-color:rgba(0,0,0,.05);
 	}
+	
+	
 </style>
 <script>
 
@@ -44,10 +46,22 @@
 				
 		})
 	});//end ready function
-	function changeValue(obj){
-
-        alert(obj.value);
-        $(".gc-img").attr("src")=""
+	
+	/*************** 상품대표사진 첨부파일,미리보기*****************/
+	function changeValue(event){
+        //alert(event.target.value);//해당 이벤트 target즉 onchange이벤트가 일어난 주체의 value값      
+        var reader = new FileReader();
+        
+        reader.onload = function(event){
+        	var img = $(".gc-img");
+        	//alert(event.target.result);//주소같은데..?
+        	img.attr("src",event.target.result);
+        	img.attr({"width":"250px","height":"250px"});
+        	
+        	
+        	
+        }
+        reader.readAsDataURL(event.target.files[0]); //이거해야 src에 주소붙음.
 
     }
 
@@ -157,8 +171,8 @@
 									<td colspan="1" align="left"><label>상품대표사진</label></td>
 									<td colspan="3">
 										<div style="width:286px; height:286px; background-color:white;" class="img-print">
-										<img src="" class="gc-img"></div>
-                      					<input type="file" name="uploadFile" class="uploadFile" style="display:none;" onchange="changeValue(this)">                     					
+										<img class="gc-img"></div>
+                      					<input type="file" name="uploadFile" class="uploadFile" style="display:none;" onchange="changeValue(event)">                     					
                      				</td>
 								</tr>
 								<tr>
