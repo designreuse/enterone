@@ -1,69 +1,130 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+td {
+	width: 25%;
+}
+
+.qwe {
+	font-weight: bold;
+}
+</style>
+<script>
+$(document).ready(function() {
+	//닉네임 중복
+	$('#btnCheckm').on('click',function(){
+		nickCheck();
+	});
+});
+
+function nickCheck() {
+	$.ajax({
+        url :'${pageContext.request.contextPath}/nickId',
+        type:"post",
+        data : {tr_name : $("#tr_name").val() },
+        
+        success:function(data){
+
+           if (data == 0) {
+        	   $("#tr_name").html("");
+        	   $("#tr_name").html("사용 가능한 닉네임입니다.").css("color","blue").appendTo("#divId");
+        	   
+           } else {
+        	   $("#tr_name").html("");
+        	   $("#tr_name").html("중복된 닉네임입니다.").css("color","red").appendTo("#divId");
+           }
+
+        },error:function(){ alert("실패"); }
+     });
+}
+</script>
 </head>
-
-
 <body>
 	<section class="page first" style="padding-top: 308px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<ol class="breadcrumb">
-						<li><a href="index.html">Home</a></li>
-						<li class="active">About Us</li>
-					</ol>
-					<h1 class="page-title">About Us</h1>
-					<p class="page-subtitle">We will tell you who we are</p>
+					<h1 class="page-title">연습생 등록</h1>
 					<div class="line thin"></div>
 					<div class="page-description">
-						<h4>Ullamco Laboris</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-							ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-							aute irure dolor in reprehenderit in voluptate velit esse cillum
-							dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-							cupidatat non proident, sunt in culpa qui officia deserunt mollit
-							anim id est laborum.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-							sed do eiusmod tempor incididunt ut labore et dolore magna
-							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-							ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-							aute irure dolor in reprehenderit in voluptate velit esse cillum
-							dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-							cupidatat non proident, sunt in culpa qui officia deserunt mollit
-							anim id est laborum.</p>
-						<h4>Pellentesque</h4>
-						<p>Nulla facilisi. Donec mollis laoreet diam. Nullam suscipit
-							pretium turpis at pellentesque. Donec suscipit libero nec
-							pellentesque fringilla. Etiam dictum ut nulla eu vehicula. Nullam
-							sed ultricies nisi. Etiam dapibus diam vitae gravida sagittis.</p>
-						<h4>Fermentum</h4>
-						<p>Nulla ante nulla, aliquet vel gravida non, finibus vel
-							eros. Vestibulum lectus augue, placerat ac tincidunt rhoncus,
-							vehicula ac tellus. Nullam a cursus ipsum. Pellentesque ornare mi
-							sit amet nibh euismod gravida. Quisque in tempus odio. Fusce
-							porttitor dolor ut tortor tristique, ut rhoncus nunc cursus.
-							Morbi placerat lorem vel dictum maximus. Vivamus at sollicitudin
-							turpis. Sed eu porta sem, et elementum tellus.</p>
-						<p>Sed nec feugiat sem, nec ultrices orci. Duis ultrices
-							ultricies fringilla. Aliquam convallis diam eu lectus porta, sit
-							amet viverra nibh tincidunt. Etiam et luctus nisi. Integer
-							posuere, augue at elementum aliquet, mauris ante dictum dui, eu
-							pellentesque arcu ante eget libero. Sed consectetur fermentum
-							felis sit amet eleifend.</p>
+						<table class="table table-hover">
+							<tr>
+								<td class="qwe">회원ID</td>
+								<td>${member.mem_id}</td>
+							</tr>
+							<tr>
+								<td class="qwe">닉네임</td>
+								<td>
+
+									<div class="col">
+										<input type="text" id="pro_tall" name="pro_tall"
+											placeholder="닉네임을 입력하세요">
+
+									</div>
+									<b id="checkId"></b>
+								</td>
+
+								<td><button value="중복확인" id="btnCheckm"
+										class="btn btn-primary">중복확인</button>
+									<br>
+								<b id="nickCheck"></b></td>
+
+							</tr>
+							<tr>
+								<td class="qwe">프로필 사진</td>
+								<td><div class="invalid-feedback">
+										<button class="btn btn-primary" id="btnfile">파일 첨부</button>
+									</div></td>
+								<td><strong>과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부
+										(10MB 이하)</strong></td>
+								<td></td>
+
+							</tr>
+							<tr>
+								<td class="qwe">연습생 소개</td>
+								<td>
+									<div class="col">
+										<textarea rows="5" cols="30" class="introduce" type="text"
+											name="introduce" placeholder="내용을 입력하세요"></textarea>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="qwe">지원분야</td>
+								<td>
+									<div class="col">
+
+										<select id="adf_idx" name="adf_idx" style="width: 80%">
+											<option value="">지원분야 (1지망)</option>
+											<option value="1">보컬</option>
+											<option value="2">랩</option>
+											<option value="3">댄스</option>
+										</select> <br>
+										<div class="col">
+											<select id="adf_idx" name="adf_idx" style="width: 80%">
+												<option value="">지원분야 (2지망)</option>
+												<option value="1">보컬</option>
+												<option value="2">랩</option>
+												<option value="3">댄스</option>
+											</select>
+										</div>
+									</div>
+								<td><div class="col"></div></td>
+							</tr>
+
+						</table>
 						<div class="question">
-							Have a question? <a href="#" class="btn btn-primary">Contact
-								Us</a>
+							<a href="#" class="btn btn-primary">등록</a>
 						</div>
 					</div>
 				</div>
