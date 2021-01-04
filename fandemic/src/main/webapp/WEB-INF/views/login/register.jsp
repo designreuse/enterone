@@ -85,22 +85,50 @@ ul.tabs li.current {
 		
 		// 아이디 중복확인
 		$('#btnCheckm').on('click',function(){
-			memIdCheck();
-			$("#mem_email").attr("disabled", false);
+			
+			if($("#mem_id").val() == null || $("#mem_id").val() == '' ) {
+				alert("아이디를 입력하세요");
+			} else {
+				memIdCheck();
+				$("#mem_email").attr("disabled", false);
+			}
+			
+			
 		});
 		$('#btnCheckc').on('click',function(){
-			comIdCheck();
-			$("#com_email").attr("disabled", false);
+			
+			if($("#com_id").val() == null || $("#com_id").val() == '' ) {
+				alert("아이디를 입력하세요");
+			} else {
+				comIdCheck();
+				$("#com_email").attr("disabled", false);
+			}
+			
+			
+			
 			
 		});
 		
 		
 		// 메일 중복 확인
 		$('#memEmail').on('click',function(){
-			memMail();
+			
+			if($("#mem_email").val() == null || $("#mem_email").val() == '' ) {
+				alert("메일을 입력하세요");
+			} else {
+				memMail();
+			}
+			
+			
 		});
 		$('#comEmail').on('click',function(){
-			comMail();
+			
+			if($("#com_email").val() == null || $("#com_email").val() == '' ) {
+				alert("메일을 입력하세요");
+			} else {
+				comMail();
+			}
+			
 		});
 		
 		
