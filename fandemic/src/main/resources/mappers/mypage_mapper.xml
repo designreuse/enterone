@@ -4,12 +4,17 @@
   
   <mapper namespace="com.yedam.fandemic.impl.MypageMapper">
   
-  <update id="memUpdate"></update>
-  
-  
-  
-  
-  
-  
-  
+  <update id="memUpdate" parameterType="member">
+  UPDATE MEMBER SET 
+  	MEM_PW = #{mem_pw}, 
+  	MEM_PHONE = #{mem_phone},
+  	<if test="mem_pic!=null"> 
+  	MEM_PIC = #{mem_pic},
+  	</if>
+  	MEM_EMAIL = #{mem_email}, 
+  	MEM_ADDRESS = #{mem_address}, 
+  	MEM_ADDRESS2 = #{mem_address2}, 
+  	MEM_ZIPADDRESS = #{mem_zipAddress}
+  	WHERE MEM_ID = #{mem_id}
+  	</update>
   </mapper>

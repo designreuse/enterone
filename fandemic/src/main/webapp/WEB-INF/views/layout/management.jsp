@@ -274,7 +274,7 @@
           
           <!--굿즈관리  -->
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="${pageContext.request.contextPath}/management/goods/goodsList" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 	굿즈관리

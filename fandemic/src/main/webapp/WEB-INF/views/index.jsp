@@ -1,5 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<style>
+.sub_area {
+	margin : 14px 8px 0 4px;
+}
+.sc_login {
+	padding : 20px 16px 30px 30px;
+	background-color : #f7f9fa;
+	border: 1px solid #dae1e6;
+}
+.look_box {
+	padding : 10px 5px 5px 10px;
+	float: left;
+}
+.link_look {
+
+}
+
+.link_join {
+	float : right;
+	color : #505050;
+}
+
+
+</style>
+
+
 
 		<section class="home">
 		
@@ -453,6 +481,20 @@
 							<div class="aside-body">
 								<div class="featured-author">
 									<div class="featured-author-inner">
+									
+									<!-- 로그인 -->
+									<c:if test="${sessionScope.member.mem_id eq null and sessionScope.company.com_id eq null }" >
+										<div class="sc_login" style="background-image: url('images/news/img15.jpg');">
+										<div class="sub_area">
+											<a class="btn btn-primary btn-block" id="homeLogin" href="${pageContext.request.contextPath}/login">로그인</a>
+											<div style="padding-bottom: 20px;">
+												<a href="${pageContext.request.contextPath}/register" class="link_join" style="padding-top: 10px;">회원가입 </a>
+											</div>
+										</div> 
+										</div>
+									</c:if>
+									<!-- 프로필 -->
+									<c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null }">
 										<div class="featured-author-cover" style="background-image: url('images/news/img15.jpg');">
 											<div class="badges">
 												<div class="badge-item"><i class="ion-star"></i> Featured</div>
@@ -462,12 +504,14 @@
 													<img src="${pageContext.request.contextPath}/resources/images/img01.jpg" alt="Sample Article">
 												</figure>
 												<div class="featured-author-info">
-													<h2 class="name">John Doe</h2>
-													<div class="desc">@JohnDoe</div>
+													<h2 class="name" style="color: black;">${sessionScope.member.mem_name}</h2>
+													<div class="desc" style="color: #f73f52;">${sessionScope.member.mem_id}</div>
 												</div>
 											</div>
 										</div>
-										<div class="featured-author-body">
+									</c:if>
+										
+										<!-- <div class="featured-author-body">
 											<div class="featured-author-count">
 												<div class="item">
 													<a href="#">
@@ -512,9 +556,14 @@
 											<div class="featured-author-footer">
 												<a href="#">See All Authors</a>
 											</div>
-										</div>
+										</div> -->
+										
+										
 									</div>
 								</div>
+								
+								
+								
 							</div>
 						</aside>
 						<aside>

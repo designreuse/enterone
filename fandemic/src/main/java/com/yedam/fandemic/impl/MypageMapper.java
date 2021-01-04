@@ -7,4 +7,7 @@ public interface MypageMapper {
 	
 //	내정보 수정
 	public int memUpdate (Member member);
+
+
+
 }

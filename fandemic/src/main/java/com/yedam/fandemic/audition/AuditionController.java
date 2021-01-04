@@ -16,15 +16,21 @@ public class AuditionController {
 	
 	}	
 	
-	@RequestMapping(value = "/auditioninsert") //주소
+	@RequestMapping(value = "/auditionapply") //주소
 	public ModelAndView auditioninsert(HttpServletResponse response) throws IOException {
-		return new ModelAndView("audition/trainee_insert");
+		return new ModelAndView("audition/audition_apply");
 	
 	}	
 	
 	@RequestMapping(value = "/auditionprofile") //주소
 	public ModelAndView auditionprofile(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/trainee_profile");
+	
+	}	
+	
+	@RequestMapping(value = "/traineeinsert") //주소
+	public ModelAndView traineeinsert(HttpServletResponse response) throws IOException {
+		return new ModelAndView("audition/trainee_insert");
 	
 	}	
 	
