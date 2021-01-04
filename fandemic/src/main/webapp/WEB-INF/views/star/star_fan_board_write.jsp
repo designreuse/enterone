@@ -13,6 +13,28 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+	$(function() {
+		$(".btnInputFboard").on("click",function(){
+			CnoticeFormCheck(); //유효성검사
+		});
+	});
+
+	function CnoticeFormCheck(){
+		if($(".inputFboardTitle").val()==null || $(".inputFboardTitle").val()==''){
+			alert("제목을 입력하세요.")
+			$(".inputFboardTitle").focus();
+			event.preventDefault();
+		}
+		else if($(".inputFboardContent").val()==null||$(".inputFboardContent").val()==''){
+			alert("내용을 입력하세요.")
+			$(".inputFboardContent").focus();
+			event.preventDefault();
+		}
+		
+	}
+</script>
+
 
 
 
@@ -23,11 +45,12 @@
 		<h3>글작성</h3>
 
 		<hr>
-		<form>
+		<form method="post" action="${pageContext.request.contextPath}/star/fanBoard/write/insert">
+			<input name = "st_id" value="${star.st_id}"/>
 			<div class="row starCenter">
 				<div class="col-xl-1 col-md-3 col-4">말머리</div>
 				<div class="col-xl-2 col-md-9 col-8">
-					<select class="custom-select">
+					<select name = "fbo_subject" class="custom-select">
 						<option>자유</option>
 						<option>정보</option>
 						<option>미디어</option>
@@ -37,23 +60,23 @@
 				</div>
 				<div class="col-xl-1 col-md-3 col-4">제목</div>
 				<div class="col-xl-8 col-md-9 col-8">
-					<input style="width: 100%" placeholder="제목" />
+					<input name = "fbo_title" style="width: 100%" placeholder="제목" class="inputFboardTitle"/>
 				</div>
 			</div>
 			<br>
-			<textarea id="summernote" name="editordata"></textarea>
+			<textarea id="summernote" name="fbo_content"  class = "inputFboardContent"></textarea>
 			<br>
 			<div class="row starCenter">
 				<div class="col-xl-2 col-md-3 col-4">첨부파일</div>
 				<div class="col-xl-10 col-md-9 col-8">
-					<input type="file" class="form-control-file">
+					<!-- <input type="file" class="form-control-file"> -->
 				</div>
 			</div>
 			<br>
 			<div class="row starCenter">
 				<div class="col-xl-2 col-md-3 col-4">해시태그</div>
 				<div class="col-xl-10 col-md-9 col-8">
-					<input style="width: 100%" placeholder="#태그" />
+					<input name ="fbo_hashtag" style="width: 100%" placeholder="#태그" />
 				</div>
 			</div>
 			<br>
@@ -61,7 +84,7 @@
 			<div class="row starCenter">
 				<div class="col-xl-11 col-md-10 col-8"></div>
 				<div class="col-xl-1 col-md-2 col-4">
-					<input type="submit" value="등록" class="btn btn-primary py-2 px-4">
+					<button class="btn btn-primary py-2 px-4 btnInputFboard">등록</button>
 				</div>
 			</div>
 			
