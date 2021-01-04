@@ -24,6 +24,7 @@
 8.  Latest Product Section
 9.  Contact
 10.  Footer Style
+11.  Star Filtering
 -------------------------------------------------------------------*/
 
 /*----------------------------------------*/
@@ -1665,10 +1666,7 @@ ol {
 
 .product__details__pic__item {
 	margin-bottom: 20px;
-}
-
-.product__details__pic__item img {
-	min-width: 100%;
+	text-align: center;
 }
 
 .product__details__pic__slider img {
@@ -3464,4 +3462,163 @@ ol {
 	.blog__details__hero__text h2 {
 		font-size: 24px;
 	}
+}
+
+
+
+/*---------------------
+  Star Filtering
+-----------------------*/
+
+.brandLeft {
+	width: 200px;
+	margin-left: -220px;
+	padding: 0px 5px 20px 5px;
+}
+
+a {
+	color: #1c1c1c;
+}
+
+
+
+
+.main_wrapper {
+	background-color: #fff;
+	position: relative;
+	padding-top: 45px;
+	overflow: hidden;
+}
+
+.main_wrapper .sidebar {
+	position: absolute;
+	top: 0;
+	z-index: 99;
+	width: 272px;
+	border-right: 1px solid #EEE;
+	bottom: 0;
+}
+
+.main_wrapper .sidebar .menu_go {
+	padding: 12px 0;
+	overflow: auto;
+}
+
+.menu_go {
+	display: block;
+	color: black;
+	width: 100%;
+	list-style-type: none;
+	padding-inline-start: 15px;
+	border-top: 0;
+	border-bottom: 0;
+}
+
+.menu_go_item {
+	padding-left: 40px;
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+.menu_go_item_child {
+	list-style-type: none;
+}
+.menu_go_item h2 {
+	font-weight: normal;
+	color: rgba(0, 0, 0, .7);
+	display: inline;
+	font-size: 16px;
+}
+
+.menu_go_item i.tri_icon {
+	display: inline-block;
+	position: relative;
+	border: 6px solid #ccc;
+	border-color: transparent;
+	border-left-color: #d8d8d8;
+}
+
+.menu_go_item {
+	cursor: pointer;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.menu_go_item ul {
+	display: none;
+}
+
+.menu_go_item ul li {
+	padding-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.menu_go_item ul li span {
+	color: rgba(0, 0, 0, .65);
+	cursor: pointer;
+}
+
+.menu_go_item ul li.check span {
+	color: #37f;
+}
+
+.menu_go_item.menu_go_show ul {
+	display: block;
+}
+
+.menu_go_item.menu_go_show i.tri_icon {
+	transform: rotate(90deg);
+}
+
+.main_con {
+	position: relative;
+	margin-left: 271px;
+	padding: 12px 40px;
+	background: #fff;
+	border-left: 1px solid #EEE;
+}
+
+.main_con .main_con_item {
+	display: none;
+}
+
+.main_con .main_con_item:nth-child(1) {
+	display: block;
+}
+
+.main_con .main_con_item .title {
+	margin-bottom: 16px;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.main_con_item .con p {
+	margin: 0 0 8px;
+}
+
+.breadcrumb {
+	position: absolute;
+	top: 0;
+	z-index: 9;
+	width: 1240px;
+	padding: 10px 40px 10px 312px;
+	background-color: rgba(255, 255, 255, .95);
+	line-height: 40px;
+	color: rgba(0, 0, 0, .45);
+}
+
+.breadcrumb a {
+	display: inline-block;
+	vertical-align: top;
+	max-width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.breadcrumb .split {
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0 3px;
 }
