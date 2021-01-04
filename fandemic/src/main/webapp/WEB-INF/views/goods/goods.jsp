@@ -8,8 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Goods</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resourcesGoods/js/index.js"></script>
 
 <style>
 *, ::after, ::before {
@@ -54,6 +55,28 @@
 	color: black;
 }
 </style>
+<script type="text/javascript">
+	$(function(){
+		$("li").click(function(){
+			console.log($(this).children().get(0).innerHTML);
+
+	    });
+		
+
+/* 		$(".btn-delete").on("click",function(){ 
+			var go_type = "${goods.go_type}"; 
+			$.ajax({
+				url:'${pageContext.request.contextPath}/goods/'+go_type, // 요청할 url
+				type:'GET',
+				data: {go_type:go_type},
+//				dataType: 'json', // 값이 넘어오는 형식
+				error:function(xhr,status,msg) {
+					alert("상태값 :" + status + " Http에러메시지 :"+msg);
+				},
+				success:goFilterResult
+			}); */
+	});
+</script>
 </head>
 
 <body>
@@ -68,13 +91,13 @@
 					<div class="featured__controls">
 						<ul>
 							<li class="active" data-filter="*">All</li>
-							<li data-filter=".cheering"><a href="#">TICKET</a></li>
-							<li data-filter=".cheering"><a href="#">CHEERING</a></li>
-							<li data-filter=".music"><a href="#">MUSIC</a></li>
-							<li data-filter=".fashion"><a href="#">FASHION</a></li>
-							<li data-filter=".acc"><a href="#">ACC</a></li>
-							<li data-filter=".tech"><a href="#">TECH</a></li>
-							<li data-filter=".etc"><a href="#">ETC</a></li>
+							<li data-filter=".cheering">TICKET</li>
+							<li data-filter=".cheering">CHEERING</li>
+							<li data-filter=".music">MUSIC</li>
+							<li data-filter=".fashion">FASHION</li>
+							<li data-filter=".acc">ACC</li>
+							<li data-filter=".tech">TECH</li>
+							<li data-filter=".etc">ETC</li>
 						</ul>
 					</div>
 
@@ -159,8 +182,6 @@
 	</section>
 	<!-- Featured Section End -->
 
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resourcesGoods/js/index.js"></script>
+	
 </body>
 </html>

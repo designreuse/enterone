@@ -173,7 +173,7 @@ public class LoginController {
 			
 			session.setAttribute("member", member);
 			
-			return "index";
+			return "redirect:index";
 			
 		} else {   
 			
