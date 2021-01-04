@@ -54,59 +54,25 @@
 								</div>
 							</div>
 						</div>
+						
 						<div class="owl-carousel owl-theme slide" id="featured">
+						
+						<c:forEach  items="${goods}" var="gos">
 							<div class="item">
 								<article class="featured">
 									<div class="overlay"></div>
 									<figure>
-										<img src="${pageContext.request.contextPath}/resources/images/news/img04.jpg" alt="Sample Article">
+										<img src="${pageContext.request.contextPath}/images/goods/${gos.go_pic} "alt="TICKET">
 									</figure>
 									<div class="details">
-										<div class="category"><a href="category.html">Computer</a></div>
-										<h1><a href="single.html">Phasellus iaculis quam sed est elementum vel ornare ligula venenatis</a></h1>
-										<div class="time">December 26, 2016</div>
+										<div class="#"><a href="category.html">${gos.st_id}</a></div>
+										<h1><a href="#">${gos.go_name}</a></h1>
+										<div class="#">${gos.go_untsdate}</div>
 									</div>
 								</article>
 							</div>
-							<div class="item">
-								<article class="featured">
-									<div class="overlay"></div>
-									<figure>
-										<img src="${pageContext.request.contextPath}/resources/images/news/img14.jpg" alt="Sample Article">
-									</figure>
-									<div class="details">
-										<div class="category"><a href="category.html">Travel</a></div>
-										<h1><a href="single.html">Class aptent taciti sociosqu ad litora torquent per conubia nostra</a></h1>
-										<div class="time">December 10, 2016</div>
-									</div>
-								</article>
-							</div>
-							<div class="item">
-								<article class="featured">
-									<div class="overlay"></div>
-									<figure>
-										<img src="${pageContext.request.contextPath}/resources/images/news/img13.jpg" alt="Sample Article">
-									</figure>
-									<div class="details">
-										<div class="category"><a href="category.html">International</a></div>
-										<h1><a href="single.html">Maecenas accumsan tortor ut velit pharetra mollis</a></h1>
-										<div class="time">October 12, 2016</div>
-									</div>
-								</article>
-							</div>
-							<div class="item">
-								<article class="featured">
-									<div class="overlay"></div>
-									<figure>
-										<img src="${pageContext.request.contextPath}/resources/images/news/img05.jpg" alt="Sample Article">
-									</figure>
-									<div class="details">
-										<div class="category"><a href="category.html">Lifestyle</a></div>
-										<h1><a href="single.html">Mauris elementum libero at pharetra auctor Fusce ullamcorper elit</a></h1>
-										<div class="time">November 27, 2016</div>
-									</div>
-								</article>
-							</div>
+						</c:forEach>
+						
 						</div>
 						<div class="line">
 							<div>Latest News</div>
@@ -501,7 +467,19 @@
 											</div>
 											<div class="featured-author-center">
 												<figure class="featured-author-picture">
-													<img src="${pageContext.request.contextPath}/resources/images/img01.jpg" alt="Sample Article">
+													<c:if test="${sessionScope.member.mem_pic eq null and sessionScope.company.com_pic eq null }">
+														<img src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg" alt="no-profile">
+													</c:if>
+													
+													<c:if test="${sessionScope.member.mem_pic ne null and sessionScope.company.com_pic eq null }">
+														<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}" alt="member_profile">
+													</c:if>
+													
+													<c:if test="${sessionScope.company.com_pic ne null and sessionScope.member.mem_pic eq null }">
+														<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}" alt="company_profile">
+														<!-- 이미지 경로 -->
+													</c:if>
+													
 												</figure>
 												<div class="featured-author-info">
 													<h2 class="name" style="color: black;">${sessionScope.member.mem_name}</h2>

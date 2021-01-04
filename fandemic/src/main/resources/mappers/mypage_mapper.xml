@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.yedam.fandemic.impl.MypageMapper">
-  
+<!-- 멤버 업데이트  -->
   <update id="memUpdate" parameterType="member">
   UPDATE MEMBER SET 
   	MEM_PW = #{mem_pw}, 
@@ -17,4 +17,31 @@
   	MEM_ZIPADDRESS = #{mem_zipAddress}
   	WHERE MEM_ID = #{mem_id}
   	</update>
+<!--   	쪽지보내기 -->
+<insert id="SendMail" parameterType="letter">
+INSERT INTO LETTER( 
+				LETT_NO, 
+				LETT_SID, 
+				MEM_ID,
+				LETT_TIME, 
+				LETT_CONTENT, 
+				LETT_TITLE) 
+			VALUES (
+			lett_seq.NEXTVAL, 
+			#{lett_sid}, 
+			#{mem_id}, 
+			SYSDATE,
+			#{lett_content}, 
+			#{lett_title})
+
+
+</insert>
+<!--   	쪽지 조회 -->
+<select id="selectMail" parameterType="member">
+SELECT * FROM LETTER WHERE MEM_ID = #{mem_id}
+
+</select>
+  	
+  	
+  	
   </mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.fandemic.impl.FboardMapper">
+
+	<insert id="insertFboard" parameterType="Fboard">
+		INSERT INTO 
+		fboard(	fbo_no, 
+				fbo_title, 
+				fbo_subject, 
+				fbo_time, 
+				fbo_content, 
+				fbo_hashtag, 
+				st_id, 
+				mem_id
+				) 
+		VALUES(	bo_seq.NEXTVAL, 
+				#{fbo_title}, 
+				#{fbo_subject}, 
+				SYSDATE, 
+				#{fbo_content}, 
+				#{fbo_hashtag}, 
+				#{st_id}, 
+				#{mem_id})
+	</insert>
+	<select id="getFboardList" parameterType="Fboard" resultType="Fboard">
+		SELECT * 
+		FROM fboard 
+		WHERE st_id = #{st_id}
+	</select>
+	
+</mapper>

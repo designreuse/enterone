@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <script>
 	function popup() {
@@ -43,6 +44,15 @@
 											data-target="#exampleModal" data-what="hello">새 쪽지
 											보내기</button></th>
 								</tr>
+								<c:forEach items="${mymaillist}" var="mail">
+								<tr>
+									<td scope="col" width="5%">${mail.lett_no}</td>
+									<td scope="col" width="30%">${mail.lett_title}</td>
+									<td scope="col" width="20%">${mail.lett_sid}</td>
+									<td scope="col" width="20%">${mail.lett_content}</td>
+									<th></th>
+									</tr>
+									</c:forEach>
 							</thead>
 							</tbody>
 						</table>
@@ -60,31 +70,35 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-							<div class="modal-body">
-								<form>
+							<form id="sendmail" name="sendmail" action="sendmail">
+								<div class="modal-body">
+									<input type="text" class="form-control" id="recipient-name"
+										name="lett_sid" value="${member.mem_id }"
+										style="display: none">
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label">받는사람
 											ID: </label> <input type="text" class="form-control"
-											id="recipient-name">
+											id="recipient-name" name="mem_id">
 									</div>
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label">쪽지
 											제목: </label> <input type="text" class="form-control"
-											id="recipient-name">
+											id="recipient-name" name="lett_title">
 									</div>
 									<div class="form-group">
 										<label for="message-text" class="col-form-label">내용:</label>
 										<textarea class="form-control" id="message-text"
+											name="lett_content"
 											style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
 									</div>
-								</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Send
-									message</button>
-							</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">Close</button>
+									<button class="btn btn-primary">Send
+										message</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

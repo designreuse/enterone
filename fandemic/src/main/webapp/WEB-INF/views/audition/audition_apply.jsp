@@ -662,7 +662,6 @@ ul.tabs li.current {
 
 
 					<tr>
-
 						<td class="font-f">프로필사진(필수)</td>
 						<td colspan="2"><div class="invalid-feedback">
 								<button class="btn btn-primary" id="btnfile">파일 첨부</button>

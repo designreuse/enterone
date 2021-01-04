@@ -10,21 +10,23 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.MypageMapper;
-import com.yedam.fandemic.login.MemberValidator;
+import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 
 @Controller
 public class MypageController {
 
+	
+	
 	@Autowired
 	MypageMapper myMapper;
+	
 
 	// mypage메인
 	@RequestMapping(value = "/mypagemain")
@@ -32,9 +34,26 @@ public class MypageController {
 		return new ModelAndView("mypage/my_main");
 	}
 
-	// mypage메인
+	// 쪽지 메인
 	@RequestMapping(value = "/newmail")
-	public ModelAndView newmail(HttpServletResponse response) throws IOException {
+	public String newmail(Model model, Letter letter, HttpSession session, HttpServletResponse response) throws IOException {
+		model.addAttribute("mymaillist", myMapper.selectMail(letter));
+		Member member = (Member)session.getAttribute("member");
+		
+		if(member != null) {
+			letter.setMem_id(member.getMem_id());
+		
+			model.addAttribute("mymaillist", myMapper.selectMail(letter));
+		}
+		return "mypage/mymail";
+	}
+	
+	//쪽지보내기
+	@RequestMapping(value = "/sendmail")
+	public ModelAndView sendmail(HttpServletResponse response, Letter letter) throws IOException {
+		
+		
+		myMapper.SendMail(letter);
 		return new ModelAndView("mypage/my_mail_new");
 	}
 
