@@ -19,11 +19,7 @@
 			modal.find('.modal-title').text('New message to ' + what)
 			modal.find('.modal-body input').val(what)
 		})
-			function goPage(p) {
-				location.href = "${pageContext.request.contextPath}/company/notify/${cnotice.com_id}"+"?p=" + p
-			}
 
-		
 	}
 </script>
 </head>
@@ -37,27 +33,36 @@
 					</div>
 				</div>
 				<div class="row rgoods">
-					<div><button style="float: right;" type="button"
-											class="btn btn-primary" data-toggle="modal"
-											data-target="#exampleModal" data-what="hello">새 쪽지
-											보내기</button>
+					<div>
+						<button style="float: right;" type="button"
+							class="btn btn-primary" data-toggle="modal"
+							data-target="#exampleModal" data-what="hello">새 쪽지 보내기</button>
 						<table class="table table-striped table-dark table-hover">
-								<tr>
-									<th scope="col" width="5%">#</th>
-									<th scope="col" width="30%">제목</th>
-									<th scope="col" width="20%">아이디</th>
-									<th scope="col" width="20%">받은날짜</th>
+							<tr>
+								<th scope="col" width="5%">#</th>
+								<th scope="col" width="30%">제목</th>
+								<th scope="col" width="20%">아이디</th>
+								<th scope="col" width="20%">받은날짜</th>
+							</tr>
+							<c:forEach items="${mymaillist}" var="mail">
+								<tr style="text-align: left;">
+									<td scope="col" width="5%">${mail.lett_no}</td>
+									<td scope="col" width="30%">${mail.lett_title}</td>
+									<td scope="col" width="20%">${mail.lett_sid}</td>
+									<td scope="col" width="20%">${mail.lett_time}</td>
 								</tr>
-								<c:forEach items="${mymaillist}" var="mail">
-									<tr style="text-align: left;">
-										<td scope="col" width="5%">${mail.lett_no}</td>
-										<td scope="col" width="30%">${mail.lett_title}</td>
-										<td scope="col" width="20%">${mail.lett_sid}</td>
-										<td scope="col" width="20%">${mail.lett_time}</td>
-									</tr>
-								</c:forEach>
+							</c:forEach>
 						</table>
-								<my:paging paging="${paging}" jsfunc="goPage" />
+						<div align="center">
+							<script>
+								function goPage(p) {
+									location.href = "${pageContext.request.contextPath}/mymail/"
+											+ "?p=" + p
+								}
+							</script>
+
+							<my:paging paging="${paging}" jsfunc="goPage" />
+						</div>
 					</div>
 				</div>
 				<div class="modal fade" id="exampleModal" tabindex="-1"

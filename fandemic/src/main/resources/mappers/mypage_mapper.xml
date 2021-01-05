@@ -38,8 +38,9 @@
 	</insert>
 	<!-- 쪽지 조회 -->
 	<select id="selectMail" resultType="letter">
-		SELECT * FROM LETTER WHERE MEM_ID = #{mem_id}
-
+		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM ( 
+          SELECT * FROM LETTER Where mem_id = #{mem_id} ORDER BY lett_no
+          ) A ) B WHERE RN BETWEEN #{lett_first} AND #{lett_last}
 	</select>
 	<!-- 쪽지 페이지 네이션 -->
 	<select id="getletterCount" resultType="int">

@@ -25,7 +25,9 @@
 	color : #505050;
 }
 
-
+.ffffsf {
+background-size: auto !important;
+}
 </style>
 
 
@@ -62,7 +64,7 @@
 							<div class="item">
 								<article class="featured">
 									<div class="overlay"></div>
-									<figure style="background-size: contain;" >
+									<figure class="ffffsf"  >
 										<img src="${pageContext.request.contextPath}/images/goods/${gos.go_pic} "alt="TICKET" >
 									</figure>
 									<div class="details">
