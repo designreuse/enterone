@@ -20,25 +20,25 @@ public class AuditionController {
 	
 	@Autowired TraineeMapper traineeMapper;
 	
-
+//연습생
 	@RequestMapping(value = "/auditionwork") //주소
 	public ModelAndView auditionwork(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/trainee_list");
 	
 	}	
-	
+	//오디션 지원
 	@RequestMapping(value = "/auditionapply") //주소
 	public ModelAndView auditioninsert(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/audition_apply");
 	
 	}	
-	
+	//연습생 프로필
 	@RequestMapping(value = "/auditionprofile") //주소
 	public ModelAndView auditionprofile(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/trainee_profile");
 	
 	}	
-	
+	//연습생 등록 페이지
 	@RequestMapping(value = "/traineeinsert") //주소
 	public ModelAndView traineeinsert(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/trainee_insert");
@@ -55,5 +55,7 @@ public class AuditionController {
 				return traineeMapper.nickCheck(trainee);
 				
 		}
+		
+		
 	
 }

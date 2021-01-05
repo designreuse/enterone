@@ -193,8 +193,11 @@ ul.tabs li.current {
 									<a href="register">회원가입</a>
 								</div>
 								<div class="title-line">or</div>
-								<a href="${kakao_url}">
-								<img src="${pageContext.request.contextPath}/images/카카오로그인.png" id="kakao">
+								<a href="${kakao_url}" style="padding: 0px 10px 0px 10px;">
+								<img src="${pageContext.request.contextPath}/images/kakao.png" id="kakao" style="width: 50px; height: 50px; ">
+								</a>
+								<a href="#" style="padding: 0px 10px 0px 10px;">
+								<img src="${pageContext.request.contextPath}/images/naver.PNG" id="naver" style="width: 50px; height: 50px;">
 								</a>
 							</form>
 						</div>

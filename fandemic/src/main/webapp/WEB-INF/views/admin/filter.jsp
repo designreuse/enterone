@@ -139,6 +139,20 @@
 				$("input[type=checkbox]").prop("checked",false); 
 			} 
 		});
+		
+		
+		$('#prohibited').focusout(function() {
+			$('#prohibited').val("").attr("readonly",false);
+			$('#alternative').val("");
+		});
+		
+		$('#alternative').focusout(function() {
+			$('#prohibited').val("").attr("readonly",false);
+			$('#alternative').val("");
+		});
+		
+		
+		
 
 
 	});

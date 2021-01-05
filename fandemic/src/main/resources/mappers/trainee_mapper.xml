@@ -3,10 +3,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.yedam.fandemic.impl.TraineeMapper">
-  
+  <!-- 닉네임중복체크 -->
   <select id="nickCheck" parameterType="Trainee" resultType="int">
 		SELECT COUNT(*)   
 		FROM TRAINEE  
 		WHERE TR_NAME=#{tr_name}
 	</select>
+	<!-- 연습생등록 -->
+	<insert id="inserttr" parameterType="Trainee">
+	INSERT INTO TRAINEE (	    MEM_ID, 
+								TR_NAME, 
+								TR_PIC,
+								TR_CONTENT,
+								TR_BRANCH1,
+								TR_BRANCH2
+								)
+	 	                VALUES(
+	 	               			#{mem_id},
+	 	               			#{tr_name},
+	 	               			#{tr_pic},
+	 	               			#{tr_content},
+	 	               			#{tr_branch1},
+	 	               			#{tr_branch2})
+	</insert>
   </mapper>
