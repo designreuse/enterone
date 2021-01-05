@@ -2,8 +2,61 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script>
+	$(function() {
+		$('ul.tabs li').click(function() { 
+			
+			var tab_id = $(this).attr('data-tab');
+
+			$('ul.tabs li').removeClass('current');
+			//$('.tab-content').removeClass('current');
+
+			$(this).addClass('current');
+			$("#" + tab_id).addClass('current');
+			
+		});
+	});
+
+
+</script>
 
 <style>
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li {
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 25px;
+	cursor: pointer;
+}
+
+ul.tabs li.current {
+	border-top: 2px solid #8ac121;
+	background: #FDFDFD;
+	
+}
+ul.tabs li.current span{
+	color : #8ac121;
+	
+}
+.tab-content {
+	display: none;
+	padding: 15px 0;
+
+}
+
+.tab-content.current {
+	display: inherit;
+}
+
+
 .sub_area {
 	margin : 14px 8px 0 4px;
 }
@@ -478,16 +531,13 @@ background-size: auto !important;
 														<img src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg" alt="no-profile">
 													</c:if>
 													
-													<c:if test="${sessionScope.member.mem_pic ne null and sessionScope.company.com_pic eq null }">
+													<c:if test="${sessionScope.member.mem_pic ne null and sessionScope.company.com_pic eq null and sessionScope.member.mem_type eq 1}">
 														<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}" alt="member_profile">
 													</c:if>
 													
 													<c:if test="${sessionScope.company.com_pic ne null and sessionScope.member.mem_pic eq null }">
 														<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}" alt="company_profile">
 													</c:if>
-													
-													
-													
 												</figure>
 												<div class="featured-author-info">
 													<h2 class="name" style="color: black;">${sessionScope.member.mem_name}</h2>
@@ -496,8 +546,23 @@ background-size: auto !important;
 													</c:if>
 												</div>
 											</div>
+											
+											
+										</div>
+										<!-- 내 스타목록 -->
+										<div class="featured-author-center" align="center">
+											<img src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg" alt="member_profile" style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
+											<img src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg" alt="member_profile" style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
+											<img src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg" alt="member_profile" style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
+										</div>
+										<div class="featured-author-center" align="center">
+											<b class="name" style="color: black; margin: 0px 25px 0px 25px;">스타1</b>
+											<b class="name" style="color: black; margin: 0px 20px 0px 20px;">스타2</b>
+											<b class="name" style="color: black; margin: 0px 25px 0px 25px;">스타3</b>
 										</div>
 									</c:if>
+										
+										
 										
 										<!-- <div class="featured-author-body">
 											<div class="featured-author-count">
@@ -555,17 +620,32 @@ background-size: auto !important;
 							</div>
 						</aside>
 						<aside>
-							<h1 class="aside-title">Popular <a href="#" class="all">See All <i class="ion-ios-arrow-right"></i></a></h1>
+							<ul class="tabs" style="padding-bottom: 20px;">
+								<li class="tab-link current">
+									<a style="color: black;"><span>멜론차트</span></a>
+									
+								</li>
+								<li class="tab-link"> 
+									<a style="color: black;"><span>박스오피스</span></a>
+								</li>
+								<li class="tab-link">
+									<a style="color: black;"><span>시청률</span></a>
+								</li>
+							
+							</ul>
+							<!-- 틀은 똑같이 가고 값만 변경 -->
 							<div class="aside-body">
 								<article class="article-mini">
 									<div class="inner">
+										
 										<figure>
 											<a href="single.html">
 												<img src="${pageContext.request.contextPath}/resources/images/news/img07.jpg" alt="Sample Article">
 											</a>
 										</figure>
 										<div class="padding">
-											<h1><a href="single.html">Fusce ullamcorper elit at felis cursus suscipit</a></h1>
+											<b>아무개곡</b>
+											<b>아무개가수</b>
 										</div>
 									</div>
 								</article>

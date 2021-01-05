@@ -8,10 +8,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+<style>
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+</style>
 
 <script>
 
 $(document).ready(function() {
+	
+	if( "${member.mem_gender}" == "male") {
+		$("#male").attr("checked",true);
+	} else if ( "${member.mem_gender}" == "female") {
+		console.log("female")
+		$("#female").attr("checked",true);
+	}
+	
 	
 	$('#btnAddMem').on('click',function(){ 
 		$("#memFrm").attr("action", "${pageContext.request.contextPath}/kakaoRegister");
@@ -26,6 +41,15 @@ $(document).ready(function() {
 	$('#memEmail').on('click',function(){
 		memMail();
 	});
+	
+	$('#btnAddMem').on('click',function(){ 
+		
+		if ($(':radio[name="mem_gender"]:checked').length < 1) {
+			alert("성별을 선택하세요");
+			event.preventDefault();
+		}
+
+	}); 
 	
 });
 
@@ -81,14 +105,9 @@ function memMail() {
 					<form:form id="memFrm" name="memFrm" method="post" modelAttribute="member" >
 						<div class="form-group" id="divId">
 							<div style="text-align: right;">
-							<c:if test="${member.mem_gender eq 'male'}" >
-								<form:radiobutton path="mem_gender" value="남" label="남자" id="male" checked="true"/>&nbsp;&nbsp;
-								<form:radiobutton path="mem_gender" value="여" label="여자 " id="female"/>
-							</c:if>
-							<c:if test="${member.mem_gender eq 'female'}" >
-								<form:radiobutton path="mem_gender" value="남" label="남자" id="male"/>&nbsp;&nbsp;
-								<form:radiobutton path="mem_gender" value="여" label="여자 " id="female" checked="true"/>
-							</c:if>
+							
+							<form:radiobutton path="mem_gender" value="남" label="남자" id="male"/>&nbsp;&nbsp;
+							<form:radiobutton path="mem_gender" value="여" label="여자 " id="female" />
 							</div>
 
 							<label>아이디</label>
@@ -99,16 +118,19 @@ function memMail() {
 						<div class="form-group">
 							<label>이름</label> 
 							<form:input value="${member.mem_name}" type="text" path="mem_name" id="mem_name" class="form-control" />
+							<form:errors path="mem_name" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 						<div class="form-group">
 							<label>생년월일</label> 
-							<form:input type="date" path="mem_birth" id="mem_birth" class="form-control" />
+							<form:input type="date" path="mem_birth" id="mem_birth" class="form-control" value="2000-01-01" />
+							<form:errors path="mem_birth" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 						<div class="form-group">
 							<label>연락처</label> 
 							<form:input type="text" path="mem_phone" id="mem_phone" class="form-control" placeholder="ex) 000-0000-0000"/>
+							<form:errors path="mem_phone" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 						<div class="form-group" id="divMemEmail">
@@ -131,6 +153,8 @@ function memMail() {
 							</div>
 							
 							<form:input type="text" id="mem_address2" path="mem_address2" class="form-control" style="display:none; margin: 5px 0px;" />
+							<form:errors path="mem_address2" cssClass="error" htmlEscape="false"/> <br>
+							
 							<label>우편번호</label> &nbsp; &nbsp;
 							<form:input type="text" id="mem_zipAddress" path="mem_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="true"/>
 						</div>
