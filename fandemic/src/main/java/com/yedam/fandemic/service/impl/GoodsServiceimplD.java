@@ -27,7 +27,7 @@ public class GoodsServiceimplD implements GoodsServiceD{
 	}
 
 	@Override //굿즈등록
-	public String insertGoods(Goods goods) {
+	public int insertGoods(Goods goods) {
 		return dao.insertGoods(goods);
 
 	}

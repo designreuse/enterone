@@ -51,9 +51,11 @@
 	</insert>
 <!-- 굿즈목록조회 -->
 	<select id="getGoodsList" parameterType="Goods" resultType="Goods">
-		SELECT *
-		FROM GOODS
-		WHERE COM_ID=#{com_id}
+		SELECT G.GO_NO, G.GO_NAME, G.GO_PRICE, S.ST_NAME,  G.GO_STOCK, G.GO_TYPE, G.GO_TIME
+		FROM GOODS G, STAR S
+		WHERE G.COM_ID = S.COM_ID
+		AND G.ST_ID = S.ST_ID
+		AND G.COM_ID=#{com_id}
 	</select>
 	
 <!-- 소속사 스타회원목록 출력 -->	

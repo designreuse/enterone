@@ -121,7 +121,7 @@ div #dataTable_filter{
 			.append($('<td>').html(item.go_no))
 			.append($('<td>').html('<a href="#">'+item.go_name+'</a>'))
 			.append($('<td>').html(item.go_price))
-			.append($('<td>').html(item.st_id))
+			.append($('<td>').html(item.st_name))
 			.append($('<td>').html(item.go_stock))
 			.append($('<td>').html(item.go_type))
 			.append($('<td>').html(item.go_time))
