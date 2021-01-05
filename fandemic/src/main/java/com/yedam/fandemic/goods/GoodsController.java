@@ -56,10 +56,25 @@ public class GoodsController {
 	// Goods 메인 화면 - 필터링
 	@RequestMapping(value = "/goodsf")
 	public ModelAndView goFilter(Model model, Goods goods, HttpServletRequest request) {
-		
+
+		String strp = request.getParameter("p");
+		int p = 1;
+			if(strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+		Paging paging = new Paging();
+		paging.setPageUnit(12); // 한페이지에 12건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+		goods.setGo_first(paging.getFirst()); //paging에 현재 페이지만 넣으면 first, lastPage를 계산함
+		goods.setGo_last(paging.getLast());
+		paging.setTotalRecord(goMapper.goCount());
 		goods.setGo_type(request.getParameter("t"));
+
+		model.addAttribute("paging", paging);
+		model.addAttribute("go_type", request.getParameter("t"));
 		model.addAttribute("goodsList", goMapper.goFilter(goods));
-		
+
 		return new ModelAndView("goods/goods");
 	}
 	

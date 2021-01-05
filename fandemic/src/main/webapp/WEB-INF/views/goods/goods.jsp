@@ -57,12 +57,41 @@
 </style>
 <script type="text/javascript">
 	$(function(){
-		$("li").click(function(){
+		
+		var go_type = "${go_type}";
+		
+ 		if (go_type == null || go_type == "") {
 			
-			var go_type = $(this).html();
-			console.log(go_type);
-			$(location).attr('href','${pageContext.request.contextPath}/goodsf?t='+go_type);
+			$(".cate_all").addClass("active");
+			console.log("aaaaa")
+		} else {
+			$(".cate").removeClass("active");
+			$("#" + go_type).addClass("active"); // (active)클래스를 넣는다.
+			$(".cate_all").removeClass("active");
+		} 
+ 		
+		/* if (go_type != null || go_type != "") {
 			
+			$(".cate").removeClass("active");
+			$("#" + go_type).addClass("active"); // (active)클래스를 넣는다.
+			$(".cate_all").removeClass("active");
+			console.log("aaaaa")
+		} else {
+			$(".cate_all").addClass("active");
+		} */
+
+		$(".cate_all").click(function(){
+			$(location).attr('href','${pageContext.request.contextPath}/goods');
+	    });
+	    
+	    
+		$(".cate").click(function(){
+			var t = $(this).html();
+// 			$(".cate").removeClass("active");
+//			$("#" + "goods.go_type").addClass("active"); // (active)클래스를 넣는다.
+			$(location).attr('href','${pageContext.request.contextPath}/goodsf?t='+t);
+	    });
+
 /* 			$.ajax({
 				url:'${pageContext.request.contextPath}/goods/'+go_type, // 요청할 url
 				type:'GET',
@@ -72,27 +101,13 @@
 				},
 				success:goFilterResult
 			}); */
-	    });
 		/* 
 		function goFilterResult(data) {
 			console.log(data);
 			$("#featured__filter").html("");
 			$("#aaa").load()"
-			
 		}
  */
-/* 		$(".btn-delete").on("click",function(){ 
-			var go_type = "${goods.go_type}"; 
-			$.ajax({
-				url:'${pageContext.request.contextPath}/goods/'+go_type, // 요청할 url
-				type:'GET',
-				data: {go_type:go_type},
-//				dataType: 'json', // 값이 넘어오는 형식
-				error:function(xhr,status,msg) {
-					alert("상태값 :" + status + " Http에러메시지 :"+msg);
-				},
-				success:goFilterResult
-			}); */
 	});
 </script>
 </head>
@@ -108,14 +123,14 @@
 					</div>
 					<div class="featured__controls">
 						<ul>
-							<li class="active" data-filter="*">All</li>
-							<li data-filter=".cheering">TICKET</li>
-							<li data-filter=".cheering">CHEERING</li>
-							<li data-filter=".music">MUSIC</li>
-							<li data-filter=".fashion">FASHION</li>
-							<li data-filter=".acc">ACC</li>
-							<li data-filter=".tech">TECH</li>
-							<li data-filter=".etc">ETC</li>
+							<li id="all" class="cate_all active">All</li>
+							<li id="TICKET" class="cate TICKET">TICKET</li>
+							<li id="CHEERING" class="cate CHEERING">CHEERING</li>
+							<li id="MUSIC" class="cate MUSIC">MUSIC</li>
+							<li id="FASHION" class="cate FASHION">FASHION</li>
+							<li id="ACC" class="cate ACC">ACC</li>
+							<li id="TECH" class="cate TECH">TECH</li>
+							<li id="ETC" class="cate ETC">ETC</li>
 						</ul>
 					</div>
 
@@ -159,7 +174,7 @@
 				<div class="featured__filter">
 					<c:forEach var="goods" items="${goodsList}">
 						<div class="col-lg-3 col-md-4 col-sm-6 mix cheering music"
-							style="padding: 0 5px 0 5px;">
+							style="height: 398px; padding: 0 5px 0 5px;">
 							<div class="featured__item">
 								<div id="aaa" class="featured__item__pic set-bg" style="position: relative;">
 									<a
