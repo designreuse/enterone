@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +27,10 @@ public class KakaoLoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView memberLoginForm(HttpSession session) {
 		ModelAndView mav = new ModelAndView(); /* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
+		
 		String kakaoUrl = KakaoAPI.getAuthorizationUrl(); /* 생성한 인증 URL을 View로 전달 */
 		mav.setViewName("login"); // 카카오 로그인
+		
 		// mav.addObject("naver_url", naverAuthUrl); 
 		mav.addObject("kakao_url", kakaoUrl);
 		return mav;
@@ -76,6 +78,8 @@ public class KakaoLoginController {
 			
 			model.addAttribute("member", member);
 			
+			System.out.println("성별=====" + kgender);
+			
 			return "login/social";
 		}
 
@@ -86,11 +90,17 @@ public class KakaoLoginController {
 	
 	// 카카오 회원가입
 	@RequestMapping("/kakaoRegister")
-	public String kakaoRegister(Model model, HttpSession session,  Member member) throws IOException{
+	public String kakaoRegister(Model model, HttpSession session,  Member member, Errors errors) throws IOException{
+		
+		new SocialValidator().validate(member, errors);
+		
+		if(errors.hasErrors()) {
+			return "login/social";
+		}
 		
 		memMapper.socialInsert(member);
-		
 		member.setMem_type("0"); // 타입 따로 넣기
+		
 		session.setAttribute("member", member);
 
 		return "redirect:index";  // 세션에 member 담고 바로 index로 가기

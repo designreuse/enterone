@@ -26,11 +26,9 @@ public class Goods {
 	String go_untsdate;				//행사시작일
 	String go_untedate;				//행사종료일
 	String go_unttime;				//행사진행시간
+	String st_name;    //스타 이름 (추가 2021-01-05 동광희)
 	
 	// 페이지네이션
 	private int go_first;	//첫페이지
 	private int go_last;	//마지막페이지
-	
-	// 조인 용
-	String st_name;
 }

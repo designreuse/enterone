@@ -124,12 +124,13 @@
                      <li class="dropdown "><a href="${pageContext.request.contextPath}/goods">굿 즈 샵<i class="ion-ios-arrow-right"></i></a>
                      
                         <ul class="dropdown-menu">
-                           <li><a href="#">CHEERING</a></li>
-                           <li><a href="#">MUSIC</a></li>
-                           <li><a href="#">FASHION</a></li>
-                           <li><a href="#">ACC</a></li>
-                           <li><a href="#">TECH</a></li>
-                           <li><a href="#">ETC</a></li>
+                       	   <li><a href="${pageContext.request.contextPath}/goodsf?t=TICKET">TICKET</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=CHEERING">CHEERING</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=MUSIC">MUSIC</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=FASHION">FASHION</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=ACC">ACC</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=TECH">TECH</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=ETC">ETC</a></li>
                         </ul>
                      </li>
                      

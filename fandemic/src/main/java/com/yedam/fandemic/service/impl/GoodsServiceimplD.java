@@ -26,4 +26,14 @@ public class GoodsServiceimplD implements GoodsServiceD{
 		return dao.getCategory();
 	}
 
+	@Override //굿즈등록
+	public String insertGoods(Goods goods) {
+		return dao.insertGoods(goods);
+
+	}
+
+	@Override //굿즈 목록조회
+	public List<Goods> getGoodsList(Goods goods) {
+		return dao.getGoodsList(goods);
+	}
 }
