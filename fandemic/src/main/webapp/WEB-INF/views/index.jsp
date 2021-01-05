@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 
 <style>
 .sub_area {
@@ -61,13 +62,13 @@
 							<div class="item">
 								<article class="featured">
 									<div class="overlay"></div>
-									<figure>
-										<img src="${pageContext.request.contextPath}/images/goods/${gos.go_pic} "alt="TICKET">
+									<figure style="background-size: contain;" >
+										<img src="${pageContext.request.contextPath}/images/goods/${gos.go_pic} "alt="TICKET" >
 									</figure>
 									<div class="details">
-										<div class="#"><a href="category.html">${gos.st_id}</a></div>
-										<h1><a href="#">${gos.go_name}</a></h1>
-										<div class="#">${gos.go_untsdate}</div>
+										<div style="color: white;" class="#">${gos.st_id}</div>
+										<h1><a href="#">${gos.go_name}</a></h1> <!-- 클릭한 행사 상세페이지로 이동시킬꺼야 -->
+										<div style="color: white;" class="#">${fn:substring(gos.go_untsdate,0,10)}</div>
 									</div>
 								</article>
 							</div>
@@ -441,16 +442,16 @@
 							</article>
 						</div>
 					</div>
-					<div class="col-xs-6 col-md-4 sidebar" id="sidebar">
+					<div class="col-xs-6 col-md-4 sidebar" id="sidebar" style="padding-top: 54px;" > 
 						<div class="sidebar-title for-tablet">Sidebar</div>
 						<aside>
 							<div class="aside-body">
 								<div class="featured-author">
-									<div class="featured-author-inner">
+									<div class="featured-author-inner" >
 									
 									<!-- 로그인 -->
 									<c:if test="${sessionScope.member.mem_id eq null and sessionScope.company.com_id eq null }" >
-										<div class="sc_login" style="background-image: url('images/news/img15.jpg');">
+										<div class="sc_login" style="background-image: url('images/news/img15.jpg');" >
 										<div class="sub_area">
 											<a class="btn btn-primary btn-block" id="homeLogin" href="${pageContext.request.contextPath}/login">로그인</a>
 											<div style="padding-bottom: 20px;">

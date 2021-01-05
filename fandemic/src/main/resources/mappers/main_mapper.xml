@@ -5,8 +5,8 @@
 <mapper namespace="com.yedam.fandemic.impl.MainMapper">
 	
 	<select id="ticketList" resultType="Goods">
-		<!-- SELECT * FROM GOODS WHERE GO_TYPE = 'TICKET' AND GO_UNTSDATE >= SYSDATE -->
-		SELECT * FROM GOODS WHERE GO_TYPE = 'TICKET'
+		<!-- SELECT S.ST_NAME, G.*  FROM STAR S , GOODS G WHERE S.ST_ID = G.ST_ID AND GO_TYPE = 'TICKET' AND GO_UNTSDATE >= SYSDATE -->
+		SELECT S.ST_NAME, G.*  FROM STAR S , GOODS G WHERE S.ST_ID = G.ST_ID AND GO_TYPE = 'TICKET'
 	</select>
 
 	

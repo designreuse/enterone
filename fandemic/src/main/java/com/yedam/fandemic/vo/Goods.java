@@ -30,4 +30,7 @@ public class Goods {
 	// 페이지네이션
 	private int go_first;	//첫페이지
 	private int go_last;	//마지막페이지
+	
+	// 조인 용
+	String st_name;
 }
