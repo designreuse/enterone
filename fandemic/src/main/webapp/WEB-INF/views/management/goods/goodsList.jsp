@@ -45,7 +45,7 @@ div #dataTable_filter{
 <script>
 	$(function() {
 		
-		cnoticeList();//공지사항 목록요청
+		goodsList();//굿즈 목록요청
 		$(".pagination a").on("click",function(){
 			$(".pagination a").removeClass("active");
 			$(this).addClass("active");
@@ -96,11 +96,11 @@ div #dataTable_filter{
 		
 	}); //end document ready
 	
-	//공지사항 목록 조회 요청
-	function cnoticeList() {
+	//굿즈 목록 조회 요청
+	function goodsList() {
 		var com_id = "${company.com_id }";
 		$.ajax({
-			url:'${pageContext.request.contextPath}/management/noticesList', //요청할 url
+			url:'${pageContext.request.contextPath}/management/goods/goodsListAll', //요청할 url
 			type:'POST',
 			data: {com_id:com_id},
 			//contentType:'application/json;charset=utf-8',
@@ -108,23 +108,23 @@ div #dataTable_filter{
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
-			success:cnoticeListResult
+			success:GoodsListResult
 		});
 	}//end cnoticeList
 	
-	function cnoticeListResult(data){
+	function GoodsListResult(data){
 		/* console.log(data); */
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","cnoticeTr")
 			.append($('<td>').html('<input type="checkbox" name="cnoc_nos" value="'+item.cnoc_no+'">'))
-			.append($('<td>').html(item.cnoc_no))
-			.append($('<td>').html('<a href="#">'+item.cnoc_title+'</a>'))
-			.append($('<td>').html(item.com_id))
-			.append($('<td>').html(item.cnoc_time))
-			.append($('<td>').html(item.cnoc_time))
-			.append($('<td>').html(item.cnoc_time))
-			.append($('<td>').html(item.cnoc_time))
+			.append($('<td>').html(item.go_no))
+			.append($('<td>').html('<a href="#">'+item.go_name+'</a>'))
+			.append($('<td>').html(item.go_price))
+			.append($('<td>').html(item.st_id))
+			.append($('<td>').html(item.go_stock))
+			.append($('<td>').html(item.go_type))
+			.append($('<td>').html(item.go_time))
 			.appendTo('tbody');
 			
 		});//end each

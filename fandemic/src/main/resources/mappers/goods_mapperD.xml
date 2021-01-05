@@ -15,6 +15,46 @@
 		SELECT GC_NAME
 		FROM GOODSCATEGORY
 	</select>	
+<!-- 굿즈 등록 -->
+	<insert id="insertGoods" parameterType="Goods">
+		INSERT INTO GOODS ( go_no,
+							go_name,
+							go_price,
+							go_type,
+							go_content,
+							com_id,
+							st_id,
+							go_time,
+							go_stock,
+							go_limited,
+							go_pic,
+							go_detail,
+							go_untsdate,
+							go_untedate,
+							go_unttime)
+		VALUES(
+	 	               			go_seq.NEXTVAL,
+	 	               			#{go_name},
+	 	               			#{go_price},
+	 	               			#{go_type},
+	 	               			#{go_content},
+	 	               			#{com_id},
+	 	               			#{st_id},
+	 	               			SYSDATE,
+	 	               			#{go_stock},
+	 	               			#{go_limited},
+	 	               			#{go_pic},
+	 	               			#{go_detail},
+	 	               			#{go_untsdate},
+	 	               			#{go_untedate},
+	 	               			#{go_unttime})
+	</insert>
+<!-- 굿즈목록조회 -->
+	<select id="getGoodsList" parameterType="Goods" resultType="Goods">
+		SELECT *
+		FROM GOODS
+		WHERE COM_ID=#{com_id}
+	</select>
 	
 <!-- 소속사 스타회원목록 출력 -->	
 	<select id="getStarMemberList" parameterType="Star" resultType="Star">
