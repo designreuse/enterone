@@ -64,6 +64,7 @@
 		<div class="container">
 
 			<c:choose>
+				<%-- 예매 상세 --%>
 				<c:when test="${goods.go_type eq 'TICKET'}">
 					<div class="row">
 						<div class="col-lg-6 col-md-6">
@@ -102,7 +103,7 @@
 									<div class="product__details__quantity">
 										<div class="quantity">
 											<div class="pro-qty">
-												<input type="text" value="1" id="goQty">
+												<input type="text" value="1" id="qty_ti">
 											</div>
 										</div>
 									</div>
@@ -119,7 +120,7 @@
 						</div>
 					</div>
 				</c:when>
-				
+				<%-- 굿즈 상세 --%>
 				<c:otherwise>
 					<div class="row">
 						<div class="col-lg-6 col-md-6">
@@ -152,7 +153,7 @@
 									<div class="product__details__quantity">
 										<div class="quantity">
 											<div class="pro-qty">
-												<input type="text" value="1">
+												<input type="text" value="1" id="qty_go">
 											</div>
 										</div>
 									</div>
