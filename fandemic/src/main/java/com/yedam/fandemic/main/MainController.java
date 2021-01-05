@@ -3,6 +3,7 @@ package com.yedam.fandemic.main;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,15 +28,16 @@ public class MainController {
 	
 	
 	@RequestMapping(value="/index")
-	public ModelAndView index(Model model, Goods goods) throws IOException{
+	public ModelAndView index(Model model, Goods goods, HttpSession session) throws IOException{
 		
+		// session.setAttribute("member", session.getAttribute("member"));
 		model.addAttribute("goods", dao.ticketList());
 		return new ModelAndView("index");
 	}
 	
-	@RequestMapping(value="/login")
-	public ModelAndView login(HttpServletResponse response) throws IOException{
-		return new ModelAndView("login");
-	}
+//	@RequestMapping(value="/login")
+//	public ModelAndView login(HttpServletResponse response) throws IOException{
+//		return new ModelAndView("login");
+//	}
 	
 }

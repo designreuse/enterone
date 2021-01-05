@@ -467,6 +467,10 @@
 											</div>
 											<div class="featured-author-center">
 												<figure class="featured-author-picture">
+												
+													<c:if test="${sessionScope.member.mem_pic ne null and sessionScope.member.mem_type eq 0 }">
+														<img src="${sessionScope.member.mem_pic}" alt="member_profile">
+													</c:if>
 													<c:if test="${sessionScope.member.mem_pic eq null and sessionScope.company.com_pic eq null }">
 														<img src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg" alt="no-profile">
 													</c:if>
@@ -477,13 +481,16 @@
 													
 													<c:if test="${sessionScope.company.com_pic ne null and sessionScope.member.mem_pic eq null }">
 														<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}" alt="company_profile">
-														<!-- 이미지 경로 -->
 													</c:if>
+													
+													
 													
 												</figure>
 												<div class="featured-author-info">
 													<h2 class="name" style="color: black;">${sessionScope.member.mem_name}</h2>
-													<div class="desc" style="color: #f73f52;">${sessionScope.member.mem_id}</div>
+													<c:if test="${sessionScope.member.mem_type ne 0 }">
+														<div class="desc" style="color: #f73f52;">${sessionScope.member.mem_id}</div>
+													</c:if>
 												</div>
 											</div>
 										</div>

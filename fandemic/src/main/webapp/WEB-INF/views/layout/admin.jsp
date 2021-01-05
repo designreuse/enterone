@@ -60,13 +60,13 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="adminMain" class="nav-link">Home</a>
+        <a href="${pageContext.request.contextPath}/adminMain" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/fandemic/" class="nav-link" target="_blank">Main Page</a>
+        <a href="${pageContext.request.contextPath}/index" class="nav-link" target="_blank">Main Page</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="logout" class="nav-link">Logout</a>
+        <a href="${pageContext.request.contextPath}/logout" class="nav-link">Logout</a>
       </li>
     </ul>
 

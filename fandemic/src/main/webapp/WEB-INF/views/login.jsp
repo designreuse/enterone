@@ -193,7 +193,7 @@ ul.tabs li.current {
 									<a href="register">회원가입</a>
 								</div>
 								<div class="title-line">or</div>
-								<a href="https://kauth.kakao.com/oauth/authorize?client_id={c53d1a4ed0a0459a47c2b12713d17e0c}&redirect_uri={https://localhost:1818/fandemic/kakaoLogin}&response_type=code">
+								<a href="${kakao_url}">
 								<img src="${pageContext.request.contextPath}/images/카카오로그인.png" id="kakao">
 								</a>
 							</form>

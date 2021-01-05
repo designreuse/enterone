@@ -179,7 +179,7 @@ public class LoginController {
 			
 			request.setAttribute("login", "fail");
 			
-			return "login";
+			return "redirect:login";
 		}
 		
 	} // 개인 로그인
@@ -211,7 +211,7 @@ public class LoginController {
 		//아이디가 DB에없을때
 		} else {
 			model.addAttribute("login", "fail");
-			return "login";
+			return "redirect:login";
 		}
 		
 		
@@ -235,7 +235,7 @@ public class LoginController {
 				
 		} else {
 			model.addAttribute("login", "fail");
-			return "login";
+			return "redirect:login";
 		}
 	}
 
@@ -303,7 +303,7 @@ public class LoginController {
 		memMapper.memInsert(member);
 		model.addAttribute("login", "insert"); // 세션으로 바꿔야 함
 		
-		return "login";
+		return "redirect:login";
 	}
 	
 	
@@ -325,79 +325,9 @@ public class LoginController {
 		
 		model.addAttribute("login", "insert");
 		
-		return "login";
+		return "redirect:login";
 	}
 	
 
-	// 카카오 로그인
-	@RequestMapping(value="/kakaoLogin", produces = "application/json", method = RequestMethod.GET)
-	public String kakaoLogin(@RequestParam("code") String code, RedirectAttributes ra , HttpSession session, HttpServletResponse response, Member member, HttpServletRequest request, Model model) throws IOException{
-		
-		JsonNode accessToken;
-		 
-        // JsonNode트리형태로 토큰받아온다
-        JsonNode jsonToken = KakaoAccessToken.getKakaoAccessToken(code);
-        // 여러 json객체 중 access_token을 가져온다
-        accessToken = jsonToken.get("access_token");
- 
-        System.out.println("access_token : " + accessToken);
-
-
-     // access_token을 통해 사용자 정보 요청
-        JsonNode userInfo = KakaoUserInfo.getKakaoUserInfo(accessToken);
- 
-        // Get id
-        String id = userInfo.path("id").asText();
-        String name = null;
-        String email = null;
-        String gender = null;
- 
-        // 유저정보 카카오에서 가져오기 Get properties
-        JsonNode properties = userInfo.path("properties");
-        JsonNode kakao_account = userInfo.path("kakao_account");
- 
-        name = properties.path("nickname").asText();
-        email = kakao_account.path("email").asText();
-        gender = kakao_account.path("gender").asText();
- 
-        
-
-        member.setMem_id(id);
-
-        member = memMapper.socialLogin(member);
-		
-		if ( member != null) {
-			
-			session.setAttribute("member", member);
-			System.out.println(" > " + member.getMem_type());
-			
-			return "index";
-			
-		} else {   
-			Member member2 = new Member();
-			member2.setMem_id(id);
-			member2.setMem_name(name);
-			member2.setMem_email(email);
-			member2.setMem_gender(gender);
-	        // request.setAttribute("member", member2);
-			
-			model.addAttribute("member", member2);
-			
-	        return "login/social";
-		}
-
-	}
-	
-	// 카카오 회원가입
-	@RequestMapping("/kakaoRegister")
-	public String kakaoRegister(Model model, HttpSession session,  Member member) throws IOException{
-		
-		memMapper.socialInsert(member);
-		session.setAttribute("member", member);
-		
-		System.out.println("insert " + member.getMem_id());
-		
-		return "index";  // 세션에 member 담고 바로 index로 가기
-	}
 
 }

@@ -8,10 +8,10 @@
 <!-- 소셜 회원가입 -->
 	<insert id="socialInsert" parameterType="Member">
 		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_BIRTH, MEM_PHONE, MEM_EMAIL, MEM_ADDRESS, 
-							MEM_ADDRESS2,MEM_TYPE, MEM_GENDER, MEM_ZIPADDRESS)
+							MEM_ADDRESS2,MEM_TYPE, MEM_GENDER, MEM_ZIPADDRESS, MEM_PIC)
 		VALUES(
 							#{mem_id}, #{mem_name}, #{mem_birth}, #{mem_phone},
-							#{mem_email}, #{mem_address}, #{mem_address2}, 0, #{mem_gender}, #{mem_zipAddress} )
+							#{mem_email}, #{mem_address}, #{mem_address2}, 0, #{mem_gender}, #{mem_zipAddress}, #{mem_pic})
 
 		
 	</insert>

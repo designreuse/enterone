@@ -138,6 +138,9 @@ function memMail() {
 						<div class="form-group text-right">
 							<button class="btn btn-primary btn-block" id="btnAddMem" disabled="disabled">확인</button>
 						</div>
+						<div style="display: none;">
+							<form:input type="text" path="mem_pic" id="mem_pic" class="form-control" value="${member.mem_pic}" />
+						</div>
 					</form:form>
 				</div>
 			</div>
