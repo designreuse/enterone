@@ -29,7 +29,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/star.css">
 
 	<script>
-		//모달 팝업 띄울 시 발생하는 이벤트  (이벤트명 : show.bs.modal) 
+		 //모달 팝업 띄울 시 발생하는 이벤트  (이벤트명 : show.bs.modal) 
 		$('#exampleModal').on('show.bs.modal', function(event) {
 			var button = $(event.relatedTarget);
 			var what = button.data('what');
@@ -37,7 +37,7 @@
 			// 모달 팝업에 데이터 집어넣기 
 			var modal = $(this);
 			modal.find('.modal-body input').val(what)
-		});
+		}); 
 	</script>
 </head>
 

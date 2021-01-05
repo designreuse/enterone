@@ -16,4 +16,6 @@ public class Fboard {
 	String fbo_views;	//조회수
 	String fbo_hashtag;	//해시태그
 	
+	private int cnoc_first; // 페이지네이션
+	private int cnoc_last;
 }

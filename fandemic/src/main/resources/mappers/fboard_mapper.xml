@@ -30,4 +30,10 @@
 		WHERE st_id = #{st_id}
 	</select>
 	
+	<select id="getFboardInfo" parameterType="Fboard" resultType="Fboard">
+		SELECT * 
+		FROM fboard 
+		WHERE fbo_no = #{fbo_no}
+	</select>
+	
 </mapper>

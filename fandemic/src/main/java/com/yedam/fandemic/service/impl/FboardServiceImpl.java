@@ -22,5 +22,10 @@ public class FboardServiceImpl implements FboardService{
 	public List<Fboard> getFboardList(Fboard fboard) {
 		return fboardDAO.getFboardList(fboard);
 	}
+
+	@Override
+	public Fboard getFboardInfo(Fboard fboard) {
+		return fboardDAO.getFboardInfo(fboard);
+	}
 	
 }
