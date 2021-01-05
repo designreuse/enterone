@@ -12,4 +12,7 @@ public class Letter {
 	String lett_time;		//보낸시간
 	String lett_content;	//내용
 	
+	
+	private int lett_first; // 페이지네이션
+	private int lett_last;
 }

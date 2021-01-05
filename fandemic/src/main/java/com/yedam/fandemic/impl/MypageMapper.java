@@ -12,6 +12,7 @@ public interface MypageMapper {
 	public int memUpdate (Member member);
 	
 	public int SendMail (Letter letter); //쪽지 보내기
+	public int getletterCount(Letter letter); //쪽지 페이지네이션
 	public List<Letter> selectMail(Letter letter); // 쪽지 조회하기
 
 

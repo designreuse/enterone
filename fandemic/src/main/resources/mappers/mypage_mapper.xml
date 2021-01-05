@@ -1,47 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.yedam.fandemic.impl.MypageMapper">
-<!-- 멤버 업데이트  -->
-  <update id="memUpdate" parameterType="member">
-  UPDATE MEMBER SET 
-  	MEM_PW = #{mem_pw}, 
-  	MEM_PHONE = #{mem_phone},
-  	<if test="mem_pic!=null"> 
-  	MEM_PIC = #{mem_pic},
-  	</if>
-  	MEM_EMAIL = #{mem_email}, 
-  	MEM_ADDRESS = #{mem_address}, 
-  	MEM_ADDRESS2 = #{mem_address2}, 
-  	MEM_ZIPADDRESS = #{mem_zipAddress}
-  	WHERE MEM_ID = #{mem_id}
-  	</update>
-<!--   	쪽지보내기 -->
-<insert id="SendMail" parameterType="letter">
-INSERT INTO LETTER( 
-				LETT_NO, 
-				LETT_SID, 
-				MEM_ID,
-				LETT_TIME, 
-				LETT_CONTENT, 
-				LETT_TITLE) 
-			VALUES (
-			lett_seq.NEXTVAL, 
-			#{lett_sid}, 
-			#{mem_id}, 
-			SYSDATE,
-			#{lett_content}, 
-			#{lett_title})
+
+<mapper namespace="com.yedam.fandemic.impl.MypageMapper">
+	<!-- 멤버 업데이트 -->
+	<update id="memUpdate" parameterType="member">
+		UPDATE MEMBER SET
+		MEM_PW = #{mem_pw},
+		MEM_PHONE = #{mem_phone},
+		<if test="mem_pic!=null">
+			MEM_PIC = #{mem_pic},
+		</if>
+		MEM_EMAIL = #{mem_email},
+		MEM_ADDRESS = #{mem_address},
+		MEM_ADDRESS2 = #{mem_address2},
+		MEM_ZIPADDRESS = #{mem_zipAddress}
+		WHERE MEM_ID = #{mem_id}
+	</update>
+	<!-- 쪽지보내기 -->
+	<insert id="SendMail" parameterType="letter">
+		INSERT INTO LETTER(
+		LETT_NO,
+		LETT_SID,
+		MEM_ID,
+		LETT_TIME,
+		LETT_CONTENT,
+		LETT_TITLE)
+		VALUES (
+		lett_seq.NEXTVAL,
+		#{lett_sid},
+		#{mem_id},
+		SYSDATE,
+		#{lett_content},
+		#{lett_title})
 
 
-</insert>
-<!--   	쪽지 조회 -->
-<select id="selectMail" parameterType="member">
-SELECT * FROM LETTER WHERE MEM_ID = #{mem_id}
+	</insert>
+	<!-- 쪽지 조회 -->
+	<select id="selectMail" resultType="letter">
+		SELECT * FROM LETTER WHERE MEM_ID = #{mem_id}
 
-</select>
-  	
-  	
-  	
-  </mapper>
+	</select>
+	<!-- 쪽지 페이지 네이션 -->
+	<select id="getletterCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		LETTER
+		WHERE MEM_ID = #{mem_id}
+	</select>
+
+
+
+</mapper>
