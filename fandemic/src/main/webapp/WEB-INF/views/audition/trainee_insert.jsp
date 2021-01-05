@@ -46,6 +46,10 @@ $("td #btnCheckm").on("click",function(){
 	    } 
 	});
 });
+$("td #btnfile").on("click",function() {
+	
+});
+
 });//ID중복체크 버튼 end
 </script>
 </head>
