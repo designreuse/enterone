@@ -24,7 +24,7 @@
 <section class="single">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8" style="margin-left: 30%">
+		<div class="col-md-8">
 				<div class="line">
 					<div>
 						<a id="rgoods">최근 쪽지</a>

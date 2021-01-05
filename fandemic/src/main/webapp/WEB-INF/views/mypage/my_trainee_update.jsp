@@ -35,8 +35,8 @@
 	<section class="single">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8" style="margin-left: 30%">
-	<table class="myinfo">
+				<div class="col-md-8">
+					<table class="myinfo">
 						<tr>
 							<td class="tilt"><b>활동사진</b></td>
 							<td class="readolytexttd"><input type="text"
@@ -52,7 +52,7 @@
 							<td class="readolytexttd"><input type="text"
 								class="updatetext"></td>
 						</tr>
-							<tr>
+						<tr>
 							<td class="tilt"><b>지원분야2</b></td>
 							<td class="readolytexttd"><input type="text"
 								class="updatetext"></td>

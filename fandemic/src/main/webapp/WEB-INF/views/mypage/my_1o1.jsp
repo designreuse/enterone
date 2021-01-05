@@ -25,7 +25,7 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8" style="margin-left: 30%">
+					<div class="col-md-8">
 						<div class="col-md-12">
 							<h3 class="title">1:1 문의 내역</h3>
 						</div>

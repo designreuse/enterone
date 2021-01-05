@@ -22,7 +22,7 @@
 	<section class="single">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8" style="margin-left: 30%">
+				<div class="col-md-8">
 					<div class="line">
 						<div>내 스타 목록</div>
 					</div>

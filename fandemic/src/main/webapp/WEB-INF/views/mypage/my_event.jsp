@@ -7,7 +7,7 @@
 
 <style type="text/css">
 li {
-float: left;
+/* float: left; */
 
 }
 
@@ -22,7 +22,7 @@ float: left;
 	<section class="single">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8" style="margin-left: 30%">
+				<div class="col-md-8">
 					<div class="line">
 						<div>이벤트 참여 내역</div>
 					</div>

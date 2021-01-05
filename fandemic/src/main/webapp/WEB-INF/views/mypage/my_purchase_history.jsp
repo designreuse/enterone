@@ -4,30 +4,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-$(document).ready(function(){
-  $("#rgoods").click(function(){
-    $(".rgoods").toggle(1000);
-  });
-});
+	$(document).ready(function() {
+		$("#rgoods").click(function() {
+			$(".rgoods").toggle(1000);
+		});
+	});
 
-$(document).ready(function(){
-	  $("#rticket").click(function(){
-	    $(".rticket").toggle(1000);
-	  });
+	$(document).ready(function() {
+		$("#rticket").click(function() {
+			$(".rticket").toggle(1000);
+		});
 	});
-	
-$(document).ready(function(){
-	  $("#goods").click(function(){
-	    $(".goods").toggle(1000);
-	  });
+
+	$(document).ready(function() {
+		$("#goods").click(function() {
+			$(".goods").toggle(1000);
+		});
 	});
-	
-$(document).ready(function(){
-	  $("#ticket").click(function(){
-	    $(".ticket").toggle(1000);
-	  });
+
+	$(document).ready(function() {
+		$("#ticket").click(function() {
+			$(".ticket").toggle(1000);
+		});
 	});
 </script>
 <style type="text/css">
@@ -35,17 +36,18 @@ $(document).ready(function(){
 	width: 90%;
 	margin: 1%;
 }
-
 </style>
 </head>
 <body>
 	<section class="single">
-	 
+
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8" style="margin-left: 30%">
+				<div class="col-md-8">
 					<div class="line">
-						<div><a id="rgoods">최근 굿즈 구매 내역</a></div>
+						<div>
+							<a id="rgoods">최근 굿즈 구매 내역</a>
+						</div>
 					</div>
 					<div class="row rgoods">
 						<div>
@@ -69,21 +71,24 @@ $(document).ready(function(){
 									</td>
 									<td align="right">
 										<h5 style="margin-right: 5%">던킨 딸기 듬뿍 미니도넛 (냉동)</h5> <a
-										style="margin-right: 20px">6,770원 · 1개</a> <input class="sidebutton btn-primary" style="margin-right: 5%;" type="button"
-										onclick="location.href='#'" value="장바구니에 담기">
+										style="margin-right: 20px">6,770원 · 1개</a> <input
+										class="sidebutton btn-primary" style="margin-right: 5%;"
+										type="button" onclick="location.href='#'" value="장바구니에 담기">
 									</td>
 								</tr>
 
 							</table>
-							
-							
-							
-							
+
+
+
+
 							s
 						</div>
 					</div>
 					<div class="line">
-						<div><a id=goods>굿즈 구매 내역</a></div>
+						<div>
+							<a id=goods>굿즈 구매 내역</a>
+						</div>
 					</div>
 					<div class="row goods">
 						<div>
@@ -116,10 +121,12 @@ $(document).ready(function(){
 							</table>
 						</div>
 					</div>
-					
-					
+
+
 					<div class="line">
-						<div><a id="rticket">최근 예매 내역</a></div>
+						<div>
+							<a id="rticket">최근 예매 내역</a>
+						</div>
 					</div>
 					<div class="row rticket">
 						<div>
@@ -153,7 +160,9 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div class="line">
-						<div><a id="ticket">예매 내역</a></div>
+						<div>
+							<a id="ticket">예매 내역</a>
+						</div>
 					</div>
 					<div class="row ticket">
 						<div>
@@ -186,7 +195,7 @@ $(document).ready(function(){
 							</table>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
