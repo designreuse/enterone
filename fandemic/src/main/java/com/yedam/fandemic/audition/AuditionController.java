@@ -47,7 +47,7 @@ public class AuditionController {
 	
 	//닉네임인 중복확인
 	
-		@RequestMapping("/nickId")
+		@RequestMapping(value="/audition/nickCheck")
 		@ResponseBody
 		public int nickId(Model model, Trainee trainee) throws IOException{
 			

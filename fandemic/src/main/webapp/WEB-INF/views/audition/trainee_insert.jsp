@@ -21,32 +21,32 @@ td {
 </style>
 <script>
 $(document).ready(function() {
-	//닉네임 중복
-	$('#btnCheckm').on('click',function(){
-		nickCheck();
+	
+//닉네임 중복
+$("td #btnCheckm").on("click",function(){
+	var tr_name=$("#pro_name").val(); //id값
+	$.ajax({
+		url:"${pageContext.request.contextPath}/audition/nickCheck",
+		type:"post",
+		data:{tr_name:tr_name},
+		dataType: 'json',
+		success: function(response) {
+	    	if(response != null && response !="") {
+	    		$(".tr_name_ck").text("중복된 닉네임 입니다.")
+	    		$(".tr_name_ck").css("display","")
+	    					  .css("color","red");
+	    	}else{
+	    		$(".tr_name_ck").text("사용가능한 닉네임 입니다.")
+	    		$(".tr_name_ck").css("display","")
+	    		              .css("color","green"); 
+	    	}
+	    }, 
+	    error:function(xhr, status, message) { 
+	        alert(" status: "+status+" er:"+message);
+	    } 
 	});
 });
-
-function nickCheck() {
-	$.ajax({
-        url :'${pageContext.request.contextPath}/nickId',
-        type:"post",
-        data : {tr_name : $("#tr_name").val() },
-        
-        success:function(data){
-
-           if (data == 0) {
-        	   $("#tr_name").html("");
-        	   $("#tr_name").html("사용 가능한 닉네임입니다.").css("color","blue").appendTo("#divId");
-        	   
-           } else {
-        	   $("#tr_name").html("");
-        	   $("#tr_name").html("중복된 닉네임입니다.").css("color","red").appendTo("#divId");
-           }
-
-        },error:function(){ alert("실패"); }
-     });
-}
+});//ID중복체크 버튼 end
 </script>
 </head>
 <body>
@@ -67,17 +67,18 @@ function nickCheck() {
 								<td>
 
 									<div class="col">
-										<input type="text" id="pro_tall" name="pro_tall"
+										<input type="text" id="pro_name" name="pro_name"
 											placeholder="닉네임을 입력하세요">
 
 									</div>
-									<b id="checkId"></b>
+									<div class="tr_name_ck" style="display:none;"></div>
 								</td>
 
 								<td><button value="중복확인" id="btnCheckm"
 										class="btn btn-primary">중복확인</button>
-									<br>
-								<b id="nickCheck"></b></td>
+								
+								</td>
+								
 
 							</tr>
 							<tr>
