@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ import com.yedam.fandemic.impl.MypageMapper;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
+import com.yedam.fandemic.vo.QnA;
 
 @Controller
 public class MypageController {
@@ -128,6 +130,17 @@ public class MypageController {
 		model.addAttribute("mymaillist", myMapper.selectMail(letter));
 		return "mypage/my_mail";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/onemailselect")
+	public String oneMailSelect(Model model, HttpServletRequest request, Letter letter) throws IOException{
+		System.out.println("ㄴ오리ㅏㅁ너ㅗ라ㅣㅇㄴ머ㅗㄹ아ㅓㅣㄴ몰ㄴ아ㅗ"+request.getParameter("lett_no"));
+		letter.setLett_no(request.getParameter("lett_no"));
+		letter = myMapper.OneMailSelect(letter);
+		
+		return "mypage/my_mail";
+	}
+	
 		
 	// 쪽지보내기
 	@RequestMapping(value = "/sendmail")

@@ -49,7 +49,11 @@
 		LETTER
 		WHERE MEM_ID = #{mem_id}
 	</select>
+<!-- 	쪽지단건조회 -->
+<select id="OneMailSelect" resultType="letter" parameterType="letter">
+SELECT * FROM LETTER WHERE LETT_NO=#{lett_no}
 
+</select>
 
 
 </mapper>
