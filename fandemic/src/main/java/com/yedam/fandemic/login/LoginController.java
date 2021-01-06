@@ -160,7 +160,7 @@ public class LoginController {
 		
 		request.setAttribute("login", null);
 		
-		return new ModelAndView("login");
+		return new ModelAndView("redirect:login");
 	}
 	    
 	// 개인 로그인

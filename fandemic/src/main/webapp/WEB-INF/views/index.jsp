@@ -11,7 +11,7 @@
 			var tab_id = $(this).attr('data-tab');
 
 			$('ul.tabs li').removeClass('current');
-			//$('.tab-content').removeClass('current');
+			$('.tab-content').removeClass('current');
 
 			$(this).addClass('current');
 			$("#" + tab_id).addClass('current');
@@ -47,8 +47,7 @@ ul.tabs li.current span{
 	
 }
 .tab-content {
-	display: none;
-	padding: 15px 0;
+	display: none; 
 
 }
 
@@ -118,7 +117,7 @@ background-size: auto !important;
 								<article class="featured">
 									<div class="overlay"></div>
 									<figure class="ffffsf"  >
-										<img src="${pageContext.request.contextPath}/images/goods/${gos.go_pic} "alt="TICKET" >
+										<img src="${pageContext.request.contextPath}/images/goods/${gos.go_pic} "alt="TICKET" style="width: 500px; height: 800px;" >
 									</figure>
 									<div class="details">
 										<div style="color: white;" class="#">${gos.st_id}</div>
@@ -497,7 +496,7 @@ background-size: auto !important;
 							</article>
 						</div>
 					</div>
-					<div class="col-xs-6 col-md-4 sidebar" id="sidebar" style="padding-top: 54px;" > 
+					<div class="col-xs-6 col-md-4 sidebar" id="sidebar" style="padding-top: 80px;" > 
 						<div class="sidebar-title for-tablet">Sidebar</div>
 						<aside>
 							<div class="aside-body">
@@ -561,57 +560,7 @@ background-size: auto !important;
 											<b class="name" style="color: black; margin: 0px 25px 0px 25px;">스타3</b>
 										</div>
 									</c:if>
-										
-										
-										
-										<!-- <div class="featured-author-body">
-											<div class="featured-author-count">
-												<div class="item">
-													<a href="#">
-														<div class="name">Posts</div>
-														<div class="value">208</div>														
-													</a>
-												</div>
-												<div class="item">
-													<a href="#">
-														<div class="name">Stars</div>
-														<div class="value">3,729</div>														
-													</a>
-												</div>
-												<div class="item">
-													<a href="#">
-														<div class="icon">
-															<div>More</div>
-															<i class="ion-chevron-right"></i>
-														</div>														
-													</a>
-												</div>
-											</div>
-											<div class="featured-author-quote">
-												"Eur costrict mobsa undivani krusvuw blos andugus pu aklosah"
-											</div>
-											<div class="block">
-												<h2 class="block-title">Photos</h2>
-												<div class="block-body">
-													<ul class="item-list-round" data-magnific="gallery">
-														<li><a href="images/news/img06.jpg" style="background-image: url('images/news/img06.jpg');"></a></li>
-														<li><a href="images/news/img07.jpg" style="background-image: url('images/news/img07.jpg');"></a></li>
-														<li><a href="images/news/img08.jpg" style="background-image: url('images/news/img08.jpg');"></a></li>
-														<li><a href="images/news/img09.jpg" style="background-image: url('images/news/img09.jpg');"></a></li>
-														<li><a href="images/news/img10.jpg" style="background-image: url('images/news/img10.jpg');"></a></li>
-														<li><a href="images/news/img11.jpg" style="background-image: url('images/news/img11.jpg');"></a></li>
-														<li><a href="images/news/img12.jpg" style="background-image: url('images/news/img12.jpg');"><div class="more">+2</div></a></li>
-														<li class="hidden"><a href="images/news/img13.jpg" style="background-image: url('images/news/img13.jpg');"></a></li>
-														<li class="hidden"><a href="images/news/img14.jpg" style="background-image: url('images/news/img14.jpg');"></a></li>
-													</ul>
-												</div>
-											</div>
-											<div class="featured-author-footer">
-												<a href="#">See All Authors</a>
-											</div>
-										</div> -->
-										
-										
+
 									</div>
 								</div>
 								
@@ -620,96 +569,51 @@ background-size: auto !important;
 							</div>
 						</aside>
 						<aside>
-							<ul class="tabs" style="padding-bottom: 20px;">
-								<li class="tab-link current">
+							<ul class="tabs" style="padding-bottom: 10px">
+								<li class="tab-link current" data-tab="tab-1">
 									<a style="color: black;"><span>멜론차트</span></a>
-									
 								</li>
-								<li class="tab-link"> 
+								<li class="tab-link" data-tab="tab-2"> 
 									<a style="color: black;"><span>박스오피스</span></a>
 								</li>
-								<li class="tab-link">
+								<li class="tab-link" data-tab="tab-3">
 									<a style="color: black;"><span>시청률</span></a>
 								</li>
-							
 							</ul>
-							<!-- 틀은 똑같이 가고 값만 변경 -->
-							<div class="aside-body">
-								<article class="article-mini">
-									<div class="inner">
-										
-										<figure>
-											<a href="single.html">
-												<img src="${pageContext.request.contextPath}/resources/images/news/img07.jpg" alt="Sample Article">
-											</a>
-										</figure>
-										<div class="padding">
-											<b>아무개곡</b>
-											<b>아무개가수</b>
-										</div>
-									</div>
-								</article>
-								<article class="article-mini">
-									<div class="inner">
-										<figure>
-											<a href="single.html">
-												<img src="${pageContext.request.contextPath}/resources/images/news/img14.jpg" alt="Sample Article">
-											</a>
-										</figure>
-										<div class="padding">
-											<h1><a href="single.html">Duis aute irure dolor in reprehenderit in voluptate velit</a></h1>
-										</div>
-									</div>
-								</article>
-								<article class="article-mini">
-									<div class="inner">
-										<figure>
-											<a href="single.html">
-												<img src="${pageContext.request.contextPath}/resources/images/news/img09.jpg" alt="Sample Article">
-											</a>
-										</figure>
-										<div class="padding">
-											<h1><a href="single.html">Aliquam et metus convallis tincidunt velit ut rhoncus dolor</a></h1>
-										</div>
-									</div>
-								</article>
-								<article class="article-mini">
-									<div class="inner">
-										<figure>
-											<a href="single.html">
-												<img src="${pageContext.request.contextPath}/resources/images/news/img11.jpg" alt="Sample Article">
-											</a>
-										</figure>
-										<div class="padding">
-											<h1><a href="single.html">dui augue facilisis lacus fringilla pulvinar massa felis quis velit</a></h1>
-										</div>
-									</div>
-								</article>
-								<article class="article-mini">
-									<div class="inner">
-										<figure>
-											<a href="single.html">
-												<img src="${pageContext.request.contextPath}/resources/images/news/img06.jpg" alt="Sample Article">
-											</a>
-										</figure>
-										<div class="padding">
-											<h1><a href="single.html">neque est semper nulla, ac elementum risus quam a enim</a></h1>
-										</div>
-									</div>
-								</article>
-								<article class="article-mini">
-									<div class="inner">
-										<figure>
-											<a href="single.html">
-												<img src="${pageContext.request.contextPath}/resources/images/news/img03.jpg" alt="Sample Article">
-											</a>
-										</figure>
-										<div class="padding">
-											<h1><a href="single.html">Morbi vitae nisl ac mi luctus aliquet a vitae libero</a></h1>
-										</div>
-									</div>
-								</article>
-							</div>
+							
+						<div id="tab-1" class="tab-content current">
+								<table style="width: 120%">
+									<c:forEach items="${melon}" var="mel">
+										<tr style="border-bottom:1pt solid #8ac121;">
+											<td  style="padding: 5px; width: 50px"><h6>${mel.no}</h6></td>
+											<td  style="padding: 5px">
+												<img src="${mel.img}" alt="melon" style="width: 35px; height: 35px;">
+											</td>
+											<td  style="padding: 8px">
+												
+												<c:if test="${fn:length(mel.song) > 20 }">
+													<div>${fn:substring(mel.song,0,20)}... </div>													
+												</c:if>
+												<c:if test="${fn:length(mel.sing) > 20 }">
+													<div>${fn:substring(mel.sing,0,20)}... </div>													
+												</c:if>
+												
+												<c:if test="${fn:length(mel.song) < 20 }">
+													<div>${mel.song}</div>													
+												</c:if>
+												<c:if test="${fn:length(mel.sing) < 20 }">
+													<div>${mel.sing}</div>													
+												</c:if>
+											</td>
+										</tr>
+									</c:forEach>
+									
+									
+								
+								</table>
+						</div>
+							
+							
 						</aside>
 						<aside>
 							<div class="aside-body">
