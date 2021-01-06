@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 <script>
@@ -30,17 +29,11 @@
 							label : '# of Votes',
 							data : [ 2, 2, 1],
 							backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
-									'rgba(54, 162, 235, 0.2)',
-									'rgba(255, 206, 86, 0.2)',
-									'rgba(75, 192, 192, 0.2)',
-									'rgba(153, 102, 255, 0.2)',
-									'rgba(255, 159, 64, 0.2)' ],
+												'rgba(54, 162, 235, 0.2)',
+												'rgba(255, 206, 86, 0.2)'],
 							borderColor : [ 'rgba(255, 99, 132, 1)',
-									'rgba(54, 162, 235, 1)',
-									'rgba(255, 206, 86, 1)',
-									'rgba(75, 192, 192, 1)',
-									'rgba(153, 102, 255, 1)',
-									'rgba(255, 159, 64, 1)' ],
+											'rgba(54, 162, 235, 1)',
+											'rgba(255, 206, 86, 1)'],
 							borderWidth : 1
 						} ]
 					},
@@ -59,6 +52,13 @@
 </script>
 
 <style>
+
+.inputimg {
+    margin: 10px;
+    border-radius: 70%;
+    object-fit: cover;
+}
+
 ul.tabs {
 	margin: 0px;
 	padding: 0px;
@@ -68,7 +68,7 @@ ul.tabs {
 ul.tabs li {
 	background: none;
 	color: #222;
-	display: inline-block;
+	display: inline-block;  /* 이거 다르게 주면 줄바꿈 될거같은데 */
 	padding: 10px 25px;
 	cursor: pointer;
 }
@@ -579,15 +579,15 @@ ul.tabs li.current span {
 									</div>
 									<!-- 내 스타목록 -->
 									<div class="featured-author-center" align="center">
-										<img
+										<img class="inputimg"
 											src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
 											alt="member_profile"
 											style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
-										<img
+										<img class="inputimg"
 											src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
 											alt="member_profile"
 											style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
-										<img
+										<img class="inputimg"
 											src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
 											alt="member_profile"
 											style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
