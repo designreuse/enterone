@@ -35,6 +35,31 @@
 	background-color: red;
 	cursor: pointer;
 }
+
+.inputimg {
+	margin: 10px;
+	width: 80px;
+	height: 80px;
+	border-radius: 70%;
+	object-fit: cover;
+}
+
+.inputdiv {
+	background: #FDFDFD;
+	border-radius: 17px;
+}
+
+.clicktextfil {
+	width: 70%;
+	font-size: 19px;
+	border: 0;
+	border-radius: 18px;
+	background-color: #A4B7D4;
+	color: mintcream;
+	margin: 12px;
+	padding: 12px;
+}
+/* #A4B7D4 */
 </style>
 <script>
 	$(function() {
@@ -139,56 +164,34 @@
 						</div>
 					</div>
 				</div>
+				<div class="inputdiv">
+					<span> <c:if
+							test="${sessionScope.member.mem_pic ne null and sessionScope.member.mem_type eq 0 }">
+							<img class="inputimg" src="${sessionScope.member.mem_pic}"
+								alt="member_profile">
+						</c:if> <c:if
+							test="${sessionScope.member.mem_pic eq null and sessionScope.company.com_pic eq null }">
+							<img class="inputimg"
+								src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
+								alt="no-profile">
+						</c:if> <c:if
+							test="${sessionScope.member.mem_pic ne null and sessionScope.company.com_pic eq null and sessionScope.member.mem_type eq 1}">
+							<img class="inputimg"
+								src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}"
+								alt="member_profile">
+						</c:if> <c:if
+							test="${sessionScope.company.com_pic ne null and sessionScope.member.mem_pic eq null }">
+							<img class="inputimg"
+								src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}"
+								alt="company_profile">
+						</c:if> <input class="clicktextfil" value="오늘은 어떤 글을 올려볼까요?" readonly="readonly">
+					</span>
+				</div>
+				<!-- SNS등록 모달창 -->
 				
-				 <!-- 첫 번째 Modal을 여는 클래스 -->
-    <h1 class="btn">MODAL_1</h1>
- 
-    <!-- 첫 번째 Modal -->
-    <div class="modal">
- 
-      <!-- 첫 번째 Modal의 내용 -->
-      <div class="modal-content">
-        <span class="close">&times;</span>                         
-        <p>첫 번째 Modal</p>
-      </div>
-    </div>
- 
-    <hr>
-    <!-- 두 번째 Modal을 여는 클래스 -->
-    <h1 class="btn">MODAL_2</h1>
- 
-    <!-- 두 번째 Modal -->
-    <div class="modal">
- 
-      <!-- 두 번째 Modal의 내용 -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>두 번째 Modal</p>
-      </div>
-    </div>
- 
-    <hr>
-    <!-- 세 번째 Modal을 여는 클래스 -->
-    <h1 class="btn">MODAL_3</h1>
- 
-    <!-- 세 번째 Modal -->
-    <div class="modal">
- 
-      <!-- 세 번째 Modal의 내용 -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p>세 번째 Modal</p>
-      </div>
-    </div>
- 
-    <script src=resourcesSns/js/modal.js>
-    /*modal.js */
-    </script>
-				
-				
-				
-				
-				<!-- SNS등록창 모달 (텍스트) -->
+
+
+				<!-- SNS등록창-->
 				<form name="uploadForm" id="uploadForm"
 					enctype="multipart/form-data" method="post">
 					<div id="ex7">
@@ -198,26 +201,26 @@
 							</div>
 							<table class="inserttable" border="1">
 								<tr style="height: 20%">
-									<td><input class="snstitle"
-										type="text" id="sns_title" name="sns_title" placeholder="제목">
-										<input style="display: none;" type="text" id="mem_id"
-										name="mem_id" placeholder="" value="${member.mem_id }">
-									</td>
-
-									<tr style="height: 30%">
-								<td>
+									<td><input class="snstitle" type="text" id="sns_title"
+										name="sns_title" placeholder="제목"> <input
+										style="display: none;" type="text" id="mem_id" name="mem_id"
+										placeholder="" value="${member.mem_id }"></td>
+								<tr style="height: 30%">
+									<td>
 										<div class="pickupld" id="drop">
 											사진을 올려주세요
 											<div id="thumbnails"
 												style="overflow: auto; width: 100%; height: 88%;"></div>
 											<a href="#ex7" rel="modal:open"> </a>
 										</div>
-									</td><tr style="height: 30%">
+									</td>
+								<tr style="height: 30%">
 									<td>
 
 										<div class="form-group">
 											<textarea class="form-control"
-												id="exampleFormControlTextarea1" name="sns_content" rows="3" placeholder="내용을 적어주세요"></textarea>
+												id="exampleFormControlTextarea1" name="sns_content" rows="3"
+												placeholder="내용을 적어주세요"></textarea>
 										</div>
 									</td>
 								<tr>
@@ -234,37 +237,19 @@
 				</div>
 				<div class="row">
 					<article class="col-md-12 article-list">
+
 						<c:forEach items="${snslist}" var="sns">
 							<c:if test="${not empty sns.sns_pic}">
-								<div class="inner" style="padding-bottom: 40px;">
+								<div class="inner cinner" style="padding-bottom: 40px;">
 									<figure>
 										<div class="w3-content w3-section" style="max-width: 500px">
 											<c:forTokens var="cutimg" items="${sns.sns_pic}" delims=",">
-												<a href="single.html"> <img
-													class="${sns.sns_no}mySlides"
+												<a href="single.html"> <img class="mySlides"
 													src="${pageContext.request.contextPath}/images/snsimage/${cutimg}"
 													alt="사진이 출력되는 곳" style="width: 100%; display: none;">
 												</a>
 											</c:forTokens>
-											<script type="text/javascript">
-												var slideIndex = 0;
-												carousel();
 
-												function carousel() {
-													var i;
-													var x = document
-															.getElementsByClassName("${sns.sns_no}mySlides");
-													for (i = 0; i < x.length; i++) {
-														x[i].style.display = "none";
-													}
-													slideIndex++;
-													if (slideIndex > x.length) {
-														slideIndex = 1
-													}
-													x[slideIndex - 1].style.display = "block";
-													setTimeout(carousel, 2000); // Change image every 2 seconds
-												}
-											</script>
 										</div>
 									</figure>
 									<div class="details">
@@ -316,7 +301,36 @@
 
 
 						</c:forEach>
+						<script type="text/javascript">
+							var slideIndex = [];
+							var c = document.getElementsByClassName("cinner");
+							for (y = 0; y < c.length; y++) {
+								slideIndex[y] = 1;
+							}
+							carousel()
+							function carousel() {
+								var c = document
+										.getElementsByClassName("cinner");
+								var i;
+
+								for (y = 0; y < c.length; y++) {
+									var x = c[y]
+											.getElementsByClassName("mySlides");
+									for (i = 0; i < x.length; i++) {
+										x[i].style.display = "none";
+									}
+									x[slideIndex[y] - 1].style.display = "block";
+									slideIndex[y]++;
+									if (slideIndex[y] > x.length) {
+										slideIndex[y] = 1
+									}
+								}
+
+								setTimeout(carousel, 2000); // Change image every 2 seconds
+							}
+						</script>
 					</article>
+
 				</div>
 			</div>
 
