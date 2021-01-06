@@ -1,20 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
-
-
+	
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 	
-<script>
-
-		
+<script>	
 	$(function() {		
-		
 		//화면 시작 시 목록 출력
 		fboardListView();
 		
@@ -24,7 +18,6 @@
 			fboardView(fbo_sub_no);
 		})
 		 
-		
 		var checkUnload = true; //글 작성중 나가면 사라지는 것 방지
 
 		//글 등록 화면으로 이동
@@ -36,7 +29,6 @@
 			$(".fboardInsertSection").show();
 			$("#btnInputFboardAction").show();
 		});
-		
 		
 		//등록버튼
 		$("#btnInputFboardAction").on("click",function(){
@@ -59,6 +51,12 @@
 			}
 		});
 		
+		//삭제 요청 버튼
+		$("#btnDeleteFboardAction").on("click",function(){
+			if(confirm("정말로 글을 삭제하시겠습니까?") == true){
+				fboardDelete();				
+			}
+		});
 		
 		//취소버튼
 		$(".btnCancelFboard").on("click",function(){
@@ -77,9 +75,7 @@
 		});
 		
 	});//버튼 액션 종료
-	
-	
-	
+
 	
 	
 	
@@ -145,9 +141,9 @@
 		$('#fbo_content').html(data.fbo_content);
 		$('#fbo_hashtag').text(data.fbo_hashtag);
 		
-
 		//수정 뷰
 		$("input:text[name='fbo_no']").val(data.fbo_no);
+		$("input:text[name='fbo_sub_no']").val(data.fbo_sub_no);
 		$("input:text[name='fbo_title']").val(data.fbo_title);
 		$("select[name='fbo_subject']").val(data.fbo_subject).attr("selected", "selected");
 		$('#summernote').summernote('code',data.fbo_content)
@@ -155,9 +151,11 @@
 		
 		$(".fboardListSection").hide();
 		$(".fboardInsertSection").hide();
+		$('#fbo_title').focus();
 		$(".fboardViewSection").show();
 		
-		$('.fboardUl').focus();
+		var no = $("input:text[name='fbo_no']").val();
+		fboardViewsUpdate(no)
 	}
 	
 	
@@ -203,8 +201,8 @@
 		    }, 
 		    error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
-		    } 
-		 });  
+		    }
+		 });
 	}
 	 
 	
@@ -222,7 +220,8 @@
 	}
 	
 	//게시물 수정 요청
-	function fboardUpdate() {		
+	function fboardUpdate() {
+		var fbo_sub_no = $("input:text[name='fbo_sub_no']").val();	
 		$.ajax({ 
 		    url: "${pageContext.request.contextPath}/star/fanBoard/update/", 
 		    type: 'POST', 
@@ -230,6 +229,25 @@
 		    success: function(response) {
 		    	if(response == true) {
 					alert("수정되었습니다.")
+					fboardView(fbo_sub_no);
+		    	}
+		    }, 
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    } 
+		});
+	}
+	
+	//게시물 삭제 요청
+	function fboardDelete() {
+		var fbo_no = $("input:text[name='fbo_no']").val();		
+		$.ajax({ 
+		    url: "${pageContext.request.contextPath}/star/fanBoard/delete/", 
+		    type: 'POST', 
+		    data : { fbo_no : fbo_no },
+		    success: function(response) {
+		    	if(response == true) {
+					alert("삭제되었습니다.")
 					fboardListView();//목록출력
 		    	}
 		    }, 
@@ -239,8 +257,17 @@
 		});
 	}
 	
-	
-	
+	//게시물 조회수 증가
+	function fboardViewsUpdate(fbo_no) {
+		$.ajax({ 
+		    url: "${pageContext.request.contextPath}/star/fanBoard/viewsUpdate/", 
+		    type: 'POST', 
+		    data : { fbo_no : fbo_no },
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    } 
+		});
+	}
 	
 </script>
 
@@ -374,6 +401,7 @@
 		<form id="form1">
 			<input style="display:none;" name = "st_id" value="${star.st_id}"/>
 			<input style="display:none;" name = "fbo_no" />
+			<input style="display:none;" name = "fbo_sub_no" />
 			<div class="row starCenter">
 				<div class="col-xl-1 col-md-3 col-4">말머리</div>
 				<div class="col-xl-2 col-md-9 col-8">

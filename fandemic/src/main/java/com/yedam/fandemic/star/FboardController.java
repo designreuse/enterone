@@ -66,21 +66,19 @@ public class FboardController {
 	}
 	
 	//조회수 증가
-	@RequestMapping(value="/star/fanBoard/viewsUpdate/", method=RequestMethod.PUT)
+	@RequestMapping(value="/star/fanBoard/viewsUpdate/", method=RequestMethod.POST)
 	@ResponseBody
 	public boolean fboardviewsUpdate(HttpServletRequest request, Fboard fboard) throws IOException {
-		fboard.setFbo_sub_no(request.getParameter("no"));
-		fboard.setSt_id(request.getParameter("id"));
+		fboard.setFbo_no(request.getParameter("fbo_no"));
 		fboardService.updateFboardViews(fboard);
 		return true;
 	}
 	
 	//삭제
-	@RequestMapping(value="/star/fanBoard/delete/", method=RequestMethod.DELETE)
+	@RequestMapping(value="/star/fanBoard/delete/", method=RequestMethod.POST)
 	@ResponseBody
 	public boolean fboardDelete(HttpServletRequest request, Fboard fboard) throws IOException {
-		fboard.setFbo_sub_no(request.getParameter("no"));
-		fboard.setSt_id(request.getParameter("id"));
+		fboard.setFbo_no(request.getParameter("fbo_no"));
 		fboardService.deleteFboard(fboard);
 		return true;
 	}
