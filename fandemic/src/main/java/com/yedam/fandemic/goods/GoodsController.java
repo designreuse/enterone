@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,57 +17,54 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.GoodsMapper;
+import com.yedam.fandemic.vo.Cart;
 import com.yedam.fandemic.vo.Goods;
+import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
 
 @Controller
 public class GoodsController {
-	
-	@Autowired GoodsMapper goMapper;	
-	
+
+	@Autowired
+	GoodsMapper goMapper;
+
 	// Goods 메인 화면
-	@RequestMapping(value="/goods")
-	public ModelAndView goodsMain(Model model, HttpServletRequest request, Goods goods) throws IOException{
-		// 전체 조회 (리스트, foreach 사용)
-		
+	@RequestMapping(value = "/goods")
+	public ModelAndView goodsMain(Model model, HttpServletRequest request, Goods goods) throws IOException {
+		// 전체 조회
 		String strp = request.getParameter("p");
 		int p = 1;
-		
-		if(strp != null && !strp.equals("")) {
+		if (strp != null && !strp.equals("")) {
 			p = Integer.parseInt(strp);
 		}
-		
 		Paging paging = new Paging();
-		
 		paging.setPageUnit(12); // 한페이지에 12건씩. 생략시 기본10
 		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
 		paging.setPage(p); // 현재 페이지 지정
-		
-		goods.setGo_first(paging.getFirst()); //paging에 현재 페이지만 넣으면 first, lastPage를 계산함
+		goods.setGo_first(paging.getFirst()); // paging에 현재 페이지만 넣으면 first, lastPage를 계산함
 		goods.setGo_last(paging.getLast());
-		
 		paging.setTotalRecord(goMapper.goCount());
 
 		model.addAttribute("paging", paging);
 		model.addAttribute("goodsList", goMapper.goodsList(goods));
-		
+
 		return new ModelAndView("goods/goods");
 	}
-	
+
 	// Goods 메인 화면 - 필터링
 	@RequestMapping(value = "/goodsf")
 	public ModelAndView goFilter(Model model, Goods goods, HttpServletRequest request) {
 
 		String strp = request.getParameter("p");
 		int p = 1;
-			if(strp != null && !strp.equals("")) {
+		if (strp != null && !strp.equals("")) {
 			p = Integer.parseInt(strp);
 		}
 		Paging paging = new Paging();
 		paging.setPageUnit(12); // 한페이지에 12건씩. 생략시 기본10
 		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
 		paging.setPage(p); // 현재 페이지 지정
-		goods.setGo_first(paging.getFirst()); //paging에 현재 페이지만 넣으면 first, lastPage를 계산함
+		goods.setGo_first(paging.getFirst()); // paging에 현재 페이지만 넣으면 first, lastPage를 계산함
 		goods.setGo_last(paging.getLast());
 		paging.setTotalRecord(goMapper.goCount());
 		goods.setGo_type(request.getParameter("t"));
@@ -77,29 +75,98 @@ public class GoodsController {
 
 		return new ModelAndView("goods/goods");
 	}
-	
-	
+
 	// Goods 상세 화면
-	@RequestMapping(value="/goodsDetail/{no}")
-	public ModelAndView goodsDetail(@PathVariable String no, Goods goods, Model model) throws IOException{
+	@RequestMapping(value = "/goodsDetail/{no}")
+	public ModelAndView goodsDetail(@PathVariable String no, Goods goods, Model model) throws IOException {
 		// 단건
 		goods.setGo_no(no);
 		model.addAttribute(goMapper.goodsDetail(goods));
 		return new ModelAndView("goods/goods_detail");
 	}
 	
-	@RequestMapping(value="/goodsBuy")
-	public ModelAndView goodsBuy(HttpServletResponse response) throws IOException{
-		return new ModelAndView("goods/goods_buy");
-	}
-	
-	@RequestMapping(value="/goodsBuyDetail")
-	public ModelAndView goodsBuyDetail(HttpServletResponse response) throws IOException{
-		return new ModelAndView("goods/goods_buy_detail");
-	}
-	
-	@RequestMapping(value="/goodsCart")
-	public ModelAndView goodsCart(HttpServletResponse response) throws IOException{
+	// Cart 목록
+	@RequestMapping(value = "/cart")
+	public ModelAndView cartList(HttpSession session, Model model, Cart cart) throws IOException {
+		model.addAttribute(goMapper.cartList(cart));
+		String mem_id = (String)session.getAttribute("mem_id");
+		cart.setMem_id(mem_id);
+		goMapper.cartList(cart);
 		return new ModelAndView("goods/goods_cart");
 	}
+	
+	
+	/*
+	 * // 장바구니 insert
+	 * 
+	 * @RequestMapping(value = "/goodsCart") public ModelAndView
+	 * cartInsert(HttpSession session, Cart cart) throws IOException { String id =
+	 * (String) session.getAttribute("mem_id");
+	 * 
+	 * return new ModelAndView("goods/goods_cart"); }
+	 */
+
+
+	// Goods 상세화면 - 구매정보 insert
+
+
+
+	/*
+	 * https://badstorage.tistory.com/39
+	 * 
+	 * // 카트 목록 불러오기
+	 * 
+	 * @GetMapping("/cartList") public String getCartList(HttpSession session, Model
+	 * model) throws Exception { logger.info("get cart list");
+	 * 
+	 * //session에 저장해두었던 userId String userId =
+	 * (String)session.getAttribute("member");
+	 * 
+	 * // DB에 저장되어있던 cartList List<CartListVO> cartList = service.cartList(userId);
+	 * 
+	 * model.addAttribute("cartList", cartList);
+	 * 
+	 * return "shop/cartList"; }
+	 * 
+	 * //카트리스트에서 주문하기
+	 * 
+	 * @PostMapping("/cartList") public String order(HttpSession session, OrderVO
+	 * order, @RequestParam(value = "chk[]") List<String> chArr) throws Exception {
+	 * logger.info("order");
+	 * 
+	 * String userId = (String)session.getAttribute("member");
+	 * 
+	 * //주문번호(orderId) 생성을 위한 로직 Calendar cal = Calendar.getInstance(); int year =
+	 * cal.get(Calendar.YEAR); String ym = year + new
+	 * DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1); String ymd = ym +
+	 * new DecimalFormat("00").format(cal.get(Calendar.DATE)); String subNum = "";
+	 * 
+	 * for(int i = 1; i <= 6; i ++) { subNum += (int)(Math.random() * 10); }
+	 * 
+	 * String orderId = ymd + "_" + subNum; //ex) 20200508_373063
+	 * order.setOrderId(orderId); order.setUserId(userId);
+	 * 
+	 * service.orderInfo(order); //주문 테이블 insert
+	 * 
+	 * int cartNum = 0; for(String i : chArr){ cartNum = Integer.parseInt(i);
+	 * System.out.println("cart -> CHK orderList : "+cartNum);
+	 * System.out.println("cart -> orderId orderList : "+orderId);
+	 * service.orderInfoDetails(orderId,cartNum); //주문 상세 테이블 insert
+	 * service.cartDelete(cartNum); //체크되어 들어온 cart번호로 cart table delete }
+	 * 
+	 * 
+	 * return "redirect:/shop/myPage"; }
+	 * 
+	 */
+
+	@RequestMapping(value = "/goodsBuy")
+	public ModelAndView goodsBuy(HttpServletResponse response) throws IOException {
+		return new ModelAndView("goods/goods_buy");
+	}
+
+	@RequestMapping(value = "/goodsBuyDetail")
+	public ModelAndView goodsBuyDetail(HttpServletResponse response) throws IOException {
+		return new ModelAndView("goods/goods_buy_detail");
+	}
+
 }
