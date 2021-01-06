@@ -34,47 +34,34 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/index")
-	public ModelAndView index(Model model, Goods goods, HttpSession session) throws IOException {
-
-		model.addAttribute("goods", dao.ticketList()); // 행사리스트
-
-		String URL = "https://www.melon.com/chart/index.htm";  // 실시간 차트
-		Document doc = Jsoup.connect(URL).userAgent("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36").get();
+	public ModelAndView index(Model model, Goods goods, HttpSession session) throws Exception {
 		
-		Elements Esong = doc.select("div.rank01>span>a");  // 노래제목
-		Elements Esing = doc.select("div.rank02>span");  // 가수
-		Elements Eimg = doc.select("div.wrap>a>img");
+		// 행사리스트
+		model.addAttribute("goods", dao.ticketList()); 
 		
-		List<Melon> list = new ArrayList<Melon>();
-		
-		
-		
-		int i=0;
-		
-		for (Element e : Esong) {
-			if(i == 10) { break;}
-			Melon melon = new Melon();
-			melon.setSong(e.text());
-			melon.setNo(i+1);
-			list.add(melon);
-			i++;
-		}
-		i=0;
-		
-		for (Element e : Esing) {
-			if(i == 10) { break;}
-			list.get(i).setSing(e.text());
-			i++;
-		}
-		i=0;
-		
-		for (Element e : Eimg) {
-			if(i == 10) { break;}
-			list.get(i).setImg(e.attr("src"));
-			i++;
-		}
-
+		// 멜론
+		ArrayList<Melon> list = new ArrayList<Melon>();
+		MelonCrawling mc = new MelonCrawling();
+		list = mc.melonTop();
 		model.addAttribute("melon", list);
+		
+		//영화
+		ArrayList<HashMap<String, String>> movie = new ArrayList<HashMap<String,String>>();
+		MovieAPI api = new MovieAPI();
+		movie = api.requestAPI();
+		model.addAttribute("movie", movie);
+		
+		
+		// 시청률
+		ArrayList<HashMap<String, String>> rating = new ArrayList<HashMap<String,String>>();
+		TVCrawling tc = new TVCrawling();
+		rating = tc.TvRating();
+		model.addAttribute("rating", rating);
+		
+		// 팬 수 (차트)
+		
+		
+		
 		return new ModelAndView("index");
 	}
 

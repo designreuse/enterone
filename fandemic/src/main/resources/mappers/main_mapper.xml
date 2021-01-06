@@ -8,6 +8,18 @@
 		<!-- SELECT S.ST_NAME, G.*  FROM STAR S , GOODS G WHERE S.ST_ID = G.ST_ID AND GO_TYPE = 'TICKET' AND GO_UNTSDATE >= SYSDATE -->
 		SELECT S.ST_NAME, G.*  FROM STAR S , GOODS G WHERE S.ST_ID = G.ST_ID AND GO_TYPE = 'TICKET'
 	</select>
-
+	
+	<select id="fanCount" resultType="map">
+		SELECT COUNT(F.ST_ID) AS CNT, S.ST_NAME 
+		FROM FAN F, STAR S
+		WHERE F.ST_ID = S.ST_ID 
+		GROUP BY S.ST_NAME
+		ORDER BY CNT DESC
+	</select>
+	
+	
+	
+	
+	
 	
 </mapper>
