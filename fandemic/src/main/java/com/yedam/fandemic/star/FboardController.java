@@ -30,33 +30,57 @@ public class FboardController {
 	//게시물 목록 출력
 	@RequestMapping(value="/star/fanBoard/list", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Fboard> getUserList(HttpServletRequest request, Model model, Fboard fboard) {
+	public List<Fboard> fboardList(HttpServletRequest request, Model model, Fboard fboard) {
 		
 		fboard.setSt_id(request.getParameter("id"));
 		return  fboardService.getFboardList(fboard);
 	}
 	
 	//게시물 상세보기
-	@RequestMapping("/star/fanBoard/read/{no}")
-	public ModelAndView starSchedule(HttpServletRequest request, 
-			@PathVariable String no, Fboard fboard, Star stVo, Model model) throws IOException {
-		
-//		stVo.setSt_id(request.getParameter("id"));
-//		model.addAttribute("star", starService.getStarMain(stVo));
-		
-		fboard.setFbo_sub_no(no);
-		model.addAttribute("fboInfo", fboardService.getFboardInfo(fboard));
-		return new ModelAndView("star/star_fan_board_read");
+	@RequestMapping(value="/star/fanBoard/read/", method=RequestMethod.GET)
+	@ResponseBody
+	public Fboard fboardView(HttpServletRequest request, Fboard fboard, Model model) throws IOException {		
+		fboard.setFbo_sub_no(request.getParameter("no"));
+		fboard.setSt_id(request.getParameter("id"));
+		return fboardService.getFboardInfo(fboard);
 	}
 	
 	//입력
 	@RequestMapping(value="/star/fanBoard", method=RequestMethod.POST)
 	@ResponseBody
-	public boolean noticesInsert(HttpServletRequest request, Fboard fboard,  HttpSession session) throws IOException {
+	public boolean fboardInsert(HttpServletRequest request, Fboard fboard,  HttpSession session) throws IOException {
 	    Member member = (Member) session.getAttribute("member");
 	    fboard.setMem_id(member.getMem_id());
 	    
 		fboardService.insertFboard(fboard);
+		return true;
+	}
+	
+	//수정
+	@RequestMapping(value="/star/fanBoard/update/", method=RequestMethod.PUT)
+	@ResponseBody
+	public boolean fboardUpdate(Fboard fboard) throws IOException {
+		fboardService.updateFboard(fboard);
+		return true;
+	}
+	
+	//조회수 증가
+	@RequestMapping(value="/star/fanBoard/viewsUpdate/", method=RequestMethod.PUT)
+	@ResponseBody
+	public boolean fboardviewsUpdate(HttpServletRequest request, Fboard fboard) throws IOException {
+		fboard.setFbo_sub_no(request.getParameter("no"));
+		fboard.setSt_id(request.getParameter("id"));
+		fboardService.updateFboardViews(fboard);
+		return true;
+	}
+	
+	//삭제
+	@RequestMapping(value="/star/fanBoard/delete/", method=RequestMethod.DELETE)
+	@ResponseBody
+	public boolean fboardDelete(HttpServletRequest request, Fboard fboard) throws IOException {
+		fboard.setFbo_sub_no(request.getParameter("no"));
+		fboard.setSt_id(request.getParameter("id"));
+		fboardService.deleteFboard(fboard);
 		return true;
 	}
 }

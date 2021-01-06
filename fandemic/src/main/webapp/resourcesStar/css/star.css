@@ -5,6 +5,10 @@
 	align-items: center;
 }
 
+.starRight {
+	margin-left: auto;
+}
+
 .starMargin {
 	margin-top: 20px;
 }
@@ -38,4 +42,17 @@
 	display: flex;
 	margin-left: auto;
 	margin-top: auto;
+}
+
+/* 게시글 상단 바 */
+.fboardUl{
+	  list-style:none;
+    margin:0;
+    padding:0;
+}
+.fboardUl li{
+	 margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    float: left;
 }

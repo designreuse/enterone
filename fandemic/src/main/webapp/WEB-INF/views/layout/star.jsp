@@ -8,7 +8,7 @@
 	<title>스타</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
+		<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
@@ -195,7 +195,7 @@
 	</div>
 
 
-	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.min.js"></script>
+
 	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resourcesStar/js/popper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resourcesStar/js/bootstrap.min.js"></script>

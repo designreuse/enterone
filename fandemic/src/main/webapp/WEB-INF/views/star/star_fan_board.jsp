@@ -3,9 +3,7 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-	crossorigin="anonymous"></script>
+
 <link
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
 	rel="stylesheet">
@@ -13,93 +11,84 @@
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 	
 <script>
+
+		
 	$(function() {		
 		
+		//화면 시작 시 목록 출력
 		fboardListView();
 		
-		//tr클릭시 해당 게시글 상세보기
+		//tr클릭시 해당 게시글 조회
 		$(".trFboardList").on("click","tr",function(){
-			var fboard_no = $(this).children(".fbo_no").text();
-			location.href='${pageContext.request.contextPath}/star/fanBoard/read/' + fboard_no ;
+			var fbo_sub_no = $(this).children(".fbo_sub_no").text();
+			fboardView(fbo_sub_no);
 		})
 		 
-		//글 작성중 나가면 사라지는 것 방지
-		var checkUnload = true;
+		
+		var checkUnload = true; //글 작성중 나가면 사라지는 것 방지
 
-		//글쓰기 화면으로 이동
+		//글 등록 화면으로 이동
 		$(".btnInputFboardShow").on("click",function(){
-			//글 작성중 나가면 사라지는 것 방지
-		    $(window).on("beforeunload", function(){
+		    $(window).on("beforeunload", function(){ //글 작성중 나가면 사라지는 것 방지
 		        if(checkUnload) return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
 		    });
-			//목록 가리고 글쓰기 화면 보여줌
 			$(".fboardListSection").hide();
-			$(".fboardSection").show();
-			$(".btnInputFboard").show();
+			$(".fboardInsertSection").show();
+			$("#btnInputFboardAction").show();
 		});
 		
-		//글 작성 페이지 버튼
+		
 		//등록버튼
-		$(".btnInputFboard").on("click",function(){
-			//유효성검사
-			CnoticeFormCheck(); 
-			//경고창 중복 제거
-			checkUnload = false;
+		$("#btnInputFboardAction").on("click",function(){
+			checkUnload = false; //경고창 중복 제거
+			if(fboardFormCheck() == true){ //유효성검사
+				fboardInsert() //글 등록 요청 보내기
+			}
 		});
+		
+		//수정 페이지 이동 버튼
+		$("#btnUpdateFboard").on("click",function(){
+			fboardUpdateView();
+		});
+		
+		//수정 페이지 이동 버튼
+		$("#btnUpdateFboardAction").on("click",function(){
+			checkUnload = false; //경고창 중복 제거
+			if(fboardFormCheck() == true){ //유효성검사
+				fboardUpdate(); //글 등록 요청 보내기
+			}
+		});
+		
 		
 		//취소버튼
 		$(".btnCancelFboard").on("click",function(){
-			//경고창 중복 제거
-			checkUnload = false;
-			//취소 확인받기
-			if(confirm("작성중인 글을 종료하시겠습니까?") == true){
+			checkUnload = false; //경고창 중복 제거
+			if(confirm("작성중인 글을 종료하시겠습니까?") == true){//취소 확인받기
+				//게시물 등록 요청
 				fboardListView();
 			}
 		});
 		
-	});
-
-	function CnoticeFormCheck(){
-		if($(".inputFboardTitle").val()==null || $(".inputFboardTitle").val()==''){
-			alert("제목을 입력하세요.")
-			$(".inputFboardTitle").focus();
-			event.preventDefault();
-		}
-		else if($(".inputFboardContent").val()==null||$(".inputFboardContent").val()==''){
-			alert("내용을 입력하세요.")
-			$(".inputFboardContent").focus();
-			event.preventDefault();
-		}
-		else{
-			userInsert();
-		}
-	}
+		//목록보기
+		$(".btnFboardListView").on("click",function(){
+			checkUnload = false;//경고창 중복 제거
+			//목록보기 요청
+			fboardListView();
+		});
+		
+	});//버튼 액션 종료
 	
-	//사용자 등록 요청
-	function userInsert(){
-		$.ajax({ 
-		    url: "${pageContext.request.contextPath}/star/fanBoard",  
-		    type: 'POST',  
-		    data : $("#form1").serialize(),
-		    success: function(response) {
-		    	if(response == true) {
-		    		$(".fboardSection").hide();
-					$(".fboardListSection").show();
-					alert("작성되었습니다.")
-		    	}
-		    }, 
-		    error:function(xhr, status, message) { 
-		        alert(" status: "+status+" er:"+message);
-		    } 
-		 });  
-	}//userInsert
+	
+	
+	
 	
 	
 	//게시물 목록 요청
 	function fboardListView() {
 		var st_id = "${star.st_id}";
 		$(".fboardListSection").show();
-		$(".fboardSection").hide();
+		$(".fboardInsertSection").hide();
+		$(".fboardViewSection").hide();
 		$(".btnInputFboardShow").focus();
 		
 		$.ajax({
@@ -111,23 +100,147 @@
 			},
 			success: fboardListViewResult
 		});
-	}//fboardListView
-	
-	
-	
-	//fboardListView결과값
+	}
+
+	//게시물 목록 요청 결과값
 	function fboardListViewResult(data) {
+		formReset();//이전 입력 데이터 삭제
 		$("tbody").empty();
 		$.each(data,function(idx,item){
 			$('<tr>').addClass('candahar')
-			.append($('<td class="fbo_no">').html(item.fbo_sub_no))
+			.append($('<td class="fbo_sub_no">').html(item.fbo_sub_no))
+			.append($('<td>').html("[" + item.fbo_subject + "] " + item.fbo_title))
 			.append($('<td>').html(item.fan_name))
-			.append($('<td>').html(item.fbo_subject + item.fbo_title))
 			.append($('<td>').html(item.fbo_time))
 			.append($('<td>').html(item.fbo_views))
 			.appendTo('tbody');
 		});//each
-	}//fboardListViewResult
+	}
+	
+	
+	
+	
+	//게시글 조회 요청
+	function fboardView(fbo_sub_no) {
+		var st_id = "${star.st_id}";
+		$.ajax({
+			url:'${pageContext.request.contextPath}/star/fanBoard/read/',
+			type:'GET',
+			data: { no: fbo_sub_no, id:st_id },
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success:fboardViewResult
+		});
+	}
+	
+	//게시글 조회 응답
+	function fboardViewResult(data) {
+		//게시물 뷰
+		$('#fbo_title').text("[" + data.fbo_subject + "] " + data.fbo_title);
+		$('#fbo_sub_no').text(data.fbo_sub_no+ " | ");
+		$('#fan_name').text(data.fan_name + " | ");
+		$('#fbo_time').text(data.fbo_time + " | 조회");
+		$('#fbo_views').text(data.fbo_views);
+		$('#fbo_content').html(data.fbo_content);
+		$('#fbo_hashtag').text(data.fbo_hashtag);
+		
+
+		//수정 뷰
+		$("input:text[name='fbo_no']").val(data.fbo_no);
+		$("input:text[name='fbo_title']").val(data.fbo_title);
+		$("select[name='fbo_subject']").val(data.fbo_subject).attr("selected", "selected");
+		$('#summernote').summernote('code',data.fbo_content)
+		$("input:text[name='fbo_hashtag']").val(data.fbo_hashtag);
+		
+		$(".fboardListSection").hide();
+		$(".fboardInsertSection").hide();
+		$(".fboardViewSection").show();
+		
+		$('.fboardUl').focus();
+	}
+	
+	
+	
+	
+	
+	
+	//이전 작성글 기록 지우기
+	function formReset(){
+		$('#summernote').summernote('reset');
+		$('form').each(function() {
+			this.reset();
+		});		
+	}
+	
+	//유효성 체크
+	function fboardFormCheck(){
+		if($("input:text[name='fbo_title']").val()==null || $("input:text[name='fbo_title']").val()==''){
+			alert("제목을 입력하세요.")
+			$("input:text[name='fbo_title']").focus();
+			event.preventDefault();
+		}
+		else if($('#summernote').summernote('code')=="<p><br></p>"||$('#summernote').summernote('code')==''){
+			alert("내용을 입력하세요.")
+			$('#summernote').focus();
+			event.preventDefault();
+		}else{
+			return true;
+		}
+	}
+	
+	//게시글 등록 요청
+	function fboardInsert(){
+		$.ajax({ 
+		    url: "${pageContext.request.contextPath}/star/fanBoard",  
+		    type: 'POST',  
+		    data : $("#form1").serialize(),
+		    success: function(response) {
+		    	if(response == true) {
+					alert("작성되었습니다.")
+					fboardListView();//목록출력
+		    	}
+		    }, 
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    } 
+		 });  
+	}
+	 
+	
+	
+	
+	
+	//게시물 수정 조회 응답
+	function fboardUpdateView() {
+		$(".fboardListSection").hide();
+		$(".fboardViewSection").hide();
+		$(".fboardInsertSection").show();
+		$(".btnUpdateFboard").show();
+		$('#btnUpdateFboardAction').show();
+		$('#summernote').focus();
+	}
+	
+	//게시물 수정 요청
+	function fboardUpdate() {		
+		$.ajax({ 
+		    url: "${pageContext.request.contextPath}/star/fanBoard/update/", 
+		    type: 'PUT', 
+		    data : $("#form1").serialize(),
+		    success: function(response) {
+		    	if(response == true) {
+					alert("수정되었습니다.")
+					fboardListView();//목록출력
+		    	}
+		    }, 
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    } 
+		});
+	}
+	
+	
+	
 	
 </script>
 
@@ -153,16 +266,16 @@
 				<div class = "row">
 					<button class="btn btn-primary py-2 px-4 btnInputFboardShow">글쓰기</button>
 				</div>
-				
+				<br>
 				
 				<table class = "table trFboardList">
 					<thead>
 						<tr>
-							<th class = "col-">no</th>
-							<th>작성자</th>
-							<th>제목</th>
-							<th>작성일</th>
-							<th class = "col-">조회수</th>
+							<th scope="col">#</th>
+							<th scope="col">제목</th>
+							<th scope="col">작성자</th>
+							<th scope="col">작성일</th>
+							<th scope="col">조회수</th>
 						</tr>
 					</thead>
 					<tbody></tbody>
@@ -192,13 +305,75 @@
 </section>
 
 
+
+<!-- 게시물 상세보기 -->
+<section class="ftco-section-3 fboardViewSection"  style="display:none;">
+	<div class="container">
+		<hr>
+		<div class="row starCenter">
+			<div class="row"><h5 id = "fbo_title"></h5></div>
+		</div>
+		<div class="row">
+			<ul class = "fboardUl">
+			    <li><span id ="fbo_sub_no"></span></li>
+			    <li><span id ="fan_name"></span></li>
+			    <li><span id ="fbo_time"></span></li>
+			    <li><span id ="fbo_views"></span></li>
+			</ul>
+		</div>
+		<br>
+		<div class = "inputFboardContent" id ="fbo_content">
+			
+		</div>
+		<br>
+		<div class="row starCenter">
+			<div class="col-xl-2 col-md-3 col-4">태그</div>
+			<div class="col-xl-10 col-md-9 col-8" id ="fbo_hashtag">
+				
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class = "starRight">
+				<button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboardAction">삭제</button>
+				<button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard">수정</button>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 댓글-->
+	<div class="container">
+		<hr>
+		<div class = "row">이름 작성일</div>
+		<div class = "row">댓글</div>		
+		<hr>
+		<form>
+			<div  class = "row">
+				<textarea class = "col-xl-11 col-md-10 col-12 fboardReply" rows = 3 placeholder="댓글"></textarea>
+				<div class = "col-xl-1 col-md-2 col-12 btnFboardReply">
+					<button type="button"  class="btnFboardReply btn btn-primary py-2 px-4" id="">작성</button>
+				</div>
+			</div>
+		</form>
+		<br>
+		<div class ="row">
+			<div class = "starRight">
+				<button type="button" class="btn btn-primary py-2 px-4 btnFboardListView">목록</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
 <!-- 글쓰는 공간 -->
-<section class="ftco-section-3 fboardSection" style="display:none;">
+<section class="ftco-section-3 fboardInsertSection" style="display:none;">
 	<div class="container">
 		<h3>글작성</h3>
 		<hr>
 		<form id="form1">
 			<input style="display:none;" name = "st_id" value="${star.st_id}"/>
+			<input style="display:none;" name = "fbo_no" />
 			<div class="row starCenter">
 				<div class="col-xl-1 col-md-3 col-4">말머리</div>
 				<div class="col-xl-2 col-md-9 col-8">
@@ -219,14 +394,7 @@
 			<textarea id="summernote" name="fbo_content"  class = "inputFboardContent"></textarea>
 			<br>
 			<div class="row starCenter">
-				<div class="col-xl-2 col-md-3 col-4">첨부파일</div>
-				<div class="col-xl-10 col-md-9 col-8">
-					<!-- <input type="file" class="form-control-file"> -->
-				</div>
-			</div>
-			<br>
-			<div class="row starCenter">
-				<div class="col-xl-2 col-md-3 col-4">해시태그</div>
+				<div class="col-xl-2 col-md-3 col-4">태그</div>
 				<div class="col-xl-10 col-md-9 col-8">
 					<input name ="fbo_hashtag" style="width: 100%" placeholder="#태그" />
 				</div>
@@ -234,14 +402,10 @@
 			<br>
 			<hr>
 			<div class="row starCenter">
-				<div class="col-xl-11 col-md-10 col-8"></div>
-				<div class="col-xl-1 col-md-2 col-4">
-				
+				<div class = "starRight">
 					<button type="button" class="btn btn-primary py-2 px-4 btnCancelFboard">취소</button>
-					<button type="button" class="btn btn-primary py-2 px-4 btnInputFboard" style="display:none;">등록</button>
-					<button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboard" style="display:none;">삭제</button>
-					<button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard" style="display:none;">수정</button>
-			
+					<button type="button" class="btn btn-primary py-2 px-4" id = "btnInputFboardAction" style="display:none;">등록</button>
+					<button type="button"  class="btn btn-primary py-2 px-4" id= "btnUpdateFboardAction" style="display:none;">수정</button>
 				</div>
 			</div>
 			

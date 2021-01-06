@@ -27,5 +27,20 @@ public class FboardServiceImpl implements FboardService{
 	public Fboard getFboardInfo(Fboard fboard) {
 		return fboardDAO.getFboardInfo(fboard);
 	}
+
+	@Override
+	public int updateFboard(Fboard fboard) {
+		return fboardDAO.updateFboard(fboard);
+	}
+
+	@Override
+	public int updateFboardViews(Fboard fboard) {
+		return fboardDAO.updateFboardViews(fboard);
+	}
+
+	@Override
+	public int deleteFboard(Fboard fboard) {
+		return fboardDAO.deleteFboard(fboard);
+	}
 	
 }
