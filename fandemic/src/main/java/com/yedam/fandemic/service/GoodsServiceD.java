@@ -13,4 +13,5 @@ public interface GoodsServiceD {
 	public List<Goods> getGoodsList(Goods goods); //굿즈 목록 조회하기
 	public int deleteGoods(Goods goods); //굿즈,행사 목록 삭제하기
 	public Goods getGoodsDetail(Goods goods); //굿즈 , 행사 클릭한 상세정보
+	public int updateGoods(Goods goods); //굿즈,행사 정보 수정,업데이트
 }

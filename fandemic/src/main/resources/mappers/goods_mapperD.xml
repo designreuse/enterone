@@ -75,15 +75,20 @@
 	
 	
 <!-- 스타회원정보수정 -->
-	<update id="updateStarMember" parameterType="Star">
-		UPDATE STAR
+	<update id="updateGoods" parameterType="Goods">
+		UPDATE GOODS
 		<set>
-			ST_PW=#{st_pw}
-			<if test="st_icon !=null">,st_icon=#{st_icon}</if>
-			<if test="st_pic !=null">,st_pic=#{st_pic}</if>
-			<if test="st_banner !=null">,st_banner=#{st_banner}</if>
-			,ST_INTRODUCE=#{st_introduce}
+			GO_NAME=#{go_name}
+			<if test="go_price !=null">,GO_PRICE=#{go_price}</if>
+			<if test="go_content !=null">,GO_CONTENT=#{go_content}</if>
+			<if test="go_stock !=null">,GO_STOCK=#{go_stock}</if>
+			,GO_LIMITED=#{go_limited}
+			,GO_UNTSDATE=#{go_untsdate}
+			,GO_UNTEDATE=#{go_untedate}
+			,GO_UNTTIME=#{go_unttime}
+			,GO_PIC=#{go_pic}
+			,GO_DETAIL=#{go_detail}
 		</set>
-		WHERE ST_ID= #{st_id}
+		WHERE GO_NO= #{go_no}
 	</update>
 </mapper>

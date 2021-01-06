@@ -27,10 +27,21 @@
 div #dataTable_filter{
 		text-align:right;
 }
-.detail-modal{
-	
+.detail-align{
+	text-align: -webkit-center;
+	max-width:none;
 }
-
+.detail-modal{
+	width:60%;
+}
+.btnModal-cancel{
+	border:0;
+	background-color:white;
+}
+.md-header-btn{
+	text-align-last: right;
+	display:block; 
+}
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
 <link
@@ -67,15 +78,24 @@ div #dataTable_filter{
 			/* alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호 */
 			var modal = $("#exampleModal");
 			var go_no = $(this).parent().prev().text();
+			var com_id = "${company.com_id }";
 			//location.href="${pageContext.request.contextPath}/management/goods/goodsDetail?go_no="+go_no;	
-			$.ajax({
-				  url:"${pageContext.request.contextPath}/management/goods/goodsDetail?go_no=" + go_no,//클릭한 버튼의 text값을 넘김.
+	/* 		$.ajax({
+				  url:"${pageContext.request.contextPath}/management/goods/goodsDetail?go_no=" + go_no+"&com_id="+com_id,//클릭한 버튼의 text값을 넘김.
 				  dataType : "html", //dataType 기본은 html생략가능
-			      success:function(result){
-				  	modal.find(".modal-body").html(result)
-				  	modal.modal("show");
+				  cache:false,
+			      success:function(result){			    	    
+					  	modal.find(".modal-body").html(result)
+					  	modal.modal("show");
+					  	initDetail();
 			      }
-			  });
+			  }); */
+			  var url="${pageContext.request.contextPath}/management/goods/goodsDetail?go_no=" + go_no+"&com_id="+com_id;//클릭한 버튼의 text값을 넘김.
+			  modal.find(".modal-body").load(url,function(){
+				  modal.modal("show");
+				  initDetail();
+				  
+			  })
 		});//end 게시물 제목 클릭
 		
 		
@@ -107,6 +127,10 @@ div #dataTable_filter{
 			});//end ajax
 		});
 		
+		/* $(".btnModal-cancel").on("click",function(){
+			$("#exampleModal").modal("hide");
+			//window.location.reload();
+		}); */
 	}); //end document ready
 	
 	//굿즈 목록 조회 요청
@@ -209,25 +233,25 @@ div #dataTable_filter{
         </div>
     </form>
     <!-- Modal -->
-	<div class="modal fade detail-modal" id="exampleModal" tabindex="-1"
+	<div class="modal fade" id="exampleModal" tabindex="-1"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		<div class="modal-dialog detail-align">
+			<div class="modal-content detail-modal">
+				<div class="modal-header md-header-btn">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
+					<!-- <button type="button" class="btnModal-cancel">x</button> -->
 				</div>
 				<div class="modal-body">
 					....<!-- body -->
 				</div>
-				<div class="modal-footer">
+				<!-- <div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>

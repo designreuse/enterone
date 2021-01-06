@@ -76,7 +76,6 @@
 	 		
 	 		
 	 	});
-
 	
 	 	//이벤트/공지사항 분류 DB값 지정
 	 	$(".custom-select option").each(function(){
@@ -84,11 +83,18 @@
 	 			$(this).attr("selected","selected");
 	 		}
 	 	});
+	 	/* $(".custom-select").on("change",function(){
+	 		if($(".custom-select").hasAttribute("selected")){
+	 			$(this).removeAttribute("selected");
+	 		}
+	 	}); */
 	 	
 	 	//분류가 이벤트일경우 , 이벤트참가인원 출력
 	 	if($(".custom-select").val()=="이벤트"){
 			$(".event").css("display","");
 		}
+	 	
+	 	
 	});//end ready function
 	
 	function CnoticeFormCheck(){
@@ -146,10 +152,10 @@
 								<tr width="100%">
 									<td width="10%" align="left"><label>분류</label></td>
 									<td width="40%" align="left">								
-				                        <select name="cnoc_subject" class="custom-select" style="width: auto;" value="${cnotice.cnoc_subject }">
-				                        
-				                          <option>공지사항</option>
-				                          <option>이벤트</option>				                          
+				                        <select name="cnoc_subject" class="custom-select" style="width: auto;" disabled="disabled">
+				                          <option value="공지사항">공지사항</option>
+				                          <option value="이벤트">이벤트</option>	
+				                          <option value="소식">소식</option>			                          
 				                        </select>                     
 				                        
 									</td>
