@@ -12,7 +12,10 @@ public class QnA {
 	String q_answer;	//답변내용
 	String q_time;		//등록일
 	String q_atime;		//답변일
-	
 	String mem_phone;
+	
+	int q_first; 	//페이지네이션
+	int q_last;		//페이지네이션
+	
 	
 }
