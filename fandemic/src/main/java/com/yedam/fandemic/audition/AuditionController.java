@@ -26,12 +26,23 @@ public class AuditionController {
 	
 	@Autowired TraineeMapper traineeMapper;
 	
-//연습생
+//연습생 활동
 	@RequestMapping(value = "/auditionwork") //주소
 	public ModelAndView auditionwork(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/trainee_list");
 	
 	}	
+	
+	@RequestMapping(value = "/auditionwork2") //주소
+	public ModelAndView auditionwork2(HttpServletResponse response) throws IOException {
+		return new ModelAndView("audition/trainee_list2");
+	
+	}	
+	
+	
+	
+	
+	
 	//오디션 지원
 	@RequestMapping(value = "/auditionapply") //주소
 	public ModelAndView auditioninsert(HttpServletResponse response) throws IOException {
