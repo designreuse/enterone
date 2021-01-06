@@ -43,10 +43,10 @@
 	<update id="updateFboard" parameterType="Fboard">
 		UPDATE fboard 
 		SET 
-			fbo_title = #{fbo_title}, 
 			fbo_subject = #{fbo_subject}, 
+			fbo_title = #{fbo_title}, 
 			fbo_content = #{fbo_content}, 
-			fbo_hashtag = #{fbo_hashtag}
+			fbo_hashtag = #{fbo_hashtag} 
 		WHERE fbo_no = #{fbo_no}
 	</update>
 	

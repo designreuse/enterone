@@ -225,7 +225,7 @@
 	function fboardUpdate() {		
 		$.ajax({ 
 		    url: "${pageContext.request.contextPath}/star/fanBoard/update/", 
-		    type: 'PUT', 
+		    type: 'POST', 
 		    data : $("#form1").serialize(),
 		    success: function(response) {
 		    	if(response == true) {
@@ -405,7 +405,7 @@
 				<div class = "starRight">
 					<button type="button" class="btn btn-primary py-2 px-4 btnCancelFboard">취소</button>
 					<button type="button" class="btn btn-primary py-2 px-4" id = "btnInputFboardAction" style="display:none;">등록</button>
-					<button type="button"  class="btn btn-primary py-2 px-4" id= "btnUpdateFboardAction" style="display:none;">수정</button>
+					<button type="button" class="btn btn-primary py-2 px-4" id = "btnUpdateFboardAction" style="display:none;">수정</button>
 				</div>
 			</div>
 			

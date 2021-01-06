@@ -57,9 +57,10 @@ public class FboardController {
 	}
 	
 	//수정
-	@RequestMapping(value="/star/fanBoard/update/", method=RequestMethod.PUT)
+	@RequestMapping(value="/star/fanBoard/update", method=RequestMethod.POST)
 	@ResponseBody
-	public boolean fboardUpdate(Fboard fboard) throws IOException {
+	public boolean fboardUpdate(HttpServletRequest request, Fboard fboard) throws IOException {
+		System.out.println(fboard);
 		fboardService.updateFboard(fboard);
 		return true;
 	}
