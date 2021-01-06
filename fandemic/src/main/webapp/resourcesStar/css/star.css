@@ -1,35 +1,41 @@
 @charset "UTF-8";
 
-
-
-
-.starCenter{
+.starCenter {
 	justify-content: center;
 	align-items: center;
 }
 
-.starMargin{
+.starMargin {
 	margin-top: 20px;
 }
 
-
-
-.ftco-section-number{
+.ftco-section-number {
 	justify-content: center;
 	align-items: center;
 	padding: 1em 1.8em;
 }
 
-.fanboardDate{
+.fanboardDate {
 	text-align: right !important;
 	width: 100%;
 }
 
 /* 팬 게시판 목록 */
-.candahar td{
+.candahar td {
 	cursor: pointer;
-	
 }
-.candahar:hover{
-	 background-color: #f5f5f5;
+
+.candahar:hover {
+	background-color: #f5f5f5;
+}
+
+/* 게시판 댓글 */
+.fboardReply {
+	resize: none;
+}
+
+.btnFboardReply {
+	display: flex;
+	margin-left: auto;
+	margin-top: auto;
 }

@@ -24,16 +24,17 @@
 				#{st_id}, 
 				#{mem_id})
 	</insert>
+	
 	<select id="getFboardList" parameterType="Fboard" resultType="Fboard">
 		SELECT * 
-		FROM fboard 
+		FROM v_fbolist 
 		WHERE st_id = #{st_id}
 	</select>
 	
 	<select id="getFboardInfo" parameterType="Fboard" resultType="Fboard">
 		SELECT * 
-		FROM fboard 
-		WHERE fbo_no = #{fbo_no}
+		FROM v_fbolist 
+		WHERE fbo_sub_no = #{fbo_sub_no}
 	</select>
 	
 </mapper>

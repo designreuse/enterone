@@ -38,13 +38,13 @@ public class FboardController {
 	
 	//게시물 상세보기
 	@RequestMapping("/star/fanBoard/read/{no}")
-	public ModelAndView starSchedule(HttpServletRequest request, @PathVariable 
-			String no, Fboard fboard, Star stVo, Model model) throws IOException {
+	public ModelAndView starSchedule(HttpServletRequest request, 
+			@PathVariable String no, Fboard fboard, Star stVo, Model model) throws IOException {
 		
 //		stVo.setSt_id(request.getParameter("id"));
 //		model.addAttribute("star", starService.getStarMain(stVo));
 		
-		fboard.setFbo_no(no);
+		fboard.setFbo_sub_no(no);
 		model.addAttribute("fboInfo", fboardService.getFboardInfo(fboard));
 		return new ModelAndView("star/star_fan_board_read");
 	}

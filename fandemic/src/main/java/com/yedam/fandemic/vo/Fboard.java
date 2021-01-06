@@ -4,7 +4,9 @@ import lombok.Data;
 
 @Data
 public class Fboard {
-
+	String fbo_sub_no;
+	String fan_name;
+	
 	String fbo_no;		//게시물번호
 	String fbo_title;	//게시물제목
 	String fbo_subject;	//게시물 말머리

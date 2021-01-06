@@ -18,11 +18,10 @@
 		fboardListView();
 		
 		//tr클릭시 해당 게시글 상세보기
-		$(".babo").on("click","tr",function(){
+		$(".trFboardList").on("click","tr",function(){
 			var fboard_no = $(this).children(".fbo_no").text();
 			location.href='${pageContext.request.contextPath}/star/fanBoard/read/' + fboard_no ;
 		})
-		 
 		 
 		//글 작성중 나가면 사라지는 것 방지
 		var checkUnload = true;
@@ -39,6 +38,7 @@
 			$(".btnInputFboard").show();
 		});
 		
+		//글 작성 페이지 버튼
 		//등록버튼
 		$(".btnInputFboard").on("click",function(){
 			//유효성검사
@@ -53,9 +53,8 @@
 			checkUnload = false;
 			//취소 확인받기
 			if(confirm("작성중인 글을 종료하시겠습니까?") == true){
-				location.href='${pageContext.request.contextPath}/star/fanBoard/${star.st_id}' 
+				fboardListView();
 			}
-
 		});
 		
 	});
@@ -99,6 +98,9 @@
 	//게시물 목록 요청
 	function fboardListView() {
 		var st_id = "${star.st_id}";
+		$(".fboardListSection").show();
+		$(".fboardSection").hide();
+		$(".btnInputFboardShow").focus();
 		
 		$.ajax({
 			url:'${pageContext.request.contextPath}/star/fanBoard/list',
@@ -107,7 +109,7 @@
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
-			success:fboardListViewResult
+			success: fboardListViewResult
 		});
 	}//fboardListView
 	
@@ -118,9 +120,9 @@
 		$("tbody").empty();
 		$.each(data,function(idx,item){
 			$('<tr>').addClass('candahar')
-			.append($('<td class="fbo_no">').html(item.fbo_no))
-			.append($('<td>').html(item.fbo_subject))
-			.append($('<td>').html(item.fbo_title))
+			.append($('<td class="fbo_no">').html(item.fbo_sub_no))
+			.append($('<td>').html(item.fan_name))
+			.append($('<td>').html(item.fbo_subject + item.fbo_title))
 			.append($('<td>').html(item.fbo_time))
 			.append($('<td>').html(item.fbo_views))
 			.appendTo('tbody');
@@ -153,13 +155,13 @@
 				</div>
 				
 				
-				<table class = "table babo">
+				<table class = "table trFboardList">
 					<thead>
 						<tr>
 							<th class = "col-">no</th>
 							<th>작성자</th>
 							<th>제목</th>
-							<th>날짜</th>
+							<th>작성일</th>
 							<th class = "col-">조회수</th>
 						</tr>
 					</thead>
