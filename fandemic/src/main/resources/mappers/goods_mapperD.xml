@@ -53,52 +53,26 @@
 	<select id="getGoodsList" parameterType="Goods" resultType="Goods">
 		SELECT G.GO_NO, G.GO_NAME, G.GO_PRICE, S.ST_NAME,  G.GO_STOCK, G.GO_TYPE, G.GO_TIME
 		FROM GOODS G, STAR S
-		WHERE G.COM_ID = S.COM_ID
-		AND G.ST_ID = S.ST_ID
+		WHERE G.ST_ID = S.ST_ID(+)
 		AND G.COM_ID=#{com_id}
 	</select>
+<!-- 굿즈,행사목록 삭제 -->
+	<delete id="deleteGoods" parameterType="Goods">
+		DELETE FROM GOODS
+		WHERE GO_NO IN
+		<foreach collection="go_nos" item="no"
+				open="(" close=")" separator=","> <!-- collection이 필드명 -->
+			#{no}
+		</foreach>
+	</delete>
 	
-<!-- 소속사 스타회원목록 출력 -->	
-	<select id="getStarMemberList" parameterType="Star" resultType="Star">
-		SELECT * 
-		FROM STAR
-		WHERE COM_ID=#{com_id}
-	</select>
-<!-- 소속사 스타회원가입 ID중복체크-->
-	<select id="getStarIdCheck" parameterType="Star" resultType="int">
-		SELECT COUNT(*)
-		FROM STAR
-		WHERE ST_ID=#{st_id}
-	</select>
-<!-- 소속사 스타회원id에맞는 상세정보-->
-	<select id="getStarDetail" parameterType="Star" resultType="Star">
+<!-- 클릭한 굿즈 상세정보-->
+	<select id="getGoodsDetail" parameterType="Goods" resultType="Goods">
 		SELECT *
-		FROM STAR
-		WHERE ST_ID=#{st_id}
+		FROM GOODS
+		WHERE GO_NO=#{go_no}
 	</select>	
 	
-<!--  스타회원등록    -->
-	<insert id="InsertStar" parameterType="Star">
-		
-		INSERT INTO STAR (	    st_id, 
-								st_pw, 
-								st_name,
-								com_id,
-								st_icon,
-								st_pic,
-								st_banner,
-								st_introduce
-								)
-	 	                VALUES(
-	 	               			#{st_id},
-	 	               			#{st_pw},
-	 	               			#{st_name},
-	 	               			#{com_id},
-	 	               			#{st_icon},
-	 	               			#{st_pic},
-	 	               			#{st_banner},
-	 	               			#{st_introduce})
-	</insert>	
 	
 <!-- 스타회원정보수정 -->
 	<update id="updateStarMember" parameterType="Star">
@@ -112,13 +86,4 @@
 		</set>
 		WHERE ST_ID= #{st_id}
 	</update>
-<!-- 스타회원정보 삭제 -->
-	<delete id="deleteStarMember" parameterType="Star">
-		DELETE FROM STAR
-		WHERE ST_ID IN
-		<foreach collection="st_ids" item="id"
-				open="(" close=")" separator=","> <!-- collection이 필드명 -->
-			#{id}
-		</foreach>
-	</delete>
 </mapper>

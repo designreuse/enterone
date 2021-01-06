@@ -2,12 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <style>
-	.table td{
+	.detail td{
 		vertical-align: middle;
 		padding : 0px;
 		border : 1px solid #dddddd;
 	}
-	.table tr{
+	.detail tr{
 		background-color:rgba(0,0,0,.05);
 	}
 	
@@ -222,7 +222,7 @@
 				<!-- /.card-header -->
 				<div class="card-body">
 					<form method="post" action="${pageContext.request.contextPath}/management/goods/InsertGoods" encType="multipart/form-data">
-						<table class="table table-striped"
+						<table class="table table-striped detail"
 							style="text-align: center; border: 1px solid #dddddd">
 							<thead>
 								<tr>

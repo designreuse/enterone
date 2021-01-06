@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.GoodsServiceD;
+import com.yedam.fandemic.vo.Cnotice;
 import com.yedam.fandemic.vo.Goods;
 
 @Controller
@@ -75,5 +76,21 @@ public class GoodsControllerD {
 			goodsServiceD.insertGoods(goods);
 		return "mgt/goods/goodsList";
 	}
+	//굿즈,행사 목록 삭제
+	@RequestMapping(value = "/management/goods/goodsDelete")
+	@ResponseBody //결과를 Json형태로 변환
+	public int goodsDelete(Goods goods) {
+		int result = goodsServiceD.deleteGoods(goods);
+		return result;
+	}
+	// 굿즈,행사 목록 상세보기
+	@RequestMapping(value = "/management/goods/goodsDetail")
+	public String noticesDetail(Model model, Goods goods) {
+		System.out.println(goods.getGo_no()); //클릭한게시물번호받아와서
+		model.addAttribute("goods", goodsServiceD.getGoodsDetail(goods));//조회한후 값던짐
+		return "no-tiles/goods/goodsDetail";
+	}
+	
+	
 	
 }

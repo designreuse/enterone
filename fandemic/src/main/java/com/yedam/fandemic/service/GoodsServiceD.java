@@ -11,4 +11,6 @@ public interface GoodsServiceD {
 	public List<GoodsCategory> getCategory(); //굿즈 카테고리 받아오기.
 	public int insertGoods(Goods goods); //굿즈 등록하기
 	public List<Goods> getGoodsList(Goods goods); //굿즈 목록 조회하기
+	public int deleteGoods(Goods goods); //굿즈,행사 목록 삭제하기
+	public Goods getGoodsDetail(Goods goods); //굿즈 , 행사 클릭한 상세정보
 }

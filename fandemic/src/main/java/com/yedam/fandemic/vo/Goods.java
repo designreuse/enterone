@@ -27,6 +27,7 @@ public class Goods {
 	String go_untedate;				//행사종료일
 	String go_unttime;				//행사진행시간
 	String st_name;    //스타 이름 (추가 2021-01-05 동광희)
+	String[] go_nos;   //체크박스 값 담는 필드, 삭제에 사용(추가 2021-01-06 동)
 	
 	// 페이지네이션
 	private int go_first;	//첫페이지

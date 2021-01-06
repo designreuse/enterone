@@ -27,6 +27,9 @@
 div #dataTable_filter{
 		text-align:right;
 }
+.detail-modal{
+	
+}
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
@@ -58,11 +61,21 @@ div #dataTable_filter{
 			location.href="${pageContext.request.contextPath}/management/goods/goodsInsertForm?com_id="+com_id;
 		});
 		
+		/******************** 굿즈,목록 상세 페이지(수정) *****************/
 		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
-		table.on("click","tr a",function(){ //게시물 tr에 제목 클릭했을때 ~
+		table.on("click","tr a",function(){ //게시물 tr a태그걸린거 클릭했을때 ~
 			/* alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호 */
-			var cnoc_no = $(this).parent().prev().text();
-			location.href="${pageContext.request.contextPath}/management/noticesDetail?cnoc_no="+cnoc_no;	
+			var modal = $("#exampleModal");
+			var go_no = $(this).parent().prev().text();
+			//location.href="${pageContext.request.contextPath}/management/goods/goodsDetail?go_no="+go_no;	
+			$.ajax({
+				  url:"${pageContext.request.contextPath}/management/goods/goodsDetail?go_no=" + go_no,//클릭한 버튼의 text값을 넘김.
+				  dataType : "html", //dataType 기본은 html생략가능
+			      success:function(result){
+				  	modal.find(".modal-body").html(result)
+				  	modal.modal("show");
+			      }
+			  });
 		});//end 게시물 제목 클릭
 		
 		
@@ -76,16 +89,16 @@ div #dataTable_filter{
 		});
 		
 		
-		//공지사항 삭제
+		//굿즈,행사 사항 삭제
 		$(".btn-delete").on("click",function(){
 			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/noticesDelete",
+				url:"${pageContext.request.contextPath}/management/goods/goodsDelete",
 				type:"POST",
-				data: $("#frm1").serialize(),
+				data: $("#frm1").serialize(), //form 값을 순서대로 읽어서 전송, 선택한체크박스의 값도넘김
 				dataType: 'json', //결과값 Json형태로
 				success: function(response) {
 			    	if(response != null && response !="") {
-			    		cnoticeList();
+			    		goodsList();
 			    	}  
 			    }, 
 			    error:function(xhr, status, message) { 
@@ -110,14 +123,14 @@ div #dataTable_filter{
 			},
 			success:GoodsListResult
 		});
-	}//end cnoticeList
+	}//end GoodsList
 	
 	function GoodsListResult(data){
 		/* console.log(data); */
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","cnoticeTr")
-			.append($('<td>').html('<input type="checkbox" name="cnoc_nos" value="'+item.cnoc_no+'">'))
+			.append($('<td>').html('<input type="checkbox" name="go_nos" value="'+item.go_no+'">'))
 			.append($('<td>').html(item.go_no))
 			.append($('<td>').html('<a href="#">'+item.go_name+'</a>'))
 			.append($('<td>').html(item.go_price))
@@ -195,4 +208,28 @@ div #dataTable_filter{
           </div>
         </div>
     </form>
+    <!-- Modal -->
+	<div class="modal fade detail-modal" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					....<!-- body -->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end Modal -->
 </div>
