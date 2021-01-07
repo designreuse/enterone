@@ -42,12 +42,14 @@
 		});
 		
 		//첨부파일(대표) div클릭했을시
-		$(".img-print").on("click",function(){
+		$(".img-print").off();
+		$(".img-print").on("click",function(){ //on 하면 이벤트가 추가되는거라고함 !!!!!!
 			$(".uploadFile").click();				
 				
 		});
 		
 		//첨부파일(상세) div클릭했을시
+		$(".img-print1").off();
 		$(".img-print1").on("click",function(){
 			$(".uploadDetailImg").click();
 		});
