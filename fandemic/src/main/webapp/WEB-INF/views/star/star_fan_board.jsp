@@ -14,8 +14,9 @@
 		
 		//tr클릭시 해당 게시글 조회
 		$(".trFboardList").on("click","tr",function(){
-			var fbo_sub_no = $(this).children(".fbo_sub_no").text();
-			fboardView(fbo_sub_no);
+			var fbo_no = $(this).children("#fbo_no").val();
+			fboardView(fbo_no);
+			fboardViewsUpdate(fbo_no)
 		})
 		 
 		var checkUnload = true; //글 작성중 나가면 사라지는 것 방지
@@ -104,7 +105,8 @@
 		$("tbody").empty();
 		$.each(data,function(idx,item){
 			$('<tr>').addClass('candahar')
-			.append($('<td class="fbo_sub_no">').html(item.fbo_sub_no))
+			.append($('<input type=\'hidden\' id=\'fbo_no\'>').val(item.fbo_no))
+			.append($('<td>').html(item.fbo_sub_no))
 			.append($('<td>').html("[" + item.fbo_subject + "] " + item.fbo_title))
 			.append($('<td>').html(item.fan_name))
 			.append($('<td>').html(item.fbo_time))
@@ -117,12 +119,11 @@
 	
 	
 	//게시글 조회 요청
-	function fboardView(fbo_sub_no) {
-		var st_id = "${star.st_id}";
+	function fboardView(fbo_no) {
 		$.ajax({
 			url:'${pageContext.request.contextPath}/star/fanBoard/read/',
 			type:'GET',
-			data: { no: fbo_sub_no, id:st_id },
+			data: { fbo_no: fbo_no },
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
@@ -153,9 +154,6 @@
 		$(".fboardInsertSection").hide();
 		$('#fbo_title').focus();
 		$(".fboardViewSection").show();
-		
-		var no = $("input:text[name='fbo_no']").val();
-		fboardViewsUpdate(no)
 	}
 	
 	
@@ -221,7 +219,7 @@
 	
 	//게시물 수정 요청
 	function fboardUpdate() {
-		var fbo_sub_no = $("input:text[name='fbo_sub_no']").val();	
+		var fbo_no = $("input:text[name='fbo_no']").val();	
 		$.ajax({ 
 		    url: "${pageContext.request.contextPath}/star/fanBoard/update/", 
 		    type: 'POST', 
@@ -229,7 +227,7 @@
 		    success: function(response) {
 		    	if(response == true) {
 					alert("수정되었습니다.")
-					fboardView(fbo_sub_no);
+					fboardView(fbo_no);
 		    	}
 		    }, 
 		    error:function(xhr, status, message) { 
