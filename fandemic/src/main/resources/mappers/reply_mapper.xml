@@ -10,14 +10,20 @@
 	</select>
 	
 	<insert id="insertReply" parameterType="Reply">
-	INSERT INTO reply 
-	VALUES (re_seq.NEXTVAL, 
-			SYSDATE, 
-			#{re_content}, 
-			#{sfbo_no}, 
-			#{mem_id},
-			#{st_id}
-			)
+	INSERT INTO reply(	re_no,
+						re_time,
+						re_content,
+						sfbo_no
+						<if test = "mem_id != null">,mem_id</if>
+						<if test = "st_id != null">,st_id</if>
+						)
+				VALUES (re_seq.NEXTVAL, 
+						SYSDATE, 
+						#{re_content}, 
+						#{sfbo_no}
+						<if test = "mem_id != null">,#{mem_id}</if>
+						<if test = "st_id != null">,#{st_id}</if>
+						)
 	</insert>
 	
 	<update id="updateReply" parameterType="Reply">

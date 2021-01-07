@@ -162,7 +162,6 @@
       
       //댓글 defalut값
       $("input:text[name='sfbo_no']").val(data.fbo_no);
-      $("input:text[name='st_id']").val(data.st_id);
       
       $(".fboardListSection").hide();
       $(".fboardInsertSection").hide();
@@ -305,9 +304,12 @@
          .append($('<input type=\'hidden\' id=\'sfbo_no\'>').val(re.sfbo_no))
          .append($('<div class = \'row\'>').html(re.fan_name + '&nbsp;' +re.re_time))
          .append($('<div class = \'row\'>').html(re.re_content))
-         .appendTo('#replyListView');
+         .append($('<div class = \'row\'>').html("<ul class = 'fboardUl'><li><span>수정</span></li> <li><span>등록</span></li><li><span>신고</span></li></ul>"))
+        .appendTo('#replyListView');
       });//each
    }
+   
+
    
    
    //댓글 등록 요청
@@ -441,13 +443,12 @@
    <!-- 댓글-->
    <div class="container">
       <div id = "replyListView">
-         <!-- 댓글 출력 장소 -->   
+         <!-- 댓글 출력 장소 -->  
       </div>
       <hr>
       <form id="formReply">
          <div class = "row">
             <input style="display:none;" name = "sfbo_no" />
-            <input style="display:none;" name = "st_id" />
             <textarea class = "col-xl-11 col-md-10 col-12 fboardReply" name="re_content" rows = 3 placeholder="댓글"></textarea>
             <div class = "col-xl-1 col-md-2 col-12 btnFboardReply">
                <button type="button"  class="btnFboardReplyInsert btn btn-primary py-2 px-4">작성</button>
