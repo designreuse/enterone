@@ -19,15 +19,20 @@
 		ORDER BY CNT DESC
 	</select>
 	
-	<!-- 내스타 3 -->
-	
-	<select id="myStar" resultType="map">
-		SELECT S.ST_NAME, COUNT(F.ST_ID) AS CNT
+	<!-- 내스타 3 팬게시판 글이 있을 때-->
+	<select id="myStar3" resultType="map">
+		SELECT S.ST_NAME,S.ST_ICON ,COUNT(F.ST_ID) AS CNT
 		FROM FBOARD F , STAR S
 		WHERE F.ST_ID = S.ST_ID
-		AND MEM_ID = #{mem_id}
-		GROUP BY S.ST_NAME
+		AND MEM_ID = #{id}
+		GROUP BY S.ST_NAME, S.ST_ICON
 		ORDER BY CNT DESC
 	</select>
-
+	
+	<!-- 내스타 3 가입o , 게시글x  -->
+	<select id="myStarList" resultType="map">
+		SELECT * 
+		FROM FAN 
+		WHERE MEM_ID = #{id}
+	</select>
 </mapper>

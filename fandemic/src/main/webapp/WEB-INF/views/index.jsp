@@ -37,6 +37,58 @@
 	                }
 				}
 			});
+		
+		var mem_id = "${sessionScope.member.mem_id}";
+		
+		
+		if ( mem_id == null || mem_id == '') {
+			console.log(mem_id);
+		} else {
+			console.log(mem_id);
+			$.ajax({
+	            url :'${pageContext.request.contextPath}/myStar3',
+	            type:"post",
+	            dataType:'json',
+	            data : {mem_id : mem_id },
+	            
+	            success:function(data){
+	            	
+	            	var last=0; //결과가 3개 미만이면
+	            	for ( var i=0; i<3; i++) {
+	            		
+	            		var stName = data[i].ST_NAME;
+	            		
+	            		if (stName == null) {
+	            			last = i; // i값 last에 저장해서
+	            		} else {
+	            			last=3;
+	            			$("#st" + (i+1)).text(data[i].ST_NAME);	
+	            		}
+	            			            		
+	            	}
+	            	
+	            	for(var i=0; i<=last; i++) { // last 만큼만 for문
+	            		var img = data[i].ST_ICON;
+	            		if ( img == null || img == '') {
+	            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/member_pic/no-profile.jpg");
+	            		} else {
+	            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/star/" + img);
+	            		}
+	            	}
+	            	
+	            	for(var i=0; i<=last; i++) {
+	            		var img = data[i].CNT;
+	            		$("#cnt" + (i+1)).text(data[i].CNT);	            
+	            	}
+	            	
+	            	
+	            	
+	            	
+
+	            },error:function(){ alert("실패"); }
+	         });
+		}
+		
 
 	});
 </script>
@@ -577,26 +629,28 @@ ul.tabs li.current span {
 									</div>
 									<!-- 내 스타목록 -->
 									<div class="featured-author-center" align="center">
-										<img class="inputimg"
-											src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
-											alt="member_profile"
-											style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
-										<img class="inputimg"
-											src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
-											alt="member_profile"
-											style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
-										<img class="inputimg"
-											src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
-											alt="member_profile"
-											style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
+										<img id="stImg1" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
+										<img id="stImg2" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
+										<img id="stImg3" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
 									</div>
 									<div class="featured-author-center" align="center">
-										<b class="name"
-											style="color: black; margin: 0px 25px 0px 25px;">스타1</b> <b
-											class="name" style="color: black; margin: 0px 20px 0px 20px;">스타2</b>
-										<b class="name"
-											style="color: black; margin: 0px 25px 0px 25px;">스타3</b>
+										<e id="st1" class="name" style="color: black; margin: 0px 25px 0px 25px;"></e> 
+										<e id="st2" class="name" style="color: black; margin: 0px 20px 0px 20px;"></e>
+										<e id="st3" class="name" style="color: black; margin: 0px 25px 0px 25px;"></e>
 									</div>
+									<div class="featured-author-center" align="center">
+										<e id="cnt1" class="cnt" style="color: black; margin: 0px 25px 0px 25px;"></e> 
+										<e id="cnt2" class="cnt" style="color: black; margin: 0px 20px 0px 20px;"></e>
+										<e id="cnt3" class="cnt" style="color: black; margin: 0px 25px 0px 25px;"></e>
+									</div> 
+								
+
+								
+								
+								
+								
+								
+								
 								</c:if>
 
 							</div>

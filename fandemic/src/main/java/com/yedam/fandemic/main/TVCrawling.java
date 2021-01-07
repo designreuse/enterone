@@ -29,7 +29,6 @@ public class TVCrawling {
 			map.put("no", Integer.toString(i+1));
 			list.add(map);
 			i++;
-			System.out.println("프로그램명 : " + e.text());
 		}
 
 		
@@ -39,7 +38,6 @@ public class TVCrawling {
 			if(i == 10) { break;}
 			list.get(i).put("rat", e.text());
 			i++;
-			System.out.println("시청률 : " + e.text());
 		}
 		
 		i=0;
@@ -50,7 +48,6 @@ public class TVCrawling {
 			} else {
 				list.get(i).put("ct", e.text());
 				i++;
-				System.out.println("채널 :" + e.text());
 			}
 			j++;
 		}
