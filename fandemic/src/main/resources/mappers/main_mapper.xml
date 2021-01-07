@@ -16,10 +16,5 @@
 		GROUP BY S.ST_NAME
 		ORDER BY CNT DESC
 	</select>
-	
-	
-	
-	
-	
-	
+
 </mapper>

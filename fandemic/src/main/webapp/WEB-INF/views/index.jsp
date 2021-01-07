@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 
 <script>
 	$(function() {
@@ -20,33 +19,24 @@
 		});
 
 		var ctx = $('#myChart');
-		var myChart = new Chart(ctx,
-				{
-					type : 'bar',
-					data : {
-						labels : [ '스타1', '스타2', '스타3'],
-						datasets : [ {
-							label : '# of Votes',
-							data : [ 2, 2, 1],
-							backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
-												'rgba(54, 162, 235, 0.2)',
-												'rgba(255, 206, 86, 0.2)'],
-							borderColor : [ 'rgba(255, 99, 132, 1)',
-											'rgba(54, 162, 235, 1)',
-											'rgba(255, 206, 86, 1)'],
-							borderWidth : 1
-						} ]
-					},
-					options : {
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true
-								}
-							} ]
-						}
-					}
-				});
+		var myChart = new Chart(ctx, {
+				type : 'pie',
+				data : {
+					labels : [ '${stCnt[0].ST_NAME}', '${stCnt[1].ST_NAME}', '${stCnt[2].ST_NAME}' ],
+					datasets : [ {
+						label : '#',
+						data : [ '${stCnt[0].CNT}', '${stCnt[1].CNT}', '${stCnt[2].CNT}' ],
+						backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)"]
+						
+					} ]
+				},
+				options : {
+					 title: {
+		                    display: true,
+		                    text: 'FAN CLUB TOP3'
+	                }
+				}
+			});
 
 	});
 </script>
@@ -71,6 +61,7 @@ ul.tabs li {
 	display: inline-block;  /* 이거 다르게 주면 줄바꿈 될거같은데 */
 	padding: 10px 25px;
 	cursor: pointer;
+	/* border : 1px solid #8ac121; */
 }
 
 ul.tabs li.current {
@@ -172,16 +163,24 @@ ul.tabs li.current span {
 
 				</div>
 				<div class="line">
-					<div>Latest News</div>
+					<div>????</div>
 				</div>
+				<!-- 차트 -->
 				<div class="row">
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div>
-							<canvas id="myChart"></canvas>
+						<div align="left" class="chart-container" style="position: relative; padding: 20px">
+							<canvas id="myChart"  width="300" height="250"></canvas>
+						</div>
+					</div>
+					
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="chart-container" style="position: relative; padding: 20px">
+							<h1>SNS</h1>
 						</div>
 					</div>
 				</div>
-
+				
+					
 				<div class="banner">
 					<a href="#"> <img
 						src="${pageContext.request.contextPath}/resources/images/ads.png"
@@ -516,8 +515,7 @@ ul.tabs li.current span {
 								<!-- 로그인 -->
 								<c:if
 									test="${sessionScope.member.mem_id eq null and sessionScope.company.com_id eq null }">
-									<div class="sc_login"
-										style="background-image: url('images/news/img15.jpg');">
+									<div class="sc_login" >
 										<div class="sub_area">
 											<a class="btn btn-primary btn-block" id="homeLogin"
 												href="${pageContext.request.contextPath}/login">로그인</a>
@@ -623,9 +621,7 @@ ul.tabs li.current span {
 					<!-- 멜론차트 -->
 					<div id="tab-1" class="tab-content current">
 						<div align="right">
-							<a style="color: #00b523;"
-								href="https://www.melon.com/chart/index.htm" target="_blank">>
-								바로가기</a>
+							<a style="color: #00b523;" href="https://www.melon.com/chart/index.htm" target="_blank"> >바로가기</a>
 						</div>
 						<table>
 							<c:forEach items="${melon}" var="mel">
@@ -649,6 +645,9 @@ ul.tabs li.current span {
 					</div>
 
 					<div id="tab-2" class="tab-content" style="width: 90%">
+						<div align="right">
+							<a style="color: #00b523;" href="https://www.kobis.or.kr/kobis/business/stat/boxs/findDailyBoxOfficeList.do" target="_blank"> >바로가기</a>
+						</div>
 						<table style="width: 100%">
 							<c:forEach items="${movie}" var="mv">
 								<tr style="border-bottom: 1pt solid #8ac121;">
@@ -665,18 +664,23 @@ ul.tabs li.current span {
 					</div>
 
 					<div id="tab-3" class="tab-content" style="width: 90%">
+					<div align="right">
+						<a style="color: #00b523;" href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01" target="_blank"> >바로가기</a>
+					</div>
 						<table style="width: 100%">
 							<c:forEach items="${rating}" var="ra">
 								<tr style="border-bottom: 1pt solid #8ac121;">
 									<td style="padding: 5px; width: 50px"><h6>${ra.no}</h6></td>
-									<td style="padding: 5px;"><c:if
-											test="${fn:length(ra.name) > 10 }">
+									<td style="padding: 5px;">
+										<c:if test="${fn:length(ra.name) > 10 }">
 											<div>${fn:substring(ra.name,0,10)}...</div>
-										</c:if> <c:if test="${fn:length(ra.name) < 10 }">
+										</c:if> 
+										<c:if test="${fn:length(ra.name) <= 10 }">
 											<div>${ra.name}</div>
-										</c:if></td>
+										</c:if>
+									</td>
 									<td style="padding: 5px;">${ra.ct}</td>
-									<td style="padding: 5px;">${ra.rat}</td>
+									<td style="padding: 5px;">${ra.rat}%</td>
 
 								</tr>
 							</c:forEach>

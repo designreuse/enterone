@@ -59,8 +59,10 @@ public class MainController {
 		model.addAttribute("rating", rating);
 		
 		// 팬 수 (차트)
-		
-		
+		List<HashMap<String, Object>> stCnt = new ArrayList<HashMap<String, Object>>();
+		stCnt = dao.fanCount();
+		System.out.println(stCnt.get(0));
+		model.addAttribute("stCnt", stCnt);
 		
 		return new ModelAndView("index");
 	}
