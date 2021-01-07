@@ -361,25 +361,21 @@ border-radius: 10px;
 						
 						<div class="inner cinner">
 						<span> <c:if
-							test="${sessionScope.member.mem_pic ne null and sessionScope.member.mem_type eq 0 }">
-							<img class="outputimg" src="${sessionScope.member.mem_pic}"
+							test="${sns.mem_pic ne null and sns.mem_type eq 0 }">
+							<img class="outputimg" src="${sns.mem_pic}"
 								alt="member_profile">
 						</c:if> <c:if
-							test="${sessionScope.member.mem_pic eq null and sessionScope.company.com_pic eq null }">
+							test="${sns.mem_pic eq null}">
 							<img class="outputimg"
 								src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
 								alt="no-profile">
 						</c:if> <c:if
-							test="${sessionScope.member.mem_pic ne null and sessionScope.company.com_pic eq null and sessionScope.member.mem_type eq 1}">
+							test="${sns.mem_pic ne null and sns.mem_type eq 1}">
 							<img class="outputimg"
-								src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}"
+								src="${pageContext.request.contextPath}/images/member_pic/${sns.mem_pic}"
 								alt="member_profile">
-						</c:if> <c:if
-							test="${sessionScope.company.com_pic ne null and sessionScope.member.mem_pic eq null }">
-							<img class="outputimg"
-								src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}"
-								alt="company_profile">
-						</c:if> <input class="clickcontentdetail" value=${sns.sns_title} readonly="readonly">
+						</c:if> 
+						<input class="clickcontentdetail" value=${sns.sns_title} readonly="readonly">
 						</span>
 							<figure>
 								<div class="w3-content w3-section" style="max-width: 500px">
@@ -412,6 +408,26 @@ border-radius: 10px;
 								
 							</c:if>
 							<c:if test="${empty sns.sns_pic}">
+							<div class="outputdiv" data-no="${sns.sns_no}">
+						
+						<div class="inner cinner">
+						<span> <c:if
+							test="${sns.mem_pic ne null and sns.mem_type eq 0 }">
+							<img class="outputimg" src="${sns.mem_pic}"
+								alt="member_profile">
+						</c:if> <c:if
+							test="${sns.mem_pic eq null}">
+							<img class="outputimg"
+								src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
+								alt="no-profile">
+						</c:if> <c:if
+							test="${sns.mem_pic ne null and sns.mem_type eq 1}">
+							<img class="outputimg"
+								src="${pageContext.request.contextPath}/images/member_pic/${sns.mem_pic}"
+								alt="member_profile">
+						</c:if> 
+						<input class="clickcontentdetail" value=${sns.sns_title} readonly="readonly">
+						</span>
 								<div class="inner" style="padding-bottom: 40px;">
 									<div class="details" style="padding: 9px; margin: 0px;">
 										<div class="detail">
@@ -424,13 +440,7 @@ border-radius: 10px;
 										<footer>
 											<a href="#" class="love"><i
 												class="ion-android-favorite-outline"></i>
-												<div>${sns.sns_likes}</div></a> <a class="btn btn-primary more"
-												href="single.html">
-												<div>더보기</div>
-												<div>
-													<i class="ion-ios-arrow-thin-right"></i>
-												</div>
-											</a>
+												<div>${sns.sns_likes}</div></a>
 										</footer>
 									</div>
 								</div>

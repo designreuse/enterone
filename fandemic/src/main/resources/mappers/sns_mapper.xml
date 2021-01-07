@@ -24,7 +24,7 @@ INSERT INTO SNS (
 
 </insert>
 <select id="selectSns" resultType="Sns">
-SELECT * FROM SNS order by sns_no desc
+select s.*, m.mem_pic mem_pic, m.mem_type mem_type from sns s, member m where s.mem_id=m.mem_id order by sns_no desc
 
 
 
