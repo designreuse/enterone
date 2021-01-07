@@ -9,6 +9,7 @@ import com.yedam.fandemic.vo.Goods;
 public interface MainMapper {
 	
 	public List<Goods> ticketList();
-	public List<HashMap<String,Object>> fanCount();  
+	public List<HashMap<String,Object>> fanCount();
+	public List<HashMap<String,Object>> myStar(String mem_id);
 
 }
