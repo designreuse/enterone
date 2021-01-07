@@ -4,14 +4,21 @@
 <head>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resourcesSns/css/sns.css">
-<!-- jQuery Modal -->
-
-
 <!-- 	슬라이드쇼 스타일 시트 -->
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <style>
+
+
+.mtmtitle{
+min-height: 400px;}
+.modal-content{
+background-color: #fefefe;
+    margin-top: 30%;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+} 
 .drag-over {
 	background-color: #ff0;
 }
@@ -27,7 +34,7 @@
 }
 
 .thumb>.close {
-	position: absolute;
+	position: unset;
 	background-color: red;
 	cursor: pointer;
 }
@@ -39,7 +46,13 @@
 	border-radius: 70%;
 	object-fit: cover;
 }
-
+.outputimg {
+    margin-top: -10px;
+        width: 5%;
+    height: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+}
 .inputdiv {
 	background: #FDFDFD;
 	border-radius: 17px;
@@ -55,6 +68,24 @@
 	margin: 12px;
 	padding: 12px;
 }
+.clickcontentdetail {
+    height: 40px;
+    width: 94%;
+    font-size: 20px;
+    border: 0;
+    border-radius: 11px;
+    background-color: #A4B7D4;
+    color: mintcream;
+    padding: 5px;
+}
+.cinner {
+border-radius: 10px;
+    background-color: floralwhite;
+    margin-bottom: 50px;
+    height: 280px;
+    border-radius: 15px;
+}
+
 /* #A4B7D4 */
 </style>
 <script>
@@ -128,13 +159,26 @@
 			$(ex2).css(display, none)
 		});
 
-		// 		SNS슬라이드 함수
-
-		
+		// sns등록 모달창 띄우기
 		
 		$('.clicktextfil').on('click',function(event) {
 									var modal = $('#exampleModal5')
 									modal.modal('show');
+		})
+		// SNS상세정보 모달창 띄우기
+		$('.outputdiv').on('click',function(event) {
+			var modal = $('#exampleModal9')
+			var no = $(this).data("no");
+			$.ajax({
+				url : '${pageContext.request.contextPath}/onesnsselect?sns_no=' + no, //파라미터 넘기는 법
+				dataType : 'json',
+				success : function(result) {
+					modal.find('.snstitledetail').text(result.sns_title)
+					modal.find('.content').text(result.sns_content)
+					modal.modal('show');
+				}
+
+			});
 		})
 	})
 </script>
@@ -191,52 +235,81 @@
 				</div>
 				
 				
-				
-				
-				<!-- SNS등록 모달창 -->
-				
-				
-				<div class="modal fade" id="exampleModal5" >
+				<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
+<div class="modal" id="exampleModal9" style="z-index: 1200;" >
 		<div class="modal-dialog">
-			<div class="modal-content">
+			<div class="modal-content" style="margin-bottom: 0px;">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<h3 class="modal-title snstitledetail" id="exampleModalLabel"></h3>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="card" style="width: 18rem;">
-						<img src="..." class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the
-								card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
+					<div id="ex7">
+						<div class="mtmtitle">
+							<div id="ex2" style="height: 62%">
+							</div>
+							<a class="content"></a>
+							<a></a>
+							<a></a>
+							<a></a>
+							<a></a>
+							<a></a>
 						</div>
 					</div>
-
-
-
-				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
+								<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="submit" class="btn btn-primary" id="btnSubmit">Post</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-				<!-- SNS등록창-->
+				
+				<!-- SNS등록 모달창 -->
+	<div class="modal" id="exampleModal5" style="z-index: 1200;" >
+		<div class="modal-dialog">
+			<div class="modal-content" style="    margin-bottom: 0px;">
+				<div class="modal-header">
+					<h3 class="modal-title" id="exampleModalLabel">SNS 등록</h3>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
 				<form name="uploadForm" id="uploadForm"
 					enctype="multipart/form-data" method="post">
 					<div id="ex7">
 						<div class="mtmtitle">
 							<div id="ex2" style="height: 62%">
-								<h1>SNS 등록</h1>
 							</div>
 							<table class="inserttable" border="1">
 								<tr style="height: 20%">
@@ -249,7 +322,7 @@
 										<div class="pickupld" id="drop">
 											사진을 올려주세요
 											<div id="thumbnails"
-												style="overflow: auto; width: 100%; height: 88%;"></div>
+												style="overflow: auto; max-height: 233px; height: 88%;"></div>
 											<a href="#ex7" rel="modal:open"> </a>
 										</div>
 									</td>
@@ -259,17 +332,22 @@
 										<div class="form-group">
 											<textarea class="form-control"
 												id="exampleFormControlTextarea1" name="sns_content" rows="3"
-												placeholder="내용을 적어주세요"></textarea>
+												placeholder="내용을 적어주세요" style="border: 0"></textarea>
 										</div>
 									</td>
 								<tr>
 							</table>
-							<div>
-								<button type="button" id="btnSubmit">보내기</button>
-							</div>
 						</div>
 					</div>
+				<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary" id="btnSubmit">Post</button>
+				</div>
 				</form>
+			</div>
+		</div>
+	</div>
 				<!-- 사진과 글이 올라가는곳 -->
 				<div class="line top">
 					<div>Fan SnS Community</div>
@@ -279,39 +357,59 @@
 
 						<c:forEach items="${snslist}" var="sns">
 							<c:if test="${not empty sns.sns_pic}">
-								<div class="inner cinner" style="padding-bottom: 40px;">
-									<figure>
-										<div class="w3-content w3-section" style="max-width: 500px">
-											<c:forTokens var="cutimg" items="${sns.sns_pic}" delims=",">
-												<a href="single.html"> <img class="mySlides"
-													src="${pageContext.request.contextPath}/images/snsimage/${cutimg}"
-													alt="사진이 출력되는 곳" style="width: 100%; display: none;">
-												</a>
-											</c:forTokens>
-
-										</div>
-									</figure>
-									<div class="details">
-										<div class="detail">
-											<div class="category">
-												<a href="#">Post Date</a>
-											</div>
-											<div class="time">${sns.sns_time}</div>
-										</div>
-										<p>${sns.sns_content}</p>
-										<footer>
-											<a href="#" class="love"><i
-												class="ion-android-favorite-outline"></i>
-												<div>${sns.sns_likes}</div></a> <a class="btn btn-primary more"
-												href="single.html">
-												<div>더보기</div>
-												<div>
-													<i class="ion-ios-arrow-thin-right"></i>
-												</div>
-											</a>
-										</footer>
-									</div>
+							<div class="outputdiv" data-no="${sns.sns_no}">
+						
+						<div class="inner cinner">
+						<span> <c:if
+							test="${sessionScope.member.mem_pic ne null and sessionScope.member.mem_type eq 0 }">
+							<img class="outputimg" src="${sessionScope.member.mem_pic}"
+								alt="member_profile">
+						</c:if> <c:if
+							test="${sessionScope.member.mem_pic eq null and sessionScope.company.com_pic eq null }">
+							<img class="outputimg"
+								src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
+								alt="no-profile">
+						</c:if> <c:if
+							test="${sessionScope.member.mem_pic ne null and sessionScope.company.com_pic eq null and sessionScope.member.mem_type eq 1}">
+							<img class="outputimg"
+								src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}"
+								alt="member_profile">
+						</c:if> <c:if
+							test="${sessionScope.company.com_pic ne null and sessionScope.member.mem_pic eq null }">
+							<img class="outputimg"
+								src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}"
+								alt="company_profile">
+						</c:if> <input class="clickcontentdetail" value=${sns.sns_title} readonly="readonly">
+						</span>
+							<figure>
+								<div class="w3-content w3-section" style="max-width: 500px">
+									<c:forTokens var="cutimg" items="${sns.sns_pic}" delims=",">
+										<a href="single.html"> <img class="mySlides"
+											src="${pageContext.request.contextPath}/images/snsimage/${cutimg}"
+											alt="사진이 출력되는 곳" style="width: 100%; display: none;">
+										</a>
+									</c:forTokens>
 								</div>
+							</figure>
+							
+							<div class="details">
+								<div class="detail">
+									<div class="category">
+										<a href="#">Post Date</a>
+									</div>
+									<div class="time">${sns.sns_time}</div>
+								</div>
+								<p style="    height: 130px; overflow: hidden">${sns.sns_content}</p>
+								<footer>
+									<a href="#" class="love">
+										<i class="ion-android-favorite-outline"></i>
+										<div>${sns.sns_likes}</div>
+									</a>
+								</footer>
+							</div>
+						</div>
+						</div>
+								
 							</c:if>
 							<c:if test="${empty sns.sns_pic}">
 								<div class="inner" style="padding-bottom: 40px;">

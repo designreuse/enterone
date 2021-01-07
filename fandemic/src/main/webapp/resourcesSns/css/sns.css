@@ -691,8 +691,8 @@ left: 0px;
 
 /* 입력 css */
 .inserttable {
-	width: 80%;
-	margin: 0 10% 0 10%;
+	width: 100%;
+    border-radius: 10px;
 }
 
 /* 사진 업로드 div */

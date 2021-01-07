@@ -126,6 +126,7 @@ public class MypageController {
 		return "mypage/my_mail";
 	}
 
+	//쪽지 단건조회
 	@ResponseBody
 	@RequestMapping(value = "/onemailselect")
 	public Letter oneMailSelect(Model model, HttpServletRequest request, Letter letter) throws IOException {

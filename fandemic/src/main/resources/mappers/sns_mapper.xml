@@ -35,6 +35,10 @@ SELECT SNS_PIC FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
 <select id="countMySns" resultType="int">
 SELECT COUNT(*) FROM SNS where MEM_ID = #{mem_id}
 </select>
+<!-- SNS 단건조회 -->
+<select id="OneSnsSelect" resultType="sns" >
+SELECT * FROM SNS WHERE SNS_NO = #{sns_no}
 
+</select>
 
 </mapper>
