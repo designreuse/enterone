@@ -160,6 +160,7 @@ ul.tabs li.current span {
 .ffffsf {
 	background-size: auto !important;
 }
+
 </style>
 
 
@@ -629,29 +630,27 @@ ul.tabs li.current span {
 									</div>
 									<!-- 내 스타목록 -->
 									<div class="featured-author-center" align="center">
-										<img id="stImg1" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
-										<img id="stImg2" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
-										<img id="stImg3" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; margin: 0px 15px 0px 15px">
+										<table>
+											<tr>
+												<td align="center"><img id="stImg1" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; "></td>
+												<td align="center"><img id="stImg2" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; "></td>
+												<td align="center"><img id="stImg3" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; "></td>
+											</tr>
+											
+											<tr>
+												<td align="center"><e id="st1" class="name" style="color: black;"></e></td> 
+												<td align="center"><e id="st2" class="name" style="color: black;"></e></td>
+												<td align="center"><e id="st3" class="name" style="color: black;"></e></td>
+											</tr>
+											<tr>
+												<td align="center"><e id="cnt1" class="cnt" style="color: black; "></e></td> 
+												<td align="center"><e id="cnt2" class="cnt" style="color: black; "></e></td>
+												<td align="center"><e id="cnt3" class="cnt" style="color: black; "></e></td>
+											</tr>
+										</table>
 									</div>
-									<div class="featured-author-center" align="center">
-										<e id="st1" class="name" style="color: black; margin: 0px 25px 0px 25px;"></e> 
-										<e id="st2" class="name" style="color: black; margin: 0px 20px 0px 20px;"></e>
-										<e id="st3" class="name" style="color: black; margin: 0px 25px 0px 25px;"></e>
-									</div>
-									<div class="featured-author-center" align="center">
-										<e id="cnt1" class="cnt" style="color: black; margin: 0px 25px 0px 25px;"></e> 
-										<e id="cnt2" class="cnt" style="color: black; margin: 0px 20px 0px 20px;"></e>
-										<e id="cnt3" class="cnt" style="color: black; margin: 0px 25px 0px 25px;"></e>
-									</div> 
-								
-
-								
-								
-								
-								
-								
-								
-								</c:if>
+									
+								</c:if>   
 
 							</div>
 						</div>

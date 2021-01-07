@@ -50,17 +50,17 @@ public class MainController {
 		model.addAttribute("melon", list);
 		
 		//영화
-		ArrayList<HashMap<String, String>> movie = new ArrayList<HashMap<String,String>>();
-		MovieAPI api = new MovieAPI();
-		movie = api.requestAPI();
-		model.addAttribute("movie", movie);
+//		ArrayList<HashMap<String, String>> movie = new ArrayList<HashMap<String,String>>();
+//		MovieAPI api = new MovieAPI();
+//		movie = api.requestAPI();
+//		model.addAttribute("movie", movie);
 		
 		
 		// 시청률
-		ArrayList<HashMap<String, String>> rating = new ArrayList<HashMap<String,String>>();
-		TVCrawling tc = new TVCrawling();
-		rating = tc.TvRating();
-		model.addAttribute("rating", rating);
+//		ArrayList<HashMap<String, String>> rating = new ArrayList<HashMap<String,String>>();
+//		TVCrawling tc = new TVCrawling();
+//		rating = tc.TvRating();
+//		model.addAttribute("rating", rating);
 		
 		// 팬 수 (차트)
 		List<HashMap<String, Object>> stCnt = new ArrayList<HashMap<String, Object>>();
@@ -83,7 +83,13 @@ public class MainController {
 		// 게시글 등록을 1개도 안했으면 
 		if (myStar3.isEmpty()) {
 			myStar3 = dao.myStarList(id); // 새로 조회해서 덮어써서
-			return myStar3; //반환
+			
+			if (myStar3.isEmpty()) { // 이것도 null이면
+				return null; //널
+			} else {
+				return myStar3; //반환
+			}
+			
 		} else {
 			return myStar3; // 1개라도 등록했으면 바로 리턴
 		}
