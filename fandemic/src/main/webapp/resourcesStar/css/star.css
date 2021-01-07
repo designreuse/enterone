@@ -56,3 +56,7 @@
     border : 0;
     float: left;
 }
+
+.fboardUl li:hover{
+	text-decoration: underline;
+}
