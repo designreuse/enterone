@@ -43,14 +43,15 @@
 		WHERE GO_NO = #{go_no}
 	</select>
 
-	<!-- 장바구니에 insert -->
-	<!-- <insert id="cartInsert" useGeneratedKeys="true" parameterType="Cart"> 
-		INSERT INTO CART ( CART_NO, MEM_ID, GO_NO, CART_QTY ) VALUES ( CART_SEQ.NEXTVAL, 
-		#{mem_id}, #{go_no], #{cart_qty} ) </insert> -->
+	<!-- 장바구니 insert -->
+	<insert id="cartInsert" parameterType="Cart">
+		INSERT INTO CART (CART_NO, MEM_ID, GO_NO, CART_QTY)
+		VALUES (CART_SEQ.NEXTVAL, #{mem_id}, #{go_no}, #{cart_qty})
+	</insert>
 
 	<!-- 장바구니 목록 -->
 	<select id="cartList" parameterType="Cart" resultType="Cart">
-		SELECT C.*, G.GO_NAME, G.GO_PRICE, M.MEM_NAME
+		SELECT C.*, G.GO_NAME, G.GO_PRICE, G.GO_PIC, M.MEM_NAME
 		FROM GOODS G, CART C, MEMBER M
 		WHERE G.GO_NO = C.GO_NO AND C.MEM_ID = M.MEM_ID AND C.MEM_ID = #{mem_id}
 	</select>

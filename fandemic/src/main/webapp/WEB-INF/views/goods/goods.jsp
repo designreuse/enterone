@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>Goods</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script src="${pageContext.request.contextPath}/resourcesGoods/js/index.js"></script>
 
 <style>

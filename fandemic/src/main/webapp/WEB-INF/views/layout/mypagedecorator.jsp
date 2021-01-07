@@ -205,12 +205,15 @@
 								class="ion-ios-arrow-right"></i></a>
 
 							<ul class="dropdown-menu">
-								<li><a href="#">CHEERING</a></li>
-								<li><a href="#">MUSIC</a></li>
-								<li><a href="#">FASHION</a></li>
-								<li><a href="#">ACC</a></li>
-								<li><a href="#">TECH</a></li>
-								<li><a href="#">ETC</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=TICKET">TICKET</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=CHEERING">CHEERING</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=MUSIC">MUSIC</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=FASHION">FASHION</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=ACC">ACC</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=TECH">TECH</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=ETC">ETC</a></li>
+								<li class="divider"></li>
+								<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-heart"></i>장바구니</a></li>
 							</ul></li>
 
 						<li><a href="#">연 예 뉴 스</a></li>
@@ -228,6 +231,7 @@
 											스타</a></li>
 									<li><a href="${pageContext.request.contextPath}/mytrainee"><i class="icon ion-chatbox"></i>
 											연습생</a></li>
+									<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-heart"></i>장바구니</a></li>
 									<li><a href="${pageContext.request.contextPath}/mypurchase"><i class="icon ion-key"></i>
 											결제내역</a></li>
 									<li><a href="${pageContext.request.contextPath}/myevent"><i class="icon ion-settings"></i>

@@ -10,15 +10,25 @@
 <title>Goods 상세보기 페이지</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+<!-- Js Plugins -->
+<script
+		src="${pageContext.request.contextPath}/resourcesGoods/js/owl.carousel.min.js"></script>
+<script
+		src="${pageContext.request.contextPath}/resourcesGoods/js/main.js"></script>
+
 <script>
+
 	$(function() {
+		var amount = $('.pro-qty').children('input').val();
+		console.log(amount);
 		/*-------------------
 		Quantity change
 		--------------------- */
 		var proQty = $('.pro-qty');
 		proQty.prepend('<span class="dec qtybtn">-</span>');
 		proQty.append('<span class="inc qtybtn">+</span>');
+		
 		proQty.on('click', '.qtybtn', function() {
 			var $button = $(this);
 			var oldValue = $button.parent().find('input').val();
@@ -26,20 +36,30 @@
 				var newVal = parseFloat(oldValue) + 1;
 			} else {
 				// Don't allow decrementing below zero
-				if (oldValue > 0) {
+				if (oldValue > 1) {
 					var newVal = parseFloat(oldValue) - 1;
 				} else {
-					newVal = 0;
+					newVal = 1;
 				}
 			}
-			$button.parent().find('input').val(newVal);
-			console.log($button.parent().find('input').val()); // 변경된 수량
+			$button.parent().find('input').val(newVal); // 변경된 수량
+			amount = newVal;
+			console.log(newVal);
 		});
+	
+		$('#cart').on('click', function() {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/goodsDetail',
+				type : 'GET',
+				data : { go_no : '${goods.go_no}', cart_qty : amount },
+				success :
+					alert("장바구니에 추가되었습니다.")
+					
+			})
+		})
+		
 	});
 
-	$(function() {
-		var qty = $('.pro-qty').children('input').val();
-	});
 </script>
 
 <style>
@@ -76,7 +96,6 @@
 				</div>
 				<div class="col-lg-6 col-md-6">
 					<div class="product__details__text">
-						<form class="goods_cart_buy" id="frm" action="cart1" method="get">
 							<h3>${goods.go_name}</h3>
 							<div class="product__details__price">
 								<fmt:formatNumber value="${goods.go_price}" pattern="##,###" />
@@ -124,15 +143,14 @@
 								<div class="product__details__quantity">
 									<div class="quantity">
 										<div class="pro-qty">
+										
 											<input type="text" value="1" id="go_qty">
 										</div>
 									</div>
 								</div>
-								<a href="#" class="primary-btn" id="cart" onclick="document.getElementById('frm').submit();">장바구니</a>
-								<a href="#" class="primary-btn" id="buy" onclick=""
-									style="background-color: #022AD5;">바로구매</a>
+								<a href="#" class="primary-btn" id="cart">장바구니</a>
+								<a href="#" class="primary-btn" id="buy" style="background-color: #022AD5;">바로구매</a>
 							</div>
-						</form>
 					</div>
 				</div>
 				<div class="col-lg-12">
@@ -159,11 +177,6 @@
 	</section>
 	<!-- Product Details Section End -->
 
-	<!-- Js Plugins -->
-	<script
-		src="${pageContext.request.contextPath}/resourcesGoods/js/owl.carousel.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resourcesGoods/js/main.js"></script>
-
+	
 </body>
 </html>

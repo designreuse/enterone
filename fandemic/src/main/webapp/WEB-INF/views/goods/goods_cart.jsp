@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Goods 장바구니 페이지</title>
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script>
 	$(function() {
 
@@ -69,24 +69,24 @@
 								
 								
 							</thead>
-							<c:forEach var="cart" items="${cartList}">
+							<c:forEach var="ca" items="${cart}">
 							<tbody>
 								<tr>
 									<td class="shoping__cart__item"><img
-										src="https://ygselect.com/web/product/tiny/202011/f2287d2606d8f8b6662ac945ecfb9679.jpg"
-										alt="" style="width: 100px; height: 100px;">
-										<h5>${cart.cart_no}</h5>
+										src="${pageContext.request.contextPath}/images/goods/${ca.go_pic}"
+										alt="이미지" style="width: 100px; height: 100px;">
+										<h5>${ca.go_name}</h5>
 									</td>
-									<td class="shoping__cart__price">${goods.go_price}원</td>
+									<td class="shoping__cart__price"><fmt:formatNumber value="${ca.go_price}" pattern="##,###" />원</td>
 									<td class="shoping__cart__quantity">
 										<div class="quantity">
 											<div class="pro-qty" style="width: 110px;">
-												<input type="text" value="1">
+												<input type="text" value="${ca.cart_qty}">
 											</div>
 											<input type="button" value="수정" style="height: 40px; background: #f5f5f5; border: none; padding-left: 15px; padding-right: 15px;">
 										</div>
 									</td>
-									<td class="shoping__cart__total">39,000원</td>
+									<td class="shoping__cart__total"><fmt:formatNumber value="${ca.go_price}" pattern="##,###" />원</td>
 									<td class="shoping__cart__item__close" style="text-align: center;">
 										<span class="icon_close">x</span>
 									</td>

@@ -145,6 +145,8 @@
                            <li><a href="${pageContext.request.contextPath}/goodsf?t=ACC">ACC</a></li>
                            <li><a href="${pageContext.request.contextPath}/goodsf?t=TECH">TECH</a></li>
                            <li><a href="${pageContext.request.contextPath}/goodsf?t=ETC">ETC</a></li>
+                           <li class="divider"></li>
+						   <li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-heart"></i>장바구니</a></li>
                         </ul>
                      </li>
                      
@@ -155,15 +157,24 @@
 <!--  magz-dropdown 클래스 제거ㅊ -->
                      <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
-                           <li><a href="myupdate"><i class="icon ion-person"></i> 회원정보</a></li>
-                           <li><a href="mystar"><i class="icon ion-heart"></i> 내 스타</a></li>
-                           <li><a href="mytrainee"><i class="icon ion-chatbox"></i> 연습생</a></li>
-                           <li><a href="mypurchase"><i class="icon ion-key"></i> 결제내역</a></li>
-                           <li><a href="myevent"><i class="icon ion-settings"></i> 이벤트 참여</a></li>
-                           <li><a href="mymail"><i class="icon ion-chatbox"></i> 쪽지함</a></li>
-                           <li><a href="my1o1"><i class="icon ion-chatbox"></i> 1:1문의 내역</a></li>
-                           <li class="divider"></li>
-                           <li><a href="#"><i class="icon ion-log-out"></i> 로그아웃</a></li>
+                           	<li><a href="${pageContext.request.contextPath}/myupdate"><i class="icon ion-person"></i>
+											회원정보</a></li>
+							<li><a href="${pageContext.request.contextPath}/mystar"><i class="icon ion-heart"></i> 내
+											스타</a></li>
+							<li><a href="${pageContext.request.contextPath}/mytrainee"><i class="icon ion-chatbox"></i>
+											연습생</a></li>
+							<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-key"></i>
+											장바구니</a></li>
+							<li><a href="${pageContext.request.contextPath}/mypurchase"><i class="icon ion-key"></i>
+											결제내역</a></li>
+							<li><a href="${pageContext.request.contextPath}/myevent"><i class="icon ion-settings"></i>
+											이벤트 참여</a></li>
+							<li><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>
+											쪽지함</a></li>
+							<li><a href="${pageContext.request.contextPath}/my1o1"><i class="icon ion-chatbox"></i>
+											1:1문의 내역</a></li>
+							<li class="divider"></li>
+							<li><a href="${pageContext.request.contextPath}/logout"><i class="icon ion-log-out"></i> 로그아웃</a></li>
                         </ul>
                      </li>
                                     </c:if>

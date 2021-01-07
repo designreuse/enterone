@@ -17,7 +17,7 @@ public interface GoodsMapper {
 	public Goods goodsDetail(Goods goods);
 	
 	// Cart 담기
-	public Cart cartInsert(Cart cart);
+	public void cartInsert(Cart cart);
 	
 	// Cart 목록
 	public List<Cart> cartList(Cart cart);

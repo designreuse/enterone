@@ -85,48 +85,40 @@ public class GoodsController {
 		return new ModelAndView("goods/goods_detail");
 	}
 	
-	// Cart 목록
-	@RequestMapping(value = "/cart")
-	public ModelAndView cartList(HttpSession session, Model model, Cart cart) throws IOException {
-		model.addAttribute(goMapper.cartList(cart));
-		String mem_id = (String)session.getAttribute("mem_id");
-		cart.setMem_id(mem_id);
-		goMapper.cartList(cart);
-		return new ModelAndView("goods/goods_cart");
-	}
-	
-	
-	/*
-	 * // 장바구니 insert
-	 * 
-	 * @RequestMapping(value = "/goodsCart") public ModelAndView
-	 * cartInsert(HttpSession session, Cart cart) throws IOException { String id =
-	 * (String) session.getAttribute("mem_id");
-	 * 
-	 * return new ModelAndView("goods/goods_cart"); }
-	 */
+
+	// Goods 상세화면 - 장바구니 insert
+
+	@RequestMapping(value = "/goodsDetail", method = RequestMethod.GET)
+	@ResponseBody
+	public void cartInsert(HttpSession session, HttpServletRequest request, Cart cart) throws IOException {
+		Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
+		cart.setMem_id(member.getMem_id());						// 불러온 member에서 mem_id만 cart에 담기
+		String no = request.getParameter("go_no");
+		cart.setGo_no(no);
+		cart.setCart_qty(request.getParameter("cart_qty"));
+		System.out.println("====================" + no + request.getParameter("cart_qty"));
+		goMapper.cartInsert(cart);
+	 }
+ 
 
 
 	// Goods 상세화면 - 구매정보 insert
 
 
+	// 장바구니 화면 - 목록
+	@RequestMapping(value = "/cart")
+	public ModelAndView cartList(HttpSession session, Model model, Cart cart) throws IOException {
+		Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
+		cart.setMem_id(member.getMem_id());						// 불러온 member에서 mem_id만 cart에 담기
+		// System.out.println(member.getMem_id());
+		
+		model.addAttribute("cart", goMapper.cartList(cart));
+		return new ModelAndView("goods/goods_cart");
+	}
+	
 
 	/*
 	 * https://badstorage.tistory.com/39
-	 * 
-	 * // 카트 목록 불러오기
-	 * 
-	 * @GetMapping("/cartList") public String getCartList(HttpSession session, Model
-	 * model) throws Exception { logger.info("get cart list");
-	 * 
-	 * //session에 저장해두었던 userId String userId =
-	 * (String)session.getAttribute("member");
-	 * 
-	 * // DB에 저장되어있던 cartList List<CartListVO> cartList = service.cartList(userId);
-	 * 
-	 * model.addAttribute("cartList", cartList);
-	 * 
-	 * return "shop/cartList"; }
 	 * 
 	 * //카트리스트에서 주문하기
 	 * 
@@ -158,12 +150,14 @@ public class GoodsController {
 	 * return "redirect:/shop/myPage"; }
 	 * 
 	 */
-
+	
+	// 결제 화면 (배송지 입력, 주소 api, 결제 api)
 	@RequestMapping(value = "/goodsBuy")
 	public ModelAndView goodsBuy(HttpServletResponse response) throws IOException {
 		return new ModelAndView("goods/goods_buy");
 	}
 
+	// 결제 결과 화면 (select)
 	@RequestMapping(value = "/goodsBuyDetail")
 	public ModelAndView goodsBuyDetail(HttpServletResponse response) throws IOException {
 		return new ModelAndView("goods/goods_buy_detail");
