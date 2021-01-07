@@ -75,7 +75,7 @@ public class CnoticeController {
 		      }
 	      
 	      cnoticeService.insertCnotice(cnotice);
-		return "mgt/notices";
+		return "redirect:/management/notices";
 	}
 	
 	//소속사 공지사항 목록 조회, ajax

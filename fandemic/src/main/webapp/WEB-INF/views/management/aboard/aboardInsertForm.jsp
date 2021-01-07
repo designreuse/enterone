@@ -26,21 +26,21 @@
 		});
 		
 		//오디션 공지사항 등록버튼눌렀을경우 
-		$("#btnAbord-register").on("click",function(){
+		$("#btnAboard-register").on("click",function(){
 			CnoticeFormCheck(); //유효성검사
 		});
 	});//end ready function
 	
 	//내용 유효성검사
 	function CnoticeFormCheck(){
-		if($("table .notice-title").val()==null || $("table .notice-title").val()==''){
+		if($("table .abo_title").val()==null || $("table .abo_title").val()==''){
 			alert("제목을 입력하세요.")
-			$("table .notice-title").focus();
+			$("table .abo_title").focus();
 			event.preventDefault();
 		}
-		else if($("table .notice-content").val()==null||$("table .notice-content").val()==''){
+		else if($("table .abo_content").val()==null||$("table .abo_content").val()==''){
 			alert("내용을 입력하세요.")
-			$("table .notice-content").focus();
+			$("table .abo_content").focus();
 			event.preventDefault();
 		}
 		

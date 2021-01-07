@@ -86,7 +86,7 @@ public class StarControllerD {
 	    	  star.setSt_banner("");
 	      }
 		starService.InsertStar(star);
-		return "mgt/star/starList"; //스타회원목록 리스트로 
+		return "redirect:/management/star/starList"; //스타회원목록 리스트로 
 	}
 		
 	//소속사 스타회원 수정 페이지 이동, id값받아옴
@@ -108,8 +108,6 @@ public class StarControllerD {
 		    	  System.out.println("path="+path);
 		    	  uploadIcon.transferTo(new File(path, uploadIcon.getOriginalFilename()));
 		         star.setSt_icon(uploadIcon.getOriginalFilename());
-		      }else {
-		    	  star.setSt_icon("");
 		      }
 		  //스타회원 프로필 사진
 	      MultipartFile uploadProfile = multipartRequest.getFile("uploadProfile");
@@ -118,8 +116,6 @@ public class StarControllerD {
 	    	  System.out.println("path="+path);
 	    	  uploadProfile.transferTo(new File(path, uploadProfile.getOriginalFilename()));
 	         star.setSt_pic(uploadProfile.getOriginalFilename());
-	      }else {
-	    	  star.setSt_pic("");
 	      }
 	      
 	    //스타회원 배너 사진
@@ -129,11 +125,9 @@ public class StarControllerD {
 	    	  System.out.println("path="+path);
 	    	  uploadBanner.transferTo(new File(path, uploadBanner.getOriginalFilename()));
 	         star.setSt_banner(uploadBanner.getOriginalFilename());
-	      }else {
-	    	  star.setSt_banner("");
 	      }
 		starService.updateStarMember(star); //star값 받아서 update문실행
-		return "mgt/star/starList"; //스타회원 목록으로 
+		return "redirect:/management/star/starList"; //스타회원 목록으로 
 	}
 	
 	//스타회원 삭제

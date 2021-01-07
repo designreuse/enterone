@@ -56,11 +56,13 @@ div #dataTable_filter{
 			location.href="${pageContext.request.contextPath}/management/aboard/aboardInsertForm";
 		});
 		
+		
+		//소속사 오디션 공지사항 상세보기
 		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
 		table.on("click","tr a",function(){ //게시물 tr에 제목 클릭했을때 ~
 			/* alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호 */
-			var cnoc_no = $(this).parent().prev().text();
-			location.href="${pageContext.request.contextPath}/management/noticesDetail?cnoc_no="+cnoc_no;	
+			var abo_no = $(this).parent().prev().text();
+			location.href="${pageContext.request.contextPath}/management/aboard/aboardDetail?abo_no="+abo_no;	
 		});//end 게시물 제목 클릭
 		
 		
@@ -83,6 +85,8 @@ div #dataTable_filter{
 				dataType: 'json', //결과값 Json형태로
 				success: function(response) {
 			    	if(response != null && response !="") {
+			    		alert("해당 항목이 삭제되었습니다.");
+			    		$('#dataTable').DataTable().clear().destroy();
 			    		aboardList();
 			    	}  
 			    }, 
@@ -131,22 +135,17 @@ div #dataTable_filter{
 		}) */
 	}//end cnoticeListResult
 </script>
-<script>
-if("${msg}"!=null && "${msg}"!=""){
-	alert("${msg}");
-}
-</script>
      <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>공지사항</h1>
+            <h1>오디션공지</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">공지사항</li>
+              <li class="breadcrumb-item active">오디션공지</li>
             </ol>
           </div>
         </div>

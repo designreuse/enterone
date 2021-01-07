@@ -74,7 +74,7 @@ public class GoodsControllerD {
 		    	  goods.setGo_pic("");
 		      }
 			goodsServiceD.insertGoods(goods);
-		return "mgt/goods/goodsList";
+		return "redirect:/management/goods/goodsList";
 	}
 	//굿즈,행사 목록 삭제
 	@RequestMapping(value = "/management/goods/goodsDelete")
@@ -109,8 +109,6 @@ public class GoodsControllerD {
 		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
 		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
 		         goods.setGo_detail(sumFile);
-		      }else {
-		    	  goods.setGo_detail("");
 		      }
 	      }
 	      MultipartHttpServletRequest multipartRequest1 = (MultipartHttpServletRequest) request;
@@ -121,10 +119,8 @@ public class GoodsControllerD {
 		    	  System.out.println("path="+path);
 		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
 		         goods.setGo_pic(multipartFile1.getOriginalFilename());
-		      }else {
-		    	  goods.setGo_pic("");
 		      }
 		      goodsServiceD.updateGoods(goods);
-		return "mgt/goods/goodsList";
+		return "redirect:/management/goods/goodsList";
 	}
 }

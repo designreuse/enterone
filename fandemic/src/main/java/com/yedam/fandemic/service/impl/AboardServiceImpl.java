@@ -26,9 +26,21 @@ public class AboardServiceImpl  implements AboardService{
 	}
 
 
-	@Override
+	@Override //소속사 오디션 공지사항 삭제
 	public int deleteAboard(Aboard aboard) {
 		return dao.deleteAboard(aboard);
+	}
+
+
+	@Override //소속사 오디션 공지사항 상세보기
+	public Aboard aboardDetail(Aboard aboard) {
+		return dao.aboardDetail(aboard);
+	}
+
+
+	@Override //소속사 오디션 공지사항 수정
+	public int updateAboard(Aboard aboard) {
+		return dao.updateAboard(aboard);
 	}
 
 }

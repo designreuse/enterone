@@ -118,6 +118,7 @@ div #dataTable_filter{
 				dataType: 'json', //결과값 Json형태로
 				success: function(response) {
 			    	if(response != null && response !="") {
+			    		$('#dataTable').DataTable().clear().destroy();
 			    		goodsList();
 			    	}  
 			    }, 

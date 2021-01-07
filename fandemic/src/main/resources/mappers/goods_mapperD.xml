@@ -55,6 +55,7 @@
 		FROM GOODS G, STAR S
 		WHERE G.ST_ID = S.ST_ID(+)
 		AND G.COM_ID=#{com_id}
+		ORDER BY G.GO_NO DESC
 	</select>
 <!-- 굿즈,행사목록 삭제 -->
 	<delete id="deleteGoods" parameterType="Goods">
@@ -82,12 +83,12 @@
 			<if test="go_price !=null">,GO_PRICE=#{go_price}</if>
 			<if test="go_content !=null">,GO_CONTENT=#{go_content}</if>
 			<if test="go_stock !=null">,GO_STOCK=#{go_stock}</if>
-			,GO_LIMITED=#{go_limited}
+			<if test="go_limited !=null">,GO_LIMITED=#{go_limited}</if>
 			,GO_UNTSDATE=#{go_untsdate}
 			,GO_UNTEDATE=#{go_untedate}
 			,GO_UNTTIME=#{go_unttime}
-			,GO_PIC=#{go_pic}
-			,GO_DETAIL=#{go_detail}
+			<if test="go_pic !=null">,GO_PIC=#{go_pic}</if>
+			<if test="go_detail !=null">,GO_DETAIL=#{go_detail}</if>
 		</set>
 		WHERE GO_NO= #{go_no}
 	</update>

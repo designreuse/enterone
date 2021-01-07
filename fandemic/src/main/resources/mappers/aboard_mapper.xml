@@ -8,7 +8,7 @@
 		SELECT *
 		FROM ABOARD
 		WHERE COM_ID=#{com_id}
-		ORDER BY ABO_NO
+		ORDER BY ABO_NO DESC
 	</select>
 <!-- 오디션 공지사항 등록 -->
 	<insert id="insertAboard" parameterType="Aboard">
@@ -44,23 +44,22 @@
 		</foreach>
 	</delete>
 	
-	<!-- 공지사항 상세보기 조회 -->
-	<select id="getCnoticeDetail" parameterType="Cnotice" resultType="Cnotice">
+<!-- 오디션 공지사항 상세보기 조회 -->
+	<select id="aboardDetail" parameterType="Aboard" resultType="Aboard">
 		SELECT * 
-		FROM CNOTICE
-		WHERE CNOC_NO=#{cnoc_no}
+		FROM ABOARD
+		WHERE ABO_NO=#{abo_no}
 	</select>
 
-	<!-- 공지사항 수정 -->
-	<update id="updateCnotice" parameterType="Cnotice">
-		UPDATE CNOTICE
+<!-- 오디션 공지사항 수정 -->
+	<update id="updateAboard" parameterType="Aboard">
+		UPDATE Aboard
 		<set>
-			<if test="cnoc_title != null">cnoc_title=#{cnoc_title}</if>
-			<if test="cnoc_content != null">,cnoc_content=#{cnoc_content}</if>
-			<if test="cnoc_file != null">,cnoc_file=#{cnoc_file}</if>
-			<if test="conc_banner != null">,conc_banner=#{conc_banner}</if>
+			<if test="abo_title != null">abo_title=#{abo_title}</if>
+			<if test="abo_content != null">,abo_content=#{abo_content}</if>
+			<if test="abo_pic != null">,abo_pic=#{abo_pic}</if>
 		</set> 
-		WHERE CNOC_NO= #{cnoc_no}
+		WHERE ABO_NO= #{abo_no}
 	
 	</update>
 

@@ -278,7 +278,7 @@
 								<tr width="100%">
 									<td colspan="1" align="left"><label>한정판여부<font size="2" color="blue">(필수)</font></label></td>
 									<td colspan="3" align="left">
-										<select name="go_limited" class="go_limited form-control" style="width:150px;">
+										<select name="go_limited" class="go_limited form-control" style="width:150px;" disabled="disabled">
 											<option value="1" <c:if test="${goods.go_limited==1}">selected</c:if>>O</option>
 											<option value="0" <c:if test="${goods.go_limited==0}">selected</c:if>>X</option>
 										</select>

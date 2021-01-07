@@ -49,11 +49,7 @@
 	});//end ready function
 	
 	function CnoticeFormCheck(){ //유효성검사(비번입력했는지안했는지.)
-	    if($("table .st_pw").val()==null||$("table .st_pw").val()==''){
-			alert("비밀번호를 입력하세요.")
-			$("table .st_pw").focus();
-			event.preventDefault();
-		}else if($("table .st_introduce").val()==null||$("table .st_introduce").val()==""){
+	    if($("table .st_introduce").val()==null||$("table .st_introduce").val()==""){
 			alert("소개글을 입력하세요.")
 			$("table .st_introduce").focus();
 			event.preventDefault();
