@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.fandemic.impl.AboardMapper">
+<!-- 오디션 공지사항 목록 조회 -->
+	<select id="getAboardList" parameterType="Aboard" resultType="Aboard">
+		SELECT *
+		FROM ABOARD
+		WHERE COM_ID=#{com_id}
+		ORDER BY ABO_NO
+	</select>
+<!-- 오디션 공지사항 등록 -->
+	<insert id="insertAboard" parameterType="Aboard">
+		<selectKey order="BEFORE" keyProperty="abo_no" resultType="string">
+			SELECT MAX(NVL(ABO_NO, 1))+1
+			FROM ABOARD
+		</selectKey>
+		INSERT INTO ABOARD (	abo_no, 
+								abo_title, 
+								com_id,
+								abo_subject,
+								abo_time,
+								abo_pic,
+								abo_content
+								
+								)
+	 	                VALUES(
+	 	               			#{abo_no},
+	 	               			#{abo_title},
+	 	               			#{com_id},
+	 	               			#{abo_subject},
+	 	               			SYSDATE,
+	 	               			#{abo_pic},
+	 	               			#{abo_content})
+	</insert>	
+<!-- 오디션공지사항 삭제 -->	
+	<delete id="deleteAboard">
+		DELETE FROM ABOARD
+		WHERE ABO_NO IN 
+		<foreach collection="abo_nos" item="no"
+				open="(" close=")" separator=","> <!-- collection이 필드명 -->
+			#{no}
+		</foreach>
+	</delete>
+	
+	<!-- 공지사항 상세보기 조회 -->
+	<select id="getCnoticeDetail" parameterType="Cnotice" resultType="Cnotice">
+		SELECT * 
+		FROM CNOTICE
+		WHERE CNOC_NO=#{cnoc_no}
+	</select>
+
+	<!-- 공지사항 수정 -->
+	<update id="updateCnotice" parameterType="Cnotice">
+		UPDATE CNOTICE
+		<set>
+			<if test="cnoc_title != null">cnoc_title=#{cnoc_title}</if>
+			<if test="cnoc_content != null">,cnoc_content=#{cnoc_content}</if>
+			<if test="cnoc_file != null">,cnoc_file=#{cnoc_file}</if>
+			<if test="conc_banner != null">,conc_banner=#{conc_banner}</if>
+		</set> 
+		WHERE CNOC_NO= #{cnoc_no}
+	
+	</update>
+
+</mapper>

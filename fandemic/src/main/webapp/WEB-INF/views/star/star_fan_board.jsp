@@ -16,7 +16,7 @@
 		$(".trFboardList").on("click","tr",function(){
 			var fbo_no = $(this).children("#fbo_no").val();
 			fboardView(fbo_no);
-			fboardViewsUpdate(fbo_no)
+			fboardViewsUpdate(fbo_no);
 		})
 		 
 		var checkUnload = true; //글 작성중 나가면 사라지는 것 방지
@@ -75,6 +75,14 @@
 			fboardListView();
 		});
 		
+		//댓글 등록 요청
+		$(".btnFboardReplyInsert").on("click",function(){
+			checkUnload = false;//경고창 중복 제거
+			if(replyFormCheck() == true){ //유효성검사
+				replyInsert();//댓글 등록 요청 보내기
+			}
+		});
+		
 	});//버튼 액션 종료
 
 	
@@ -120,6 +128,7 @@
 	
 	//게시글 조회 요청
 	function fboardView(fbo_no) {
+		replyListView(fbo_no);
 		$.ajax({
 			url:'${pageContext.request.contextPath}/star/fanBoard/read/',
 			type:'GET',
@@ -133,6 +142,7 @@
 	
 	//게시글 조회 응답
 	function fboardViewResult(data) {
+		formReset();//이전 입력 데이터 삭제
 		//게시물 뷰
 		$('#fbo_title').text("[" + data.fbo_subject + "] " + data.fbo_title);
 		$('#fbo_sub_no').text(data.fbo_sub_no+ " | ");
@@ -149,6 +159,10 @@
 		$("select[name='fbo_subject']").val(data.fbo_subject).attr("selected", "selected");
 		$('#summernote').summernote('code',data.fbo_content)
 		$("input:text[name='fbo_hashtag']").val(data.fbo_hashtag);
+		
+		//댓글 defalut값
+		$("input:text[name='sfbo_no']").val(data.fbo_no);
+		$("input:text[name='st_id']").val(data.st_id);
 		
 		$(".fboardListSection").hide();
 		$(".fboardInsertSection").hide();
@@ -267,6 +281,64 @@
 		});
 	}
 	
+	
+	
+	
+	//댓글 목록 요청
+	function replyListView(fbo_no) {
+		$.ajax({
+			url:'${pageContext.request.contextPath}/star/fanBoard/reply',
+			type:'GET',
+			data: { fbo_no : fbo_no },
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+			success: replyListViewResult
+		});
+	}
+	
+	//댓글 목록 응답
+	function replyListViewResult(data) {
+		$("#replyListView").empty();
+		$.each(data,function(idx,re){
+			$('<div><hr>')
+			.append($('<input type=\'hidden\' id=\'sfbo_no\'>').val(re.sfbo_no))
+			.append($('<div class = \'row\'>').html(re.fan_name + '&nbsp;' +re.re_time))
+			.append($('<div class = \'row\'>').html(re.re_content))
+			.appendTo('#replyListView');
+		});//each
+	}
+	
+	
+	//댓글 등록 요청
+	function replyInsert(){
+		var fbo_no = $("input:text[name='fbo_no']").val();	
+		$.ajax({ 
+		    url: "${pageContext.request.contextPath}/star/fanBoard/reply",  
+		    type: 'POST',  
+		    data : $("#formReply").serialize(),
+		    success: function(response) {
+		    	if(response == true) {
+		    		fboardView(fbo_no);//게시물 재 출력
+		    	}
+		    }, 
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    }
+		 });
+	}
+	
+	//댓글 유효성 체크
+	function replyFormCheck(){
+		if($("textarea[name='re_content']").val()==null || $("textarea[name='re_content']").val()==''){
+			alert("내용을 입력하세요.")
+			$("textarea[name='re_content']").focus();
+			event.preventDefault();
+		}else{
+			return true;
+		}
+	}
+	
 </script>
 
 <!-- 팬 게시판 게시글 목록 -->
@@ -368,15 +440,17 @@
 	
 	<!-- 댓글-->
 	<div class="container">
+		<div id = "replyListView">
+			<!-- 댓글 출력 장소 -->	
+		</div>
 		<hr>
-		<div class = "row">이름 작성일</div>
-		<div class = "row">댓글</div>		
-		<hr>
-		<form>
-			<div  class = "row">
-				<textarea class = "col-xl-11 col-md-10 col-12 fboardReply" rows = 3 placeholder="댓글"></textarea>
+		<form id="formReply">
+			<div class = "row">
+				<input style="display:none;" name = "sfbo_no" />
+				<input style="display:none;" name = "st_id" />
+				<textarea class = "col-xl-11 col-md-10 col-12 fboardReply" name="re_content" rows = 3 placeholder="댓글"></textarea>
 				<div class = "col-xl-1 col-md-2 col-12 btnFboardReply">
-					<button type="button"  class="btnFboardReply btn btn-primary py-2 px-4" id="">작성</button>
+					<button type="button"  class="btnFboardReplyInsert btn btn-primary py-2 px-4">작성</button>
 				</div>
 			</div>
 		</form>

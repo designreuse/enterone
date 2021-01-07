@@ -74,7 +74,7 @@
 	</select>	
 	
 	
-<!-- 스타회원정보수정 -->
+<!-- 굿즈,행사 정보수정 -->
 	<update id="updateGoods" parameterType="Goods">
 		UPDATE GOODS
 		<set>

@@ -285,10 +285,10 @@
           
           <!--오디션관리  -->
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="${pageContext.request.contextPath}/management/aboard/aboard" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                	오디션관리
+                	소속사오디션관리
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>
