@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -87,7 +88,6 @@ public class GoodsController {
 	
 
 	// Goods 상세화면 - 장바구니 insert
-
 	@RequestMapping(value = "/goodsDetail", method = RequestMethod.GET)
 	@ResponseBody
 	public void cartInsert(HttpSession session, HttpServletRequest request, Cart cart) throws IOException {
@@ -116,6 +116,16 @@ public class GoodsController {
 		return new ModelAndView("goods/goods_cart");
 	}
 	
+	// 장바구니 화면 - 삭제
+	@RequestMapping(value = "/cart", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean cartDel(HttpSession session, HttpServletRequest request, Cart cart) throws IOException {
+		Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
+		cart.setMem_id(member.getMem_id());						// 불러온 member에서 mem_id만 cart에 담기
+		cart.setCart_no(request.getParameter("cart_no"));
+		goMapper.cartDel(cart);
+		return true;
+	}
 
 	/*
 	 * https://badstorage.tistory.com/39

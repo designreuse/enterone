@@ -7,10 +7,19 @@
 <script
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
    
-<script>   
+<script>
    $(function() {      
       //화면 시작 시 목록 출력
       fboardListView();
+      
+	    //클릭시 해당 게시글 조회
+		$("#notify").on("click",function(){
+			var ddd = $(this).parents().children("#re_no").val();
+			console.log(ddd);
+			alert('바보')
+		});
+         
+      
       
       //tr클릭시 해당 게시글 조회
       $(".trFboardList").on("click","tr",function(){
@@ -82,7 +91,6 @@
             replyInsert();//댓글 등록 요청 보내기
          }
       });
-      
    });//버튼 액션 종료
 
    
@@ -162,7 +170,6 @@
       
       //댓글 defalut값
       $("input:text[name='sfbo_no']").val(data.fbo_no);
-      $("input:text[name='st_id']").val(data.st_id);
       
       $(".fboardListSection").hide();
       $(".fboardInsertSection").hide();
@@ -298,16 +305,32 @@
    }
    
    //댓글 목록 응답
-   function replyListViewResult(data) {
-      $("#replyListView").empty();
-      $.each(data,function(idx,re){
-         $('<div><hr>')
-         .append($('<input type=\'hidden\' id=\'sfbo_no\'>').val(re.sfbo_no))
-         .append($('<div class = \'row\'>').html(re.fan_name + '&nbsp;' +re.re_time))
-         .append($('<div class = \'row\'>').html(re.re_content))
-         .appendTo('#replyListView');
-      });//each
-   }
+	function replyListViewResult(data) {
+		$("#replyListView").empty();
+		$.each(data,function(idx,re){
+			var id = "${member.mem_id}"//session아이디 값
+			var uls = "<ul class = 'fboardUl'>";// 작성된 댓글 아래 달아주는 버튼들
+			if(id == re.mem_id){//로그인 아이디와 작성자 비교
+				var li1 = "<li id='update'>수정</li>";
+				var li2 = "<li id='delete'>삭제</li>";					
+			}else{
+				var li1 = "";
+				var li2 = "";		
+			}
+			var li3 = "<li id='notify'>신고</li>";
+			var ule = "</ul>";
+			
+			var ul = uls+li1+li2+li3+ule;
+			$('<div class = \'replyInfo\'><hr>')
+			.append($('<input type=\'hidden\' id=\'re_no\'>').val(re.re_no))
+			.append($('<div class = \'row\'>').html(re.fan_name + '&nbsp;' +re.re_time))
+			.append($('<div class = \'row\'>').html(re.re_content))
+			.append($('<div class = \'row\'>').append(ul))
+			.appendTo('#replyListView');
+		});//each
+	}
+   
+
    
    
    //댓글 등록 요청
@@ -337,6 +360,46 @@
       }else{
          return true;
       }
+   }
+   
+	//댓글 수정 요청
+	function replyUpdate() {
+		var fbo_no = $("input:text[name='fbo_no']").val();  
+		var re_no = "";
+		
+		$.ajax({ 
+		    url: "${pageContext.request.contextPath}/star/fanBoard/reply/update/", 
+		    type: 'POST', 
+	        data : { re_no : re_no },
+		    success: function(response) {
+				if(response == true) {
+					fboardView(fbo_no)
+				}
+		    }, 
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    } 
+		});
+   }
+   
+   //댓글 삭제 요청
+   function replyDelete() {
+		var fbo_no = $("input:text[name='fbo_no']").val();   
+		var re_no = "";
+		
+		$.ajax({ 
+			url: "${pageContext.request.contextPath}/star/fanBoard/reply/delete/", 
+			type: 'POST', 
+			data : { re_no : re_no },
+			success: function(response) {
+				if(response == true) {
+					fboardView(fbo_no)
+				}
+		    },
+			error:function(xhr, status, message) { 
+			    alert(" status: "+status+" er:"+message);
+			} 
+		});
    }
    
 </script>
@@ -441,13 +504,12 @@
    <!-- 댓글-->
    <div class="container">
       <div id = "replyListView">
-         <!-- 댓글 출력 장소 -->   
+         <!-- 댓글 출력 장소 -->  
       </div>
       <hr>
       <form id="formReply">
          <div class = "row">
             <input style="display:none;" name = "sfbo_no" />
-            <input style="display:none;" name = "st_id" />
             <textarea class = "col-xl-11 col-md-10 col-12 fboardReply" name="re_content" rows = 3 placeholder="댓글"></textarea>
             <div class = "col-xl-1 col-md-2 col-12 btnFboardReply">
                <button type="button"  class="btnFboardReplyInsert btn btn-primary py-2 px-4">작성</button>

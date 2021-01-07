@@ -47,6 +47,9 @@
 			console.log(newVal);
 		});
 	
+		/*-------------------
+		Cart Insert
+		--------------------- */
 		$('#cart').on('click', function() {
 			$.ajax({
 				url : '${pageContext.request.contextPath}/goodsDetail',

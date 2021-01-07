@@ -55,5 +55,17 @@
 		FROM GOODS G, CART C, MEMBER M
 		WHERE G.GO_NO = C.GO_NO AND C.MEM_ID = M.MEM_ID AND C.MEM_ID = #{mem_id}
 	</select>
+	
+	<!-- 장바구니 삭제 -->
+	<delete id="cartDel" parameterType="Cart">
+		DELETE FROM CART
+		WHERE CART_NO = #{cart_no}
+	</delete>
+	
+	<!-- 장바구니 수량 update -->
+<!--
+ 	<update id="">
+	</update>
+-->
 
 </mapper>
