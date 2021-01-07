@@ -31,7 +31,6 @@ public class FboardController {
 	@RequestMapping(value="/star/fanBoard/list", method=RequestMethod.GET)
 	@ResponseBody
 	public List<Fboard> fboardList(HttpServletRequest request, Model model, Fboard fboard) {
-		
 		fboard.setSt_id(request.getParameter("id"));
 		return  fboardService.getFboardList(fboard);
 	}
@@ -40,8 +39,7 @@ public class FboardController {
 	@RequestMapping(value="/star/fanBoard/read/", method=RequestMethod.GET)
 	@ResponseBody
 	public Fboard fboardView(HttpServletRequest request, Fboard fboard, Model model) throws IOException {		
-		fboard.setFbo_sub_no(request.getParameter("no"));
-		fboard.setSt_id(request.getParameter("id"));
+		fboard.setFbo_no(request.getParameter("fbo_no"));
 		return fboardService.getFboardInfo(fboard);
 	}
 	

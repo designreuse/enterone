@@ -37,7 +37,7 @@
 	<select id="getFboardInfo" parameterType="Fboard" resultType="Fboard">
 		SELECT * 
 		FROM v_fbolist 
-		WHERE fbo_sub_no = #{fbo_sub_no} and st_id = #{st_id}
+		WHERE fbo_no = #{fbo_no}
 	</select>
 	
 	<update id="updateFboard" parameterType="Fboard">
