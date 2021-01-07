@@ -33,6 +33,20 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skins/all.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/demo.css">
+      
+       <!-- JS -->
+      <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/jquery.migrate.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.js"></script>
+      <script>var $target_end=$(".best-of-the-week");</script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/jquery-number/jquery.number.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/easescroll/jquery.easeScroll.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/e-magz.js"></script>
 </head>
 <body>
 <header class="primary">
@@ -365,18 +379,6 @@
       </footer>
       <!-- End Footer -->
 
-      <!-- JS -->
-      <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/js/jquery.migrate.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.js"></script>
-      <script>var $target_end=$(".best-of-the-week");</script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/jquery-number/jquery.number.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/easescroll/jquery.easeScroll.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/js/e-magz.js"></script>
+     
 </body>
 </html>

@@ -4,10 +4,6 @@
 <head>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resourcesSns/css/sns.css">
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-
 <!-- jQuery Modal -->
 
 
@@ -92,8 +88,7 @@
 							+ e.target.result
 							+ '" title="'
 							+ escape(f.name)
-							+ '"/> \
-</div>';
+							+ '"/></div>';
 					$("#thumbnails").append(div);
 				};
 			})(file, idx);
@@ -134,7 +129,14 @@
 		});
 
 		// 		SNS슬라이드 함수
-	});
+
+		
+		
+		$('.clicktextfil').on('click',function(event) {
+									var modal = $('#exampleModal5')
+									modal.modal('show');
+		})
+	})
 </script>
 
 
@@ -187,8 +189,45 @@
 						</c:if> <input class="clicktextfil" value="오늘은 어떤 글을 올려볼까요?" readonly="readonly">
 					</span>
 				</div>
+				
+				
+				
+				
 				<!-- SNS등록 모달창 -->
 				
+				
+				<div class="modal fade" id="exampleModal5" >
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="card" style="width: 18rem;">
+						<img src="..." class="card-img-top" alt="...">
+						<div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">Some quick example text to build on the
+								card title and make up the bulk of the card's content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						</div>
+					</div>
+
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 				<!-- SNS등록창-->
