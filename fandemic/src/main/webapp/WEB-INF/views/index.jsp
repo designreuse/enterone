@@ -53,38 +53,39 @@
 	            
 	            success:function(data){
 	            	
-	            	var last=0; //결과가 3개 미만이면
-	            	for ( var i=0; i<3; i++) {
+	            	if(data == null) {
 	            		
-	            		var stName = data[i].ST_NAME;
+	            		$("#myStar3").html($("<h5>").html("팬 가입을 하세요"));
 	            		
-	            		if (stName == null) {
-	            			last = i; // i값 last에 저장해서
-	            		} else {
-	            			last=3;
-	            			$("#st" + (i+1)).text(data[i].ST_NAME);	
-	            		}
-	            			            		
+	            	} else {
+	            		var last=0; //결과가 3개 미만이면
+		            	for ( var i=0; i<3; i++) {
+		            		
+		            		var stName = data[i].ST_NAME;
+		            		
+		            		if (stName == null) {
+		            			last = i; // i값 last에 저장해서
+		            		} else {
+		            			last=3;
+		            			$("#st" + (i+1)).text(data[i].ST_NAME);	
+		            		}
+		            			            		
+		            	}
+		            	
+		            	for(var i=0; i<=last; i++) { // last 만큼만 for문
+		            		var img = data[i].ST_ICON;
+		            		if ( img == null || img == '') {
+		            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/member_pic/no-profile.jpg");
+		            		} else {
+		            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/star/" + img);
+		            		}
+		            	}
+		            	
+		            	for(var i=0; i<=last; i++) {
+		            		var img = data[i].CNT;
+		            		$("#cnt" + (i+1)).text(data[i].CNT);	            
+		            	}
 	            	}
-	            	
-	            	for(var i=0; i<=last; i++) { // last 만큼만 for문
-	            		var img = data[i].ST_ICON;
-	            		if ( img == null || img == '') {
-	            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/member_pic/no-profile.jpg");
-	            		} else {
-	            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/star/" + img);
-	            		}
-	            	}
-	            	
-	            	for(var i=0; i<=last; i++) {
-	            		var img = data[i].CNT;
-	            		$("#cnt" + (i+1)).text(data[i].CNT);	            
-	            	}
-	            	
-	            	
-	            	
-	            	
-
 	            },error:function(){ alert("실패"); }
 	         });
 		}
@@ -629,7 +630,8 @@ ul.tabs li.current span {
 
 									</div>
 									<!-- 내 스타목록 -->
-									<div class="featured-author-center" align="center">
+									<div class="featured-author-center" align="center" id="myStar3">
+
 										<table>
 											<tr>
 												<td align="center"><img id="stImg1" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; "></td>
