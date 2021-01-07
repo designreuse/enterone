@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.TraineeMapper;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.QnA;
 import com.yedam.fandemic.vo.Trainee;
 
 
@@ -67,9 +68,28 @@ public class AuditionController {
 		
 		traineeMapper.inserttr(trainee);
 
-		return  "audition/trainee_list";
+		return  "audition/trainee_list";	
+	}	
+	
+	//연습생 활동 글 등록 페이지
+	@RequestMapping(value = "/traineewrite") //주소
+	public ModelAndView traineewrite(HttpServletResponse response) throws IOException {
+		return new ModelAndView("audition/trainee_write");
 	
 	}	
+	
+	@RequestMapping(value = "/sendactivity")
+	public ModelAndView trineewritesend(HttpServletResponse response, QnA qna) throws IOException {
+
+		traineeMapper.SendActivity(qna);
+		return new ModelAndView("redirect:traineewrite");
+	}
+	
+	
+	
+	
+	
+	
 	//닉네임인 중복확인	
 		@RequestMapping(value="/audition/nickCheck")
 		@ResponseBody

@@ -26,6 +26,13 @@
 	 	               			#{tr_branch1},
 	 	               			#{tr_branch2})
 	</insert>
+	<!-- 연습생 최신순 조회 -->
+	<!--  <select id="traineeList" parameterType="Trainee" resultType="Trainee">
+		SELECT *
+		FROM 
+		WHERE COM_ID=#{com_id}
+		ORDER BY ABO_NO
+	</select>-->
 	
 	
   </mapper>
