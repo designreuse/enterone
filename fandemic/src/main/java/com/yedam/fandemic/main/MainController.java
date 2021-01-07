@@ -71,7 +71,7 @@ public class MainController {
 		return new ModelAndView("index");
 	}
 	
-	// 아작스로 마이스타 뿌려야 되나?
+
 	@RequestMapping("/myStar3")
 	@ResponseBody
 	public List<HashMap<String, Object>> myStar3(HttpServletRequest request) {
@@ -80,10 +80,9 @@ public class MainController {
 		String id = request.getParameter("mem_id");
 		myStar3 = dao.myStar3(id);
 		
+		// 게시글 등록을 1개도 안했으면 
 		if (myStar3.isEmpty()) {
-			// 게시글 등록을 1개도 안했으면 
 			myStar3 = dao.myStarList(id); // 새로 조회해서 덮어써서
-			System.out.println("============>" + myStar3.get(0));
 			return myStar3; //반환
 		} else {
 			return myStar3; // 1개라도 등록했으면 바로 리턴

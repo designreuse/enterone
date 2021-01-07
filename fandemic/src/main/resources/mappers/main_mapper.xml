@@ -31,8 +31,10 @@
 	
 	<!-- 내스타 3 가입o , 게시글x  -->
 	<select id="myStarList" resultType="map">
-		SELECT * 
-		FROM FAN 
-		WHERE MEM_ID = #{id}
+		SELECT S.ST_NAME, S.ST_ICON 
+		FROM FAN F , STAR S 
+		WHERE F.ST_ID = S.ST_ID
+		AND MEM_ID = #{id}
+		ORDER BY FAN_NO
 	</select>
 </mapper>
