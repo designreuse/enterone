@@ -17,6 +17,11 @@ public class ReplyServiceImpl implements ReplyService{
 	public List<Reply> getReplyList(Reply reply) {
 		return replyDAO.getReplyList(reply);
 	}
+	
+	@Override
+	public Reply getReply(Reply reply) {
+		return replyDAO.getReply(reply);
+	}
 
 	@Override
 	public int insertReply(Reply reply) {
@@ -32,4 +37,5 @@ public class ReplyServiceImpl implements ReplyService{
 	public int deleteReply(Reply reply) {
 		return replyDAO.deleteReply(reply);
 	}
+
 }

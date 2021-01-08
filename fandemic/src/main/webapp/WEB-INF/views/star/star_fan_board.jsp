@@ -83,23 +83,29 @@
 		   }
 		});
       
-	    //댓글 신고
+				
+	    //댓글 신고 요청
 		$("body").on("click",".btnNotifyReply",function(){
-			var re_no = $(this).parents().children("#re_no").val();
-			console.log(re_no);
-			alert('신고할꺼얌?')
+			var re_no = $(this).parent().parent().parent().data("no");
+			alert(re_no);
 		});
 		   
-		//댓글 수정
+		//댓글 수정 화면 띄우기
 		$("body").on("click",".btnUpdateReply",function(){
-			var re_no = $(this).parents().children("#re_no").val();
-			console.log(re_no);
-			alert('수정되었습니다.')
+			var replyOrigin = $(this).parent().parent().parent();
+			replyUpdateForm(replyOrigin);
+			$(".btnUpdateReply").hide();
 		});
 		
-		//댓글 삭제
+		//댓글 수정 요청
+		$("body").on("click",".btnFboardReplyUpdate",function(){
+			var reply = $(this).parent().parent().children();
+			replyUpdate(reply);
+		});
+		
+		//댓글 삭제 요청
 		$("body").on("click",".btnDeleteReply",function(){
-			var re_no = $(this).parents().children("#re_no").val();
+			var re_no = $(this).parent().parent().parent().data("no");
 			replyDelete(re_no);
 		});
 	});//버튼 액션 종료
@@ -302,22 +308,23 @@
    
    
    
-   //댓글 목록 요청
-   function replyListView(fbo_no) {
-      $.ajax({
-         url:'${pageContext.request.contextPath}/star/fanBoard/reply',
-         type:'GET',
-         data: { fbo_no : fbo_no },
-         error:function(xhr,status,msg){
-            alert("상태값 :" + status + " Http에러메시지 :"+msg);
-         },
-         success: replyListViewResult
-      });
-   }
+	//댓글 목록 요청
+	function replyListView(fbo_no) {
+	   $.ajax({
+	      url:'${pageContext.request.contextPath}/star/fanBoard/reply',
+	      type:'GET',
+	      data: { fbo_no : fbo_no },
+	      error:function(xhr,status,msg){
+	         alert("상태값 :" + status + " Http에러메시지 :"+msg);
+	      },
+	      success: replyListViewResult
+	   });
+	}
    
-   //댓글 목록 응답
+	//댓글 목록 응답
 	function replyListViewResult(data) {
 		$("#replyListView").empty();
+		
 		$.each(data,function(idx,re){
 			var id = "${member.mem_id}"//session아이디 값
 			var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
@@ -336,10 +343,9 @@
 			var ule = "</ul>";
 			
 			var ul = uls+li1+li2+li3+ule;
-			$('<div class = \'replyInfo\'><hr>')
-			.append($('<input type=\'hidden\' id=\'re_no\'>').val(re.re_no))
+			$("<div class = 'replyInfo' data-no="+re.re_no+"><hr>") 
 			.append($('<div class = \'row\'>').html(re.fan_name + '&nbsp;' +re.re_time))
-			.append($('<div class = \'row\'>').html(re.re_content))
+			.append($('<div class = \'row replyText\'>').html(re.re_content))
 			.append($('<div class = \'row flex-row-reverse\'>').append(ul))
 			.appendTo('#replyListView');
 		});//each
@@ -361,7 +367,8 @@
              }
           }, 
           error:function(xhr, status, message) { 
-              alert(" status: "+status+" er:"+message);
+              /* alert(" status: "+status+" er:"+message); */
+              alert("로그인 후 이용해주세요.");
           }
        });
    }
@@ -377,18 +384,35 @@
       }
    }
    
-	//댓글 수정 요청
-	function replyUpdate() {
-		var fbo_no = $("input:text[name='fbo_no']").val();  
-		var re_no = "";
+   
+   
+   
+   
+	//댓글 수정을 위한 기본값, 틀 형성
+	function replyUpdateForm(replyOrigin) {
+		var re_no = replyOrigin.data("no"); 
+		var re_content = replyOrigin.find(".replyText").text() 
 		
+		var textarea = "<hr><div class = 'row'><textarea class = 'col-xl-11 col-md-10 col-12 fboardReplyUpdate fboardReply' name='re_content' rows = 3 data-no="+re_no+">"
+		var div = "</textarea><div class = 'col-xl-1 col-md-2 col-12 btnFboardReply'>";
+		var btn = "<button type='button'  class='btnFboardReplyUpdate btn btn-primary py-2 px-4'>수정</button></div>";		
+		var dib = textarea + re_content + div + btn;
+		replyOrigin.replaceWith(dib);
+	}
+
+	//댓글 수정 요청 
+	function replyUpdate(reply) {
+		var fbo_no = $("input:text[name='fbo_no']").val();
+		var re_no = reply.data("no");
+		var re_content = reply.parent().find(".fboardReplyUpdate").val();
 		$.ajax({ 
 		    url: "${pageContext.request.contextPath}/star/fanBoard/reply/update/", 
 		    type: 'POST', 
-	        data : { re_no : re_no },
+		       data : { re_no : re_no, re_content : re_content },
 		    success: function(response) {
 				if(response == true) {
-					fboardView(fbo_no)
+					alert('수정되었습니다.');
+					fboardView(fbo_no);//화면 새로고침
 				}
 		    }, 
 		    error:function(xhr, status, message) { 
@@ -400,7 +424,6 @@
    //댓글 삭제 요청
    function replyDelete(re_no) {
 		var fbo_no = $("input:text[name='fbo_no']").val();   
-		
 		$.ajax({ 
 			url: "${pageContext.request.contextPath}/star/fanBoard/reply/delete/", 
 			type: 'POST', 

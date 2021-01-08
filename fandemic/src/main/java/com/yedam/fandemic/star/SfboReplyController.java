@@ -20,34 +20,32 @@ import com.yedam.fandemic.vo.Reply;
 
 @Controller
 public class SfboReplyController {
-   
 	@Autowired
 	ReplyService replyService;
 	
-	//게시물 목록 출력
+	//댓글 목록 출력
 	@RequestMapping(value="/star/fanBoard/reply", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Reply> fboardList(HttpServletRequest request, Model model, Reply reply) {
+	public List<Reply> replyList(HttpServletRequest request, Model model, Reply reply) {
 		reply.setSfbo_no(request.getParameter("fbo_no"));      
 		return  replyService.getReplyList(reply);
 	}
 	
-	//입력
-	@RequestMapping(value="/star/fanBoard/reply", method=RequestMethod.POST)
-	@ResponseBody
-	public boolean fboardInsert(HttpServletRequest request, Reply reply,  HttpSession session) throws IOException {
-		Member member = (Member) session.getAttribute("member");
-		reply.setMem_id(member.getMem_id());
-		
-		replyService.insertReply(reply);
-		return true;
-	}
+   //입력
+   @RequestMapping(value="/star/fanBoard/reply", method=RequestMethod.POST)
+   @ResponseBody
+   public boolean fboardInsert(HttpServletRequest request, Reply reply,  HttpSession session) throws IOException {
+       Member member = (Member) session.getAttribute("member");
+       reply.setMem_id(member.getMem_id());
+       
+       replyService.insertReply(reply);
+      return true;
+   }
 	
 	//수정
 	@RequestMapping(value="/star/fanBoard/reply/update", method=RequestMethod.POST)
 	@ResponseBody
-	public boolean fboardUpdate(HttpServletRequest request, Reply reply) throws IOException {
-		reply.setRe_no(request.getParameter("re_no"));
+	public boolean replyUpdate(HttpServletRequest request, Reply reply) throws IOException {
 		replyService.updateReply(reply);
 		return true;
 	}
@@ -55,8 +53,7 @@ public class SfboReplyController {
     //삭제
 	@RequestMapping(value="/star/fanBoard/reply/delete/", method=RequestMethod.POST)
 	@ResponseBody
-	public boolean fboardDelete(HttpServletRequest request, Reply reply) throws IOException {
-	   	reply.setRe_no(request.getParameter("re_no"));
+	public boolean replyDelete(HttpServletRequest request, Reply reply) throws IOException {
 		replyService.deleteReply(reply);
 		return true;
 	}
