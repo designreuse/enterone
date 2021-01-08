@@ -8,90 +8,101 @@
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
    
 <script>
-   $(function() {      
-      //화면 시작 시 목록 출력
-      fboardListView();
-      
-	    //클릭시 해당 게시글 조회
-		$("#notify").on("click",function(){
-			var ddd = $(this).parents().children("#re_no").val();
-			console.log(ddd);
-			alert('바보')
+	$(function() {      
+		//화면 시작 시 목록 출력
+		fboardListView();
+		
+		//tr클릭시 해당 게시글 조회
+		$(".trFboardList").on("click","tr",function(){
+		   var fbo_no = $(this).children("#fbo_no").val();
+		   fboardView(fbo_no);
+		   fboardViewsUpdate(fbo_no);
+		})
+		 
+		var checkUnload = true; //글 작성중 나가면 사라지는 것 방지
+		
+		//글 등록 화면으로 이동
+		$(".btnInputFboardShow").on("click",function(){
+		    $(window).on("beforeunload", function(){ //글 작성중 나가면 사라지는 것 방지
+		        if(checkUnload) return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
+		    });
+		   $(".fboardListSection").hide();
+		   $(".fboardInsertSection").show();
+		   $("#btnInputFboardAction").show();
 		});
-         
+		
+		//등록버튼
+		$("#btnInputFboardAction").on("click",function(){
+		   checkUnload = false; //경고창 중복 제거
+		   if(fboardFormCheck() == true){ //유효성검사
+		      fboardInsert() //글 등록 요청 보내기
+		   }
+		});
+		
+		//수정 페이지 이동 버튼
+		$("#btnUpdateFboard").on("click",function(){
+		   fboardUpdateView();
+		});
+		
+		//수정 페이지 이동 버튼
+		$("#btnUpdateFboardAction").on("click",function(){
+		   checkUnload = false; //경고창 중복 제거
+		   if(fboardFormCheck() == true){ //유효성검사
+		      fboardUpdate(); //글 등록 요청 보내기
+		   }
+		});
+		
+		//삭제 요청 버튼
+		$("#btnDeleteFboardAction").on("click",function(){
+		   if(confirm("정말로 글을 삭제하시겠습니까?") == true){
+		      fboardDelete();            
+		   }
+		});
+		
+		//취소버튼
+		$(".btnCancelFboard").on("click",function(){
+		   checkUnload = false; //경고창 중복 제거
+		   if(confirm("작성중인 글을 종료하시겠습니까?") == true){//취소 확인받기
+		      //게시물 등록 요청
+		      fboardListView();
+		   }
+		});
+		
+		//목록보기
+		$(".btnFboardListView").on("click",function(){
+		   checkUnload = false;//경고창 중복 제거
+		   //목록보기 요청
+		   fboardListView();
+		});
+		
+		//댓글 등록 요청
+		$(".btnFboardReplyInsert").on("click",function(){
+		   checkUnload = false;//경고창 중복 제거
+		   if(replyFormCheck() == true){ //유효성검사
+		      replyInsert();//댓글 등록 요청 보내기
+		   }
+		});
       
-      
-      //tr클릭시 해당 게시글 조회
-      $(".trFboardList").on("click","tr",function(){
-         var fbo_no = $(this).children("#fbo_no").val();
-         fboardView(fbo_no);
-         fboardViewsUpdate(fbo_no);
-      })
-       
-      var checkUnload = true; //글 작성중 나가면 사라지는 것 방지
-
-      //글 등록 화면으로 이동
-      $(".btnInputFboardShow").on("click",function(){
-          $(window).on("beforeunload", function(){ //글 작성중 나가면 사라지는 것 방지
-              if(checkUnload) return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
-          });
-         $(".fboardListSection").hide();
-         $(".fboardInsertSection").show();
-         $("#btnInputFboardAction").show();
-      });
-      
-      //등록버튼
-      $("#btnInputFboardAction").on("click",function(){
-         checkUnload = false; //경고창 중복 제거
-         if(fboardFormCheck() == true){ //유효성검사
-            fboardInsert() //글 등록 요청 보내기
-         }
-      });
-      
-      //수정 페이지 이동 버튼
-      $("#btnUpdateFboard").on("click",function(){
-         fboardUpdateView();
-      });
-      
-      //수정 페이지 이동 버튼
-      $("#btnUpdateFboardAction").on("click",function(){
-         checkUnload = false; //경고창 중복 제거
-         if(fboardFormCheck() == true){ //유효성검사
-            fboardUpdate(); //글 등록 요청 보내기
-         }
-      });
-      
-      //삭제 요청 버튼
-      $("#btnDeleteFboardAction").on("click",function(){
-         if(confirm("정말로 글을 삭제하시겠습니까?") == true){
-            fboardDelete();            
-         }
-      });
-      
-      //취소버튼
-      $(".btnCancelFboard").on("click",function(){
-         checkUnload = false; //경고창 중복 제거
-         if(confirm("작성중인 글을 종료하시겠습니까?") == true){//취소 확인받기
-            //게시물 등록 요청
-            fboardListView();
-         }
-      });
-      
-      //목록보기
-      $(".btnFboardListView").on("click",function(){
-         checkUnload = false;//경고창 중복 제거
-         //목록보기 요청
-         fboardListView();
-      });
-      
-      //댓글 등록 요청
-      $(".btnFboardReplyInsert").on("click",function(){
-         checkUnload = false;//경고창 중복 제거
-         if(replyFormCheck() == true){ //유효성검사
-            replyInsert();//댓글 등록 요청 보내기
-         }
-      });
-   });//버튼 액션 종료
+	    //댓글 신고
+		$("body").on("click",".btnNotifyReply",function(){
+			var re_no = $(this).parents().children("#re_no").val();
+			console.log(re_no);
+			alert('신고할꺼얌?')
+		});
+		   
+		//댓글 수정
+		$("body").on("click",".btnUpdateReply",function(){
+			var re_no = $(this).parents().children("#re_no").val();
+			console.log(re_no);
+			alert('수정되었습니다.')
+		});
+		
+		//댓글 삭제
+		$("body").on("click",".btnDeleteReply",function(){
+			var re_no = $(this).parents().children("#re_no").val();
+			replyDelete(re_no);
+		});
+	});//버튼 액션 종료
 
    
    
@@ -309,15 +320,19 @@
 		$("#replyListView").empty();
 		$.each(data,function(idx,re){
 			var id = "${member.mem_id}"//session아이디 값
-			var uls = "<ul class = 'fboardUl'>";// 작성된 댓글 아래 달아주는 버튼들
-			if(id == re.mem_id){//로그인 아이디와 작성자 비교
-				var li1 = "<li id='update'>수정</li>";
-				var li2 = "<li id='delete'>삭제</li>";					
+			var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
+			if(id == re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
+				var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
+				var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";					
 			}else{
 				var li1 = "";
 				var li2 = "";		
 			}
-			var li3 = "<li id='notify'>신고</li>";
+			if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
+				var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
+			}else{
+				var li3 = "";	
+			}
 			var ule = "</ul>";
 			
 			var ul = uls+li1+li2+li3+ule;
@@ -325,7 +340,7 @@
 			.append($('<input type=\'hidden\' id=\'re_no\'>').val(re.re_no))
 			.append($('<div class = \'row\'>').html(re.fan_name + '&nbsp;' +re.re_time))
 			.append($('<div class = \'row\'>').html(re.re_content))
-			.append($('<div class = \'row\'>').append(ul))
+			.append($('<div class = \'row flex-row-reverse\'>').append(ul))
 			.appendTo('#replyListView');
 		});//each
 	}
@@ -383,9 +398,8 @@
    }
    
    //댓글 삭제 요청
-   function replyDelete() {
+   function replyDelete(re_no) {
 		var fbo_no = $("input:text[name='fbo_no']").val();   
-		var re_no = "";
 		
 		$.ajax({ 
 			url: "${pageContext.request.contextPath}/star/fanBoard/reply/delete/", 
@@ -393,7 +407,8 @@
 			data : { re_no : re_no },
 			success: function(response) {
 				if(response == true) {
-					fboardView(fbo_no)
+					fboardView(fbo_no);
+					alert('삭제되었습니다.');
 				}
 		    },
 			error:function(xhr, status, message) { 

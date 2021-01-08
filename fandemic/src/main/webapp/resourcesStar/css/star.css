@@ -46,17 +46,31 @@
 
 /* 게시글 상단 바 */
 .fboardUl{
-	  list-style:none;
+	list-style:none;
     margin:0;
     padding:0;
 }
 .fboardUl li{
-	 margin: 0 0 0 0;
+	margin: 0 0 0 0;
     padding: 0 0 0 0;
     border : 0;
-    float: left;
+    display: inline;
 }
 
-.fboardUl li:hover{
+/* 댓글 바 */
+.replyUl{
+	list-style:none;
+    margin:0;
+    padding:0;
+}
+.replyUl li{
+	display:inline-block;
+	margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border : 0;
+    
+}
+
+.replyUl li:hover{
 	text-decoration: underline;
 }
