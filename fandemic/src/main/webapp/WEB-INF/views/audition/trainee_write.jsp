@@ -80,26 +80,19 @@ body {
 					</div>
 					<div class="form-group col-md-8">
 						<form action="sendactivity" class="form-horizontal">
-							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-2 control-label">게시판
-									번호</label>
-								<div class="col-sm-10">
-									<input id="ac_no" name="ac_no" type="text" class="form-control"
-										value="${activity.ac_no}" readonly>
-								</div>
-							</div>
+							
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">회원ID</label>
 								<div class="col-sm-10">
 									<input id="mem_id" name="mem_id" type="text"
-										class="form-control" value="${member.mem_id}" readonly>
+										class="form-control" value="${sessionScope.member.mem_id}" readonly>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">작성일</label>
 								<div class="col-sm-10">
 									<input id="ac_time" name="ac_time" type="text"
-										class="form-control" value="${activity.ac_time}" readonly>
+										class="form-control" value="${ac_time}" readonly>
 								</div>
 							</div>
 							<div class="form-group">
