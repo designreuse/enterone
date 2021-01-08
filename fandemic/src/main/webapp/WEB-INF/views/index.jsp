@@ -5,7 +5,13 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 
 <script>
+	var maxNo=0;
+	
 	$(function() {
+		
+		
+		
+		
 		$('ul.tabs li').click(function() {
 
 			var tab_id = $(this).attr('data-tab');
@@ -15,9 +21,30 @@
 
 			$(this).addClass('current');
 			$("#" + tab_id).addClass('current');
+			
+			
 
 		});
+		
+		
+		
 
+		$('.sscroll').scroll(function(){
+	        var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
+	        var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
+	        var contentH = $('#divContent').height(); //문서 전체 내용을 갖는 div의 높이
+
+	       if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
+	    	   
+	    	   newSns();
+	       
+	    	   
+	    	   
+	    	    
+	        } 
+	    });
+		
+		
 		var ctx = $('#myChart');
 		var myChart = new Chart(ctx, {
 				type : 'pie',
@@ -92,14 +119,87 @@
 		
 
 	});
+	
+	function newSns() {
+		
+		
+		var maxSnsNo = 0;
+		
+		if(maxNo == 0) {
+			maxSnsNo = "${maxSnsNo}";
+		} else {
+			maxSnsNo = maxNo;
+		}
+		
+		console.log(maxSnsNo);
+		$.ajax({
+	            url :'${pageContext.request.contextPath}/newSns',
+	            type:"post",
+	            dataType:'json',
+	            data : {maxSnsNo : maxSnsNo },
+	            success:function(data){
+
+	            	if ( data != null) {
+	            	$(data).each(function(index, item){
+      					
+	            		var imgs = '<img src="${pageContext.request.contextPath}/images/member_pic/'+ item.mem_pic + '" class="snsImg"><br />';
+	            		var tr = $("<tr />");
+	                	var td = $("<td />");
+	                	var td2 = $("<td />");
+	                	$(td).append(imgs);
+	                	$(td2).append().html("<hr style='background-color: red'>" + item.sns_time +"<br>" + item.sns_title +"<br>" + item.sns_content);
+	                	tr.append(td, td2);
+	                    $('#snsTbl').append(tr);
+	                    
+	                    maxNo = item.sns_no;
+      				});
+
+	            }
+	           },error:function(){ alert("실패"); }
+	         });
+		
+		
+		
+    	
+    	
+		
+	}
 </script>
 
 <style>
 
+  .sscroll {
+    width: 250px;
+    height: 140px;
+    overflow: auto;
+  }
+  .sscroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  .sscroll::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+  }
+  .sscroll::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+  
+  
 .inputimg {
     margin: 10px;
     border-radius: 70%;
     object-fit: cover;
+}
+
+.snsImg {
+	width: 60px;
+	height: 60px;
+	margin: 10px;
+    border-radius: 70%;
+    object-fit: cover;
+
 }
 
 ul.tabs {
@@ -162,6 +262,13 @@ ul.tabs li.current span {
 	background-size: auto !important;
 }
 
+hr {
+   border: 0;
+   height: 2px;
+   background: #ccc;
+
+}
+
 </style>
 
 
@@ -221,28 +328,28 @@ ul.tabs li.current span {
 				</div>
 				<!-- 차트 -->
 				<div class="row">
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div align="left" class="chart-container" style="position: relative; padding: 20px">
-							<canvas id="myChart"  width="300" height="250"></canvas>
+					<div> 
+						<div align="left" class="chart-container" style=" padding: 20px">
+							<canvas id="myChart"></canvas>
 						</div>
+					</div>
+				 	
+				
+
 					</div>
 					
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<div class="chart-container" style="position: relative; padding: 20px">
-							<h1>SNS</h1>
-						</div>
-					</div>
-				</div>
+				
+				
 				
 					
-				<div class="banner">
+				<%-- <div class="banner">
 					<a href="#"> <img
 						src="${pageContext.request.contextPath}/resources/images/ads.png"
 						alt="Sample Article">
 					</a>
-				</div>
-				<a href="sns">sns로 가기</a>
-				<div class="line transparent little"></div>
+				</div> --%>
+				
+				<%-- <div class="line transparent little"></div>
 				<div class="row">
 					<div class="col-md-6 col-sm-6 trending-tags">
 						<h1 class="title-col">Trending Tags</h1>
@@ -409,11 +516,15 @@ ul.tabs li.current span {
 							</article>
 						</div>
 					</div>
-				</div>
-				<div class="line top">
+				</div> --%>
+				
+				
+				
+				<!-- <div class="line top">
 					<div>Just Another News</div>
-				</div>
-				<div class="row">
+				</div> -->
+				
+				<%-- <div class="row">
 					<article class="col-md-12 article-list">
 						<div class="inner">
 							<figure>
@@ -556,8 +667,12 @@ ul.tabs li.current span {
 							</div>
 						</div>
 					</article>
-				</div>
+				</div> --%>
+				
+				
+				
 			</div>
+
 			<div class="col-xs-6 col-md-4 sidebar" id="sidebar"
 				style="padding-top: 80px;">
 				<div class="sidebar-title for-tablet">Sidebar</div>
@@ -741,11 +856,10 @@ ul.tabs li.current span {
 							</c:forEach>
 						</table>
 					</div>
-
-
-
 				</aside>
-				<aside>
+				
+				
+				<!-- <aside>
 					<div class="aside-body">
 						<form class="newsletter">
 							<div class="icon">
@@ -765,8 +879,10 @@ ul.tabs li.current span {
 								email.</p>
 						</form>
 					</div>
-				</aside>
-				<aside>
+				</aside> -->
+				
+				
+				<%-- <aside>
 					<ul class="nav nav-tabs nav-justified" role="tablist">
 						<li class="active"><a href="#recomended"
 							aria-controls="recomended" role="tab" data-toggle="tab"> <i
@@ -920,8 +1036,10 @@ ul.tabs li.current span {
 							</div>
 						</div>
 					</div>
-				</aside>
-				<aside>
+				</aside> --%>
+				
+				
+				<!-- <aside>
 					<h1 class="aside-title">
 						Videos
 						<div class="carousel-nav" id="video-list-nav">
@@ -941,8 +1059,10 @@ ul.tabs li.current span {
 							<li><a data-youtube-id="DnGdoEa1tPg" data-action="magnific"></a></li>
 						</ul>
 					</div>
-				</aside>
-				<aside id="sponsored">
+				</aside> -->
+				
+				
+				<%-- <aside id="sponsored">
 					<h1 class="aside-title">Sponsored</h1>
 					<div class="aside-body">
 						<ul class="sponsored">
@@ -964,14 +1084,58 @@ ul.tabs li.current span {
 							</a></li>
 						</ul>
 					</div>
-				</aside>
+				</aside> --%>
+				
+				
 			</div>
+			
+		<!-- sns 뿌리기 -->
+		<div class="container" align="center">
+			<div class="sscroll" style="overflow-y:scroll; width:100%; height:500px; padding: 20px";>
+				
+					<div id="divContent" style="border : 1px solid #8ac121;">  <!-- style="border: 1px solid  #4176E0 ;" -->
+						<table id="snsTbl">
+						<c:forEach items="${snsList}" var="sns">
+							<tr>
+								<c:if test="${sns.mem_type ne 0 }">
+									<td><img class="snsImg" src="${pageContext.request.contextPath}/images/member_pic/${sns.mem_pic}" style="width: 60px; height: 60px; margin: 20px;"></td><!-- 프로필 사진 -->
+								</c:if>
+								<c:if test="${sns.mem_type eq 0 }">
+									<td><img class="snsImg" src="${sns.mem_pic}" style="width: 60px; height: 60px; margin: 20px;"></td><!-- 프로필 사진 -->
+								</c:if>
+								<c:if test="${sns.mem_pic eq null}">
+									<td><img class="snsImg" src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"style="width: 60px; height: 60px; margin: 20px;"></td><!-- 프로필 사진 -->
+								</c:if>
+								<td style="margin: 20px;">
+									<hr>
+									${sns.sns_time} <br>
+									${sns.sns_title} <br>
+									<c:if test="${fn:length(sns.sns_content) > 200 }">
+										${fn:substring(sns.sns_content,0,200)}...
+									</c:if>
+									<c:if test="${fn:length(sns.sns_content) <= 200 }">
+										${fn:substring(sns.sns_content,0,200)}
+									</c:if>
+								</td>
+							</tr>
+							
+						</c:forEach>
+							
+						</table>
+						
+					</div>
+				</div>
 		</div>
+		
+		
+		
+		
 	</div>
 </section>
 
 <section class="best-of-the-week">
-	<div class="container">
+
+	<%-- <div class="container">
 		<h1>
 			<div class="text">Best Of The Week</div>
 			<div class="carousel-nav" id="best-of-the-week-nav">
@@ -1126,7 +1290,7 @@ ul.tabs li.current span {
 				</div>
 			</article>
 		</div>
-	</div>
+	</div> --%>
 </section>
 
 

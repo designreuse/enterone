@@ -22,14 +22,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.MainMapper;
+import com.yedam.fandemic.impl.SnsMapper;
 import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Melon;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Sns;
 
 @Controller
 public class MainController {
-	@Autowired
-	MainMapper dao;
+	@Autowired MainMapper dao;
+	@Autowired SnsMapper snsDao;
 
 	@RequestMapping(value = "/")
 	public ModelAndView Main(Model model) throws IOException {
@@ -67,6 +69,19 @@ public class MainController {
 		stCnt = dao.fanCount();
 		model.addAttribute("stCnt", stCnt);
 		
+		
+		//sns
+		List<Sns> snsList = new ArrayList<Sns>();
+		Sns sns = new Sns();
+		snsList = snsDao.selectSns(sns);
+		
+		String maxSnsNo = snsList.get(0).getSns_no();
+		System.out.println("=======처음 조회: " + maxSnsNo);
+		model.addAttribute("maxSnsNo", maxSnsNo); // 이후 등록된 건 조회를 위해 no max값 저장
+		model.addAttribute("snsList", snsList);
+			
+
+
 
 		return new ModelAndView("index");
 	}
@@ -95,5 +110,22 @@ public class MainController {
 		}
 
 	}
+	
+	//스크롤 내릴 때마다 select 다시
+	
+	@RequestMapping("/newSns")
+	@ResponseBody
+	public List<Sns> newSns(HttpServletRequest request) {
+		
+		List<Sns> newSns = new ArrayList<Sns>();
+		String maxSnsNo = request.getParameter("maxSnsNo");
+		System.out.println("===========새로 조회: " + maxSnsNo);
+		newSns = dao.newSns(maxSnsNo);
+		
+		return newSns;
+		
 
+	}
+	
+	
 }

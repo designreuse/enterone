@@ -37,4 +37,20 @@
 		AND MEM_ID = #{id}
 		ORDER BY FAN_NO
 	</select>
+	
+	
+	<select id="newSns" resultType="Sns" parameterType="string">
+		SELECT S.*, M.MEM_PIC MEM_PIC, M.MEM_TYPE MEM_TYPE 
+		FROM SNS S, MEMBER M 
+		WHERE S.MEM_ID=M.MEM_ID
+		AND SNS_NO > #{maxNo}        
+		ORDER BY SNS_NO
+
+	</select>
+	
+	
+	
+	
+	
+	
 </mapper>
