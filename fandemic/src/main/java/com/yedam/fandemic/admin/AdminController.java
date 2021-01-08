@@ -201,7 +201,12 @@ public class AdminController {
 	
 	
 	
-	
+	//유튜브 테스트
+	@RequestMapping("/youtube")
+	public String youtobe() {
+		
+		return "admin/youtubeTest";
+	}
 	
 	
 	
