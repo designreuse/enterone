@@ -109,21 +109,37 @@ public class GoodsController {
 	@RequestMapping(value = "/cart")
 	public ModelAndView cartList(HttpSession session, Model model, Cart cart) throws IOException {
 		Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
-		cart.setMem_id(member.getMem_id());						// 불러온 member에서 mem_id만 cart에 담기
-		// System.out.println(member.getMem_id());
-		
-		model.addAttribute("cart", goMapper.cartList(cart));
-		return new ModelAndView("goods/goods_cart");
+		if ( member == null ) { //로그인하지 않은 상태이면 로그인 화면으로 이동
+			return new ModelAndView("/login");
+		} else {
+			cart.setMem_id(member.getMem_id());					// 불러온 member에서 mem_id만 cart에 담기
+			model.addAttribute("cart", goMapper.cartList(cart));
+			return new ModelAndView("goods/goods_cart");
+		}
 	}
 	
 	// 장바구니 화면 - 삭제
-	@RequestMapping(value = "/cart", method = RequestMethod.POST)
+	@RequestMapping(value = "/cart/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean cartDel(HttpSession session, HttpServletRequest request, Cart cart) throws IOException {
 		Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
 		cart.setMem_id(member.getMem_id());						// 불러온 member에서 mem_id만 cart에 담기
 		cart.setCart_no(request.getParameter("cart_no"));
 		goMapper.cartDel(cart);
+		return true;
+	}
+	
+
+	// 장바구니 화면 - 수량 변경
+	
+	@RequestMapping(value = "/cart/update", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean cartUpdate(HttpSession session, HttpServletRequest request, Cart cart) throws IOException {
+		Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
+		cart.setMem_id(member.getMem_id());						// 불러온 member에서 mem_id만 cart에 담기
+		cart.setCart_qty(request.getParameter("cart_qty"));
+		cart.setCart_no(request.getParameter("cart_no"));
+		goMapper.cartUpdate(cart);
 		return true;
 	}
 

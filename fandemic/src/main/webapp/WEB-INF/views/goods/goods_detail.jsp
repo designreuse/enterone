@@ -44,7 +44,7 @@
 			}
 			$button.parent().find('input').val(newVal); // 변경된 수량
 			amount = newVal;
-			console.log(newVal);
+			console.log("수량: " + newVal);
 		});
 	
 		/*-------------------

@@ -14,8 +14,12 @@
 <script src="${pageContext.request.contextPath}/resourcesGoods/js/main.js"></script>
 <script>
 	$(function() {
-		
+		/* 
 		var amount = $('.pro-qty').children('input').val();
+		var price = parseInt($('.shoping__cart__price').find('button').val());
+		var total = price * amount;
+		console.log("가격 : " + cart_no + ", 수량: " + amount);
+ */
 		console.log(amount);
 		/*-------------------
 		Quantity change
@@ -39,22 +43,58 @@
 			}
 			$button.parent().find('input').val(newVal); // 변경된 수량
 			amount = newVal;
-			console.log(newVal);
+			console.log("수량: " + newVal);
 		});
 		
 		/*-------------------
+		합계 금액 계산
+		--------------------- */
+		$('.btnCartUpdate').on('click', function() {
+			var cart_no = $(this).data("no");
+
+			$.ajax({
+				url : '${pageContext.request.contextPath}/cart/update',
+				type : 'POST',
+				data : { cart_no : cart_no , cart_qty : amount },
+				success :function(response) {
+					if(response == true) {
+						alert("수량이 변경되었습니다.");
+						location.reload(); //장바구니 화면 재출력
+						
+					}
+				}, error : function(xhr, status){
+					alert("status: " + status);
+				}
+			});
+		});
+		
+			
+		/*-------------------
 		Cart Delete
 		--------------------- */
-		$('#btnCartDelete').on('click', function() {
+		$('.btnCartDelete').on('click', function() {
+			var cart_no = $(this).data("no");
+			// console.log(cart_no)
 			if(confirm("선택한 항목을 장바구니에서 삭제하시겠습니까?") == true){
-				cartDel();            
-	         }
-	      });
-		
-		function cartDel() {
-			//console.log("삭제가능함");
-			var cart_no = 
-		}
+				$.ajax({
+					url : '${pageContext.request.contextPath}/cart/delete',
+					type : 'POST',
+					data : { cart_no : cart_no },
+					success : function(response) {
+						if(response == true) {
+							alert("삭제");
+							location.reload(); //장바구니 화면 재출력
+						}
+					},
+					error : function(xhr, status, message){
+						alert("status: " + status + ", error: " + message);
+					}
+				});
+			} else {
+				alert("삭제가 취소되었습니다.");
+			}
+		});
+ 
 
 	});
 </script>
@@ -91,25 +131,27 @@
 								
 							</thead>
 							<c:forEach var="cart" items="${cart}">
-							<tbody>
+							<tbody data-no="${cart.cart_no}">
 								<tr>
-									<td class="shoping__cart__item"><img
+									<td class="shoping__cart__item">
+									<a href="${pageContext.request.contextPath}/goodsDetail/${cart.go_no}">
+									<img
 										src="${pageContext.request.contextPath}/images/goods/${cart.go_pic}"
-										alt="이미지" style="width: 100px; height: 100px;">
-										<h5>${cart.go_name}</h5><span id="cartNo" value="${cart.cart_no}"></span>
+										alt="이미지" style="width: 100px; height: 100px;"></a>
+										<a href="${pageContext.request.contextPath}/goodsDetail/${cart.go_no}"><h5>${cart.go_name}</h5></a>
 									</td>
-									<td class="shoping__cart__price"><fmt:formatNumber value="${cart.go_price}" pattern="##,###" />원</td>
+									<td class="shoping__cart__price"><fmt:formatNumber value="${cart.go_price}" pattern="##,###" />원<button value="${cart.go_price}" style="display: none;"></button></td>
 									<td class="shoping__cart__quantity">
 										<div class="quantity">
 											<div class="pro-qty" style="width: 110px;">
 												<input type="text" value="${cart.cart_qty}">
 											</div>
-											<input type="button" value="수정" style="height: 40px; background: #f5f5f5; border: none; padding-left: 15px; padding-right: 15px;">
+											<input type="button" class="btn btnCartUpdate" value="수정" data-no="${cart.cart_no}" style="height: 40px; background: #f5f5f5; border: none; padding-left: 15px; padding-right: 15px;">
 										</div>
 									</td>
 									<td class="shoping__cart__total"><fmt:formatNumber value="${cart.go_price}" pattern="##,###" />원</td>
 									<td class="shoping__cart__item__close" style="text-align: center;">
-										<span class="icon_close"><button type="button" class="btn" id="btnCartDelete" style="background-color: transparent;">x</button></span>
+										<span class="icon_close"><button type="button" class="btn btnCartDelete" data-no="${cart.cart_no}" style="background-color: transparent;">x</button></span>
 									</td>
 								</tr>
 							</tbody>

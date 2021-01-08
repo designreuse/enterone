@@ -23,7 +23,10 @@ public interface GoodsMapper {
 	public List<Cart> cartList(Cart cart);
 	
 	// Cart 삭제
-	public Cart cartDel(Cart cart);
+	public int cartDel(Cart cart);
+	
+	// Cart 수량 변경
+	public int cartUpdate(Cart cart);
 	
 	// paging
 	public int goCount();	// Goods 목록

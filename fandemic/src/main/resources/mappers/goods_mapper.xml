@@ -63,9 +63,11 @@
 	</delete>
 	
 	<!-- 장바구니 수량 update -->
-<!--
- 	<update id="">
+ 	<update id="cartUpdate" parameterType="Cart">
+	 	UPDATE CART
+		SET CART_QTY = #{cart_qty}
+		WHERE CART_NO = #{cart_no}
 	</update>
--->
+
 
 </mapper>
