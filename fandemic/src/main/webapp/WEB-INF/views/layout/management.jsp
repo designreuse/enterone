@@ -19,7 +19,7 @@
   <!-- iCheck -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesAdmin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesAdmin/plugins/jqvmap/jqvmap.min.css">
+  <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesAdmin/plugins/jqvmap/jqvmap.min.css"> --%>
   <!-- Theme style -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesAdmin/dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
@@ -28,6 +28,8 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesAdmin/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesAdmin/plugins/summernote/summernote-bs4.min.css">
+  
+  
   <style>
   	.cnotices-button{
   		float:right;	
@@ -37,7 +39,8 @@
   <!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
   <!-- jQuery -->
-<script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jquery/jquery.min.js"></script>	
+<%-- <script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jquery/jquery.min.js"></script> --%>
+<script src="${pageContext.request.contextPath}/resourcesSchedule/vendor/js/jquery.min.js"></script> 	
 <!-- jQuery UI 1.11.4 -->
 <script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -45,14 +48,14 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> --%>
 <!-- ChartJS -->
 <script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
+<%-- <!-- JQVMap -->
 <script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> --%>
 <!-- jQuery Knob Chart -->
 <script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
@@ -66,10 +69,10 @@
 <script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="${pageContext.request.contextPath}/resourcesAdmin/dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
+<%-- <!-- AdminLTE for demo purposes -->
 <script src="${pageContext.request.contextPath}/resourcesAdmin/dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="${pageContext.request.contextPath}/resourcesAdmin/dist/js/pages/dashboard.js"></script> 	
+ --%><!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<%-- <script src="${pageContext.request.contextPath}/resourcesAdmin/dist/js/pages/dashboard.js"></script> --%> 	
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -439,7 +442,9 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<!-- AdminLTE for demo purposes -->
+<script src="${pageContext.request.contextPath}/resourcesAdmin/dist/js/demo.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/resourcesAdmin/plugins/jqvmap/jquery.vmap.min.js"></script> --%>
 
 </body>
 </html>

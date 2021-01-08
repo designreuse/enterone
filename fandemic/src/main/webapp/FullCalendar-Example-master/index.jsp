@@ -1,102 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <link rel=" shortcut icon" href="${pageContext.request.contextPath}/resourcesSchedule/image/favicon.ico">
+<!DOCTYPE html>
+<html lang="ko">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesSchedule/vendor/css/fullcalendar.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesSchedule/vendor/css/bootstrap.min.css">
-    <link rel="stylesheet" href='${pageContext.request.contextPath}/resourcesSchedule/vendor/css/select2.min.css' />
-    <link rel="stylesheet" href='${pageContext.request.contextPath}/resourcesSchedule/vendor/css/bootstrap-datetimepicker.min.css' />
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FullCalendar Example</title>
+    <link rel=" shortcut icon" href="image/favicon.ico">
+
+    <link rel="stylesheet" href="vendor/css/fullcalendar.min.css" />
+    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href='vendor/css/select2.min.css' />
+    <link rel="stylesheet" href='vendor/css/bootstrap-datetimepicker.min.css' />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesSchedule/css/main.css">
-   
-<section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Calendar</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Calendar</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>      
-    <section class="content">
-    <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
-            <div class="sticky-top mb-3">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">Draggable Events</h4>
-                </div>
-                <div class="card-body">
-                  <!-- the events -->
-                  <div id="external-events">
-                    <div class="external-event bg-success">Lunch</div>
-                    <div class="external-event bg-warning">Go home</div>
-                    <div class="external-event bg-info">Do homework</div>
-                    <div class="external-event bg-primary">Work on UI design</div>
-                    <div class="external-event bg-danger">Sleep tight</div>
-                    <div class="checkbox">
-                      <label for="drop-remove">
-                        <input type="checkbox" id="drop-remove">
-                        remove after drop
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Create Event</h3>
-                </div>
-                <div class="card-body">
-                  <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                    <ul class="fc-color-picker" id="color-chooser">
-                      <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
-                      <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
-                      <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
-                      <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
-                      <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
-                    </ul>
-                  </div>
-                  <!-- /btn-group -->
-                  <div class="input-group">
-                    <input id="new-event" type="text" class="form-control" placeholder="Event Title">
+    <link rel="stylesheet" href="css/main.css">
 
-                    <div class="input-group-append">
-                      <button id="add-new-event" type="button" class="btn btn-primary">Add</button>
-                    </div>
-                    <!-- /btn-group -->
-                  </div>
-                  <!-- /input-group -->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- /.col -->
-<!-- 여기 -->
-<div class="container">
+</head>
+
+<body>
+    <div class="container">
 
         <!-- 일자 클릭시 메뉴오픈 -->
         <div id="contextMenu" class="dropdown clearfix">
             <ul class="dropdown-menu dropNewEvent" role="menu" aria-labelledby="dropdownMenu"
                 style="display:block;position:static;margin-bottom:5px;">
-                <li><a tabindex="-1" href="#">방송출연</a></li>
-                <li><a tabindex="-1" href="#">콘서트</a></li>
-                <li><a tabindex="-1" href="#">행사</a></li>
-                <li><a tabindex="-1" href="#">사인회</a></li>
+                <li><a tabindex="-1" href="#">카테고리1</a></li>
+                <li><a tabindex="-1" href="#">카테고리2</a></li>
+                <li><a tabindex="-1" href="#">카테고리3</a></li>
+                <li><a tabindex="-1" href="#">카테고리4</a></li>
                 <li class="divider"></li>
-                <li><a tabindex="-1" href="#" data-role="close">닫기</a></li>
+                <li><a tabindex="-1" href="#" data-role="close">Close</a></li>
             </ul>
         </div>
 
@@ -111,9 +48,9 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title"></h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"></h4>
                     </div>
                     <div class="modal-body">
 
@@ -147,10 +84,10 @@
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-type">구분</label>
                                 <select class="inputModal" type="text" name="edit-type" id="edit-type">
-                                    <option value="방송출연">방송출연</option>
-		                            <option value="콘서트">콘서트</option>
-		                            <option value="행사">행사</option>
-		                            <option value="사인회">사인회</option>
+                                    <option value="카테고리1">카테고리1</option>
+                                    <option value="카테고리2">카테고리2</option>
+                                    <option value="카테고리3">카테고리3</option>
+                                    <option value="카테고리4">카테고리4</option>
                                 </select>
                             </div>
                         </div>
@@ -203,10 +140,10 @@
                     <label for="calendar_view">구분별</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
-                            <option value="방송출연">방송출연</option>
-                            <option value="콘서트">콘서트</option>
-                            <option value="행사">행사</option>
-                            <option value="사인회">사인회</option>
+                            <option value="카테고리1">카테고리1</option>
+                            <option value="카테고리2">카테고리2</option>
+                            <option value="카테고리3">카테고리3</option>
+                            <option value="카테고리4">카테고리4</option>
                         </select>
                     </div>
                 </div>
@@ -232,21 +169,18 @@
         <!-- /.filter panel -->
     </div>
     <!-- /.container -->
-    
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-      
-    
-    </section>
-    <!-- /.content -->
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/vendor/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/vendor/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/vendor/js/fullcalendar.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/vendor/js/ko.js"></script>
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/vendor/js/select2.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/vendor/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/js/main.js"></script>
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/js/addEvent.js"></script>
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/js/editEvent.js"></script>
-    <script src="${pageContext.request.contextPath}/resourcesSchedule/js/etcSetting.js"></script>
+
+    <script src="vendor/js/jquery.min.js"></script>
+    <script src="vendor/js/bootstrap.min.js"></script>
+    <script src="vendor/js/moment.min.js"></script>
+    <script src="vendor/js/fullcalendar.min.js"></script>
+    <script src="vendor/js/ko.js"></script>
+    <script src="vendor/js/select2.min.js"></script>
+    <script src="vendor/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/addEvent.js"></script>
+    <script src="js/editEvent.js"></script>
+    <script src="js/etcSetting.js"></script>
+</body>
+
+</html>
