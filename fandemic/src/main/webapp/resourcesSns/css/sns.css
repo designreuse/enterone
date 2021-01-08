@@ -705,6 +705,17 @@ left: 0px;
 	
 }
 
+/* 사진없는 SNS리스트 */
+.outputdiv2 {
+	    height: 170px;
+	margin-bottom: 32px;
+}
+
+.outputdiv {
+height:	277px;
+margin-bottom: 32px;
+}
+
 
 
 /* 모달 상세정보 css */

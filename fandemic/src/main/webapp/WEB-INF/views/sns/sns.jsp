@@ -82,7 +82,7 @@ background-color: #fefefe;
 border-radius: 10px;
     background-color: floralwhite;
     margin-bottom: 50px;
-    height: 280px;
+    height: 100%;
     border-radius: 15px;
 }
 
@@ -165,8 +165,24 @@ border-radius: 10px;
 									var modal = $('#exampleModal5')
 									modal.modal('show');
 		})
-		// SNS상세정보 모달창 띄우기
+		// SNS상세정보 사진O 모달창 띄우기
 		$('.outputdiv').on('click',function(event) {
+			var modal = $('#exampleModal9')
+			var no = $(this).data("no");
+			$.ajax({
+				url : '${pageContext.request.contextPath}/onesnsselect?sns_no=' + no, //파라미터 넘기는 법
+				dataType : 'json',
+				success : function(result) {
+					modal.find('.snstitledetail').text(result.sns_title)
+					modal.find('.content').text(result.sns_content)
+					modal.find('.imgdetailimg').attr("src",result.sns_pic)
+					modal.modal('show');
+				}
+
+			});
+		})
+		// SNS상세정보 사진X
+			$('.outputdiv2').on('click',function(event) {
 			var modal = $('#exampleModal9')
 			var no = $(this).data("no");
 			$.ajax({
@@ -276,7 +292,7 @@ border-radius: 10px;
 							<div id="ex2" style="height: 62%">
 							</div>
 							<a class="content"></a>
-							<a></a>
+							<div class="imgdetail"><img class="imgdetailimg"></div>
 							<a></a>
 							<a></a>
 							<a></a>
@@ -286,7 +302,7 @@ border-radius: 10px;
 				<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" id="btnSubmit">Post</button>
+					<button type="button" class="btn btn-primary" id="">Post</button>
 				</div>
 			</div>
 		</div>
@@ -305,7 +321,7 @@ border-radius: 10px;
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form name="uploadForm" id="uploadForm"
+				<form name="uploadForm" id="uploadForm" 
 					enctype="multipart/form-data" method="post">
 					<div id="ex7">
 						<div class="mtmtitle">
@@ -342,7 +358,7 @@ border-radius: 10px;
 				<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" id="btnSubmit">Post</button>
+					<button type="button" class="btn btn-primary" id="btnSubmit">Post</button>
 				</div>
 				</form>
 			</div>
@@ -352,7 +368,7 @@ border-radius: 10px;
 				<div class="line top">
 					<div>Fan SnS Community</div>
 				</div>
-				<div class="row">
+				<div class="row" style="    padding-bottom: 300px;">
 					<article class="col-md-12 article-list">
 
 						<c:forEach items="${snslist}" var="sns">
@@ -408,9 +424,9 @@ border-radius: 10px;
 								
 							</c:if>
 							<c:if test="${empty sns.sns_pic}">
-							<div class="outputdiv" data-no="${sns.sns_no}">
+							<div class="outputdiv2" data-no="${sns.sns_no}">
 						
-						<div class="inner cinner">
+						<div class="inner">
 						<span> <c:if
 							test="${sns.mem_pic ne null and sns.mem_type eq 0 }">
 							<img class="outputimg" src="${sns.mem_pic}"
@@ -443,6 +459,8 @@ border-radius: 10px;
 												<div>${sns.sns_likes}</div></a>
 										</footer>
 									</div>
+								</div>
+								</div>
 								</div>
 							</c:if>
 
