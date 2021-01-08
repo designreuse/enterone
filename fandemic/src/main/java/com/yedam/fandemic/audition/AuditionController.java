@@ -32,16 +32,7 @@ public class AuditionController {
 	public ModelAndView auditionwork(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/trainee_list");
 	
-	}	
-	
-	@RequestMapping(value = "/auditionwork2") //주소
-	public ModelAndView auditionwork2(HttpServletResponse response) throws IOException {
-		return new ModelAndView("audition/trainee_list2");
-	
-	}	
-	
-	
-	
+	}		
 	
 	
 	//오디션 지원
@@ -78,11 +69,9 @@ public class AuditionController {
 	
 	}	
 	
-	@RequestMapping(value = "/sendactivity")
-	public ModelAndView trineewritesend(HttpServletResponse response, QnA qna) throws IOException {
-
-		traineeMapper.SendActivity(qna);
-		return new ModelAndView("redirect:traineewrite");
+	@RequestMapping(value = "/traineewritere")
+	public ModelAndView traineewritere(HttpServletResponse response) throws IOException {
+		return new ModelAndView("audition/trainee_write");
 	}
 	
 	
