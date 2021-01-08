@@ -74,3 +74,39 @@
 .replyUl li:hover{
 	text-decoration: underline;
 }
+
+/* 해시태그 */
+ ul {
+        padding: 16px 0;
+    }
+
+    ul li {
+        display: inline-block;
+        margin: 0 5px;
+        font-size: 14px;
+        letter-spacing: -.5px;
+    }
+    
+    form {
+        padding-top: 16px;
+    }
+
+    ul li.tag-item {
+        padding: 4px 8px;
+        background-color: #777;
+        color: #000;
+    }
+
+    .tag-item:hover {
+        background-color: #262626;
+        color: #fff;
+    }
+
+    .del-btn {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+    }
+/* https://blog.naver.com/PostView.nhn?blogId=psj9102&logNo=221371543987&categoryNo=20&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
+ */
