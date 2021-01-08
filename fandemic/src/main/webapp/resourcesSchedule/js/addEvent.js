@@ -79,10 +79,21 @@ var newEvent = function (start, end, eventType) {
         editAllDay.prop('checked', false);
         eventModal.modal('hide');
 
+		var insertData = {
+            sch_title: editTitle.val(),
+            sch_startTime: editStart.val(),
+            sch_endTime: editEnd.val(),
+            sch_content: editDesc.val(),
+            sch_type: editType.val(),
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            sch_allDay: false
+        };
+		
         //새로운 일정 저장
         $.ajax({
-            type: "get",
-            url: "",
+            type: "post",
+            url: "${pageContext.request.contextPath}/management/star/insertSchedule",
             data: {
                 //.....
             },
@@ -92,5 +103,5 @@ var newEvent = function (start, end, eventType) {
                 //$('#calendar').fullCalendar('refetchEvents');
             }
         });
-    });
+    }); //end 일정 저장 버튼
 };
