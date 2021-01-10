@@ -122,13 +122,13 @@ var counter = 0;
             alert(value)
         }); 
 
-        $("#tag").on("keypress", function (e) {
-            var self = $(this);
-        
-	        //특수문자 입력 금지  
-	        if((e.keyCode >= 123 && e.keyCode <= 130) || (e.keyCode >= 33 && e.keyCode <= 47) || (e.keyCode >= 58 && e.keyCode <= 64) || (e.keyCode >= 91 && e.keyCode <= 96)){ 
-	        	e.preventDefault();
-	        }
+		$("#tag").on("keypress", function (e) {
+			var self = $(this);
+			
+			//특수문자 입력 금지  
+			if((e.keyCode >= 123 && e.keyCode <= 130) || (e.keyCode >= 33 && e.keyCode <= 47) || (e.keyCode >= 58 && e.keyCode <= 64) || (e.keyCode >= 91 && e.keyCode <= 96)){ 
+				e.preventDefault();
+			}
 
             // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
             if (e.key === "Enter" || e.keyCode == 32) {
