@@ -113,7 +113,7 @@
 									</div>
 									<div class="form-group">
 										<label for="message-text" class="col-form-label">내용:</label>
-										<textarea class="form-control" id="message-text"
+										<textarea class="form-control content" id="message-text"
 											name="lett_content"
 											style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
 									</div>
@@ -134,7 +134,7 @@
 					<div class="modal-dialog" role="document" style="padding-top: 10%;">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">새 쪽지 작성</h5>
+								<h5 class="modal-title" id="exampleModalLabel">쪽지 상세보기</h5>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -144,26 +144,22 @@
 								<input type="text" class="form-control id" id="recipient-name"
 									name="lett_sid" value="" style="display: none">
 								<div class="form-group">
-									<label for="recipient-name" class="col-form-label mid">보낸사람
-										ID: </label> <input type="text" class="form-control"
-										id="recipient-name" name="mem_id">
+									<label for="recipient-name" class="col-form-label ">보낸사람
+										ID: </label> <label class="mid"></label>
 								</div>
 								<div class="form-group">
-									<label for="recipient-name" class="col-form-label title">쪽지
-										제목: </label> <input type="text" class="form-control"
-										id="recipient-name" name="lett_title">
+									<label for="recipient-name" class="col-form-label">쪽지
+										제목: </label> <label class="title"></label>
 								</div>
 								<div class="form-group">
-									<label for="message-text" class="col-form-label content">내용:</label>
-									<textarea class="form-control" id="message-text"
-										name="lett_content"
-										style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
+									<label for="message-text" class="col-form-label">내용:</label>
+								<label class="content"></label>
 								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal">Close</button>
-								<button class="btn btn-primary">Send message</button>
+									data-dismiss="modal">답장하기</button>
+								<button class="btn btn-primary">삭제</button>
 							</div>
 
 						</div>

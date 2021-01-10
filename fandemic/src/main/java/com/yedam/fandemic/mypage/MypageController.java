@@ -133,12 +133,12 @@ public class MypageController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/onemailselect")
-	public String oneMailSelect(Model model, HttpServletRequest request, Letter letter) throws IOException{
+	public Letter oneMailSelect(Model model, HttpServletRequest request, Letter letter) throws IOException{
 		System.out.println("ㄴ오리ㅏㅁ너ㅗ라ㅣㅇㄴ머ㅗㄹ아ㅓㅣㄴ몰ㄴ아ㅗ"+request.getParameter("lett_no"));
 		letter.setLett_no(request.getParameter("lett_no"));
 		letter = myMapper.OneMailSelect(letter);
 		
-		return "mypage/my_mail";
+		return letter;
 	}
 	
 		
