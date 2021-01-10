@@ -76,13 +76,14 @@
 }
 
 /* 해시태그 */
-
+/* https://blog.naver.com/PostView.nhn?blogId=psj9102&logNo=221371543987&categoryNo=20&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search*/
     ul li.tag-item {
     	display: inline-block;
         margin: 0 5px;
         font-size: 14px;
         letter-spacing: -.5px;
         padding: 4px 8px;
+        margin: 3px 3px;
         background-color: #777;
         color: #000;
     }
@@ -98,5 +99,7 @@
         cursor: pointer;
         margin-left: 8px;
     }
-/* https://blog.naver.com/PostView.nhn?blogId=psj9102&logNo=221371543987&categoryNo=20&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search
- */
+    
+    #tag-list{
+    	padding: 0px;
+    }

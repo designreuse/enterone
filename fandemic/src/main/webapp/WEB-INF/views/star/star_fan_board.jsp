@@ -8,6 +8,9 @@
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script>
+var tag = {};
+var counter = 0;
+
 	$(function() {      
 		//화면 시작 시 목록 출력
 		fboardListView();
@@ -94,7 +97,7 @@
 		$("body").on("click",".btnUpdateReply",function(){
 			var replyOrigin = $(this).parent().parent().parent();
 			replyUpdateForm(replyOrigin);
-			$(".btnUpdateReply").hide();
+			$(".btnUpdateReply").hide();//다중 수정을 막기 위해 다른 수정버튼을 가린다.
 		});
 		
 		//댓글 수정 요청
@@ -111,29 +114,12 @@
 		
 		
 		
-		//해시태그 구현
-		var tag = {};
-        var counter = 0;
-
-        // 태그를 추가한다.
-        function addTag (value) {
-            tag[counter] = value; // 태그를 Object 안에 추가
-            counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
-        }
-
-        // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
-        function marginTag () {
-            return Object.values(tag).filter(function (word) {
-                return word !== "";
-            });
-        }
-    
-        // 서버에 넘기기
+//해시태그 구현
+        // 테스트용
         $("#tag-form").on("click", function (e) {
             var value = marginTag(); // return array
             $("#rdTag").val(value); 
             alert(value)
-            /* $(this).submit(); */
         }); 
 
         $("#tag").on("keypress", function (e) {
@@ -265,47 +251,66 @@
    
    
    
-   //이전 작성글 기록 지우기
-   function formReset(){
-      $('#summernote').summernote('reset');
-      $('form').each(function() {
-         this.reset();
-      });      
-   }
+//이전 작성글 기록 지우기
+	function formReset(){
+	   $('#summernote').summernote('reset');
+	   $('#tag-list').empty();
+	   tag = {};
+	   $('form').each(function() {
+	      this.reset();
+	   });      
+	}
    
-   //유효성 체크
-   function fboardFormCheck(){
-      if($("input:text[name='fbo_title']").val()==null || $("input:text[name='fbo_title']").val()==''){
-         alert("제목을 입력하세요.")
-         $("input:text[name='fbo_title']").focus();
-         event.preventDefault();
-      }
-      else if($('#summernote').summernote('code')=="<p><br></p>"||$('#summernote').summernote('code')==''){
-         alert("내용을 입력하세요.")
-         $('#summernote').focus();
-         event.preventDefault();
-      }else{
-         return true;
-      }
-   }
+//유효성 체크
+	function fboardFormCheck(){
+	   if($("input:text[name='fbo_title']").val()==null || $("input:text[name='fbo_title']").val()==''){
+	      alert("제목을 입력하세요.")
+	      $("input:text[name='fbo_title']").focus();
+	      event.preventDefault();
+	   }
+	   else if($('#summernote').summernote('code')=="<p><br></p>"||$('#summernote').summernote('code')==''){
+	      alert("내용을 입력하세요.")
+	      $('#summernote').focus();
+	      event.preventDefault();
+	   }else{
+	      return true;
+	   }
+	}
+   
+// 해시태그
+	function addTag (value) {
+	    tag[counter] = value; // 태그를 Object 안에 추가
+	    counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+	}
+	
+	// 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+	function marginTag () {
+	    return Object.values(tag).filter(function (word) {
+	        return word !== "";
+	    });
+	}
    
    //게시글 등록 요청
    function fboardInsert(){
-      $.ajax({ 
-          url: "${pageContext.request.contextPath}/star/fanBoard",  
-          type: 'POST',  
-          data : $("#form1").serialize(),
-          success: function(response) {
-             if(response == true) {
-               alert("작성되었습니다.")
-               fboardListView();//목록출력
-             }
-          }, 
-          error:function(xhr, status, message) { 
-              alert(" status: "+status+" er:"+message);
-          }
-       });
-   }
+		//해시태그 작성된 값 받아서 제출
+		var value = marginTag();
+		$("#rdTag").val(value); 
+		     
+		$.ajax({
+		    url: "${pageContext.request.contextPath}/star/fanBoard",  
+		    type: 'POST',  
+		    data : $("#form1").serialize(),
+		    success: function(response) {
+		       if(response == true) {
+		         alert("작성되었습니다.")
+		         fboardListView();//목록출력
+		       }
+		    }, 
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    }
+		});
+	}
     
    
    
@@ -322,23 +327,28 @@
    }
    
    //게시물 수정 요청
-   function fboardUpdate() {
-      var fbo_no = $("input:text[name='fbo_no']").val();   
-      $.ajax({ 
-          url: "${pageContext.request.contextPath}/star/fanBoard/update/", 
-          type: 'POST', 
-          data : $("#form1").serialize(),
-          success: function(response) {
-             if(response == true) {
-               alert("수정되었습니다.")
-               fboardView(fbo_no);
-             }
-          }, 
-          error:function(xhr, status, message) { 
-              alert(" status: "+status+" er:"+message);
-          } 
-      });
-   }
+	function fboardUpdate() {
+		var fbo_no = $("input:text[name='fbo_no']").val();
+		
+		//해시태그 작성된 값 받아서 제출
+		var value = marginTag();
+		$("#rdTag").val(value); 
+			
+		$.ajax({ 
+		    url: "${pageContext.request.contextPath}/star/fanBoard/update/", 
+		    type: 'POST', 
+		    data : $("#form1").serialize(),
+		    success: function(response) {
+		       if(response == true) {
+		         alert("수정되었습니다.")
+		         fboardView(fbo_no);
+		       }
+		    }, 
+		    error:function(xhr, status, message) { 
+		        alert(" status: "+status+" er:"+message);
+		    } 
+		});
+	}
    
    //게시물 삭제 요청
    function fboardDelete() {
@@ -373,7 +383,7 @@
    
    
    
-   
+//댓글
 	//댓글 목록 요청
 	function replyListView(fbo_no) {
 	   $.ajax({
@@ -457,7 +467,7 @@
 	//댓글 수정을 위한 기본값, 틀 형성
 	function replyUpdateForm(replyOrigin) {
 		var re_no = replyOrigin.data("no"); 
-		var re_content = replyOrigin.find(".replyText").text() 
+		var re_content = replyOrigin.find(".replyText").text() //새 textarea안에 기존 작성값 입력
 		
 		var textarea = "<hr><div class = 'row'><textarea class = 'col-xl-11 col-md-10 col-12 fboardReplyUpdate fboardReply' name='re_content' rows = 3 data-no="+re_no+">"
 		var div = "</textarea><div class = 'col-xl-1 col-md-2 col-12 btnFboardReply'>";
@@ -662,22 +672,20 @@
          <div class="row starCenter">
             <div class="col-xl-2 col-md-3 col-4">태그</div>
             <div class="col-xl-10 col-md-9 col-8">
-               <!-- <input name ="fbo_hashtag" style="width: 100%" placeholder="#태그" /> -->
                	<!-- 해시태그 -->
-					    <div class="content">
-					        <!-- <form method="POST" id="tag-form">
-					        </form> -->
-					
-					
-					        <div class = "row">
-					            <input type="text" id="tag" size="7" placeholder="태그입력" />
-					            <button type="button" id = "tag-form">누르면 태그값 보임</button>
-						        <ul id="tag-list">
-						        </ul>
-					        </div>
-					            <input type="hidden" value="" name="tag" id="rdTag" />
-					
-					    </div>
+			    <div class="content">
+			        <div class = "row">
+			            <input type="text" id="tag" size="7" placeholder="태그입력" />
+			            <button type="button" id = "tag-form">누르면 태그값 보임</button>
+			        </div>
+			        <div class = "row">
+			        	<ul id="tag-list">
+			        	<!-- 태그 추가되는곳 -->
+			        	</ul>
+			            <input type="hidden" type="text" value="" name="fbo_hashtag" id="rdTag" />
+			        </div>
+			
+			    </div>
 
                
             </div>
