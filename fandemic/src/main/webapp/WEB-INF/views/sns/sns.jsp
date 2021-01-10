@@ -249,15 +249,22 @@ window.jssor_1_slider_init = function() {
 						</a>
 					</div>
 					<!-- 헤더 밑 슬라이드 info -->
-					<div class="owl-carousel owl-theme" id="headline">
-						<div class="item">
+					<div class="owl-carousel owl-theme" style="margin-top: -20px;" id="headline">
+					<c:if test="${member.mem_id eq null}">
+						<div class="item"> 
+							<a href="#"><div class="badge">Tip!</div>글을 올리시려면 개인 회원으로 로그인을 해주세요</a>
+						</div>
+					</c:if>
+						
+						<div class="item"> 
 							<a href="#"><div class="badge">Tip!</div>해쉬태그 이용방법</a>
 						</div>
 						<div class="item">
-							<a href="#">고운말을 사용하여 소통합시다!</a>
+							<a href="#"><div class="badge">prom</div>고운말을 사용하여 소통합시다!</a>
 						</div>
 					</div>
 				</div>
+				<c:if test="${member.mem_id ne null or company.com_id ne null }">
 				<div class="inputdiv">
 					<span> <c:if
 							test="${sessionScope.member.mem_pic ne null and sessionScope.member.mem_type eq 0 }">
@@ -282,21 +289,8 @@ window.jssor_1_slider_init = function() {
 						readonly="readonly">
 					</span>
 				</div>
+				</c:if>
 
-
-				<div class="btn-group">
-					<button type="button" class="btn btn-default dropdown-toggle"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Action <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-					</ul>
-				</div>
 
 				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
 				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
@@ -326,13 +320,8 @@ window.jssor_1_slider_init = function() {
 									<div id="ex2" style="height: 62%"></div>
 									<a class="content"></a>
 									<div id="modalimage"></div>
+									</a>
 									
-									
-									
-									
-									
-									
-									</a> <a></a> <a></a>
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -378,7 +367,7 @@ window.jssor_1_slider_init = function() {
 													</div>
 												</td>
 											<tr style="height: 30%">
-												<td>
+												<td> 
 
 													<div class="form-group">
 														<textarea class="form-control"
@@ -533,6 +522,9 @@ window.jssor_1_slider_init = function() {
 			<!-- <!-- ㅇㄴㄹ ㅁㅇㄹ.ㅏㅜㄴㅁㄹ어ㅜㅠㅁ어나ㅠㅁㄹㅇ나ㅠㅗㄹㄴㅁ아ㅓㅗㅇㄴ머ㅜㅗㄴ아ㅓㅗㅇ누ㄹㄴㅁㄹ.ㅏㅓㄴㅁ우춘마ㅓㅠㅜ차ㅓㄴ뮤와뉴마ㅣㅓㅗㄴㅁ아ㅓㅣ롸ㅓㄴㅇㅁ롸ㅓㄴㅁㅇㄴ룀논말어ㅓㅗㄹ무ㅠㅇ니ㅏㅍㄴ머ㅠ오미나ㅣㄴㅁ아ㅗ룸ㄴㅊㅎ춞ㄷ슐챠ㅛㅂㅅㄱ츄ㅛㅑㅐㅈㅂㅅ갸슈마ㅣㅗㄴㅇㅁ라ㅓㅘㅓㅇㄴ뫈ㅇ몰ㅇ나미ㅗ라ㅓㄴ모알ㅇㄴ뫄ㅓㅇㄴ몸러 -->
 
 			<!-- 사이드바 구역 -->
+				<!-- 로그인 됨 -->
+			<c:if test="${member.mem_id ne null or company.com_id ne null}">
+					
 			<div class="col-xs-6 col-md-4 sidebar" id="sidebar">
 				<div class="sidebar-title for-tablet">Sidebar</div>
 				<aside>
@@ -701,6 +693,181 @@ window.jssor_1_slider_init = function() {
 					</div>
 				</aside>
 			</div>
+			</c:if>
+			<!-- 로그인 안됨 -->
+			
+			
+			<c:if test="${member.mem_id eq null}">
+					
+			<div class="col-xs-6 col-md-4 sidebar" id="sidebar">
+				<div class="sidebar-title for-tablet">Sidebar</div>
+				<aside>
+					<div class="aside-body">
+						<div class="featured-author">
+							<div class="featured-a;;/uthor-inner">
+								<div class="featured-author-cover"
+									style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlxjchU3nSVmv0TUW_Df4YzVhWyWtk3nHy3g&usqp=CAU');">
+									<div class="badges">
+										<div class="badge-item">
+											<i class="ion-star"></i> Featured
+										</div>
+									</div>
+									<div class="featured-author-center">
+										<figure class="featured-author-picture">
+											<p>
+												<img src="${member.mem_pic}" alt="Sample Article">
+											</p>
+										</figure>
+										<div class="featured-author-info">
+											<h2 class="name">${member.mem_id}</h2>
+											<div class="desc">${member.mem_email}</div>
+										</div>
+									</div>
+								</div>
+								<div class="featured-author-body">
+									<div class="featured-author-count">
+										<div class="item">
+											<a href="#">
+												<div class="name">Posts</div>
+												<div class="value">${countmysns}</div>
+											</a>
+										</div>
+										<div class="item">
+											<a href="#">
+												<div class="name">Likes</div>
+												<div class="value">좋아요 받은 개수</div>
+											</a>
+										</div>
+										<div class="item">
+											<a href="#">
+												<div class="icon">
+													<div>More</div>
+													<i class="ion-chevron-right"></i>
+												</div>
+											</a>
+										</div>
+									</div>
+									<div class="featured-author-quote">"Eur costrict mobsa
+										undivani krusvuw blos andugus pu aklosah"</div>
+									<div class="block">
+										<h2 class="block-title">Photos</h2>
+										<div class="block-body">
+											<ul class="item-list-round" data-magnific="gallery">
+												<c:forEach items="${mysnslist }" var="mySns">
+													<li><a href="${mySns.sns_pic}"
+														style="background-image: url('/images/snsimage/${mySns.sns_pic}');"></a></li>
+												</c:forEach>
+											</ul>
+										</div>
+									</div>
+									<div class="featured-author-footer">
+										<a href="#">See All Authors</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</aside>
+				<aside>
+					<h1 class="aside-title">
+						Popular <a href="#" class="all">See All <i
+							class="ion-ios-arrow-right"></i></a>
+					</h1>
+					<div class="aside-body">
+						<article class="article-mini">
+							<div class="inner">
+								<figure>
+									<a href="single.html"> <img src="images/news/img07.jpg"
+										alt="Sample Article">
+									</a>
+								</figure>
+								<div class="padding">
+									<h1>
+										<a href="single.html">좋아요 많이 받은 내글 </a>
+									</h1>
+								</div>
+							</div>
+						</article>
+					</div>
+				</aside>
+				<aside>
+					<ul class="nav nav-tabs nav-justified" role="tablist">
+						<li class="active"><a href="#recomended"
+							aria-controls="recomended" role="tab" data-toggle="tab"> <i
+								class="ion-android-star-outline"></i> Random Post
+						</a></li>
+						<li><a href="#comments" aria-controls="comments" role="tab"
+							data-toggle="tab"> <i class="ion-ios-chatboxes-outline"></i>
+								Comments
+						</a></li>
+					</ul>
+
+					<!-- Random Post --------------------------------------------------------------------------------- -->
+					<div class="tab-content">
+						<div class="tab-pane active" id="recomended">
+							<article class="article-fw">
+								<div class="inner">
+									<figure>
+										<a href="single.html"> <img src="images/news/img16.jpg"
+											alt="Sample Article">
+										</a>
+									</figure>
+									<div class="details">
+										<div class="detail">
+											<div class="time">December 31, 2016</div>
+											<div class="category">
+												<a href="category.html">Sport</a>
+											</div>
+										</div>
+										<h1>
+											<a href="single.html">큰 랜덤 포스트</a>
+										</h1>
+										<p>랜덤 포스트 글</p>
+									</div>
+								</div>
+							</article>
+							<div class="line"></div>
+							<article class="article-mini">
+								<div class="inner">
+									<figure>
+										<a href="single.html"> <img src="images/news/img10.jpg"
+											alt="Sample Article">
+										</a>
+									</figure>
+									<div class="padding">
+										<h1>
+											<a href="single.html">램덤 글 출력됨
+												<div class="detail">
+													<div class="category">
+														<a href="category.html">PostDate</a>
+													</div>
+													<div class="time">December 20, 2016</div>
+												</div>
+									</div>
+								</div>
+							</article>
+						</div>
+
+						<!-- 댓글 확인------------------------------------------------------------------------------------------------- -->
+						<div class="tab-pane comments" id="comments">
+							<div class="comment-list sm">
+								<div class="item">
+									<div class="user">
+										<figure>
+											<img src="${member.mem_pic }" alt="User Picture">
+										</figure>
+										<div class="details">
+											<h5 class="name">${member.mem_id }</h5>
+											<div class="description">${member.mem_email }</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</aside>
+			</div>
+			</c:if>
 		</div>
 	</div>
 </section>

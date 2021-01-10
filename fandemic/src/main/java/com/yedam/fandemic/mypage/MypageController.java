@@ -2,7 +2,6 @@ package com.yedam.fandemic.mypage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,11 +17,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.MypageMapper;
-import com.yedam.fandemic.vo.Filter;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.QnA;
+import com.yedam.fandemic.vo.Star;
 
 @Controller
 public class MypageController {
@@ -32,10 +31,52 @@ public class MypageController {
 
 	// mypage메인
 	@RequestMapping(value = "/mypagemain")
-	public ModelAndView mymain(HttpServletResponse response) throws IOException {
+	public ModelAndView mymain(Model model, HttpServletResponse response, Letter letter, HttpSession session, Star star ,Member mem, HttpServletRequest request ) throws IOException {
+		// 메인 내 스타 목록 출력
+		Member member = (Member) session.getAttribute("member");
+		
+		mem.setMem_id(member.getMem_id());
+		String strp = request.getParameter("p");
+		int p = 1;
+		if (strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+
+		Paging paging = new Paging();
+
+		paging.setPageUnit(15); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+
+		star.setSt_first(paging.getFirst());
+		star.setSt_last(paging.getLast());
+
+		paging.setTotalRecord(myMapper.getQnACount(qna));
+
+		System.out.println(paging);
+
+		model.addAttribute("paging", paging);
+		model.addAttribute("qnalist", myMapper.selectQnA(qna));		
+		
+		
+		
 		return new ModelAndView("mypage/my_main");
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 쪽지 메인
 
 	// my정보 수정 세션값 받아오기

@@ -3,6 +3,41 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.fandemic.impl.MypageMapper">
+	<!-- 메인페이지 스타 select -->
+	<select id="starmainselect" resultType="letter">
+	SELECT 
+		S.ST_NAME ST_NAME, 
+		S.ST_ICON ST_ICON, 
+		S.ST_PIC ST_PIC, 
+		S.ST_BANNER ST_BANNER, 
+		S.COM_ID COM_ID, 
+		S.ST_INTRODUCE ST_INTRODUCE 
+	FROM 
+		FAN F, 
+		STAR S 
+	WHERE 
+		F.ST_ID = S.ST_ID 
+	AND F.MEM_ID = #{mem_id} ;
+	
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<!-- 멤버 업데이트 -->
 	<update id="memUpdate" parameterType="member">
 		UPDATE MEMBER SET

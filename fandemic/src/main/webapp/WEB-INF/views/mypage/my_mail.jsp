@@ -37,6 +37,8 @@
 													.val(result.mem_id)
 											modal.find('.mid').val(
 													result.lett_sid)
+											modal.find('.mid').attr('data-id',
+													result.lett_sid)
 											modal.find('.title').val(
 													result.lett_title)
 											modal.find('.content').val(
@@ -48,6 +50,19 @@
 									})
 						})
 	})
+	
+// 	답장기능
+		$(function() {
+		$('#mailreply')
+				.on(
+						'click',
+						function(event) {
+							var modal = $('#exampleModal3')
+											modal.find('.rid')
+													.val($(this).attr('data-id'))
+											modal.modal('show');
+										})
+									})
 </script>
 </head>
 <section class="single">
@@ -110,7 +125,7 @@
 							<form id="sendmail" name="sendmail" action="sendmail">
 								<div class="modal-body">
 									<input type="text" class="form-control" id="recipient-name"
-										name="lett_sid" value="${member.mem_id }"
+										name="lett_sid" value="${member.mem_id}"
 										style="display: none">
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label">받는사람
@@ -145,7 +160,7 @@
 					<div class="modal-dialog" role="document" style="padding-top: 10%;">
 						<div class="modal-content">
 							<form action="deletemail">
-							<input class="no" name="lett_no" id="lett_no" style="display: none" >
+							<input class="no" name="lett_no" id="lett_no">
 								<div class="modal-header">
 									<h5 class="modal-title" id="exampleModalLabel">받은 쪽지 확인</h5>
 									<button type="button" class="close" data-dismiss="modal"
@@ -174,7 +189,51 @@
 									</div>
 								</div>
 								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="mailreply">답장</button>
 									<button class="btn btn-primary">삭제</button>
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">닫기</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade" id="exampleModal3" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document" style="padding-top: 10%;">
+						<div class="modal-content">
+							<form action="replymail">
+							<input class="no" name="lett_no" id="lett_no" data-no="lett_no" style="display: none" >
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">받은 쪽지 확인</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<input type="text" class="form-control id" id="recipient-name"
+										name="lett_sid" style="display: none">
+									<div class="form-group">
+										<label for="recipient-name"  class="col-form-label ">받는사람
+											ID: </label> <input type="text" class="form-control rid"
+											id="recipient-name" name="rid">
+									</div>
+									<div class="form-group">
+										<label for="recipient-name" class="col-form-label ">쪽지
+											제목: </label> <input type="text" class="form-control title"
+											id="recipient-name" name="lett_title">
+									</div>
+									<div class="form-group">
+										<label for="message-text" class="col-form-label ">내용:</label>
+										<textarea class="form-control content" id="message-text"
+											name="lett_content"
+											style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary">답장 보내기</button>
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">닫기</button>
 								</div>

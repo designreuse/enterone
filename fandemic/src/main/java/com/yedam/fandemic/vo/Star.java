@@ -14,5 +14,6 @@ public class Star {
 	String st_banner;		//배너사진
 	String st_introduce;	//스타소개
 	String[] st_ids; 		//삭제할 id체크박스여러개 선택 !!!!
-
+	int st_first;			//페이지네이션 처음
+	int st_last;			//페이지네이션 마지막
 }
