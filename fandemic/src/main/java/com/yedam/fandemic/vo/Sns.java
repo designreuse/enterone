@@ -12,5 +12,6 @@ public class Sns {
 	String sns_content;	//내용
 	String sns_pic;		//사진
 	String sns_likes;	//좋아요 개수
-	
+	String mem_pic;		//멤버사진
+	String mem_type;	//멤버타입
 }

@@ -13,9 +13,11 @@
 		</if>
 		MEM_EMAIL = #{mem_email},
 		MEM_ADDRESS = #{mem_address},
-		MEM_ADDRESS2 = #{mem_address2},
+		MEM_ADDRESS2 =
+		#{mem_address2},
 		MEM_ZIPADDRESS = #{mem_zipAddress}
-		WHERE MEM_ID = #{mem_id}
+		WHERE MEM_ID =
+		#{mem_id}
 	</update>
 	<!-- 쪽지보내기 -->
 	<insert id="SendMail" parameterType="letter">
@@ -38,9 +40,11 @@
 	</insert>
 	<!-- 쪽지 조회 -->
 	<select id="selectMail" resultType="letter">
-		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM ( 
-          SELECT * FROM LETTER Where mem_id = #{mem_id} ORDER BY lett_no
-          ) A ) B WHERE RN BETWEEN #{lett_first} AND #{lett_last}
+		SELECT * FROM ( SELECT A.*,
+		ROWNUM RN FROM (
+		SELECT * FROM LETTER Where mem_id = #{mem_id} ORDER BY
+		lett_no
+		) A ) B WHERE RN BETWEEN #{lett_first} AND #{lett_last}
 	</select>
 	<!-- 쪽지 페이지 네이션 -->
 	<select id="getletterCount" resultType="int">
@@ -49,11 +53,50 @@
 		LETTER
 		WHERE MEM_ID = #{mem_id}
 	</select>
-<!-- 	쪽지단건조회 -->
-<select id="OneMailSelect" resultType="letter" parameterType="letter">
-SELECT * FROM LETTER WHERE LETT_NO=#{lett_no}
+	<!-- 쪽지단건조회 -->
+	<select id="OneMailSelect" resultType="letter"
+		parameterType="letter">
+		SELECT * FROM LETTER WHERE LETT_NO=#{lett_no}
 
-</select>
+	</select>
+	<!-- 쪽지 삭제 -->
+	<delete id="deletemail" parameterType="letter">
+		DELETE LETTER WHERE LETT_NO = #{lett_no}
+	</delete>
 
 
+	<!-- 1o1(QnA) -->
+	<!-- QnA 보내기 -->
+	<insert id="SendQnA" parameterType="qna">
+		INSERT INTO QNA (Q_NO,
+		MEM_ID, Q_TITLE, Q_CONTENT, Q_TIME) VALUES
+		(Q_SEQ.NEXTVAL,
+		#{mem_id},#{q_title},#{q_content},SYSDATE)
+	</insert>
+	<!-- QNA 조회 -->
+	<select id="selectQnA" resultType="qna">
+		SELECT * FROM ( SELECT A.*,
+		ROWNUM RN FROM (
+		SELECT * FROM QNA Where mem_id = #{mem_id} ORDER BY
+		q_no
+		) A ) B WHERE RN BETWEEN #{q_first} AND #{q_last}
+	</select>
+	<!-- QNA 페이지 네이션 -->
+	<select id="getQnACount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		QNA
+		WHERE
+		MEM_ID = #{mem_id}
+	</select>
+	<!-- QNA 단건조회 -->
+	<select id="OneQnASelect" resultType="qna" parameterType="qna">
+		SELECT
+		* FROM QNA WHERE Q_NO=#{q_no}
+
+	</select>
+<!-- QnA 삭제 -->
+	<delete id="deleteqna" parameterType="qna">
+		DELETE QNA WHERE Q_NO = #{q_no}
+	</delete>
 </mapper>

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.GoodsServiceD;
+import com.yedam.fandemic.vo.Cnotice;
 import com.yedam.fandemic.vo.Goods;
 
 @Controller
@@ -73,7 +74,53 @@ public class GoodsControllerD {
 		    	  goods.setGo_pic("");
 		      }
 			goodsServiceD.insertGoods(goods);
-		return "mgt/goods/goodsList";
+		return "redirect:/management/goods/goodsList";
+	}
+	//굿즈,행사 목록 삭제
+	@RequestMapping(value = "/management/goods/goodsDelete")
+	@ResponseBody //결과를 Json형태로 변환
+	public int goodsDelete(Goods goods) {
+		int result = goodsServiceD.deleteGoods(goods);
+		return result;
+	}
+	// 굿즈,행사 목록 상세보기
+	@RequestMapping(value = "/management/goods/goodsDetail")
+	public String goodsDetail(Model model, Goods goods) {
+		System.out.println(goods.getGo_no()); //클릭한게시물번호받아와서
+		model.addAttribute("star",goodsServiceD.getCompanyStar(goods));//com_id(소속사ID값), 소속사 연예인 조회
+		model.addAttribute("goods", goodsServiceD.getGoodsDetail(goods));//조회한후 값던짐
+		model.addAttribute("category",goodsServiceD.getCategory()); //카테고리 값 다받아와서 뷰페이지로 ~휭~
+		return "no-tiles/goods/goodsDetail";
 	}
 	
+	
+	//굿즈,행사 정보 수정
+	@RequestMapping(value="/management/goods/updateGoods")
+	public String goodsUpdate(HttpServletRequest request, Model model, Goods goods) throws IllegalStateException, IOException  {
+		// request multipart로 캐스팅
+	      MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+	      String sumFile="";
+	   // 굿즈,행사 상세사진 첨부파일
+	      List<MultipartFile> multipartFile = multipartRequest.getFiles("uploadDetailImg");
+	      for(int i=0; i<multipartFile.size(); i++) {
+		      if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/goods");
+		    	  System.out.println("path="+path);
+		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
+		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
+		         goods.setGo_detail(sumFile);
+		      }
+	      }
+	      MultipartHttpServletRequest multipartRequest1 = (MultipartHttpServletRequest) request;
+	      //굿즈,행사 대표사진 첨부파일
+	      MultipartFile multipartFile1 = multipartRequest1.getFile("uploadFile");
+		      if (!multipartFile1.isEmpty() && multipartFile1.getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/goods");
+		    	  System.out.println("path="+path);
+		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
+		         goods.setGo_pic(multipartFile1.getOriginalFilename());
+		      }
+		      goodsServiceD.updateGoods(goods);
+		return "redirect:/management/goods/goodsList";
+	}
 }

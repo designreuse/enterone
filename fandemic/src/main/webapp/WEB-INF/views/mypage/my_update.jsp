@@ -7,8 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
 <!-- 주소검색 -->
 <script type="text/JavaScript"
 	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -90,11 +89,12 @@
 </head>
 <body>
 	<section class="single">
+
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
-					<div class="line">
-						<div>내정보 수정</div>
+					<div class="col-md-12">
+						<h3 class="title">내정보 수정</h3>
 					</div>
 					<form id="memUpdate" name="memUpdate" method="post" action="myupdate2" enctype="multipart/form-data">
 						<table class="myinfo" border="1">

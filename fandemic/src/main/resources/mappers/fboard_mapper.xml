@@ -13,7 +13,8 @@
 				fbo_content, 
 				fbo_hashtag, 
 				st_id, 
-				mem_id
+				mem_id,
+				fbo_views
 				) 
 		VALUES(	bo_seq.NEXTVAL, 
 				#{fbo_title}, 
@@ -22,18 +23,41 @@
 				#{fbo_content}, 
 				#{fbo_hashtag}, 
 				#{st_id}, 
-				#{mem_id})
+				#{mem_id},
+				0
+				)
 	</insert>
+	
 	<select id="getFboardList" parameterType="Fboard" resultType="Fboard">
 		SELECT * 
-		FROM fboard 
+		FROM v_fbolist 
 		WHERE st_id = #{st_id}
 	</select>
 	
 	<select id="getFboardInfo" parameterType="Fboard" resultType="Fboard">
 		SELECT * 
-		FROM fboard 
+		FROM v_fbolist 
 		WHERE fbo_no = #{fbo_no}
 	</select>
 	
+	<update id="updateFboard" parameterType="Fboard">
+		UPDATE fboard 
+		SET 
+			fbo_subject = #{fbo_subject}, 
+			fbo_title = #{fbo_title}, 
+			fbo_content = #{fbo_content}, 
+			fbo_hashtag = #{fbo_hashtag} 
+		WHERE fbo_no = #{fbo_no}
+	</update>
+	
+	<update id="updateFboardViews" parameterType="Fboard">
+		UPDATE fboard 
+		SET fbo_views = fbo_views + 1 
+		WHERE fbo_no = #{fbo_no}
+	</update>
+	
+	<delete id="deleteFboard" parameterType="Fboard">
+		DELETE FROM fboard 
+		WHERE fbo_no = #{fbo_no}
+	</delete>
 </mapper>

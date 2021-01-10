@@ -1,6 +1,8 @@
 package com.yedam.fandemic.login;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.yedam.fandemic.config.MvcConfiguration;
+import com.yedam.fandemic.impl.MainMapper;
 import com.yedam.fandemic.impl.MemberMapper;
 import com.yedam.fandemic.service.MailService;
 import com.yedam.fandemic.vo.Company;
@@ -35,7 +38,7 @@ import com.yedam.fandemic.vo.Star;
 public class LoginController {
 	@Autowired MemberMapper memMapper;
 	@Autowired MailService mailservice;
-	
+	@Autowired MainMapper mainDao;
 
 	@RequestMapping("/no-tiles/find") // id,pw 찾기 팝업창
 	public ModelAndView findIdPw() throws IOException{
@@ -160,19 +163,18 @@ public class LoginController {
 		
 		request.setAttribute("login", null);
 		
-		return new ModelAndView("login");
+		return new ModelAndView("redirect:login");
 	}
 	    
 	// 개인 로그인
 	@RequestMapping(value="/memberLogin")
-	public String memberLogin(HttpServletRequest request,HttpSession session,  Model model, Member member) throws IOException{
+	public String memberLogin(HttpServletRequest request,HttpSession session,  Model model, Member member, RedirectAttributes redirect) throws IOException{
 		
 		member = memMapper.memLogin(member);
 		
 		if ( member != null) {
 			
 			session.setAttribute("member", member);
-			
 			return "redirect:index";
 			
 		} else {   
@@ -328,6 +330,5 @@ public class LoginController {
 		return "redirect:login";
 	}
 	
-
 
 }

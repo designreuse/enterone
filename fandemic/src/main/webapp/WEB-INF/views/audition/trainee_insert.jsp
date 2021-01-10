@@ -54,18 +54,17 @@ $("td #btnCheckm").on("click",function() {
 					});
 			});//ID중복체크 버튼 end
 			
-			
-	 $("#subtr").on("click",function() {
-		trinsertCheck();//유효성 검사
-		 //중복확인체크 yㅇ면 진행하고 n이거나 널일때 경고창
+	//유효성 검사 중복체크 버튼 안눌렀을 경우
+	 $("#subtr").on("click",function(event) {
+		trinsertCheck();
+		 //중복확인체크 y면 진행하고 n이거나 널일때 경고창
 		 if($("input[name=checked_id]").val()=='n') {
-			 alert("중복확인을 해주세요")
 			 event.preventDefault();
 		 }
 	}); 
 });
 	
-	function trinsertCheck(){
+	function trinsertCheck(event){
 		if($("table #tr_name").val()==null || $("table #tr_name").val()==''){
 			alert("닉네임을 입력하세요.")
 			$("table #tr_name").focus();
@@ -81,11 +80,12 @@ $("td #btnCheckm").on("click",function() {
 			$("table #tr_branch1").focus();
 			event.preventDefault();
 		}	
-		else if($("input[name='checked_id']").val()==''){
-		        alert('아이디중복 확인을 해주세요.');
-		        $("input[name='checked_id']").eq(0).focus();
-		        return false;
-		    	}
+		else if($("input[name='checked_id']").val()=='n'){
+	        alert('아이디중복 확인을 해주세요.');
+	        $("input[name='checked_id']").eq(0).focus();
+	        return false;
+	        event.preventDefault();
+	    	}
 	}
 	
 </script>
@@ -118,7 +118,7 @@ $("td #btnCheckm").on("click",function() {
 								</td>
 
 								<td><a id="btnCheckm"
-										class="btn btn-primary">중복확인</a><input type="hidden" name="checked_id" value=""></td>
+										class="btn btn-primary">중복확인</a><input type="hidden" name="checked_id" value="n"></td>
 										
 
 

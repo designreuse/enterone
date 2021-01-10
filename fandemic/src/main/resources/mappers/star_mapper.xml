@@ -13,6 +13,19 @@
 		WHERE
 			st_id = #{st_id}
 	</select>
-
 	
+	<insert id="insertFan" parameterType="Fan">
+		INSERT INTO fan(fan_no, 
+						mem_id, 
+						st_id, 
+						fan_name,
+						fan_block
+						) 
+				VALUES (fa_seq.NEXTVAL, 
+						#{mem_id}, 
+						#{st_id}, 
+						#{fan_name},
+						0
+						)
+	</insert>
 </mapper>

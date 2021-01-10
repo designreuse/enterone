@@ -27,7 +27,21 @@
 div #dataTable_filter{
 		text-align:right;
 }
-
+.detail-align{
+	text-align: -webkit-center;
+	max-width:none;
+}
+.detail-modal{
+	width:60%;
+}
+.btnModal-cancel{
+	border:0;
+	background-color:white;
+}
+.md-header-btn{
+	text-align-last: right;
+	display:block; 
+}
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
 <link
@@ -58,11 +72,30 @@ div #dataTable_filter{
 			location.href="${pageContext.request.contextPath}/management/goods/goodsInsertForm?com_id="+com_id;
 		});
 		
+		/******************** 굿즈,목록 상세 페이지(수정) *****************/
 		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
-		table.on("click","tr a",function(){ //게시물 tr에 제목 클릭했을때 ~
+		table.on("click","tr a",function(){ //게시물 tr a태그걸린거 클릭했을때 ~
 			/* alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호 */
-			var cnoc_no = $(this).parent().prev().text();
-			location.href="${pageContext.request.contextPath}/management/noticesDetail?cnoc_no="+cnoc_no;	
+			var modal = $("#exampleModal");
+			var go_no = $(this).parent().prev().text();
+			var com_id = "${company.com_id }";
+			//location.href="${pageContext.request.contextPath}/management/goods/goodsDetail?go_no="+go_no;	
+	/* 		$.ajax({
+				  url:"${pageContext.request.contextPath}/management/goods/goodsDetail?go_no=" + go_no+"&com_id="+com_id,//클릭한 버튼의 text값을 넘김.
+				  dataType : "html", //dataType 기본은 html생략가능
+				  cache:false,
+			      success:function(result){			    	    
+					  	modal.find(".modal-body").html(result)
+					  	modal.modal("show");
+					  	initDetail();
+			      }
+			  }); */
+			  var url="${pageContext.request.contextPath}/management/goods/goodsDetail?go_no=" + go_no+"&com_id="+com_id;//클릭한 버튼의 text값을 넘김.
+			  modal.find(".modal-body").load(url,function(){
+				  modal.modal("show");
+				  initDetail();
+				  
+			  })
 		});//end 게시물 제목 클릭
 		
 		
@@ -76,16 +109,17 @@ div #dataTable_filter{
 		});
 		
 		
-		//공지사항 삭제
+		//굿즈,행사 사항 삭제
 		$(".btn-delete").on("click",function(){
 			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/noticesDelete",
+				url:"${pageContext.request.contextPath}/management/goods/goodsDelete",
 				type:"POST",
-				data: $("#frm1").serialize(),
+				data: $("#frm1").serialize(), //form 값을 순서대로 읽어서 전송, 선택한체크박스의 값도넘김
 				dataType: 'json', //결과값 Json형태로
 				success: function(response) {
 			    	if(response != null && response !="") {
-			    		cnoticeList();
+			    		$('#dataTable').DataTable().clear().destroy();
+			    		goodsList();
 			    	}  
 			    }, 
 			    error:function(xhr, status, message) { 
@@ -94,6 +128,10 @@ div #dataTable_filter{
 			});//end ajax
 		});
 		
+		/* $(".btnModal-cancel").on("click",function(){
+			$("#exampleModal").modal("hide");
+			//window.location.reload();
+		}); */
 	}); //end document ready
 	
 	//굿즈 목록 조회 요청
@@ -110,14 +148,14 @@ div #dataTable_filter{
 			},
 			success:GoodsListResult
 		});
-	}//end cnoticeList
+	}//end GoodsList
 	
 	function GoodsListResult(data){
 		/* console.log(data); */
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","cnoticeTr")
-			.append($('<td>').html('<input type="checkbox" name="cnoc_nos" value="'+item.cnoc_no+'">'))
+			.append($('<td>').html('<input type="checkbox" name="go_nos" value="'+item.go_no+'">'))
 			.append($('<td>').html(item.go_no))
 			.append($('<td>').html('<a href="#">'+item.go_name+'</a>'))
 			.append($('<td>').html(item.go_price))
@@ -195,4 +233,28 @@ div #dataTable_filter{
           </div>
         </div>
     </form>
+    <!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog detail-align">
+			<div class="modal-content detail-modal">
+				<div class="modal-header md-header-btn">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<!-- <button type="button" class="btnModal-cancel">x</button> -->
+				</div>
+				<div class="modal-body">
+					....<!-- body -->
+				</div>
+				<!-- <div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	<!-- end Modal -->
 </div>

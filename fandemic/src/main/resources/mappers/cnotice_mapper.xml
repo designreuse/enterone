@@ -15,7 +15,7 @@
 		SELECT * 
 		FROM CNOTICE
 		WHERE COM_ID=#{com_id}
-		ORDER BY cnoc_no
+		ORDER BY cnoc_no DESC
 	</select>
 <!--  공지등록    -->
 	<insert id="insertCnotice" parameterType="Cnotice">

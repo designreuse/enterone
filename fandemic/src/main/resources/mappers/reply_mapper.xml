@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.fandemic.impl.ReplyMapper">
+	<select id="getReplyList" parameterType="Reply" resultType="Reply">
+		SELECT * 
+		FROM v_relist 
+		WHERE sfbo_no = #{sfbo_no}
+	</select>
+	
+	<insert id="insertReply" parameterType="Reply">
+	INSERT INTO reply(	re_no,
+						re_time,
+						re_content,
+						sfbo_no
+						<if test = "mem_id != null">,mem_id</if>
+						<if test = "st_id != null">,st_id</if>
+						)
+				VALUES (re_seq.NEXTVAL, 
+						SYSDATE, 
+						#{re_content}, 
+						#{sfbo_no}
+						<if test = "mem_id != null">,#{mem_id}</if>
+						<if test = "st_id != null">,#{st_id}</if>
+						)
+	</insert>
+	
+	<update id="updateReply" parameterType="Reply">
+		UPDATE reply 
+		SET 
+			re_content = #{re_content}
+		WHERE re_no = #{re_no}
+	</update>
+	
+	<delete id="deleteReply" parameterType="Reply">
+		DELETE FROM reply 
+		WHERE re_no = #{re_no}
+	</delete>
+</mapper>

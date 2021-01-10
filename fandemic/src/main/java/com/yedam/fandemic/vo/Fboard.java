@@ -4,7 +4,9 @@ import lombok.Data;
 
 @Data
 public class Fboard {
-
+	String fbo_sub_no;	//개별 스타의 게시물번호
+	String fan_name;	//팬 닉네임
+	
 	String fbo_no;		//게시물번호
 	String fbo_title;	//게시물제목
 	String fbo_subject;	//게시물 말머리

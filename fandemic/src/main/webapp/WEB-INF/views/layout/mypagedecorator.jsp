@@ -5,73 +5,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description"
-	content="Magz is a HTML5 & CSS3 magazine template is based on Bootstrap 3.">
-<meta name="author" content="Kodinger">
-<meta name="keyword"
-	content="magz, html5, css3, template, magazine template">
-<!-- Shareable -->
-<meta property="og:title"
-	content="HTML5 & CSS3 magazine template is based on Bootstrap 3" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://github.com/nauvalazhar/Magz" />
-<meta property="og:image"
-	content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
-<title>Enter One</title>
-<!-- Bootstrap -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.css">
-<!-- IonIcons -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/scripts/ionicons/css/ionicons.min.css">
-<!-- Toast -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.css">
-<!-- OwlCarousel -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/assets/owl.carousel.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
-<!-- Magnific Popup -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/magnific-popup.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.css">
-<!-- Custom style -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/style.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/skins/all.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/demo.css">
-	<!-- JS -->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.migrate.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.js"></script>
-	<script>
-		var $target_end = $(".best-of-the-week");
-	</script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/jquery-number/jquery.number.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/easescroll/jquery.easeScroll.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/e-magz.js"></script>	
-	
+ <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="description" content="Magz is a HTML5 & CSS3 magazine template is based on Bootstrap 3.">
+      <meta name="author" content="Kodinger">
+      <meta name="keyword" content="magz, html5, css3, template, magazine template">
+      <!-- Shareable -->
+      <meta property="og:title" content="HTML5 & CSS3 magazine template is based on Bootstrap 3" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="http://github.com/nauvalazhar/Magz" />
+      <meta property="og:image" content="https://raw.githubusercontent.com/nauvalazhar/Magz/master/images/preview.png" />
+      <title>Enter One</title>
+      <!-- Bootstrap -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.css">
+      <!-- IonIcons -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/ionicons/css/ionicons.min.css">
+      <!-- Toast -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.css">
+      <!-- OwlCarousel -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/assets/owl.carousel.min.css">
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/assets/owl.theme.default.min.css">
+      <!-- Magnific Popup -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/magnific-popup.css">
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.css">
+      <!-- Custom style -->
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skins/all.css">
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/demo.css">
+      
+       <!-- JS -->
+      <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/jquery.migrate.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.js"></script>
+      <script>var $target_end=$(".best-of-the-week");</script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/jquery-number/jquery.number.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/easescroll/jquery.easeScroll.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/e-magz.js"></script>
 <style type="text/css">
 #page-wrapper {
 	padding-left: 250px;
@@ -163,14 +138,14 @@
 					<div class="col-md-3 col-sm-12 text-right">
 						<ul class="nav-icons">
 							<c:if test="${member.mem_id eq null and company.com_id eq null }">
-								<li><a href="register"><i class="ion-person-add"></i>
+								<li><a href="${pageContext.request.contextPath}/register"><i class="ion-person-add"></i>
 										<div>회 원 가 입</div></a></li>
-								<li><a href="login"><i class="ion-person"></i>
+								<li><a href="${pageContext.request.contextPath}/login"><i class="ion-person"></i>
 										<div>로 그 인</div></a></li>
 							</c:if>
 							<c:if test="${member.mem_id ne null or company.com_id ne null }">
 								<!-- <li><a href="#"><i class="ion-person-add"></i><div>마 이 페 이 지</div></a></li> -->
-								<li><a href="logout"><i class="ion-person"></i>
+								<li><a href="${pageContext.request.contextPath}/logout"><i class="ion-person"></i>
 										<div>로 그 아 웃</div></a></li>
 							</c:if>
 
@@ -230,12 +205,15 @@
 								class="ion-ios-arrow-right"></i></a>
 
 							<ul class="dropdown-menu">
-								<li><a href="#">CHEERING</a></li>
-								<li><a href="#">MUSIC</a></li>
-								<li><a href="#">FASHION</a></li>
-								<li><a href="#">ACC</a></li>
-								<li><a href="#">TECH</a></li>
-								<li><a href="#">ETC</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=TICKET">TICKET</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=CHEERING">CHEERING</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=MUSIC">MUSIC</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=FASHION">FASHION</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=ACC">ACC</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=TECH">TECH</a></li>
+								<li><a href="${pageContext.request.contextPath}/goodsf?t=ETC">ETC</a></li>
+								<li class="divider"></li>
+								<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-heart"></i>장바구니</a></li>
 							</ul></li>
 
 						<li><a href="#">연 예 뉴 스</a></li>
@@ -247,22 +225,23 @@
 							<li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i
 									class="ion-ios-arrow-right"></i></a>
 								<ul class="dropdown-menu">
-									<li><a href="myupdate"><i class="icon ion-person"></i>
+									<li><a href="${pageContext.request.contextPath}/myupdate"><i class="icon ion-person"></i>
 											회원정보</a></li>
-									<li><a href="mystar"><i class="icon ion-heart"></i> 내
+									<li><a href="${pageContext.request.contextPath}/mystar"><i class="icon ion-heart"></i> 내
 											스타</a></li>
-									<li><a href="mytrainee"><i class="icon ion-chatbox"></i>
+									<li><a href="${pageContext.request.contextPath}/mytrainee"><i class="icon ion-chatbox"></i>
 											연습생</a></li>
-									<li><a href="mypurchase"><i class="icon ion-key"></i>
+									<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-heart"></i>장바구니</a></li>
+									<li><a href="${pageContext.request.contextPath}/mypurchase"><i class="icon ion-key"></i>
 											결제내역</a></li>
-									<li><a href="myevent"><i class="icon ion-settings"></i>
+									<li><a href="${pageContext.request.contextPath}/myevent"><i class="icon ion-settings"></i>
 											이벤트 참여</a></li>
-									<li><a href="mymail"><i class="icon ion-chatbox"></i>
+									<li><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>
 											쪽지함</a></li>
-									<li><a href="my1o1"><i class="icon ion-chatbox"></i>
+									<li><a href="${pageContext.request.contextPath}/my1o1"><i class="icon ion-chatbox"></i>
 											1:1문의 내역</a></li>
 									<li class="divider"></li>
-									<li><a href="#"><i class="icon ion-log-out"></i> 로그아웃</a></li>
+									<li><a href="${pageContext.request.contextPath}/logout"><i class="icon ion-log-out"></i> 로그아웃</a></li>
 								</ul></li>
 						</c:if>
 					</ul>
@@ -285,15 +264,15 @@
 								<!-- 사이드바 -->
 								<div id="sidebar-wrapper">
 									<ul class="sidebar-nav">	
-										<li class="sidebar-brand"><a href="mypagemain"
+										<li class="sidebar-brand"><a href="${pageContext.request.contextPath}/mypagemain"
 											style="font-size: 30px; font-weight: 900;">마이페이지</a></li>
-										<li><a href="myupdate">내정보 수정</a></li>
-										<li><a href="mystar">내 스타 관리</a></li>
-										<li><a href="mytrainee">연습생 정보 관리</a></li>
-										<li><a href="mypurchase">결제내역</a></li>
-										<li><a href="myevent">이벤트 참여내역</a></li>
-										<li><a href="mymail">쪽지함</a></li>
-										<li><a href="my1o1">1:1 문의 내역</a></li>
+										<li><a href="${pageContext.request.contextPath}/myupdate">내정보 수정</a></li>
+										<li><a href="${pageContext.request.contextPath}/mystar">내 스타 관리</a></li>
+										<li><a href="${pageContext.request.contextPath}/mytrainee">연습생 정보 관리</a></li>
+										<li><a href="${pageContext.request.contextPath}/mypurchase">결제내역</a></li>
+										<li><a href="${pageContext.request.contextPath}/myevent">이벤트 참여내역</a></li>
+										<li><a href="${pageContext.request.contextPath}/mymail">쪽지함</a></li>
+										<li><a href="${pageContext.request.contextPath}/my1o1">1:1 문의 내역</a></li>
 									</ul>
 								</div>
 								

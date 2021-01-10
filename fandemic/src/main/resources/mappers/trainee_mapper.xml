@@ -26,6 +26,14 @@
 	 	               			#{tr_branch1},
 	 	               			#{tr_branch2})
 	</insert>
+	<!-- 연습생 최신순 조회 -->
+	  <select id="selectActivity" parameterType="Activity" resultType="Activity">
+		SELECT *
+		FROM ACTIVITY
+		ORDER BY AC_TIME
+	</select>
+	
+	
 	
 	
   </mapper>

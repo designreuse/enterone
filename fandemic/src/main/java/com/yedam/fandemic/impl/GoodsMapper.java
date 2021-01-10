@@ -2,6 +2,7 @@ package com.yedam.fandemic.impl;
 
 import java.util.List;
 
+import com.yedam.fandemic.vo.Cart;
 import com.yedam.fandemic.vo.Goods;
 
 public interface GoodsMapper {
@@ -14,6 +15,18 @@ public interface GoodsMapper {
 	
 	// Goods 상세 페이지
 	public Goods goodsDetail(Goods goods);
+	
+	// Cart 담기
+	public void cartInsert(Cart cart);
+	
+	// Cart 목록
+	public List<Cart> cartList(Cart cart);
+	
+	// Cart 삭제
+	public int cartDel(Cart cart);
+	
+	// Cart 수량 변경
+	public int cartUpdate(Cart cart);
 	
 	// paging
 	public int goCount();	// Goods 목록

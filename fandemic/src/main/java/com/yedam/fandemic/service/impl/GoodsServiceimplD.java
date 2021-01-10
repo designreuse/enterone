@@ -36,4 +36,19 @@ public class GoodsServiceimplD implements GoodsServiceD{
 	public List<Goods> getGoodsList(Goods goods) {
 		return dao.getGoodsList(goods);
 	}
+
+	@Override //굿즈,행사 목록 삭제
+	public int deleteGoods(Goods goods) {
+		return dao.deleteGoods(goods);
+	}
+
+	@Override //굿즈 상세정보 요청
+	public Goods getGoodsDetail(Goods goods) {
+		return dao.getGoodsDetail(goods);
+	}
+
+	@Override //굿즈,행사 정보 업데이트
+	public int updateGoods(Goods goods) {
+		return dao.updateGoods(goods);
+	}
 }

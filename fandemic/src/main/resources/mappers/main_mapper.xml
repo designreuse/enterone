@@ -4,10 +4,53 @@
 
 <mapper namespace="com.yedam.fandemic.impl.MainMapper">
 	
+	<!-- 행사목록 -->
 	<select id="ticketList" resultType="Goods">
 		<!-- SELECT S.ST_NAME, G.*  FROM STAR S , GOODS G WHERE S.ST_ID = G.ST_ID AND GO_TYPE = 'TICKET' AND GO_UNTSDATE >= SYSDATE -->
 		SELECT S.ST_NAME, G.*  FROM STAR S , GOODS G WHERE S.ST_ID = G.ST_ID AND GO_TYPE = 'TICKET'
 	</select>
+	
+	<!-- 팬클럽top3 -->
+	<select id="fanCount" resultType="map">
+		SELECT COUNT(F.ST_ID) AS CNT, S.ST_NAME 
+		FROM FAN F, STAR S
+		WHERE F.ST_ID = S.ST_ID 
+		GROUP BY S.ST_NAME
+		ORDER BY CNT DESC
+	</select>
+	
+	<!-- 내스타 3 팬게시판 글이 있을 때-->
+	<select id="myStar3" resultType="map">
+		SELECT S.ST_NAME,S.ST_ICON ,COUNT(F.ST_ID) AS CNT
+		FROM FBOARD F , STAR S
+		WHERE F.ST_ID = S.ST_ID
+		AND MEM_ID = #{id}
+		GROUP BY S.ST_NAME, S.ST_ICON
+		ORDER BY CNT DESC
+	</select>
+	
+	<!-- 내스타 3 가입o , 게시글x  -->
+	<select id="myStarList" resultType="map">
+		SELECT S.ST_NAME, S.ST_ICON 
+		FROM FAN F , STAR S 
+		WHERE F.ST_ID = S.ST_ID
+		AND MEM_ID = #{id}
+		ORDER BY FAN_NO
+	</select>
+	
+	
+	<select id="newSns" resultType="Sns" parameterType="string">
+		SELECT S.*, M.MEM_PIC MEM_PIC, M.MEM_TYPE MEM_TYPE 
+		FROM SNS S, MEMBER M 
+		WHERE S.MEM_ID=M.MEM_ID
+		AND SNS_NO > #{maxNo}        
+		ORDER BY SNS_NO
 
+	</select>
+	
+	
+	
+	
+	
 	
 </mapper>

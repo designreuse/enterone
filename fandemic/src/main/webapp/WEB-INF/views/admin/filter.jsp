@@ -94,6 +94,8 @@
 			 
 			 if(chkArray.length === 0) {
 				 alert("삭제할 데이터를 체크하세요.") ; 
+				 $('#prohibited').val("").attr("readonly",false);
+	    		 $('#alternative').val("");
 				 
 			 } else {
 				 $.ajax({
@@ -122,6 +124,7 @@
 			$("#prohibited").val(fil_prohibited);
 			$("#alternative").val(fil_alternative);
 			$("#prohibited").attr("readonly",true);
+			$('#alternative').focus();
 
 	    });
 		
@@ -139,25 +142,8 @@
 				$("input[type=checkbox]").prop("checked",false); 
 			} 
 		});
-		
-		
-		$('#prohibited').focusout(function() {
-			$('#prohibited').val("").attr("readonly",false);
-			$('#alternative').val("");
-		});
-		
-		$('#alternative').focusout(function() {
-			$('#prohibited').val("").attr("readonly",false);
-			$('#alternative').val("");
-		});
-		
-		
-		
 
-
-	});
-	
-
+});
 	
 	
 
@@ -210,8 +196,8 @@
 				<tr>
 					<th><div style="margin:10px;"><input class="form-control " type="text" id="prohibited" placeholder="금칙어"></div></th>
 					<th><div style="margin:10px;"><input class="form-control " type="text" id="alternative" placeholder="대체어"></div></th>
-					<th><div style="margin:5px;"><button class="btn btn-primary" id="btnAdd"> 등록 </button></div></th>
-					<th><div style="margin:5px;"><button class="btn btn-primary" id="btnDel" > 삭제 </button></div></th>
+					<th><div class="noClick" style="margin:5px;"><button class="btn btn-primary noClick" id="btnAdd"> 등록 </button></div></th>
+					<th><div class="noClick"style="margin:5px;"><button class="btn btn-primary noClick" id="btnDel" > 삭제 </button></div></th>
 				</tr>
 			</table>
 

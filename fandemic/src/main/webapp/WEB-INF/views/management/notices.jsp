@@ -82,6 +82,8 @@ div #dataTable_filter{
 				dataType: 'json', //결과값 Json형태로
 				success: function(response) {
 			    	if(response != null && response !="") {
+			    		$('#dataTable').DataTable().clear().destroy();
+			    		//$('#dataTable').DataTable().destroy();
 			    		cnoticeList();
 			    	}  
 			    }, 
@@ -92,6 +94,7 @@ div #dataTable_filter{
 		});
 		
 	}); //end document ready
+	
 	
 	//공지사항 목록 조회 요청
 	function cnoticeList() {
@@ -129,6 +132,8 @@ div #dataTable_filter{
 			alert("뭔데")
 		}) */
 	}//end cnoticeListResult
+	
+	
 </script>
      <!-- Content Header (Page header) -->
     <section class="content-header">

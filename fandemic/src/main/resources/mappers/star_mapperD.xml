@@ -50,8 +50,8 @@
 	<update id="updateStarMember" parameterType="Star">
 		UPDATE STAR
 		<set>
-			ST_PW=#{st_pw}
-			<if test="st_icon !=null">,st_icon=#{st_icon}</if>
+			<if test="st_pw !=null and st_pw !=''">,ST_PW=#{st_pw}</if>
+			<if test="st_icon !=null ">,st_icon=#{st_icon}</if>
 			<if test="st_pic !=null">,st_pic=#{st_pic}</if>
 			<if test="st_banner !=null">,st_banner=#{st_banner}</if>
 			,ST_INTRODUCE=#{st_introduce}

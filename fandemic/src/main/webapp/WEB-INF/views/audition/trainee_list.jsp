@@ -1,252 +1,270 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!doctype html>
-
+<!DOCTYPE html>
 <html>
-
 <head>
+<meta charset="UTF-8">
+<title>연습생 활동</title>
 
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+<link rel="stylesheet" href="resources/owlcss/owl.carousel.min.css">
+<link rel="stylesheet" href="resources/owlcss/owl.theme.default.min.css">
+<script src="resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
+
+
+
+<script>
+	$(document).ready(function() {
+
+		$('.owl-carousel').owlCarousel({
+			loop : true,
+
+			margin : 10,
+
+			responsive : {
+				0 : {
+					items : 1
+				},
+				600 : {
+					items : 3
+				},
+				1000 : {
+					items : 5
+				}
+			},
+			scrollPerPage : true
+		})
+	});
+</script>
 <style>
-
-.auditionimage {
-	margin: 10px;
-	height: 264px;
-	width: 178px
+.thumbnail {
+width:80%;
+height:80%;
 }
-
-.auditionunder {
-	background-color: lightgrey;
-	margin-top: 10px;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-.wrapper {
-	background-color: lightgrey;
-	text-align: center;
-}
-
-.card {
-	display: inline-block;
+.item {
 	width: 200px;
-	height: 316px;
-	border: 0px solid;
-	text-align: center;
-	margin-top: 5px;
+	height: 200px;
+	float: left;
+	margin-right: 10px;
 }
 
-.card img {
-	width: 180px;
-	border: 0px solid;
-	margin-top: 10px;
+#but {
+	margin-right: 1000px;
+	margin-bottom: 14px;
 }
 
-.btn-like {
-	align: right;
-	color: transparent;
-	text-shadow: 0 0 2px rgba(255, 255, 255, .7), 0 0 0 #000;
-	margin-right: 10px
+
+.col-md-4 {
+	width: 33.33333333%;
+	margin-left: 440px;
+	margin-top: -59px;
 }
 
-.btn-like:hover {
-	text-shadow: 0 0 0 #ea0;
+.col-md-5 {
+	width: 41.66666667%;
+	margin-left: 307px;
+	margin-top: -12px;
 }
 
-.btn-like.done {
-	color: inherit;
-	text-shadow: 0;
+.navbar-form {
+	width: auto;
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-right: 0;
+	margin-left: 142px;
+	border: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
-
-.btn-like.done:hover {
-	color: transparent;
-	text-shadow: 0 0 0 #777;
-}
-
-.btn btn-primary {
-	font-size: 1.5em;
-	border-radius: 0.5em;
-	padding: 5px;
-	align: left;
-	margin:6px;
-	
+.text-center {
+margin-top:50px;
 }
 </style>
 
-
 </head>
-
-<section class="page">
-	<div class="container">
-		<div>
-			<h1 align="center"
-				style="color: black; font-size: 50px; margin-top: 5px;">연습생 활동</h1>
-		</div>
-
-		<div class="wrapper">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:20px 45px">
-					<button class="btn btn-primary" type="button">TOP05/NEW05</button>
-
+<body>
+	<section class="page">
+		<div class="container">
+			<div>
+				<h1 align="center"
+					style="color: black; font-size: 50px; margin-top: 5px;">연습생 활동</h1>
+				<div>
+					<button type="button" class="btn btn-primary" id="but">TOP05/NEW05</button>
+					<button type="button" class="btn btn-primary" id="but2"
+						style="float: right; margin-top: -58px;"
+						onclick="location.href='traineewritere'">글 등록</button>
 				</div>
-				<div class="col-md-10 col-sm-10 col-xs-10"></div>
-			</div>
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/suzy.jpg">
-					<br>
-					<button class="btn-like">👍</button>
-				</div>
-
-
-				<script src="//code.jquery.com/jquery.min.js"></script>
-				<script>
-					$(".btn-like").click(function() {
-						$(this).toggleClass("done");
-					})
-				</script>
-
-			</div>
-
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/jung.jpg"><br>
-					<button class="btn-like">👍</button>
-				</div>
-
-
-			</div>
-
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/park.jpg"><br>
-					<button class="btn-like">👍</button>
-				</div>
-
-
-			</div>
-
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/lee.jpg">
-					<br>
-					<button class="btn-like">👍</button>
-				</div>
-
-
-			</div>
-
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/choi.jpg">
-					<br>
-					<button class="btn-like">👍</button>
-				</div>
-			</div>
-
-		</div>
-		<div class="auditionunder col-md-12 col-sm-12 col-xs-12">
-
-			<div class="col-md-12 col-sm-12 col-xs-12">
-
-				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:10px;">
-					<button class="btn btn-primary" type="button">전체</button>
-
-				</div>
-				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:10px 10px;">
-					<button class="btn btn-primary" type="button">연습생 활동</button>
-				</div>
-
-				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:10px 10px"></div>
-				<form class="navbar-form navbar-left" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+				<div>
+					<div class="jumbotron jumbotron-fluid">
+						<div class="owl-carousel owl-theme">
+							<div class="item">
+								<img class="auditionimage"
+									src="${pageContext.request.contextPath}/resources/images/audition/suzy.jpg">
+							</div>
+							<div class="item">
+								<h4>2</h4>
+							</div>
+							<div class="item">
+								<h4>3</h4>
+							</div>
+							<div class="item">
+								<h4>4</h4>
+							</div>
+							<div class="item">
+								<h4>5</h4>
+							</div>
+							<div class="item">
+								<h4>6</h4>
+							</div>
+							<div class="item">
+								<h4>7</h4>
+							</div>
+							<div class="item">
+								<h4>8</h4>
+							</div>
+							<div class="item">
+								<h4>9</h4>
+							</div>
+							<div class="item">
+								<h4>10</h4>
+							</div>
+						</div>
 					</div>
-					<button type="submit" class="btn btn-primary" style="align: right">검색</button>
-				</form>
-
-				<div class="col-md-2 col-sm-2 col-xs-2" style="margin:10px 10px"></div>
-				<div class="btn-group">
-					<a class="btn btn-primary dropdown-toggle btn-select" href="#"
-						data-toggle="dropdown">최신순 <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-
-						<li class="divider"></li>
-						<li><a href="#">인기순</a></li>
+				</div>
+				<div>
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="col-md-3 col-sm-3 col-xs-3">
+						<button type="button" class="btn btn-primary" id="but1">전체</button>
+						<button type="button" class="btn btn-primary" id="but1">연습생
+							활동</button>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3"></div>
+					
+					
+					<div class="col-md-3 col-sm-3 col-xs-3">
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" type="button"
+								id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="true">
+								최신순/인기순 <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a href="#">최신순</a></li>
+								<li><a href="#">인기순</a></li>
+								<li role="separator" class="divider"></li>
+							</ul>
+						</div>
 						
-					</ul>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-4"></div>
-			</div>
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/cha.jpg">
-					<br>
-					<button class="btn-like">👍</button>
-				</div>
-			</div>
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/jenny.jpg">
-					<br>
-					<button class="btn-like">👍</button>
-				</div>
-			</div>
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/jimin.jpg">
-					<br>
-					<button class="btn-like">👍</button>
-				</div>
-			</div>
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/won0.jpg">
-					<br>
-					<button class="btn-like">👍</button>
-				</div>
-			</div>
-			<div class="card">
-				<div align="right">
-					<img class="auditionimage"
-						src="${pageContext.request.contextPath}/resources/images/audition/yeji.jpg">
-					<br>
-					<button class="btn-like">👍</button>
-				</div>
-			</div>
-			<div class="col-md-12 text-center">
-						<ul class="pagination">
-							<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">...</a></li>
-							<li><a href="#">10</a></li>
-							<li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-						</ul>
 					</div>
-		</div>
-	</div>
-</section>
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    최신순/인기순
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">최신순</a></li>
-    <li><a href="#">인기순</a></li>
-    <li role="separator" class="divider"></li>
-  </ul>
+					<div class="col-md-3 col-sm-3 col-xs-3">
+					<div class="input-group">
+											<input type="text" name="q" class="form-control" placeholder="Type something ..." value="hello">
+											<div class="input-group-btn">
+												<button class="btn btn-primary">
+													<i class="ion-search"></i>
+												</button>
+											</div>
+										</div>
+				</div>
+				</div>
+				</div>
+				<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-3 col-sm-3 col-xs-3">
+			<div class="row">
+
+						<div class="thumbnail">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/audition/jung.jpg"
+								alt="...">
+							<div class="caption">
+								<h3>${activity.ac_title}</h3>
+								<p>${activity.ac_title}</p>
+								<p>
+									<a href="#" class="btn btn-primary" role="button">Button</a> <a
+										href="#" class="btn btn-default" role="button">Button</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3">
+			<div class="row">
+
+						<div class="thumbnail">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/audition/jung.jpg"
+								alt="...">
+							<div class="caption">
+								<h3>${activity.ac_title}</h3>
+								<p>${activity.ac_title}</p>
+								<p>
+									<a href="#" class="btn btn-primary" role="button">Button</a> <a
+										href="#" class="btn btn-default" role="button">Button</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3">
+			<div class="row">
+
+						<div class="thumbnail">
+							<img
+								src="${pageContext.request.contextPath}/resources/images/audition/jung.jpg"
+								alt="...">
+							<div class="caption">
+								<h3>${activity.ac_title}</h3>
+								<p>${activity.ac_title}</p>
+								<p>
+									<a href="#" class="btn btn-primary" role="button">Button</a> <a
+										href="#" class="btn btn-default" role="button">Button</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-3">
+			<div class="row">
+
+						<div class="thumbnail">
+							<img src="${pageContext.request.contextPath}/resources/images/audition/jung.jpg"
+								alt="...">
+							<div class="caption">
+								<h3>${activity.ac_title}</h3>
+								<p>${activity.ac_title}</p>
+								<p>
+									<a href="#" class="btn btn-primary" role="button">Button</a> <a
+										href="#" class="btn btn-default" role="button">Button</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					</div>
+					</div>
+					
+				</div>
+				
 </div>
+
+				
+					<ul class="pagination" style="align:center">
+						<li class="prev"><a href="#"><i
+								class="ion-ios-arrow-left"></i></a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">...</a></li>
+						<li><a href="#">10</a></li>
+						<li class="next"><a href="#"><i
+								class="ion-ios-arrow-right"></i></a></li>
+					</ul>
+				
+				
+				
+		
+	</section>
+</body>
+
 </html>

@@ -72,7 +72,8 @@ div #dataTable_filter{
 				dataType: 'json', //결과값 Json형태로
 				success: function(response) {
 			    	if(response != null && response !="") {
-			    		alert("삭제되었습니다.")
+			    		alert("삭제되었습니다.");
+			    		$('#dataTable').DataTable().clear().destroy();
 			    		starMemberList();
 			    	}  
 			    }, 

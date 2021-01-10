@@ -8,7 +8,7 @@
 	<title>스타</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
+		<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Herr+Von+Muellerhoff" rel="stylesheet">
@@ -29,15 +29,44 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/star.css">
 
 	<script>
-		 //모달 팝업 띄울 시 발생하는 이벤트  (이벤트명 : show.bs.modal) 
-		$('#exampleModal').on('show.bs.modal', function(event) {
-			var button = $(event.relatedTarget);
-			var what = button.data('what');
-			
-			// 모달 팝업에 데이터 집어넣기 
-			var modal = $(this);
-			modal.find('.modal-body input').val(what)
-		}); 
+		$(function() {	
+			$("#channelJoinAction").on("click",function(){
+				if(replyFormCheck()==true){
+					fboardListView();
+				}
+			});
+		});
+		
+		//댓글 유효성 체크
+		function replyFormCheck(){
+			if($("#channelName").val()==null || $("#channelName").val()==''){
+				alert("내용을 입력하세요.")
+				$("#channelName").focus();
+				event.preventDefault();
+			}else{
+				return true;
+			}
+		}
+		
+		function fboardListView() {
+			//채널 가입
+			var st_id = "${star.st_id}";
+			var fan_name = $("#channelName").val();		
+			$.ajax({
+			    url: "${pageContext.request.contextPath}/star/fanBoard/fanJoin", 
+			    type: 'POST', 
+			    data : { st_id : st_id , fan_name : fan_name }, 
+			    error:function(xhr, status, message) {
+			        alert(" status: "+status+" er:"+message);
+			    },
+			    success: function(response) {
+			    	if(response == true) {
+			    		alert("왜그래");
+			    		location.href = "${pageContext.request.contextPath}/star/" + st_id;//새로고침
+			    	}
+			    }
+			});
+		}
 	</script>
 </head>
 
@@ -165,16 +194,14 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label for="recipient-name" class="col-form-label">채널 닉네임  &nbsp;:&nbsp;</label>
-							<input type="text" id="recipient-name">
-						</div>
-					</form>
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">채널 닉네임  &nbsp;:&nbsp;</label>
+						<input type="text" id="channelName">
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary">가입</button>
+					<button type="button" class="btn btn-primary" id ="channelJoinAction">가입</button>
 				</div>
 			</div>
 		</div>
@@ -195,7 +222,7 @@
 	</div>
 
 
-	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery.min.js"></script>
+
 	<script src="${pageContext.request.contextPath}/resourcesStar/js/jquery-migrate-3.0.1.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resourcesStar/js/popper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resourcesStar/js/bootstrap.min.js"></script>

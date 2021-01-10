@@ -6,8 +6,6 @@
 <meta charset="utf-8">
 <title>owl.carousel</title>
 <link rel="stylesheet" href="/css/owl.carousel.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="/js/owl.carousel.min.js"></script>
 <style type="text/css">
 .sidebutton {

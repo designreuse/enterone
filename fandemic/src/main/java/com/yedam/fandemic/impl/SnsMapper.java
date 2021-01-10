@@ -16,4 +16,7 @@ public interface SnsMapper {
 
 	// My SNS count
 	public int countMySns(Sns sns);
-}
+	
+	// SNS 단건조회
+	public Sns OneSnsSelect (Sns sns);
+}	

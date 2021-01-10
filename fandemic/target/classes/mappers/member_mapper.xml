@@ -5,6 +5,23 @@
 <mapper namespace="com.yedam.fandemic.impl.MemberMapper">
 <!-- 멤버 매퍼 아니고 로그인 메퍼!!!! -->
 
+<!-- 소셜 회원가입 -->
+	<insert id="socialInsert" parameterType="Member">
+		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_BIRTH, MEM_PHONE, MEM_EMAIL, MEM_ADDRESS, 
+							MEM_ADDRESS2,MEM_TYPE, MEM_GENDER, MEM_ZIPADDRESS, MEM_PIC)
+		VALUES(
+							#{mem_id}, #{mem_name}, #{mem_birth}, #{mem_phone},
+							#{mem_email}, #{mem_address}, #{mem_address2}, 0, #{mem_gender}, #{mem_zipAddress}, #{mem_pic})
+
+		
+	</insert>
+
+
+<!-- 소셜로그인 -->
+	<select id="socialLogin" parameterType="Member" resultType="Member">
+		SELECT * FROM MEMBER 
+		WHERE MEM_ID = #{mem_id} 
+	</select> 
 
 <!-- 개인 id 찾기 -->
 	<select id="memIdFind" parameterType="Member" resultType="Member">
@@ -40,17 +57,30 @@
 <!-- 개인 로그인  -->
 	<select id="memLogin" parameterType="Member" resultType="Member">
 		SELECT * FROM MEMBER 
-		WHERE MEM_ID= #{mem_id} 
-		AND MEM_PW= #{mem_pw}
-	</select> 
+		
+	<where>
+		<if test="mem_id != null and mem_id != '' ">
+			MEM_ID = #{mem_id}
+		</if>
+		<if test="mem_pw != null and mem_pw != '' ">
+			AND mem_pw = #{mem_pw}
+		</if>
+		
+	</where>
+	</select>
 	
-<!-- 소속사 로그인  -->
+	
+	
+	<!-- 소속사 로그인  -->
 	<select id="comLogin" parameterType="Company" resultType="Company">
 	
 		SELECT * FROM COMPANY 
 		WHERE COM_ID= #{com_id} 
 		AND COM_PW= #{com_pw}
 	</select> 
+	
+	
+	
 	
 <!-- 스타 로그인  -->
 	<select id="starLogin" parameterType="Star" resultType="Star">

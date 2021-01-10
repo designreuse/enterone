@@ -33,6 +33,20 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skins/all.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/demo.css">
+      
+       <!-- JS -->
+      <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/jquery.migrate.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.js"></script>
+      <script>var $target_end=$(".best-of-the-week");</script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/jquery-number/jquery.number.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/easescroll/jquery.easeScroll.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/e-magz.js"></script>
 </head>
 <body>
 <header class="primary">
@@ -68,12 +82,12 @@
                   <div class="col-md-3 col-sm-12 text-right">
                      <ul class="nav-icons">
                      	<c:if test="${sessionScope.member.mem_id eq null and sessionScope.company.com_id eq null }" >
-	                        <li><a href="register"><i class="ion-person-add"></i><div>회 원 가 입</div></a></li>
-	                        <li><a href="login"><i class="ion-person"></i><div>로 그 인</div></a></li>
+	                        <li><a href="${pageContext.request.contextPath}/register"><i class="ion-person-add"></i><div>회 원 가 입</div></a></li>
+	                        <li><a href="${pageContext.request.contextPath}/login"><i class="ion-person"></i><div>로 그 인</div></a></li>
                         </c:if>
                         <c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null }">
                         	<!-- <li><a href="#"><i class="ion-person-add"></i><div>마 이 페 이 지</div></a></li> -->
-	                        <li><a href="logout"><i class="ion-person"></i><div>로 그 아 웃</div></a></li>
+	                        <li><a href="${pageContext.request.contextPath}/logout"><i class="ion-person"></i><div>로 그 아 웃</div></a></li>
                         </c:if>
                         
                         
@@ -101,8 +115,8 @@
                <div id="menu-list">
                   <ul class="nav-list">
                      <li class="for-tablet nav-title"><a>Menu</a></li>
-                     <li class="for-tablet"><a href="login.html">Login</a></li>
-                     <li class="for-tablet"><a href="register">Register</a></li>
+                     <li class="for-tablet"><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                     <li class="for-tablet"><a href="${pageContext.request.contextPath}/register">Register</a></li>
                      
                      
                      <li><a href="${pageContext.request.contextPath}/company">소 속 사</a></li>
@@ -131,6 +145,8 @@
                            <li><a href="${pageContext.request.contextPath}/goodsf?t=ACC">ACC</a></li>
                            <li><a href="${pageContext.request.contextPath}/goodsf?t=TECH">TECH</a></li>
                            <li><a href="${pageContext.request.contextPath}/goodsf?t=ETC">ETC</a></li>
+                           <li class="divider"></li>
+						   <li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-heart"></i>장바구니</a></li>
                         </ul>
                      </li>
                      
@@ -141,15 +157,24 @@
 <!--  magz-dropdown 클래스 제거ㅊ -->
                      <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
-                           <li><a href="myupdate"><i class="icon ion-person"></i> 회원정보</a></li>
-                           <li><a href="mystar"><i class="icon ion-heart"></i> 내 스타</a></li>
-                           <li><a href="mytrainee"><i class="icon ion-chatbox"></i> 연습생</a></li>
-                           <li><a href="mypurchase"><i class="icon ion-key"></i> 결제내역</a></li>
-                           <li><a href="myevent"><i class="icon ion-settings"></i> 이벤트 참여</a></li>
-                           <li><a href="mymail"><i class="icon ion-chatbox"></i> 쪽지함</a></li>
-                           <li><a href="my1o1"><i class="icon ion-chatbox"></i> 1:1문의 내역</a></li>
-                           <li class="divider"></li>
-                           <li><a href="#"><i class="icon ion-log-out"></i> 로그아웃</a></li>
+                           	<li><a href="${pageContext.request.contextPath}/myupdate"><i class="icon ion-person"></i>
+											회원정보</a></li>
+							<li><a href="${pageContext.request.contextPath}/mystar"><i class="icon ion-heart"></i> 내
+											스타</a></li>
+							<li><a href="${pageContext.request.contextPath}/mytrainee"><i class="icon ion-chatbox"></i>
+											연습생</a></li>
+							<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-key"></i>
+											장바구니</a></li>
+							<li><a href="${pageContext.request.contextPath}/mypurchase"><i class="icon ion-key"></i>
+											결제내역</a></li>
+							<li><a href="${pageContext.request.contextPath}/myevent"><i class="icon ion-settings"></i>
+											이벤트 참여</a></li>
+							<li><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>
+											쪽지함</a></li>
+							<li><a href="${pageContext.request.contextPath}/my1o1"><i class="icon ion-chatbox"></i>
+											1:1문의 내역</a></li>
+							<li class="divider"></li>
+							<li><a href="${pageContext.request.contextPath}/logout"><i class="icon ion-log-out"></i> 로그아웃</a></li>
                         </ul>
                      </li>
                                     </c:if>
@@ -365,18 +390,6 @@
       </footer>
       <!-- End Footer -->
 
-      <!-- JS -->
-      <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/js/jquery.migrate.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/bootstrap/bootstrap.min.js"></script>
-      <script>var $target_end=$(".best-of-the-week");</script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/jquery-number/jquery.number.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/easescroll/jquery.easeScroll.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/sweetalert/dist/sweetalert.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
-      <script src="${pageContext.request.contextPath}/resources/js/e-magz.js"></script>
+     
 </body>
 </html>

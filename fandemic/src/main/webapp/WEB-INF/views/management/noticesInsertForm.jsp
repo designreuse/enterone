@@ -105,7 +105,7 @@
 								<tr width="100%">
 									<td colspan="1" align="left"><label>제목</label></td>
 									<td colspan="3"><input type="text" name="cnoc_title" class="notice-title form-control"
-										placeholder="글 제목" maxlength="50" />
+										placeholder="글 제목" />
 									</td>
 								</tr>
 								<tr >

@@ -240,7 +240,7 @@
 									<td width="15%"><label>소속연예인</label></td>
 									<td width="20%">
 										<select name="st_id" class="st_id form-control" style="width:150px;">
-											<option>선택</option>
+											<option value="">선택</option>
 											<c:forEach items="${star }" var="star">
 												<option value="${star.st_id }">${star.st_name }</option>
 											</c:forEach>

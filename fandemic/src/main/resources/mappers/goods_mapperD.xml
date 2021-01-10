@@ -53,72 +53,43 @@
 	<select id="getGoodsList" parameterType="Goods" resultType="Goods">
 		SELECT G.GO_NO, G.GO_NAME, G.GO_PRICE, S.ST_NAME,  G.GO_STOCK, G.GO_TYPE, G.GO_TIME
 		FROM GOODS G, STAR S
-		WHERE G.COM_ID = S.COM_ID
-		AND G.ST_ID = S.ST_ID
+		WHERE G.ST_ID = S.ST_ID(+)
 		AND G.COM_ID=#{com_id}
+		ORDER BY G.GO_NO DESC
 	</select>
-	
-<!-- 소속사 스타회원목록 출력 -->	
-	<select id="getStarMemberList" parameterType="Star" resultType="Star">
-		SELECT * 
-		FROM STAR
-		WHERE COM_ID=#{com_id}
-	</select>
-<!-- 소속사 스타회원가입 ID중복체크-->
-	<select id="getStarIdCheck" parameterType="Star" resultType="int">
-		SELECT COUNT(*)
-		FROM STAR
-		WHERE ST_ID=#{st_id}
-	</select>
-<!-- 소속사 스타회원id에맞는 상세정보-->
-	<select id="getStarDetail" parameterType="Star" resultType="Star">
-		SELECT *
-		FROM STAR
-		WHERE ST_ID=#{st_id}
-	</select>	
-	
-<!--  스타회원등록    -->
-	<insert id="InsertStar" parameterType="Star">
-		
-		INSERT INTO STAR (	    st_id, 
-								st_pw, 
-								st_name,
-								com_id,
-								st_icon,
-								st_pic,
-								st_banner,
-								st_introduce
-								)
-	 	                VALUES(
-	 	               			#{st_id},
-	 	               			#{st_pw},
-	 	               			#{st_name},
-	 	               			#{com_id},
-	 	               			#{st_icon},
-	 	               			#{st_pic},
-	 	               			#{st_banner},
-	 	               			#{st_introduce})
-	</insert>	
-	
-<!-- 스타회원정보수정 -->
-	<update id="updateStarMember" parameterType="Star">
-		UPDATE STAR
-		<set>
-			ST_PW=#{st_pw}
-			<if test="st_icon !=null">,st_icon=#{st_icon}</if>
-			<if test="st_pic !=null">,st_pic=#{st_pic}</if>
-			<if test="st_banner !=null">,st_banner=#{st_banner}</if>
-			,ST_INTRODUCE=#{st_introduce}
-		</set>
-		WHERE ST_ID= #{st_id}
-	</update>
-<!-- 스타회원정보 삭제 -->
-	<delete id="deleteStarMember" parameterType="Star">
-		DELETE FROM STAR
-		WHERE ST_ID IN
-		<foreach collection="st_ids" item="id"
+<!-- 굿즈,행사목록 삭제 -->
+	<delete id="deleteGoods" parameterType="Goods">
+		DELETE FROM GOODS
+		WHERE GO_NO IN
+		<foreach collection="go_nos" item="no"
 				open="(" close=")" separator=","> <!-- collection이 필드명 -->
-			#{id}
+			#{no}
 		</foreach>
 	</delete>
+	
+<!-- 클릭한 굿즈 상세정보-->
+	<select id="getGoodsDetail" parameterType="Goods" resultType="Goods">
+		SELECT *
+		FROM GOODS
+		WHERE GO_NO=#{go_no}
+	</select>	
+	
+	
+<!-- 굿즈,행사 정보수정 -->
+	<update id="updateGoods" parameterType="Goods">
+		UPDATE GOODS
+		<set>
+			GO_NAME=#{go_name}
+			<if test="go_price !=null">,GO_PRICE=#{go_price}</if>
+			<if test="go_content !=null">,GO_CONTENT=#{go_content}</if>
+			<if test="go_stock !=null">,GO_STOCK=#{go_stock}</if>
+			<if test="go_limited !=null">,GO_LIMITED=#{go_limited}</if>
+			,GO_UNTSDATE=#{go_untsdate}
+			,GO_UNTEDATE=#{go_untedate}
+			,GO_UNTTIME=#{go_unttime}
+			<if test="go_pic !=null">,GO_PIC=#{go_pic}</if>
+			<if test="go_detail !=null">,GO_DETAIL=#{go_detail}</if>
+		</set>
+		WHERE GO_NO= #{go_no}
+	</update>
 </mapper>
