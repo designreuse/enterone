@@ -45,7 +45,7 @@ div #dataTable_filter{
 <script>
 	$(function() {
 		
-		aboardList();//소속사 오디션 공지사항 목록요청
+		auditionApplyList();//소속사 각오디션별 지원현황 리스트
 		$(".pagination a").on("click",function(){
 			$(".pagination a").removeClass("active");
 			$(this).addClass("active");
@@ -96,43 +96,37 @@ div #dataTable_filter{
 			});//end ajax
 		});
 		
-		//소속사 각 오디션별 지원현황
-		$("body").on("click",".btn-audtion",function(){
-			var abo_no = $(this).parent().prev().prev().prev().prev().prev().text();
-			var com_id = $(this).parent().prev().prev().prev().text();
-			location.href="${pageContext.request.contextPath}/management/aboard/auditionApply?abo_no="+abo_no+"&com_id="+com_id;
-		});
 		
 	}); //end document ready
 	
-	//오디션 공지사항 목록 조회 요청
-	function aboardList() {
+	//각 오디션별 지원형황 리스트 요청
+	function auditionApplyList() {
 		var com_id = "${company.com_id }";
+		var abo_no = "${audition.abo_no}";
 		$.ajax({
-			url:'${pageContext.request.contextPath}/management/aboard/aboardList', //요청할 url
+			url:'${pageContext.request.contextPath}/management/aboard/auditionApplyList', //요청할 url
 			type:'POST',
-			data: {com_id:com_id},
+			data: {com_id:com_id, abo_no:abo_no},
 			//contentType:'application/json;charset=utf-8',
 			dataType:'json', //값이 넘어오는 형식
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
-			success:aboardListResult
+			success:auditionApplyListResult
 		});
 	}//end cnoticeList
 	
-	function aboardListResult(data){
+	function auditionApplyListResult(data){
 		/* console.log(data); */
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","cnoticeTr")
-			.append($('<td>').html('<input type="checkbox" name="abo_nos" value="'+item.abo_no+'">'))
-			.append($('<td>').html(item.abo_no))
-			.append($('<td>').html('<a href="#">'+item.abo_title+'</a>'))
-			.append($('<td>').html(item.com_id))
-			.append($('<td>').html(item.abo_time))
-			.append($('<td>').html(item.abo_subject))
-			.append($('<td>').html('<input type="button" value="지원현황" class="btn-audtion">'))
+			.append($('<td>').html('<input type="checkbox" name="aud_nos" value="'+item.aud_no+'">'))
+			.append($('<td>').html(item.aud_no))
+			.append($('<td>').html('<a href="#">'+item.mem_id+'</a>'))
+			.append($('<td>').html(item.aud_type))
+			.append($('<td>').html(item.aud_height))
+			.append($('<td>').html(item.aud_weight))
 			.appendTo('tbody');
 			
 		});//end each
@@ -175,11 +169,10 @@ div #dataTable_filter{
                     <tr>
                       <th></th>
                       <th>번호</th>
-                      <th>제목</th>
-                      <th>글쓴이</th>
-                      <th>등록일</th>
-                      <th>지원분류(가수/배우)</th>
-                      <th>지원현황</th>
+                      <th>회원ID</th>
+                      <th>지원분야</th>
+                      <th>키</th>
+                      <th>몸무게</th>
                     </tr>
                   </thead>
                   <tbody>

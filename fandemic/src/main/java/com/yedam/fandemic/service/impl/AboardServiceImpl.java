@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.yedam.fandemic.impl.AboardMapper;
 import com.yedam.fandemic.service.AboardService;
 import com.yedam.fandemic.vo.Aboard;
+import com.yedam.fandemic.vo.Audition;
 
 @Service
 public class AboardServiceImpl  implements AboardService{
@@ -41,6 +42,12 @@ public class AboardServiceImpl  implements AboardService{
 	@Override //소속사 오디션 공지사항 수정
 	public int updateAboard(Aboard aboard) {
 		return dao.updateAboard(aboard);
+	}
+
+
+	@Override
+	public List<Audition> getAuditionApplyList(Audition audition) {
+		return dao.getAuditionApplyList(audition);
 	}
 
 }

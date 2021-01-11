@@ -62,5 +62,12 @@
 		WHERE ABO_NO= #{abo_no}
 	
 	</update>
+<!-- 소속사 각 오디션별 지원현황 리스트 요청 -->
+	<select id="getAuditionApplyList" parameterType="Audition" resultType="Audition">
+		SELECT *
+		FROM AUDITION
+		WHERE ABO_NO=#{abo_no}
+		AND COM_ID=#{com_id}
+	</select>	
 
 </mapper>
