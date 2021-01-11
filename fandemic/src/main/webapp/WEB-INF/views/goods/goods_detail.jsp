@@ -2,20 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Goods 상세보기 페이지</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <!-- Js Plugins -->
-<script
-		src="${pageContext.request.contextPath}/resourcesGoods/js/owl.carousel.min.js"></script>
-<script
-		src="${pageContext.request.contextPath}/resourcesGoods/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/resourcesGoods/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}/resourcesGoods/js/main.js"></script>
 
 <script>
 

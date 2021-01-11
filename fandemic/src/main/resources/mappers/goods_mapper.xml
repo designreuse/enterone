@@ -51,7 +51,7 @@
 
 	<!-- 장바구니 목록 -->
 	<select id="cartList" parameterType="Cart" resultType="Cart">
-		SELECT C.*, G.GO_NAME, G.GO_PRICE, G.GO_PIC, M.MEM_NAME
+		SELECT C.*, G.GO_NAME, G.GO_PRICE, G.GO_PIC, M.MEM_NAME, C.CART_QTY * G.GO_PRICE AS PTOTAL
 		FROM GOODS G, CART C, MEMBER M
 		WHERE G.GO_NO = C.GO_NO AND C.MEM_ID = M.MEM_ID AND C.MEM_ID = #{mem_id}
 	</select>

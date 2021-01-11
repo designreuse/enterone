@@ -18,4 +18,5 @@ public class Cart {
 	String go_price;	// goods.굿즈 가격
 	String go_pic;		// goods.굿즈 대표사진
 	String mem_name;	// member.회원 이름
+	String ptotal;		// 항목별 합계금액 (가격*수량)
 }

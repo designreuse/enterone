@@ -63,7 +63,6 @@
  		if (go_type == null || go_type == "") {
 			
 			$(".cate_all").addClass("active");
-			console.log("aaaaa")
 		} else {
 			$(".cate").removeClass("active");
 			$("#" + go_type).addClass("active"); // (active)클래스를 넣는다.
