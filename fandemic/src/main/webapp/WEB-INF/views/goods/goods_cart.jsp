@@ -46,10 +46,13 @@
 			}
 			$button.parent().find('input').val(newVal); // 변경된 수량
 			amount = newVal;
-			ttotal+=total = price * amount;
+			total = price * amount;
+			ttotal += total;
+			console.log(total + ', ' + ttotal);
 			tr.find('.ptotal').val(total+'원'); // 변경된 수량에 따른 합계 금액 변경
 			tr.find('.totalSum').val(30000+'원');
 			// console.log("수량: " + newVal);
+			$('#dd').val(ttotal);
 		});
 		
 		//천단위 콤마 함수
@@ -160,6 +163,7 @@
 								
 								
 							</thead>
+							<c:set var="totalsum" value="0"/>
 							<c:forEach var="cart" items="${cart}">
 							<tbody data-no="${cart.cart_no}">
 								<tr>
@@ -185,6 +189,7 @@
 									</td>
 								</tr>
 							</tbody>
+							<c:set var="totalsum" value="${totalsum + cart.ptotal}"/>
 							</c:forEach>
 							
 						</table>
@@ -195,7 +200,7 @@
 				<div class="col-lg-6" style="width: 40%; float: right;">
 					<div class="shoping__checkout">
 						<ul>
-							<li>결제 예정 금액 <span><input type="text" value="${ttotal}" class="totalSum"></span></li>
+							<li>결제 예정 금액 <span><fmt:formatNumber var="totalsum" value="${totalsum}" pattern="##,###" /><c:out value="${totalsum}원"/></span></li>
 						</ul>
 						<a href="#" class="primary-btn">결제하기</a>
 					</div>

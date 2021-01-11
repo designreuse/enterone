@@ -1,5 +1,6 @@
 var draggedEventIsAllDay;
 var activeInactiveWeekends = true;
+var editStId = $("#sch_stId");
 
 var calendar = $('#calendar').fullCalendar({
 
@@ -83,7 +84,7 @@ var calendar = $('#calendar').fullCalendar({
       }),
       content: $('<div />', {
           class: 'popoverInfoCalendar'
-        }).append('<p><strong>등록자:</strong> ' + event.username + '</p>')
+        }).append('<p><strong>등록자:</strong> ' + event.title + '</p>')
         .append('<p><strong>구분:</strong> ' + event.type + '</p>')
         .append('<p><strong>시간:</strong> ' + getDisplayEventDate(event) + '</p>')
         .append('<div class="popoverDescCalendar"><strong>설명:</strong> ' + event.description + '</div>'),
@@ -96,7 +97,7 @@ var calendar = $('#calendar').fullCalendar({
       html: true,
       container: 'body'
     });
-
+	//return filtering(event);
     return true;
 
   },
@@ -104,26 +105,53 @@ var calendar = $('#calendar').fullCalendar({
   /* ****************
    *  일정 받아옴 
    * ************** */
-  /*events: function (start, end, timezone, callback) {
+  events: function (start, end, timezone, callback) {
     $.ajax({
-      type: "get",
-      url: "",
+      type: "post",
+      url: "ScheduleList",
+      dataType:"json",
       data: {
+      	st_id: editStId.val()
         // 화면이 바뀌면 Date 객체인 start, end 가 들어옴
         //startDate : moment(start).format('YYYY-MM-DD'),
         //endDate   : moment(end).format('YYYY-MM-DD')
       },
       success: function (response) {
-        var fixedDate = response.map(function (array) {
+      	//alert("성공"+response[0]);
+      	var events = [];
+      	$(response).each(function(idx,value){
+      		//console.log(value);
+      		//console.log($(this).attr("sch_title"));
+      		events.push({
+      			_id: $(this).attr("sch_no"),
+            	title: $(this).attr("sch_title"),
+            	start: $(this).attr("sch_startTime"),
+            	end: $(this).attr("sch_endTime"),
+            	description: $(this).attr("sch_content"),
+            	type: $(this).attr("sch_type"),
+            	backgroundColor: $(this).attr("sch_bgColor"),
+            	textColor: $(this).attr("sch_txtColor"),
+            	allDay: $(this).attr("sch_allDay")
+            	
+          });
+      		
+      	})
+        /*var fixedDate = response.map(function (array) {
           if (array.allDay && array.start !== array.end) {
             array.end = moment(array.end).add(1, 'days'); // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
-          }
+          } //end if
           return array;
-        });
-        callback(fixedDate);
+        });*/ //end function
+        //console.log(fixedDate);
+		//console.log(response);
+		
+        callback(events); //
+      },//end success
+      error:function(response){
+      	alert("에러");
       }
-    });
-  },*/
+    }); //end ajax
+  },
 
   eventAfterAllRender: function (view) {
     if (view.name == "month") $(".fc-content").css('height', 'auto');
@@ -265,15 +293,15 @@ function getDisplayEventDate(event) {
 }
 
 function filtering(event) {
-  var show_username = true;
+ // var show_username = true;
   var show_type = true;
 
-  var username = $('input:checkbox.filter:checked').map(function () {
+  /*var username = $('input:checkbox.filter:checked').map(function () {
     return $(this).val();
   }).get();
   var types = $('#type_filter').val();
 
-  show_username = username.indexOf(event.username) >= 0;
+  show_username = username.indexOf(event.username) >= 0;*/
 
   if (types && types.length > 0) {
     if (types[0] == "all") {
@@ -283,7 +311,8 @@ function filtering(event) {
     }
   }
 
-  return show_username && show_type;
+  //return show_username && show_type;
+  return show_type;
 }
 
 function calDateWhenResize(event) {
