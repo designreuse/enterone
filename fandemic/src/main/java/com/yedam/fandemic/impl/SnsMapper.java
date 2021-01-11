@@ -19,4 +19,7 @@ public interface SnsMapper {
 	
 	// SNS 단건조회
 	public Sns OneSnsSelect (Sns sns);
+	
+	// Letter Count
+	public int countMyLetter(Sns sns);
 }	
