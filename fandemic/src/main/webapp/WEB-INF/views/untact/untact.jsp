@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 <style>
+.modal-open .modal {
+	padding : 250px;
+}
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	color: #111111;
@@ -41,13 +45,44 @@ h6 {
 </style>
 <script>
 $(document).ready(function() {
+
+	// 커밍순 슬라이드
 	$('.owl-carousel').owlCarousel({
-		items : 3,
+		items : 3, // length()로 주ㅓ야지
 		loop : true,
 		autoplay : true,
 		autoplayTimeout : 3000,
 		autoplayHoverPause : true
 	});
+	
+	$("#btnIn").on('click', function () {
+		var id = '${sessionScope.member.mem_id}';
+		if( id == null || id == '') {
+			alert("로그인 후 이용 할 수 있습니다.");
+		} else {
+			$.ajax({
+	            url :'${pageContext.request.contextPath}/untactCode',
+	            type:"post",
+	            data : { code : $("#inCode").val() },
+	            
+	            success:function(data){
+	            	console.log(data)
+	            	if(data == null || data == '' ) {
+	            		alert("코드가 일치하지 않습니다.");
+	            	} else {
+	            		alert("입장합니다.");
+	            		window.open("${pageContext.request.contextPath}/no-tiles/unDetail", "", "width=1500, height=900");
+	            	}
+	             	
+	            },error:function(){ alert("실패"); }
+	         });
+		}
+
+		
+	});
+	
+	
+	
 });
 </script>
 
@@ -117,7 +152,7 @@ $(document).ready(function() {
 									${un.go_unttime}
 								</p>
 								<div style="height: 20%; padding-top: 40px;">
-									<a class="btn btn-primary more" href="#">
+									<a class="btn btn-primary more" data-toggle="modal" data-target="#exampleModal" data-what="hello">
 										<div>입장</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -146,4 +181,30 @@ $(document).ready(function() {
 				</div>
 			</div>
 		</div>
+		
+		
+		
+	<!-- 모달창 -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true" >
+		<div class="modal-dialog" role="document" style="width: 300px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" align="center">입장하기</h5>
+				</div>
+				<div class="modal-body" align="center" >
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">코드입력</label>
+						<input type="text" id="inCode" class="form-control" >
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" id ="btnIn">입장</button>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+
 	</section>

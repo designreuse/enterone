@@ -161,14 +161,12 @@ public class LoginController {
 		
 		session.invalidate();
 		
-		request.setAttribute("login", null);
-		
 		return new ModelAndView("redirect:login");
 	}
 	    
 	// 개인 로그인
 	@RequestMapping(value="/memberLogin")
-	public String memberLogin(HttpServletRequest request,HttpSession session,  Model model, Member member, RedirectAttributes redirect) throws IOException{
+	public String memberLogin(HttpServletRequest request, HttpSession session,  Model model, Member member, RedirectAttributes redirect) throws IOException{
 		
 		member = memMapper.memLogin(member);
 		
@@ -179,7 +177,6 @@ public class LoginController {
 			
 		} else {   
 			redirect.addAttribute("login", "fail");
-
 			return "redirect:login";
 		}
 		

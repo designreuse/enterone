@@ -19,7 +19,8 @@
 			$(this).addClass('current');
 			$("#" + tab_id).addClass('current');
 		});
-
+		
+		// 실시간 sns
 		$('.sscroll').scroll(function(){
 	        var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
 	        var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
@@ -164,6 +165,10 @@
 </script>
 
 <style>
+
+.modal-open .modal {
+	padding : 250px;
+}
 
   .sscroll {
     width: 250px;
@@ -371,15 +376,15 @@ hr {
 												
 												<!-- 소셜로그인 -->
 												<c:if test="${sessionScope.member.mem_type eq 0 }">
-													<img src="${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'">
+													<img src="${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" data-toggle="modal" data-target="#exampleModal" data-what="hello">
 												</c:if>
 												<!-- 일반로그인 -->
 												<c:if test="${sessionScope.member.mem_type eq 1 }">
-													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'">
+													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" data-toggle="modal" data-target="#exampleModal" data-what="hello">
 												</c:if>
 												<!-- 기업로그인 -->
 												<c:if test="${sessionScope.member.mem_pic eq null }">
-													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}" alt="company_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'">
+													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}" alt="company_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" data-toggle="modal" data-target="#exampleModal" data-what="hello">
 												</c:if>
 											</figure>
 											
@@ -555,6 +560,27 @@ hr {
 		</div>
 	</div><!-- 카드 -->
 
+	<!-- 모달창 -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true" >
+		<div class="modal-dialog" role="document" style="width: 300px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" align="center">프로필 사진 등록</h5>
+				</div>
+				<div class="modal-body" align="center" >
+					<div class="form-group">
+						<input type="text" id="inCode" class="form-control" >
+						<button type="button" class="btn btn-primary" >첨부파일</button>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" id ="btnIn">입장</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	
 </section>
