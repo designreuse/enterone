@@ -76,8 +76,12 @@ body {
 		});
 		//취소버튼 누르면 목록 사이트
 		$("#can").on("click", function() {
-			location.href = "${pageContext.request.contextPath}/auditionwork";
+			location.href = "${pageContext.request.contextPath}/audition/auditionwork";
 		});
+	//	$("#sub").on("click", function() {
+		//	location.href = "${pageContext.request.contextPath}/audition/activityinsertsend";
+		//});
+		
 	});
 	function WriteFormCheck() {
 		if ($("#ac_title").val() == null || $("#ac_title").val() == '') {
@@ -93,7 +97,7 @@ body {
 			alert("사진이나 동영상을 첨부하세요.")
 			$("#ex_file2").focus();
 			event.preventDefault();
-		}
+		} else if(location.href = "${pageContext.request.contextPath}/audition/activityinsertsend")
 
 	}
 </script>
@@ -108,7 +112,7 @@ body {
 						<h3 class="title">연습생 활동 등록</h3>
 					</div>
 					<div class="form-group col-md-8">
-						<form method="post" action="${pageContext.request.contextPath}/activitysend">
+						<form method="post" action="${pageContext.request.contextPath}/audition/activityinsertsend" encType="multipart/form-data">
 
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">회원ID</label>
@@ -116,6 +120,13 @@ body {
 									<input id="mem_id" name="mem_id" type="text"
 										class="form-control" value="${sessionScope.member.mem_id}"
 										readonly>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputEmail3" class="col-sm-2 control-label">게시판번호</label>
+								<div class="col-sm-10">
+									<input id="ac_title" name="ac_title" type="text"
+										class="form-control" readonly>
 								</div>
 							</div>
 							<div class="form-group">
@@ -137,7 +148,7 @@ body {
 								<label for="inputEmail3" class="col-sm-2 control-label">업로드</label>
 
 								<div class="filebox bs3-primary">
-									<label for="ex_file2">업로드</label> <input type="file"
+									<label for="ex_file2">업로드</label> <input type="file" name="ex_file2"
 										id="ex_file2">
 									<div class="Qkf" style="float: right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-사진이나
 										동영상을 첨부하세요</div>

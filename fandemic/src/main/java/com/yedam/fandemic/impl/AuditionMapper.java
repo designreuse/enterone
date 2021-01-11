@@ -7,7 +7,7 @@ import com.yedam.fandemic.vo.Activity;
 
 import com.yedam.fandemic.vo.Trainee;
 
-public interface TraineeMapper {
+public interface AuditionMapper {
 
 	//닉네임 중복
 	public int nickCheck(Trainee trainee);  
@@ -16,7 +16,7 @@ public interface TraineeMapper {
 	//연습생 활동 글 전체 조회
 	public List<Activity> selectActivity();
 	//연습생 활동 글 등록
-	public void insertac(Activity activity);
+	public int insertac(Activity activity);
 	
 	
 	

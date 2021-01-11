@@ -19,30 +19,18 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yedam.fandemic.impl.TraineeMapper;
-import com.yedam.fandemic.service.AboardService;
-import com.yedam.fandemic.vo.Aboard;
+import com.yedam.fandemic.impl.AuditionMapper;
+import com.yedam.fandemic.service.AuditionService;
 import com.yedam.fandemic.vo.Activity;
-import com.yedam.fandemic.vo.Goods;
+
 import com.yedam.fandemic.vo.Member;
-import com.yedam.fandemic.vo.Reply;
-import com.yedam.fandemic.vo.Sns;
 import com.yedam.fandemic.vo.Trainee;
 
 @Controller
 public class AuditionController {
-	// @Autowired TraineeService traineeservice;
+	@Autowired AuditionService auditionservice;
 	@Autowired
-	TraineeMapper traineeMapper;
-
-	// 연습생 활동 페이지
-	@RequestMapping(value = "/audition/auditionwork") // 주소
-	public ModelAndView traineeactivity(Model model, HttpServletRequest request, Activity activity) throws IOException {
-		model.addAttribute("TrworkList", traineeMapper.selectActivity());
-
-		return new ModelAndView("audition/trainee_list");
-
-	}
+	AuditionMapper auditionMapper;
 
 	// 오디션 지원
 	@RequestMapping(value = "/audition/auditionapply") // 주소
@@ -69,51 +57,60 @@ public class AuditionController {
 	@RequestMapping(value = "/audition/traineeinsertsend")
 	public String traineeinsertsend(Model model, Trainee trainee) throws IOException {
 
-		traineeMapper.inserttr(trainee);
+		auditionMapper.inserttr(trainee);
 
 		return "audition/trainee_list";
 	}
+
 	// 닉네임인 중복확인
-		@RequestMapping(value = "/audition/nickCheck")
-		@ResponseBody
-		public int nickId(Model model, Trainee trainee) throws IOException {
+	@RequestMapping(value = "/audition/nickCheck")
+	@ResponseBody
+	public int nickId(Model model, Trainee trainee) throws IOException {
 
-			System.out.println("닉네임 중복확인");
-			return traineeMapper.nickCheck(trainee);
+		System.out.println("닉네임 중복확인");
+		return auditionMapper.nickCheck(trainee);
 
-		}
+	}
+
+	// 연습생 활동 페이지
+	@RequestMapping(value = "/audition/auditionwork") // 주소
+	public ModelAndView auditionwork(Model model, HttpServletRequest request, Activity activity) throws IOException {
+		model.addAttribute("TrworkList", auditionMapper.selectActivity());
+		
+		return new ModelAndView("audition/trainee_list");
+
+	}
+
 //연습생 활동 글등록 페이지 
 	@RequestMapping(value = "/audition/activityinsert")
-	public ModelAndView activityinsert(Model model, Activity activity, HttpSession session) throws IOException {	
+	public ModelAndView activityinsert(Model model, Activity activity, HttpSession session) throws IOException {
 		return new ModelAndView("audition/activity_insert");
 	}
-	//연습생 활동 글쓰기
-//	@RequestMapping(value = "/activitywrite")
-//	@ResponseBody
-//	public boolean snsInsert(HttpServletRequest request, Activity activity) throws IllegalStateException, IOException {
-//		// request multipart로 캐스팅
-//		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-//		// 이미지파일
-//		List<MultipartFile> multipartFile = multipartRequest.getFiles("upload-file");
-//		// 첨부파일
-//		String imgname = "";
-//		for (int i = 0; i < multipartFile.size(); i++) {
-//			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
-//				String path = request.getSession().getServletContext().getRealPath("/images/snsimage");
-//
-//				System.out.println("path=" + path);
-//
-//				multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
-//
-//				imgname += multipartFile.get(i).getOriginalFilename() + ",";
-//
-//			}
-//		}
-//		sns.setSns_pic(imgname);
-//
-//		snsdao.insertSns(sns);
-//		return true;
-//	}
 	
+	 //연습생 활동 글 등록
+	@RequestMapping(value = "/audition/activityinsertsend")
+	public String Insertac(HttpServletRequest request,Model model, Activity activity) throws IllegalStateException, IOException {
+		// request multipart로 캐스팅
+	      MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+	      String sumFile="";
+	   // 이미지파일, 공지사항 첨부파일
+	      List<MultipartFile> multipartFile = multipartRequest.getFiles("ex_file2");
+	      for(int i=0; i<multipartFile.size(); i++) {
+		      if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/activity");
+		    	  System.out.println("path="+path);
+		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
+		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
+		         activity.setAc_file(sumFile);
+		      }else {
+		    	  activity.setAc_file("");
+		      }
+	      }
+	      
+	      auditionservice.insertac(activity);
+	      model.addAttribute("msg","등록됐습니다.");
+		return "redirect:/audition/auditionwork";
+		
+	}
 
 }

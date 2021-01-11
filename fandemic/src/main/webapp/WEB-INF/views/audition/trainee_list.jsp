@@ -98,7 +98,7 @@
 					<c:if test="${sessionScope.member.mem_id ne null}">
 					<button type="button" class="btn btn-primary" id="but2"
 						style="float: right; margin-top: -58px;"
-						onclick="location.href='traineewritere'">글 등록</button>
+						onclick="location.href='activityinsert'">글 등록</button>
 						</c:if>
 				</div>
 				<div>
@@ -189,6 +189,11 @@
 									<div class="caption">
 										<h3>${activity.ac_title}</h3>
 										<p>${activity.ac_content}</p>
+										<p>${sessionScope.member.mem_id}</p>
+										<p>${activity.ac_no}</p>
+										<p>${activity.ac_time}</p>
+										<h3>${activity.ac_hits}</h3>
+										<p>${activity.ac_likes}</p>
 										<p>
 											<a href="#" class="btn btn-primary" role="button">Button</a>
 											<a href="#" class="btn btn-default" role="button">Button</a>
