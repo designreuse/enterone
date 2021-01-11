@@ -15,6 +15,10 @@ public interface TraineeMapper {
 	public void inserttr(Trainee trainee);
 	//연습생 활동 글 전체 조회
 	public List<Activity> selectActivity();
+	//연습생 활동 글 등록
+	public void insertac(Activity activity);
+	
+	
 	
 
 }

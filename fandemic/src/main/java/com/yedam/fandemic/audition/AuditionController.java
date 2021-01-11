@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -24,6 +25,7 @@ import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
 import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Reply;
 import com.yedam.fandemic.vo.Trainee;
 
 
@@ -77,7 +79,7 @@ public class AuditionController {
 		return  "audition/trainee_list";	
 	}	
 	
-//연습생 활동 등록 페이지 
+//연습생 활동 글등록 페이지 
 	@RequestMapping(value = "/traineewritere")
 	public ModelAndView traineewritere(Model model, Activity activity, HttpSession session) throws IOException {
 		Member member = (Member) session.getAttribute("member");
@@ -85,6 +87,21 @@ public class AuditionController {
 
 		return new ModelAndView("audition/trainee_write");
 	}
+	
+//	 @RequestMapping(value="/star/fanBoard/reply", method=RequestMethod.POST)
+//	   @ResponseBody
+//	   public boolean fboardInsert(HttpServletRequest request, Reply reply,  HttpSession session) throws IOException {
+//	       Member member = (Member) session.getAttribute("member");
+//	       reply.setMem_id(member.getMem_id());
+//	       
+//	       replyService.insertReply(reply);
+//	      return true;
+//	   }
+	
+	
+	
+	
+	
 	
 	//닉네임인 중복확인	
 		@RequestMapping(value="/audition/nickCheck")

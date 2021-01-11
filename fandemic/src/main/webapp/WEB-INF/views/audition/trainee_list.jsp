@@ -95,9 +95,11 @@
 					style="color: black; font-size: 50px; margin-top: 5px;">연습생 활동</h1>
 				<div>
 					<button type="button" class="btn btn-primary" id="but">TOP05/NEW05</button>
+					<c:if test="${sessionScope.member.mem_id ne null}">
 					<button type="button" class="btn btn-primary" id="but2"
 						style="float: right; margin-top: -58px;"
 						onclick="location.href='traineewritere'">글 등록</button>
+						</c:if>
 				</div>
 				<div>
 					<div class="jumbotron jumbotron-fluid">
@@ -164,7 +166,7 @@
 						<div class="col-md-3 col-sm-3 col-xs-3">
 							<div class="input-group">
 								<input type="text" name="q" class="form-control"
-									placeholder="Type something ..." value="hello">
+									placeholder="Type something ..." value="Search">
 								<div class="input-group-btn">
 									<button class="btn btn-primary">
 										<i class="ion-search"></i>
@@ -175,9 +177,11 @@
 					</div>
 				</div>
 				<div class="col-md-12 col-sm-12 col-xs-12">
-					<div class="col-md-3 col-sm-3 col-xs-3">
+					
+					
 						<div class="row">
 							<c:forEach var="activity" items="${TrworkList}">
+							<div class="col-md-3 col-sm-3 col-xs-3">
 								<div class="thumbnail">
 									<img
 										src="${pageContext.request.contextPath}/images/activity/${activity.ac_file}"
@@ -191,7 +195,11 @@
 										</p>
 									</div>
 								</div>
-								</c:forEach>
+								</div>
+									</c:forEach>
+								</div>
+							
+								</div>
 						</div>
 					</div>
 					
@@ -199,7 +207,7 @@
 
 				</div>
 
-			</div>
+
 
 
 			<ul class="pagination" style="align: center">

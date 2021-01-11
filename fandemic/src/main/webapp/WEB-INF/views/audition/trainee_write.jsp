@@ -69,24 +69,33 @@ body {
 }
 </style>
 <script>
-$(function() {
-	//유효성 검사
-	$("#sub").on("click",function() {
-		WriteFormCheck();
+	$(function() {
+		//유효성 검사
+		$("#sub").on("click", function() {
+			WriteFormCheck();
+		});
+		//취소버튼 누르면 목록 사이트
+		$("#can").on("click", function() {
+			location.href = "${pageContext.request.contextPath}/auditionwork";
+		});
+
 	});
-});
-	function WriteFormCheck(){
-		if($("#ac_title").val()==null || $("#ac_title").val()==''){
+	function WriteFormCheck() {
+		if ($("#ac_title").val() == null || $("#ac_title").val() == '') {
 			alert("제목을 입력하세요.")
 			$("#ac_title").focus();
 			event.preventDefault();
-		}
-		else if($("#ac_content").val()==null||$("#ac_content").val()==''){
+		} else if ($("#ac_content").val() == null
+				|| $("#ac_content").val() == '') {
 			alert("내용을 입력하세요.")
 			$("#ac_content").focus();
 			event.preventDefault();
+		} else if ($("#ex_file2").val() == null || $("#ex_file2").val() == '') {
+			alert("사진이나 동영상을 첨부하세요.")
+			$("#ex_file2").focus();
+			event.preventDefault();
 		}
-		
+
 	}
 </script>
 
@@ -101,19 +110,13 @@ $(function() {
 					</div>
 					<div class="form-group col-md-8">
 						<form action="sendactivity" class="form-horizontal">
-							
+
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">회원ID</label>
 								<div class="col-sm-10">
 									<input id="mem_id" name="mem_id" type="text"
-										class="form-control" value="${sessionScope.member.mem_id}" readonly>
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-2 control-label">작성일</label>
-								<div class="col-sm-10">
-									<input id="ac_time" name="ac_time" type="text"
-										class="form-control" value="${activity.ac_time}" readonly>
+										class="form-control" value="${sessionScope.member.mem_id}"
+										readonly>
 								</div>
 							</div>
 							<div class="form-group">
@@ -146,12 +149,11 @@ $(function() {
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
 									<button type="submit" class="btn btn-primary" id="sub">등록</button>
-									<button type="cancel" class="btn btn-primary"
-										style="float: right">취소</button>
+									<button type="button" class="btn btn-primary" id="can" style="float:right;">취소</button>
 								</div>
 							</div>
-
 						</form>
+						
 					</div>
 				</div>
 			</div>
