@@ -33,12 +33,8 @@
 										url : '${pageContext.request.contextPath}/onemailselect?lett_no='
 												+ no,
 										success : function(result) {
-											modal.find('.id')
-													.val(result.mem_id)
-											modal.find('.mid').val(
-													result.lett_sid)
-											modal.find('.mid').attr('data-id',
-													result.lett_sid)
+											modal.find('.mem_id').val(result.mem_id) //받는 회원
+											modal.find('.lett_sid').val(result.lett_sid) // 보낸회원
 											modal.find('.title').val(
 													result.lett_title)
 											modal.find('.content').val(
@@ -53,16 +49,13 @@
 	
 // 	답장기능
 		$(function() {
-		$('#mailreply')
-				.on(
-						'click',
-						function(event) {
+		$('#mailreply').on('click',	function(event) {
 							var modal = $('#exampleModal3')
-											modal.find('.rid')
-													.val($(this).attr('data-id'))
-											modal.modal('show');
-										})
-									})
+							$('#recipient-rename').val($('#recipient-mname').val())
+							modal.modal('show');
+							$('#member-name').val($('#mamber-name').val())
+													})
+		})
 </script>
 </head>
 <section class="single">
@@ -154,13 +147,13 @@
 						</div>
 					</div>
 				</div>
+<!-- 				받은쪽지=============받은쪽지=============받은쪽지=============받은쪽지=============            -->
 				<div class="modal fade" id="exampleModal2" tabindex="-1"
 					role="dialog" aria-labelledby="exampleModalLabel"
 					aria-hidden="true">
 					<div class="modal-dialog" role="document" style="padding-top: 10%;">
 						<div class="modal-content">
 							<form action="deletemail">
-							<input class="no" name="lett_no" id="lett_no">
 								<div class="modal-header">
 									<h5 class="modal-title" id="exampleModalLabel">받은 쪽지 확인</h5>
 									<button type="button" class="close" data-dismiss="modal"
@@ -169,17 +162,17 @@
 									</button>
 								</div>
 								<div class="modal-body">
-									<input type="text" class="form-control id" id="recipient-name"
-										name="lett_sid" style="display: none">
+									<input type="text" class="form-control mem_id" id="mamber-name"
+										name="mem_id" style="display: none"><!-- 받은회원, 내 아이디 -->
 									<div class="form-group">
-										<label for="recipient-name" class="col-form-label ">보낸사람
-											ID: </label> <input type="text" class="form-control mid"
-											id="recipient-name" name="mem_id">
+										<label for="recipient-name" class="col-form-label ">보낸회원
+											ID: </label> <input type="text" class="form-control lett_sid"
+											id="recipient-mname" name="lett_sid">
 									</div>
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label ">쪽지
 											제목: </label> <input type="text" class="form-control title"
-											id="recipient-name" name="lett_title">
+											id="recipient-title" name="lett_title">
 									</div>
 									<div class="form-group">
 										<label for="message-text" class="col-form-label ">내용:</label>
@@ -203,23 +196,26 @@
 					aria-hidden="true">
 					<div class="modal-dialog" role="document" style="padding-top: 10%;">
 						<div class="modal-content">
-							<form action="replymail">
+						
+<!-- 						답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장 -->
+						
+							<form name="replymail"  action="sendmail">
 							<input class="no" name="lett_no" id="lett_no" data-no="lett_no" style="display: none" >
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">받은 쪽지 확인</h5>
+									<h5 class="modal-title" id="exampleModalLabel">답장 하기</h5>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div class="modal-body">
-									<input type="text" class="form-control id" id="recipient-name"
-										name="lett_sid" style="display: none">
+									<input type="text" class="form-control mid" id="member-name"
+										name="lett_sid" style="display: none"> 
 									<div class="form-group">
-										<label for="recipient-name"  class="col-form-label ">받는사람
+										<label for="recipient-name"  class="col-form-label lett_sid">받는사람
 											ID: </label> <input type="text" class="form-control rid"
-											id="recipient-name" name="rid">
-									</div>
+											id="recipient-rename" name="mem_id" readonly="readonly">
+									</div> 
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label ">쪽지
 											제목: </label> <input type="text" class="form-control title"

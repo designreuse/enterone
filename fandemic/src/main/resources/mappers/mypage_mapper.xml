@@ -78,7 +78,7 @@
 		SELECT * FROM ( SELECT A.*,
 		ROWNUM RN FROM (
 		SELECT * FROM LETTER Where mem_id = #{mem_id} ORDER BY
-		lett_no
+		lett_no DESC	
 		) A ) B WHERE RN BETWEEN #{lett_first} AND #{lett_last}
 	</select>
 	<!-- 쪽지 페이지 네이션 -->

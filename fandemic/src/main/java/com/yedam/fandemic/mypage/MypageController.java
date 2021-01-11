@@ -193,6 +193,7 @@ public class MypageController {
 		
 		return new ModelAndView("redirect:mymail");
 	}
+	
 	//==================QnA===========================
 	// my1:1main
 	@RequestMapping(value = "/my1o1")
