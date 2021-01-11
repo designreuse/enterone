@@ -799,8 +799,7 @@ hr {
 									<td style="padding: 5px; width: 50px"><h6>${mel.no}</h6></td>
 									<td style="padding: 5px"><img src="${mel.img}" alt="melon"
 										style="width: 35px; height: 35px;"></td>
-									<td style="padding: 8px"><c:if
-											test="${fn:length(mel.song) > 20 }">
+									<td style="padding: 8px"><c:if test="${fn:length(mel.song) > 20 }">
 											<div>${fn:substring(mel.song,0,20)}...</div>
 										</c:if> <c:if test="${fn:length(mel.sing) > 20 }">
 											<div>${fn:substring(mel.sing,0,20)}...</div>

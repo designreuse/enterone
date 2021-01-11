@@ -2,6 +2,7 @@ package com.yedam.fandemic.audition;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,26 +19,36 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.TraineeMapper;
+import com.yedam.fandemic.service.AboardService;
+import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
+import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Trainee;
 
 
 @Controller
 public class AuditionController {
-	
+	//@Autowired TraineeService traineeservice;
 	@Autowired TraineeMapper traineeMapper;
 	
 //연습생 활동
-	@RequestMapping(value = "/auditionwork") //주소
-	public ModelAndView auditionwork(HttpServletResponse response) throws IOException {
-		
-		
-		
-		return new ModelAndView("audition/trainee_list");
+//	@RequestMapping(value = "/auditionwork")
+//	@ResponseBody //결과값 JSON
+//	public List<Activity> selectActivity(Activity activity){
+//		return traineeservice.selectActivity(activity);
+//	}	
 	
-	}		
+	//연습생 활동 페이지
+		@RequestMapping(value = "/auditionwork") //주소
+		public ModelAndView traineeactivity(Model model, HttpServletRequest request, Activity activity) throws IOException {
+			model.addAttribute("TrworkList", traineeMapper.selectActivity());
+			
+			return new ModelAndView("audition/trainee_list");
+		
+		}	
 	
+		
 	
 	//오디션 지원
 	@RequestMapping(value = "/auditionapply") //주소
@@ -66,9 +77,11 @@ public class AuditionController {
 		return  "audition/trainee_list";	
 	}	
 	
-//연습생 글 등록 페이지 
+//연습생 활동 등록 페이지 
 	@RequestMapping(value = "/traineewritere")
 	public ModelAndView traineewritere(Model model, Activity activity, HttpSession session) throws IOException {
+		Member member = (Member) session.getAttribute("member");
+		
 
 		return new ModelAndView("audition/trainee_write");
 	}

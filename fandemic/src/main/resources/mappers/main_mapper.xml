@@ -3,6 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.fandemic.impl.MainMapper">
+
 	
 	<!-- 행사목록 -->
 	<select id="ticketList" resultType="Goods">
@@ -48,9 +49,27 @@
 
 	</select>
 	
+	<!-- 검색1 스타 -->
+	<select id="searchStar" resultType="Star" parameterType="string">
+		SELECT * FROM STAR WHERE ST_NAME LIKE '%' ||  #{keyword} || '%' OR ST_ID LIKE '%' || #{keyword} || '%'
+
+	</select>
 	
+	<!-- 검색2 소속사 -->
+	<select id="searchCom" resultType="Company" parameterType="string">
+		SELECT * FROM COMPANY 
+		WHERE COM_NAME LIKE '%'|| #{keyword} || '%' OR COM_ID LIKE '%' || #{keyword} || '%'
+		ORDER BY COM_TIME DESC
+
+	</select>
 	
-	
-	
+	<!-- 검색 3 연습생 -->
+	<select id="searchAc" resultType="map" parameterType="string">
+		SELECT A.*, M.MEM_NAME FROM ACTIVITY A , MEMBER M
+		WHERE A.MEM_ID = M.MEM_ID
+		AND M.MEM_NAME LIKE '%'|| #{keyword} || '%'
+		OR A.AC_TITLE LIKE '%'|| #{keyword} || '%'
+		ORDER BY A.AC_TIME
+	</select>
 	
 </mapper>
