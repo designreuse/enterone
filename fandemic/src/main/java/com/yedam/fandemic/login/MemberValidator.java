@@ -45,7 +45,8 @@ public class MemberValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_name", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_pw", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_birth", "required", notnull);
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_address2", "required", notnull);
+		
+		// ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_address2", "required", notnull);
 
 		
 		// 널값 and 형식

@@ -3,15 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 	var maxNo=0;
 	
 	$(function() {
-		
-		
-		
-		
+
 		$('ul.tabs li').click(function() {
 
 			var tab_id = $(this).attr('data-tab');
@@ -21,13 +18,7 @@
 
 			$(this).addClass('current');
 			$("#" + tab_id).addClass('current');
-			
-			
-
 		});
-		
-		
-		
 
 		$('.sscroll').scroll(function(){
 	        var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
@@ -35,16 +26,13 @@
 	        var contentH = $('#divContent').height(); //문서 전체 내용을 갖는 div의 높이
 
 	       if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
-	    	   
 	    	   newSns();
-	       
-	    	   
-	    	   
-	    	    
 	        } 
+	        
+	        
 	    });
 		
-		
+		// 차트
 		var ctx = $('#myChart');
 		var myChart = new Chart(ctx, {
 				type : 'pie',
@@ -65,13 +53,12 @@
 				}
 			});
 		
+		
 		var mem_id = "${sessionScope.member.mem_id}";
-		
-		
 		if ( mem_id == null || mem_id == '') {
-			console.log(mem_id);
+			
 		} else {
-			console.log(mem_id);
+			
 			$.ajax({
 	            url :'${pageContext.request.contextPath}/myStar3',
 	            type:"post",
@@ -80,37 +67,37 @@
 	            
 	            success:function(data){
 	            	
-	            	if(data == null) {
-	            		
+	            	if(data == null) { //스타가입 ㄴㄴ
 	            		$("#myStar3").html($("<h5>").html("팬 가입을 하세요"));
 	            		
-	            	} else {
-	            		var last=0; //결과가 3개 미만이면
-		            	for ( var i=0; i<3; i++) {
-		            		
-		            		var stName = data[i].ST_NAME;
-		            		
-		            		if (stName == null) {
-		            			last = i; // i값 last에 저장해서
-		            		} else {
-		            			last=3;
-		            			$("#st" + (i+1)).text(data[i].ST_NAME);	
-		            		}
-		            			            		
-		            	}
-		            	
+	            	} else { // 스타가입 ㅇㅇ
+	            		
+	            		var last=0;
+							            	
+	            		if(data.length < 3) { 
+	            			last = data.length; 
+	            		} else { 
+	            			last = 3;
+	            		}
+	            		
+	            		console.log(last);
+	            		for( var i=0 ; i < last; i++) {
+	            			var stName = data[i].ST_NAME;
+	            			$("#st" + (i+1)).text(data[i].ST_NAME).css("display","");	
+	            		}
+
 		            	for(var i=0; i<=last; i++) { // last 만큼만 for문
 		            		var img = data[i].ST_ICON;
 		            		if ( img == null || img == '') {
-		            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/member_pic/no-profile.jpg");
+		            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/member_pic/no-profile.jpg").css("display","");
 		            		} else {
-		            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/star/" + img);
+		            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/star/" + img).css("display","");
 		            		}
 		            	}
 		            	
 		            	for(var i=0; i<=last; i++) {
 		            		var img = data[i].CNT;
-		            		$("#cnt" + (i+1)).text(data[i].CNT);	            
+		            		$("#cnt" + (i+1)).text(data[i].CNT).css("display","");	            
 		            	}
 	            	}
 	            },error:function(){ alert("실패"); }
@@ -127,8 +114,10 @@
 		
 		if(maxNo == 0) {
 			maxSnsNo = "${maxSnsNo}";
+			console.log("0일 때" + maxSnsNo);
 		} else {
 			maxSnsNo = maxNo;
+			console.log("0이 아닐 때" + maxSnsNo);
 		}
 		
 		console.log(maxSnsNo);
@@ -141,13 +130,21 @@
 
 	            	if ( data != null) {
 	            	$(data).each(function(index, item){
-      					
-	            		var imgs = '<img src="${pageContext.request.contextPath}/images/member_pic/'+ item.mem_pic + '" class="snsImg"><br />';
+	            		
+	            		if (item.mem_pic == null) { // 프로필이 null 일 때
+	            			var imgs = '<img src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg" class="snsImg"><br />';
+	            			
+	            		} else if (item.mem_type ==0) { // 소셜 로그인 일 때
+	            			var imgs = '<img src="'+ item.mem_pic + '" class="snsImg"><br />';
+	            			
+      					} else { // 소셜ㄴㄴ 프로필 null ㄴㄴ 일 때 
+      						var imgs = '<img src="${pageContext.request.contextPath}/images/member_pic/'+ item.mem_pic + '" class="snsImg"><br />';
+      					}
 	            		var tr = $("<tr />");
 	                	var td = $("<td />");
 	                	var td2 = $("<td />");
 	                	$(td).append(imgs);
-	                	$(td2).append().html("<hr style='background-color: red'>" + item.sns_time +"<br>" + item.sns_title +"<br>" + item.sns_content);
+	                	$(td2).append().html("<hr style='background-color: blue'>" + item.sns_time +"<br>" + item.sns_title +"<br>" + item.sns_content);
 	                	tr.append(td, td2);
 	                    $('#snsTbl').append(tr);
 	                    
@@ -333,344 +330,8 @@ hr {
 							<canvas id="myChart"></canvas>
 						</div>
 					</div>
-				 	
-				
+				</div>
 
-					</div>
-					
-				
-				
-				
-					
-				<%-- <div class="banner">
-					<a href="#"> <img
-						src="${pageContext.request.contextPath}/resources/images/ads.png"
-						alt="Sample Article">
-					</a>
-				</div> --%>
-				
-				<%-- <div class="line transparent little"></div>
-				<div class="row">
-					<div class="col-md-6 col-sm-6 trending-tags">
-						<h1 class="title-col">Trending Tags</h1>
-						<div class="body-col">
-							<ol class="tags-list">
-								<li><a href="#">HTML5</a></li>
-								<li><a href="#">CSS3</a></li>
-								<li><a href="#">JavaScript</a></li>
-								<li><a href="#">jQuery</a></li>
-								<li><a href="#">Bootstrap</a></li>
-								<li><a href="#">Responsive</a></li>
-								<li><a href="#">AuteIrure</a></li>
-								<li><a href="#">Voluptate</a></li>
-								<li><a href="#">Veit</a></li>
-								<li><a href="#">Reprehenderit</a></li>
-							</ol>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-6">
-						<h1 class="title-col">
-							Hot News
-							<div class="carousel-nav" id="hot-news-nav">
-								<div class="prev">
-									<i class="ion-ios-arrow-left"></i>
-								</div>
-								<div class="next">
-									<i class="ion-ios-arrow-right"></i>
-								</div>
-							</div>
-						</h1>
-						<div class="body-col vertical-slider" data-max="4"
-							data-nav="#hot-news-nav" data-item="article">
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img09.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Lifestyle</a>
-											</div>
-											<div class="time">December 22, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img01.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Lifestyle</a>
-											</div>
-											<div class="time">December 22, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img05.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Lifestyle</a>
-											</div>
-											<div class="time">December 22, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img02.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Fusce ullamcorper elit at felis
-												cursus suscipit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Travel</a>
-											</div>
-											<div class="time">December 21, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img13.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">International</a>
-											</div>
-											<div class="time">December 20, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img08.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Aliquam et metus convallis
-												tincidunt velit ut rhoncus dolor</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Computer</a>
-											</div>
-											<div class="time">December 19, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-						</div>
-					</div>
-				</div> --%>
-				
-				
-				
-				<!-- <div class="line top">
-					<div>Just Another News</div>
-				</div> -->
-				
-				<%-- <div class="row">
-					<article class="col-md-12 article-list">
-						<div class="inner">
-							<figure>
-								<a href="single.html"> <img
-									src="${pageContext.request.contextPath}/resources/images/news/img11.jpg"
-									alt="Sample Article">
-								</a>
-							</figure>
-							<div class="details">
-								<div class="detail">
-									<div class="category">
-										<a href="#">Film</a>
-									</div>
-									<div class="time">December 19, 2016</div>
-								</div>
-								<h1>
-									<a href="single.html">Donec consequat arcu at ultrices
-										sodales quam erat aliquet diam</a>
-								</h1>
-								<p>Donec consequat, arcu at ultrices sodales, quam erat
-									aliquet diam, sit amet interdum libero nunc accumsan nisi.</p>
-								<footer>
-									<a href="#" class="love"><i
-										class="ion-android-favorite-outline"></i>
-										<div>273</div></a> <a class="btn btn-primary more"
-										href="single.html">
-										<div>More</div>
-										<div>
-											<i class="ion-ios-arrow-thin-right"></i>
-										</div>
-									</a>
-								</footer>
-							</div>
-						</div>
-					</article>
-					<article class="col-md-12 article-list">
-						<div class="inner">
-							<div class="badge">Sponsored</div>
-							<figure>
-								<a href="single.html"> <img
-									src="${pageContext.request.contextPath}/resources/images/news/img02.jpg"
-									alt="Sample Article">
-								</a>
-							</figure>
-							<div class="details">
-								<div class="detail">
-									<div class="category">
-										<a href="#">Travel</a>
-									</div>
-									<div class="time">December 18, 2016</div>
-								</div>
-								<h1>
-									<a href="single.html">Maecenas accumsan tortor ut velit
-										pharetra mollis</a>
-								</h1>
-								<p>Maecenas accumsan tortor ut velit pharetra mollis. Proin
-									eu nisl et arcu iaculis placerat sollicitudin ut est. In
-									fringilla dui.</p>
-								<footer>
-									<a href="#" class="love"><i
-										class="ion-android-favorite-outline"></i>
-										<div>4209</div></a> <a class="btn btn-primary more"
-										href="single.html">
-										<div>More</div>
-										<div>
-											<i class="ion-ios-arrow-thin-right"></i>
-										</div>
-									</a>
-								</footer>
-							</div>
-						</div>
-					</article>
-					<article class="col-md-12 article-list">
-						<div class="inner">
-							<figure>
-								<a href="single.html"> <img
-									src="${pageContext.request.contextPath}/resources/images/news/img03.jpg"
-									alt="Sample Article">
-								</a>
-							</figure>
-							<div class="details">
-								<div class="detail">
-									<div class="category">
-										<a href="#">Travel</a>
-									</div>
-									<div class="time">December 16, 2016</div>
-								</div>
-								<h1>
-									<a href="single.html">Nulla facilisis odio quis gravida
-										vestibulum Proin venenatis pellentesque arcu</a>
-								</h1>
-								<p>Nulla facilisis odio quis gravida vestibulum. Proin
-									venenatis pellentesque arcu, ut mattis nulla placerat et.</p>
-								<footer>
-									<a href="#" class="love active"><i
-										class="ion-android-favorite"></i>
-										<div>302</div></a> <a class="btn btn-primary more"
-										href="single.html">
-										<div>More</div>
-										<div>
-											<i class="ion-ios-arrow-thin-right"></i>
-										</div>
-									</a>
-								</footer>
-							</div>
-						</div>
-					</article>
-					<article class="col-md-12 article-list">
-						<div class="inner">
-							<figure>
-								<a href="single.html"> <img
-									src="${pageContext.request.contextPath}/resources/images/news/img09.jpg"
-									alt="Sample Article">
-								</a>
-							</figure>
-							<div class="details">
-								<div class="detail">
-									<div class="category">
-										<a href="#">Healthy</a>
-									</div>
-									<div class="time">December 16, 2016</div>
-								</div>
-								<h1>
-									<a href="single.html">Maecenas blandit ultricies lorem id
-										tempor enim pulvinar at</a>
-								</h1>
-								<p>Maecenas blandit ultricies lorem, id tempor enim pulvinar
-									at. Curabitur sit amet tortor eu ipsum lacinia malesuada.</p>
-								<footer>
-									<a href="#" class="love"><i
-										class="ion-android-favorite-outline"></i>
-										<div>783</div></a> <a class="btn btn-primary more"
-										href="single.html">
-										<div>More</div>
-										<div>
-											<i class="ion-ios-arrow-thin-right"></i>
-										</div>
-									</a>
-								</footer>
-							</div>
-						</div>
-					</article>
-				</div> --%>
-				
-				
-				
 			</div>
 
 			<div class="col-xs-6 col-md-4 sidebar" id="sidebar"
@@ -707,35 +368,24 @@ hr {
 										</div>
 										<div class="featured-author-center">
 											<figure class="featured-author-picture">
-
-												<c:if
-													test="${sessionScope.member.mem_pic ne null and sessionScope.member.mem_type eq 0 }">
-													<img src="${sessionScope.member.mem_pic}"
-														alt="member_profile">
+												
+												<!-- 소셜로그인 -->
+												<c:if test="${sessionScope.member.mem_type eq 0 }">
+													<img src="${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'">
 												</c:if>
-												<c:if
-													test="${sessionScope.member.mem_pic eq null and sessionScope.company.com_pic eq null }">
-													<img
-														src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
-														alt="no-profile">
+												<!-- 일반로그인 -->
+												<c:if test="${sessionScope.member.mem_type eq 1 }">
+													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'">
 												</c:if>
-
-												<c:if
-													test="${sessionScope.member.mem_pic ne null and sessionScope.company.com_pic eq null and sessionScope.member.mem_type eq 1}">
-													<img
-														src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}"
-														alt="member_profile">
-												</c:if>
-
-												<c:if
-													test="${sessionScope.company.com_pic ne null and sessionScope.member.mem_pic eq null }">
-													<img
-														src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}"
-														alt="company_profile">
+												<!-- 기업로그인 -->
+												<c:if test="${sessionScope.member.mem_pic eq null }">
+													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}" alt="company_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'">
 												</c:if>
 											</figure>
+											
 											<div class="featured-author-info">
 												<h2 class="name" style="color: black;">${sessionScope.member.mem_name}</h2>
+												<h2 class="name" style="color: black;">${sessionScope.company.com_name}</h2>
 												<c:if test="${sessionScope.member.mem_type ne 0 }">
 													<div class="desc" style="color: #f73f52;">${sessionScope.member.mem_id}</div>
 												</c:if>
@@ -744,28 +394,31 @@ hr {
 
 
 									</div>
-									<!-- 내 스타목록 -->
+									<!-- 내 스타목록 개인 로그인 때만 출력-->
+									
+									<c:if test="${sessionScope.member.mem_id ne null }">
 									<div class="featured-author-center" align="center" id="myStar3">
 
 										<table>
 											<tr>
-												<td align="center"><img id="stImg1" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; "></td>
-												<td align="center"><img id="stImg2" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; "></td>
-												<td align="center"><img id="stImg3" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; "></td>
+												<td align="center"><img id="stImg1" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; display: none;"></td>
+												<td align="center"><img id="stImg2" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; display: none;"></td>
+												<td align="center"><img id="stImg3" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; display: none;"></td>
 											</tr>
 											
 											<tr>
-												<td align="center"><e id="st1" class="name" style="color: black;"></e></td> 
-												<td align="center"><e id="st2" class="name" style="color: black;"></e></td>
-												<td align="center"><e id="st3" class="name" style="color: black;"></e></td>
+												<td align="center"><e id="st1" class="name" style="color: black; display: none;"></e></td> 
+												<td align="center"><e id="st2" class="name" style="color: black; display: none;"></e></td>
+												<td align="center"><e id="st3" class="name" style="color: black; display: none;"></e></td>
 											</tr>
 											<tr>
-												<td align="center"><e id="cnt1" class="cnt" style="color: black; "></e></td> 
-												<td align="center"><e id="cnt2" class="cnt" style="color: black; "></e></td>
-												<td align="center"><e id="cnt3" class="cnt" style="color: black; "></e></td>
+												<td align="center"><e id="cnt1" class="cnt" style="color: black; display: none;"></e></td> 
+												<td align="center"><e id="cnt2" class="cnt" style="color: black; display: none;"></e></td>
+												<td align="center"><e id="cnt3" class="cnt" style="color: black; display: none;"></e></td>
 											</tr>
 										</table>
 									</div>
+									</c:if>
 									
 								</c:if>   
 
@@ -856,256 +509,30 @@ hr {
 						</table>
 					</div>
 				</aside>
-				
-				
-				<!-- <aside>
-					<div class="aside-body">
-						<form class="newsletter">
-							<div class="icon">
-								<i class="ion-ios-email-outline"></i>
-								<h1>Newsletter</h1>
-							</div>
-							<div class="input-group">
-								<input type="email" class="form-control email"
-									placeholder="Your mail">
-								<div class="input-group-btn">
-									<button class="btn btn-primary">
-										<i class="ion-paper-airplane"></i>
-									</button>
-								</div>
-							</div>
-							<p>By subscribing you will receive new articles in your
-								email.</p>
-						</form>
-					</div>
-				</aside> -->
-				
-				
-				<%-- <aside>
-					<ul class="nav nav-tabs nav-justified" role="tablist">
-						<li class="active"><a href="#recomended"
-							aria-controls="recomended" role="tab" data-toggle="tab"> <i
-								class="ion-android-star-outline"></i> Recomended
-						</a></li>
-						<li><a href="#comments" aria-controls="comments" role="tab"
-							data-toggle="tab"> <i class="ion-ios-chatboxes-outline"></i>
-								Comments
-						</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="recomended">
-							<article class="article-fw">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img16.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="details">
-										<div class="detail">
-											<div class="time">December 31, 2016</div>
-											<div class="category">
-												<a href="category.html">Sport</a>
-											</div>
-										</div>
-										<h1>
-											<a href="single.html">Donec congue turpis vitae mauris</a>
-										</h1>
-										<p>Donec congue turpis vitae mauris condimentum luctus. Ut
-											dictum neque at egestas convallis.</p>
-									</div>
-								</div>
-							</article>
-							<div class="line"></div>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img05.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Lifestyle</a>
-											</div>
-											<div class="time">December 22, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img02.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Fusce ullamcorper elit at felis
-												cursus suscipit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Travel</a>
-											</div>
-											<div class="time">December 21, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img
-											src="${pageContext.request.contextPath}/resources/images/news/img10.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">Duis aute irure dolor in
-												reprehenderit in voluptate velit</a>
-										</h1>
-										<div class="detail">
-											<div class="category">
-												<a href="category.html">Healthy</a>
-											</div>
-											<div class="time">December 20, 2016</div>
-										</div>
-									</div>
-								</div>
-							</article>
-						</div>
-						<div class="tab-pane comments" id="comments">
-							<div class="comment-list sm">
-								<div class="item">
-									<div class="user">
-										<figure>
-											<img
-												src="${pageContext.request.contextPath}/resources/images/img01.jpg"
-												alt="User Picture">
-										</figure>
-										<div class="details">
-											<h5 class="name">Mark Otto</h5>
-											<div class="time">24 Hours</div>
-											<div class="description">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="user">
-										<figure>
-											<img
-												src="${pageContext.request.contextPath}/resources/images/img01.jpg"
-												alt="User Picture">
-										</figure>
-										<div class="details">
-											<h5 class="name">Mark Otto</h5>
-											<div class="time">24 Hours</div>
-											<div class="description">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">
-									<div class="user">
-										<figure>
-											<img
-												src="${pageContext.request.contextPath}/resources/images/img01.jpg"
-												alt="User Picture">
-										</figure>
-										<div class="details">
-											<h5 class="name">Mark Otto</h5>
-											<div class="time">24 Hours</div>
-											<div class="description">Lorem ipsum dolor sit amet,
-												consectetur adipisicing elit.</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</aside> --%>
-				
-				
-				<!-- <aside>
-					<h1 class="aside-title">
-						Videos
-						<div class="carousel-nav" id="video-list-nav">
-							<div class="prev">
-								<i class="ion-ios-arrow-left"></i>
-							</div>
-							<div class="next">
-								<i class="ion-ios-arrow-right"></i>
-							</div>
-						</div>
-					</h1>
-					<div class="aside-body">
-						<ul class="video-list"
-							data-youtube='"carousel":true, "nav": "#video-list-nav"'>
-							<li><a data-youtube-id="SBjQ9tuuTJQ" data-action="magnific"></a></li>
-							<li><a data-youtube-id="9cVJr3eQfXc" data-action="magnific"></a></li>
-							<li><a data-youtube-id="DnGdoEa1tPg" data-action="magnific"></a></li>
-						</ul>
-					</div>
-				</aside> -->
-				
-				
-				<%-- <aside id="sponsored">
-					<h1 class="aside-title">Sponsored</h1>
-					<div class="aside-body">
-						<ul class="sponsored">
-							<li><a href="#"> <img
-									src="${pageContext.request.contextPath}/resources/images/sponsored.png"
-									alt="Sponsored">
-							</a></li>
-							<li><a href="#"> <img
-									src="${pageContext.request.contextPath}/resources/images/sponsored.png"
-									alt="Sponsored">
-							</a></li>
-							<li><a href="#"> <img
-									src="${pageContext.request.contextPath}/resources/images/sponsored.png"
-									alt="Sponsored">
-							</a></li>
-							<li><a href="#"> <img
-									src="${pageContext.request.contextPath}/resources/images/sponsored.png"
-									alt="Sponsored">
-							</a></li>
-						</ul>
-					</div>
-				</aside> --%>
-				
+
 				
 			</div>
-			
+		</div>
 		<!-- sns 뿌리기 -->
-		<div class="container" align="center">
-			<div class="sscroll" style="overflow-y:scroll; width:100%; height:500px; padding: 20px";>
-				
-					<div id="divContent" style="border : 1px solid #8ac121;">  <!-- style="border: 1px solid  #4176E0 ;" -->
+		<div class="line">
+			<div>???</div>
+		</div>
+		<div class="content" style="padding-top: 20px; " >
+			<div class="sscroll" style="overflow-y:scroll; width:100%; height:500px; padding: 20px;">
+					<div id="divContent" > 
 						<table id="snsTbl">
 						<c:forEach items="${snsList}" var="sns">
-							<tr>
+							<tr > 
 								<c:if test="${sns.mem_type ne 0 }">
-									<td><img class="snsImg" src="${pageContext.request.contextPath}/images/member_pic/${sns.mem_pic}" style="width: 60px; height: 60px; margin: 20px;"></td><!-- 프로필 사진 -->
+									<td><img class="snsImg" src="${pageContext.request.contextPath}/images/member_pic/${sns.mem_pic}" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" style="width: 60px; height: 60px; margin: 20px;"></td><!-- 프로필 사진 -->
 								</c:if>
 								<c:if test="${sns.mem_type eq 0 }">
-									<td><img class="snsImg" src="${sns.mem_pic}" style="width: 60px; height: 60px; margin: 20px;"></td><!-- 프로필 사진 -->
+									<td><img class="snsImg" src="${sns.mem_pic}" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" style="width: 60px; height: 60px; margin: 20px;"></td><!-- 프로필 사진 -->
 								</c:if>
-								<c:if test="${sns.mem_pic eq null}">
+								<%-- <c:if test="${sns.mem_pic eq null}">
 									<td><img class="snsImg" src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"style="width: 60px; height: 60px; margin: 20px;"></td><!-- 프로필 사진 -->
-								</c:if>
-								<td style="margin: 20px;">
+								</c:if> --%>
+								<td style="margin: 20px; width: 100%;">
 									<hr>
 									${sns.sns_time} <br>
 									${sns.sns_title} <br>
@@ -1123,175 +550,11 @@ hr {
 						</table>
 						
 					</div>
+				
 				</div>
 		</div>
-		
-		
-		
-		
-	</div>
+	</div><!-- 카드 -->
+
+	
+	
 </section>
-
-<section class="best-of-the-week">
-
-	<%-- <div class="container">
-		<h1>
-			<div class="text">Best Of The Week</div>
-			<div class="carousel-nav" id="best-of-the-week-nav">
-				<div class="prev">
-					<i class="ion-ios-arrow-left"></i>
-				</div>
-				<div class="next">
-					<i class="ion-ios-arrow-right"></i>
-				</div>
-			</div>
-		</h1>
-		<div class="owl-carousel owl-theme carousel-1">
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img
-							src="${pageContext.request.contextPath}/resources/images/news/img03.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 11, 2016</div>
-							<div class="category">
-								<a href="category.html">Travel</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">tempor interdum Praesent tincidunt</a>
-						</h2>
-						<p>Praesent tincidunt, leo vitae congue molestie.</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img
-							src="${pageContext.request.contextPath}/resources/images/news/img16.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 09, 2016</div>
-							<div class="category">
-								<a href="category.html">Sport</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Maecenas porttitor sit amet turpis a
-								semper</a>
-						</h2>
-						<p>Proin vulputate, urna id porttitor luctus, dui augue
-							facilisis lacus.</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img
-							src="${pageContext.request.contextPath}/resources/images/news/img15.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 26, 2016</div>
-							<div class="category">
-								<a href="category.html">Lifestyle</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Fusce ac odio eu ex volutpat
-								pellentesque</a>
-						</h2>
-						<p>Vestibulum ante ipsum primis in faucibus orci luctus</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img
-							src="${pageContext.request.contextPath}/resources/images/news/img14.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 26, 2016</div>
-							<div class="category">
-								<a href="category.html">Travel</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Nulla facilisis odio quis gravida
-								vestibulum</a>
-						</h2>
-						<p>Proin venenatis pellentesque arcu, ut mattis nulla placerat
-							et.</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img
-							src="${pageContext.request.contextPath}/resources/images/news/img01.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 26, 2016</div>
-							<div class="category">
-								<a href="category.html">Travel</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Fusce Ullamcorper Elit At Felis Cursus
-								Suscipit</a>
-						</h2>
-						<p>Proin venenatis pellentesque arcu, ut mattis nulla placerat
-							et.</p>
-					</div>
-				</div>
-			</article>
-			<article class="article">
-				<div class="inner">
-					<figure>
-						<a href="single.html"> <img
-							src="${pageContext.request.contextPath}/resources/images/news/img11.jpg"
-							alt="Sample Article">
-						</a>
-					</figure>
-					<div class="padding">
-						<div class="detail">
-							<div class="time">December 26, 2016</div>
-							<div class="category">
-								<a href="category.html">Travel</a>
-							</div>
-						</div>
-						<h2>
-							<a href="single.html">Donec consequat arcu at ultrices
-								sodales</a>
-						</h2>
-						<p>Proin venenatis pellentesque arcu, ut mattis nulla placerat
-							et.</p>
-					</div>
-				</div>
-			</article>
-		</div>
-	</div> --%>
-</section>
-
-
-</body>
-</html>

@@ -33,7 +33,6 @@ import com.yedam.fandemic.vo.Star;
 @Controller
 public class MainController {
 	@Autowired MainMapper dao;
-	@Autowired SnsMapper snsDao;
 
 	@RequestMapping(value = "/")
 	public ModelAndView Main(Model model) throws IOException {
@@ -74,8 +73,7 @@ public class MainController {
 		
 		//sns
 		List<Sns> snsList = new ArrayList<Sns>();
-		Sns sns = new Sns();
-		snsList = snsDao.selectSns(sns);
+		snsList = dao.todaySns();
 		
 		String maxSnsNo = snsList.get(0).getSns_no();
 		model.addAttribute("maxSnsNo", maxSnsNo); // 이후 등록된 건 조회를 위해 no max값 저장
@@ -94,20 +92,21 @@ public class MainController {
 		
 		List<HashMap<String, Object>> myStar3 = new ArrayList<HashMap<String, Object>>();
 		String id = request.getParameter("mem_id");
-		myStar3 = dao.myStar3(id);
 		
-		// 게시글 등록을 1개도 안했으면 
-		if (myStar3.isEmpty()) {
+		myStar3 = dao.myStar3(id); // 게시글 갯수로 스타3 가져옴
+		
+		// 게시글 등록을 3개 보다 작으면 
+		if (myStar3.size() < 3) {
 			myStar3 = dao.myStarList(id); // 새로 조회해서 덮어써서
 			
-			if (myStar3.isEmpty()) { // 이것도 null이면
+			if (myStar3.size() == 0) { // 이것도 null이면
 				return null; //널
 			} else {
 				return myStar3; //반환
 			}
 			
 		} else {
-			return myStar3; // 1개라도 등록했으면 바로 리턴
+			return myStar3; // 게시글 등록 스타가 3개 이상이면
 		}
 
 	}

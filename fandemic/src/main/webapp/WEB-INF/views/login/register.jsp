@@ -133,13 +133,13 @@ ul.tabs li.current {
 		
 		
 		// 개인 주소검색
-		$('#btnAddr').on('click',function(){ 
+		/* $('#btnAddr').on('click',function(){ 
 			openDaumZipAddress($("#mem_zipAddress"), $("#mem_address"), $("#mem_address2"));
 		});  
 		// 기업 주소검색 
 		$('#btnAddrcom').on('click',function(){ 
 			openDaumZipAddress($("#com_zipAddress"), $("#com_address"), $("#com_address2"));
-		});  
+		});   */
 
 		
 		
@@ -208,7 +208,7 @@ ul.tabs li.current {
 	}
 	
 	// 주소검색
-	function openDaumZipAddress(zipAddress, address, address2 ) {
+	/* function openDaumZipAddress(zipAddress, address, address2 ) {
 
 		new daum.Postcode({
 
@@ -222,7 +222,7 @@ ul.tabs li.current {
 			}
 
 		}).open();
-	}
+	} */
 
 	
 	// 아이디 중복확인
@@ -399,7 +399,7 @@ ul.tabs li.current {
 						</div>
 
 
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label>주소</label><br>
 							
 							<div style="position:relative">
@@ -411,7 +411,7 @@ ul.tabs li.current {
 							<form:errors path="mem_address2" cssClass="error" htmlEscape="false"/> <br>
 							<label>우편번호</label> &nbsp; &nbsp;
 							<form:input type="text" id="mem_zipAddress" path="mem_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="true"/>
-						</div>
+						</div> --%>
 
 						<div class="form-group text-right">
 							<button class="btn btn-primary btn-block" id="btnAddMem" disabled="disabled">가입</button>
@@ -479,7 +479,7 @@ ul.tabs li.current {
 							
 						</div>
 						
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label>주소</label><br>
 							
 							<div style="position:relative">
@@ -492,7 +492,7 @@ ul.tabs li.current {
 							
 							<label>우편번호</label> &nbsp; &nbsp;
 							<form:input type="text" id="com_zipAddress" path="com_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="true" />
-						</div>
+						</div> --%>
 						
 						<div class="form-group text-right">
 							<button class="btn btn-primary btn-block" id="btnAddCom" disabled="disabled">가입</button>

@@ -7,11 +7,11 @@
 
 <!-- 소셜 회원가입 -->
 	<insert id="socialInsert" parameterType="Member">
-		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_BIRTH, MEM_PHONE, MEM_EMAIL, MEM_ADDRESS, 
-							MEM_ADDRESS2,MEM_TYPE, MEM_GENDER, MEM_ZIPADDRESS, MEM_PIC)
+		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_BIRTH, MEM_PHONE, MEM_EMAIL,
+							MEM_TYPE, MEM_GENDER, MEM_PIC)
 		VALUES(
-							#{mem_id}, #{mem_name}, #{mem_birth}, #{mem_phone},
-							#{mem_email}, #{mem_address}, #{mem_address2}, 0, #{mem_gender}, #{mem_zipAddress}, #{mem_pic})
+							#{mem_id}, #{mem_name}, #{mem_birth}, #{mem_phone}, #{mem_email}, 
+							0, #{mem_gender}, #{mem_pic})
 
 		
 	</insert>
@@ -123,22 +123,19 @@
 
 <!-- 개인 회원가입 -->
 	<insert id="memInsert" parameterType="Member">
-		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_PW, MEM_BIRTH, MEM_PHONE, MEM_EMAIL, MEM_ADDRESS, 
-							MEM_ADDRESS2,MEM_TYPE, MEM_GENDER, MEM_ZIPADDRESS)
+		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_PW, MEM_BIRTH, MEM_PHONE, MEM_EMAIL,
+							MEM_TYPE, MEM_GENDER)
 		VALUES(
-							#{mem_id}, #{mem_name}, #{mem_pw}, #{mem_birth}, #{mem_phone},
-							#{mem_email}, #{mem_address}, #{mem_address2}, 1, #{mem_gender}, #{mem_zipAddress} )
+							#{mem_id}, #{mem_name}, #{mem_pw}, #{mem_birth}, #{mem_phone}, #{mem_email}, 
+							1, #{mem_gender})
 
 		
 	</insert>
 
 <!-- 기업 회원가입 -->
 	<insert id="comInsert" parameterType="Company">
-		INSERT INTO COMPANY (COM_ID, COM_PW, COM_NAME, COM_PHONE, COM_ADDRESS, 
-							 COM_ADDRESS2, COM_EMAIL, COM_ZIPADDRESS) 
-		VALUES( 
-							#{com_id}, #{com_pw}, #{com_name}, #{com_phone}, #{com_address}, 
-							#{com_address2}, #{com_email}, #{com_zipAddress} )
+		INSERT INTO COMPANY (COM_ID, COM_PW, COM_NAME, COM_PHONE,COM_EMAIL) 
+		VALUES( #{com_id}, #{com_pw}, #{com_name}, #{com_phone}, #{com_email})
 
 	</insert>
 

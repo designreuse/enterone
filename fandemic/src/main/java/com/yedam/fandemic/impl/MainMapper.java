@@ -17,6 +17,7 @@ public interface MainMapper {
 	public List<HashMap<String,Object>> myStar3(String id);
 	public List<HashMap<String,Object>> myStarList(String id);
 	public List<Sns> newSns(String maxNo);
+	public List<Sns> todaySns();
 	
 	//검색
 	public List<Star> searchStar(String keyword); //스타

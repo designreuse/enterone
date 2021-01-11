@@ -45,7 +45,7 @@ public class CompanyValidator implements Validator {
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "com_name", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "com_pw", "required", notnull);
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "com_address2", "required", notnull);
+		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "com_address2", "required", notnull);
 
 		
 		// 널값 and 형식
