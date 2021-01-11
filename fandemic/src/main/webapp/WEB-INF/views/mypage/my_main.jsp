@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>owl.carousel</title>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <link rel="stylesheet" href="/css/owl.carousel.css">
 <script src="/js/owl.carousel.min.js"></script>
 <style type="text/css">
@@ -13,10 +10,6 @@
 	margin: 1%;
 }
 </style>
-</head>
-
-<body>
-
 	<section class="single">
 		<div class="container">
 			<div class="row">
@@ -25,37 +18,13 @@
 						<div>내 스타 목록</div>
 					</div>
 					<div class="owl-carousel">
+						<c:forEach items="${starlist}" var="starlis">
 						<div>
-							<input type="image" style="width: 100px; height: 150px"
-								src="https://images.chosun.com/resizer/e_XfBvoOfR92cYym-TkRB4tsKqE=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/RSITTQF5C7LGXQXY5MZ56EGNHE.jpg">
-							<br> <a>이연희</a>
+							<input type="image" style="height: 150px; overflow: hidden;"
+								src="${pageContext.request.contextPath}/images/star/${starlis.st_pic}">
+							<br> <a>${starlis.st_name }</a>
 						</div>
-						<div>
-							<input type="image" style="width: 100px; height: 150px"
-								src="https://www.bokjitimes.com/news/photo/202002/22767_15736_3416.jpg"><br>
-							<a>공유</a>
-						</div>
-						<div>
-							<input type="image" style="width: 100px; height: 150px"
-								src="https://mblogthumb-phinf.pstatic.net/MjAxOTExMTRfMTcg/MDAxNTczNzEzNDIwMzkx.NtThUWxkOC4HvPQeHiEnhifFhrP2UOFgvEf3iOg21M8g.PaBwdhsT-CI9mddL5zTFTGEWfNm2Dsql5WNl6MjbiP8g.JPEG.silverwingkj/BIMO_%EB%B9%84%EB%AA%A8.jpg?type=w800">
-							<br> <a>비모</a>
-						</div>
-						<div>
-							<input type="image" style="width: 100px; height: 150px"
-								src="https://yt3.ggpht.com/ytc/AAUvwngdItBeJzifilSfidCPWExEVX7p4cSmr9hceh9_RA=s900-c-k-c0x00ffffff-no-rj"><br>
-							<a>우주하마</a>
-						</div>
-
-						<div>
-							<input type="image" style="width: 100px; height: 150px"
-								src="https://i.pinimg.com/originals/a1/59/80/a159805c1f7af920c60758d0eb6420e1.png">
-							<br> <a>장승조</a>
-						</div>
-						<div>
-							<input type="image" style="width: 100px; height: 150px"
-								src="https://www.backhug.co.kr/shopimages/showroom1/0120070003322.jpg?1526467660"><br>
-							<a>엘모</a>
-						</div>
+						</c:forEach>
 					</div>
 					<script>
 						$(document).ready(function() {
@@ -104,11 +73,38 @@
 						<div>쪽지</div>
 					</div>
 					<div class="row">
+					<table
+							class="table table-striped table-dark table-hover maildetail">
+							<tr>
+								<th scope="col" width="5%">#</th>
+								<th scope="col" width="30%">제목</th>
+								<th scope="col" width="20%">아이디</th>
+								<th scope="col" width="20%">받은날짜</th>
+							</tr>
+							<c:forEach items="${maillist}" var="mail">
+								<tr style="text-align: left;" class="mailinfo"
+									data-no="${mail.lett_no}">
+									<td scope="col" width="5%">${mail.lett_no}</td>
+									<td scope="col" width="30%">${mail.lett_title}</td>
+									<td scope="col" width="20%">${mail.lett_sid}</td>
+									<td scope="col" width="20%">${mail.lett_time}</td>
+								</tr>
+
+							</c:forEach>
+						</table>
+						<div align="center">
+							<script>
+								function goPage(p) {
+									location.href = "${pageContext.request.contextPath}/mypagemain/"
+											+ "?p=" + p
+								}
+							</script>
+
+							<my:paging paging="${paging}" jsfunc="goPage" />
+						</div>
 						<h1>쪽지 나오는곳</h1>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-</body>
-</html>
