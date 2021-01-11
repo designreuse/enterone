@@ -1,9 +1,11 @@
+var editStId = $("#sch_stId");
+
 /* ****************
  *  일정 편집
  * ************** */
 var editEvent = function (event, element, view) {
 
-    $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID
+    $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID ??뭔데이게 ㅋㅋㅋ
 
     $('.popover.fade.top').remove();
     $(element).popover("hide");
@@ -37,7 +39,7 @@ var editEvent = function (event, element, view) {
 
     //업데이트 버튼 클릭시
     $('#updateEvent').unbind();
-    $('#updateEvent').on('click', function () {
+    $('#updateEvent').on('click', function () { //등록된 일정 수정
 
         if (editStart.val() > editEnd.val()) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
@@ -66,7 +68,7 @@ var editEvent = function (event, element, view) {
             displayDate = endDate;
         }
 
-        eventModal.modal('hide');
+        
 
         event.allDay = statusAllDay;
         event.title = editTitle.val();
@@ -75,20 +77,34 @@ var editEvent = function (event, element, view) {
         event.type = editType.val();
         event.backgroundColor = editColor.val();
         event.description = editDesc.val();
-
-        $("#calendar").fullCalendar('updateEvent', event);
-
+        
+		//alert("id테스트")
+		//console.log("-----------------")
+		//console.log(event._id)
         //일정 업데이트
         $.ajax({
-            type: "get",
-            url: "",
-            data: {
-                //...
-            },
+            type: "post",
+            url: "updateSchedule",
+            data: { 
+            		sch_no: event._id,
+					st_id: editStId.val(),
+		            sch_title: event.title,         
+		            sch_startTime: event.start,      
+		            sch_endTime: event.end,          
+		            sch_content: event.description,       
+		            sch_type: event.type,            
+		            sch_bgColor: event.backgroundColor,    
+		            sch_allDay: event.allDay                    
+		       	 },
             success: function (response) {
                 alert('수정되었습니다.')
+                $("#calendar").fullCalendar('updateEvent', event);
+                eventModal.modal('hide');
+            },
+            error:function(response){
+            	alert("업데이트 실패");
             }
-        });
+        }); //end ajax
 
     });
 };
@@ -97,19 +113,27 @@ var editEvent = function (event, element, view) {
 $('#deleteEvent').on('click', function () {
     
     $('#deleteEvent').unbind();
-    $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
-    eventModal.modal('hide');
-
+    
+	//console.log("삭제확인-------------")
+	//console.log($(this).data('id'))//먼데이게...
     //삭제시
     $.ajax({
-        type: "get",
-        url: "",
+        type: "post",
+        url: "deleteSchedule",
         data: {
-            //...
+            sch_no: $(this).data('id')
         },
         success: function (response) {
             alert('삭제되었습니다.');
+            $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
+   			 eventModal.modal('hide');
+   			 
+   			 $('#calendar').fullCalendar('removeEvents');
+	         $('#calendar').fullCalendar('refetchEvents');
+        },
+        error:function(response){
+        	alert("삭제 오류");
         }
-    });
+    }); //end ajax
 
-});
+}); //end 삭제벝튼

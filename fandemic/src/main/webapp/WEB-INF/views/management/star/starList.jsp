@@ -85,7 +85,10 @@ div #dataTable_filter{
 		
 		/*********** 스타 스케줄 등록  **************/
 		$("body").on("click",".btn-starSchedule",function(){
-			location.href="${pageContext.request.contextPath}/management/star/starSchedule";
+			//alert("경고"+$(this).parent().prev().prev().prev().text())
+			var st_id = $(this).parent().prev().prev().prev().text();
+			var st_name = $(this).parent().prev().prev().prev().prev().text();
+			location.href="${pageContext.request.contextPath}/management/star/starSchedule?st_id="+st_id+"&st_name="+st_name;
 		});
 		
 	}); //end document ready

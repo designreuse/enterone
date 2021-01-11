@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yedam.fandemic.impl.StarMapperD;
 import com.yedam.fandemic.service.StarServiceD;
+import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
 
 @Service
@@ -42,6 +43,26 @@ public class StarServiceImplD implements StarServiceD{
 	@Override
 	public int deleteStarMember(Star star) {
 		return starDAO.deleteStarMember(star);
+	}
+
+	@Override
+	public int insertStarSchedule(Schedule schedule) {
+		return starDAO.insertStarSchedule(schedule);
+	}
+
+	@Override
+	public List<Schedule> getStartList(Schedule schedule) {
+		return starDAO.getStartList(schedule);
+	}
+
+	@Override
+	public int updateStarSchedule(Schedule schedule) {
+		return starDAO.updateStarSchedule(schedule);
+	}
+
+	@Override
+	public int deleteStarSchedule(Schedule schedule) {
+		return starDAO.deleteStarSchedule(schedule);
 	}
 
 	

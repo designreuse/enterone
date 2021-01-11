@@ -2,6 +2,7 @@ package com.yedam.fandemic.service;
 
 import java.util.List;
 
+import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
 
 public interface StarServiceD {
@@ -11,5 +12,8 @@ public interface StarServiceD {
 	public int InsertStar(Star star);//스타회원 등록
 	public int updateStarMember(Star star);//스타회원정보 수정
 	public int deleteStarMember(Star star);//스타회원삭제
-	
+	public int insertStarSchedule(Schedule schedule); //스타 스케줄 등록
+	public List<Schedule> getStartList(Schedule schedule); //스타 스케줄 목록조회
+	public int updateStarSchedule(Schedule schedule); //스타 스케줄 수정하기
+	public int deleteStarSchedule(Schedule schedule); //스타 스케줄 삭제하기
 }

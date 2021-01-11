@@ -13,7 +13,7 @@
 <!-- 오디션 공지사항 등록 -->
 	<insert id="insertAboard" parameterType="Aboard">
 		<selectKey order="BEFORE" keyProperty="abo_no" resultType="string">
-			SELECT MAX(NVL(ABO_NO, 1))+1
+			SELECT NVL2(MAX(ABO_NO), MAX(ABO_NO)+1, 1)
 			FROM ABOARD
 		</selectKey>
 		INSERT INTO ABOARD (	abo_no, 
