@@ -23,10 +23,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.MainMapper;
 import com.yedam.fandemic.impl.SnsMapper;
+import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Melon;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Sns;
+import com.yedam.fandemic.vo.Star;
 
 @Controller
 public class MainController {
@@ -76,7 +78,6 @@ public class MainController {
 		snsList = snsDao.selectSns(sns);
 		
 		String maxSnsNo = snsList.get(0).getSns_no();
-		System.out.println("=======처음 조회: " + maxSnsNo);
 		model.addAttribute("maxSnsNo", maxSnsNo); // 이후 등록된 건 조회를 위해 no max값 저장
 		model.addAttribute("snsList", snsList);
 			
@@ -119,11 +120,36 @@ public class MainController {
 		
 		List<Sns> newSns = new ArrayList<Sns>();
 		String maxSnsNo = request.getParameter("maxSnsNo");
-		System.out.println("===========새로 조회: " + maxSnsNo);
 		newSns = dao.newSns(maxSnsNo);
 		
 		return newSns;
 		
+
+	}
+	
+	@RequestMapping("/search")   
+	public ModelAndView search(Model model, HttpServletRequest request) {
+		
+		String keyword = request.getParameter("keyword");
+
+		List<Company> com = dao.searchCom(keyword);
+		List<Star> st = dao.searchStar(keyword);
+		List<HashMap<String,Object>> ac = dao.searchAc(keyword);
+		
+		
+		if(com.size() != 0) {
+			model.addAttribute("company", com);		
+		} 
+		
+		if (st.size() != 0) {
+			model.addAttribute("star", st);
+		}
+		
+		if(ac.size() != 0) {
+			model.addAttribute("activity", ac);
+		}
+       
+		return new ModelAndView("search");
 
 	}
 	
