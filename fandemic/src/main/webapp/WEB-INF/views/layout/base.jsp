@@ -129,7 +129,7 @@
                      <li class="dropdown"><a href="${pageContext.request.contextPath}/auditionwork">연 습 생<i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                            <li><a href="traineeinsert">연습생 등록</a></li>
-                           <li><a href="#">연습생 활동</a></li>
+                           <li><a href="auditionwork">연습생 활동</a></li>
                            <li><a href="#">오디션 공고</a></li>
                            
                         </ul>
