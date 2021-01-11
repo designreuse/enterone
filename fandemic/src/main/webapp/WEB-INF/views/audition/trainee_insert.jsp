@@ -64,7 +64,7 @@ $("td #btnCheckm").on("click",function() {
 	}); 
 });
 	
-	function trinsertCheck(event){
+	function trinsertCheck(){
 		if($("table #tr_name").val()==null || $("table #tr_name").val()==''){
 			alert("닉네임을 입력하세요.")
 			$("table #tr_name").focus();
@@ -75,9 +75,9 @@ $("td #btnCheckm").on("click",function() {
 			$("table #tr_content").focus();
 			event.preventDefault();
 		}
-		else if($("table #tr_branch1").val()==null||$("table #tr_branch1").val()==''){
+		else if($("#tr_branch1").val()==null||$("#tr_branch1").val()==''){
 			alert("지원분야를 선택하세요.")
-			$("table #tr_branch1").focus();
+			$("#tr_branch1").focus();
 			event.preventDefault();
 		}	
 		else if($("input[name='checked_id']").val()=='n'){
