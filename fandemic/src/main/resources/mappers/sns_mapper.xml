@@ -29,16 +29,20 @@ select s.*, m.mem_pic mem_pic, m.mem_type mem_type from sns s, member m where s.
 
 
 </select>
+<!-- 사진 조회 -->
 <select id="selectMySns" resultType="Sns">
 SELECT SNS_PIC FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
 </select>
+<!-- SNS 카운트 -->
 <select id="countMySns" resultType="int">
 SELECT COUNT(*) FROM SNS where MEM_ID = #{mem_id}
 </select>
 <!-- SNS 단건조회 -->
 <select id="OneSnsSelect" resultType="sns" >
 SELECT * FROM SNS WHERE SNS_NO = #{sns_no}
-
 </select>
-
+<!-- 쪽지 갯수조회 -->
+<select id="countMyLetter" resultType="int">
+SELECT COUNT(*) FROM Letter where MEM_ID = #{mem_id}
+</select>
 </mapper>

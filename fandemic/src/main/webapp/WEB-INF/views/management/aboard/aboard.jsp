@@ -96,6 +96,13 @@ div #dataTable_filter{
 			});//end ajax
 		});
 		
+		//소속사 각 오디션별 지원현황
+		$("body").on("click",".btn-audtion",function(){
+			var abo_no = $(this).parent().prev().prev().prev().prev().prev().text();
+			var com_id = $(this).parent().prev().prev().prev().text();
+			location.href="${pageContext.request.contextPath}/management/aboard/auditionApply?abo_no="+abo_no+"&com_id="+com_id;
+		});
+		
 	}); //end document ready
 	
 	//오디션 공지사항 목록 조회 요청
@@ -125,6 +132,7 @@ div #dataTable_filter{
 			.append($('<td>').html(item.com_id))
 			.append($('<td>').html(item.abo_time))
 			.append($('<td>').html(item.abo_subject))
+			.append($('<td>').html('<input type="button" value="지원현황" class="btn-audtion">'))
 			.appendTo('tbody');
 			
 		});//end each
@@ -171,6 +179,7 @@ div #dataTable_filter{
                       <th>글쓴이</th>
                       <th>등록일</th>
                       <th>지원분류(가수/배우)</th>
+                      <th>지원현황</th>
                     </tr>
                   </thead>
                   <tbody>

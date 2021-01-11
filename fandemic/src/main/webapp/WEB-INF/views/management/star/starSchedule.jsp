@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Calendar</h1>
+            <h1><input type="hidden" value="${st_id }" id="sch_stId">${st_name } 스케줄</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -30,11 +30,11 @@
     <section class="content">
     <div class="container-fluid">
         <div class="row">
-          <div class="col-md-3">
+          <%-- <div class="col-md-3">
             <div class="sticky-top mb-3">
               <div class="card">
                 <div class="card-header">
-                  <h4 class="card-title">Draggable Events</h4>
+                  <h4 class="card-title"><input type="text" value="${st_id }" id="sch_stId">${st_name } 스케줄</h4>
                 </div>
                 <div class="card-body">
                   <!-- the events -->
@@ -82,7 +82,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --%>
           <!-- /.col -->
 <!-- 여기 -->
 <div class="container">
@@ -116,7 +116,6 @@
                                 aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-
                         <div class="row">
                             <div class="col-xs-12">
                                 <label class="col-xs-4" for="edit-allDay">하루종일</label>
@@ -199,7 +198,7 @@
 
             <div class="panel-body">
 
-                <div class="col-lg-6">
+                <!-- <div class="col-lg-6">
                     <label for="calendar_view">구분별</label>
                     <div class="input-group">
                         <select class="filter" id="type_filter" multiple="multiple">
@@ -209,9 +208,9 @@
                             <option value="사인회">사인회</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-lg-6">
+                <!-- <div class="col-lg-6">
                     <label for="calendar_view">등록자별</label>
                     <div class="input-group">
                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="정연"
@@ -225,7 +224,7 @@
                         <label class="checkbox-inline"><input class='filter' type="checkbox" value="지효"
                                 checked>지효</label>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>

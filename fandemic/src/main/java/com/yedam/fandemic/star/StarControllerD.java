@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.StarServiceD;
-import com.yedam.fandemic.vo.Cnotice;
+import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
 
 @Controller
@@ -138,10 +138,42 @@ public class StarControllerD {
 		return result;
 	}
 	
-	//소속사 스케줄 페이지 이동
+	//소속사 스타 스케줄 페이지 이동
 	@RequestMapping(value="/management/star/starSchedule")
-	public String StarSchedule(){
+	public String StarSchedule(Model model, Star star){
+		model.addAttribute("st_id", star.getSt_id());
+		model.addAttribute("st_name",star.getSt_name());
 		return "mgt/star/starSchedule";
+	}
+	
+	//소속사 스타 스케줄 등록
+	@RequestMapping(value="/management/star/insertSchedule")
+	@ResponseBody //결과를 Json형태로 변환
+	public int insertSchedule(Schedule schedule) {
+		System.out.println("스케줄정보:"+schedule.getSch_bgColor());//스케줄값 넘어오는지 확인 
+		return starService.insertStarSchedule(schedule);
+	}
+	
+	//소속사 해당 스타 스케줄 리스트 불러오기
+	@RequestMapping(value="/management/star/ScheduleList")
+	@ResponseBody
+	public List<Schedule> ScheduleList(Schedule schedule){
+		//System.out.println("id값"+schedule.getSt_id());
+		return starService.getStartList(schedule);
+	}
+	
+	//소속사 해당스타 스케줄 리스트 수정하기
+	@RequestMapping(value="/management/star/updateSchedule")
+	@ResponseBody
+	public int updateSchedule(Schedule schedule){
+		return starService.updateStarSchedule(schedule);
+	}
+	
+	//소속사 해당스타 스케줄 삭제하기                              
+	@RequestMapping(value="/management/star/deleteSchedule")
+	@ResponseBody
+	public int deleteSchedule(Schedule schedule) {
+		return starService.deleteStarSchedule(schedule);
 	}
 	
 }

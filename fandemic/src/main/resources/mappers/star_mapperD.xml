@@ -67,4 +67,61 @@
 			#{id}
 		</foreach>
 	</delete>
+
+<!-- 스타스케줄 등록 -->
+	<insert id="insertStarSchedule" parameterType="Schedule">
+		<selectKey order="BEFORE" keyProperty="sch_no" resultType="string">
+			SELECT NVL2(MAX(SCH_NO), MAX(SCH_NO)+1, 1)
+			FROM SCHEDULE
+		</selectKey>
+		INSERT INTO SCHEDULE (	    sch_no, 
+									sch_content, 
+									st_id,
+									sch_title,
+									sch_starttime,
+									sch_endtime,
+									sch_type,
+									sch_bgcolor,
+									sch_txtcolor,
+									sch_allday
+							 )
+	 	                VALUES(
+	 	               			#{sch_no},
+	 	               			#{sch_content},
+	 	               			#{st_id},
+	 	               			#{sch_title},
+	 	               			#{sch_startTime},
+	 	               			#{sch_endTime},
+	 	               			#{sch_type},
+	 	               			#{sch_bgColor},
+	 	               			#{sch_txtColor},
+	 	               			#{sch_allDay})
+	
+	</insert>	
+<!-- 각 스타스케줄 목록조회 -->	
+	<select id="getStartList" parameterType="Schedule" resultType="Schedule">
+		SELECT *
+		FROM SCHEDULE
+		WHERE ST_ID=#{st_id}
+	</select>
+<!-- 각 스타 스케줄 수정 -->
+	<update id="updateStarSchedule" parameterType="Schedule">
+		UPDATE SCHEDULE
+		<set>
+			<if test="sch_content !=null and sch_content !=''">,SCH_CONTENT=#{sch_content}</if>
+			<if test="sch_title !=null and sch_title !=''">,SCH_TITLE=#{sch_title}</if>
+			<if test="sch_startTime !=null">,SCH_STARTTIME=#{sch_startTime}</if>
+			<if test="sch_endTime !=null">,SCH_ENDTIME=#{sch_endTime}</if>
+			<if test="sch_type !=null">,SCH_TYPE=#{sch_type}</if>
+			<if test="sch_bgColor !=null">,SCH_BGCOLOR=#{sch_bgColor}</if>
+			,SCH_ALLDAY=#{sch_allDay}
+		</set>
+		WHERE SCH_NO= #{sch_no}
+	</update>
+	
+<!-- 스타 스케줄 삭제 -->
+	<delete id="deleteStarSchedule" parameterType="Schedule">
+		DELETE FROM SCHEDULE
+		WHERE SCH_NO =#{sch_no}
+	</delete>
 </mapper>

@@ -168,66 +168,45 @@ window.jssor_1_slider_init = function() {
 		})
 		// SNS상세정보 사진O 모달창 띄우기
 		$('.outputdiv')
-				.on(
-						'click',
-						function(event) {
-							var modal = $('#exampleModal9')
-							var no = $(this).data("no");
-							$
-									.ajax({
-										url : '${pageContext.request.contextPath}/onesnsselect?sns_no='
-												+ no, //파라미터 넘기는 법
+				.on('click',function(event) {
+					var modal = $('#exampleModal9')
+					var no = $(this).data("no");
+							$.ajax({
+								url : '${pageContext.request.contextPath}/onesnsselect?sns_no='+ no, //파라미터 넘기는 법
 										dataType : 'json',
 										success : function(result) {
-											$('#modalimage').html($('#imgtemmm').html());
-											var imgname = result.sns_pic;
-											var imgcut = imgname.split(',');
-											modal.find('.snstitledetail').text(
-													result.sns_title)
-											modal.find('.content').text(
-													result.sns_content)
+											$('#modalimage').html($('#imgtemmm').html());//
+											var imgname = result.sns_pic;//
+											var imgcut = imgname.split(',');//
+											modal.find('.snstitledetail').text(result.sns_title)//
+											modal.find('.content').text(result.sns_content)//
 											modal.find('.appendimmm').empty() //지우는 함수
 											for (var i = 0; i < imgcut.length-1; i++) {
 												var img = '<div><img class="appendiiimmm" data-u="image" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /><img class="thumthum" data-u="thumb" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /></div>';
 												modal.find('.appendimmm').append(img)
 											}
-											
-											
 											jssor_1_slider_init();
 											modal.modal('show');
 										}
 
 									});
 						})
-						
-						
-						
-						
-						
 		// SNS상세정보 사진X
-		$('.outputdiv2')
-				.on(
-						'click',
-						function(event) {
-							var modal = $('#exampleModal9')
-							var no = $(this).data("no");
-							$
-									.ajax({
-										url : '${pageContext.request.contextPath}/onesnsselect?sns_no='
-												+ no, //파라미터 넘기는 법
-										dataType : 'json',
-										success : function(result) {
-
-											modal.find('.snstitledetail').text(
-													result.sns_title)
-											modal.find('.content').text(
-													result.sns_content)
-											modal.modal('show');
+		$('.outputdiv2').on('click',function(event) {//
+							var modal = $('#exampleModal9');//
+							var no = $(this).data("no");//
+							$.ajax({//
+								url : '${pageContext.request.contextPath}/onesnsselect?sns_no='+ no, //파라미터 넘기는 법
+										dataType : 'json',//
+										success : function(result) {//
+											modal.find('#modalimage').empty()//
+											modal.find('.snstitledetail').text(result.sns_title)//
+											modal.find('.content').text(result.sns_content)//
+											modal.modal('show');//
 										}
-
 									});
-						})
-	})
+						});
+	});
 </script>
 
 
@@ -541,7 +520,23 @@ window.jssor_1_slider_init = function() {
 									<div class="featured-author-center">
 										<figure class="featured-author-picture">
 											<p>
-												<img src="${member.mem_pic}" alt="Sample Article">
+											
+																		
+										<c:if test="${member.mem_pic ne null and member.mem_type eq 0 }"> <!--  -->
+											<img class="" src="${member.mem_pic}" alt="member_profile">
+										</c:if>
+											 <c:if test="${member.mem_pic ne null and member.mem_type eq 1}">
+												<img class=""
+													src="${pageContext.request.contextPath}/images/member_pic/${member.mem_pic}"
+													alt="member_profile">
+											</c:if>	
+											<c:if test="${member.mem_pic eq null}">
+												<img class=""
+													src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg"
+													alt="no-profile">
+											</c:if>
+											
+											
 											</p>
 										</figure>
 										<div class="featured-author-info">
@@ -564,24 +559,23 @@ window.jssor_1_slider_init = function() {
 												<div class="value">좋아요 받은 개수</div>
 											</a>
 										</div>
-										<div class="item">
-											<a href="#">
-												<div class="icon">
-													<div>More</div>
-													<i class="ion-chevron-right"></i>
+										<div class="item letterdiv">
+											<a href="${pageContext.request.contextPath}/mymail">
+												<div class="letter">쪽지</div>
+												<div class="value">${countmyletter}
 												</div>
 											</a>
 										</div>
 									</div>
-									<div class="featured-author-quote">"Eur costrict mobsa
-										undivani krusvuw blos andugus pu aklosah"</div>
 									<div class="block">
-										<h2 class="block-title">Photos</h2>
+										<h2 class="block-title">My Photos</h2>
 										<div class="block-body">
 											<ul class="item-list-round" data-magnific="gallery">
-												<c:forEach items="${mysnslist }" var="mySns">
-													<li><a href="${mySns.sns_pic}"
-														style="background-image: url('/images/snsimage/${mySns.sns_pic}');"></a></li>
+												<c:forEach items="${mysnslist}" var="mySns">
+													<c:forTokens var="cutimg" items="${mySns.sns_pic}" delims=",">
+													<li><a href="${pageContext.request.contextPath}/images/snsimage/${cutimg}"
+														style="background-image: url('${pageContext.request.contextPath}/images/snsimage/${cutimg}');"></a></li>
+													</c:forTokens>
 												</c:forEach>
 											</ul>
 										</div>
@@ -738,12 +732,11 @@ window.jssor_1_slider_init = function() {
 												<div class="value">좋아요 받은 개수</div>
 											</a>
 										</div>
-										<div class="item">
+										letter
+										<div class="letter">
 											<a href="#">
-												<div class="icon">
-													<div>More</div>
-													<i class="ion-chevron-right"></i>
-												</div>
+												<div class="name">쪽지</div>
+												<div class="value">좋아요 받은 개수</div>
 											</a>
 										</div>
 									</div>
@@ -754,8 +747,11 @@ window.jssor_1_slider_init = function() {
 										<div class="block-body">
 											<ul class="item-list-round" data-magnific="gallery">
 												<c:forEach items="${mysnslist }" var="mySns">
+													
 													<li><a href="${mySns.sns_pic}"
 														style="background-image: url('/images/snsimage/${mySns.sns_pic}');"></a></li>
+														
+														
 												</c:forEach>
 											</ul>
 										</div>

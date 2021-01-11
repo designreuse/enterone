@@ -12,6 +12,8 @@ public class Schedule {
 	String sch_endTime;	//종료시간 
 	String sch_type;    //일정구분(무슨행사인지)
 	String sch_content;	//일정내용
+	String sch_bgColor; //배경색
+	String sch_txtColor; //폰트색
 	String sch_allDay; //하루종일 일정유무
 	
 }

@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.AboardService;
 import com.yedam.fandemic.vo.Aboard;
+import com.yedam.fandemic.vo.Audition;
 
 
 @Controller
@@ -102,6 +103,20 @@ public class AboardController {
 	      }
 		aboardService.updateAboard(aboard);
 		return "redirect:/management/aboard/aboard";
+	}
+	
+	//소속사 각 오디션 별 지원현황 페이지
+	@RequestMapping(value="/management/aboard/auditionApply")
+	public String auditionApply(Model model,Audition audition) {
+		model.addAttribute("audition", audition);//abo_no넘겨줌(게시물번호, 소속사ID)
+		return "mgt/aboard/auditionApply";
+	}
+	
+	//소속사 각 오디션 별 지원형황 리스트 요청
+	@RequestMapping(value="/management/aboard/auditionApplyList")
+	@ResponseBody
+	public List<Audition> auditionApplyList(Audition audition){
+		return aboardService.getAuditionApplyList(audition);
 	}
 	
 }

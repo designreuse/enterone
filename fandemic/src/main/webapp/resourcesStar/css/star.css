@@ -25,12 +25,30 @@
 }
 
 /* 팬 게시판 목록 */
-.candahar td {
+.candahar td span:hover{
+	text-decoration: underline;
 	cursor: pointer;
 }
 
 .candahar:hover {
 	background-color: #f5f5f5;
+}
+
+/* Datatable th변형 금지 */
+.thList0{
+	width:5% !important;
+}
+.thList1{
+	width:58% !important;
+}
+.thList2{
+	width:10% !important;
+}
+.thList3{
+	width:17% !important;
+}
+.thList4{
+	width:10% !important;
 }
 
 /* 게시판 댓글 */
@@ -77,29 +95,54 @@
 
 /* 해시태그 */
 /* https://blog.naver.com/PostView.nhn?blogId=psj9102&logNo=221371543987&categoryNo=20&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=search*/
-    ul li.tag-item {
-    	display: inline-block;
-        margin: 0 5px;
-        font-size: 14px;
-        letter-spacing: -.5px;
-        padding: 4px 8px;
-        margin: 3px 3px;
-        background-color: #777;
-        color: #000;
-    }
+ul li.tag-item {
+	display: inline-block;
+    margin: 0 5px;
+    font-size: 14px;
+    letter-spacing: -.5px;
+    padding: 4px 8px;
+    margin: 3px 3px;
+    background-color: #f5f5f5;
+    color: #000;
+}
 
-    .tag-item:hover {
-        background-color: #262626;
-        color: #fff;
-    }
+#fbo_hashtag_array{
+	padding: 0px;
+}
 
-    .del-btn {
-        font-size: 12px;
-        font-weight: bold;
-        cursor: pointer;
-        margin-left: 8px;
-    }
-    
-    #tag-list{
-    	padding: 0px;
-    }
+.tag-item:hover {
+    background-color: #262626;
+    color: #fff;
+}
+
+.del-btn {
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+#tag-list{
+	padding: 0px;
+}
+
+/* 페이지네이션 */
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+}
+div #dataTable_filter{
+		text-align:right;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

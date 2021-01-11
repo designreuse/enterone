@@ -18,7 +18,6 @@ public class Cnotice {
 	String conc_banner;		//홍보용 배너
 	String[] cnoc_nos; 		//삭제 체크박스들
 	
-	String cnoc_rn;			
 	private int cnoc_first; // 페이지네이션
 	private int cnoc_last;
 }

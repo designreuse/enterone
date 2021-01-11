@@ -6,18 +6,44 @@
    rel="stylesheet">
 <script
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
+<link
+   href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+      crossorigin="anonymous" />
+<script
+      src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+      crossorigin="anonymous"></script>
+   <script
+      src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+      crossorigin="anonymous"></script>
 <script>
 var tag = {};
 var counter = 0;
 
-	$(function() {      
+	$(function() {
 		//화면 시작 시 목록 출력
 		fboardListView();
 		
-		//tr클릭시 해당 게시글 조회
-		$(".trFboardList").on("click","tr",function(){
-		   var fbo_no = $(this).children("#fbo_no").val();
+		//말머리 별 게시글 목록 검색
+		$(".subFboardList").on("click","a",function(){
+		   var fbo_subject = $(this).html();
+		   if(fbo_subject == "전체"){
+			   fboardListView();
+		   }else{
+			   fboardSubListView(fbo_subject);			   
+		   }
+		})
+		
+		//태그 별 게시글 목록 검색
+		$("#fbo_hashtag_array").on("click","a",function(){
+			var fbo_hashtag = $(this).html();
+			fboardTagListView(fbo_hashtag);			   
+		})
+		
+		
+		//tr에 제목 클릭시 해당 게시글 단건 조회
+		$(".trFboardList").on("click","tr span",function(){
+		//var fbo_no = $(this).parent().find("#fbo_no").html();
+		   var fbo_no = $(this).parent().parent().find("#fbo_no").val();
 		   fboardView(fbo_no);
 		   fboardViewsUpdate(fbo_no);
 		})
@@ -75,7 +101,12 @@ var counter = 0;
 		$(".btnFboardListView").on("click",function(){
 		   checkUnload = false;//경고창 중복 제거
 		   //목록보기 요청
-		   fboardListView();
+		   formReset();
+			$(".fboardListSection").show();
+			$(".fboardInsertSection").hide();
+			$(".fboardViewSection").hide();
+			$(".btnInputFboardShow").focus();
+		   //fboardListView();
 		});
 		
 		//댓글 등록 요청
@@ -165,39 +196,92 @@ var counter = 0;
 	});
 //버튼 액션 종료
 
-   //게시물 목록 요청
-   function fboardListView() {
-      var st_id = "${star.st_id}";
-      $(".fboardListSection").show();
-      $(".fboardInsertSection").hide();
-      $(".fboardViewSection").hide();
-      $(".btnInputFboardShow").focus();
-      
-      $.ajax({
-         url:'${pageContext.request.contextPath}/star/fanBoard/list',
-         type:'GET',
-         data: { id: st_id },
-         error:function(xhr,status,msg){
-            alert("상태값 :" + status + " Http에러메시지 :"+msg);
-         },
-         success: fboardListViewResult
-      });
-   }
+	//게시물 목록 요청
+	function fboardListView() {
+		var st_id = "${star.st_id}";
+		$.ajax({
+		   url:'${pageContext.request.contextPath}/star/fanBoard/list',
+		   type:'GET',
+		   data: { st_id : st_id },
+		   error:function(xhr,status,msg){
+		      alert("상태값 :" + status + " Http에러메시지 :"+msg);
+		   },
+		   success: fboardListViewResult
+		});
+	}
+	
+	//말머리 별 목록 요청
+	function fboardSubListView(fbo_subject) {
+		var st_id = "${star.st_id}";
+		$.ajax({
+			url:'${pageContext.request.contextPath}/star/fanBoard/list/subject',
+			type:'GET',
+			data: { st_id : st_id, fbo_subject : fbo_subject },
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+				success: fboardListViewResult
+		});
+	}
+	
+	//해시태그 별 목록 요청
+	function fboardTagListView(fbo_hashtag) {
+		var st_id = "${star.st_id}";
+		$.ajax({
+			url:'${pageContext.request.contextPath}/star/fanBoard/list/hashtag',
+			type:'GET',
+			data: { st_id : st_id, fbo_hashtag : fbo_hashtag },
+			error:function(xhr,status,msg){
+				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			},
+				success: fboardListViewResult
+		});
+	}
 
    //게시물 목록 요청 결과값
    function fboardListViewResult(data) {
-      formReset();//이전 입력 데이터 삭제
-      $("tbody").empty();
-      $.each(data,function(idx,item){
-         $('<tr>').addClass('candahar')
-         .append($('<input type=\'hidden\' id=\'fbo_no\'>').val(item.fbo_no))
-         .append($('<td>').html(item.fbo_sub_no))
-         .append($('<td>').html("[" + item.fbo_subject + "] " + item.fbo_title))
-         .append($('<td>').html(item.fan_name))
-         .append($('<td>').html(item.fbo_time))
-         .append($('<td>').html(item.fbo_views))
-         .appendTo('tbody');
-      });//each
+		formReset();//이전 입력 데이터 삭제
+		pagingReset();
+		
+		$("tbody").empty();
+		$.each(data,function(idx,item){
+		   $('<tr>').addClass('candahar')
+		   .append($('<input type=\'hidden\' id=\'fbo_no\'>').val(item.fbo_no))
+		   .append($('<td>').html(item.fbo_sub_no))
+		   .append($('<td>').html("[" + item.fbo_subject + "] " + "<span>" + item.fbo_title  + "</span>"))
+		   .append($('<td>').html(item.fan_name))
+		   .append($('<td>').html(item.fbo_time))
+		   .append($('<td>').html(item.fbo_views))
+		   .appendTo('tbody');
+		});//each
+		//페이지네이션 출력
+		var table = $('#dataTable').DataTable({
+			"language": {
+		        "emptyTable": "데이터가 없어요.",
+		        "lengthMenu": "페이지당 _MENU_",
+		        "infoEmpty": "데이터가 없습니다.",
+		        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+		        "search": "검색: ",
+		        "zeroRecords": "일치하는 데이터가 없습니다.",
+		        "loadingRecords": "로딩중...",
+		        "processing":     "잠시만 기다려 주세요...",
+		        "paginate": {
+		            "next": ">",
+		            "previous": "<"
+		        }
+		    },
+			info: false,
+			//ordering: false,//th정렬
+	  		order: [ [ 0, "desc" ] ],
+			"bDestroy": true
+	  	});
+		
+		/* table.rows().invalidate().draw(); */
+	  	
+		$(".fboardListSection").show();
+		$(".fboardInsertSection").hide();
+		$(".fboardViewSection").hide();
+		$(".btnInputFboardShow").focus();
    }
    
    
@@ -218,47 +302,66 @@ var counter = 0;
    }
    
    //게시글 조회 응답
-   function fboardViewResult(data) {
-      formReset();//이전 입력 데이터 삭제
-      //게시물 뷰
-      $('#fbo_title').text("[" + data.fbo_subject + "] " + data.fbo_title);
-      $('#fbo_sub_no').text(data.fbo_sub_no+ " | ");
-      $('#fan_name').text(data.fan_name + " | ");
-      $('#fbo_time').text(data.fbo_time + " | 조회");
-      $('#fbo_views').text(data.fbo_views);
-      $('#fbo_content').html(data.fbo_content);
-      $('#fbo_hashtag').text(data.fbo_hashtag);
-      
-      //수정 뷰
-      $("input:text[name='fbo_no']").val(data.fbo_no);
-      $("input:text[name='fbo_sub_no']").val(data.fbo_sub_no);
-      $("input:text[name='fbo_title']").val(data.fbo_title);
-      $("select[name='fbo_subject']").val(data.fbo_subject).attr("selected", "selected");
-      $('#summernote').summernote('code',data.fbo_content)
-      $("input:text[name='fbo_hashtag']").val(data.fbo_hashtag);
-      
-      //댓글 defalut값
-      $("input:text[name='sfbo_no']").val(data.fbo_no);
-      
-      $(".fboardListSection").hide();
-      $(".fboardInsertSection").hide();
-      $('#fbo_title').focus();
-      $(".fboardViewSection").show();
-   }
+	function fboardViewResult(data) {
+		formReset();//이전 입력 데이터 삭제
+		
+		//게시물 뷰
+		$('#fbo_title').text("[" + data.fbo_subject + "] " + data.fbo_title);
+		$('#fbo_sub_no').text(data.fbo_sub_no+ " | ");
+		$('#fan_name').text(data.fan_name + " | ");
+		$('#fbo_time').text(data.fbo_time + " | 조회");
+		$('#fbo_views').text(data.fbo_views);
+		$('#fbo_content').html(data.fbo_content);
+		//해시태그
+		if(data.fbo_hashtag_array !=null){
+			var arr = new Array(); 
+			arr=data.fbo_hashtag_array;
+			for (var i = 0; i < arr.length; i++) {
+				if(arr[i]!=null){
+				    console.log(arr[i]);
+                    $("#fbo_hashtag_array").append(" <a href='#' class='tag-cloud-link'>"+arr[i]+"</a>");
+				}
+			}		
+		}
+		
+		//수정 뷰
+		$("input:text[name='fbo_no']").val(data.fbo_no);
+		$("input:text[name='fbo_sub_no']").val(data.fbo_sub_no);
+		$("input:text[name='fbo_title']").val(data.fbo_title);
+		$("select[name='fbo_subject']").val(data.fbo_subject).attr("selected", "selected");
+		$('#summernote').summernote('code',data.fbo_content)
+		$("input:text[name='fbo_hashtag']").val(data.fbo_hashtag);
+		
+		//댓글 defalut값
+		$("input:text[name='sfbo_no']").val(data.fbo_no);
+		
+		$(".fboardListSection").hide();
+		$(".fboardInsertSection").hide();
+		$('#fbo_title').focus();
+		$(".fboardViewSection").show();
+	}
    
    
    
+//초기화 설정   
+	//페이지네이션 초기화
+	function pagingReset(){
+		var tables = $.fn.dataTable.fnTables(true);
+		$(tables).each(function () {
+		  $(this).dataTable().fnClearTable();
+		  $(this).dataTable().fnDestroy();
+		});
+	}
    
-   
-   
-//이전 작성글 기록 지우기
+	//이전 작성글 기록 지우기
 	function formReset(){
-	   $('#summernote').summernote('reset');
-	   $('#tag-list').empty();
-	   tag = {};
-	   $('form').each(function() {
-	      this.reset();
-	   });      
+		$('#summernote').summernote('reset');
+		$('#tag-list').empty();
+		$('#fbo_hashtag_array').empty();
+		tag = {};
+		$('form').each(function() {
+		   this.reset();
+		});      
 	}
    
 //유효성 체크
@@ -303,7 +406,8 @@ var counter = 0;
 		    success: function(response) {
 		       if(response == true) {
 		         alert("작성되었습니다.")
-		         fboardListView();//목록출력
+		         //fboardListView();//목록출력
+		         location.reload();
 		       }
 		    }, 
 		    error:function(xhr, status, message) { 
@@ -312,10 +416,6 @@ var counter = 0;
 		});
 	}
     
-   
-   
-   
-   
    //게시물 수정 조회 응답
    function fboardUpdateView() {
       $(".fboardListSection").hide();
@@ -525,15 +625,13 @@ var counter = 0;
          <div class="col-lg-12">
             <div class="sidebar-box ftco-animate">
                <h3 class="sidebar-heading">Tag Cloud</h3>
-               <ul class="tagcloud">
-                  <a href="#" class="tag-cloud-link">animals</a>
-                  <a href="#" class="tag-cloud-link">human</a>
-                  <a href="#" class="tag-cloud-link">people</a>
-                  <a href="#" class="tag-cloud-link">cat</a>
-                  <a href="#" class="tag-cloud-link">dog</a>
-                  <a href="#" class="tag-cloud-link">nature</a>
-                  <a href="#" class="tag-cloud-link">leaves</a>
-                  <a href="#" class="tag-cloud-link">food</a>
+               <ul class="tagcloud subFboardList">
+               		<a href="#" class="tag-cloud-link">전체</a>
+					<a href="#" class="tag-cloud-link">자유</a>
+					<a href="#" class="tag-cloud-link">정보</a>
+					<a href="#" class="tag-cloud-link">미디어</a>
+					<a href="#" class="tag-cloud-link">유머</a>
+					<a href="#" class="tag-cloud-link">장터</a>
                </ul>
             </div>
             
@@ -542,36 +640,21 @@ var counter = 0;
             </div>
             <br>
             
-            <table class = "table trFboardList">
+            <table class = "table trFboardList" id="dataTable">
                <thead>
                   <tr>
-                     <th scope="col">#</th>
-                     <th scope="col">제목</th>
-                     <th scope="col">작성자</th>
-                     <th scope="col">작성일</th>
-                     <th scope="col">조회수</th>
+                     <th class = "thList0">#</th>
+                     <th class = "thList1">제목</th>
+                     <th class = "thList2">작성자</th>
+                     <th class = "thList3">작성일</th>
+                     <th class = "thList4">조회수</th>
                   </tr>
                </thead>
-               <tbody></tbody>
+               <tbody>
+              	<!-- 게시물 리스트 출력 장소 -->
+               </tbody>
             </table>
-            
-            <!-- END-->
-            <div class="row">
-               <div class="col">
-                  <div class="block-27">
-                     <ul>
-                        <li><a href="#">&lt;</a></li>
-                        <li class="active"><span>1</span></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&gt;</a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
+            <!-- 페이지네이션 들어가는 곳 -->
 
          <!-- END COL -->
       </div>
@@ -600,12 +683,11 @@ var counter = 0;
          
       </div>
       <br>
-      <div class="row starCenter">
-         <div class="col-xl-2 col-md-3 col-4">태그</div>
-         <div class="col-xl-10 col-md-9 col-8" id ="fbo_hashtag">
-            
-         </div>
-      </div>
+	      <div class="row ">
+         	<ul id="fbo_hashtag_array" class="tagcloud">
+        	<!-- 태그 추가되는곳 -->
+        	</ul>
+	      </div>
       <br>
       <div class="row">
          <div class = "starRight">
@@ -686,7 +768,6 @@ var counter = 0;
 			        </div>
 			
 			    </div>
-
                
             </div>
          </div>

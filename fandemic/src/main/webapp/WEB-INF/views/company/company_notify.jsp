@@ -75,7 +75,7 @@
 	<div align="center">
 		<script>
 			function goPage(p) {
-				location.href = "${pageContext.request.contextPath}/company/notify/${cnotice.com_id}"+"?p=" + p
+				
 			}
 		</script>
 

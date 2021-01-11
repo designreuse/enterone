@@ -63,12 +63,12 @@
 							</table>
 						</div>
 					</div>
-					<div class="line">
-						<div>이벤트 참여 내역</div>
-					</div>
-					<div class="row">
-						<h1>이벤트</h1>
-					</div>
+<!-- 					<div class="line"> -->
+<!-- 						<div>이벤트 참여 내역</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="row"> -->
+<!-- 						<h1>이벤트</h1> -->
+<!-- 					</div> -->
 					<div class="line">
 						<div>쪽지</div>
 					</div>
@@ -93,16 +93,8 @@
 							</c:forEach>
 						</table>
 						<div align="center">
-							<script>
-								function goPage(p) {
-									location.href = "${pageContext.request.contextPath}/mypagemain/"
-											+ "?p=" + p
-								}
-							</script>
 
-							<my:paging paging="${paging}" jsfunc="goPage" />
 						</div>
-						<h1>쪽지 나오는곳</h1>
 					</div>
 				</div>
 			</div>

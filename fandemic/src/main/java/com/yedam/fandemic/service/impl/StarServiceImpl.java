@@ -21,4 +21,9 @@ public class StarServiceImpl implements StarService{
 	public int insertFan(Fan fan) {
 		return starDAO.insertFan(fan);
 	}
+
+	@Override
+	public Fan getFanInfo(Fan fan) {
+		return starDAO.getFanInfo(fan);
+	}
 }

@@ -42,5 +42,20 @@ public class FboardServiceImpl implements FboardService{
 	public int deleteFboard(Fboard fboard) {
 		return fboardDAO.deleteFboard(fboard);
 	}
+
+	@Override
+	public List<Fboard> getFboardHashtagList(Fboard fboard) {
+		return fboardDAO.getFboardHashtagList(fboard);
+	}
+
+	@Override
+	public List<Fboard> getFboardSubjectList(Fboard fboard) {
+		return fboardDAO.getFboardSubjectList(fboard);
+	}
+
+	@Override
+	public int getFboardCount(Fboard fboard) {
+		return fboardDAO.getFboardCount(fboard);
+	}
 	
 }

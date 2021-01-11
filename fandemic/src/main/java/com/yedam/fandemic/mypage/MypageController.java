@@ -36,9 +36,27 @@ public class MypageController {
 		// 메인 내 스타 목록 출력
 		Member member = (Member) session.getAttribute("member");
 		// MemberVo를 불러서 Member캐스팅 session에 있는 member를 가져온다.
+		
 		fan.setMem_id(member.getMem_id());
 		letter.setMem_id(member.getMem_id());
+		String strp = request.getParameter("p");
+		int p = 1;
+		if (strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+
+		Paging paging = new Paging();
+
+		paging.setPageUnit(5); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+
+		letter.setLett_first(paging.getFirst());
+		letter.setLett_last(paging.getLast());
+
+		paging.setTotalRecord(myMapper.getletterCount(letter));
 		model.addAttribute("starlist", myMapper.starmainselect(fan));
+		model.addAttribute("paging", paging);
 		model.addAttribute("maillist", myMapper.selectMail(letter));
 				// 만양ㄱ member가 null이 아니면 밑에 실행한다.
 		return new ModelAndView("mypage/my_main");

@@ -8,6 +8,7 @@ var editEnd = $('#edit-end');
 var editType = $('#edit-type');
 var editColor = $('#edit-color');
 var editDesc = $('#edit-desc');
+var editStId = $("#sch_stId");
 
 var addBtnContainer = $('.modalBtnContainer-addEvent');
 var modifyBtnContainer = $('.modalBtnContainer-modifyEvent');
@@ -37,7 +38,7 @@ var newEvent = function (start, end, eventType) {
 
     //새로운 일정 저장버튼 클릭
     $('#save-event').unbind();
-    $('#save-event').on('click', function () {
+    $('#save-event').on('click', function () { //일정 입력하고 등록버튼 눌렀을시 이벤트정의
 
         var eventData = {
             _id: eventId,
@@ -74,33 +75,49 @@ var newEvent = function (start, end, eventType) {
             eventData.allDay = true;
         }
 
-        $("#calendar").fullCalendar('renderEvent', eventData, true);
-        eventModal.find('input, textarea').val('');
-        editAllDay.prop('checked', false);
-        eventModal.modal('hide');
+       
 
-		var insertData = {
-            sch_title: editTitle.val(),
-            sch_startTime: editStart.val(),
-            sch_endTime: editEnd.val(),
-            sch_content: editDesc.val(),
-            sch_type: editType.val(),
-            backgroundColor: editColor.val(),
-            textColor: '#ffffff',
-            sch_allDay: false
-        };
-		
+		//var insertData = { //DB에 저장할값들
+		//	st_id: editStId.val(),
+        //    sch_title: editTitle.val(),          //제목
+        //    sch_startTime: editStart.val(),      //시작일시간
+        //    sch_endTime: editEnd.val(),          //종료일시간
+        //    sch_content: editDesc.val(),         //내용
+        //   sch_type: editType.val(),            //구분(행사,콘서트 등?)
+        //    sch_bgColor: editColor.val(),    //달력에 표시될 백그라운드색
+        //    sch_txtColor: '#ffffff',                //달력에 표시될 글자색
+        //    sch_allDay: false                    //하루종일인지 아닌지
+        //};
+		//alert(editTitle.val());
         //새로운 일정 저장
         $.ajax({
             type: "post",
-            url: "${pageContext.request.contextPath}/management/star/insertSchedule",
-            data: {
-                //.....
-            },
+            url: "insertSchedule",
+            data: { 
+					st_id: editStId.val(),
+		            sch_title: editTitle.val(),         
+		            sch_startTime: editStart.val(),      
+		            sch_endTime: editEnd.val(),          
+		            sch_content: editDesc.val(),       
+		            sch_type: editType.val(),            
+		            sch_bgColor: editColor.val(),    
+		            sch_txtColor: '#ffffff',                
+		            sch_allDay: eventData.allDay                    
+		       	 },
             success: function (response) {
-                //DB연동시 중복이벤트 방지를 위한
-                //$('#calendar').fullCalendar('removeEvents');
-                //$('#calendar').fullCalendar('refetchEvents');
+            	if(response!=null){
+	            	//alert("성공");
+	            	 $("#calendar").fullCalendar('renderEvent', eventData, true); //화면에보일 렌더링
+	        		//eventModal.find('input, textarea').val('');
+	        		editAllDay.prop('checked', false);
+	       		    eventModal.modal('hide');
+	                //DB연동시 중복이벤트 방지를 위한
+	                $('#calendar').fullCalendar('removeEvents');
+	                $('#calendar').fullCalendar('refetchEvents');
+       		    }
+            },
+            error:function(response){
+            	alert("에러");
             }
         });
     }); //end 일정 저장 버튼

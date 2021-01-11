@@ -4,16 +4,21 @@
 
 <mapper namespace="com.yedam.fandemic.impl.StarMapper">
 	
-<!-- 소속사 정보 출력 -->	
+	<!-- 스타 정보 출력 -->	
 	<select id="getStarMain" parameterType="Star" resultType="Star">
-		SELECT 
-			* 
-		FROM 
-			star
-		WHERE
-			st_id = #{st_id}
+		SELECT * 
+		FROM star
+		WHERE st_id = #{st_id}
 	</select>
 	
+	<!-- 스타채널 팬가입 여부 확인 -->
+	<select id="getFanInfo" parameterType="Fan" resultType="Fan">
+		SELECT * 
+		FROM fan 
+		WHERE mem_id = #{mem_id} AND ST_ID = #{st_id}
+	</select>
+	
+	<!-- 스타채널 가입 -->
 	<insert id="insertFan" parameterType="Fan">
 		INSERT INTO fan(fan_no, 
 						mem_id, 
