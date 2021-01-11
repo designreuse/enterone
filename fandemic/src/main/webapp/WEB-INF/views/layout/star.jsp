@@ -30,6 +30,10 @@
 
 	<script>
 		$(function() {	
+			var id = "${member.mem_id}"
+			var fan = "${fan.mem_id}"
+			start(id, fan);
+			
 			$("#channelJoinAction").on("click",function(){
 				if(replyFormCheck()==true){
 					fboardListView();
@@ -37,7 +41,12 @@
 			});
 		});
 		
-		//댓글 유효성 체크
+		function start(id,fan){
+			if(id==fan and id != null){
+				$("#joinModal").show();
+			}
+		} 
+		//채널가입 유효성 체크
 		function replyFormCheck(){
 			if($("#channelName").val()==null || $("#channelName").val()==''){
 				alert("내용을 입력하세요.")
@@ -61,7 +70,8 @@
 			    },
 			    success: function(response) {
 			    	if(response == true) {
-			    		alert("왜그래");
+			    		var text = st_id + "의 채널에 오신것을 환영합니다!"
+			    		alert(text);
 			    		location.href = "${pageContext.request.contextPath}/star/" + st_id;//새로고침
 			    	}
 			    }
@@ -80,8 +90,8 @@
 				<a href="${pageContext.request.contextPath}/star/${star.st_id}"><span class="img"
 					style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_pic}"></span>${star.st_name}</a>
 			</h1>
-			<button type="button" class="btn btn-primary" data-toggle="modal"
-				data-target="#exampleModal" data-what="hello">채널가입</button>
+			<button type="button" class="btn btn-primary" id = "joinModal" data-toggle="modal"
+				data-target="#exampleModal" data-what="hello"  style="display:none;">채널가입</button>
 
 			<br> <br>
 

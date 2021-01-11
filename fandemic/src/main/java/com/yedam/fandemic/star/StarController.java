@@ -1,6 +1,7 @@
 package com.yedam.fandemic.star;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yedam.fandemic.service.StarService;
 import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Reply;
 import com.yedam.fandemic.vo.Star;
 
 @Controller
@@ -26,9 +28,17 @@ public class StarController {
 	
 	//스타 메인페이지
 	@RequestMapping(value = "/star/{id}")
-	public ModelAndView starMain(@PathVariable String id, Star stVo, Model model) throws IOException {
+	public ModelAndView starMain(@PathVariable String id, Star stVo, Fan fan, HttpSession session, Model model) throws IOException {
+		//채널 가입여부 확인
+		Member member = (Member) session.getAttribute("member");
+		if(member != null) {//로그인 안하면 채널가입 조회 불가
+			fan.setMem_id(member.getMem_id());
+			fan.setSt_id(id);
+			model.addAttribute("fan", starService.getFanInfo(fan));
+		}
+		//스타정보 출력
 		stVo.setSt_id(id);
-		model.addAttribute("star", starService.getStarMain(stVo));
+		model.addAttribute("star", starService.getStarMain(stVo));	
 		return new ModelAndView("star/star_main");
 	}
 	

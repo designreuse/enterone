@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
 			            <div class="block-18">
 			              <div class="text d-flex align-items-center">
 			                <strong class="number" data-number="120">0</strong>
-			                <span>???의 팬</span>
+			                <span>채널 팬</span>
 			              </div>
 			            </div>
 			          </div>
