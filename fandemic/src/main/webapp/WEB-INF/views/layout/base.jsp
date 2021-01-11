@@ -47,6 +47,15 @@
       <script src="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.js"></script>
       <script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
       <script src="${pageContext.request.contextPath}/resources/js/e-magz.js"></script>
+ <script>
+    $(function() {
+    	$("#search").attr("action", "${pageContext.request.contextPath}/search");
+
+    });
+
+</script>
+
+
 </head>
 <body>
 <header class="primary">
@@ -61,10 +70,10 @@
                      </div>                  
                   </div>
                   <div class="col-md-6 col-sm-12">
-                     <form class="search" autocomplete="off">
+                     <form class="search" id="search">
                         <div class="form-group">
                            <div class="input-group">
-                              <input type="text" name="q" class="form-control" placeholder="Type something here">                           
+                              <input type="text" name="keyword" id="keyword" class="form-control" placeholder="검색어">                           
                               <div class="input-group-btn">
                                  <button class="btn btn-primary"><i class="ion-search"></i></button>
                               </div>
@@ -126,10 +135,12 @@
 
                      
 <!--                      magz-dropdown 클래스 제거 -->
-                     <li class="dropdown"><a href="${pageContext.request.contextPath}/auditionwork">연 습 생<i class="ion-ios-arrow-right"></i></a>
+                     <li class="dropdown"><a href="${pageContext.request.contextPath}/audition/auditionwork">연 습 생<i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
-                           <li><a href="traineeinsert">연습생 등록</a></li>
-                           <li><a href="#">연습생 활동</a></li>
+                        <c:if test="${sessionScope.member.mem_id ne null}">
+                           <li><a href="${pageContext.request.contextPath}/audition/traineeinsert">연습생 등록</a></li>
+                           </c:if>
+                           <li><a href="${pageContext.request.contextPath}/audition/auditionwork">연습생 활동</a></li>
                            <li><a href="#">오디션 공고</a></li>
                            
                         </ul>
@@ -153,7 +164,7 @@
                      <li><a href="#">연 예 뉴 스</a></li>   
                      
                      <li><a href="${pageContext.request.contextPath}/sns">S N S</a></li>
-                          <c:if test="${member.mem_id ne null or company.com_id ne null }">
+                          <c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null }">
 <!--  magz-dropdown 클래스 제거ㅊ -->
                      <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">

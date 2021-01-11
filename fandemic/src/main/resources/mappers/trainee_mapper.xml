@@ -1,39 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.yedam.fandemic.impl.TraineeMapper">
-  <!-- 닉네임중복체크 -->
-  <select id="nickCheck" parameterType="Trainee" resultType="int">
-		SELECT COUNT(*)   
-		FROM TRAINEE  
+
+<mapper namespace="com.yedam.fandemic.impl.TraineeMapper">
+	<!-- 닉네임중복체크 -->
+	<select id="nickCheck" parameterType="Trainee" resultType="int">
+		SELECT COUNT(*)
+		FROM TRAINEE
 		WHERE TR_NAME=#{tr_name}
 	</select>
 	<!-- 연습생등록 -->
 	<insert id="inserttr" parameterType="Trainee">
-	INSERT INTO TRAINEE (	    MEM_ID, 
-								TR_NAME, 
-								TR_PIC,
-								TR_CONTENT,
-								TR_BRANCH1,
-								TR_BRANCH2
-								)
-	 	                VALUES(
-	 	               			#{mem_id},
-	 	               			#{tr_name},
-	 	               			#{tr_pic},
-	 	               			#{tr_content},
-	 	               			#{tr_branch1},
-	 	               			#{tr_branch2})
+		INSERT INTO TRAINEE (
+		MEM_ID,
+		TR_NAME,
+		TR_PIC,
+		TR_CONTENT,
+		TR_BRANCH1,
+		TR_BRANCH2
+		)
+		VALUES(
+		#{mem_id},
+		#{tr_name},
+		#{tr_pic},
+		#{tr_content},
+		#{tr_branch1},
+		#{tr_branch2})
 	</insert>
 	<!-- 연습생 최신순 조회 -->
-	  <select id="selectActivity" parameterType="Activity" resultType="Activity">
+	<select id="selectActivity" resultType="Activity">
 		SELECT *
 		FROM ACTIVITY
-		ORDER BY AC_TIME
+		ORDER BY AC_TIME DESC
 	</select>
 	
-	
-	
-	
-  </mapper>
+	<insert id="insertac" parameterType="Activity">
+	<!-- 연습생 활동 지원 글 등록 -->
+	INSERT INTO ACTIVITY
+	AC_NO,
+	AC_TITLE,
+	AC_TIME,
+	AC_CONTENT,
+	AC_HITS,
+	AC_LIKES,
+	AC_FILE,
+	MEM_ID)
+	VALUES (
+	#{ac_no},
+	#{ac_title},
+	#{ac_time},
+	#{ac_content},
+	#{ac_hits},
+	#{ac_likes},
+	#{ac_file},
+	#{mem_id})
+
+</insert>
+</mapper>

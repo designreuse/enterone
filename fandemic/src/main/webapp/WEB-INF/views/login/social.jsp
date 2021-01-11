@@ -33,10 +33,10 @@ $(document).ready(function() {
 
 	}); 
 	
-	$('#btnAddr').on('click',function(){ 
+	/* $('#btnAddr').on('click',function(){ 
 		openDaumZipAddress($("#mem_zipAddress"), $("#mem_address"), $("#mem_address2"));
 		
-	});  
+	});   */
 	
 	$('#memEmail').on('click',function(){
 		memMail();
@@ -53,7 +53,7 @@ $(document).ready(function() {
 	
 });
 
-function openDaumZipAddress(zipAddress, address, address2 ) {
+/* function openDaumZipAddress(zipAddress, address, address2 ) {
 
 	new daum.Postcode({
 
@@ -67,7 +67,7 @@ function openDaumZipAddress(zipAddress, address, address2 ) {
 		}
 
 	}).open();
-}
+} */
 
 function memMail() {
 	
@@ -144,7 +144,7 @@ function memMail() {
 						</div>
 
 
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label>주소</label><br>
 							
 							<div style="position:relative">
@@ -157,7 +157,7 @@ function memMail() {
 							
 							<label>우편번호</label> &nbsp; &nbsp;
 							<form:input type="text" id="mem_zipAddress" path="mem_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="true"/>
-						</div>
+						</div> --%>
 
 						<div class="form-group text-right">
 							<button class="btn btn-primary btn-block" id="btnAddMem" disabled="disabled">확인</button>

@@ -1,6 +1,7 @@
 package com.yedam.fandemic.login;
 
 import java.io.IOException;
+import java.net.http.HttpRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +26,12 @@ public class KakaoLoginController {
 	@Autowired MemberMapper memMapper;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView memberLoginForm(HttpSession session) {
+	public ModelAndView memberLoginForm(HttpSession session, Model model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView(); /* 네아로 인증 URL을 생성하기 위하여 getAuthorizationUrl을 호출 */
 		
 		String kakaoUrl = KakaoAPI.getAuthorizationUrl(); /* 생성한 인증 URL을 View로 전달 */
+		
+		model.addAttribute("login",request.getParameter("login"));
 		mav.setViewName("login"); // 카카오 로그인
 		
 		// mav.addObject("naver_url", naverAuthUrl); 

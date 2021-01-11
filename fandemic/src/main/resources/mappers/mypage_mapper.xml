@@ -4,7 +4,7 @@
 
 <mapper namespace="com.yedam.fandemic.impl.MypageMapper">
 	<!-- 메인페이지 스타 select -->
-	<select id="starmainselect" resultType="letter">
+	<select id="starmainselect" resultType="star" parameterType="fan">
 	SELECT 
 		S.ST_NAME ST_NAME, 
 		S.ST_ICON ST_ICON, 
@@ -17,7 +17,7 @@
 		STAR S 
 	WHERE 
 		F.ST_ID = S.ST_ID 
-	AND F.MEM_ID = #{mem_id} ;
+	AND F.MEM_ID = #{mem_id}
 	
 	</select>
 
@@ -78,8 +78,12 @@
 		SELECT * FROM ( SELECT A.*,
 		ROWNUM RN FROM (
 		SELECT * FROM LETTER Where mem_id = #{mem_id} ORDER BY
-		lett_no
+		lett_no DESC	
 		) A ) B WHERE RN BETWEEN #{lett_first} AND #{lett_last}
+	</select>
+	<select id="selectmemberid" resultType="member">
+	SELECT MEM_ID FROM MEMBER ORDER BY MEM_ID
+	
 	</select>
 	<!-- 쪽지 페이지 네이션 -->
 	<select id="getletterCount" resultType="int">

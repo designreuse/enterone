@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.fandemic.impl.UntactMapper">
+
+	<select id="untactList" resultType="Goods">
+		SELECT ROUND(G.GO_UNTSDATE - SYSDATE) AS DDAY, G.*, S.ST_NAME  FROM GOODS G , STAR S
+		WHERE G.ST_ID = S.ST_ID
+		AND GO_TYPE = 'TICKET'
+		ORDER BY GO_UNTSDATE DESC
+	</select>	
+
+	
+	
+</mapper>

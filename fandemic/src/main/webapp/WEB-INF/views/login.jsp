@@ -40,7 +40,8 @@ ul.tabs li.current {
 	$(document).ready(function() {
 		
 		// 로그인 했을 때
-		var fail = "${login}"
+		var fail = "${login}";
+		console.log(fail);
 		
 		if (  fail == "fail") {
 			alert("아이디 또는 비밀번호가 일치하지 않습니다.");

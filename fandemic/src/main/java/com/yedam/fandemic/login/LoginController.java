@@ -178,9 +178,8 @@ public class LoginController {
 			return "redirect:index";
 			
 		} else {   
-			
-			request.setAttribute("login", "fail");
-			
+			redirect.addAttribute("login", "fail");
+
 			return "redirect:login";
 		}
 		
@@ -189,7 +188,7 @@ public class LoginController {
 	
 	//소속사
 	@RequestMapping(value="/companyLogin")
-	public String companyLogin(Model model, Company company, HttpSession session) {
+	public String companyLogin(Model model, Company company, HttpSession session, RedirectAttributes redirect) {
 		
 		company = memMapper.comLogin(company); //id와 pw를 받아서 값이 있는지 DB조회
 		
@@ -212,7 +211,8 @@ public class LoginController {
 			}
 		//아이디가 DB에없을때
 		} else {
-			model.addAttribute("login", "fail");
+			redirect.addAttribute("login", "fail");
+			
 			return "redirect:login";
 		}
 		
@@ -221,7 +221,7 @@ public class LoginController {
 	
 	
 	@RequestMapping(value="/starLogin")
-	public String starLogin(HttpServletRequest request, Model model, Star star,  HttpSession session) throws IOException{
+	public String starLogin(HttpServletRequest request, Model model, Star star,  HttpSession session, RedirectAttributes redirect) throws IOException{
 		System.out.println("스타로그인");
 		
 		star.setSt_id(request.getParameter("com_id"));
@@ -236,7 +236,7 @@ public class LoginController {
 			return "redirect:starMain"; 
 				
 		} else {
-			model.addAttribute("login", "fail");
+			redirect.addAttribute("login", "fail");
 			return "redirect:login";
 		}
 	}
@@ -293,7 +293,7 @@ public class LoginController {
 	
 	// 개인 회원가입 처리
 	@RequestMapping("/memRegister")
-	public String memRegister(Model model,  Company company, Member member, Errors errors) throws IOException{
+	public String memRegister(RedirectAttributes redirect, Model model,  Company company, Member member, Errors errors) throws IOException{
 		
 		new MemberValidator().validate(member, errors);
 		
@@ -303,7 +303,7 @@ public class LoginController {
 		}
 		
 		memMapper.memInsert(member);
-		model.addAttribute("login", "insert"); // 세션으로 바꿔야 함
+		redirect.addAttribute("login", "insert");
 		
 		return "redirect:login";
 	}
@@ -312,7 +312,7 @@ public class LoginController {
 	
 	// 기업 회원가입
 	@RequestMapping("/comRegister")
-	public String comRegister(Model model, Member member,  Company company, Errors errors) throws IOException{
+	public String comRegister(RedirectAttributes redirect, Model model, Member member,  Company company, Errors errors) throws IOException{
 		
 		new CompanyValidator().validate(company, errors);
 		model.addAttribute("tab", "tab-2");
@@ -324,8 +324,7 @@ public class LoginController {
 		}
 		
 		memMapper.comInsert(company);
-		
-		model.addAttribute("login", "insert");
+		redirect.addAttribute("login", "insert");
 		
 		return "redirect:login";
 	}

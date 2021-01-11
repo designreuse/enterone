@@ -33,36 +33,33 @@
 										url : '${pageContext.request.contextPath}/onemailselect?lett_no='
 												+ no,
 										success : function(result) {
-											modal.find('.id')
-													.val(result.mem_id)
-											modal.find('.mid').val(
-													result.lett_sid)
-											modal.find('.mid').attr('data-id',
-													result.lett_sid)
+											modal.find('.mem_id').val(
+													result.mem_id) //받는 회원
+											modal.find('.lett_sid').val(
+													result.lett_sid) // 보낸회원
 											modal.find('.title').val(
 													result.lett_title)
 											modal.find('.content').val(
 													result.lett_content)
-													modal.find('.no').val(
+											modal.find('.lett_nono').val(
 													result.lett_no)
+
 											modal.modal('show');
 										}
 									})
 						})
 	})
-	
-// 	답장기능
-		$(function() {
-		$('#mailreply')
-				.on(
-						'click',
-						function(event) {
-							var modal = $('#exampleModal3')
-											modal.find('.rid')
-													.val($(this).attr('data-id'))
-											modal.modal('show');
-										})
-									})
+
+	// 	답장기능
+	$(function() {
+		$('#mailreply').on('click', function(event) {
+			var modal = $('#exampleModal3')
+			$('#recipient-rename').val($('#recipient-mname').val())
+			modal.modal('show');
+			$('#member-name').val($('#mamber-name').val())
+		})
+	})
+	//삭제기능
 </script>
 </head>
 <section class="single">
@@ -74,6 +71,8 @@
 						<a id="rgoods">최근 쪽지</a>
 					</div>
 				</div>
+
+
 				<div class="row rgoods">
 					<div>
 						<button style="float: right;" type="button"
@@ -110,6 +109,10 @@
 						</div>
 					</div>
 				</div>
+
+
+
+				<!-- 				=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+새쪽지 보내기=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+= -->
 				<div class="modal fade" id="exampleModal" tabindex="-1"
 					role="dialog" aria-labelledby="exampleModalLabel"
 					aria-hidden="true">
@@ -125,12 +128,58 @@
 							<form id="sendmail" name="sendmail" action="sendmail">
 								<div class="modal-body">
 									<input type="text" class="form-control" id="recipient-name"
-										name="lett_sid" value="${member.mem_id}"
-										style="display: none">
+										name="lett_sid" value="${member.mem_id}" style="display: none">
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label">받는사람
-											ID: </label> <input type="text" class="form-control"
-											id="recipient-name" name="mem_id">
+											ID: </label>
+
+
+										<div class="searchbox">
+											<div class="header">
+												<input onkeyup="filter()" type="text" id="value"
+													placeholder="아이디 검색" class="form-control" name="mem_id">
+											</div>
+
+											<div class="container "  style="width: 100%; height: 40px; overflow: auto;">
+												<c:forEach items="${memberidlist}" var="mem">
+													<div class="item" style="width: 100%">
+														<span class="name">${mem.mem_id}</span>
+													</div>
+												</c:forEach>
+											</div>
+										</div>
+										<script type="text/javascript">
+											function filter() {
+
+												var value, name, item, i;
+
+												value = document
+														.getElementById("value").value
+														.toUpperCase();
+												item = document
+														.getElementsByClassName("item");
+
+												for (i = 0; i < item.length; i++) {
+													name = item[i]
+															.getElementsByClassName("name");
+													if (name[0].innerHTML
+															.toUpperCase()
+															.indexOf(value) > -1) {
+														item[i].style.display = "flex";
+													} else {
+														item[i].style.display = "none";
+													}
+												}
+											}
+										</script>
+
+
+
+
+
+
+
+
 									</div>
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label">쪽지
@@ -154,13 +203,13 @@
 						</div>
 					</div>
 				</div>
+				<!-- 				받은쪽지=============받은쪽지=============받은쪽지=============받은쪽지=============            -->
 				<div class="modal fade" id="exampleModal2" tabindex="-1"
 					role="dialog" aria-labelledby="exampleModalLabel"
 					aria-hidden="true">
 					<div class="modal-dialog" role="document" style="padding-top: 10%;">
 						<div class="modal-content">
 							<form action="deletemail">
-							<input class="no" name="lett_no" id="lett_no">
 								<div class="modal-header">
 									<h5 class="modal-title" id="exampleModalLabel">받은 쪽지 확인</h5>
 									<button type="button" class="close" data-dismiss="modal"
@@ -169,17 +218,19 @@
 									</button>
 								</div>
 								<div class="modal-body">
-									<input type="text" class="form-control id" id="recipient-name"
-										name="lett_sid" style="display: none">
+									<input class="lett_nono" name="lett_no" style="display: none;">
+									<input type="text" class="form-control mem_id" id="mamber-name"
+										name="mem_id" style="display: none">
+									<!-- 받은회원, 내 아이디 -->
 									<div class="form-group">
-										<label for="recipient-name" class="col-form-label ">보낸사람
-											ID: </label> <input type="text" class="form-control mid"
-											id="recipient-name" name="mem_id">
+										<label for="recipient-name" class="col-form-label ">보낸회원
+											ID: </label> <input type="text" class="form-control lett_sid"
+											id="recipient-mname" name="lett_sid">
 									</div>
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label ">쪽지
 											제목: </label> <input type="text" class="form-control title"
-											id="recipient-name" name="lett_title">
+											id="recipient-title" name="lett_title">
 									</div>
 									<div class="form-group">
 										<label for="message-text" class="col-form-label ">내용:</label>
@@ -190,7 +241,8 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-primary" id="mailreply">답장</button>
-									<button class="btn btn-primary">삭제</button>
+									<button class="btn btn-primary" id="deletemailbtn"
+										onclick="javascript: form.action='${pageContext.request.contextPath}/deletemail'">삭제</button>
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">닫기</button>
 								</div>
@@ -203,22 +255,26 @@
 					aria-hidden="true">
 					<div class="modal-dialog" role="document" style="padding-top: 10%;">
 						<div class="modal-content">
-							<form action="replymail">
-							<input class="no" name="lett_no" id="lett_no" data-no="lett_no" style="display: none" >
+
+							<!-- 						답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장답장 -->
+
+							<form name="replymail" action="sendmail">
+								<input class="no" name="lett_no" id="lett_no" data-no="lett_no"
+									style="display: none">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">받은 쪽지 확인</h5>
+									<h5 class="modal-title" id="exampleModalLabel">답장 하기</h5>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div class="modal-body">
-									<input type="text" class="form-control id" id="recipient-name"
+									<input type="text" class="form-control mid" id="member-name"
 										name="lett_sid" style="display: none">
 									<div class="form-group">
-										<label for="recipient-name"  class="col-form-label ">받는사람
+										<label for="recipient-name" class="col-form-label lett_sid">받는사람
 											ID: </label> <input type="text" class="form-control rid"
-											id="recipient-name" name="rid">
+											id="recipient-rename" name="mem_id" readonly="readonly">
 									</div>
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label ">쪽지
