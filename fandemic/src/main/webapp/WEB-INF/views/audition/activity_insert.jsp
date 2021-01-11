@@ -78,7 +78,6 @@ body {
 		$("#can").on("click", function() {
 			location.href = "${pageContext.request.contextPath}/auditionwork";
 		});
-
 	});
 	function WriteFormCheck() {
 		if ($("#ac_title").val() == null || $("#ac_title").val() == '') {
@@ -109,7 +108,7 @@ body {
 						<h3 class="title">연습생 활동 등록</h3>
 					</div>
 					<div class="form-group col-md-8">
-						<form action="sendactivity" class="form-horizontal">
+						<form method="post" action="${pageContext.request.contextPath}/activitysend">
 
 							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">회원ID</label>

@@ -118,7 +118,7 @@ $("td #btnCheckm").on("click",function() {
 								</td>
 
 								<td><a id="btnCheckm"
-										class="btn btn-primary">중복확인</a><input type="hidden" name="checked_id" value="n"></td>
+										class="btn btn-primary">중복확인</a><input type="hidden" name="checked_id" value="n" ></td>
 										
 
 

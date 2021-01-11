@@ -26,110 +26,94 @@ import com.yedam.fandemic.vo.Activity;
 import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Reply;
+import com.yedam.fandemic.vo.Sns;
 import com.yedam.fandemic.vo.Trainee;
-
 
 @Controller
 public class AuditionController {
-	//@Autowired TraineeService traineeservice;
-	@Autowired TraineeMapper traineeMapper;
-	
-//연습생 활동
-//	@RequestMapping(value = "/auditionwork")
-//	@ResponseBody //결과값 JSON
-//	public List<Activity> selectActivity(Activity activity){
-//		return traineeservice.selectActivity(activity);
-//	}	
-	
-	//연습생 활동 페이지
-		@RequestMapping(value = "/auditionwork") //주소
-		public ModelAndView traineeactivity(Model model, HttpServletRequest request, Activity activity) throws IOException {
-			model.addAttribute("TrworkList", traineeMapper.selectActivity());
-			
-			return new ModelAndView("audition/trainee_list");
-		
-		}	
-	
-		
-	
-	//오디션 지원
-	@RequestMapping(value = "/auditionapply") //주소
+	// @Autowired TraineeService traineeservice;
+	@Autowired
+	TraineeMapper traineeMapper;
+
+	// 연습생 활동 페이지
+	@RequestMapping(value = "/audition/auditionwork") // 주소
+	public ModelAndView traineeactivity(Model model, HttpServletRequest request, Activity activity) throws IOException {
+		model.addAttribute("TrworkList", traineeMapper.selectActivity());
+
+		return new ModelAndView("audition/trainee_list");
+
+	}
+
+	// 오디션 지원
+	@RequestMapping(value = "/audition/auditionapply") // 주소
 	public ModelAndView auditioninsert(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/audition_apply");
-	
-	}	
-	//연습생 프로필
-	@RequestMapping(value = "/auditionprofile") //주소
+
+	}
+
+	// 연습생 프로필
+	@RequestMapping(value = "/audition/auditionprofile") // 주소
 	public ModelAndView auditionprofile(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/trainee_profile");
-	
-	}	
-	//연습생 등록 페이지
-	@RequestMapping(value = "/traineeinsert") //주소
+
+	}
+
+	// 연습생 등록 페이지
+	@RequestMapping(value = "/audition/traineeinsert") // 주소
 	public ModelAndView traineeinsert(HttpServletResponse response) throws IOException {
 		return new ModelAndView("audition/trainee_insert");
-	
-	}	
-	//연습생 등록
-	@RequestMapping(value ="/traineeinsertsend")
+
+	}
+
+	// 연습생 등록
+	@RequestMapping(value = "/audition/traineeinsertsend")
 	public String traineeinsertsend(Model model, Trainee trainee) throws IOException {
-		
+
 		traineeMapper.inserttr(trainee);
 
-		return  "audition/trainee_list";	
-	}	
-	
-//연습생 활동 글등록 페이지 
-	@RequestMapping(value = "/traineewritere")
-	public ModelAndView traineewritere(Model model, Activity activity, HttpSession session) throws IOException {
-		Member member = (Member) session.getAttribute("member");
-		
-
-		return new ModelAndView("audition/trainee_write");
+		return "audition/trainee_list";
 	}
-	
-//	 @RequestMapping(value="/star/fanBoard/reply", method=RequestMethod.POST)
-//	   @ResponseBody
-//	   public boolean fboardInsert(HttpServletRequest request, Reply reply,  HttpSession session) throws IOException {
-//	       Member member = (Member) session.getAttribute("member");
-//	       reply.setMem_id(member.getMem_id());
-//	       
-//	       replyService.insertReply(reply);
-//	      return true;
-//	   }
-	
-	
-	
-	
-	
-	
-	//닉네임인 중복확인	
-		@RequestMapping(value="/audition/nickCheck")
+	// 닉네임인 중복확인
+		@RequestMapping(value = "/audition/nickCheck")
 		@ResponseBody
-		public int nickId(Model model, Trainee trainee) throws IOException{
-			
-				System.out.println("닉네임 중복확인");
-				return traineeMapper.nickCheck(trainee);
-				
+		public int nickId(Model model, Trainee trainee) throws IOException {
+
+			System.out.println("닉네임 중복확인");
+			return traineeMapper.nickCheck(trainee);
+
 		}
-		
-//		@PostMapping("/traineefile")
-//		public String userInsert(HttpServletRequest request, Trainee trainee) throws IllegalStateException,
-//		IOException {
-//			// request를 multipart로 캐스팅
-//			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-//			// 이미지파일
-//			MultipartFile multipartFile = multipartRequest.getFile("uploadFile");
-//			// 첨부파일
-//			if (!multipartFile.isEmpty() && multipartFile.getSize()>0) { //이미지가 있다면
-//				String path = request.getSession().getServletContext().getRealPath("/images/trimage");
+//연습생 활동 글등록 페이지 
+	@RequestMapping(value = "/audition/activityinsert")
+	public ModelAndView activityinsert(Model model, Activity activity, HttpSession session) throws IOException {	
+		return new ModelAndView("audition/activity_insert");
+	}
+	//연습생 활동 글쓰기
+//	@RequestMapping(value = "/activitywrite")
+//	@ResponseBody
+//	public boolean snsInsert(HttpServletRequest request, Activity activity) throws IllegalStateException, IOException {
+//		// request multipart로 캐스팅
+//		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+//		// 이미지파일
+//		List<MultipartFile> multipartFile = multipartRequest.getFiles("upload-file");
+//		// 첨부파일
+//		String imgname = "";
+//		for (int i = 0; i < multipartFile.size(); i++) {
+//			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
+//				String path = request.getSession().getServletContext().getRealPath("/images/snsimage");
+//
 //				System.out.println("path=" + path);
-//				multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
-//				//트랜스퍼 이동시켜주는거 
-//				trainee.setTr_pic(multipartFile.getOriginalFilename());
-//				
+//
+//				multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
+//
+//				imgname += multipartFile.get(i).getOriginalFilename() + ",";
+//
 //			}
-//			traineeMapper.inserttr(trainee);
-//			return "audition/trainee_list";
 //		}
+//		sns.setSns_pic(imgname);
+//
+//		snsdao.insertSns(sns);
+//		return true;
+//	}
+	
+
 }
