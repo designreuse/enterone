@@ -12,17 +12,17 @@ import com.yedam.fandemic.vo.Member;
 public class MemberValidator implements Validator {
 	
 	
-	final static String emailRegExp = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
+	//final static String emailRegExp = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
 	final static String phoneRegExp = "^\\d{3}-\\d{3,4}-\\d{4}$";
 	final static String notnull = "필수 입력";
 	final static String typemsg = "형식 오류";
 	
-	private Pattern emailPattern;
+	//private Pattern emailPattern;
 	private Pattern phonePattern;
 	
 	
 	public MemberValidator() {
-		emailPattern = Pattern.compile(emailRegExp);
+		//emailPattern = Pattern.compile(emailRegExp);
 		phonePattern = Pattern.compile(phoneRegExp);
 	}
 	
@@ -40,26 +40,21 @@ public class MemberValidator implements Validator {
 		Member member = (Member) target;
 		
 		// 널 값
-		
-		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_name", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_pw", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_birth", "required", notnull);
 		
-		// ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_address2", "required", notnull);
-
+//		if(member.getMem_email() == null || member.getMem_email().trim().isEmpty() ) {
+//			errors.rejectValue("mem_email", "required",notnull);
+//		} else {
+//			Matcher matcher = emailPattern.matcher(member.getMem_email());
+//			if( !matcher.matches()) {
+//				errors.rejectValue("mem_email", "bad", typemsg);
+//			}
+//		}
+		
 		
 		// 널값 and 형식
-		if(member.getMem_email() == null || member.getMem_email().trim().isEmpty() ) {
-			errors.rejectValue("mem_email", "required",notnull);
-		} else {
-			Matcher matcher = emailPattern.matcher(member.getMem_email());
-			if( !matcher.matches()) {
-				errors.rejectValue("mem_email", "bad", typemsg);
-			}
-		}
-		
-
 		if(member.getMem_phone() == null || member.getMem_phone().trim().isEmpty() ) {
 			errors.rejectValue("mem_phone", "required",notnull);
 		} else {

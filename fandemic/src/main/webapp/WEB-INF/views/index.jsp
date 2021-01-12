@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 	var maxNo=0;
 	
@@ -29,8 +28,6 @@
 	       if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
 	    	   newSns();
 	        } 
-	        
-	        
 	    });
 		
 		// 차트
@@ -55,6 +52,7 @@
 			});
 		
 		
+		// 스타 top3
 		var mem_id = "${sessionScope.member.mem_id}";
 		if ( mem_id == null || mem_id == '') {
 			
@@ -87,7 +85,7 @@
 	            			$("#st" + (i+1)).text(data[i].ST_NAME).css("display","");	
 	            		}
 
-		            	for(var i=0; i<=last; i++) { // last 만큼만 for문
+		            	for(var i=0; i < last; i++) { // last 만큼만 for문
 		            		var img = data[i].ST_ICON;
 		            		if ( img == null || img == '') {
 		            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/member_pic/no-profile.jpg").css("display","");
@@ -96,7 +94,7 @@
 		            		}
 		            	}
 		            	
-		            	for(var i=0; i<=last; i++) {
+		            	for(var i=0; i < last; i++) {
 		            		var img = data[i].CNT;
 		            		$("#cnt" + (i+1)).text(data[i].CNT).css("display","");	            
 		            	}
@@ -104,10 +102,10 @@
 	            },error:function(){ alert("실패"); }
 	         });
 		}
-		
 
-	});
+	}); 
 	
+	// sns 실시간
 	function newSns() {
 		
 		
@@ -361,30 +359,30 @@ hr {
 										</div>
 									</div>
 								</c:if>
+								
 								<!-- 프로필 -->
 								<c:if
 									test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null }">
-									<div class="featured-author-cover"
-										style="background-image: url('images/news/img15.jpg');">
+									<div class="featured-author-cover" style="background-image: url('images/news/img15.jpg');">
 										<div class="badges">
 											<div class="badge-item">
 												<i class="ion-star"></i> Featured
 											</div>
 										</div>
-										<div class="featured-author-center">
+										<div class="featured-author-center" id="profile" data-toggle="modal" data-target="#exampleModal" data-what="hello">
 											<figure class="featured-author-picture">
 												
 												<!-- 소셜로그인 -->
 												<c:if test="${sessionScope.member.mem_type eq 0 }">
-													<img src="${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" data-toggle="modal" data-target="#exampleModal" data-what="hello">
+													<img src="${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" >
 												</c:if>
 												<!-- 일반로그인 -->
 												<c:if test="${sessionScope.member.mem_type eq 1 }">
-													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" data-toggle="modal" data-target="#exampleModal" data-what="hello">
+													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'">
 												</c:if>
 												<!-- 기업로그인 -->
 												<c:if test="${sessionScope.member.mem_pic eq null }">
-													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}" alt="company_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" data-toggle="modal" data-target="#exampleModal" data-what="hello">
+													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}" alt="company_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" >
 												</c:if>
 											</figure>
 											
@@ -561,6 +559,7 @@ hr {
 	</div><!-- 카드 -->
 
 	<!-- 모달창 -->
+	<c:if test="${sessionScope.member.mem_type eq 1}">
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true" >
 		<div class="modal-dialog" role="document" style="width: 300px;">
@@ -568,19 +567,20 @@ hr {
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel" align="center">프로필 사진 등록</h5>
 				</div>
+				<form action="proUpdate" method="post" encType="multipart/form-data">
 				<div class="modal-body" align="center" >
 					<div class="form-group">
-						<input type="text" id="inCode" class="form-control" >
-						<button type="button" class="btn btn-primary" >첨부파일</button>
+						<input type="file" name="profile" class="form-control">
 					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary" id ="btnIn">입장</button>
+					<input type="submit" value="등록" class="btn btn-primary" id ="btnAdd">
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>
-	
+	</c:if>
 	
 </section>

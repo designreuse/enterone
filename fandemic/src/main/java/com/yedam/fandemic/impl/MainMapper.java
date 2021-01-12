@@ -24,4 +24,8 @@ public interface MainMapper {
 	public List<Company> searchCom(String keyword); //소속사
 	
 	public List<HashMap<String,Object>> searchAc(String keyword); //연습생
+	
+	//프로필 등록
+	public void mainUpdate(Member member); 
+	
 }

@@ -3,7 +3,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.fandemic.impl.MainMapper">
-
+	<!-- 프사업뎃 -->
+	<update id="mainUpdate">
+		UPDATE MEMBER 
+		SET MEM_PIC = #{mem_pic}
+		WHERE MEM_ID = #{mem_id}
+	</update>
 	
 	<!-- 행사목록 -->
 	<select id="ticketList" resultType="Goods">

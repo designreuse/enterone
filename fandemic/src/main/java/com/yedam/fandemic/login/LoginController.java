@@ -251,7 +251,6 @@ public class LoginController {
 	@ResponseBody
 	public int checkId(Model model, Member member) throws IOException{
 		
-			System.out.println("개인 중복확인");
 			return memMapper.memIdCheck(member);
 			
 	}
@@ -261,7 +260,6 @@ public class LoginController {
 	@ResponseBody
 	public int checkIdcom(Model model, Company company) throws IOException{
 
-			System.out.println("기업 중복확인");
 			return memMapper.comIdCheck(company);
 
 	}
@@ -269,10 +267,9 @@ public class LoginController {
 	// 개인 메일 중복 확인
 	@RequestMapping("/memMail")
 	@ResponseBody
-	public int memMail(Model model, Member member) throws IOException{
-		
-			System.out.println("개인 메일");
-			return memMapper.memMailCheck(member);
+	public int memMail(Model model, Member member, Errors errors) throws IOException{
+
+		return memMapper.memMailCheck(member);
 			
 	}
 	
@@ -280,10 +277,9 @@ public class LoginController {
 	// 기업 메일 중복 확인
 	@RequestMapping("/comMail")
 	@ResponseBody
-	public int comMail(Model model, Company company) throws IOException{
+	public int comMail(Model model, Company company, Errors errors) throws IOException{
 		
-			System.out.println("기업 메일");
-			return memMapper.comMailCheck(company);
+		return memMapper.comMailCheck(company);
 			
 	}
 	

@@ -219,6 +219,14 @@
 			<artifactId>json</artifactId>
 			<version>20200518</version>
 		</dependency>
+		
+		<!-- pw 암호화 -->
+		<dependency>
+   			<groupId>commons-codec</groupId>
+    		<artifactId>commons-codec</artifactId>
+    		<version>1.15</version>
+		</dependency>
+		
 
 	</dependencies>
 

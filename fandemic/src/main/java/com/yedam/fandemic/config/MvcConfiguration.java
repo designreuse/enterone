@@ -25,9 +25,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 //		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 //		resolver.setPrefix("/WEB-INF/views/");
 //		resolver.setSuffix(".jsp");
+//		resolver.setOrder(3);
 //		return resolver;
 //	}
-	@Override
+	
+	@Override   
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		// TODO Auto-generated method stub
 		configurer.enable();
