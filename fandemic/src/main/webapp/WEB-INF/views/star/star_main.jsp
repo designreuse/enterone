@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
           <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text d-flex align-items-center">
-                <strong class="number" data-number="120">0</strong>
+                <strong class="number" data-number="${countFan}">0</strong>
                 <span>채널 팬</span>
               </div>
             </div>
@@ -34,7 +34,7 @@ pageEncoding="UTF-8"%>
           <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text d-flex align-items-center">
-                <strong class="number" data-number="150">0</strong>
+                <strong class="number" data-number="${countFboard}">0</strong>
                 <span>팬 게시물</span>
               </div>
             </div>
@@ -42,7 +42,7 @@ pageEncoding="UTF-8"%>
           <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text d-flex align-items-center">
-                <strong class="number" data-number="200">0</strong>
+                <strong class="number" data-number="${countReply}">0</strong>
                 <span>댓글</span>
               </div>
             </div>
@@ -50,7 +50,7 @@ pageEncoding="UTF-8"%>
           <div class="col-xl-3 col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
             <div class="block-18">
               <div class="text d-flex align-items-center">
-                <strong class="number" data-number="200">0</strong>
+                <strong class="number" data-number="${countSboard}">0</strong>
                 <span>스타 게시물</span>
               </div>
             </div>
@@ -64,7 +64,7 @@ pageEncoding="UTF-8"%>
 	<div class="container">
 		<div class="row justify-content-center mb-2 pb-3">
         <div class="col-md-7 heading-section heading-section-2 text-center ftco-animate">
-          <h2 class="mb-4">Follow me on Instagram</h2>
+          <h2 class="mb-4">Follow me on Channel</h2>
         </div>
       </div>  
 		<div class="row no-gutters">

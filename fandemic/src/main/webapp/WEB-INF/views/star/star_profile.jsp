@@ -10,28 +10,23 @@
 			<div class="author-image text img d-flex">
 				<section class="home-slider js-fullmainheight owl-carousel">
 					<div class="slider-item js-fullmainheight"
-						style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg);">
+						style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_pic});">
 					</div>
 
 					<div class="slider-item js-fullmainheight"
-						style="background-image:url(${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg);">
+						style="background-image:url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
 					</div>
 				</section>
 			</div>
 			<div class="author-info-profile text p-3 p-md-5">
 				<div class="desc">
 					<span class="subheading">Hello! I'm</span>
-					<h1 class="big-letter">Louie Smith</h1>
+					<h1 class="big-letter">${star.st_name}</h1>
 					<h1 class="mb-4">
-						<span>Louie Smith</span> A Photographer. <span>I Capture
-							Life</span>
+						<span>${star.st_name}</span>&nbsp;Your Star. <!-- <span>I Capture Life</span> -->
 					</h1>
-					<p class="mb-4">I am A Photographer from America Far far away,
-						behind the word mountains, far from the countries Vokalia and
-						Consonantia, there live the blind texts. Separated they live in
-						Bookmarksgrove right at the coast of the Semantics, a large
-						language ocean.</p>
-					<h3 class="signature h1">Louie Smith</h3>
+					<p class="mb-4">${star.st_introduce}</p>
+					<h3 class="signature h1">Enter One</h3>
 					<ul class="ftco-social mt-3">
 						<li class="ftco-animate"><a href="#"><span
 								class="icon-twitter"></span></a></li>
@@ -41,58 +36,6 @@
 								class="icon-instagram"></span></a></li>
 					</ul>
 				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<section class="ftco-section-3 instagram row">
-	<div class="container">
-		<div class="row justify-content-center mb-2 pb-3">
-			<div
-				class="col-md-7 heading-section heading-section-2 text-center ftco-animate">
-				<h2 class="mb-4">Follow me on Instagram</h2>
-			</div>
-		</div>
-		<div class="row no-gutters">
-			<div class="col-sm-12 col-md ftco-animate">
-				<a href="images/image_1.jpg" class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-12 col-md ftco-animate">
-				<a href="images/image_2.jpg" class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_2.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-12 col-md ftco-animate">
-				<a href="images/image_3.jpg" class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_3.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-12 col-md ftco-animate">
-				<a href="images/image_4.jpg" class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_4.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-12 col-md ftco-animate">
-				<a href="images/image_5.jpg" class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_5.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
 			</div>
 		</div>
 	</div>

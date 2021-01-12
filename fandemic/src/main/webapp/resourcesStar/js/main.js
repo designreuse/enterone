@@ -199,7 +199,7 @@
 					  {
 					    number: num,
 					    numberStep: comma_separator_number_step
-					  }, 7000
+					  }, 1000 //스타 메인화면 숫자 출력 시간
 					);
 				});
 				
