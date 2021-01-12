@@ -272,12 +272,10 @@ var counter = 0;
 		    },
 			info: false,
 			//ordering: false,//th정렬
-	  		order: [ [ 0, "desc" ] ],
-			"bDestroy": true
+	  		order: [ [ 0, "desc" ] ]
+			//"bDestroy": true
 	  	});
-		
-		/* table.rows().invalidate().draw(); */
-	  	
+			  	
 		$(".fboardListSection").show();
 		$(".fboardInsertSection").hide();
 		$(".fboardViewSection").hide();

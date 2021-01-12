@@ -66,7 +66,7 @@ public class FboardController {
    //게시물 해시태그 별 목록 출력
    @RequestMapping(value="/star/fanBoard/list/hashtag", method=RequestMethod.GET)
    @ResponseBody
-   public List<Fboard> fboardHashtagList(HttpServletRequest request, Model model, Fboard fboard) {      
+   public List<Fboard> fboardHashtagList(HttpServletRequest request, Model model, Fboard fboard) { 
       return  fboardService.getFboardHashtagList(fboard);
    }
    
