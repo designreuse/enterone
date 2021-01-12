@@ -5,6 +5,16 @@
 <mapper namespace="com.yedam.fandemic.impl.MemberMapper">
 <!-- 멤버 매퍼 아니고 로그인 메퍼!!!! -->
 
+<!-- 임시 비밀번호 -->
+<update id="pwUpdate">
+	UPDATE MEMBER SET MEM_PW = #{mem_pw} WHERE MEM_ID = #{mem_id}
+</update>
+
+<!-- 임시 비밀번호 -->
+<update id="pwUpdateCom">
+	UPDATE COMPANY SET COM_PW = #{com_pw} WHERE COM_ID =#{com_id} 
+</update>
+
 <!-- 소셜 회원가입 -->
 	<insert id="socialInsert" parameterType="Member">
 		INSERT INTO MEMBER (MEM_ID, MEM_NAME, MEM_BIRTH, MEM_PHONE, MEM_EMAIL,

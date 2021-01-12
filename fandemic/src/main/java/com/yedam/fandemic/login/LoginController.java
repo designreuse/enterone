@@ -95,13 +95,22 @@ public class LoginController {
 		
 		if(member != null) {
 			
+			String pwKey = Password.getRamdomPw(6);
 			
+			member.setMem_pw(Password.encrypt(pwKey)); //임시비번 넣어서
+			memMapper.pwUpdate(member); //업데이트 하고
 			
 			mail.setSenderName("엔터원");
 			mail.setSenderMail("haez119@gmail.com");
 			mail.setReceiveMail(member.getMem_email());
-			mail.setSubject("요청하신 비밀번호입니다.");
-			mail.setMessage(member.getMem_id() + " 님의 비밀번호는 " + member.getMem_pw() + " 입니다.");
+			mail.setSubject("임시 비밀번호가 발급되었습니다.");
+
+			String mainCon = "<h2>안녕하세요 " +  member.getMem_id() +" 님 </h2><br><br>" 
+					+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>'" + pwKey +"'</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다.</p><br>"
+					+ "<h3><a href='http://localhost:1818/fandemic/login'></h3><br><br>"
+					+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
+            
+			mail.setMessage(mainCon);
 			
 			try {
 				mailservice.sendEmail(mail); 
@@ -131,13 +140,21 @@ public class LoginController {
 
 		if(company != null) {
 			
-			
+			String pwKey = Password.getRamdomPw(6);
+			company.setCom_pw(Password.encrypt(pwKey)); //임시비번 넣어서
+			memMapper.pwUpdateCom(company);
 			
 			mail.setSenderName("엔터원");
 			mail.setSenderMail("haez119@gmail.com");
 			mail.setReceiveMail(company.getCom_email());
 			mail.setSubject("요청하신 비밀번호입니다.");
-			mail.setMessage(company.getCom_id() + " 님의 비밀번호는 " + company.getCom_pw() + " 입니다.");
+			
+			String mainCon = "<h2>안녕하세요 " + company.getCom_id() +" 님 </h2><br><br>" 
+					+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>'" + pwKey +"'</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다.</p><br>"
+					+ "<h3><a href='http://localhost:1818/fandemic/login'></h3><br><br>"
+					+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
+			
+			mail.setMessage(mainCon);
 			
 			try {
 				mailservice.sendEmail(mail); 
@@ -146,8 +163,6 @@ public class LoginController {
 	            e.printStackTrace();
 	            System.out.println("메일실패");
 	        }
-			
-			
 			return company.getCom_email();
 		} else {
 			return null;
@@ -221,13 +236,13 @@ public class LoginController {
 		
 	}// 소속사 로그인
 	
-	
+	//스타 로그인 보류
 	@RequestMapping(value="/starLogin")
 	public String starLogin(HttpServletRequest request, Model model, Star star,  HttpSession session, RedirectAttributes redirect) throws IOException{
 		System.out.println("스타로그인");
 		
 		star.setSt_id(request.getParameter("com_id"));
-		star.setSt_pw(request.getParameter("com_pw"));
+		star.setSt_pw(Password.encrypt(request.getParameter("com_pw")));
 		
 		star = memMapper.starLogin(star);
 		
@@ -330,6 +345,6 @@ public class LoginController {
 		
 		return "redirect:login";
 	}
-	
+
 
 }

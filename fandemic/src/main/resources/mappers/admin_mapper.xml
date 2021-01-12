@@ -3,8 +3,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.fandemic.impl.AdminMapper">
+<!-- main에 뿌릴 쿼리문 - -->
+	<!-- qna 답변 미등록 -->
+	<select id="qnaAnswerNo" resultType="QnA">
+		SELECT * FROM QNA WHERE Q_ANSWER IS NULL
+	</select>
 
-
+	<!-- 회원리스트 -->
+	<select id="memCnt" resultType = "int">
+		SELECT COUNT(*) AS CNT FROM MEMBER
+	</select>
+	
+	<select id="comCnt" resultType = "int">
+		SELECT COUNT(*)-1 AS CNT FROM COMPANY
+	</select>
+	
+	<select id="stCnt" resultType = "int">
+		SELECT COUNT(*) AS CNT FROM STAR
+	</select>
+	
+	<select id="comStarList" resultType = "map">
+		SELECT COM_ID, COUNT(COM_ID) AS COM_ST FROM STAR GROUP BY COM_ID 
+	</select>
+	
+	
 	<!-- qna 리스트 -->
 	<select id="qnaList" resultType="QnA" >
 		SELECT Q.*, M.MEM_PHONE

@@ -19,16 +19,12 @@
 			$("#" + tab_id).addClass('current');
 		});
 		
-		// 실시간 sns
-		$('.sscroll').scroll(function(){
-	        var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
-	        var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
-	        var contentH = $('#divContent').height(); //문서 전체 내용을 갖는 div의 높이
-
-	       if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
-	    	   newSns();
-	        } 
-	    });
+		// 실시간 sns 5초마다 업데이트
+		window.setInterval(function(){
+			newSns();
+		}, 5000);
+		
+		
 		
 		// 차트
 		var ctx = $('#myChart');
@@ -108,18 +104,14 @@
 	// sns 실시간
 	function newSns() {
 		
-		
 		var maxSnsNo = 0;
 		
 		if(maxNo == 0) {
 			maxSnsNo = "${maxSnsNo}";
-			console.log("0일 때" + maxSnsNo);
 		} else {
 			maxSnsNo = maxNo;
-			console.log("0이 아닐 때" + maxSnsNo);
 		}
 		
-		console.log(maxSnsNo);
 		$.ajax({
 	            url :'${pageContext.request.contextPath}/newSns',
 	            type:"post",
@@ -153,12 +145,7 @@
 	            }
 	           },error:function(){ alert("실패"); }
 	         });
-		
-		
-		
-    	
-    	
-		
+
 	}
 </script>
 
@@ -520,8 +507,9 @@ hr {
 		<div class="line">
 			<div>???</div>
 		</div>
+		<article class="featured">
 		<div class="content" style="padding-top: 20px; " >
-			<div class="sscroll" style="overflow-y:scroll; width:100%; height:500px; padding: 20px;">
+			<div class="sscroll" style="overflow-y:scroll; width:100%; height:300px; padding: 20px;">
 					<div id="divContent" > 
 						<table id="snsTbl">
 						<c:forEach items="${snsList}" var="sns">
@@ -556,7 +544,7 @@ hr {
 				
 				</div>
 		</div>
-	</div><!-- 카드 -->
+	</article>
 
 	<!-- 모달창 -->
 	<c:if test="${sessionScope.member.mem_type eq 1}">

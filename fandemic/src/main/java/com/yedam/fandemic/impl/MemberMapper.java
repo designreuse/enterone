@@ -44,6 +44,10 @@ public interface MemberMapper {
 	
 	public Member socialLogin(Member member); 
 	
+	// 임시 비번
+	public void pwUpdate(Member member);
+	public void pwUpdateCom(Company company);
+	
 	
 	
 	

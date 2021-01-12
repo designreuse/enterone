@@ -65,6 +65,9 @@ ul.tabs li.current {
 			
 			$("#li2").addClass('current');
 			$("#" + tblId).addClass('current');
+			if (tblId == 'tab-2') {
+				checkUser("기업회원");				
+			}
 			
 		} 
 		 
@@ -93,7 +96,7 @@ ul.tabs li.current {
 				alert("아이디를 입력하세요");
 			} else {
 				memIdCheck();
-				$("#mem_email").attr("disabled", false);
+				
 			}
 			
 			
@@ -104,7 +107,7 @@ ul.tabs li.current {
 				alert("아이디를 입력하세요");
 			} else {
 				comIdCheck();
-				$("#com_email").attr("disabled", false);
+				
 			}
 			
 			
@@ -165,6 +168,7 @@ ul.tabs li.current {
 	
 	// 비밀번호 확인
    	function passwordChk(pw1, pw2, btn, div1, bTag) {
+		
 	      $(pw1).addClass('pw');
 	      $(pw2).addClass('pw');
 	      
@@ -197,13 +201,13 @@ ul.tabs li.current {
 	function checkUser(user) {
 		
 		if (user == "개인회원") { 
-
+			
 			passwordChk($("#mem_pw"), $("#mem_pwCheck"), $("#btnAddMem"), $("#memPwd"), $("#membTag"));
 
 			$("#memFrm").attr("action", "${pageContext.request.contextPath}/memRegister");
 			
 		} else { 
-		
+			
 			passwordChk($("#com_pw"), $("#com_pwCheck"), $("#btnAddCom"), $("#comPwd"), $("#combTag"));	
 
 			$("#comFrm").attr("action", "${pageContext.request.contextPath}/comRegister");
@@ -246,10 +250,12 @@ ul.tabs li.current {
 	               if (data == 0) {
 	            	   $("#checkId").html("");
 	            	   $("#checkId").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#divId");
+	            	   $("#mem_email").attr("disabled", false);
 	            	   
 	               } else {
 	            	   $("#checkId").html("");
 	            	   $("#checkId").html("중복된 아이디입니다.").css("color","red").appendTo("#divId");
+	            	   $("#mem_email").attr("disabled", true);
 	               }
 	
 	            },error:function(){ alert("실패"); }
@@ -279,10 +285,12 @@ ul.tabs li.current {
 	               if (data == 0) {
 	            	   $("#checkIdcom").html("");
 	            	   $("#checkIdcom").html("사용 가능한 아이디입니다.").css("color","blue").appendTo("#comDiv");
+	            	   $("#com_email").attr("disabled", false);
 	            	   
 	               } else {
 	            	   $("#checkIdcom").html("");
-	            	   $("#checkIdcom").html("중복된 아이디입니다.").css("color","red").appendTo("#comDiv")
+	            	   $("#checkIdcom").html("중복된 아이디입니다.").css("color","red").appendTo("#comDiv");
+	            	   $("#com_email").attr("disabled", true);
 	               }
 	
 	            },error:function(){ alert("실패"); }

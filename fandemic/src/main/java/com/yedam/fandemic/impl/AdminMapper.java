@@ -1,5 +1,6 @@
 package com.yedam.fandemic.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.yedam.fandemic.vo.Company;
@@ -29,7 +30,14 @@ public interface AdminMapper {
 	
 	public void answerUpdate(QnA qna);
 	
+	//메인에 뿌릴 것
+	public List<QnA> qnaAnswerNo();
 	
+	public int memCnt(); 
+	public int comCnt();
+	public int stCnt(); 
+	
+	public List<HashMap<String,Object>> comStarList(); 
 	
 	
 }

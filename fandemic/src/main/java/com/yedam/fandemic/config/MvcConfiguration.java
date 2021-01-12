@@ -48,7 +48,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 		multi.setMaxUploadSize(1024*10000);
 		return multi;
 	}
-	
+	   
 	@Bean
     public JavaMailSender getMailSender() {
         

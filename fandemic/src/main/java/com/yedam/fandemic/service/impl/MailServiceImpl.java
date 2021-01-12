@@ -37,7 +37,7 @@ public class MailServiceImpl implements MailService {
 					// 이메일 제목 (인코딩을 해야 한글이 깨지지 않음)
 					msg.setSubject(mail.getSubject(), "utf-8");
 					// 이메일 본문 (인코딩을 해야 한글이 깨지지 않음)
-					msg.setText(mail.getMessage(), "utf-8");
+					msg.setText(mail.getMessage(), "utf-8", "html");
 
 //                	html로 보낼 경우            
 //					MimeMessage message = mailSender.createMimeMessage();

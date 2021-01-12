@@ -1,7 +1,10 @@
 package com.yedam.fandemic.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +31,25 @@ public class AdminController {
 	@Autowired AdminMapper dao;
 	
 	@RequestMapping(value="/adminMain")
-	public ModelAndView Main() throws IOException{
+	public ModelAndView Main(Model model, QnA qna) throws IOException{
+		
+		List<QnA> qnaList = new ArrayList<QnA>();
+		qnaList = dao.qnaAnswerNo();
+		model.addAttribute("qnaList", qnaList); // 답변ㄴㄴ qna리스트
+		
+		Map<String, Integer> cnt = new HashMap<>();
+		cnt.put("memCnt", dao.memCnt());
+		cnt.put("comCnt", dao.comCnt());
+		cnt.put("stCnt", dao.stCnt());
+		
+		model.addAttribute("cnt", cnt); // 회원별 count
+		
+		List<HashMap<String,Object>> comStarList = new ArrayList<HashMap<String, Object>>();
+		comStarList = dao.comStarList();
+		model.addAttribute("comStarList", comStarList); // 소속사별 스타회원 count
+		
+		
+		
 		return new ModelAndView("admin/adminmain");
 	}
 	
