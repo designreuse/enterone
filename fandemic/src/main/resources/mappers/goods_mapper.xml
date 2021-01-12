@@ -70,8 +70,16 @@
 		WHERE CART_NO = #{cart_no}
 	</update>
 	
-	<!-- 장바구니 - 구매 화면 -->
-<!-- 	<select id="" parameterType="" resultType="">
-	</select> -->
+	<!-- 주문 페이지 목록 (장바구니값 불러오기) -->
+ 	<select id="orderList" parameterType="Cart" resultType="Cart">
+		SELECT C.*, G.GO_NAME, G.GO_PRICE, C.CART_QTY * G.GO_PRICE AS PTOTAL, M.MEM_NAME, M.MEM_PHONE,
+			   M.MEM_EMAIL, M.MEM_ADDRESS, M.MEM_ADDRESS2, M.MEM_ZIPADDRESS
+		FROM CART C
+		JOIN GOODS G
+		ON C.GO_NO = G.GO_NO
+		JOIN MEMBER M
+		ON C.MEM_ID = M.MEM_ID
+		WHERE C.MEM_ID = #{mem_id}
+	</select>
 
 </mapper>

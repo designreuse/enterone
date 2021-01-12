@@ -2188,8 +2188,9 @@ ol {
 .checkout__order {
 	position: absolute;
 	background: #f5f5f5;
-	padding: 40px;
+	padding: 25px;
 	padding-top: 30px;
+	padding-bottom: 40px;
 }
 
 .checkout__order h4 {

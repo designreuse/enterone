@@ -19,4 +19,10 @@ public class Cart {
 	String go_pic;		// goods.굿즈 대표사진
 	String mem_name;	// member.회원 이름
 	String ptotal;		// 항목별 합계금액 (가격*수량)
+	
+//	String mem_phone;		// member.전화번호
+//	String mem_email;		// member.이메일
+//	String mem_address;		// member.주소
+//	String mem_address2;	// member.상세주소
+//	String mem_zipaddress;	// member.우편번호
 }

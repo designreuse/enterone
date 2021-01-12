@@ -28,6 +28,9 @@ public interface GoodsMapper {
 	// Cart 수량 변경
 	public int cartUpdate(Cart cart);
 	
+	// 주문 페이지 목록 (장바구니값 불러오기)
+	public List<Cart> orderList(Cart cart);
+	
 	// paging
 	public int goCount();	// Goods 목록
 }

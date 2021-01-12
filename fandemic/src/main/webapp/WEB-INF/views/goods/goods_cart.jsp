@@ -50,7 +50,7 @@
 			ttotal += total;
 			console.log(total + ', ' + ttotal);
 			tr.find('.ptotal').val(total+'원'); // 변경된 수량에 따른 합계 금액 변경
-			tr.find('.totalSum').val(30000+'원');
+			// tr.find('.totalSum').val(30000+'원');
 			// console.log("수량: " + newVal);
 			$('#dd').val(ttotal);
 		});
@@ -202,7 +202,7 @@
 						<ul>
 							<li>결제 예정 금액 <span><fmt:formatNumber var="totalsum" value="${totalsum}" pattern="##,###" /><c:out value="${totalsum}원"/></span></li>
 						</ul>
-						<a href="#" class="primary-btn">결제하기</a>
+						<a href="${pageContext.request.contextPath}/goodsBuy" class="primary-btn">결제하기</a>
 					</div>
 				</div>
 			</div>
