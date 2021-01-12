@@ -50,4 +50,16 @@ public class AboardServiceImpl  implements AboardService{
 		return dao.getAuditionApplyList(audition);
 	}
 
+
+	@Override
+	public Audition getAuditionApplyDetail(Audition audition) {
+		return dao.getAuditionApplyDetail(audition);
+	}
+
+
+	@Override
+	public int auditionApplyDelete(Audition audition) {
+		return dao.auditionApplyDelete(audition);
+	}
+
 }

@@ -46,14 +46,14 @@ div #dataTable_filter{
 </style>
 <link
    href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
-      crossorigin="anonymous" />
+       />
    
 <script
       src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
-      crossorigin="anonymous"></script>
+      ></script>
    <script
       src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
-      crossorigin="anonymous"></script>
+      ></script>
    
    <!-- 페이지네이션 날로먹는 빌드 끝 -->
 <script>

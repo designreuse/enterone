@@ -51,18 +51,14 @@ div #dataTable_filter{
 			$(this).addClass("active");
 		});
 		
-		//소속사 오디션 공지사항 등록
-		$(".btn-register").on("click",function(){
-			location.href="${pageContext.request.contextPath}/management/aboard/aboardInsertForm";
-		});
 		
 		
-		//소속사 오디션 공지사항 상세보기
+		//소속사 각오디션별 지원자 정보 상세보기
 		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
 		table.on("click","tr a",function(){ //게시물 tr에 제목 클릭했을때 ~
-			/* alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호 */
-			var abo_no = $(this).parent().prev().text();
-			location.href="${pageContext.request.contextPath}/management/aboard/aboardDetail?abo_no="+abo_no;	
+			 //alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호 
+			var aud_no = $(this).parent().prev().text();
+			location.href="${pageContext.request.contextPath}/management/aboard/auditionApplyDetail?aud_no="+aud_no;	
 		});//end 게시물 제목 클릭
 		
 		
@@ -79,7 +75,7 @@ div #dataTable_filter{
 		//소속사 오디션 공지사항 삭제
 		$(".btn-delete").on("click",function(){
 			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/aboard/aboardDelete",
+				url:"${pageContext.request.contextPath}/management/aboard/auditionApplyDelete",
 				type:"POST",
 				data: $("#frm1").serialize(),
 				dataType: 'json', //결과값 Json형태로
@@ -124,6 +120,7 @@ div #dataTable_filter{
 			.append($('<td>').html('<input type="checkbox" name="aud_nos" value="'+item.aud_no+'">'))
 			.append($('<td>').html(item.aud_no))
 			.append($('<td>').html('<a href="#">'+item.mem_id+'</a>'))
+			.append($('<td>').html(item.mem_name))
 			.append($('<td>').html(item.aud_type))
 			.append($('<td>').html(item.aud_height))
 			.append($('<td>').html(item.aud_weight))
@@ -142,12 +139,13 @@ div #dataTable_filter{
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>오디션공지</h1>
+            <h1>오디션 지원자</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">오디션공지</li>
+              <li class="breadcrumb-item">오디션공지</li>
+              <li class="breadcrumb-item active">오디션 지원자</li>
             </ol>
           </div>
         </div>
@@ -170,6 +168,7 @@ div #dataTable_filter{
                       <th></th>
                       <th>번호</th>
                       <th>회원ID</th>
+                      <th>지원자이름</th>
                       <th>지원분야</th>
                       <th>키</th>
                       <th>몸무게</th>
@@ -185,7 +184,7 @@ div #dataTable_filter{
               <div>
               	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
-              		<button type="button" class="btn-register">등록</button>
+              		<!-- <button type="button" class="btn-register">등록</button> -->
               		<!--  <button class="btn-update">수정</button>-->
               		<button type="button" class="btn-delete">삭제</button>
               	</div>

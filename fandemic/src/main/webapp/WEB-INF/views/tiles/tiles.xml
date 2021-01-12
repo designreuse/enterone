@@ -13,6 +13,11 @@
 			value="/WEB-INF/views/mypage/{1}.jsp" />
 	</definition>
 	
+	<definition name="mgt/company/*" template="/WEB-INF/views/layout/management.jsp">
+		<put-attribute name="body"
+			value="/WEB-INF/views/management/company/{1}.jsp" />
+	</definition>
+	
 	<definition name="mgt/aboard/*" template="/WEB-INF/views/layout/management.jsp">
 		<put-attribute name="body"
 			value="/WEB-INF/views/management/aboard/{1}.jsp" />
