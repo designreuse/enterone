@@ -674,11 +674,9 @@ var counter = 0;
 					<a href="#" class="tag-cloud-link">유머</a>
 					<a href="#" class="tag-cloud-link">장터</a>
                </ul>
-            </div>
-            
-            <div class = "row">
                <button class="btn btn-primary py-2 px-4 btnInputFboardShow">글쓰기</button>
             </div>
+
             <br>
             
             <table class = "table trFboardList" id="dataTable">
