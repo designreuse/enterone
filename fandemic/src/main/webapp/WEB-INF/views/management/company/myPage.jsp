@@ -56,6 +56,20 @@
 		}
 		
 	}
+	
+	
+	function setThumbnail(event) { //event라함은 이벤트 대상을 의미하는듯
+		$("#image_container img").remove();
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			var img = $("<img>").attr("src",event.target.result);
+			$("#image_container").append(img);			
+			/* var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img); */
+		}; // end onload
+		reader.readAsDataURL(event.target.files[0]);
+	}
 </script>
  <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -151,18 +165,26 @@
 									</td>
 									<td></td>
 								</tr>
+								<tr>
+									<td colspan="2" align="right" style="padding-right:10px"><label>소속사이메일</label></td>
+									<td colspan="2" align="left">
+									<input type="text" name="com_email" class="com_email" style="width:250px"
+										value="${company.com_email }" ><!-- maxlength는 적을수있는 최대글자수 -->
+									</td>
+									<td></td>
+								</tr>
 								
 								<tr>
-									<td colspan="2" align="right" style="padding-right:10px"><label>배너사진</label></td>
-									<td colspan="2">
-                      					<input type="file" name="uploadBanner" >                     					
+									<td colspan="2" rowspan="2" align="right" style="padding-right:10px"><label>배너사진</label></td>
+									<td colspan="2" rowspan="1">
+                      					<input type="file" name="uploadBanner" onchange="setThumbnail(event);">
+
                      				</td>
 								</tr>
-								<tr >
-									<td colspan="2" align="left"><label>스타소개</label></td>
+								<tr>
 									<td colspan="2">
-										<textarea id="summernote" name="st_introduce" class="st_introduce">${star.st_introduce }</textarea>
-									</td>
+                      					<div id="image_container"></div>                    					
+                     				</td>
 								</tr>
 								
 								
