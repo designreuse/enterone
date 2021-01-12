@@ -11,6 +11,41 @@
 		WHERE st_id = #{st_id}
 	</select>
 	
+	<!-- 스타 아이디로 소속사 정보 검색 -->
+	<select id="getProfileCompany" parameterType="Company" resultType="Company">
+		SELECT * 
+		FROM company 
+		WHERE com_id = #{com_id}
+	</select>
+	
+	<!-- 팬 숫자 -->
+	<select id="getCountFan" parameterType="Star" resultType="int">
+		SELECT count(fan_name) as count
+		FROM fan 
+		WHERE st_id = #{st_id}
+	</select>
+	
+	<!-- 팬 게시물 숫자 -->
+	<select id="getCountFboard" parameterType="Star" resultType="int">
+		SELECT count(fbo_no) as count
+		FROM fboard 
+		WHERE st_id= #{st_id}
+	</select>
+	
+	<!-- 댓글 숫자 -->
+	<select id="getCountReply" parameterType="Star" resultType="int">
+		SELECT count(re_no) as fan_number 
+		FROM v_relist 
+		WHERE fbo_st_id = #{st_id}
+	</select>
+	
+	<!-- 스타게시물 숫자 -->
+	<select id="getCountSboard" parameterType="Star" resultType="int">
+		SELECT count(sbo_no) as count
+		FROM sboard 
+		WHERE st_id = #{st_id}
+	</select>
+
 	<!-- 스타채널 팬가입 여부 확인 -->
 	<select id="getFanInfo" parameterType="Fan" resultType="Fan">
 		SELECT * 

@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.service.StarService;
 import com.yedam.fandemic.service.StarServiceD;
-import com.yedam.fandemic.service.impl.StarServiceImplD;
+import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Schedule;
@@ -32,17 +32,27 @@ public class StarController {
 	
 	//스타 메인페이지
 	@RequestMapping(value = "/star/{id}")
-	public ModelAndView starMain(@PathVariable String id, Star stVo, Fan fan, HttpSession session, Model model) throws IOException {
+	public ModelAndView starMain(@PathVariable String id, Star stVo, Fan fVo, Company comVo, HttpSession session, Model model) throws IOException {
 		//채널 가입여부 확인
 		Member member = (Member) session.getAttribute("member");
 		if(member != null) {//로그인 안하면 채널가입 조회 불가
-			fan.setMem_id(member.getMem_id());
-			fan.setSt_id(id);
-			model.addAttribute("fan", starService.getFanInfo(fan));
+			fVo.setMem_id(member.getMem_id());
+			fVo.setSt_id(id);
+			model.addAttribute("fan", starService.getFanInfo(fVo));
 		}
 		//스타정보 출력
 		stVo.setSt_id(id);
-		model.addAttribute("star", starService.getStarMain(stVo));	
+		model.addAttribute("star", starService.getStarMain(stVo));
+		stVo = starService.getStarMain(stVo);
+		comVo.setCom_id(stVo.getCom_id());
+		model.addAttribute("company", starService.getProfileCompany(comVo));
+		
+		//통계치 출력
+		model.addAttribute("countFan", starService.getCountFan(stVo));
+		model.addAttribute("countFboard", starService.getCountFboard(stVo));
+		model.addAttribute("countReply", starService.getCountReply(stVo));
+		model.addAttribute("countSboard", starService.getCountSboard(stVo));
+
 		return new ModelAndView("star/star_main");
 	}
 	
@@ -62,17 +72,24 @@ public class StarController {
 	
 	//스타프로필 이동
 	@RequestMapping(value = "/star/profile/{id}")
-	public ModelAndView starProfile(@PathVariable String id, Star stVo, Model model) throws IOException {
+	public ModelAndView starProfile(@PathVariable String id, Company comVo, Star stVo, Model model) throws IOException {
 		stVo.setSt_id(id);
 		model.addAttribute("star", starService.getStarMain(stVo));
+		stVo = starService.getStarMain(stVo);
+		comVo.setCom_id(stVo.getCom_id());
+		model.addAttribute("company", starService.getProfileCompany(comVo));
+		
 		return new ModelAndView("star/star_profile");
 	}
 	
 	//스타스케줄 이동
 	@RequestMapping(value = "/star/schedule/{id}")
-	public ModelAndView starSchedule(@PathVariable String id, Star stVo, Model model) throws IOException {
+	public ModelAndView starSchedule(@PathVariable String id, Company comVo, Star stVo, Model model) throws IOException {
 		stVo.setSt_id(id);
 		model.addAttribute("star", starService.getStarMain(stVo));
+		stVo = starService.getStarMain(stVo);
+		comVo.setCom_id(stVo.getCom_id());
+		model.addAttribute("company", starService.getProfileCompany(comVo));
 		return new ModelAndView("star/star_schedule");
 	}
 
@@ -85,7 +102,7 @@ public class StarController {
 		return starServiceD.getStartList(schedule);
 	}
 	
-	
+	//스타라이브
 	@RequestMapping(value = "/star/live/{id}")
 	public ModelAndView starLive(@PathVariable String id, Star stVo, Model model) throws IOException {
 		stVo.setSt_id(id);
@@ -95,25 +112,34 @@ public class StarController {
 	
 	//스타게시판 이동
 	@RequestMapping(value = "/star/board/{id}")
-	public ModelAndView starBoard(@PathVariable String id, Star stVo, Model model) throws IOException {
+	public ModelAndView starBoard(@PathVariable String id, Company comVo, Star stVo, Model model) throws IOException {
 		stVo.setSt_id(id);
 		model.addAttribute("star", starService.getStarMain(stVo));
+		stVo = starService.getStarMain(stVo);
+		comVo.setCom_id(stVo.getCom_id());
+		model.addAttribute("company", starService.getProfileCompany(comVo));
 		return new ModelAndView("star/star_board");
 	}
 	
 	//팬게시판 이동
 	@RequestMapping(value = "/star/fanBoard/{id}")
-	public ModelAndView starFanBoard(@PathVariable String id, Star stVo, Model model) throws IOException {
+	public ModelAndView starFanBoard(@PathVariable String id, Star stVo, Company comVo, Model model) throws IOException {
 		stVo.setSt_id(id);
 		model.addAttribute("star", starService.getStarMain(stVo));
+		stVo = starService.getStarMain(stVo);
+		comVo.setCom_id(stVo.getCom_id());
+		model.addAttribute("company", starService.getProfileCompany(comVo));
 		return new ModelAndView("star/star_fan_board");
 	}
 	
 	//사진게시판 이동
 	@RequestMapping(value = "/star/album/{id}")
-	public ModelAndView starAlbum(@PathVariable String id, Star stVo, Model model) throws IOException {
+	public ModelAndView starAlbum(@PathVariable String id, Star stVo, Company comVo, Model model) throws IOException {
 		stVo.setSt_id(id);
 		model.addAttribute("star", starService.getStarMain(stVo));
+		stVo = starService.getStarMain(stVo);
+		comVo.setCom_id(stVo.getCom_id());
+		model.addAttribute("company", starService.getProfileCompany(comVo));
 		return new ModelAndView("star/star_album");
 	}
 	
