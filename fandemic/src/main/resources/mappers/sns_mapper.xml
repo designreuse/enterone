@@ -34,6 +34,10 @@ select s.*, m.mem_pic mem_pic, m.mem_type mem_type from sns s, member m where s.
 SELECT SNS_PIC FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
 </select>
 <!-- SNS 카운트 -->
+<select id="countLike" resultType="int">
+SELECT SUM(SNS_LIKES) FROM SNS where MEM_ID = #{mem_id}
+</select>
+<!-- 좋아요 카운트 -->
 <select id="countMySns" resultType="int">
 SELECT COUNT(*) FROM SNS where MEM_ID = #{mem_id}
 </select>
@@ -44,5 +48,27 @@ SELECT * FROM SNS WHERE SNS_NO = #{sns_no}
 <!-- 쪽지 갯수조회 -->
 <select id="countMyLetter" resultType="int">
 SELECT COUNT(*) FROM Letter where MEM_ID = #{mem_id}
+</select>
+<select id="OneMemberSelect" resultType="sns" >
+    SELECT
+    M.MEM_ID              MEM_ID,
+    M.MEM_TIME,
+    M.MEM_PIC,
+    M.MEM_TYPE,
+    SUM(S.SNS_LIKES)    SNS_LIKES,
+    COUNT(S.SNS_NO)       SNS_NO
+    
+FROM
+    SNS     S,
+    MEMBER  M
+WHERE
+    M.MEM_ID = #{mem_id}
+    AND S.MEM_ID(+) = M.MEM_ID
+GROUP BY
+    M.MEM_ID            ,
+    M.MEM_TIME,
+    M.MEM_TYPE,
+    M.MEM_PIC
+    
 </select>
 </mapper>

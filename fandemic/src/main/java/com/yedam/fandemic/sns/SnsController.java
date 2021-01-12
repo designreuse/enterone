@@ -35,7 +35,8 @@ public class SnsController {
 			sns.setMem_id(member.getMem_id());
 
 			model.addAttribute("mysnslist", snsdao.selectMySns(sns));			//SNS 사진 조회
-			model.addAttribute("countmysns", snsdao.countMySns(sns)); 			//내SNS 카운트
+			model.addAttribute("countmysns", snsdao.countMySns(sns));			//내SNS 카운트
+			model.addAttribute("countlike", snsdao.countLike(sns));			//내 좋아요 카운트
 			model.addAttribute("countmyletter", snsdao.countMyLetter(sns)); 	//쪽지 카운트
 		}
 		return "sns/sns";
@@ -78,5 +79,15 @@ public class SnsController {
 
 		return sns;
 
+	}	
+	
+	//SNS MEMBERPROFILE 조회
+	@ResponseBody
+	@RequestMapping(value = "/profileselect")
+	public Sns proFileSelect(Model model, HttpServletRequest request, Sns sns) throws IOException {
+		sns.setMem_id(request.getParameter("mem_id"));
+		sns = snsdao.OneMemberSelect(sns);
+
+		return sns;
 	}
 }

@@ -835,16 +835,19 @@ margin-bottom: 32px;
 }
 
 .outputimg {
-	margin-top: -10px;
-	width: 5%;
-	height: 40px;
-	border-radius: 100%;
-	object-fit: cover;
+max-height: 40px;
+   	width: 40px;
+    overflow: hidden;
 }
 
 .inputdiv {
 	background: #FDFDFD;
 	border-radius: 17px;
+}
+.dropbtn{
+	height: 40px;
+   	width: 40px;
+   	margin: 9px 9px 9px 0px;
 }
 
 .clicktextfil {
@@ -860,7 +863,7 @@ margin-bottom: 32px;
 
 .clickcontentdetail {
 	height: 40px;
-	width: 94%;
+	width: 90%;
 	font-size: 20px;
 	border: 0;
 	border-radius: 11px;
@@ -886,5 +889,10 @@ max-width: 100% !important;
 	max-width: 100% !important;
 	max-height: 100% !important;
 		overflow: hidden;
+}
+.dropbtn {
+	    background-color: white;
+    border-radius: 100%;
+    border: none;
 }
 

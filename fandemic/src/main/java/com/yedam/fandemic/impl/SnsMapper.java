@@ -17,9 +17,17 @@ public interface SnsMapper {
 	// My SNS count
 	public int countMySns(Sns sns);
 	
+	// Like 건수 조회
+	public int countLike(Sns sns);
 	// SNS 단건조회
 	public Sns OneSnsSelect (Sns sns);
 	
 	// Letter Count
 	public int countMyLetter(Sns sns);
-}	
+	
+	// 멤버 단건조회
+	public Sns OneMemberSelect (Sns sns);
+	
+	
+	
+}
