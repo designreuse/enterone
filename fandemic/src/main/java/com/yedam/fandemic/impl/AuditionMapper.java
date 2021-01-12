@@ -12,11 +12,13 @@ public interface AuditionMapper {
 	//닉네임 중복
 	public int nickCheck(Trainee trainee);  
 	//연습생 등록
-	public void inserttr(Trainee trainee);
-	//연습생 활동 글 전체 조회
-	public List<Activity> selectActivity();
+	public int inserttr(Trainee trainee);
 	//연습생 활동 글 등록
 	public int insertac(Activity activity);
+	//연습생 활동 글 전체 조회
+	public List<Trainee> selectTr();
+	//연습생 활동 상세 프로필
+	public Activity ActivityDetail(Activity activity);
 	
 	
 	

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +40,10 @@
 	});
 </script>
 <style>
+p {
+	font-size: medium;
+}
+
 .thumbnail {
 	width: 80%;
 	height: 80%;
@@ -96,10 +100,10 @@
 				<div>
 					<button type="button" class="btn btn-primary" id="but">TOP05/NEW05</button>
 					<c:if test="${sessionScope.member.mem_id ne null}">
-					<button type="button" class="btn btn-primary" id="but2"
-						style="float: right; margin-top: -58px;"
-						onclick="location.href='activityinsert'">글 등록</button>
-						</c:if>
+						<button type="button" class="btn btn-primary" id="but2"
+							style="float: right; margin-top: -58px;"
+							onclick="location.href='activityinsert'">글 등록</button>
+					</c:if>
 				</div>
 				<div>
 					<div class="jumbotron jumbotron-fluid">
@@ -177,53 +181,60 @@
 					</div>
 				</div>
 				<div class="col-md-12 col-sm-12 col-xs-12">
-					
-					
-						<div class="row">
-							<c:forEach var="activity" items="${TrworkList}">
+					<div class="row">
+						<c:forEach var="trainee" items="${TrworkList}">
 							<div class="col-md-3 col-sm-3 col-xs-3">
 								<div class="thumbnail">
 									<img
-										src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}"
+										src="${pageContext.request.contextPath}/images/audition/${trainee.tr_pic}"
 										alt="...">
 									<div class="caption">
-										<h3>${activity.ac_title}</h3>
-										<p>${activity.ac_content}</p>
 										<p>${sessionScope.member.mem_id}</p>
-										<p>${activity.ac_no}</p>
-										<p>${activity.ac_time}</p>
-										<h3>${activity.ac_hits}</h3>
-										<p>${activity.ac_likes}</p>
+										<p>${trainee.tr_name}</p>
+										<p>${trainee.tr_content}</p>
+										<p>${trainee.tr_branch1}</p>
+										<p>${trainee.tr_branch2}</p>
 										<p>
 											<a href="#" class="btn btn-primary" role="button">Button</a>
 											<a href="#" class="btn btn-default" role="button">Button</a>
 										</p>
 									</div>
 								</div>
-								</div>
-									</c:forEach>
-								</div>
-							
-								</div>
-						</div>
+							</div>
+						</c:forEach>
 					</div>
-					
+
+
+
+
+
+
+
+
+
+
 
 
 				</div>
+			</div>
+		</div>
+
+
+
+		</div>
 
 
 
 
-			<ul class="pagination" style="align: center">
-				<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-				<li class="active"><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">...</a></li>
-				<li><a href="#">10</a></li>
-				<li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-			</ul>
+		<ul class="pagination" style="align: center">
+			<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
+			<li class="active"><a href="#">1</a></li>
+			<li><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">...</a></li>
+			<li><a href="#">10</a></li>
+			<li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
+		</ul>
 
 
 

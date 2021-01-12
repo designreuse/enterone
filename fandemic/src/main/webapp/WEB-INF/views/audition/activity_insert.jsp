@@ -149,38 +149,6 @@ body {
 								</div>
 
 							</div>
-							
-							<!-- <div class="form-group" style="display:none">
-								<label for="inputPassword3" class="col-sm-2 control-label">게시판번호</label>
-								<div class="col-sm-10">
-									<input id="ac_no" name="ac_no" type="text"
-										class="form-control">
-								</div>
-							</div>
-							<div class="form-group" style="display:none">
-								<label for="inputPassword3" class="col-sm-2 control-label">작성일</label>
-								<div class="col-sm-10">
-									<input id="ac_time" name="ac_time" type="text"
-										class="form-control" >
-								</div>
-							</div>
-							
-								<div class="form-group" style="display:none">
-								<label for="inputPassword3" class="col-sm-2 control-label">조회수</label>
-								<div class="col-sm-10">
-									<input id="ac_hits" name="ac_hits" type="text"
-										class="form-control" >
-								</div>
-							</div>
-							
-							<div class="form-group" style="display:none">
-								<label for="inputPassword3" class="col-sm-2 control-label">좋아요</label>
-								<div class="col-sm-10">
-									<input id="ac_likes" name="ac_likes" type="text"
-										class="form-control" >
-								</div>
-							</div> -->
-
 							<div class="form-group" >
 								<div class="col-sm-offset-2 col-sm-10">
 									<button type="submit" class="btn btn-primary" id="sub">등록</button>

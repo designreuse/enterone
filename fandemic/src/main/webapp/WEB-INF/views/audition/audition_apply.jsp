@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>오디션지원</title>
+
 </head>
 <style>
 #pro_addr1 {
@@ -218,21 +219,7 @@ ul.tabs li.current {
 			return true;
 		}
 	}
-	//주소 찾기
-	function openDaumZipAddress() {
 
-		new daum.Postcode({
-
-			oncomplete:function(data) {
-
-				$(pro_postcode).val(data.zonecode); 
-
-				$(pro_addr1).val(data.address); // 주소
-
-			}
-
-		}).open();
-	}
 </script>
 <body>
 	<section class="page">
@@ -498,19 +485,34 @@ ul.tabs li.current {
 												<option value="3">댄스</option>
 											</select>
 										</div>
+										<td></td>
 									</td>
-									<td><div class="col">
-
-											<select id="adf_idx" name="adf_idx" style="width: 50%">
-												<option value="">지원분야 선택 (2지망)</option>
-												<option value="1">보컬</option>
-												<option value="2">랩</option>
-												<option value="3">댄스</option>
-											</select>
-										</div></td>
 									<td></td>
 									<td></td>
 								</tr>
+								
+								<tr>
+
+									<td class="font-f">나이</td>
+									<td><div class="col">
+											<input type="text" id="pro_tall" name="pro_tall"
+												placeholder="만 나이를 입력하세요" maxlength="5"
+												onkeydown="javascript:return only_num(event);"
+												onkeyup="javascript:remove_char(event);"
+												oninput="javascript:chk_num_len(this); return false;">
+										</div></td>
+										<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								
+								
+								
+								
+								
+								
+								
+								
 								<tr>
 
 									<td class="font-f">신장(cm)/체중(kg)</td>
@@ -531,38 +533,6 @@ ul.tabs li.current {
 									<td></td>
 									<td></td>
 								</tr>
-								<tr>
-
-									<td class="font-f">주소</td>
-
-									<td>
-										<div class="col">
-											<input type="text" id="pro_postcode" name="pro_postcode"
-												placeholder="우편번호">
-									</td>
-									<td><div class="col">
-											<button class="button btn-primary" id="btn_search_postcode"
-												style="width: 60%">우편번호찾기 (대한민국 한정)</button>
-										</div></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td colspan="2"><input type="text" id="pro_addr1"
-										name="pro_addr1" placeholder="기본주소"></td>
-									<td></td>
-									<td></td>
-								</tr>
-
-
-								<tr>
-									<td></td>
-									<td colspan="2"><input type="text" id="pro_addr2"
-										name="pro_addr2" placeholder="상세주소"></td>
-									<td></td>
-									<td></td>
-								</tr>
 
 
 								<tr>
@@ -573,7 +543,7 @@ ul.tabs li.current {
 										<div class="col">
 											<textarea id="pro_hobby" name="pro_hobby"
 												aria-label="With textarea"
-												placeholder="예시. 피아노,현대무용,미디,작곡 등"></textarea>
+												placeholder="예시. 피아노,현대무용,미디,작곡 등" cols="30"></textarea>
 										</div>
 									</td>
 									<td></td>
@@ -585,50 +555,8 @@ ul.tabs li.current {
 						</form>
 					</div>
 
-					<div class="jumbotron">
-						<h3>선택입력</h3>
-						<form id="frm" name="frm" method="post"
-							enctype="multipart/form-data" onsubmit="return false;">
-							<table class="table table-hover">
-								<tr>
-
-									<td class="font-f">직업</td>
-
-									<td>
-										<div class="col">
-											<input id="pro_job" type="text" name="pro_job"
-												placeholder="학생인 경우, 학교명/학년 기재" value="">
-										</div>
-									</td>
-									<td></td>
-									<td></td>
-								</tr>
-
-
-								<tr>
-									<td class="font-f">혈액형</td>
-									<td><select id="pro_blood_type" name="pro_blood_type">
-											<option value="">혈액형을 선택하세요.</option>
-											<option value="1">A형</option>
-											<option value="2">B형</option>
-											<option value="3">O형</option>
-											<option value="4">AB형</option>
-									</select></td>
-									<td></td>
-									<td></td>
-								</tr>
-								<tr>
-									<td class="font-f">경력사항</td>
-									<td><div class="col">
-											<textarea id="pro_career" name="pro_career"
-												aria-label="With textarea"
-												placeholder="지원 분야 관련 대회 수상 경력, 방송 출연 경험, 연습생 경력 등 기재"></textarea>
-										</div></td>
-									<td></td>
-									<td></td>
-								</tr>
-							</table>
-						</form>
+					
+						
 						<div class="row">
 						<div class="col-md-2 col-sm-2 col-xs-2">
 							<button class="btn btn-primary" id="btn_save_apply">지원서
@@ -649,7 +577,7 @@ ul.tabs li.current {
 								단계</button>
 						</div>
 					</div>
-					</div>
+					
 					
 				</div>
 			</div>
@@ -660,6 +588,8 @@ ul.tabs li.current {
 
 					<tr>
 						<td class="font-f">프로필사진(필수)</td>
+						<td></td>
+						<td></td>
 						<td colspan="2"><div class="invalid-feedback">
 								<button class="btn btn-primary" id="btnfile">파일 첨부</button>
 
@@ -667,33 +597,27 @@ ul.tabs li.current {
 							</div></td>
 						<td>- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)</td>
 						<td></td>
+						
 					</tr>
-					<tr>
-
-						<td class="font-f">사진 첨부(선택)</td>
+					
+						<tr>
+						<td class="font-f">영상첨부(필수)</td>
+						<td></td>
+						<td></td>
 						<td colspan="2"><div class="invalid-feedback">
 								<button class="btn btn-primary" id="btnfile">파일 첨부</button>
-								<br>
+
 
 							</div></td>
-						<td>- 상반신, 정면, 전신 등 본인의 사진을 추가로 첨부 - 과도한 보정이나 어플로 찍은 사진이 아닌
-							정면 사진 원본으로 첨부 (10MB 이하)</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="font-f">영상 첨부</td>
-						<td><button class="btn btn-primary" id="btnfile">파일
-								첨부(필수)</button></td>
-						<td><div class="invalid-feedback">
-								<button class="btn btn-primary" id="btnfile">파일 첨부(선택)</button></td>
 						<td>- <strong>노래/랩 부문</strong>: 1분 30초 내에 밝은 곳, 얼굴 정면으로 상반신까지
 							나오게 촬영한 노래/랩 영상 첨부<br> - <strong>댄스 부문</strong>: 1분 30초 내에
 							밝은 곳, 전신이 나오게 촬영한 댄스 영상 첨부<br> - <strong>외모 부문</strong>: 1분
 							내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자기소개 영상 첨부<br> - <strong>연기
-								부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자유연기 영상 첨부
-						</td>
+								부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자유연기 영상 첨부</td>
 						<td></td>
+						
 					</tr>
+					
 
 				</table>
 
@@ -728,96 +652,56 @@ ul.tabs li.current {
 						<td class="font-f">이름</td>
 						<td>${member.mem_name}</td>
 						<td></td>
-						<td></td>
-						<td></td>
+						
+						
 					</tr>
 					<tr>
-						<td class="font-f">성별</td>
-						<td>${member.mem_gender}</td>
+						<td class="font-f">분야</td>
 						<td></td>
 						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="font-f">생년월일</td>
-						<td>${member.mem_birth}</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="font-f">연락처</td>
-						<td>${member.mem_phone}</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="font-f">이메일</td>
-						<td>${member.mem_email}</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="font-f">신장/체중</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="font-f">주소</td>
-						<td>${member.mem_address}</td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-				<br>
-
-				<table class="table table-hover">
-					<tr>
-						<td class="font-f">직업</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="font-f">사용가능 언어 및 수준</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						
+						
 					</tr>
 					<tr>
 						<td class="font-f">취미/특기</td>
 						<td></td>
 						<td></td>
-						<td></td>
-						<td></td>
+						
+						
 					</tr>
 					<tr>
-						<td class="font-f">경력사항</td>
+						<td class="font-f">나이(만 나이)</td>
 						<td></td>
 						<td></td>
-						<td></td>
-						<td></td>
+						
+						
 					</tr>
-
+					<tr>
+						<td class="font-f">신장/체중</td>
+						<td></td>
+						<td></td>
+						
+					</tr>
+					<tr>
+						<td class="font-f">대표사진</td>
+						<td></td>
+						<td></td>
+						
+						
+					</tr>
 				</table>
+				<br>
 				<br>
 				
 				<table class="table table-hover">
 					<tr>
-						<td class="font-f">영상첨부(필수)</td>
+						<td class="font-f">대표영상</td>
 						<td><div class="video-embed-area">
                                 <video src="" controls="" muted=""></video>
                             </div></td>
 						<td></td>
-						<td></td>
-						<td></td>
+						
+						
 					</tr>
 					
 				</table>

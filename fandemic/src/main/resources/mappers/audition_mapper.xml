@@ -27,16 +27,13 @@
 		#{tr_branch1},
 		#{tr_branch2})
 	</insert>
-	<!-- 연습생 최신순 조회 -->
-	<select id="selectActivity" resultType="Activity">
-		SELECT *
-		FROM ACTIVITY
-		ORDER BY AC_TIME DESC
+	<select id="selectTr" resultType="Trainee">
+	SELECT * FROM TRAINEE
 	</select>
 	
-	<insert id="insertac" parameterType="Activity">
+	  <insert id="insertac" parameterType="Activity">
 	<!-- 연습생 활동 지원 글 등록 -->
-	INSERT INTO ACTIVITY 
+	 INSERT INTO ACTIVITY 
 			(
 				AC_NO,
 				AC_TITLE,
@@ -58,4 +55,13 @@
 	#{mem_id})
 
 </insert>
+
+<!--상세프로필-->
+<select id="ActivityDetail" resultType="Activity">
+	SELECT * FROM ACTIVITY 
+		WHERE MEM_ID=#{mem_id}
+	</select>
+
+
+
 </mapper>

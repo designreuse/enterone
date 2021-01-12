@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yedam.fandemic.impl.AuditionMapper;
 import com.yedam.fandemic.service.AuditionService;
 import com.yedam.fandemic.vo.Activity;
-
+import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Trainee;
 
@@ -52,34 +53,54 @@ public class AuditionController {
 		return new ModelAndView("audition/trainee_insert");
 
 	}
-
-	// 연습생 등록
+	
+	 //연습생 활동 글 등록
 	@RequestMapping(value = "/audition/traineeinsertsend")
-	public String traineeinsertsend(Model model, Trainee trainee) throws IOException {
+	
+	public String Inserttr(HttpServletRequest request,Model model, Trainee trainee) throws IllegalStateException, IOException {		
+		System.out.println("++++++");
+		// request multipart로 캐스팅
+	      MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+	      String sumFile="";
+	   // 이미지파일, 공지사항 첨부파일
+	      List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
+	      for(int i=0; i<multipartFile.size(); i++) {
+		      if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/audition");
+		    	  System.out.println("path="+path);
+		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
+		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
+		         trainee.setTr_pic(sumFile);
+		      }else {
+		    	  trainee.setTr_pic("");
+		      }
+	      }
 
-		auditionMapper.inserttr(trainee);
-
-		return "audition/trainee_list";
+	      auditionservice.inserttr(trainee); 
+	      model.addAttribute("msg","등록됐습니다.");
+		return "redirect:/audition/auditionwork";
 	}
+	
 
 	// 닉네임인 중복확인
 	@RequestMapping(value = "/audition/nickCheck")
 	@ResponseBody
 	public int nickId(Model model, Trainee trainee) throws IOException {
-
-		System.out.println("닉네임 중복확인");
 		return auditionMapper.nickCheck(trainee);
 
 	}
-
 	// 연습생 활동 페이지
 	@RequestMapping(value = "/audition/auditionwork") // 주소
 	public ModelAndView auditionwork(Model model, HttpServletRequest request, Activity activity) throws IOException {
-		model.addAttribute("TrworkList", auditionMapper.selectActivity());
+		model.addAttribute("TrworkList", auditionMapper.selectTr());
 		
 		return new ModelAndView("audition/trainee_list");
 
 	}
+	
+	
+	
+	
 
 //연습생 활동 글등록 페이지 
 	@RequestMapping(value = "/audition/activityinsert")
@@ -108,10 +129,17 @@ public class AuditionController {
 	      }
 
 	      auditionservice.insertac(activity); 
-	      System.out.println("====="+activity.getAc_content());
 	      model.addAttribute("msg","등록됐습니다.");
 		return "redirect:/audition/auditionwork";
 		
 	}
+//	// 활동 상세 프로필
+//		@RequestMapping(value = "/ActivityDetail/{mem_id}")
+//		public ModelAndView ActivityDetail(@PathVariable String no, Activity activity, Model model) throws IOException {
+//			// 단건
+//			activity.setGo_no(no);
+//			model.addAttribute(goMapper.goodsDetail(activity));
+//			return new ModelAndView("goods/goods_detail");
+//		}
 
 }

@@ -27,7 +27,7 @@ td {
 	$(document).ready(function() {
 //닉네임 중복
 $("td #btnCheckm").on("click",function() {
-											
+	//if문 만들기						
 	var tr_name = $("#tr_name").val();
 	$.ajax({url : "${pageContext.request.contextPath}/audition/nickCheck",
 			type : "post",
@@ -53,7 +53,7 @@ $("td #btnCheckm").on("click",function() {
 						}
 					});
 			});//ID중복체크 버튼 end
-			
+
 	//유효성 검사 중복체크 버튼 안눌렀을 경우
 	 $("#subtr").on("click",function(event) {
 		trinsertCheck();
@@ -98,7 +98,7 @@ $("td #btnCheckm").on("click",function() {
 					<h1 class="page-title">연습생 등록</h1>
 					<div class="line thin"></div>
 					<div class="page-description">
-					<form method="post" action="${pageContext.request.contextPath}/traineeinsertsend">
+					<form method="post" action="${pageContext.request.contextPath}//audition/traineeinsertsend" encType="multipart/form-data">
 						<table class="table table-hover">
 							<tr>
 								<td class="qwe">회원ID</td>
@@ -126,7 +126,7 @@ $("td #btnCheckm").on("click",function() {
 							<tr>
 								<td class="qwe">프로필 사진</td>
 								<td><div class="invalid-feedback">
-										<input type="file" name="tr_pic" id="tr_pic" />
+										<input type="file" name="ex2_file" id="tr_pic" />
 
 									</div>
 									<div class="qhwjd">- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부
