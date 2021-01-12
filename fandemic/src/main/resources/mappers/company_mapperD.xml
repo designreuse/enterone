@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.fandemic.impl.CompanyMapperD">
+<!-- 마이페이지에 불러올 회사정보 조회 -->
+	<select id="getMyCompanyInfo" parameterType="Company" resultType="Company">
+		SELECT *
+		FROM COMPANY
+		WHERE COM_ID=#{com_id}
+	</select>
+</mapper>

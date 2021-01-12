@@ -1,4 +1,4 @@
-package com.yedam.fandemic.goods;
+package com.yedam.fandemic.management;
 
 import java.io.File;
 import java.io.IOException;
