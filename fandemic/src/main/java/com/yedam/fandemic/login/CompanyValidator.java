@@ -15,8 +15,8 @@ public class CompanyValidator implements Validator {
 	
 	final static String emailRegExp = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
 	final static String phoneRegExp = "^\\d{3}-\\d{3,4}-\\d{4}$";
-	final static String notnull = "필수 입력";
-	final static String typemsg = "형식 오류";
+	final static String notnull = "필수 입력 사항입니다.";
+	final static String typemsg = "형식을 확인하세요.";
 	
 	private Pattern emailPattern;
 	private Pattern phonePattern;

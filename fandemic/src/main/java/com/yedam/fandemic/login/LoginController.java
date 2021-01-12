@@ -167,8 +167,11 @@ public class LoginController {
 	// 개인 로그인
 	@RequestMapping(value="/memberLogin")
 	public String memberLogin(HttpServletRequest request, HttpSession session,  Model model, Member member, RedirectAttributes redirect) throws IOException{
+
+		member.setMem_pw(Password.encrypt(member.getMem_pw())); //비번 암호화
 		
 		member = memMapper.memLogin(member);
+		
 		
 		if ( member != null) {
 			
@@ -186,8 +189,10 @@ public class LoginController {
 	//소속사
 	@RequestMapping(value="/companyLogin")
 	public String companyLogin(Model model, Company company, HttpSession session, RedirectAttributes redirect) {
+
+		company.setCom_pw(Password.encrypt(company.getCom_pw()));
 		
-		company = memMapper.comLogin(company); //id와 pw를 받아서 값이 있는지 DB조회
+		company = memMapper.comLogin(company); 
 		
 		// 아이디가 있을 때
 		if ( company != null) {
@@ -294,6 +299,8 @@ public class LoginController {
 			
 			return "login/register";
 		}
+
+		member.setMem_pw(Password.encrypt(member.getMem_pw()));
 		
 		memMapper.memInsert(member);
 		redirect.addAttribute("login", "insert");
@@ -315,6 +322,8 @@ public class LoginController {
 			return "login/register";
 			
 		}
+
+		company.setCom_pw(Password.encrypt(company.getCom_pw()));
 		
 		memMapper.comInsert(company);
 		redirect.addAttribute("login", "insert");

@@ -323,7 +323,7 @@ ul.tabs li.current {
 	         });
 		} else {
 			$("#chkMemMail").html("");
-     	    $("#chkMemMail").html("형식오류").css("color","red").appendTo("#divMemEmail");
+     	    $("#chkMemMail").html("형식을 확인하세요.").css("color","red").appendTo("#divMemEmail");
      	    $('#btnAddMem').attr("disabled", true);
 		}
 
@@ -359,7 +359,7 @@ ul.tabs li.current {
 	         });
 		} else {
 			$("#chkComMail").html("");
-     	    $("#chkComMail").html("형식오류").css("color","red").appendTo("#divComEmail");
+     	    $("#chkComMail").html("형식을 확인하세요.").css("color","red").appendTo("#divComEmail");
      	    $('#btnAddCom').attr("disabled", true);
 		}
 	}
