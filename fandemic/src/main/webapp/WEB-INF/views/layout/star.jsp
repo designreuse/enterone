@@ -98,7 +98,7 @@
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li><a href="${pageContext.request.contextPath}/star/${star.st_id}">Home</a></li>
-					<li><a href="#">스케줄</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/schedule/${star.st_id}">스케줄</a></li>
 					<li><a href="#">스타라이브</a></li>
 					<li><a href="#">소식</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/board/${star.st_id}">스타게시판</a></li>

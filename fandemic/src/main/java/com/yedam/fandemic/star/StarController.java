@@ -16,15 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.service.StarService;
+import com.yedam.fandemic.service.StarServiceD;
+import com.yedam.fandemic.service.impl.StarServiceImplD;
 import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Member;
-import com.yedam.fandemic.vo.Reply;
+import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
 
 @Controller
 public class StarController {
 	@Autowired
 	StarService starService;
+	@Autowired 
+	StarServiceD starServiceD; 
 	
 	//스타 메인페이지
 	@RequestMapping(value = "/star/{id}")
@@ -56,12 +60,23 @@ public class StarController {
 		return true;
 	}
 	
+	//스타스케줄 이동
 	@RequestMapping(value = "/star/schedule/{id}")
 	public ModelAndView starSchedule(@PathVariable String id, Star stVo, Model model) throws IOException {
 		stVo.setSt_id(id);
 		model.addAttribute("star", starService.getStarMain(stVo));
 		return new ModelAndView("star/star_schedule");
 	}
+	
+	//소속사 해당 스타 스케줄 리스트 불러오기
+	@RequestMapping(value="/star/schedule/ScheduleList", method=RequestMethod.POST)
+	@ResponseBody
+	public List<Schedule> ScheduleList(HttpServletRequest request, Schedule schedule, Model model){
+		System.out.println("id값 :"+schedule.getSt_id());
+		
+		return starServiceD.getStartList(schedule);
+	}
+	
 	
 	@RequestMapping(value = "/star/live/{id}")
 	public ModelAndView starLive(@PathVariable String id, Star stVo, Model model) throws IOException {

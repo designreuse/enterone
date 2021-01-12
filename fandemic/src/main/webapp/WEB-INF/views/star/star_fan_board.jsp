@@ -234,16 +234,16 @@ var counter = 0;
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
-				success: fboardListViewResult
+				success: fboardTagListViewResult
 		});
 	}
 
    //게시물 목록 요청 결과값
    function fboardListViewResult(data) {
-		formReset();//이전 입력 데이터 삭제
+	   formReset();//이전 입력 데이터 삭제
 		pagingReset();
-		
-		$("tbody").empty();
+	
+		$("tbody").empty();//이전 입력 데이터 삭제
 		$.each(data,function(idx,item){
 		   $('<tr>').addClass('candahar')
 		   .append($('<input type=\'hidden\' id=\'fbo_no\'>').val(item.fbo_no))
@@ -254,8 +254,10 @@ var counter = 0;
 		   .append($('<td>').html(item.fbo_views))
 		   .appendTo('tbody');
 		});//each
+		
+		
 		//페이지네이션 출력
-		var table = $('#dataTable').DataTable({
+		$('#dataTable').DataTable({
 			"language": {
 		        "emptyTable": "데이터가 없어요.",
 		        "lengthMenu": "페이지당 _MENU_",
@@ -273,16 +275,57 @@ var counter = 0;
 			info: false,
 			//ordering: false,//th정렬
 	  		order: [ [ 0, "desc" ] ]
-			//"bDestroy": true
+			,"bDestroy": true
 	  	});
-			  	
+				  	
 		$(".fboardListSection").show();
 		$(".fboardInsertSection").hide();
 		$(".fboardViewSection").hide();
 		$(".btnInputFboardShow").focus();
    }
    
-   
+ //게시물 해시태그 목록 요청 결과값
+   function fboardTagListViewResult(data) {
+	   formReset();//이전 입력 데이터 삭제
+		pagingReset();
+		//페이지네이션 출력
+		$('#dataTable').DataTable({
+			"language": {
+		        "emptyTable": "데이터가 없어요.",
+		        "lengthMenu": "페이지당 _MENU_",
+		        "infoEmpty": "데이터가 없습니다.",
+		        "infoFiltered": "( _MAX_건의 데이터에서 필터링됨 )",
+		        "search": "검색: ",
+		        "zeroRecords": "일치하는 데이터가 없습니다.",
+		        "loadingRecords": "로딩중...",
+		        "processing":     "잠시만 기다려 주세요...",
+		        "paginate": {
+		            "next": ">",
+		            "previous": "<"
+		        }
+		    },
+			info: false,
+			//ordering: false,//th정렬
+	  		order: [ [ 0, "desc" ] ]
+			,"bDestroy": true
+	  	});
+		$("tbody").empty();//이전 입력 데이터 삭제
+		$.each(data,function(idx,item){
+		   $('<tr>').addClass('candahar')
+		   .append($('<input type=\'hidden\' id=\'fbo_no\'>').val(item.fbo_no))
+		   .append($('<td>').html(item.fbo_sub_no))
+		   .append($('<td>').html("[" + item.fbo_subject + "] " + "<span>" + item.fbo_title  + "</span>"))
+		   .append($('<td>').html(item.fan_name))
+		   .append($('<td>').html(item.fbo_time))
+		   .append($('<td>').html(item.fbo_views))
+		   .appendTo('tbody');
+		});//each
+				  	
+		$(".fboardListSection").show();
+		$(".fboardInsertSection").hide();
+		$(".fboardViewSection").hide();
+		$(".btnInputFboardShow").focus();
+   }
    
    
    //게시글 조회 요청
