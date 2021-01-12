@@ -16,7 +16,6 @@
     scrollProperty: 'scroll'
   });
 
-
 	var fullHeight = function() {
 
 		$('.js-fullheight').css('height', $(window).height() - ($(window).height())/2);
@@ -36,6 +35,7 @@
 
 	};
 	fullHeight2();
+	
 	
 	// loader
 	var loader = function() {

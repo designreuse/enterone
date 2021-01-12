@@ -60,6 +60,14 @@ public class StarController {
 		return true;
 	}
 	
+	//스타프로필 이동
+	@RequestMapping(value = "/star/profile/{id}")
+	public ModelAndView starProfile(@PathVariable String id, Star stVo, Model model) throws IOException {
+		stVo.setSt_id(id);
+		model.addAttribute("star", starService.getStarMain(stVo));
+		return new ModelAndView("star/star_profile");
+	}
+	
 	//스타스케줄 이동
 	@RequestMapping(value = "/star/schedule/{id}")
 	public ModelAndView starSchedule(@PathVariable String id, Star stVo, Model model) throws IOException {
@@ -67,7 +75,7 @@ public class StarController {
 		model.addAttribute("star", starService.getStarMain(stVo));
 		return new ModelAndView("star/star_schedule");
 	}
-	
+
 	//소속사 해당 스타 스케줄 리스트 불러오기
 	@RequestMapping(value="/star/schedule/ScheduleList", method=RequestMethod.POST)
 	@ResponseBody
