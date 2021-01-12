@@ -36,22 +36,24 @@
 	
 	<insert id="insertac" parameterType="Activity">
 	<!-- 연습생 활동 지원 글 등록 -->
-	INSERT INTO ACTIVITY
-	AC_NO,
-	AC_TITLE,
-	AC_TIME,
-	AC_CONTENT,
-	AC_HITS,
-	AC_LIKES,
-	AC_FILE,
-	MEM_ID)
+	INSERT INTO ACTIVITY 
+			(
+				AC_NO,
+				AC_TITLE,
+				AC_TIME,
+				AC_CONTENT,
+				AC_HITS,
+				AC_LIKES,
+				AC_FILE,
+				MEM_ID
+			)
 	VALUES (
-	#{ac_no},
+	SNS_AC_SEQ.NEXTVAL,
 	#{ac_title},
-	#{ac_time},
+	SYSDATE,
 	#{ac_content},
-	#{ac_hits},
-	#{ac_likes},
+	default,
+	default,
 	#{ac_file},
 	#{mem_id})
 

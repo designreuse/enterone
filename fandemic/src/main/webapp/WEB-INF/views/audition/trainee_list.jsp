@@ -106,7 +106,7 @@
 						<div class="owl-carousel owl-theme">
 							<div class="item">
 								<img class="auditionimage"
-									src="${pageContext.request.contextPath}/images/activity/${activity.ac_file}">
+									src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}">
 							</div>
 							<div class="item">
 								<h4>2</h4>
@@ -184,7 +184,7 @@
 							<div class="col-md-3 col-sm-3 col-xs-3">
 								<div class="thumbnail">
 									<img
-										src="${pageContext.request.contextPath}/images/activity/${activity.ac_file}"
+										src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}"
 										alt="...">
 									<div class="caption">
 										<h3>${activity.ac_title}</h3>

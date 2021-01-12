@@ -79,7 +79,7 @@ body {
 			location.href = "${pageContext.request.contextPath}/audition/auditionwork";
 		});
 	//	$("#sub").on("click", function() {
-		//	location.href = "${pageContext.request.contextPath}/audition/activityinsertsend";
+		// location.href = "${pageContext.request.contextPath}/audition/activityinsertsend";
 		//});
 		
 	});
@@ -93,13 +93,14 @@ body {
 			alert("내용을 입력하세요.")
 			$("#ac_content").focus();
 			event.preventDefault();
-		} else if ($("#ex_file2").val() == null || $("#ex_file2").val() == '') {
+		} else if ($("#ac_file").val() == null || $("#ac_file").val() == '') {
 			alert("사진이나 동영상을 첨부하세요.")
-			$("#ex_file2").focus();
+			$("#ac_file").focus();
 			event.preventDefault();
-		} else if(location.href = "${pageContext.request.contextPath}/audition/activityinsertsend")
+		}
 
 	}
+	
 </script>
 
 </head>
@@ -123,13 +124,6 @@ body {
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputEmail3" class="col-sm-2 control-label">게시판번호</label>
-								<div class="col-sm-10">
-									<input id="ac_title" name="ac_title" type="text"
-										class="form-control" readonly>
-								</div>
-							</div>
-							<div class="form-group">
 								<label for="inputEmail3" class="col-sm-2 control-label">제목</label>
 								<div class="col-sm-10">
 									<input id="ac_title" name="ac_title" type="text"
@@ -148,15 +142,46 @@ body {
 								<label for="inputEmail3" class="col-sm-2 control-label">업로드</label>
 
 								<div class="filebox bs3-primary">
-									<label for="ex_file2">업로드</label> <input type="file" name="ex_file2"
-										id="ex_file2">
+									<label for="ac_file">업로드</label> <input type="file" name="ex2_file"
+										id="ac_file"> 
 									<div class="Qkf" style="float: right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-사진이나
 										동영상을 첨부하세요</div>
 								</div>
 
 							</div>
+							
+							<!-- <div class="form-group" style="display:none">
+								<label for="inputPassword3" class="col-sm-2 control-label">게시판번호</label>
+								<div class="col-sm-10">
+									<input id="ac_no" name="ac_no" type="text"
+										class="form-control">
+								</div>
+							</div>
+							<div class="form-group" style="display:none">
+								<label for="inputPassword3" class="col-sm-2 control-label">작성일</label>
+								<div class="col-sm-10">
+									<input id="ac_time" name="ac_time" type="text"
+										class="form-control" >
+								</div>
+							</div>
+							
+								<div class="form-group" style="display:none">
+								<label for="inputPassword3" class="col-sm-2 control-label">조회수</label>
+								<div class="col-sm-10">
+									<input id="ac_hits" name="ac_hits" type="text"
+										class="form-control" >
+								</div>
+							</div>
+							
+							<div class="form-group" style="display:none">
+								<label for="inputPassword3" class="col-sm-2 control-label">좋아요</label>
+								<div class="col-sm-10">
+									<input id="ac_likes" name="ac_likes" type="text"
+										class="form-control" >
+								</div>
+							</div> -->
 
-							<div class="form-group">
+							<div class="form-group" >
 								<div class="col-sm-offset-2 col-sm-10">
 									<button type="submit" class="btn btn-primary" id="sub">등록</button>
 									<button type="button" class="btn btn-primary" id="can" style="float:right;">취소</button>

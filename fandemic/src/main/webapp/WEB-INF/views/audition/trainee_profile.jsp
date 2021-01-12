@@ -1,65 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>연습생 상세프로필</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+<!-- Js Plugins -->
+<script
+	src="${pageContext.request.contextPath}/resourcesGoods/js/owl.carousel.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resourcesGoods/js/main.js"></script>
+
+<script>
+	
+</script>
+
+<style>
+*, ::after, ::before {
+	box-sizing: border-box;
+}
+
+.product__details__text ul {
+	border-top: 1px solid #ebebeb;
+	padding-top: 40px;
+	margin-top: 36px;
+}
+
+.product__details_orderform {
+	border-top: 1px solid #ebebeb;
+	padding-top: 40px;
+	margin-top: 36px;
+}
+</style>
 </head>
 <body>
+	<!-- Product Details Section Begin -->
 	<section class="home">
 		<div class="container">
-			<div class="col-md-12">
-				<ol class="breadcrumb">
-					<li><a href="#">Home</a></li>
-					<li class="active">Contact Us</li>
-				</ol>
-				<h1 class="page-title">Contact Us</h1>
-				<p class="page-subtitle">We hear you</p>
-				<div class="line thin"></div>
-				<div class="page-description">
-					<div class="row">
-						<div class="col-md-6 col-sm-6">
-							<h3>Contact</h3>
-							<p>Aliquam in maximus massa. In magna dolor, efficitur vitae
-								faucibus sagittis, elementum quis lacus. Aliquam pretium sem
-								lectus, vitae gravida ex efficitur vitae.</p>
-							<p>
-								Phone: <span class="bold">+123 45 678 9</span> <br> Email:
-								<span class="bold">hi@yourcompany.com</span> <br> <br>
-								Syarifuddin Street<br> Indonesia, Bogor Barat 16115
-							</p>
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="product__details__pic">
+						<div class="product__details__pic__item">
+							<img class="product__details__pic__item--large"
+								src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}"
+								alt="사진" style="height: 555px;">
 						</div>
-						<div class="col-md-6 col-sm-6">
-							<form class="row contact" id="contact-form">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Name <span class="required"></span></label> <input
-											type="text" class="form-control" name="name" required="">
-									</div>
-								</div>
-								<div class="col-md-6">
-									<div class="form-group">
-										<label>Email <span class="required"></span></label> <input
-											type="text" class="form-control" name="email" required="">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label>Subject</label> <input type="text" class="form-control"
-											name="subject">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label>Your message <span class="required"></span></label>
-										<textarea class="form-control" name="message" required=""></textarea>
-									</div>
-								</div>
-								<div class="col-md-12">
-									<button class="btn btn-primary">Send Message</button>
-								</div>
-							</form>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="product__details__text">
+						<h3>제목</h3>
+						<div>내용</div>
+						<ul>
+							<li><b>좋아요 수</b> <span>${goods.go_type}</span></li>
+							<li><b>조회수</b> <span>${goods.com_id}</span></li>
+						</ul>
+						<div class="product__details_orderform">
+							<div class="product__details__quantity"></div>
+							<button type="button" class="primary-btn" id="like">좋아요</button>
 						</div>
 					</div>
 				</div>

@@ -89,15 +89,15 @@ public class AuditionController {
 	
 	 //연습생 활동 글 등록
 	@RequestMapping(value = "/audition/activityinsertsend")
-	public String Insertac(HttpServletRequest request,Model model, Activity activity) throws IllegalStateException, IOException {
+	public String Insertac(HttpServletRequest request,Model model, Activity activity) throws IllegalStateException, IOException {		
 		// request multipart로 캐스팅
 	      MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 	      String sumFile="";
 	   // 이미지파일, 공지사항 첨부파일
-	      List<MultipartFile> multipartFile = multipartRequest.getFiles("ex_file2");
+	      List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
 	      for(int i=0; i<multipartFile.size(); i++) {
 		      if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
-		    	  String path = request.getSession().getServletContext().getRealPath("/images/activity");
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/audition");
 		    	  System.out.println("path="+path);
 		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
 		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
@@ -106,8 +106,9 @@ public class AuditionController {
 		    	  activity.setAc_file("");
 		      }
 	      }
-	      
-	      auditionservice.insertac(activity);
+
+	      auditionservice.insertac(activity); 
+	      System.out.println("====="+activity.getAc_content());
 	      model.addAttribute("msg","등록됐습니다.");
 		return "redirect:/audition/auditionwork";
 		
