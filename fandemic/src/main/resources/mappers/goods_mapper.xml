@@ -8,12 +8,12 @@
 	<select id="goodsList" parameterType="Goods" resultType="Goods">
 		SELECT *
 		FROM (
-		SELECT A.*, ROWNUM RNUM
-		FROM (
-		SELECT *
-		FROM V_GOODS
-		ORDER BY 1 DESC) A
-		) B
+			SELECT A.*, ROWNUM RNUM
+			FROM (	
+				SELECT *
+				FROM V_GOODS
+				ORDER BY 1 DESC) A
+			) B
 		WHERE RNUM BETWEEN #{go_first} AND #{go_last}
 	</select>
 
@@ -21,19 +21,20 @@
 	<select id="goFilter" parameterType="Goods" resultType="Goods">
 		SELECT *
 		FROM (
-		SELECT A.*, ROWNUM RNUM
-		FROM (
-		SELECT *
-		FROM V_GOODS
-		WHERE GO_TYPE = #{go_type}
-		ORDER BY 1 DESC) A
-		) B
+			SELECT A.*, ROWNUM RNUM
+			FROM (
+				SELECT *
+				FROM V_GOODS
+				WHERE GO_TYPE = #{go_type}
+				ORDER BY 1 DESC) A
+			) B
 		WHERE RNUM BETWEEN #{go_first} AND #{go_last}
 	</select>
 
 	<!-- Goods 전체 목록 : 페이징 -->
 	<select id="goCount" resultType="int">
-		SELECT COUNT(*) FROM V_GOODS
+		SELECT COUNT(*) 
+		FROM V_GOODS
 	</select>
 
 	<!-- Goods 상세 조회 -->
@@ -68,6 +69,9 @@
 		SET CART_QTY = #{cart_qty}
 		WHERE CART_NO = #{cart_no}
 	</update>
-
+	
+	<!-- 장바구니 - 구매 화면 -->
+<!-- 	<select id="" parameterType="" resultType="">
+	</select> -->
 
 </mapper>
