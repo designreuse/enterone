@@ -279,7 +279,7 @@ public class LoginController {
 		if ( star != null) {
 			
 			session.setAttribute("star", star);
-			return "redirect:starMain"; 
+			return "redirect:star/" + star.getSt_id(); 
 				
 		} else {
 			redirect.addAttribute("login", "fail");
