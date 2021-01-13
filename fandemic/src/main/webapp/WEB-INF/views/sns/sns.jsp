@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <head>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resourcesSns/css/sns.css">
@@ -13,7 +14,9 @@
 .dropdown-toggle {
 	
 }
-
+.div-mylist:hover{
+color:blue;
+}
 #profileimg {
 	height: 228px;
 	background: white;
@@ -506,6 +509,41 @@
 									})
 						});
 
+		$('.div-mylist').on('click',
+				function(event) {
+							var modal = $('#exampleModal9')
+							var no = $(this).data("no");
+							$
+									.ajax({
+										url : '${pageContext.request.contextPath}/onesnsselect?sns_no='
+												+ no, //파라미터 넘기는 법
+										dataType : 'json',
+										success : function(result) {
+											$('#modalimage').html(
+													$('#imgtemmm').html());//
+											var imgname = result.sns_pic;//
+											var imgcut = imgname.split(',');//
+											modal.find('.snstitledetail').text(
+													result.sns_title)//
+											modal.find('.content').text(
+													result.sns_content)//
+											modal.find('.appendimmm').empty() //지우는 함수
+											for (var i = 0; i < imgcut.length - 1; i++) {
+												var img = '<div><img class="appendiiimmm" data-u="image" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /><img class="thumthum" data-u="thumb" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /></div>';
+												modal.find('.appendimmm')
+														.append(img)
+											}
+											jssor_1_slider_init();
+											modal.modal('show');
+										}
+
+									});
+						})
+		
+		
+		
+		
+		
 		// 	쪽지 보내기
 		$('.btnLetter').on('click', function(event) {//
 			var modal = $('#modal-letter');//
@@ -557,13 +595,14 @@
 					modal.find('#mypostbox').empty()//
 			for (var i = 0; i < result.snslist.length; i++){
 			var mylist = 
-				'<div class="col-xs" style="height: 45px;"></label><label id="label-posttitle" style="margin: 16px;">'+result.snslist[i].sns_title+'</label><label>'+(result.snslist[i].sns_pic == "" || result.snslist[i].sns_pic == null? '사진없음' : '사진있음' )+'</label><a href="#" class="love"><i class="ion-android-favorite-outline"></i><div>'+result.snslist[i].sns_likes+'</div></a></div>'
+				'<div class="col-xs div-mylist" data-no="'+result.snslist[i].sns_no+'" style="height: 45px;"></label><label id="label-posttitle" style="margin: 16px;">'+result.snslist[i].sns_title+'</label><label>'+(result.snslist[i].sns_pic == "" || result.snslist[i].sns_pic == null? '사진없음' : '사진있음' )+'</label><a href="#" class="love"><i class="ion-android-favorite-outline"></i><div>'+result.snslist[i].sns_likes+'</div></a></div>'
 				modal.find('#mypostbox').append(mylist)
 				}
 				modal.modal('show');
 				}
 			})
 		})
+		
 	}); //end fucn
 </script>
 
@@ -669,9 +708,9 @@
 							<div id="ex7">
 								<div class="mtmtitle">
 									<div id="ex2" style="height: 62%"></div>
-									<a class="content"></a>
 									<div id="modalimage"></div>
-									</a>
+									<a class="content"></a>
+									
 
 								</div>
 							</div>
@@ -1348,23 +1387,24 @@
 
 					<div class="mypostbox" id="mypostbox" style="width: 100%; height: 100%">
 					</div>
+					<div align="center">
+							<script>
+								function goPage(p) {
+									var mem_id = $("#label-myid").text()
+									location.href = "${pageContext.request.contextPath}/mysnslist/"
+											+ "?p=" + p +"&mem_id=" + mem_id
+								}
+							</script>
 
+							<my:paging paging="${paging}" jsfunc="goPage" />
+						</div>
 
 
 
 
 
 				</div>
-				<div align="center">
-							<script>
-								function goPage(p) {
-									location.href = "${pageContext.request.contextPath}/mymail/"
-											+ "?p=" + p
-								}
-							</script>
-
-							<my:paging paging="${paging}" jsfunc="goPage" />
-						</div>
+				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">닫기</button>

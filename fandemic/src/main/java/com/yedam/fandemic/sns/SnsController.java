@@ -98,7 +98,7 @@ public class SnsController {
 	// 멤버별 포스트 모두 조회 하기
 	@ResponseBody
 	@RequestMapping(value = "/mysnslist")
-	public Map<String, Object> MySnsList(Model model, HttpServletRequest request, Sns sns, HttpServletResponse response) throws IOException {
+	public Map<String, Object> MySnsList(Model model, HttpServletRequest request, Sns sns, Member member, HttpServletResponse response) throws IOException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		sns.setMem_id(sns.getMem_id());
 		String strp = request.getParameter("p");
@@ -108,7 +108,6 @@ public class SnsController {
 		}
 
 		Paging paging = new Paging();
-
 		paging.setPageUnit(5); // 한페이지에 5건씩. 생략시 기본10
 		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
 		paging.setPage(p); // 현재 페이지 지정
