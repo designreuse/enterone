@@ -4,9 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-	
-	
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 
@@ -109,48 +107,33 @@ ul.tabs li.current {
 				comIdCheck();
 				
 			}
+		});
+		
+		
+		// 메일 인증
+		$('#mem_email').on('click',function(){
 			
+			$("#memModal").modal('show');
 			
+		});
+		$('#com_email').on('click',function(){
 			
+			$("#comModal").modal('show');
 			
 		});
 		
 		
-		// 메일 중복 확인
-		$('#memEmail').on('click',function(){
-			
-			if($("#mem_email").val() == null || $("#mem_email").val() == '' ) {
-				alert("메일을 입력하세요");
-			} else {
-				memMail();
-			}
-			
-			
-		});
-		$('#comEmail').on('click',function(){
-			
-			if($("#com_email").val() == null || $("#com_email").val() == '' ) {
-				alert("메일을 입력하세요");
-			} else {
-				comMail();
-			}
+		//메일 중복확인
+		$("#btnMemMail").on('click', function () {
+			memMail();
 			
 		});
 		
-		
-		// 개인 주소검색
-		/* $('#btnAddr').on('click',function(){ 
-			openDaumZipAddress($("#mem_zipAddress"), $("#mem_address"), $("#mem_address2"));
-		});  
-		// 기업 주소검색 
-		$('#btnAddrcom').on('click',function(){ 
-			openDaumZipAddress($("#com_zipAddress"), $("#com_address"), $("#com_address2"));
-		});   */
+		$("#btnComMail").on('click', function () {
+			comMail();
+			
+		});
 
-		
-		
-		
-		
 		// 유효성
 		$('#btnAddMem').on('click',function(){ 
 			
@@ -214,23 +197,6 @@ ul.tabs li.current {
 		}
 	}
 	
-	// 주소검색
-	/* function openDaumZipAddress(zipAddress, address, address2 ) {
-
-		new daum.Postcode({
-
-			oncomplete:function(data) {
-
-				$(zipAddress).val(data.zonecode); 
-
-				$(address).val(data.address); // 주소
-
-				$(address2).css("display","");
-			}
-
-		}).open();
-	} */
-
 	
 	// 아이디 중복확인
 	function memIdCheck() {
@@ -304,7 +270,7 @@ ul.tabs li.current {
 	// 이메일 중복확인
 	function memMail() {
 		
-		var mem_email = $("#mem_email").val(); 
+		var mem_email = $("#modalMemMail").val(); 
 		var regexPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
 		
 		if (regexPattern.test(mem_email)) {
@@ -314,25 +280,26 @@ ul.tabs li.current {
 	            data : {mem_email : mem_email },
 	            
 	            success:function(data){
-					
-					console.log(data);
+	            	
 	               if (data == 0) {
 	            	   $("#chkMemMail").html("");
-	            	   $("#chkMemMail").html("사용 가능한 메일입니다.").css("color","blue").appendTo("#divMemEmail");
-	            	   $('#btnAddMem').attr("disabled", false);
+	            	   $("#chkMemMail").html("사용 가능한 메일입니다. <br> 인증번호가 전송됩니다.").css({"color":"blue"},{"display" : ""});
+	            	   $('#btnMem').attr("disabled", false);
+	            	   // 중복확인 되면 바로 인증번호 전송
+	            	   mailCode("m",$("#modalMemMail").val(), $("#chkMemMail"), $("#btnMemEnd") );
 	            	   
 	               } else if (data == 1){
 	            	   $("#chkMemMail").html("");
-	            	   $("#chkMemMail").html("중복된 메일입니다.").css("color","red").appendTo("#divMemEmail");
-	            	   $('#btnAddMem').attr("disabled", true);
+	            	   $("#chkMemMail").html("중복된 메일입니다.").css({"color":"red"},{"display" : ""});
+	            	   $('#btnMem').attr("disabled", true);
 	               } 
 
 	            },error:function(){ alert("실패"); }
 	         });
 		} else {
 			$("#chkMemMail").html("");
-     	    $("#chkMemMail").html("형식을 확인하세요.").css("color","red").appendTo("#divMemEmail");
-     	    $('#btnAddMem').attr("disabled", true);
+     	    $("#chkMemMail").html("형식을 확인하세요.").css({"color":"red"},{"display" : ""});
+     	    $('#btnMem').attr("disabled", true);
 		}
 
 		
@@ -340,7 +307,7 @@ ul.tabs li.current {
 	
 	function comMail() {
 		
-		var com_email = $("#com_email").val(); 
+		var com_email = $("#modalComMail").val(); 
 		var regexPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
 
 		if (regexPattern.test(com_email)) {
@@ -354,23 +321,80 @@ ul.tabs li.current {
 	
 	               if (data == 0) {
 	            	   $("#chkComMail").html("");
-	            	   $("#chkComMail").html("사용 가능한 메일입니다.").css("color","blue").appendTo("#divComEmail");
-	            	   $('#btnAddCom').attr("disabled", false);
+	            	   $("#chkComMail").html("사용 가능한 메일입니다. <br> 인증번호가 전송됩니다.").css({"color":"blue"},{"display" : ""});
+	            	   $('#btnCom').attr("disabled", false);
+	            	   // 중복확인 되면 바로 인증번호 전송
+	            	   mailCode("c",$("#modalComMail").val(), $("#chkComMail"), $("#btnComEnd") );
 	            	   
 	               } else if (data == 1){
 	            	   $("#chkComMail").html("");
-	            	   $("#chkComMail").html("중복된 메일입니다.").css("color","red").appendTo("#divComEmail");
-	            	   $('#btnAddCom').attr("disabled", true);
+	            	   $("#chkComMail").html("중복된 메일입니다.").css({"color":"red"},{"display" : ""});
+	            	   $('#btnCom').attr("disabled", true);
 	               } 
 	
 	            },error:function(){ alert("실패"); }
 	         });
 		} else {
 			$("#chkComMail").html("");
-     	    $("#chkComMail").html("형식을 확인하세요.").css("color","red").appendTo("#divComEmail");
-     	    $('#btnAddCom').attr("disabled", true);
+     	    $("#chkComMail").html("형식을 확인하세요.").css({"color":"red"},{"display" : ""});
+     	    $('#btnCom').attr("disabled", true);
 		}
 	}
+	
+	
+function mailCode(memor, email, tag, btnEnd) {
+		
+	$.ajax({
+        url :'${pageContext.request.contextPath}/mailCode',
+        type:"post",
+        data : {email : email },
+        
+        success:function(data){
+        	if(memor == "m") {
+        		memEnd(data);
+        	} else {
+        		comEnd(data);
+        	}
+        	
+			$("#resultCode").html(data);
+			$(tag).html("");
+     	    $(tag).html("인증번호가 발급되었습니다.").css({"color":"blue"},{"display" : ""});
+     	    $(btnEnd).attr("disabled", false);
+
+        },error:function(){ alert("실패"); }
+     });
+	
+}
+
+function memEnd(data) {
+	
+	$("#btnMemEnd").on('click', function () {
+		
+		if ( data == $("#memCode").val() ) {
+			$("#mem_email").val( $("#modalMemMail").val() );
+			alert("인증되었습니다.");
+			$('#memModal').modal("hide"); 
+			
+		} else {
+			alert("코드가 일치하지 않습니다.");
+		}
+	});
+}
+	
+function comEnd(data) {
+	
+	$("#btnComEnd").on('click', function () {
+		
+		if ( data == $("#comCode").val() ) {
+			alert("인증되었습니다.");
+			$("#com_email").val( $("#modalComMail").val() );
+			$('#comModal').modal("hide"); 
+			
+		} else {
+			alert("코드가 일치하지 않습니다.");
+		}
+	});
+}
 	
 </script>
 
@@ -441,15 +465,14 @@ ul.tabs li.current {
 							
 							<div style="position:relative">
 							<label>이메일</label><c>*</c>
-								<b id="chkMemMail"></b>
-								<form:input type="email" id="mem_email" path="mem_email" class="form-control" style="papadding: 50px; " disabled="true" placeholder="ex) xxx@xxx.xx"/>
-								<form:input type="button" path="" value="중복확인" id="memEmail" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
+								
+								<form:input type="email" id="mem_email" path="mem_email" class="form-control" style="papadding: 50px; " disabled="true" placeholder="ex) xxx@xxx.xx" readonly="true"/>
 							</div>
 	
 						</div>
 
 						<div class="form-group text-right">
-							<button class="btn btn-primary btn-block" id="btnAddMem" disabled="disabled">가입</button>
+							<button class="btn btn-primary btn-block" id="btnAddMem">가입</button>
 						</div>
 						<div class="form-group text-right">
 							<a href="login">로그인</a>
@@ -505,25 +528,80 @@ ul.tabs li.current {
 
 							<div style="position:relative">
 								<label>이메일</label> <c>*</c>
-								<b id="chkComMail"></b>
-								<form:input type="email" id="com_email" path="com_email" class="form-control" disabled="true" placeholder="ex) xxx@xxx.xx"/>
-								<form:input type="button" path="" value="중복확인" id="comEmail" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
+								<form:input type="email" id="com_email" path="com_email" class="form-control" disabled="true" placeholder="ex) xxx@xxx.xx" readonly="true"/>
 							</div>
 							
 						</div>
 
 						<div class="form-group text-right">
-							<button class="btn btn-primary btn-block" id="btnAddCom" disabled="disabled">가입</button>
+							<button class="btn btn-primary btn-block" id="btnAddCom" >가입</button>
 						</div>
 						<div class="form-group text-right">
 							<a href="login">로그인</a>
 						</div>
 					</form:form>
+					
 				</div>
 			</div>
 		</div>
 	</div>
 	
+	<!-- 모달창 -->
+	<div class="modal fade" id="memModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true" style="padding-top: 350px;">
+		<div class="modal-dialog" role="document" style="width: 300px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" align="center">이메일 인증</h5>
+				</div>
+				<div class="modal-body" align="center" >
+					<div class="form-group">
+						<input type="text" id="modalMemMail" class="form-control" placeholder="메일 주소 입력">
+						<input type="button" value="중복확인" id="btnMemMail" class="btn btn-primary btn-sm" style="position:absolute;right:20px;top:25%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 5px 7px;font-size:12px;cursor:pointer;" />
+						<p></p>
+						<input type="text" id="memCode" class="form-control" placeholder="인증번호 입력">
+						
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<div align="center">
+						<p><b id="chkMemMail"></b></p>
+					</div>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" id ="btnMemEnd" disabled="disabled">인증</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
+	<!-- 모달창 -->
+	<div class="modal fade" id="comModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true" style="padding-top: 350px;">
+		<div class="modal-dialog" role="document" style="width: 300px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel" align="center">이메일 인증</h5>
+				</div>
+				<div class="modal-body" align="center" >
+					<div class="form-group">
+						<input type="text" id="modalComMail" class="form-control" placeholder="메일 주소 입력">
+						<input type="button" name="" value="중복확인" id="btnComMail" class="btn btn-primary btn-sm" style="position:absolute;right:20px;top:25%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 5px 7px;font-size:12px;cursor:pointer;" />
+						<p></p>
+						<input type="text" id="comCode" class="form-control" placeholder="인증번호 입력">
+						
+					</div>
+					
+				</div>
+				<div class="modal-footer">
+					<div align="center">
+						<p><b id="chkComMail"></b></p>
+					</div>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" id ="btnComEnd" disabled="disabled">인증</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 </section>
