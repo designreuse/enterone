@@ -124,4 +124,65 @@
 		DELETE FROM SCHEDULE
 		WHERE SCH_NO =#{sch_no}
 	</delete>
+<!-- 스타 작품 목록 요청 -->
+	<select id="getStarWorkList" parameterType="Art" resultType="Art">
+		SELECT *
+		FROM ART
+		WHERE st_id=#{st_id}
+		AND st_name=#{st_name}	
+		ORDER BY ART_NO
+	</select>
+<!-- 스타 작품 등록 -->
+	<insert id="insertStarWork" parameterType="Art">
+		<selectKey order="BEFORE" keyProperty="art_no" resultType="string">
+			SELECT NVL2(MAX(ART_NO), MAX(ART_NO)+1, 1)
+			FROM ART
+		</selectKey>
+		INSERT INTO ART (	    	art_no, 
+									st_id, 
+									st_name,
+									art_name,
+									art_type,
+			<if test="art_startTime !=null and art_startTime !=''">art_startTime,</if>
+			<if test="art_endTime !=null and art_endTime !=''">art_endTime,</if>
+			<if test="art_pic !=null and art_pic !=''">art_pic,</if>
+									art_content
+							 )
+	 	                VALUES(
+	 	               			#{art_no},
+	 	               			#{st_id},
+	 	               			#{st_name},
+	 	               			#{art_name},
+	 	               			#{art_type},
+	 	    <if test="art_startTime !=null and art_startTime !=''">#{art_startTime},</if>
+	 	    <if test="art_endTime !=null and art_endTime !=''">#{art_endTime},</if>
+	 	    <if test="art_pic !=null and art_pic !=''">#{art_pic},</if>
+	 	               			#{art_content})
+	</insert>
+<!-- 스타 작품 삭제 -->
+	<delete id="deleteStarWork" parameterType="Art">
+		DELETE FROM ART
+		WHERE ART_NO IN
+		<foreach collection="art_nos" item="no"
+				open="(" close=")" separator=","> <!-- collection이 필드명 -->
+			#{no}
+		</foreach>
+	</delete>
+<!--  스타 작품 상세보기 -->
+	<select id="starWorkDetail" parameterType="Art" resultType="Art">
+		SELECT *
+		FROM ART
+		WHERE ART_NO=#{art_no}
+	</select>
+<!--  스타 작품 수정 -->
+	<update id="updateStarWork" parameterType="Art">
+		UPDATE ART
+		<set>
+			<if test="art_startTime !=null and art_startTime !=''">ART_STARTTIME=#{art_startTime}</if>
+			<if test="art_endTime !=null and art_endTime !=''">,ART_ENDTIME=#{art_endTime}</if>
+			<if test="art_pic !=null and art_pic !=''">,ART_PIC=#{art_pic}</if>
+			,ART_CONTENT=#{art_content}
+		</set>
+		WHERE ART_NO=#{art_no}
+	</update>
 </mapper>

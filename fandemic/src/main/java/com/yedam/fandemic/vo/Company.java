@@ -16,7 +16,7 @@ public class Company {
 	String com_pic;			//사진
 	String com_class;		//권한분류
 	String com_time;		//가입일
-	
+	String com_introduce;   //소개글
 	String com_zipAddress;  //우편번호
 	
 	private int com_first; // 페이지네이션

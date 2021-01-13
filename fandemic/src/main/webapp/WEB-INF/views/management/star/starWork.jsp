@@ -48,25 +48,25 @@ div #dataTable_filter{
 <script>
 	$(function() {
 		
-		starMemberList();//스타회원 목록요청
+		starWorkList();//스타회원의 작품 목록 요청
 		
 		
-		//스타회원 등록 버튼클릭시 이벤트
+		//스타회원 작품등록 !!!!!!!!!!!!!!!!!!!!!!!!!
 		$(".btn-register").on("click",function(){
-			location.href="${pageContext.request.contextPath}/management/star/starInsertForm";
+			location.href="${pageContext.request.contextPath}/management/star/starWorkInsertForm?st_id=${art.st_id}&st_name=${art.st_name }";
 		});
 		
 		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
 		table.on("click","tr a",function(){ //스타회원 ID값 클릭시 이벤트
 			//alert($(this).parent().next().text());//
-			var st_id = $(this).parent().next().text();
-			location.href="${pageContext.request.contextPath}/management/star/starDetail?st_id="+st_id;	
+			var art_no = $(this).text();
+			location.href="${pageContext.request.contextPath}/management/star/starWorkDetail?art_no="+art_no;	
 		});//end 게시물 제목 클릭
 		
 		/*********** 스타회원 삭제*************/
 		$(".btn-delete").on("click",function(){ //체크박스 선택후 삭제버튼 클릭시 이벤트
 			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/star/starDelete",
+				url:"${pageContext.request.contextPath}/management/star/starWorkDelete",
 				type:"POST",
 				data: $("#frm1").serialize(),  //from data 순서대로 읽어서 값던진다.
 				dataType: 'json', //결과값 Json형태로
@@ -74,7 +74,7 @@ div #dataTable_filter{
 			    	if(response != null && response !="") {
 			    		alert("삭제되었습니다.");
 			    		$('#dataTable').DataTable().clear().destroy();
-			    		starMemberList();
+			    		starWorkList();
 			    	}  
 			    }, 
 			    error:function(xhr, status, message) { 
@@ -83,13 +83,6 @@ div #dataTable_filter{
 			});//end ajax
 		});
 		
-		/*********** 스타 스케줄 등록  **************/
-		$("body").on("click",".btn-starSchedule",function(){
-			//alert("경고"+$(this).parent().prev().prev().prev().text())
-			var st_id = $(this).parent().prev().prev().prev().text();
-			var st_name = $(this).parent().prev().prev().prev().prev().text();
-			location.href="${pageContext.request.contextPath}/management/star/starSchedule?st_id="+st_id+"&st_name="+st_name;
-		});
 		
 		/**********************************/
 		/*********** 스타 작품 등록  ************/
@@ -103,32 +96,34 @@ div #dataTable_filter{
 	}); //end document ready
 	
 		//스타회원 목록 조회 요청
-		function starMemberList() {
-			var com_id = "${company.com_id }";
+		function starWorkList() {
+			var st_name = "${art.st_name }";
+			var st_id = "${art.st_id}";
 			$.ajax({
-				url:'${pageContext.request.contextPath}/management/star/starMemberList', //요청할 url
+				url:'${pageContext.request.contextPath}/management/star/starWorkList', //요청할 url
 				type:'POST',
-				data: {com_id:com_id},
+				data: {st_name:st_name, st_id:st_id},
 				//contentType:'application/json;charset=utf-8',
 				dataType:'json', //값이 넘어오는 형식
 				error:function(xhr,status,msg){
 					alert("상태값 :" + status + " Http에러메시지 :"+msg);
 				},
-				success:starMemberListResult
+				success:starWorkListResult
 			});
 		}//end starMemberList
 	
-		function starMemberListResult(data){
+		function starWorkListResult(data){
 			/* console.log(data); */
 			$("tbody").empty();
 			$.each(data,function(idx,item){//idx=index, item=value
 				$('<tr>').attr("class","starMemberTr")
-				.append($('<td>').html('<input type="checkbox" name="st_ids" value="'+item.st_id+'">'))
-				.append($('<td>').html('<a href="#">'+item.st_name+'</a>'))
-				.append($('<td>').html(item.st_id))
-				.append($('<td>').html(item.st_pw))
-				.append($('<td>').html(item.com_id))
-				.append($('<td>').html('<input type="button" value="스케줄" class="btn-mgin btn-starSchedule"><input type="button" value="작품등록" class="btn-mgin btn-starWork">'))
+				.append($('<td>').html('<input type="checkbox" name="art_nos" value="'+item.art_no+'">'))
+				.append($('<td>').html('<a href="#">'+item.art_no+'</a>'))
+				.append($('<td>').html(item.st_name))
+				.append($('<td>').html(item.art_name))
+				.append($('<td>').html(item.art_type))
+				.append($('<td>').html(item.art_startTime))
+				.append($('<td>').html(item.art_endTime))
 				.appendTo('tbody');
 				
 			});//end each
@@ -144,12 +139,13 @@ div #dataTable_filter{
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>스타관리</h1>
+            <h1>스타작품</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">스타관리</li>
+              <li class="breadcrumb-item active">스타작품</li>
             </ol>
           </div>
         </div>
@@ -170,11 +166,12 @@ div #dataTable_filter{
                   <thead>
                     <tr>
                       <th></th>
+                      <th>번호</th>
                       <th>스타이름</th>
-                      <th>ID</th>
-                      <th>PW</th>
-                      <th>소속사</th>
-                      <th></th>
+                      <th>작품이름</th>
+                      <th>작품분류</th>
+                      <th>작품시작일</th>
+                      <th>작품종료일</th>
                     </tr>
                   </thead>
                   <tbody>

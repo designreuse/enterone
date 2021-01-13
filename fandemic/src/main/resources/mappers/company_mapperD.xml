@@ -9,4 +9,20 @@
 		FROM COMPANY
 		WHERE COM_ID=#{com_id}
 	</select>
+<!-- 소속사 정보 업데이트 -->
+	<update id="updateCompanyUpdate" parameterType="Company">
+		UPDATE COMPANY
+		<set>
+			<if test="com_pw != null and com_pw !=''">COM_PW=#{com_pw}</if>
+			<if test="com_phone != null and com_phone !=''">,COM_PHONE=#{com_phone}</if>
+			<if test="com_zipAddress != null and com_zipAddress !=''">,COM_ZIPADDRESS=#{com_zipAddress}</if>
+			<if test="com_address != null and com_address !=''">,COM_ADDRESS=#{com_address}</if>
+			<if test="com_address2 != null and com_address2 !=''">,COM_ADDRESS2=#{com_address2}</if>
+			<if test="com_email != null and com_email !=''">,COM_EMAIL=#{com_email}</if>
+			<if test="com_pic != null and com_pic !=''">,COM_PIC=#{com_pic}</if>
+			,COM_INTRODUCE=#{com_introduce}
+		</set>
+		WHERE COM_ID=#{com_id}
+	</update>
+	
 </mapper>

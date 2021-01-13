@@ -15,6 +15,11 @@ public class CompanyServiceImplD  implements CompanyServiceD{
 	public Company getMyCompanyInfo(Company company) {
 		return dao.getMyCompanyInfo(company);
 	}
+
+	@Override
+	public int updateCompanyUpdate(Company company) {
+		return dao.updateCompanyUpdate(company);
+	}
 	
 	
 
