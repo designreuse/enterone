@@ -2,9 +2,12 @@ package com.yedam.fandemic.management;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.service.AboardService;
 import com.yedam.fandemic.vo.Aboard;
@@ -134,5 +138,16 @@ public class AboardControllerD {
 		return aboardService.auditionApplyDelete(audition);
 	}
 	
+//	// 엑셀출력
+//	@RequestMapping("/deptExcelView.do")
+//	public ModelAndView excelView(HttpServletResponse response, Audition audition) throws IOException {
+//		List<Map<String, Object>> list = aboardService.getAuditionApplyList(audition);
+//		HashMap<String, Object> map = new HashMap<String, Object>();
+//		String[] header = { "dept_id","dept_name", "CNT" };
+//		map.put("headers", header);
+//		map.put("filename", "excel_dept");
+//		map.put("datas", list);
+//		return new ModelAndView("commonExcelView", map); //commonExcelView --> view 클래스명 맨앞에 글자 소문자
+//	}
 	
 }

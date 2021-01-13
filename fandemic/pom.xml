@@ -227,6 +227,12 @@
     		<version>1.15</version>
 		</dependency>
 		
+		<!-- 엑셀 다운로드 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.14</version>
+		</dependency>
 
 	</dependencies>
 
