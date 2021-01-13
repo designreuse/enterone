@@ -24,5 +24,9 @@
 		</set>
 		WHERE COM_ID=#{com_id}
 	</update>
-	
+<!-- 쪽지보낼 회원 목록 요청 -->
+	<select id="getMemberList" resultType="Member">
+		SELECT *
+		FROM MEMBER
+	</select>
 </mapper>

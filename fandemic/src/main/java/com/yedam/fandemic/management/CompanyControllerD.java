@@ -2,7 +2,6 @@ package com.yedam.fandemic.management;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.CompanyServiceD;
 import com.yedam.fandemic.vo.Company;
+import com.yedam.fandemic.vo.Member;
 
 @Controller
 public class CompanyControllerD {
@@ -44,5 +44,12 @@ public class CompanyControllerD {
 		companyService.updateCompanyUpdate(company);
 		model.addAttribute("company",companyService.getMyCompanyInfo(company));
 		return "mgt/company/myPage";
+	}
+	
+	//소속사 쪽지 폼( 회원 리스트 요청)
+	@RequestMapping(value="/management/company/myPageLetterForm")
+	public String myPageLetter(Model model) {
+		model.addAttribute("member",companyService.getMemberList());
+		return "mgt/company/myPageLetterForm";
 	}
 }

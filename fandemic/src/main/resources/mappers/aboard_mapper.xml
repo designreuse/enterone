@@ -84,5 +84,9 @@
 			#{no}
 		</foreach>
 	</delete>
-
+<!-- 엑셀 테스트 -->
+	<select id="getAboardListExcel" resultType="map">
+		SELECT ABO_NO "abo_no", ABO_TITLE "abo_title", ABO_SUBJECT "abo_subject"
+		FROM ABOARD
+	</select>
 </mapper>
