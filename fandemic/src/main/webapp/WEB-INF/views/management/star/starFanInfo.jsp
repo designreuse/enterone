@@ -48,7 +48,7 @@ div #dataTable_filter{
 <script>
 	$(function() {
 		
-		starMemberList();//스타회원 목록요청
+		starFanList();//스타회원 목록요청
 		
 		
 		//스타회원 등록 버튼클릭시 이벤트
@@ -112,32 +112,32 @@ div #dataTable_filter{
 	}); //end document ready
 	
 		//스타회원 목록 조회 요청
-		function starMemberList() {
-			var com_id = "${company.com_id }";
+		function starFanList() {
+			var st_id = "${fan.st_id}";
 			$.ajax({
-				url:'${pageContext.request.contextPath}/management/star/starMemberList', //요청할 url
+				url:'${pageContext.request.contextPath}/management/star/starFanList', //요청할 url
 				type:'POST',
-				data: {com_id:com_id},
+				data: {st_id:st_id},
 				//contentType:'application/json;charset=utf-8',
 				dataType:'json', //값이 넘어오는 형식
 				error:function(xhr,status,msg){
 					alert("상태값 :" + status + " Http에러메시지 :"+msg);
 				},
-				success:starMemberListResult
+				success:starFanListResult
 			});
 		}//end starMemberList
 	
-		function starMemberListResult(data){
+		function starFanListResult(data){
 			/* console.log(data); */
 			$("tbody").empty();
 			$.each(data,function(idx,item){//idx=index, item=value
 				$('<tr>').attr("class","starMemberTr")
-				.append($('<td>').html('<input type="checkbox" name="st_ids" value="'+item.st_id+'">'))
-				.append($('<td>').html('<a href="#">'+item.st_name+'</a>'))
-				.append($('<td>').html(item.st_id))
-				.append($('<td>').html(item.st_pw))
-				.append($('<td>').html(item.com_id))
-				.append($('<td>').html('<input type="button" value="스케줄" class="btn-mgin btn-starSchedule"><input type="button" value="작품등록" class="btn-mgin btn-starWork"><input type="button" value="팬현황" class="btn-mgin btn-fanInfo">'))
+				.append($('<td>').html('<input type="checkbox" name="fan_noㄴ" value="'+item.fan_no+'">'))
+				.append($('<td>').html('<a href="#">'+item.fan_no+'</a>'))
+				.append($('<td>').html(item.mem_id))
+				.append($('<td>').html("${star.st_name}"))
+				.append($('<td>').html(item.fan_name))
+				.append($('<td>').html(item.fan_block))
 				.appendTo('tbody');
 				
 			});//end each
@@ -179,11 +179,11 @@ div #dataTable_filter{
                   <thead>
                     <tr>
                       <th></th>
+                      <th>번호</th>
+                      <th>회원ID</th>
                       <th>스타이름</th>
-                      <th>ID</th>
-                      <th>PW</th>
-                      <th>소속사</th>
-                      <th></th>
+                      <th>회원닉네임</th>
+                      <th>블랙리스트 여부</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -196,8 +196,8 @@ div #dataTable_filter{
               <div>
               	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
-              		<button type="button" class="btn-register">등록</button>
-              		<button type="button" class="btn-delete">삭제</button>
+              		<!-- <button type="button" class="btn-register">등록</button>
+              		<button type="button" class="btn-delete">삭제</button> -->
               	</div>
               </div>
             </div>

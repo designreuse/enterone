@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.CompanyServiceD;
 import com.yedam.fandemic.vo.Company;
+import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 
 @Controller
@@ -51,5 +53,19 @@ public class CompanyControllerD {
 	public String myPageLetter(Model model) {
 		model.addAttribute("member",companyService.getMemberList());
 		return "mgt/company/myPageLetterForm";
+	}
+	
+	//쪽지 보낼 회원 체크 (존재여부)
+	@RequestMapping(value="/management/company/memberCheck")
+	@ResponseBody
+	public int memberCheck(Member member) {
+		return companyService.memberCheck(member);
+	}
+	
+	//쪽지보내기
+	@RequestMapping(value="/management/company/letterTrans")
+	public String letterTrans(Letter letter) {
+		companyService.letterTrans(letter);
+		return "redirect:/management/company/myPageLetterForm";
 	}
 }

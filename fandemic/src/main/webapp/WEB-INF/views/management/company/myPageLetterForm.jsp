@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	.table td{
 		vertical-align: middle;
@@ -13,24 +14,25 @@
 <script>
 
 	$(function() {
-		// Summernote 출력
-		$('#summernote').summernote({
-			height : 500
-		});
+		$("td .member_check").on("click",function(){
+			var mem_id = $(".mem_id").val();//회원ID존재하는지 확인
+			$.ajax({
+				url:"${pageContext.request.contextPath}/management/company/memberCheck",
+				dataType:"json",
+				data:{mem_id:mem_id},
+				success:function(response){
+					if(response != null && response != ""){
+						$(".member_check_result").text("존재하는 회원입니다.").css("color","green");
+					}else{
+						$(".member_check_result").text("존재하지 않는 회원입니다.").css("color","red");
+					}
+				},
+				error:function(response){
+					alert("에러")
+				}
+			})
+		})		
 		
-		//공지사항/이벤트 분류에 따라 이벤트인원 칼럼 출력
-		$(".custom-select").on("change",function(){
-			if($(this).val()=="이벤트"){
-				$("table .event").css("display","");
-			}else{
-				$("table .event").css("display","none");
-			}
-		});
-		
-		//취소버튼눌렀을경우 공지사항리스트로
-		$("#btnCancel").on("click",function(){
-			location.href="${pageContext.request.contextPath}/management/notices";
-		});
 		
 		//등록버튼눌렀을경우 
 		$("#btnCnotice-register").on("click",function(){
@@ -40,14 +42,14 @@
 	});//end ready function
 	
 	function CnoticeFormCheck(){
-		if($("table .notice-title").val()==null || $("table .notice-title").val()==''){
+		if($("table .lett_title").val()==null || $("table .lett_title").val()==''){
 			alert("제목을 입력하세요.")
-			$("table .notice-title").focus();
+			$("table .lett_title").focus();
 			event.preventDefault();
 		}
-		else if($("table .notice-content").val()==null||$("table .notice-content").val()==''){
+		else if($("table .lett_content").val()==null||$("table .lett_content").val()==''){
 			alert("내용을 입력하세요.")
-			$("table .notice-content").focus();
+			$("table .lett_content").focus();
 			event.preventDefault();
 		}
 		
@@ -75,11 +77,11 @@
 		<div class="col-md-12">
 			<div class="card card-outline card-info">
 				<div class="card-header">
-					<h3 class="card-title">공지사항/이벤트</h3>
+					<h3 class="card-title"></h3>
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
-					<form method="post" action="${pageContext.request.contextPath}/management/noticesInsert" encType="multipart/form-data">
+					<form method="post" action="${pageContext.request.contextPath}/management/company/letterTrans" encType="multipart/form-data">
 						<table class="table table-striped"
 							style="text-align: center; border: 1px solid #dddddd">
 							<thead>
@@ -92,29 +94,28 @@
 							<tbody>
 								<tr width="100%">
 									<td colspan="1" align="left"><label>받는회원</label></td>
-									<td colspan="3">
-										<select>
-											
-										</select>
+									<td style="text-align:left">	
+										<input type="text" name="mem_id" class="mem_id form-control" style="width:500px; display:inline" >
+										<button type="button" class="member_check">회원여부확인</button>
+										<div class="member_check_result"></div>
 									</td>
 								</tr>
 								<tr width="100%">
 									<td colspan="1" align="left"><label>제목</label></td>
-									<td colspan="3"><input type="text" name="lett_title" class="lett_title form-control"
-										placeholder="쪽지 제목" />
+									<td><input type="text" name="lett_title" class="lett_title form-control"
+										placeholder="쪽지 제목" style="width:500px;"/>
 									</td>
 								</tr>
 								<tr >
 									<td colspan="1" align="left"><label>내용</label></td>
-									<td colspan="3">
-										<textarea name="lett_content" class="lett_content form-control"></textarea>
+									<td>
+										<textarea name="lett_content" class="lett_content form-control" style="width:500px; height:500px"></textarea>
 									</td>
 								</tr>
 								
 								<tr >
 									<td colspan="4" align="right" style="padding:5px;">
-									<button type="submit" id="btnCnotice-register" class="btn btn-primary pull-right">등록</button>
-									<input type="button" id="btnCancel" class="btn btn-primary pull-right" value="취소" /></td>
+									<button type="submit" id="btnLetter-register" class="btn btn-primary pull-right">보내기</button>
 								</tr>
 							</tbody>
 						</table>

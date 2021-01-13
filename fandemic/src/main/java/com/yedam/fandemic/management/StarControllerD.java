@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.StarServiceD;
 import com.yedam.fandemic.vo.Art;
+import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
 
@@ -246,5 +247,21 @@ public class StarControllerD {
 		      String st_name = URLEncoder.encode(art.getSt_name(),"UTF-8");
 		starService.updateStarWork(art);
 		return "redirect:/management/star/starWork?st_id="+art.getSt_id()+"&st_name="+st_name;
+	}
+	
+	//스타 팬현황 리스트 페이지 이동
+	@RequestMapping(value="management/star/starFanInfo")
+	public String starFanInfo(Model model, Fan fan,Star star) {
+		//id랑 name값 가지고옴 스타의
+		model.addAttribute("fan",fan);
+		model.addAttribute("star",star);//name값
+		return "mgt/star/starFanInfo";
+	}
+	
+	//스타 팬 리스트 요청
+	@RequestMapping(value="/management/star/starFanList")
+	@ResponseBody
+	public List<Fan> getStarFanList(Fan fan){
+		return starService.getStarFanList(fan);
 	}
 }

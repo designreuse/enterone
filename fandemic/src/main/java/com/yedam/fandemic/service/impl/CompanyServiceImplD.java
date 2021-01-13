@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.yedam.fandemic.impl.CompanyMapperD;
 import com.yedam.fandemic.service.CompanyServiceD;
 import com.yedam.fandemic.vo.Company;
+import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 
 @Service
@@ -27,6 +28,16 @@ public class CompanyServiceImplD  implements CompanyServiceD{
 	@Override
 	public List<Member> getMemberList() {
 		return dao.getMemberList();
+	}
+
+	@Override
+	public int memberCheck(Member member) {
+		return dao.memberCheck(member);
+	}
+
+	@Override
+	public int letterTrans(Letter letter) {
+		return dao.letterTrans(letter);
 	}
 	
 	
