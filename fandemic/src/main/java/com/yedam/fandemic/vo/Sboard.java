@@ -1,5 +1,7 @@
 package com.yedam.fandemic.vo;
 
+import java.util.ArrayList;
+
 import lombok.Data;
 
 @Data
@@ -11,6 +13,8 @@ public class Sboard {
 	String sbo_time;	//게시물등록일
 	String sbo_content;	//게시물 내용
 	String sbo_hashtag;	//해시태그
+	ArrayList<String> sbo_hashtag_array;	//해시태그 배열 분류를 위한 VO
+
 	
 	private int sbo_first; // 페이지네이션
 	private int sbo_last;

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yedam.fandemic.service.ReplyService;
-import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Reply;
+import com.yedam.fandemic.vo.Star;
 
 @Controller
 public class SfboReplyController {
@@ -26,8 +26,16 @@ public class SfboReplyController {
 	//댓글 목록 출력
 	@RequestMapping(value="/star/fanBoard/reply", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Reply> replyList(HttpServletRequest request, Model model, Reply reply) {
+	public List<Reply> replyFboardList(HttpServletRequest request, Model model, Reply reply) {
 		reply.setSfbo_no(request.getParameter("fbo_no"));      
+		return  replyService.getReplyList(reply);
+	}
+	
+	//댓글 목록 출력
+	@RequestMapping(value="/star/starBoard/reply", method=RequestMethod.GET)
+	@ResponseBody
+	public List<Reply> replySboardList(HttpServletRequest request, Model model, Reply reply) {
+		reply.setSfbo_no(request.getParameter("sbo_no"));      
 		return  replyService.getReplyList(reply);
 	}
 	
@@ -36,7 +44,12 @@ public class SfboReplyController {
    @ResponseBody
    public boolean fboardInsert(HttpServletRequest request, Reply reply,  HttpSession session) throws IOException {
        Member member = (Member) session.getAttribute("member");
-       reply.setMem_id(member.getMem_id());
+       if (member != null) {//유저 아이디 확인
+    	   reply.setMem_id(member.getMem_id());    	   
+       }else {//또는 스타
+    	   Star star = (Star) session.getAttribute("star");
+    	   reply.setSt_id(star.getSt_id());    
+       }
        
        replyService.insertReply(reply);
       return true;
