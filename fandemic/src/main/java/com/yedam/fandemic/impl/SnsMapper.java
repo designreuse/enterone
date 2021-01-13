@@ -28,6 +28,9 @@ public interface SnsMapper {
 	// 멤버 단건조회
 	public Sns OneMemberSelect (Sns sns);
 	
-	
+	// 멤버별 포스트 모두 조회 하기
+	public List<Sns> myPostList(Sns sns);
+	// 멤버별 포스트 페이지네이션
+	public int getsnsCount(Sns sns);
 	
 }

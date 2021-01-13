@@ -2,9 +2,12 @@ package com.yedam.fandemic.sns;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.impl.SnsMapper;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.Sns;
 
 @Controller
@@ -90,4 +94,38 @@ public class SnsController {
 
 		return sns;
 	}
+	
+	// 멤버별 포스트 모두 조회 하기
+	@ResponseBody
+	@RequestMapping(value = "/mysnslist")
+	public Map<String, Object> MySnsList(Model model, HttpServletRequest request, Sns sns, HttpServletResponse response) throws IOException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		sns.setMem_id(sns.getMem_id());
+		String strp = request.getParameter("p");
+		int p = 1;
+		if (strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+
+		Paging paging = new Paging();
+
+		paging.setPageUnit(5); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+
+		sns.setSns_first(paging.getFirst());
+		sns.setSns_last(paging.getLast());
+
+		paging.setTotalRecord(snsdao.getsnsCount(sns));
+
+		System.out.println(paging);
+
+		map.put("paging", paging);
+		
+		
+		
+		map.put("snslist", snsdao.myPostList(sns));
+		return map;
+	}
+
 }

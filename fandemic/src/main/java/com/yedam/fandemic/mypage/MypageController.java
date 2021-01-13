@@ -175,9 +175,13 @@ public class MypageController {
 	@RequestMapping(value = "/sendmail")
 	public ModelAndView sendmail(HttpServletResponse response, Letter letter, Member member, Model model) throws IOException {
 		
-		
+		String sns = letter.getSnsns();
 		myMapper.SendMail(letter);
-		return new ModelAndView("redirect:mymail");
+		if(sns.equals("1")) {
+			return new ModelAndView("redirect:sns");
+		} else {
+			return new ModelAndView("redirect:mymail");
+		}
 	}
 	// 쪽지 삭제하기
 	@RequestMapping("/deletemail")

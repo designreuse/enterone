@@ -3,72 +3,105 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.fandemic.impl.SnsMapper">
-<!-- SNS 글자 등록 -->
-<insert id="insertSns" parameterType="Sns">
-INSERT INTO SNS (	
-								sns_no, 
-								sns_time,
-								sns_content,
-								sns_title,
-								mem_id,
-								sns_pic
-							
-								)
-	 	                VALUES(
-	 	               			sns_ac_seq.NEXTVAL,
-	 	              			SYSDATE,
-	 	               			#{sns_content},
-	 	               			#{sns_title},
-	 	               			#{mem_id},
-	 	               			#{sns_pic})
+	<!-- SNS 글자 등록 -->
+	<insert id="insertSns" parameterType="Sns">
+		INSERT INTO SNS (
+		sns_no,
+		sns_time,
+		sns_content,
+		sns_title,
+		mem_id,
+		sns_pic
 
-</insert>
-<select id="selectSns" resultType="Sns">
-select s.*, m.mem_pic mem_pic, m.mem_type mem_type from sns s, member m where s.mem_id=m.mem_id order by sns_no desc
+		)
+		VALUES(
+		sns_ac_seq.NEXTVAL,
+		SYSDATE,
+		#{sns_content},
+		#{sns_title},
+		#{mem_id},
+		#{sns_pic})
+
+	</insert>
+	<select id="selectSns" resultType="Sns">
+		select s.*, m.mem_pic mem_pic, m.mem_type mem_type from sns s, member m
+		where s.mem_id=m.mem_id order by sns_no desc
 
 
 
-</select>
-<!-- 사진 조회 -->
-<select id="selectMySns" resultType="Sns">
-SELECT SNS_PIC FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
-</select>
-<!-- SNS 카운트 -->
-<select id="countLike" resultType="int">
-SELECT SUM(SNS_LIKES) FROM SNS where MEM_ID = #{mem_id}
-</select>
-<!-- 좋아요 카운트 -->
-<select id="countMySns" resultType="int">
-SELECT COUNT(*) FROM SNS where MEM_ID = #{mem_id}
-</select>
-<!-- SNS 단건조회 -->
-<select id="OneSnsSelect" resultType="sns" >
-SELECT * FROM SNS WHERE SNS_NO = #{sns_no}
-</select>
-<!-- 쪽지 갯수조회 -->
-<select id="countMyLetter" resultType="int">
-SELECT COUNT(*) FROM Letter where MEM_ID = #{mem_id}
-</select>
-<select id="OneMemberSelect" resultType="sns" >
-    SELECT
-    M.MEM_ID              MEM_ID,
-    M.MEM_TIME,
-    M.MEM_PIC,
-    M.MEM_TYPE,
-    SUM(S.SNS_LIKES)    SNS_LIKES,
-    COUNT(S.SNS_NO)       SNS_NO
-    
-FROM
-    SNS     S,
-    MEMBER  M
-WHERE
-    M.MEM_ID = #{mem_id}
-    AND S.MEM_ID(+) = M.MEM_ID
-GROUP BY
-    M.MEM_ID            ,
-    M.MEM_TIME,
-    M.MEM_TYPE,
-    M.MEM_PIC
-    
-</select>
+	</select>
+	<!-- 사진 조회 -->
+	<select id="selectMySns" resultType="Sns">
+		SELECT SNS_PIC FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
+	</select>
+	<!-- SNS 카운트 -->
+	<select id="countLike" resultType="int">
+		SELECT SUM(SNS_LIKES) FROM SNS where MEM_ID = #{mem_id}
+	</select>
+	<!-- 좋아요 카운트 -->
+	<select id="countMySns" resultType="int">
+		SELECT COUNT(*) FROM SNS where MEM_ID = #{mem_id}
+	</select>
+	<!-- SNS 단건조회 -->
+	<select id="OneSnsSelect" resultType="sns">
+		SELECT * FROM SNS WHERE SNS_NO = #{sns_no}
+	</select>
+	<!-- 쪽지 갯수조회 -->
+	<select id="countMyLetter" resultType="int">
+		SELECT COUNT(*) FROM Letter where MEM_ID = #{mem_id}
+	</select>
+	<select id="OneMemberSelect" resultType="sns">
+		SELECT
+		M.MEM_ID MEM_ID,
+		M.MEM_TIME,
+		M.MEM_PIC,
+		M.MEM_TYPE,
+		SUM(S.SNS_LIKES) SNS_LIKES,
+		COUNT(S.SNS_NO) SNS_NO
+
+		FROM
+		SNS S,
+		MEMBER M
+		WHERE
+		M.MEM_ID = #{mem_id}
+		AND S.MEM_ID(+) = M.MEM_ID
+		GROUP BY
+		M.MEM_ID ,
+		M.MEM_TIME,
+		M.MEM_TYPE,
+		M.MEM_PIC
+
+	</select>
+<!-- 	SNS 조회 페이지네이션 -->
+	<select id="myPostList" resultType="sns">
+		SELECT * FROM ( SELECT A.*,
+		ROWNUM RN FROM (
+		SELECT
+		S.*,
+		M.MEM_PIC,
+		M.MEM_TYPE
+		FROM
+		SNS S,
+		MEMBER M
+		WHERE
+		S.MEM_ID = #{mem_id}
+		AND S.MEM_ID = M.MEM_ID ORDER BY
+		SNS_NO DESC
+		) A ) B WHERE RN BETWEEN #{sns_first} AND #{sns_last}
+	</select>
+	<!-- SNS 페이지 네이션 -->
+	<select id="getsnsCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		SNS
+		WHERE MEM_ID = #{mem_id}
+	</select>
+
+
+
+
+
+
+
+
 </mapper>
