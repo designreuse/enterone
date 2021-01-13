@@ -6,7 +6,12 @@
 <!-- main에 뿌릴 쿼리문 - -->
 	<!-- qna 답변 미등록 -->
 	<select id="qnaAnswerNo" resultType="QnA">
-		SELECT * FROM QNA WHERE Q_ANSWER IS NULL
+		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
+	 		SELECT * FROM QNA WHERE Q_ANSWER IS NULL ORDER BY 1 
+			 ) A ) B WHERE RN BETWEEN #{q_first} AND #{q_last}
+	</select>
+	<select id="mainQnaCnt" resultType="int">
+		SELECT COUNT(*) FROM (SELECT * FROM QNA WHERE Q_ANSWER IS NULL)
 	</select>
 
 	<!-- 회원리스트 -->
@@ -21,18 +26,18 @@
 	<select id="stCnt" resultType = "int">
 		SELECT COUNT(*) AS CNT FROM STAR
 	</select>
-	
-	<select id="comStarList" resultType = "map">
-		SELECT COM_ID, COUNT(COM_ID) AS COM_ST FROM STAR GROUP BY COM_ID 
-	</select>
-	
+
 	
 	<!-- qna 리스트 -->
 	<select id="qnaList" resultType="QnA" >
-		SELECT Q.*, M.MEM_PHONE
-		FROM QNA Q, MEMBER M
-		WHERE Q.MEM_ID = M.MEM_ID
-		ORDER BY Q_TIME DESC
+		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
+	 		SELECT * FROM v_qna ORDER BY 1 
+			 ) A ) B WHERE RN BETWEEN #{q_first} AND #{q_last}
+			 ORDER BY Q_TIME DESC
+	</select>
+	
+	<select id="qnaCnt" resultType="int">
+		SELECT COUNT(*) FROM V_QNA
 	</select>
 	
 	<!-- qna 단건 -->
