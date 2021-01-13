@@ -1,5 +1,7 @@
 package com.yedam.fandemic.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +24,20 @@ public class AuditionServiceImpl implements AuditionService {
 	public int inserttr(Trainee trainee) {
 		// TODO Auto-generated method stub
 		return auditionmapper.inserttr(trainee);
+	}
+	@Override
+	public int activityUpdate(Activity activity) {
+		
+		return auditionmapper.activityUpdate(activity);
+	}
+	@Override
+	public List<Activity> activityUpdateselect(Activity activity) {
+		
+		return auditionmapper.activityUpdateselect(activity);
+	}
+	@Override
+	public int activityDelete(Activity activity) {
+		
+		return auditionmapper.activityDelete(activity);
 	}
 }

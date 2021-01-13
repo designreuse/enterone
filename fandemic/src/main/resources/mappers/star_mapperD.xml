@@ -185,4 +185,11 @@
 		</set>
 		WHERE ART_NO=#{art_no}
 	</update>
+<!-- 스타 팬 리스트 요청 -->
+	<select id="getStarFanList" parameterType="Fan" resultType="Fan">
+		SELECT *
+		FROM FAN
+		WHERE ST_ID=#{st_id}
+		ORDER BY FAN_NO
+	</select>
 </mapper>

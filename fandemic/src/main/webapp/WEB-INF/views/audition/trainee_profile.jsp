@@ -37,6 +37,7 @@
 	margin-top: 36px;
 }
 </style>
+
 </head>
 <body>
 	<!-- Product Details Section Begin -->
@@ -54,8 +55,9 @@
 				</div>
 				<div class="col-lg-6 col-md-6">
 					<div class="product__details__text">
-						<h3>제목</h3>
-						<div>내용</div>
+						<h3>${activity.ac_title}</h3>
+						<div>${activity.ac_content}</div>
+						<div>${activity.ac_time}</div>
 						<ul>
 							<li><b>좋아요 수</b> <span>${goods.go_type}</span></li>
 							<li><b>조회수</b> <span>${goods.com_id}</span></li>
@@ -63,6 +65,13 @@
 						<div class="product__details_orderform">
 							<div class="product__details__quantity"></div>
 							<button type="button" class="primary-btn" id="like">좋아요</button>
+						</div>
+
+						<div class="row">
+							<div class="starRight">
+								<button type="button" class="btn btn-primary py-2 px-4"
+									id="btnUpdateactivity" onclick="location.href='${pageContext.request.contextPath}/audition/activityupdate'">수정</button>
+							</div>
 						</div>
 					</div>
 				</div>

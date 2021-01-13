@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.yedam.fandemic.impl.StarMapperD;
 import com.yedam.fandemic.service.StarServiceD;
 import com.yedam.fandemic.vo.Art;
+import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
 
@@ -89,6 +90,11 @@ public class StarServiceImplD implements StarServiceD{
 	@Override
 	public int updateStarWork(Art art) {
 		return starDAO.updateStarWork(art);
+	}
+
+	@Override
+	public List<Fan> getStarFanList(Fan fan) {
+		return starDAO.getStarFanList(fan);
 	}
 
 	

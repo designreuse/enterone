@@ -3,6 +3,7 @@ package com.yedam.fandemic.impl;
 import java.util.List;
 
 import com.yedam.fandemic.vo.Art;
+import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
 
@@ -22,4 +23,5 @@ public interface StarMapperD {
 	public int deleteStarWork(Art art); //스타 작품 삭제
 	public Art starWorkDetail(Art art); //스타 작품 상세보기
 	public int updateStarWork(Art art); //스타작품 수정
+	public List<Fan> getStarFanList(Fan fan); //스타 팬 리스트 요청
 }

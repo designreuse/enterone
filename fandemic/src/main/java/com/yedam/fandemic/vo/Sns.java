@@ -15,4 +15,11 @@ public class Sns {
 	String mem_pic;		//멤버사진
 	String mem_type;	//멤버타입
 	String mem_time;	//멤버 가입일
+	
+	
+	
+	
+	//페이지 네이션
+	private int sns_first;
+	private int sns_last;
 }

@@ -138,16 +138,16 @@ public class AboardControllerD {
 		return aboardService.auditionApplyDelete(audition);
 	}
 	
-//	// 엑셀출력
-//	@RequestMapping("/deptExcelView.do")
-//	public ModelAndView excelView(HttpServletResponse response, Audition audition) throws IOException {
-//		List<Map<String, Object>> list = aboardService.getAuditionApplyList(audition);
-//		HashMap<String, Object> map = new HashMap<String, Object>();
-//		String[] header = { "dept_id","dept_name", "CNT" };
-//		map.put("headers", header);
-//		map.put("filename", "excel_dept");
-//		map.put("datas", list);
-//		return new ModelAndView("commonExcelView", map); //commonExcelView --> view 클래스명 맨앞에 글자 소문자
-//	}
+	// 엑셀출력 오디션 공지사항
+	@RequestMapping("/management/aboard/excel")
+	public ModelAndView excelView(HttpServletResponse response, Aboard aboard) throws IOException {
+		List<Map<String, Object>> list = aboardService.getAboardListExcel(aboard);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String[] header = { "abo_no","abo_title", "abo_subject" };
+		map.put("headers", header);
+		map.put("filename", "excel_dept");
+		map.put("datas", list);
+		return new ModelAndView("commonExcelView", map); //commonExcelView --> view 클래스명 맨앞에 글자 소문자
+	}
 	
 }

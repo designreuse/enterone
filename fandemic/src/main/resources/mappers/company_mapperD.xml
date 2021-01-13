@@ -24,5 +24,32 @@
 		</set>
 		WHERE COM_ID=#{com_id}
 	</update>
-	
+<!-- 쪽지보낼 회원 목록 요청 -->
+	<select id="getMemberList" resultType="Member">
+		SELECT *
+		FROM MEMBER
+	</select>
+<!-- 쪽지보낼 회원존재유무 확인 -->
+	<select id="memberCheck" parameterType="Member" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEM_ID=#{mem_id}
+	</select>
+<!-- 쪽지 보내기 -->
+	<insert id="letterTrans" parameterType="Letter">
+		INSERT INTO LETTER (	lett_no, 
+								<if test="lett_sid != null and lett_sid !=''">lett_sid,</if>
+								mem_id,
+								lett_title,
+								lett_time,
+								lett_content
+								)
+	 	                VALUES(
+	 	               			LETT_SEQ.NEXTVAL,
+	 	               			<if test="lett_sid != null and lett_sid !=''">#{lett_sid},</if>
+	 	               			#{mem_id},
+	 	               			#{lett_title},
+	 	               			SYSDATE,
+	 	               			#{lett_content})
+	</insert>
 </mapper>

@@ -189,7 +189,8 @@ p {
 										src="${pageContext.request.contextPath}/images/audition/${trainee.tr_pic}"
 										alt="...">
 									<div class="caption">
-										<p>${sessionScope.member.mem_id}</p>
+										
+										<a href="${pageContext.request.contextPath}/ActivityDetail/${trainee.mem_id}"><p>${sessionScope.member.mem_id}</p></a>
 										<p>${trainee.tr_name}</p>
 										<p>${trainee.tr_content}</p>
 										<p>${trainee.tr_branch1}</p>

@@ -50,6 +50,10 @@ div #dataTable_filter{
 			$(".pagination a").removeClass("active");
 			$(this).addClass("active");
 		});
+		//엑셀테스트
+		$(".btn-excel").on("click",function(){
+			location.href="${pageContext.request.contextPath}/management/aboard/excel";
+		})
 		
 		//소속사 오디션 공지사항 등록
 		$(".btn-register").on("click",function(){
@@ -195,6 +199,7 @@ div #dataTable_filter{
               		<button type="button" class="btn-register">등록</button>
               		<!--  <button class="btn-update">수정</button>-->
               		<button type="button" class="btn-delete">삭제</button>
+              		<button type="button" class="btn-excel">엑셀</button>
               	</div>
               </div>
             </div>

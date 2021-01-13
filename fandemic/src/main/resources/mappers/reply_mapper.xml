@@ -5,7 +5,7 @@
 <mapper namespace="com.yedam.fandemic.impl.ReplyMapper">
 	<select id="getReplyList" parameterType="Reply" resultType="Reply">
 		SELECT * 
-		FROM v_relist 
+		FROM v_sf_relist 
 		WHERE sfbo_no = #{sfbo_no}
 	</select>
 	

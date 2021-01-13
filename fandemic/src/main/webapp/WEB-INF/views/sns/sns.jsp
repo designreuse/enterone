@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <head>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resourcesSns/css/sns.css">
@@ -13,7 +14,9 @@
 .dropdown-toggle {
 	
 }
-
+.div-mylist:hover{
+color:blue;
+}
 #profileimg {
 	height: 228px;
 	background: white;
@@ -23,6 +26,21 @@
 .profile {
 	width: 80%;
 	margin: 10%;
+}
+/* 멤버별 개인 게시물 리스트 사진 */
+#img-mypost {
+	margin: 10px;
+	max-width: 30px;
+	max-height: 30px;
+	overflow: hidden;
+}
+
+#label-postid {
+	width: 30%;
+}
+
+#label-posttitle {
+	width: 45%;
 }
 
 /* #A4B7D4 */
@@ -454,16 +472,30 @@
 												+ id,
 										dataType : 'json',//
 										success : function(result) {//
-											
-											if (result.mem_pic != null && result.mem_type == 0){
-											modal.find('.modalprofileimg').attr('src',result.mem_pic)// 멤버사진
-															}
+
+											if (result.mem_pic != null
+													&& result.mem_type == 0) {
+												modal.find('.modalprofileimg')
+														.attr('src',
+																result.mem_pic)// 멤버사진
+											}
 											if (result.mem_pic == null) {
-												modal.find('.modalprofileimg').attr('src', "${pageContext.request.contextPath}/images/member_pic/no-profile.jpg")// 멤버사진
-														}
-											if (result.mem_pic != null && result.mem_type == 1){
-												modal.find('.modalprofileimg').attr('src','${pageContext.request.contextPath}/images/member_pic/'+result.mem_pic)// 멤버사진
-														}
+												modal
+														.find(
+																'.modalprofileimg')
+														.attr('src',
+																"${pageContext.request.contextPath}/images/member_pic/no-profile.jpg")// 멤버사진
+											}
+											if (result.mem_pic != null
+													&& result.mem_type == 1) {
+												modal
+														.find(
+																'.modalprofileimg')
+														.attr(
+																'src',
+																'${pageContext.request.contextPath}/images/member_pic/'
+																		+ result.mem_pic)// 멤버사진
+											}
 											modal.find('#modalprofileid').text(
 													result.mem_id) //멤버 아이디
 											modal.find('#modalprofilepost')
@@ -476,24 +508,115 @@
 										}
 									})
 						});
-	});
 
-	//쪽지 보내기
-	// 		$('.btnLetter').on('click',function(event) {//
-	// 			var modal = $('#letterModal');//
-	// 			var no = $(this).data("no");//
-	// 			$.ajax({//
-	// 				url : '${pageContext.request.contextPath}/onesnsselect?sns_no='+ no, //파라미터 넘기는 법
-	// 						dataType : 'json',//
-	// 						success : function(result) {//
-	// 							modal.find('#modalimage').empty()//
-	// 							modal.find('.snstitledetail').text(result.sns_title)//
-	// 							modal.find('.content').text(result.sns_content)//
-	// 							modal.modal('show');//
-	// 						}
-	// 					});
-	// 		});
+		$('.div-mylist').on('click',
+				function(event) {
+							var modal = $('#exampleModal9')
+							var no = $(this).data("no");
+							$
+									.ajax({
+										url : '${pageContext.request.contextPath}/onesnsselect?sns_no='
+												+ no, //파라미터 넘기는 법
+										dataType : 'json',
+										success : function(result) {
+											$('#modalimage').html(
+													$('#imgtemmm').html());//
+											var imgname = result.sns_pic;//
+											var imgcut = imgname.split(',');//
+											modal.find('.snstitledetail').text(
+													result.sns_title)//
+											modal.find('.content').text(
+													result.sns_content)//
+											modal.find('.appendimmm').empty() //지우는 함수
+											for (var i = 0; i < imgcut.length - 1; i++) {
+												var img = '<div><img class="appendiiimmm" data-u="image" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /><img class="thumthum" data-u="thumb" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /></div>';
+												modal.find('.appendimmm')
+														.append(img)
+											}
+											jssor_1_slider_init();
+											modal.modal('show');
+										}
+
+									});
+						})
+		
+		
+		
+		
+		
+		// 	쪽지 보내기
+		$('.btnLetter').on('click', function(event) {//
+			var modal = $('#modal-letter');//
+			var id = $(this).data("id");//
+			var sid = $(this).data("sid")//
+			var snssns = $(this).data("snssns")//
+			modal.find('#recipient-mname').val(id)
+			modal.find('#mamber-name').val(sid)
+			modal.find('#snsns').val(snssns)
+			modal.modal('show');
+		});
+		// MyPost 목록 보기, YourPost 목록 보기
+		$('.btn-myPost').on('click', function(event) {//
+			var modal = $('#modal-myPost');//
+			var id = $(this).data("id");//
+			$.ajax({//
+				url : '${pageContext.request.contextPath}/mysnslist?mem_id='
+						+ id,
+				dataType : 'json',//
+				success : function(result) {//
+			
+					
+					
+					if (result.snslist[0].mem_pic != null
+							&& result.snslist[0].mem_type == 0) {
+						modal.find('#img-mypost')
+								.attr('src',
+										result.snslist[0].mem_pic)// 멤버사진
+					}
+					if (result.snslist[0].mem_pic == null) {
+						modal
+								.find(
+										'#img-mypost')
+								.attr('src',
+										"${pageContext.request.contextPath}/images/member_pic/no-profile.jpg")// 멤버사진
+					}
+					if (result.snslist[0].mem_pic != null
+							&& result.snslist[0].mem_type == 1) {
+						modal
+								.find(
+										'#img-mypost')
+								.attr(
+										'src',
+										'${pageContext.request.contextPath}/images/member_pic/'
+												+ result.snslist[0].mem_pic)// 멤버사진
+					}
+					modal.find('#label-myid').text(result.snslist[0].mem_id)
+					
+					modal.find('#mypostbox').empty()//
+			for (var i = 0; i < result.snslist.length; i++){
+			var mylist = 
+				'<div class="col-xs div-mylist" data-no="'+result.snslist[i].sns_no+'" style="height: 45px;"></label><label id="label-posttitle" style="margin: 16px;">'+result.snslist[i].sns_title+'</label><label>'+(result.snslist[i].sns_pic == "" || result.snslist[i].sns_pic == null? '사진없음' : '사진있음' )+'</label><a href="#" class="love"><i class="ion-android-favorite-outline"></i><div>'+result.snslist[i].sns_likes+'</div></a></div>'
+				modal.find('#mypostbox').append(mylist)
+				}
+				modal.modal('show');
+				}
+			})
+		})
+		
+	}); //end fucn
 </script>
+
+
+						
+
+
+
+
+
+
+
+
+
 
 
 </head>
@@ -585,16 +708,13 @@
 							<div id="ex7">
 								<div class="mtmtitle">
 									<div id="ex2" style="height: 62%"></div>
-									<a class="content"></a>
 									<div id="modalimage"></div>
-									</a>
+									<a class="content"></a>
+									
 
 								</div>
 							</div>
-							<div class="comentdiv" >
-								
-							
-							</div>
+							<div class="comentdiv"></div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Close</button>
@@ -724,10 +844,13 @@
 										<button class="dropdown-item showprofilebtn" type="button"
 											id="showprofilebtn" data-id="${sns.mem_id}">프로필 보기</button>
 										<br>
-										<button class="dropdown-item" type="button" id="btnLetter">쪽지
+										<button class="dropdown-item btnLetter" type="button"
+											id="btnLetter12" data-id="${sns.mem_id}"
+											data-sid="${sessionScope.member.mem_id }" data-snssns="1">쪽지
 											보내기</button>
 										<br>
-										<button class="dropdown-item" type="button">게시글 보기</button>
+										<button class="dropdown-item btn-myPost" type="button"
+											data-id="${sns.mem_id}">게시글 보기</button>
 									</div>
 									<input class="clickcontentdetail" value="${sns.sns_title}"
 										readonly="readonly">
@@ -1201,7 +1324,95 @@
 	</div>
 </section>
 
+<!-- =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+쪽지보내기+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=쪽지보내기=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ -->
+<div class="modal" id="modal-letter" style="z-index: 1200;">
+	<div class="modal-dialog">
+		<div class="modal-content" style="margin-bottom: 0px;">
+			<form action="sendmail" method="post">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">쪽지 보내기</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<input class="snsns" name="snsns" id="snsns" style="display: none;">
+					<input class="lett_nono" name="lett_no" style="display: none;">
+					<input type="text" class="form-control mem_id" id="mamber-name"
+						name="mem_id" style="display: none">
+					<!-- 받은회원, 내 아이디 -->
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label ">받는회원
+							ID: </label> <input type="text" class="form-control lett_sid"
+							id="recipient-mname" name="lett_sid">
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label ">쪽지 제목:
+						</label> <input type="text" class="form-control title"
+							id="recipient-title" name="lett_title">
+					</div>
+					<div class="form-group">
+						<label for="message-text" class="col-form-label ">내용:</label>
+						<textarea class="form-control content" id="message-text"
+							name="lett_content"
+							style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" id="sendmail">보내기</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">닫기</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
+
+<!-- =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+My SNS 게시글 목록=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+My SNS 게시글 목록=+=+=+=+=+=+=+=+=+=+=+ -->
+<div class="modal" id="modal-myPost" style="z-index: 1200;">
+	<div class="modal-dialog">
+		<div class="modal-content" style="margin-bottom: 0px;">
+			<form action="sendmail" method="post">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">게시글 목록 보기</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" id="modal-myPostList">
+						<img id="img-mypost" alt="프로필" src=""><label id="label-myid"> </label>
+
+					<div class="mypostbox" id="mypostbox" style="width: 100%; height: 100%">
+					</div>
+					<div align="center">
+							<script>
+								function goPage(p) {
+									var mem_id = $("#label-myid").text()
+									location.href = "${pageContext.request.contextPath}/mysnslist/"
+											+ "?p=" + p +"&mem_id=" + mem_id
+								}
+							</script>
+
+							<my:paging paging="${paging}" jsfunc="goPage" />
+						</div>
+
+
+
+
+
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">닫기</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 
 
