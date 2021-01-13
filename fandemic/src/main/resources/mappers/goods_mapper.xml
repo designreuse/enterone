@@ -81,5 +81,16 @@
 		ON C.MEM_ID = M.MEM_ID
 		WHERE C.MEM_ID = #{mem_id}
 	</select>
+	
+	<!-- 결제 완료시 주문 정보(gbuyer) 테이블에 insert-->
+<!-- 	<insert id="buyInsert" parameterType="Gbuyer">
+		INSERT INTO GBUYER (GB_NO, MEM_ID, GB_PAYMENT, GB_TIME, GB_NAME, GB_PHONE, GB_EMAIL, GB_ADDRESS, GB_ADDRESS2, GB_ZIPADDRESS)
+		VALUES (GB_SEQ.NEXTVAL, #{}, 200, SYSDATE, 'TEST배송', '010-0000-1111', 'TEST@TEST', '대구 중구', '상세주소', '12345')
+	</insert> -->
+	
+	<!-- 결제 완료시 주문 정보 상세(gbuydet) 테이블에 insert-->
+<!-- 	<insert id="buyDetailInsert" parameterType="Gbuydet">
+	
+	</insert> -->
 
 </mapper>
