@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,11 +32,28 @@ public class AdminController {
 	@Autowired AdminMapper dao;
 	
 	@RequestMapping(value="/adminMain")
-	public ModelAndView Main(Model model, QnA qna) throws IOException{
+	public ModelAndView Main(Model model, QnA qna, HttpServletRequest request) throws IOException{
 		
-		List<QnA> qnaList = new ArrayList<QnA>();
-		qnaList = dao.qnaAnswerNo();
-		model.addAttribute("qnaList", qnaList); // 답변ㄴㄴ qna리스트
+		String strp = request.getParameter("p");
+		int p = 1;
+		          
+		if(strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+		
+		Paging paging = new Paging();
+		
+		paging.setPageUnit(3); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+		
+		qna.setQ_first(paging.getFirst());
+		qna.setQ_last(paging.getLast());
+		
+		paging.setTotalRecord(dao.mainQnaCnt());
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("qnaList", dao.qnaAnswerNo(qna)); // 답변ㄴㄴ qna리스트
 		
 		Map<String, Integer> cnt = new HashMap<>();
 		cnt.put("memCnt", dao.memCnt());
@@ -44,21 +62,9 @@ public class AdminController {
 		
 		model.addAttribute("cnt", cnt); // 회원별 count
 		
-		List<HashMap<String,Object>> comStarList = new ArrayList<HashMap<String, Object>>();
-		comStarList = dao.comStarList();
-		model.addAttribute("comStarList", comStarList); // 소속사별 스타회원 count
-		
-		
-		
 		return new ModelAndView("admin/adminmain");
 	}
-	
-	@RequestMapping("/adminQuestion")
-	public String adminQuestion() throws IOException{
-		
-		return "redirect:question";
-	}
-	
+
 	// 개인회원 목록
 	@RequestMapping("/adminMember")
 	public String adminMember(Model model, HttpServletRequest request, Member member) throws IOException{
@@ -187,17 +193,38 @@ public class AdminController {
 		return null;
 	}
 	
-	
+	//qna 리스트
 	@RequestMapping("/adminQna")
 	public String QnaList(Model model, HttpServletRequest request, QnA qna) throws IOException{
 
-		List<QnA> list = dao.qnaList();
-		model.addAttribute("qna", list);
+		
+		String strp = request.getParameter("p");
+		int p = 1;
+		
+		if(strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+		
+		Paging paging = new Paging();
+		
+		
+		paging.setPageUnit(5); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+		
+		qna.setQ_first(paging.getFirst());
+		qna.setQ_last(paging.getLast());
+		
+		paging.setTotalRecord(dao.qnaCnt());
+
+		model.addAttribute("paging",paging);
+		model.addAttribute("qna", dao.qnaList(qna));
 		
 		return "admin/qnaList";
 
 	}
 	
+	//qna 단건조회
 	@ResponseBody
 	@RequestMapping("/qnaOne")
 	public QnA qnaInsert(Model model, HttpServletRequest request, QnA qna) throws IOException{
@@ -208,6 +235,7 @@ public class AdminController {
 		return qna;
 	}
 	
+	// qna 답변 등록 및 수정
 	@ResponseBody
 	@RequestMapping("/qnaAns")
 	public void answerInsert(Model model, HttpServletRequest request, QnA qna ) throws IOException{
@@ -219,20 +247,7 @@ public class AdminController {
 		dao.answerUpdate(qna);
 		
 	}
-	
-	
-	
-	//유튜브 테스트
-	@RequestMapping("/youtube")
-	public String youtobe() {
-		
-		return "admin/youtubeTest";
-	}
-	
-	
-	
-	
-	
+
 	
 	
 	

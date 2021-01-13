@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script>
+	$(function() {
 
-
-
-
+	});
+</script>
 
 <section class="ftco-section-3">
+	
 	<div class="container">
 		<div class="row d-flex">
 			<div class="row">
@@ -22,193 +25,57 @@
 						<a href="#" class="tag-cloud-link">leaves</a>
 						<a href="#" class="tag-cloud-link">food</a>
 					</ul>
+					<button class="btn btn-primary py-2 px-4 btnInputSboardShow"
+					onclick="location.href = '${pageContext.request.contextPath}/star/starBoard/insertView'">글쓰기</button>
 				</div>
-				<div class="row">
+			</div>	
+			<div class="row">
+				<c:forEach var="sboard" items="${sbolist}">
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
-							<a href="#" class="img img-2"
-								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg);"></a>
+							<%-- <img class="img img-2"  id='${sboard.sbo_no}' src="" alt="대표 사진이 없습니다"
+							onerror="this.src='${pageContext.request.contextPath}/images/star/${star.st_icon}'"> --%>
+							<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}" class="img img-2" id="${sboard.sbo_no}"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
-									<a href="single.html">The Photography Technique</a>
+									<a href="single.html">${sboard.sbo_title}</a>
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
-											Comment</span>
+										<span>${sboard.sbo_time}</span><span>5 Comment</span>
 									</p>
 								</div>
-								<p class="mb-4">A small river named Duden flows by their
-									place and supplies it with the necessary regelialia.</p>
+									<div class="mb-4 sboardPrev" id = "sbo_content" >
+										${sboard.sbo_content}
+									</div>
 								<p>
-									<a href="#" class="btn-custom">Read More <span
+									<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}" class="btn-custom">Read More <span
 										class="ion-ios-arrow-forward"></span></a>
 								</p>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-12">
-						<div class="blog-entry ftco-animate d-md-flex">
-							<a href="#" class="img img-2"
-								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_2.jpg);"></a>
-							<div class="text text-2 p-4">
-								<h3 class="mb-2">
-									<a href="#">The Photography Technique</a>
-								</h3>
-								<div class="meta-wrap">
-									<p class="meta">
-										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
-											Comment</span>
-									</p>
-								</div>
-								<p class="mb-4">A small river named Duden flows by their
-									place and supplies it with the necessary regelialia.</p>
-								<p>
-									<a href="#" class="btn-custom">Read More <span
-										class="ion-ios-arrow-forward"></span></a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="blog-entry ftco-animate d-md-flex">
-							<a href="#" class="img img-2"
-								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_3.jpg);"></a>
-							<div class="text text-2 p-4">
-								<h3 class="mb-2">
-									<a href="#">The Photography Technique</a>
-								</h3>
-								<div class="meta-wrap">
-									<p class="meta">
-										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
-											Comment</span>
-									</p>
-								</div>
-								<p class="mb-4">A small river named Duden flows by their
-									place and supplies it with the necessary regelialia.</p>
-								<p>
-									<a href="#" class="btn-custom">Read More <span
-										class="ion-ios-arrow-forward"></span></a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="blog-entry ftco-animate d-md-flex">
-							<a href="#" class="img img-2"
-								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_4.jpg);"></a>
-							<div class="text text-2 p-4">
-								<h3 class="mb-2">
-									<a href="single.html">The Photography Technique</a>
-								</h3>
-								<div class="meta-wrap">
-									<p class="meta">
-										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
-											Comment</span>
-									</p>
-								</div>
-								<p class="mb-4">A small river named Duden flows by their
-									place and supplies it with the necessary regelialia.</p>
-								<p>
-									<a href="#" class="btn-custom">Read More <span
-										class="ion-ios-arrow-forward"></span></a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="blog-entry ftco-animate d-md-flex">
-							<a href="#" class="img img-2"
-								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_5.jpg);"></a>
-							<div class="text text-2 p-4">
-								<h3 class="mb-2">
-									<a href="#">The Photography Technique</a>
-								</h3>
-								<div class="meta-wrap">
-									<p class="meta">
-										<span>Dec 14, 2018</span> <span>Photography</span> <span>5
-											Comment</span>
-									</p>
-								</div>
-								<p class="mb-4">A small river named Duden flows by their
-									place and supplies it with the necessary regelialia.</p>
-								<p>
-									<a href="#" class="btn-custom">Read More <span
-										class="ion-ios-arrow-forward"></span></a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="blog-entry ftco-animate d-md-flex">
-							<a href="#" class="img img-2"
-								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_6.jpg);"></a>
-							<div class="text text-2 p-4">
-								<h3 class="mb-2">
-									<a href="#">The Photography Technique</a>
-								</h3>
-								<div class="meta-wrap">
-									<p class="meta">
-										<span>Dec 14, 2018</span> <span><a href="#">Photography</a></span>
-										<span>5 Comment</span>
-									</p>
-								</div>
-								<p class="mb-4">A small river named Duden flows by their
-									place and supplies it with the necessary regelialia.</p>
-								<p>
-									<a href="#" class="btn-custom">Read More <span
-										class="ion-ios-arrow-forward"></span></a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="blog-entry ftco-animate d-md-flex">
-							<a href="single.html" class="img img-2"
-								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_7.jpg);"></a>
-							<div class="text text-2 p-4">
-								<h3 class="mb-2">
-									<a href="single.html">The Photography Technique</a>
-								</h3>
-								<div class="meta-wrap">
-									<p class="meta">
-										<span>Dec 14, 2018</span> <span><a href="single.html">Photography</a></span>
-										<span>5 Comment</span>
-									</p>
-								</div>
-								<p class="mb-4">A small river named Duden flows by their
-									place and supplies it with the necessary regelialia.</p>
-								<p>
-									<a href="#" class="btn-custom">Read More <span
-										class="ion-ios-arrow-forward"></span></a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-12">
-						<div class="blog-entry ftco-animate d-md-flex">
-							<a href="single.html" class="img img-2"
-								style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_8.jpg);"></a>
-							<div class="text text-2 p-4">
-								<h3 class="mb-2">
-									<a href="single.html">The Photography Technique</a>
-								</h3>
-								<div class="meta-wrap">
-									<p class="meta">
-										<span>Dec 14, 2018</span> <span><a href="single.html">Photography</a></span>
-										<span>5 Comment</span>
-									</p>
-								</div>
-								<p class="mb-4">A small river named Duden flows by their
-									place and supplies it with the necessary regelialia.</p>
-								<p>
-									<a href="#" class="btn-custom">Read More <span
-										class="ion-ios-arrow-forward"></span></a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
+					
+					<script>					
+						var imgView = function() {
+							var sentence = '${sboard.sbo_content}';
+							var start = sentence.indexOf('src="');
+							var end = sentence.indexOf('"', start+5);
+							var list = sentence.substring(start+5, end);
+
+							if(list.length < 130){//이미지 없을때 대체 이미지로 해당 스타의 아이콘 출력
+								var icon = '${star.st_icon}';
+								var depa = '${pageContext.request.contextPath}/images/star/'+ icon ;
+								$("#${sboard.sbo_no}").css("background-image" , "url("+depa+")");
+							}else if(list != null){
+								$("#${sboard.sbo_no}").css("background-image" , "url("+list+")");								
+							}
+							$("#sbo_content p img").remove("")//게시글 미리 보기에서 이미지 삭제 
+						}
+						imgView();
+	        		</script>
+					
+				</c:forEach>
 				<!-- END-->
 				<div class="row">
 					<div class="col">
@@ -226,7 +93,6 @@
 					</div>
 				</div>
 			</div>
-
 			<!-- END COL -->
 		</div>
 	</div>

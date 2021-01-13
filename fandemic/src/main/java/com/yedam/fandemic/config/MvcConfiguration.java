@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
@@ -70,5 +71,13 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
         
         return mailSender;
     }
+	
+	//2021-01-12 엑셀 다운로드
+	@Bean
+	public BeanNameViewResolver beanNameViewResolver() {
+		BeanNameViewResolver bean = new BeanNameViewResolver();
+		bean.setOrder(1);
+		return bean;
+	}
 	
 }

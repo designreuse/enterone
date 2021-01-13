@@ -10,6 +10,7 @@
 		background-color:rgba(0,0,0,.05);
 	}
 </style>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
 	$(function() {
@@ -20,44 +21,58 @@
 		
 		
 		
-		//취소버튼눌렀을경우 공지사항리스트로
-		$("#btnCancel").on("click",function(){
-			location.href="${pageContext.request.contextPath}/management/star/starList";
-		});
 		
 		//등록버튼눌렀을경우 
-		$("#btnCnotice-register").on("click",function(){
+		$("#btnCompanyInfo-update").on("click",function(){
 			/* alert("등록버튼눌림"); */
-			CnoticeFormCheck(); //유효성검사
+			CompanyFormCheck(); //유효성검사
 		});
 		
 				
 		//비밀번호 확인
-		$(".st_pw").keyup(function(){ //비밀번호 입력할때
-			$(".st_pw_ck_txt").text(""); //유효성검사창 초기화
+		$(".com_pw").keyup(function(){ //비밀번호 입력할때
+			$(".com_pw_ck_txt").text(""); //유효성검사창 초기화
 		});
 		//비밀번호 확인
-		$(".st_pw_ck").keyup(function(){
-			if($(".st_pw").val()!=$(".st_pw_ck").val()){
-				$(".st_pw_ck_txt").text("비밀번호가 일치하지 않습니다.")
+		$(".com_pw_ck").keyup(function(){
+			if($(".com_pw").val()!=$(".com_pw_ck").val()){
+				$(".com_pw_ck_txt").text("비밀번호가 일치하지 않습니다.")
 				                  .css("color","red");
 			}else{
-				$(".st_pw_ck_txt").text("비밀번호가 일치합니다.")
+				$(".com_pw_ck_txt").text("비밀번호가 일치합니다.")
                 .css("color","green");
 			}
 		});
+		
+		$(".address-btn").on("click",function(){ //우편번호 api
+			new daum.Postcode({
+		        oncomplete: function(data) {
+		            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+		            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+		            $(".com_zipAddress").val(data.zonecode);//우편번호
+		            $(".com_address").val(data.address);//기본주소
+		            
+		        }
+		    }).open();
+		})
 	});//end ready function
 	
-	function CnoticeFormCheck(){ //유효성검사(비번입력했는지안했는지.)
-	    if($("table .st_introduce").val()==null||$("table .st_introduce").val()==""){
+	
+	/***********************************/
+	/*********유효성 검사 ****************/
+	/***********************************/
+	function CompanyFormCheck(){ //유효성검사(비번입력했는지안했는지.)
+	    if($("table .com_introduce").val()==null||$("table .com_introduce").val()==""){
 			alert("소개글을 입력하세요.")
-			$("table .st_introduce").focus();
+			$("table .com_introduce").focus();
 			event.preventDefault();
 		}
 		
 	}
 	
-	
+	/***********************************/
+	/*********배너 미리보기 ****************/
+	/***********************************/
 	function setThumbnail(event) { //event라함은 이벤트 대상을 의미하는듯
 		$("#image_container img").remove();
 		var reader = new FileReader();
@@ -70,6 +85,7 @@
 		}; // end onload
 		reader.readAsDataURL(event.target.files[0]);
 	}
+	
 </script>
  <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -97,13 +113,13 @@
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
-					<form method="post" action="${pageContext.request.contextPath}/management/star/starMemberUpdate" encType="multipart/form-data">
+					<form method="post" action="${pageContext.request.contextPath}/management/company/updateCompanyUpdate" encType="multipart/form-data">
 						<table class="table table-striped"
 							style="text-align: center; border: 1px solid #dddddd">
 							<thead>
 								<tr>									
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="hidden" name="com_id" value="${company.com_id }"/>
+										<input type="hidden" name="" value="${company.com_id }"/>
 									</th>
 								</tr>
 							</thead>
@@ -127,9 +143,9 @@
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label class="pw_ck">비밀번호 확인</label></td>
 									<td colspan="2" align="left">
-									<input type="password" name="st_pw_ck" class="st_pw_ck" style="width:250px"
+									<input type="password" name="com_pw_ck" class="com_pw_ck" style="width:250px"
 										placeholder="변경할 패스워드를 확인하세요." maxlength="50" />
-									<div class="st_pw_ck_txt"></div>
+									<div class="com_pw_ck_txt"></div>
 									</td>
 									<td></td>
 								</tr>
@@ -151,11 +167,12 @@
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>소속사주소</label></td>
-									<td colspan="2" align="left">
+									<td align="left">
 									<input type="text" name="com_address" class="com_address" style="width:250px"
-										value="${company.com_address }" ><!-- maxlength는 적을수있는 최대글자수 -->
+										value="${company.com_address }" >
+									<input type="text" name="com_zipAddress" class="com_zipAddress" 
+									  placeholder="우편번호" value="${company.com_zipAddress }"><button type="button" class="address-btn">우편번호찾기</button>
 									</td>
-									<td></td>
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>소속사상세주소</label></td>
@@ -183,15 +200,20 @@
 								</tr>
 								<tr>
 									<td colspan="2">
-                      					<div id="image_container"></div>                    					
+                      					<div id="image_container"><img src="${pageContext.request.contextPath}/images/company/${company.com_pic}"></div>                    					
                      				</td>
 								</tr>
-								
+								<tr >
+									<td colspan="2" align="right" style="padding-right:10px"><label>회사소개</label></td>
+									<td colspan="2">
+										<textarea id="summernote" name="com_introduce" class="com_introduce notice-content">${company.com_introduce }</textarea>
+									</td>
+								</tr>
 								
 								<tr >
 									<td colspan="4" align="right" style="padding:5px;">
-									<button type="submit" id="btnCnotice-register" class="btn btn-primary pull-right">등록</button>
-									<input type="button" id="btnCancel" class="btn btn-primary pull-right" value="취소" /></td>
+									<button type="submit" id="btnCompanyInfo-update" class="btn btn-primary pull-right">수정</button>
+									<!-- <input type="button" id="btnCancel" class="btn btn-primary pull-right" value="취소" /></td> -->
 								</tr>
 								
 							</tbody>

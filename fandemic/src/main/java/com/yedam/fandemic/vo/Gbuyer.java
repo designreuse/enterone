@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Gbuyer {
 
+	// gbuyer
 	String gb_no;		//주문번호
 	String mem_id;		//member.회원ID
 	String gb_type;		//결제유형

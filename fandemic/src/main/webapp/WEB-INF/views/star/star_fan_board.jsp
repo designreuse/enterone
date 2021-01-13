@@ -60,7 +60,7 @@ var counter = 0;
 		   $("#btnInputFboardAction").show();
 		});
 		
-		//등록버튼
+		//게시물 등록버튼
 		$("#btnInputFboardAction").on("click",function(){
 		   checkUnload = false; //경고창 중복 제거
 		   if(fboardFormCheck() == true){ //유효성검사
@@ -68,12 +68,12 @@ var counter = 0;
 		   }
 		});
 		
-		//수정 페이지 이동 버튼
+		//게시물 수정 페이지 이동 버튼
 		$("#btnUpdateFboard").on("click",function(){
 		   fboardUpdateView();
 		});
 		
-		//수정 페이지 이동 버튼
+		//게시물 수정 요청 버튼
 		$("#btnUpdateFboardAction").on("click",function(){
 		   checkUnload = false; //경고창 중복 제거
 		   if(fboardFormCheck() == true){ //유효성검사
@@ -81,14 +81,14 @@ var counter = 0;
 		   }
 		});
 		
-		//삭제 요청 버튼
+		//게시물 삭제 요청 버튼
 		$("#btnDeleteFboardAction").on("click",function(){
 		   if(confirm("정말로 글을 삭제하시겠습니까?") == true){
 		      fboardDelete();            
 		   }
 		});
 		
-		//취소버튼
+		//게시물 화면 취소버튼
 		$(".btnCancelFboard").on("click",function(){
 		   checkUnload = false; //경고창 중복 제거
 		   if(confirm("작성중인 글을 종료하시겠습니까?") == true){//취소 확인받기

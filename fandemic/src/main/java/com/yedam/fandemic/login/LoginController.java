@@ -40,11 +40,40 @@ public class LoginController {
 	@Autowired MailService mailservice;
 	@Autowired MainMapper mainDao;
 
-	@RequestMapping("/no-tiles/find") // id,pw 찾기 팝업창
+	@RequestMapping("/no-tiles/find") // id,pw 찾기 팝업창  
 	public ModelAndView findIdPw() throws IOException{
 
 		return new ModelAndView("no-tiles/find");
 	}
+	
+	@RequestMapping("/mailCode")
+	@ResponseBody
+	public String mailCode(@ModelAttribute Mail mail, HttpServletRequest request, Model model) throws IOException{
+	
+			String code = Password.getRamdomPw(8);
+			System.out.println(request.getParameter("email"));
+			
+			mail.setReceiveMail(request.getParameter("email")); //받는 메일 주소
+			mail.setSenderName("엔터원");
+			mail.setSenderMail("haez119@gmail.com");
+			mail.setSubject("엔터원 가입 인증메일 입니다.");
+
+			String mainCon = "<p> 인증번호는 <h2 style='color : blue'>'" + code +"'</h2> 입니다. </p><br>"
+					+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다.)";
+            
+			mail.setMessage(mainCon);
+			
+			try {
+				mailservice.sendEmail(mail); 
+				System.out.println("메일전송");
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            System.out.println("메일실패");
+	        }
+			
+			return code;
+		} 
+
 	
 	// 개인 id 찾기
 	@RequestMapping("/memIdFind")
@@ -108,7 +137,7 @@ public class LoginController {
 			String mainCon = "<h2>안녕하세요 " +  member.getMem_id() +" 님 </h2><br><br>" 
 					+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>'" + pwKey +"'</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다.</p><br>"
 					+ "<h3><a href='http://localhost:1818/fandemic/login'></h3><br><br>"
-					+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
+					+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다.)";
             
 			mail.setMessage(mainCon);
 			
@@ -152,7 +181,7 @@ public class LoginController {
 			String mainCon = "<h2>안녕하세요 " + company.getCom_id() +" 님 </h2><br><br>" 
 					+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>'" + pwKey +"'</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다.</p><br>"
 					+ "<h3><a href='http://localhost:1818/fandemic/login'></h3><br><br>"
-					+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다)";
+					+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다.)";
 			
 			mail.setMessage(mainCon);
 			
@@ -250,7 +279,7 @@ public class LoginController {
 		if ( star != null) {
 			
 			session.setAttribute("star", star);
-			return "redirect:starMain"; 
+			return "redirect:star/" + star.getSt_id(); 
 				
 		} else {
 			redirect.addAttribute("login", "fail");

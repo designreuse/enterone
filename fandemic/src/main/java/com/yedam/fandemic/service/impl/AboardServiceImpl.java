@@ -1,6 +1,7 @@
 package com.yedam.fandemic.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,6 +61,12 @@ public class AboardServiceImpl  implements AboardService{
 	@Override
 	public int auditionApplyDelete(Audition audition) {
 		return dao.auditionApplyDelete(audition);
+	}
+
+
+	@Override
+	public List<Map<String, Object>> getAboardListExcel(Aboard aboard) {
+		return dao.getAboardListExcel(aboard);
 	}
 
 }

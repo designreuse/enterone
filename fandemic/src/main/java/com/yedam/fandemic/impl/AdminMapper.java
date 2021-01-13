@@ -24,20 +24,23 @@ public interface AdminMapper {
 	public int memCount(); //개인
 	public int comCount(); //기업
 	public int filCount(); //금칙어
+	public int qnaCnt(); //qna 
+	public int mainQnaCnt(); 
 	
-	public List<QnA> qnaList(); //qna 리스트
+	
+	
+	public List<QnA> qnaList(QnA qna); //qna 리스트
 	public QnA qnaOne(QnA qna); //qna 단건
 	
 	public void answerUpdate(QnA qna);
 	
 	//메인에 뿌릴 것
-	public List<QnA> qnaAnswerNo();
+	public List<QnA> qnaAnswerNo(QnA qna);
 	
 	public int memCnt(); 
 	public int comCnt();
 	public int stCnt(); 
-	
-	public List<HashMap<String,Object>> comStarList(); 
+
 	
 	
 }

@@ -12,7 +12,7 @@
 	<section class="home">
 		<div class="container">	
 			<div class="row">
-			
+				<h2> 결제 완료 결과 화면 </h2>
 			
 			</div>
 		</div>

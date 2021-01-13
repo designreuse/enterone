@@ -316,6 +316,12 @@
                   <p>소속사 Mypage</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/management/company/myPageLetterForm" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>쪽지보내기</p>
+                </a>
+              </li>
              </ul> 
           </li>
           

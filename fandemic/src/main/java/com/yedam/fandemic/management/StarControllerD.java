@@ -2,6 +2,7 @@ package com.yedam.fandemic.management;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.StarServiceD;
+import com.yedam.fandemic.vo.Art;
 import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
 
@@ -176,4 +178,73 @@ public class StarControllerD {
 		return starService.deleteStarSchedule(schedule);
 	}
 	
+	//스타 작품등록 페이지 이동
+	@RequestMapping(value="/management/star/starWork")
+	public String starWork(Model model, Art art) {
+		model.addAttribute("art", art);
+		return "mgt/star/starWork";
+	}
+	
+	//스타 작품 리스트 요청
+	@RequestMapping(value="/management/star/starWorkList")
+	@ResponseBody
+	public List<Art> getStarWorkList(Art art){
+		return starService.getStarWorkList(art);
+	}
+	
+	//스타 작품 등록 폼 이동
+	@RequestMapping(value="/management/star/starWorkInsertForm")
+	public String starWorkInsertForm(Model model, Art art) {
+		model.addAttribute("art",art); //스타 id값, 스타이름을넘김
+		return "mgt/star/starWorkInsertForm";
+	}
+	
+	//스타 작품 등록
+	@RequestMapping(value="/management/star/insertStarWork")
+	public String insertStarWork(HttpServletRequest request, Model model, Art art) throws IllegalStateException, IOException {
+		MultipartHttpServletRequest multipartRequest1 = (MultipartHttpServletRequest) request;
+	      //공지사항 배너
+	      MultipartFile multipartFile1 = multipartRequest1.getFile("uploadImage");
+		      if (!multipartFile1.isEmpty() && multipartFile1.getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/star/art");
+		    	  System.out.println("path="+path);
+		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
+		         art.setArt_pic(multipartFile1.getOriginalFilename());
+		      }
+		      String st_name = URLEncoder.encode(art.getSt_name(),"UTF-8");
+		starService.insertStarWork(art);
+		return "redirect:/management/star/starWork?st_id="+art.getSt_id()+"&st_name="+st_name;
+	}
+	
+	//스타 작품 삭제
+	@RequestMapping(value="management/star/starWorkDelete")
+	@ResponseBody
+	public int deleteStarWork(Art art) {
+		return starService.deleteStarWork(art);
+		
+	}
+	
+	//스타 작품 상세보기
+	@RequestMapping(value="/management/star/starWorkDetail")
+	public String starWorkDetail(Model model, Art art) {
+		model.addAttribute("art",starService.starWorkDetail(art));
+		return "mgt/star/starWorkDetail";
+	}
+	
+	//스타 작품 수정
+	@RequestMapping(value="/management/star/updateStarWork")
+	public String updateStarWork(HttpServletRequest request, Art art) throws IllegalStateException, IOException {
+		MultipartHttpServletRequest multipartRequest1 = (MultipartHttpServletRequest) request;
+	      //공지사항 배너
+	      MultipartFile multipartFile1 = multipartRequest1.getFile("uploadImage");
+		      if (!multipartFile1.isEmpty() && multipartFile1.getSize() > 0) {
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/star/art");
+		    	  System.out.println("path="+path);
+		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
+		         art.setArt_pic(multipartFile1.getOriginalFilename());
+		      }
+		      String st_name = URLEncoder.encode(art.getSt_name(),"UTF-8");
+		starService.updateStarWork(art);
+		return "redirect:/management/star/starWork?st_id="+art.getSt_id()+"&st_name="+st_name;
+	}
 }

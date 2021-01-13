@@ -154,3 +154,14 @@ div #dataTable_filter {
 .pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
+
+/* 스타 게시판 */
+.sboardPrev{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 2em;
+}
