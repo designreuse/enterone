@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yedam.fandemic.service.SboardService;
 import com.yedam.fandemic.service.StarService;
 import com.yedam.fandemic.service.StarServiceD;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Sboard;
 import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
 
@@ -29,6 +31,8 @@ public class StarController {
 	StarService starService;
 	@Autowired 
 	StarServiceD starServiceD; 
+	@Autowired
+	SboardService sboardService;
 	
 	//스타 메인페이지
 	@RequestMapping(value = "/star/{id}")
@@ -111,14 +115,21 @@ public class StarController {
 	}
 	
 	//스타게시판 이동
-	@RequestMapping(value = "/star/board/{id}")
-	public ModelAndView starBoard(@PathVariable String id, Company comVo, Star stVo, Model model) throws IOException {
+	@RequestMapping(value = "/star/starBoard/{id}")
+	public ModelAndView starBoard(@PathVariable String id, Sboard sboard, Company comVo, Star stVo, ModelAndView mav) throws IOException {
+
 		stVo.setSt_id(id);
-		model.addAttribute("star", starService.getStarMain(stVo));
+		mav.addObject("star", starService.getStarMain(stVo));
+		
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
-		model.addAttribute("company", starService.getProfileCompany(comVo));
-		return new ModelAndView("star/star_board");
+		mav.addObject("company", starService.getProfileCompany(comVo));
+		
+		sboard.setSt_id(id);
+		mav.addObject("sbolist", sboardService.getSboardList(sboard));
+		
+		mav.setViewName("star/star_board");
+		return mav;
 	}
 	
 	//팬게시판 이동

@@ -10498,10 +10498,10 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 	height: 300px;
 	width: 100%;
 }
-
+/* 스타게시판으로 인해 수정 */
 @media ( min-width : 992px) {
 	.blog-entry .img {
-		width: 50%;
+		width: 40%;
 	}
 }
 
@@ -10510,10 +10510,10 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 	z-index: 0;
 	width: 100%;
 }
-
+/* 스타게시판으로 인해 수정 */
 @media ( min-width : 992px) {
 	.blog-entry .text {
-		width: 50%;
+		width: 60%;
 	}
 }
 

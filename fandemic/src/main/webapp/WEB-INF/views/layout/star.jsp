@@ -102,7 +102,7 @@
 					<li><a href="${pageContext.request.contextPath}/star/schedule/${star.st_id}">스케줄</a></li>
 					<li><a href="#">스타라이브</a></li>
 					<li><a href="#">소식</a></li>
-					<li><a href="${pageContext.request.contextPath}/star/board/${star.st_id}">스타게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/starBoard/${star.st_id}">스타게시판</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/fanBoard/${star.st_id}">팬게시판</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/album/${star.st_id}">사진게시판</a></li>
 				</ul>
