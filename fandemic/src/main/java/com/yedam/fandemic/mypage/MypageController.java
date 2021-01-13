@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.MypageMapper;
+import com.yedam.fandemic.login.Password;
 import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
@@ -97,7 +98,7 @@ public class MypageController {
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			member.setMem_pic(multipartFile.getOriginalFilename());
 		}
-
+		member.setMem_pw(Password.encrypt(member.getMem_pw()));
 		myMapper.memUpdate(member);
 		session.setAttribute("member", member);
 		return "mypage/my_update";
