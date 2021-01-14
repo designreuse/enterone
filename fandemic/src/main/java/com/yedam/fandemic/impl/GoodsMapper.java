@@ -3,6 +3,8 @@ package com.yedam.fandemic.impl;
 import java.util.List;
 
 import com.yedam.fandemic.vo.Cart;
+import com.yedam.fandemic.vo.Gbuydetail;
+import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Goods;
 
 public interface GoodsMapper {
@@ -30,6 +32,17 @@ public interface GoodsMapper {
 	
 	// 주문 페이지 목록 (장바구니값 불러오기)
 	public List<Cart> orderList(Cart cart);
+	
+	// 주문 insert
+	public void buyInsert(Gbuyer gbuyer);
+
+	// 주문상세 insert
+	public void buyDetailInsert(Gbuydetail gbuydetail);
+	
+	// Cart 비우기
+//	public void cartAllDelete(String mem_id);
+	
+	// 주문 결과 페이지
 	
 	// paging
 	public int goCount();	// Goods 목록

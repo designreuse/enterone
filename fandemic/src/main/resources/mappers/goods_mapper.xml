@@ -83,14 +83,25 @@
 	</select>
 	
 	<!-- 결제 완료시 주문 정보(gbuyer) 테이블에 insert-->
-<!-- 	<insert id="buyInsert" parameterType="Gbuyer">
+ 	<insert id="buyInsert" parameterType="Gbuyer">
 		INSERT INTO GBUYER (GB_NO, MEM_ID, GB_PAYMENT, GB_TIME, GB_NAME, GB_PHONE, GB_EMAIL, GB_ADDRESS, GB_ADDRESS2, GB_ZIPADDRESS)
-		VALUES (GB_SEQ.NEXTVAL, #{}, 200, SYSDATE, 'TEST배송', '010-0000-1111', 'TEST@TEST', '대구 중구', '상세주소', '12345')
-	</insert> -->
+		VALUES (#{gb_no}, #{mem_id}, #{gb_payment}, SYSDATE, #{gb_name}, #{gb_phone}, #{gb_email}, #{gb_address}, #{gb_address2}, #{gb_zipaddress})
+	</insert>
 	
-	<!-- 결제 완료시 주문 정보 상세(gbuydet) 테이블에 insert-->
-<!-- 	<insert id="buyDetailInsert" parameterType="Gbuydet">
+	<!-- 결제 완료시 주문 정보 상세(gbuydetail) 테이블에 insert-->
+ 	<insert id="buyDetailInsert" parameterType="Gbuydetail">
+		INSERT INTO GBUYDETAIL (GBD_NO, GB_NO, GO_NO, CART_QTY)
+			SELECT GBD_SEQ.NEXTVAL, #{gb_no}, GO_NO, CART_QTY
+			FROM CART
+			WHERE MEM_ID = #{mem_id}
+	</insert>
+
+	<!-- 카트 비우기 -->
+	<delete id="cartAllDelete">
+ 		DELETE CART
+		WHERE MEM_ID = #{mem_id}
+	</delete>
 	
-	</insert> -->
+	<!-- 주문 결과 페이지 -->
 
 </mapper>

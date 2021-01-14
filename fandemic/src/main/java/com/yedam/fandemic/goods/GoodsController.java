@@ -1,6 +1,8 @@
 package com.yedam.fandemic.goods;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.GoodsMapper;
 import com.yedam.fandemic.vo.Cart;
+import com.yedam.fandemic.vo.Gbuydetail;
+import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
@@ -149,43 +153,42 @@ public class GoodsController {
 		}
 	}
 
-	
-	/*
-	//카트리스트에서 주문하기 (https://badstorage.tistory.com/39)
-	  
-	@PostMapping("/cartList")
-	public String order(HttpSession session, OrderVO order, @RequestParam(value = "chk[]") List<String> chArr) throws Exception {
-		logger.info("order");	
-		String userId = (String)session.getAttribute("member");
+	// 주문
+	@RequestMapping(value = "/goodsBuy/order", method = RequestMethod.POST)
+	public String order(HttpSession session, Gbuyer gbuyer, Gbuydetail gbuydetail) throws IOException {
+//		logger.info("order");
+		System.out.println(gbuyer);
+		Member member = (Member) session.getAttribute("member"); // 세션에 저장해둔 member 불러오기
+//		String mem_id = member.getMem_id();
 		
 		//주문번호(orderId) 생성을 위한 로직
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
-		String subNum = "";
+		String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String gbNo = "";
 		
 		for(int i = 1; i <= 6; i ++) {
-			subNum += (int)(Math.random() * 10);
-			}
+			gbNo += (int)(Math.random() * 10);
 		}
+		 
+		String gb_no = ymd + "_" + gbNo;
 		
-		String orderId = ymd + "_" + subNum; //ex) 20200508_373063
-		order.setOrderId(orderId);
-		order.setUserId(userId);
+		gbuyer.setGb_no(gb_no); // 주문번호
+		gbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 gbuyer에 담기
+		System.out.println("-----------------------------------------------------------------" + gbuyer);
+		goMapper.buyInsert(gbuyer);
+	
+		gbuydetail.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 gbuydetail에 담기
+		gbuydetail.setGb_no(gb_no);
+		goMapper.buyDetailInsert(gbuydetail);
 		
-		service.orderInfo(order); //주문 테이블 insert
+		// Cart 비우기
+//		goMapper.cartAllDelete(member.getMem_id());
 		
-		int cartNum = 0;
-		for(String i : chArr){
-			cartNum = Integer.parseInt(i);
-			System.out.println("cart -> CHK orderList : "+cartNum);
-			System.out.println("cart -> orderId orderList : "+orderId);
-			service.orderInfoDetails(orderId,cartNum); //주문 상세 테이블 insert
-			service.cartDelete(cartNum); //체크되어 들어온 cart번호로 cart table delete }
-			return "redirect:/shop/myPage";
-		}
-*/
+		return "redirect:/goods/goodsBuyDetail";
+	}
+
 
 	// 결제 결과 화면 (select)
 	@RequestMapping(value = "/goodsBuyDetail")

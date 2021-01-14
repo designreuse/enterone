@@ -36,6 +36,7 @@ $(document).ready(function() {
 		var same = this.checked;
 		$('#ship_name').val(same ? $('#mem_name').val():'');
 		$('#ship_phone').val(same ? $('#mem_phone').val():'');
+		$('#ship_email').val(same ? $('#mem_email').val():'');
 		$('#ship_address').val(same ? $('#mem_address').val():'');
 		$('#ship_address2').val(same ? $('#mem_address2').val():'');
 		$('#ship_zipAddress').val(same ? $('#mem_zipAddress').val():'');
@@ -55,111 +56,92 @@ $(document).ready(function() {
 	});
 	
 	// 필수 요소 작성 확인
-	$('#btnPay').click(function(){
+	$('#check_module').click(function(){
 		if($('#chkAccept').prop('checked') == false){
 	    	alert('필수 약관에 동의 하셔야 합니다.');
 		}		
 		else {
 			if ( $('#ship_name').val() == null || $('#ship_name').val() == "" ||
 				 $('#ship_phone').val() == null || $('#ship_phone').val() == "" ||
+				 $('#ship_email').val() == null || $('#ship_email').val() == "" ||
 				 $('#ship_address').val() == null || $('#ship_address').val() == "" ||
 				 $('#ship_address2').val() == null || $('#ship_address2').val() == "" ||
 				 $('#ship_zipAddress').val() == null || $('#ship_zipAddress').val() == "" ) {
 				alert('배송 정보를 모두 입력해주세요.');
 			} else {
 				alert('결제 진행');
-				//$(location).attr('href','#');
+				
+//				var IMP = window.IMP; // 생략가능
+//				IMP.init('imp35170140'); // 가맹점식별코드
+				
+				// 결제창 호출코드 IMP.request_pay(param, callback)
+//				IMP.request_pay({
+//					pg: 'inicis', // version 1.1.0부터 지원.
+					/*
+					'kakao':카카오페이, 'html5_inicis':이니시스(웹표준결제), 'nice':나이스페이, 'jtnet':제이티넷,
+					'uplus':LG유플러스, 'danal':다날, 'payco':페이코, 'syrup':시럽페이, 'paypal':페이팔
+					*/
+//					pay_method: 'card',
+					/*
+					'samsung':삼성페이, 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
+					*/
+//					merchant_uid: 'merchant_' + new Date().getTime(),
+					/*
+					merchant_uid의 경우
+					https://docs.iamport.kr/implementation/payment
+					위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+					*/
+//					name: '주문명:결제테스트', //결제창에서 보여질 이름
+//					amount: totalsum, //결제 금액
+//					buyer_email: 'email',
+//					buyer_name: '구매자이름',
+//					buyer_tel: '010-1234-5678',
+//					buyer_addr: '서울특별시 강남구 삼성동',
+//					buyer_postcode: '12345',
+//					m_redirect_url: '${pageContext.request.contextPath}/goodsBuyDetail'
+					/*
+					모바일 결제시, 결제가 끝나고 랜딩되는 URL을 지정
+					(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+					*/
+//				}, function (rsp) { // callback
+//					console.log(rsp);
+//					if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+						// jQuery로 HTTP 요청
+		                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+//		                $.ajax({
+//		                   url: "${pageContext.request.contextPath}/goodsBuy", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+//		                   type: 'POST',
+//		                   dataType: 'json',
+//		                   data: {
+//									imp_uid : rsp.imp_uid
+									//기타 필요한 데이터가 있으면 추가 전달
+//		           				 },
+		                   //data: { totalsum : amount },
+//		                   success : function() {
+//		      					var msg = '결제가 완료되었습니다.';
+//		    					msg += '고유ID : ' + rsp.imp_uid;
+//		    					msg += '상점 거래ID : ' + rsp.merchant_uid;
+//		    					msg += '결제 금액 : ' + rsp.paid_amount;
+//		    					msg += '카드 승인번호 : ' + rsp.apply_num;
+//		                      	alert(msg);
+//								location.href = "${pageContext.request.contextPath}/goodsBuyDetail";
+//		                   }, error : function() {
+		                	 //[3] 아직 제대로 결제가 되지 않았습니다.
+		                	 //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+//		                      alert('실패');
+//		                   }
+//		                });
+//
+//					} else {
+//						var msg = '결제에 실패하였습니다. ';
+//						msg += '에러내용 : ' + rsp.error_msg;
+//					}
+//					alert(msg);
+//				}); // IMP.request_pay 끝
+
 			}
 		}
 	});
-	
-	
-	
-	
-	
-
-	
-	
-	$("#check_module").click(function () {
-		var IMP = window.IMP; // 생략가능
-		IMP.init('imp35170140'); // 가맹점식별코드
-		
-		// 결제창 호출코드 IMP.request_pay(param, callback)
-		IMP.request_pay({
-			pg: 'inicis', // version 1.1.0부터 지원.
-			/*
-			'kakao':카카오페이, 'html5_inicis':이니시스(웹표준결제), 'nice':나이스페이, 'jtnet':제이티넷,
-			'uplus':LG유플러스, 'danal':다날, 'payco':페이코, 'syrup':시럽페이, 'paypal':페이팔
-			*/
-			pay_method: 'card',
-			/*
-			'samsung':삼성페이, 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
-			*/
-			merchant_uid: 'merchant_' + new Date().getTime(),
-			/*
-			merchant_uid의 경우
-			https://docs.iamport.kr/implementation/payment
-			위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
-			*/
-			name: '주문명:결제테스트', //결제창에서 보여질 이름
-			amount: totalsum, //결제 금액
-			buyer_email: 'email',
-			buyer_name: '구매자이름',
-			buyer_tel: '010-1234-5678',
-			buyer_addr: '서울특별시 강남구 삼성동',
-			buyer_postcode: '12345',
-			m_redirect_url: '${pageContext.request.contextPath}/goodsBuyDetail'
-			/*
-			모바일 결제시, 결제가 끝나고 랜딩되는 URL을 지정
-			(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
-			*/
-		}, function (rsp) { // callback
-			console.log(rsp);
-			if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-				// jQuery로 HTTP 요청
-                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-                $.ajax({
-                   url: "${pageContext.request.contextPath}/goodsBuy", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
-                   type: 'POST',
-                   dataType: 'json',
-                   data: {
-							imp_uid : rsp.imp_uid
-							//기타 필요한 데이터가 있으면 추가 전달
-           				 },
-                   //data: { totalsum : amount },
-                   success : function() {
-      					var msg = '결제가 완료되었습니다.';
-    					msg += '고유ID : ' + rsp.imp_uid;
-    					msg += '상점 거래ID : ' + rsp.merchant_uid;
-    					msg += '결제 금액 : ' + rsp.paid_amount;
-    					msg += '카드 승인번호 : ' + rsp.apply_num;
-                      	alert(msg);
-						location.href = "${pageContext.request.contextPath}/goodsBuyDetail";
-                   }, error : function() {
-                	 //[3] 아직 제대로 결제가 되지 않았습니다.
-                	 //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
-                      alert('실패');
-                   }
-                });
-
-			} else {
-				var msg = '결제에 실패하였습니다. ';
-				msg += '에러내용 : ' + rsp.error_msg;
-			}
-			alert(msg);
-		});
-	});
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 });
 
@@ -180,6 +162,7 @@ function openDaumZipAddress(ship_zipAddress, ship_address) {
 <body>
 	<section class="home">
 		<div class="container">
+		<form role="form" method="post" action="${pageContext.request.contextPath}/goodsBuy/order">
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title" style="margin-bottom: 0;">
@@ -193,87 +176,78 @@ function openDaumZipAddress(ship_zipAddress, ship_address) {
 			<div class="row">
 				<div class="checkout__form">
 					<h4>주문자 정보</h4>
-					<form action="#">
-						<div class="row">
-							<div class="col-lg-8 col-md-6" style="width: 60%;">
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="checkout__input">
-											<p>
-												이름
-											</p>
-											<input type="text" value="${member.mem_name}" id="mem_name" readonly="readonly">
-										</div>
+					<div class="row">
+						<div class="col-lg-8 col-md-6" style="width: 60%;">
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="checkout__input">
+										<p>
+											이름
+										</p>
+										<input type="text" value="${member.mem_name}" id="mem_name" readonly="readonly">
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="checkout__input">
-											<p>
-												연락처
-											</p>
-											<input type="text" value="${member.mem_phone}" id="mem_phone" readonly="readonly">
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="checkout__input">
-											<p>
-												이메일
-											</p>
-											<input type="text" value="${member.mem_email}" id="mem_email" readonly="readonly">
-										</div>
-									</div>
-								</div>
-								<div class="checkout__input">
-									<p>
-										주소
-									</p>
-									<input type="text" value="${member.mem_address}" id="mem_address" readonly="readonly" class="checkout__input__add">
-									<input type="text" value="${member.mem_address2}" id="mem_address2" readonly="readonly" class="checkout__input__add">
-									<input type="text" value="${member.mem_zipAddress}" id="mem_zipAddress" readonly="readonly">
-	
-								</div>
-								
 							</div>
-							<div class="col-lg-4 col-md-6" style="width: 40%;">
-								<div class="checkout__order">
-									<h4>결제 예정 금액</h4>
-									<div class="checkout__order__products row">
-										<div class = "col-md-8 col-sm-8 col-xs-8">상품</div>
-										<div class = "col-md-2 col-sm-2 col-xs-2" style="text-align: left;">수량</div>
-										<div class = "col-md-2 col-sm-2 col-xs-2" style="text-align: right;">금액</div>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="checkout__input">
+										<p>
+											연락처
+										</p>
+										<input type="text" value="${member.mem_phone}" id="mem_phone" readonly="readonly">
 									</div>
-									<div class = "row" style="font-size: 16px; line-height: 32px; margin-bottom: 15px;">
-										<c:set var="totalsum" value="0"/>
-										<c:forEach var="order" items="${order}">
-											<div class = "col-md-8 col-sm-8 col-xs-8">${order.go_name}</div>
-											<div class = "col-md-1 col-sm-1 col-xs-1">${order.cart_qty}ea</div>
-											<div class = "col-md-3 col-sm-3 col-xs-3" style="text-align: right; font-weight: 700;"><fmt:formatNumber value="${order.ptotal}" pattern="##,###" />원</div>
-										<c:set var="totalsum" value="${totalsum + order.ptotal}"/>
-										</c:forEach>
-										
+								</div>
+								<div class="col-lg-6">
+									<div class="checkout__input">
+										<p>
+											이메일
+										</p>
+										<input type="text" value="${member.mem_email}" id="mem_email" readonly="readonly">
 									</div>
-									<div class="checkout__order__total">
-										합계 <span id="totalsum"><fmt:formatNumber var="totalsum" value="${totalsum}" pattern="##,###" /><c:out value="${totalsum}원"/></span>
-									</div>
-									<div class="checkout__input__checkbox">
-										<input type="checkbox" class="chkAccept" id="chkAccept">
-										<label for="acc-or">아래 약관을 확인하였으며 결제에 동의합니다. <span style="color: #dd2222;"> *</span></label>
-									</div>
-									<p>주문 상품의 상품명, 수량, 가격, 포인트 사용, 배송 정보를 확인하였으며, 구매 진행에 동의합니다.</p>
-									<button type="submit" class="site-btn" id="btnPay">결제하기</button>
-									
-									
-									
-									
-									<button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>
-									
-									
+								</div>
+							</div>
+							<div class="checkout__input">
+								<p>
+									주소
+								</p>
+								<input type="text" value="${member.mem_address}" id="mem_address" readonly="readonly" class="checkout__input__add">
+								<input type="text" value="${member.mem_address2}" id="mem_address2" readonly="readonly" class="checkout__input__add">
+								<input type="text" value="${member.mem_zipAddress}" id="mem_zipAddress" readonly="readonly">
+
+							</div>
+							
+						</div>
+							
+						<div class="col-lg-4 col-md-6" style="width: 40%;">
+							<div class="checkout__order">
+								<h4>결제 예정 금액</h4>
+								<div class="checkout__order__products row">
+									<div class = "col-md-8 col-sm-8 col-xs-8">상품</div>
+									<div class = "col-md-2 col-sm-2 col-xs-2" style="text-align: left;">수량</div>
+									<div class = "col-md-2 col-sm-2 col-xs-2" style="text-align: right;">금액</div>
+								</div>
+								<div class = "row" style="font-size: 16px; line-height: 32px; margin-bottom: 15px;">
+									<c:set var="totalsum" value="0"/>
+									<c:forEach var="order" items="${order}">
+										<div class = "col-md-8 col-sm-8 col-xs-8">${order.go_name}<input type="hidden" name="go_no" value="${order.go_no}" /></div>
+										<div class = "col-md-1 col-sm-1 col-xs-1">${order.cart_qty}ea</div>
+										<div class = "col-md-3 col-sm-3 col-xs-3" style="text-align: right; font-weight: 700;"><fmt:formatNumber value="${order.ptotal}" pattern="##,###" />원</div>
+									<c:set var="totalsum" value="${totalsum + order.ptotal}"/>
+									</c:forEach>
 									
 								</div>
+								<div class="checkout__order__total">
+									합계 <span id="totalsum"><fmt:formatNumber var="totalsum" value="${totalsum}" pattern="##,###" /><c:out value="${totalsum}원"/></span>
+								</div>
+								<div class="checkout__input__checkbox">
+									<input type="checkbox" class="chkAccept" id="chkAccept">
+									<label for="acc-or">아래 약관을 확인하였으며 결제에 동의합니다. <span style="color: #dd2222;"> *</span></label>
+								</div>
+								<p>주문 상품의 상품명, 수량, 가격, 포인트 사용, 배송 정보를 확인하였으며, 구매 진행에 동의합니다.</p>
+								<button type="submit" class="site-btn" id="check_module">결제하기</button>
 							</div>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 			
@@ -287,7 +261,7 @@ function openDaumZipAddress(ship_zipAddress, ship_address) {
 	                       <input type="checkbox" id="sameControl">
 	                       <span style="font-size: 16px;">주문자 정보와 동일</span>
 	                   </label> </h4>
-					<form action="#">
+				
 						<div class="row">
 							<div class="col-lg-8 col-md-6" style="width: 60%;">
 								<div class="row">
@@ -296,15 +270,25 @@ function openDaumZipAddress(ship_zipAddress, ship_address) {
 											<p>
 												이름<span>*</span>
 											</p>
-											<input type="text" id="ship_name" placeholder="배송받을 사람">
+											<input type="text" id="ship_name" name="gb_name" placeholder="배송받을 사람">
 										</div>
 									</div>
+								</div>
+								<div class="row">
 									<div class="col-lg-6">
 										<div class="checkout__input">
 											<p>
 												연락처<span>*</span>
 											</p>
-											<input type="text" id="ship_phone" placeholder="배송정보를 받을 연락처">
+											<input type="text" id="ship_phone" name="gb_phone" placeholder="주문 정보를 받을 연락처">
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="checkout__input">
+											<p>
+												이메일<span>*</span>
+											</p>
+											<input type="text" id="ship_email" name="gb_email" placeholder="주문 정보를 받을 메일 주소">
 										</div>
 									</div>
 								</div>
@@ -314,16 +298,17 @@ function openDaumZipAddress(ship_zipAddress, ship_address) {
 										<button id="btnAddrGo" class="site-btn"
 										style="padding: 5px 10px 5px 10px; border: solid 1px #4176E0; background-color: white; color: #4176E0;">주소찾기</button>
 									</p>
-									<input type="text" placeholder="주소" class="checkout__input__add" id="ship_address">
-									<input type="text" placeholder="상세 주소 및 상세 건물명" class="checkout__input__add" id="ship_address2">
-									<input type="text" placeholder="우편번호" id="ship_zipAddress">
+									<input type="text" placeholder="주소" class="checkout__input__add" id="ship_address" name="gb_address">
+									<input type="text" placeholder="상세 주소 및 상세 건물명" class="checkout__input__add" id="ship_address2" name="gb_address2">
+									<input type="text" placeholder="우편번호" id="ship_zipAddress" name="gb_zipaddress">
+									<input type="hidden" name="gb_payment" value="${totalsum}" />
 								</div>
 							</div>
 						</div>
-					</form>
 				</div>
 			</div>
 			<!-- 배송 정보 입력 끝 -->
+					</form>
 		</div>
 	</section>
 </body>

@@ -12,7 +12,6 @@ public class Gbuyer {
 	// gbuyer
 	String gb_no;		//주문번호
 	String mem_id;		//member.회원ID
-	String gb_type;		//결제유형
 	String gb_payment;	//결제금액(총가격)
 	String gb_time;		//결제날짜
 	String gb_name; 	//수령인
