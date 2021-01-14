@@ -2,7 +2,7 @@ package com.yedam.fandemic.service;
 
 import java.util.List;
 
-
+import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
 
 import com.yedam.fandemic.vo.Trainee;
@@ -18,4 +18,6 @@ public interface AuditionService {
 	public List<Activity> activityUpdateselect(Activity activity);
 	//활동지원글 삭제
 	public int activityDelete(Activity activity);
+	//오디션 공고 목록
+	public List<Aboard> auditionlist(Aboard aboard);
 }

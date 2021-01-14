@@ -44,14 +44,6 @@ public class AuditionController {
 		return new ModelAndView("audition/audition_apply");
 
 	}
-	
-	//오디션 목록
-	@RequestMapping(value = "/audition/auditionlist") // 주소
-	public ModelAndView auditionlist(HttpServletResponse response) throws IOException {
-		return new ModelAndView("audition/audition_list");
-
-	}
-
 	// 연습생 프로필
 	@RequestMapping(value = "/audition/auditionprofile") // 주소
 	public ModelAndView auditionprofile(HttpServletResponse response) throws IOException {
@@ -144,20 +136,20 @@ public class AuditionController {
 
 	}
 
-	//연습생 활동 글수정 페이지 
-		@RequestMapping(value = "/audition/activityupdate")
-		public ModelAndView activityupdate(Model model, Activity activity, HttpSession session) throws IOException {
-			
-			Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
-			activity.setMem_id(member.getMem_id());						// activity에 아이디를 넣은거	
-			model.addAttribute("AcworkList",auditionMapper.activityUpdateselect(activity));			
-			return new ModelAndView("audition/activity_update");
-		}
-	
+	// 연습생 활동 글수정 페이지
+	@RequestMapping(value = "/audition/activityupdate")
+	public ModelAndView activityupdate(Model model, Activity activity, HttpSession session) throws IOException {
+
+		Member member = (Member) session.getAttribute("member"); // 세션에 저장해둔 member 불러오기
+		activity.setMem_id(member.getMem_id()); // activity에 아이디를 넣은거
+		model.addAttribute("AcworkList", auditionMapper.activityUpdateselect(activity));
+		return new ModelAndView("audition/activity_update");
+	}
+
 	// 연습생 활동 글 수정
 	@RequestMapping(value = "/audition/activityupdatesend")
 	public String UpdateAboard(HttpServletRequest request, Model model, Activity activity)
-			throws IllegalStateException, IOException {		
+			throws IllegalStateException, IOException {
 		// request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String sumFile = "";
@@ -175,25 +167,15 @@ public class AuditionController {
 		auditionservice.activityUpdate(activity);
 		return "redirect:/audition/auditionwork";
 	}
-//	//연습생 활동 지원 글 삭제
-//	@RequestMapping(value = "/audition/activitydelete", method = RequestMethod.POST)
-//	@ResponseBody
-//	public boolean activityDelete(HttpSession session, HttpServletRequest request, Activity activity) 
-//	throws IOException {
-//		Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
-//		activity.setMem_id(member.getMem_id());						
-//		activity.setAc_no(request.getParameter("ac_no"));
-//		auditionMapper.activityDelete(activity);
-//		return true;
-//	}
-	
-	@RequestMapping(value="/audition/activitydelete", method=RequestMethod.POST)
-	   @ResponseBody
-	   public boolean activitydelete(HttpServletRequest request, Activity activity) throws IOException {
+
+	//연습생 활동 지원 글 삭제
+	@RequestMapping(value = "/audition/activitydelete", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean activitydelete(HttpServletRequest request, Activity activity) throws IOException {
 		activity.setAc_no(request.getParameter("ac_no"));
 		auditionservice.activityDelete(activity);
-	      return true;
-	   }
+		return true;
+	}
 
 	// 활동 상세 프로필
 	@RequestMapping(value = "/ActivityDetail/{mem_id}")
@@ -202,7 +184,6 @@ public class AuditionController {
 		activity.setMem_id(mem_id);
 		model.addAttribute(auditionMapper.activityDetail(activity));
 		return new ModelAndView("audition/trainee_profile");
-	}		
-
+	}
 
 }

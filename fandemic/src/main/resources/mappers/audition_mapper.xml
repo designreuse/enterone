@@ -83,7 +83,11 @@ WHERE MEM_ID=#{mem_id}
 	SELECT * FROM ACTIVITY 
 		WHERE MEM_ID=#{mem_id}
 	</select>
-
-
+<!-- 오디션 공고 목록 -->
+<select id="auditionlist" resultType="Aboard">
+	SELECT * FROM ABOARD 
+		WHERE COM_ID=#{com_id}
+		ORDER BY ABO_NO DESC
+</select>
 
 </mapper>

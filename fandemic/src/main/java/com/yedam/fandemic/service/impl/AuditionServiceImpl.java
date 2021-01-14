@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yedam.fandemic.impl.AuditionMapper;
 import com.yedam.fandemic.service.AuditionService;
+import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
 import com.yedam.fandemic.vo.Trainee;
 
@@ -39,5 +40,10 @@ public class AuditionServiceImpl implements AuditionService {
 	public int activityDelete(Activity activity) {
 		
 		return auditionmapper.activityDelete(activity);
+	}
+	@Override
+	public List<Aboard> auditionlist(Aboard aboard) {
+		
+		return auditionmapper.auditionlist(aboard);
 	}
 }
