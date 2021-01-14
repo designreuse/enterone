@@ -31,13 +31,10 @@
 		$(".btnCancelFboard").on("click",function(){
 			checkUnload = false; //경고창 중복 제거
 			if(confirm("작성중인 글을 종료하시겠습니까?") == true){//취소 확인받기
-				location.href = "${pageContext.request.contextPath}/star/starBoard/"+st_id
+				window.history.back();
 			}
 		});
 
-		
-		
-		
 //해시태그 구현
         // 테스트용
         $("#tag-form").on("click", function (e) {
@@ -141,8 +138,13 @@
 		});
 	}
 
-
-
+   function UpdateStart(){
+	   var content = "${sboVo.sbo_content}"
+	   alert("asdf")
+	   $('#summernote').summernote('code',content)
+   }
+   
+   
 </script>
 
 <!-- 글쓰는 공간 -->
@@ -152,7 +154,7 @@
       <hr>
       <form id="form1">
          <div class="col-xl-12 col-md-12 col-12 row">
-               <input name = "sbo_title" style="width: 100%" placeholder="제목" class="inputFboardTitle"/>
+               <input name = "sbo_title" style="width: 100%" placeholder="제목" class="inputFboardTitle" value = "${sboVo.sbo_title}"/>
          </div>
          <br>
          <textarea id="summernote" name="sbo_content"  class = "inputFboardContent"></textarea>
@@ -163,7 +165,7 @@
                	<!-- 해시태그 -->
 			    <div class="content">
 			        <div class = "row">
-			            <input type="text" id="tag" size="7" placeholder="태그입력" />
+			            <input type="text" id="tag" size="7" placeholder="태그입력"/>
 			            <button type="button" id = "tag-form">누르면 태그값 보임</button>
 			        </div>
 			        <div class = "row">
@@ -182,7 +184,7 @@
          <div class="row starCenter">
             <div class = "starRight">
                <button type="button" class="btn btn-primary py-2 px-4 btnCancelFboard">취소</button>
-               <button type="button" class="btn btn-primary py-2 px-4" id = "btnInputFboardAction">등록</button>
+               <button type="button" class="btn btn-primary py-2 px-4" id = "btnInputFboardAction" style="display:none;">등록</button>
                <button type="button" class="btn btn-primary py-2 px-4" id = "btnUpdateFboardAction" style="display:none;">수정</button>
             </div>
          </div>

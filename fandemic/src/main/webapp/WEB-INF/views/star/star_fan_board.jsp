@@ -18,8 +18,6 @@
 <script>
 var tag = {};
 var counter = 0;
-var id = "${member.mem_id}"//session 일반유저 아이디 값
-var ssid = "${star.st_id}"//session 스타 아이디 값
 
 	$(function() {
 		//화면 시작 시 목록 출력
@@ -545,33 +543,15 @@ var ssid = "${star.st_id}"//session 스타 아이디 값
 		$("#replyListView").empty();
 		
 		$.each(data,function(idx,re){
-			console.log(re);
-			if(id == re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
-				var userid = re.mem_id			
-			}else if(ssid == re.st_id){
-				var userid = re.mem_id						
-			}
+			var id = "${member.mem_id}"//session아이디 값
 			var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
-			
-			
-			
-			
-			if(id != re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
-				var li1 = "";
-				var li2 = "";				
-			}else if(ssid != re.st_id){
-				var li1 = "";
-				var li2 = "";				
-			}
-			
-			else if(id != null || ssid != null){
+			if(id == re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
+				var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
+				var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";					
+			}else{
 				var li1 = "";
 				var li2 = "";		
-			}else{
-				var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
-				var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";	
 			}
-			
 			if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
 				var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
 			}else{

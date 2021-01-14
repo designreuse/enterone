@@ -77,7 +77,7 @@ public class SboardController {
 	// 게시물 상세보기
 	@RequestMapping(value = "/star/starBoard/read/", method = RequestMethod.GET)
 	@ResponseBody
-	public Sboard fboardViewAction(HttpServletRequest request, Sboard sboVo, Model model) throws IOException {
+	public Sboard starBoardViewAction(HttpServletRequest request, Sboard sboVo, Model model) throws IOException {
 		sboVo.setSbo_no(request.getParameter("sbo_no"));
 		sboVo = sboardService.getSboardInfo(sboVo);
 		// 해시태그 #찾아서 배열로 담기
@@ -100,6 +100,41 @@ public class SboardController {
 
 		return sboVo;
 	}
+	
+	// 수정을 위한 게시물 내용출력
+	@RequestMapping(value = "/star/starBoard/updateView/{no}", method = RequestMethod.GET)
+	public ModelAndView starBoardUpdateViewAction(@PathVariable String no, HttpSession session, Sboard sboVo, Company comVo, Star stVo, ModelAndView mav) throws IOException {
+		Star star = (Star) session.getAttribute("star");
+		String id = star.getSt_id();
+		
+		stVo.setSt_id(id);
+		mav.addObject("stVo", starService.getStarMain(stVo));
+		stVo = starService.getStarMain(stVo);
+		comVo.setCom_id(stVo.getCom_id());
+		mav.addObject("company", starService.getProfileCompany(comVo));
+		//게시물
+		sboVo.setSbo_no(no);
+		sboVo = sboardService.getSboardInfo(sboVo);
+		if (sboVo.getSbo_hashtag() != null) {
+			String test4 = sboVo.getSbo_hashtag();
+			Pattern p = Pattern.compile("\\#([0-9a-zA-Z가-힣]*)");
+			Matcher m = p.matcher(test4);
+			String extractHashTag = null;
+
+			int i = 0;
+			ArrayList<String> hashtag_array = new ArrayList<>();
+			while (m.find()) {
+				extractHashTag = m.group();
+				if (extractHashTag != null) {
+					hashtag_array.add(extractHashTag);
+				}
+			}
+			sboVo.setSbo_hashtag_array(hashtag_array);
+		}
+		mav.addObject("sboVo", sboVo);
+		mav.setViewName("star/star_board_insert");
+		return mav;
+	}
 
 	// 스타가 글 등록
 	@RequestMapping(value = "/star/starBoard/insert", method = RequestMethod.POST)
@@ -114,7 +149,7 @@ public class SboardController {
 	//삭제
    @RequestMapping(value="/star/starBoard/delete/", method=RequestMethod.POST)
    @ResponseBody
-   public boolean fboardDelete(HttpServletRequest request, Sboard sboVo) throws IOException {
+   public boolean starBoardDelete(HttpServletRequest request, Sboard sboVo) throws IOException {
       sboardService.deleteSboard(sboVo);
       return true;
    }

@@ -26,7 +26,8 @@ var st_name = "${stVo.st_name}";
 		
 		//게시물 수정 페이지 이동 버튼
 		$("#btnUpdateFboard").on("click",function(){
-		  
+			
+			location.href = "${pageContext.request.contextPath}/star/starBoard/updateView/" + sbo_no;
 		});
 		
 		//게시물 삭제 요청 버튼
@@ -38,7 +39,7 @@ var st_name = "${stVo.st_name}";
 		
 		//목록보기
 		$(".btnFboardListView").on("click",function(){
-			
+			window.history.back();
 		});
 		
 		//댓글 등록 요청
@@ -200,8 +201,7 @@ var st_name = "${stVo.st_name}";
 	       } 
 	   });
 	}
-	 
-	 
+
 	//이전 작성글 기록 지우기
 	function formReset(){
 		$('#summernote').summernote('reset');
@@ -257,6 +257,7 @@ var st_name = "${stVo.st_name}";
 				var li1 = "";
 				var li2 = "";		
 			}
+			
 			if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
 				var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
 			}else{
