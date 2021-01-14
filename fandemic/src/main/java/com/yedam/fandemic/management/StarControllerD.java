@@ -3,6 +3,7 @@ package com.yedam.fandemic.management;
 import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,6 @@ import com.yedam.fandemic.vo.Star;
 
 @Controller
 public class StarControllerD {
-	
 	@Autowired StarServiceD starService; 
 	
 	//소속사 스타관리 페이지 이동
