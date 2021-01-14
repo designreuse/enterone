@@ -10,7 +10,7 @@
 <script>
 	var tag = {};
 	var counter = 0;
-	var st_id = "${star.st_id}";
+	var st_id = "${stVo.st_id}";
 
 	$(function() {
 		var checkUnload = true; //글 작성중 나가면 사라지는 것 방지

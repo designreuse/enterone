@@ -18,6 +18,8 @@
 <script>
 var tag = {};
 var counter = 0;
+var id = "${member.mem_id}"//session 일반유저 아이디 값
+var ssid = "${star.st_id}"//session 스타 아이디 값
 
 	$(function() {
 		//화면 시작 시 목록 출력
@@ -198,7 +200,7 @@ var counter = 0;
 
 	//게시물 목록 요청
 	function fboardListView() {
-		var st_id = "${star.st_id}";
+		var st_id = "${stVo.st_id}";
 		$.ajax({
 		   url:'${pageContext.request.contextPath}/star/fanBoard/list',
 		   type:'GET',
@@ -212,7 +214,7 @@ var counter = 0;
 	
 	//말머리 별 목록 요청
 	function fboardSubListView(fbo_subject) {
-		var st_id = "${star.st_id}";
+		var st_id = "${stVo.st_id}";
 		$.ajax({
 			url:'${pageContext.request.contextPath}/star/fanBoard/list/subject',
 			type:'GET',
@@ -226,7 +228,7 @@ var counter = 0;
 	
 	//해시태그 별 목록 요청
 	function fboardTagListView(fbo_hashtag) {
-		var st_id = "${star.st_id}";
+		var st_id = "${stVo.st_id}";
 		$.ajax({
 			url:'${pageContext.request.contextPath}/star/fanBoard/list/hashtag',
 			type:'GET',
@@ -543,15 +545,33 @@ var counter = 0;
 		$("#replyListView").empty();
 		
 		$.each(data,function(idx,re){
-			var id = "${member.mem_id}"//session아이디 값
-			var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
+			console.log(re);
 			if(id == re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
-				var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
-				var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";					
-			}else{
+				var userid = re.mem_id			
+			}else if(ssid == re.st_id){
+				var userid = re.mem_id						
+			}
+			var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
+			
+			
+			
+			
+			if(id != re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
+				var li1 = "";
+				var li2 = "";				
+			}else if(ssid != re.st_id){
+				var li1 = "";
+				var li2 = "";				
+			}
+			
+			else if(id != null || ssid != null){
 				var li1 = "";
 				var li2 = "";		
+			}else{
+				var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
+				var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";	
 			}
+			
 			if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
 				var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
 			}else{
@@ -560,8 +580,15 @@ var counter = 0;
 			var ule = "</ul>";
 			
 			var ul = uls+li1+li2+li3+ule;
+			
+			if(re.fan_name == null || re.fan_name == ""){
+				var name = re.st_name;
+			}else{
+				var name = re.fan_name;
+			}
+			
 			$("<div class = 'replyInfo' data-no="+re.re_no+"><hr>") 
-			.append($('<div class = \'row\'>').html(re.fan_name + '&nbsp;' +re.re_time))
+			.append($('<div class = \'row\'>').html(name + '&nbsp;' +re.re_time))
 			.append($('<div class = \'row replyText\'>').html(re.re_content))
 			.append($('<div class = \'row flex-row-reverse\'>').append(ul))
 			.appendTo('#replyListView');
@@ -768,7 +795,7 @@ var counter = 0;
       <h3>글작성</h3>
       <hr>
       <form id="form1">
-         <input style="display:none;" name = "st_id" value="${star.st_id}"/>
+         <input style="display:none;" name = "st_id" value="${stVo.st_id}"/>
          <input style="display:none;" name = "fbo_no" />
          <input style="display:none;" name = "fbo_sub_no" />
          <div class="row starCenter">

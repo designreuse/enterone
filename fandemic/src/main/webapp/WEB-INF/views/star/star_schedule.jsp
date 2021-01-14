@@ -15,7 +15,7 @@
 		<div class="row mb-2">
 			<div class="col-sm-6">
 				<h1>
-					<input type="hidden" value="${star.st_id}" id="sch_stId">${star.st_name}스케줄
+					<input type="hidden" value="${stVo.st_id}" id="sch_stId">${stVo.st_name}스케줄
 				</h1>
 			</div>
 		</div>

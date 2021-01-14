@@ -11,5 +11,6 @@ public class Reply {
 	String re_time;		//작성날짜
 	String re_content;	//작성내용
 	
-	String fan_name;		//닉네임 view로 받아옴
+	String st_name;		//스타이름
+	String fan_name;	//닉네임 view로 받아옴
 }

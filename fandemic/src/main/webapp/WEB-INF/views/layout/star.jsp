@@ -42,7 +42,7 @@
 		});
 		
 		function start(id,fan){
-			if(id==fan and id != null){
+			if(id != fan && id != null){
 				$("#joinModal").show();
 			}
 		} 
@@ -59,7 +59,7 @@
 		
 		function fboardListView() {
 			//채널 가입
-			var st_id = "${star.st_id}";
+			var st_id = "${stVo.st_id}";
 			var fan_name = $("#channelName").val();		
 			$.ajax({
 			    url: "${pageContext.request.contextPath}/star/fanBoard/fanJoin", 
@@ -87,8 +87,8 @@
 		<aside id="colorlib-aside" role="complementary"
 			class="js-fullmainheight text-center">
 			<h1 id="colorlib-logo">
-				<a href="${pageContext.request.contextPath}/star/${star.st_id}"><span class="img"
-					style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_pic}"></span>${star.st_name}</a>
+				<a href="${pageContext.request.contextPath}/star/${stVo.st_id}"><span class="img"
+					style="background-image: url(${pageContext.request.contextPath}/images/star/${stVo.st_pic}"></span>${stVo.st_name}</a>
 			</h1>
 			<button type="button" class="btn btn-primary" id = "joinModal" data-toggle="modal"
 				data-target="#exampleModal" data-what="hello"  style="display:none;">채널가입</button>
@@ -97,13 +97,13 @@
 
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/star/${star.st_id}">Home</a></li>
-					<li><a href="${pageContext.request.contextPath}/star/profile/${star.st_id}">소개</a></li>
-					<li><a href="${pageContext.request.contextPath}/star/schedule/${star.st_id}">스케줄</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/${stVo.st_id}">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/profile/${stVo.st_id}">소개</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/schedule/${stVo.st_id}">스케줄</a></li>
 					<li><a href="#">스타라이브</a></li>
-					<li><a href="${pageContext.request.contextPath}/star/starBoard/${star.st_id}">스타게시판</a></li>
-					<li><a href="${pageContext.request.contextPath}/star/fanBoard/${star.st_id}">팬게시판</a></li>
-					<li><a href="${pageContext.request.contextPath}/star/album/${star.st_id}">사진게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}">스타게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/fanBoard/${stVo.st_id}">팬게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/album/${stVo.st_id}">사진게시판</a></li>
 				</ul>
 			</nav>
 		</aside>

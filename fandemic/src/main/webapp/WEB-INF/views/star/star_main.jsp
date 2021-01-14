@@ -8,10 +8,10 @@ pageEncoding="UTF-8"%>
 		<div class="d-flex align-items-center js-fullheight">
 			<div class="author-image text img d-flex">
 				<section class="home-slider js-fullheight owl-carousel">
-		      <div class="slider-item js-fullheight" style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
+		      <div class="slider-item js-fullheight" style="background-image: url(${pageContext.request.contextPath}/images/star/${stVo.st_banner});">
 		      </div>
 
-		      <div class="slider-item js-fullheight" style="background-image:url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
+		      <div class="slider-item js-fullheight" style="background-image:url(${pageContext.request.contextPath}/images/star/${stVo.st_banner});">
 		      </div>
 		    </section>
 			</div>

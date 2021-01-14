@@ -39,7 +39,7 @@ public class SboardController {
 		String id = star.getSt_id();
 		
 		stVo.setSt_id(id);
-		mav.addObject("star", starService.getStarMain(stVo));
+		mav.addObject("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 
 		comVo.setCom_id(stVo.getCom_id());
@@ -65,7 +65,7 @@ public class SboardController {
 		System.out.println(sboVo);	
 		
 		stVo.setSt_id(sboVo.getSt_id());
-		mav.addObject("star", starService.getStarMain(stVo));
+		mav.addObject("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
 		mav.addObject("company", starService.getProfileCompany(comVo));
