@@ -60,6 +60,7 @@
 		function fboardListView() {
 			//채널 가입
 			var st_id = "${stVo.st_id}";
+			var st_name = "${stVo.st_name}";
 			var fan_name = $("#channelName").val();		
 			$.ajax({
 			    url: "${pageContext.request.contextPath}/star/fanBoard/fanJoin", 
@@ -70,7 +71,7 @@
 			    },
 			    success: function(response) {
 			    	if(response == true) {
-			    		var text = st_id + "의 채널에 오신것을 환영합니다!"
+			    		var text = st_name + "의 채널에 오신것을 환영합니다!"
 			    		alert(text);
 			    		location.href = "${pageContext.request.contextPath}/star/" + st_id;//새로고침
 			    	}

@@ -95,7 +95,16 @@
 }
 
 .replyUl li:hover {
-	text-decoration: underline;
+	cursor: pointer;
+}
+.btnUpdateReply:hover {
+	cursor: pointer;
+}
+.btnDeleteReply:hover {
+	cursor: pointer;
+}
+.btnNotifyReply:hover {
+	cursor: pointer;
 }
 
 /* 해시태그 */

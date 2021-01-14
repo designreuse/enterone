@@ -163,7 +163,6 @@ var counter = 0;
 
             // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
             if (e.key === "Enter" || e.keyCode == 32) {
-            	
                 var tagValue = self.val(); // 값 가져오기
                 // 값이 없으면 동작 ㄴㄴ
                 if (tagValue !== "") {
@@ -361,6 +360,8 @@ var counter = 0;
 				if(arr[i]!=null){
 				    console.log(arr[i]);
                     $("#fbo_hashtag_array").append(" <a href='#' class='tag-cloud-link'>"+arr[i]+"</a>");
+                    $("#tag-list").append("<li class='tag-item'>"+arr[i]+"<span class='del-btn' idx='"+i+"'>x</span></li>");
+                    tag[i+20] = arr[i];
 				}
 			}		
 		}
@@ -553,7 +554,7 @@ var counter = 0;
 				var li2 = "";		
 			}
 			if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
-				var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
+				var li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyModal'>신고</li><span>&nbsp;</span>";
 			}else{
 				var li3 = "";	
 			}
@@ -830,6 +831,40 @@ var counter = 0;
       </form>
    </div>
 </section>
+
+<!-- 모달창 -->
+	<div class="modal fade" id="notifyModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">신고</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">신고 이유</label>
+						<select name = "nof_type">
+							<option>욕설/비방</option>
+							<option>광고</option>
+							<option>허위정보</option>
+							<option>음란물</option>
+							<option>기타</option>
+						</select>
+
+						<label for="recipient-name" class="col-form-label">신고 내용</label>
+						<input type="text" name="nof_content">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" id ="channelJoinAction">가입</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 <!-- 서머노트 -->
 <script>
