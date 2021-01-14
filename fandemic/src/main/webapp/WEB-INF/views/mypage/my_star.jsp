@@ -82,7 +82,7 @@ a{
 					<div align="center">
 						<script>
 							function goPage(p) {
-								location.href = "${pageContext.request.contextPath}/mymail/"
+								location.href = "${pageContext.request.contextPath}/mystar/"
 										+ "?p=" + p
 							}
 						</script>

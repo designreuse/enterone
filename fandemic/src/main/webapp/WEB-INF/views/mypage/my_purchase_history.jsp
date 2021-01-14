@@ -41,7 +41,7 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-12">
 					<div class="line">
 						<div>
 							<a id="rgoods">최근 굿즈 구매 내역</a>

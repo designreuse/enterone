@@ -13,7 +13,7 @@
 	<section class="single">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-12">
 					<div class="line">
 						<div>내 스타 목록</div>
 					</div>

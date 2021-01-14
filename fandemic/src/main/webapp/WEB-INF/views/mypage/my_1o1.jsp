@@ -110,7 +110,7 @@
 
 		<div class="container">
 			<div class="row">
-				<div style="width: 75%">
+				<div class="col-md-12">
 					<div class="col-md-12">
 						<h3 class="title">1:1 문의 내역</h3>
 					</div>
