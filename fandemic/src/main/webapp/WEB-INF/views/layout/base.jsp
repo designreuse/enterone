@@ -141,7 +141,7 @@
                            <li><a href="${pageContext.request.contextPath}/audition/traineeinsert">연습생 등록</a></li>
                            </c:if>
                            <li><a href="${pageContext.request.contextPath}/audition/auditionwork">연습생 활동</a></li>
-                           <li><a href="#">오디션 공고</a></li>
+                           <li><a href="${pageContext.request.contextPath}/audition/auditionlist"">오디션 공고</a></li>
                            
                         </ul>
                      </li>
@@ -166,7 +166,7 @@
                      <li><a href="${pageContext.request.contextPath}/sns">S N S</a></li>
                           <c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null }">
 <!--  magz-dropdown 클래스 제거ㅊ -->
-                     <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
+                     <li class="dropdown "><a href="${pageContext.request.contextPath}/mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                            	<li><a href="${pageContext.request.contextPath}/myupdate"><i class="icon ion-person"></i>
 											회원정보</a></li>
@@ -208,7 +208,7 @@
                      <h1 class="block-title">Company Info</h1>
                      <div class="block-body">
                         <figure class="foot-logo">
-                           <img src="${pageContext.request.contextPath}/resources/images/logo-light.png" class="img-responsive" alt="Logo">
+                           <img src="${pageContext.request.contextPath}/resources/images/1logo.png" class="img-responsive" alt="Logo">
                         </figure>
                         <p class="brand-description">
                            Magz is a HTML5 &amp; CSS3 magazine template based on Bootstrap 3.

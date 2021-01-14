@@ -138,4 +138,29 @@
 	<delete id="deleteqna" parameterType="qna">
 		DELETE QNA WHERE Q_NO = #{q_no}
 	</delete>
+	
+	
+<!-- 	Mystar 3명 select 아지기  -->
+	<select id="myStarList" resultType="map">
+		SELECT S.ST_NAME, S.ST_ICON 
+		FROM FAN F , STAR S 
+		WHERE F.ST_ID = S.ST_ID
+		AND MEM_ID = #{id}
+		ORDER BY FAN_NO
+	</select>
+	<!-- Mystar 다 가져오기 페이지 네이션 넣어? -->
+	<select id="selectStar" resultType="star">
+	SELECT * FROM ( SELECT A.*,
+		ROWNUM RN FROM (
+		SELECT S.ST_ID ST_ID, S.ST_NAME ST_NAME, S.ST_ICON ST_ICON, S.ST_PIC ST_PIC, S.ST_BANNER, S.COM_ID COM_ID, F.MEM_ID MEM_ID FROM STAR S , FAN F WHERE S.ST_ID= F.ST_ID AND F.MEM_ID = #{mem_id} ORDER BY
+		ST_NAME
+		) A ) B WHERE RN BETWEEN #{st_first} AND #{st_last}	
+	</select>
+	
+	<select id="selectAllStarpag" resultType="int">
+		  SELECT COUNT(*)
+		FROM
+		STAR s, fan f
+		WHERE s.st_id = f.st_id and f.mem_id = #{mem_id}
+	</select>
 </mapper>

@@ -39,7 +39,12 @@ public class LoginController {
 	@Autowired MemberMapper memMapper;
 	@Autowired MailService mailservice;
 	@Autowired MainMapper mainDao;
+	
+	
 
+	
+	
+	
 	@RequestMapping("/no-tiles/find") // id,pw 찾기 팝업창  
 	public ModelAndView findIdPw() throws IOException{
 

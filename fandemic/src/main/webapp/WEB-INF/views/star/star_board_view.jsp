@@ -20,13 +20,14 @@ var tag = {};
 var counter = 0;
 var st_id = '${sboard.st_id}';
 var sbo_no = '${sboard.sbo_no}';
-var st_name = "${star.st_name}";
+var st_name = "${stVo.st_name}";
 	$(function() {
 		sboardView(sbo_no);
 		
 		//게시물 수정 페이지 이동 버튼
 		$("#btnUpdateFboard").on("click",function(){
-		  
+			
+			location.href = "${pageContext.request.contextPath}/star/starBoard/updateView/" + sbo_no;
 		});
 		
 		//게시물 삭제 요청 버튼
@@ -38,7 +39,7 @@ var st_name = "${star.st_name}";
 		
 		//목록보기
 		$(".btnFboardListView").on("click",function(){
-			
+			window.history.back();
 		});
 		
 		//댓글 등록 요청
@@ -200,8 +201,7 @@ var st_name = "${star.st_name}";
 	       } 
 	   });
 	}
-	 
-	 
+
 	//이전 작성글 기록 지우기
 	function formReset(){
 		$('#summernote').summernote('reset');
@@ -257,6 +257,7 @@ var st_name = "${star.st_name}";
 				var li1 = "";
 				var li2 = "";		
 			}
+			
 			if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
 				var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
 			}else{
@@ -265,8 +266,15 @@ var st_name = "${star.st_name}";
 			var ule = "</ul>";
 			
 			var ul = uls+li1+li2+li3+ule;
+			
+			if(re.fan_name == null || re.fan_name == ""){
+				var name = re.st_name;
+			}else{
+				var name = re.fan_name;
+			}
+			console.log(re)
 			$("<div class = 'replyInfo' data-no="+re.re_no+"><hr>") 
-			.append($('<div class = \'row\'>').html(re.fan_name + '&nbsp;' +re.re_time))
+			.append($('<div class = \'row\'>').html(name + '&nbsp;' +re.re_time))
 			.append($('<div class = \'row replyText\'>').html(re.re_content))
 			.append($('<div class = \'row flex-row-reverse\'>').append(ul))
 			.appendTo('#replyListView');
@@ -288,7 +296,6 @@ var st_name = "${star.st_name}";
              }
           }, 
           error:function(xhr, status, message) { 
-              /* alert(" status: "+status+" er:"+message); */
               alert("로그인 후 이용해주세요.");
           }
        });

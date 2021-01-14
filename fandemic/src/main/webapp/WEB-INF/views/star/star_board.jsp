@@ -34,7 +34,7 @@
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<%-- <img class="img img-2"  id='${sboard.sbo_no}' src="" alt="대표 사진이 없습니다"
-							onerror="this.src='${pageContext.request.contextPath}/images/star/${star.st_icon}'"> --%>
+							onerror="this.src='${pageContext.request.contextPath}/images/star/${stVo.st_icon}'"> --%>
 							<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}" class="img img-2" id="${sboard.sbo_no}"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
@@ -64,7 +64,7 @@
 							var list = sentence.substring(start+5, end);
 
 							if(list.length < 130){//이미지 없을때 대체 이미지로 해당 스타의 아이콘 출력
-								var icon = '${star.st_icon}';
+								var icon = '${stVo.st_icon}';
 								var depa = '${pageContext.request.contextPath}/images/star/'+ icon ;
 								$("#${sboard.sbo_no}").css("background-image" , "url("+depa+")");
 							}else if(list != null){

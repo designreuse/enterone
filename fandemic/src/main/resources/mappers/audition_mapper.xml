@@ -78,7 +78,6 @@ WHERE MEM_ID=#{mem_id}
 	DELETE FROM ACTIVITY
 		WHERE AC_NO=#{ac_no}
 	</delete>	
-
 <!--상세프로필-->
 <select id="activityDetail" resultType="Activity">
 	SELECT * FROM ACTIVITY 

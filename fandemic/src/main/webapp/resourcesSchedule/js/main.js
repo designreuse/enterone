@@ -108,7 +108,7 @@ var calendar = $('#calendar').fullCalendar({
   events: function (start, end, timezone, callback) {
     $.ajax({
       type: "post",
-      url: "ScheduleList",
+      url: urlContext+"/ScheduleList",
       dataType:"json",
       data: {
       	st_id: editStId.val()

@@ -46,7 +46,7 @@ public class StarController {
 		}
 		//스타정보 출력
 		stVo.setSt_id(id);
-		model.addAttribute("star", starService.getStarMain(stVo));
+		model.addAttribute("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
 		model.addAttribute("company", starService.getProfileCompany(comVo));
@@ -78,7 +78,7 @@ public class StarController {
 	@RequestMapping(value = "/star/profile/{id}")
 	public ModelAndView starProfile(@PathVariable String id, Company comVo, Star stVo, Model model) throws IOException {
 		stVo.setSt_id(id);
-		model.addAttribute("star", starService.getStarMain(stVo));
+		model.addAttribute("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
 		model.addAttribute("company", starService.getProfileCompany(comVo));
@@ -90,7 +90,7 @@ public class StarController {
 	@RequestMapping(value = "/star/schedule/{id}")
 	public ModelAndView starSchedule(@PathVariable String id, Company comVo, Star stVo, Model model) throws IOException {
 		stVo.setSt_id(id);
-		model.addAttribute("star", starService.getStarMain(stVo));
+		model.addAttribute("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
 		model.addAttribute("company", starService.getProfileCompany(comVo));
@@ -110,7 +110,7 @@ public class StarController {
 	@RequestMapping(value = "/star/live/{id}")
 	public ModelAndView starLive(@PathVariable String id, Star stVo, Model model) throws IOException {
 		stVo.setSt_id(id);
-		model.addAttribute("star", starService.getStarMain(stVo));
+		model.addAttribute("stVo", starService.getStarMain(stVo));
 		return new ModelAndView("star/star_live");
 	}
 	
@@ -119,7 +119,7 @@ public class StarController {
 	public ModelAndView starBoard(@PathVariable String id, Sboard sboard, Company comVo, Star stVo, ModelAndView mav) throws IOException {
 
 		stVo.setSt_id(id);
-		mav.addObject("star", starService.getStarMain(stVo));
+		mav.addObject("stVo", starService.getStarMain(stVo));
 		
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
@@ -136,7 +136,7 @@ public class StarController {
 	@RequestMapping(value = "/star/fanBoard/{id}")
 	public ModelAndView starFanBoard(@PathVariable String id, Star stVo, Company comVo, Model model) throws IOException {
 		stVo.setSt_id(id);
-		model.addAttribute("star", starService.getStarMain(stVo));
+		model.addAttribute("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
 		model.addAttribute("company", starService.getProfileCompany(comVo));
@@ -147,7 +147,7 @@ public class StarController {
 	@RequestMapping(value = "/star/album/{id}")
 	public ModelAndView starAlbum(@PathVariable String id, Star stVo, Company comVo, Model model) throws IOException {
 		stVo.setSt_id(id);
-		model.addAttribute("star", starService.getStarMain(stVo));
+		model.addAttribute("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
 		model.addAttribute("company", starService.getProfileCompany(comVo));

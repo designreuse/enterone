@@ -15,7 +15,9 @@ public interface MypageMapper {
 //	내정보 수정
 	public int memUpdate (Member member);
 	
-
+	// 스타 조회
+	public int selectAllStarpag(Star star); //Star 페이지네이션
+	public List<Star> selectStar(Star star); // QnA 조회하기
 // 쪽지	
 	public int SendMail (Letter letter); //쪽지 보내기
 	public int getletterCount(Letter letter); //쪽지 페이지네이션

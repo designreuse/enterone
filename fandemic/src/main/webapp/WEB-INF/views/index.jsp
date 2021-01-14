@@ -19,10 +19,10 @@
 			$("#" + tab_id).addClass('current');
 		});
 		
-		// 실시간 sns 5초마다 업데이트
+		// 실시간 sns 5초마다 업데이트 (50초마다)
 		window.setInterval(function(){
 			newSns();
-		}, 5000);
+		}, 50000);
 		
 		
 		
@@ -81,12 +81,14 @@
 	            			$("#st" + (i+1)).text(data[i].ST_NAME).css("display","");	
 	            		}
 
-		            	for(var i=0; i < last; i++) { // last 만큼만 for문
+		            	for(var i=0; i < last; i++) { // last 만큼만 for문 stA3
 		            		var img = data[i].ST_ICON;
 		            		if ( img == null || img == '') {
 		            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/member_pic/no-profile.jpg").css("display","");
+		            			$("#stA" + (i+1)).attr('href', '${pageContext.request.contextPath}/star/' + data[i].ST_ID)
 		            		} else {
 		            			$("#stImg" + (i+1)).attr("src","${pageContext.request.contextPath}/images/star/" + img).css("display","");
+		            			$("#stA" + (i+1)).attr("href", "${pageContext.request.contextPath}/star/"+ data[i].ST_ID);
 		            		}
 		            	}
 		            	
@@ -391,9 +393,9 @@ hr {
 
 										<table>
 											<tr>
-												<td align="center"><img id="stImg1" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; display: none;"></td>
-												<td align="center"><img id="stImg2" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; display: none;"></td>
-												<td align="center"><img id="stImg3" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; display: none;"></td>
+												<td align="center"><a id="stA1"><img id="stImg1" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; display: none;"></a></td>
+												<td align="center"><a id="stA2"><img id="stImg2" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; display: none;"></a></td>
+												<td align="center"><a id="stA3"><img id="stImg3" class="inputimg" src="" alt="member_profile" style="width: 50px; height: 50px; display: none;"></a></td>
 											</tr>
 											
 											<tr>
@@ -505,7 +507,7 @@ hr {
 		</div>
 		<!-- sns 뿌리기 -->
 		<div class="line">
-			<div>???</div>
+			<div>NEW SNS</div>
 		</div>
 		<article class="featured">
 		<div class="content" style="padding-top: 20px; " >

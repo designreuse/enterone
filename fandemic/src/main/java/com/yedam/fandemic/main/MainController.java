@@ -133,6 +133,12 @@ public class MainController {
 	public ModelAndView search(Model model, HttpServletRequest request) {
 		
 		String keyword = request.getParameter("keyword");
+		if (keyword == null || keyword == "") {
+			
+			return new ModelAndView("search");
+			
+		} else {
+		
 
 		List<Company> com = dao.searchCom(keyword);
 		List<Star> st = dao.searchStar(keyword);
@@ -152,7 +158,7 @@ public class MainController {
 		}
        
 		return new ModelAndView("search");
-
+		}
 	}
 	
 	@PostMapping("/proUpdate")   

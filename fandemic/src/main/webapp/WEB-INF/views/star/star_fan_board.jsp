@@ -198,7 +198,7 @@ var counter = 0;
 
 	//게시물 목록 요청
 	function fboardListView() {
-		var st_id = "${star.st_id}";
+		var st_id = "${stVo.st_id}";
 		$.ajax({
 		   url:'${pageContext.request.contextPath}/star/fanBoard/list',
 		   type:'GET',
@@ -212,7 +212,7 @@ var counter = 0;
 	
 	//말머리 별 목록 요청
 	function fboardSubListView(fbo_subject) {
-		var st_id = "${star.st_id}";
+		var st_id = "${stVo.st_id}";
 		$.ajax({
 			url:'${pageContext.request.contextPath}/star/fanBoard/list/subject',
 			type:'GET',
@@ -226,7 +226,7 @@ var counter = 0;
 	
 	//해시태그 별 목록 요청
 	function fboardTagListView(fbo_hashtag) {
-		var st_id = "${star.st_id}";
+		var st_id = "${stVo.st_id}";
 		$.ajax({
 			url:'${pageContext.request.contextPath}/star/fanBoard/list/hashtag',
 			type:'GET',
@@ -560,8 +560,15 @@ var counter = 0;
 			var ule = "</ul>";
 			
 			var ul = uls+li1+li2+li3+ule;
+			
+			if(re.fan_name == null || re.fan_name == ""){
+				var name = re.st_name;
+			}else{
+				var name = re.fan_name;
+			}
+			
 			$("<div class = 'replyInfo' data-no="+re.re_no+"><hr>") 
-			.append($('<div class = \'row\'>').html(re.fan_name + '&nbsp;' +re.re_time))
+			.append($('<div class = \'row\'>').html(name + '&nbsp;' +re.re_time))
 			.append($('<div class = \'row replyText\'>').html(re.re_content))
 			.append($('<div class = \'row flex-row-reverse\'>').append(ul))
 			.appendTo('#replyListView');
@@ -768,7 +775,7 @@ var counter = 0;
       <h3>글작성</h3>
       <hr>
       <form id="form1">
-         <input style="display:none;" name = "st_id" value="${star.st_id}"/>
+         <input style="display:none;" name = "st_id" value="${stVo.st_id}"/>
          <input style="display:none;" name = "fbo_no" />
          <input style="display:none;" name = "fbo_sub_no" />
          <div class="row starCenter">

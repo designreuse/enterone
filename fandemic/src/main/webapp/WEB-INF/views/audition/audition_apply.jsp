@@ -191,10 +191,14 @@ ul.tabs li.current {
 			$("#tab-4").addClass('current');
 
 		});
-		
+
 		$('#btn_search_postcode').click(function() {
-			openDaumZipAddress($("#pro_postcode"),$("#pro_addr1"));
-		});  
+			openDaumZipAddress($("#pro_postcode"), $("#pro_addr1"));
+		});
+		$('#btn_cancle_apply').click(function() {
+		//임시로	
+			location.href="${pageContext.request.contextPath}/audition/auditionprofile";
+		});
 		
 
 	});
@@ -219,7 +223,6 @@ ul.tabs li.current {
 			return true;
 		}
 	}
-
 </script>
 <body>
 	<section class="page">
@@ -377,12 +380,10 @@ ul.tabs li.current {
 							</div>
 							<div class="row">
 								<div class="col-md-2 col-sm-2 col-xs-2">
-									<button class="btn btn-primary" id="btn_save_apply">지원서
-										저장</button>
-								</div>
-								<div class="col-md-1 col-sm-1 col-xs-1">
 									<button class="btn btn-primary" id="btn_cancle_apply">지원
 										취소</button>
+								</div>
+								<div class="col-md-1 col-sm-1 col-xs-1">
 								</div>
 								<div class="col-md-7 col-sm-7 col-xs-7"></div>
 								<div class="col-md-2 col-sm-2 col-xs-2">
@@ -438,12 +439,11 @@ ul.tabs li.current {
 				</div>
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn btn-primary" id="btn_save_apply">지원서
-							저장</button>
-					</div>
-					<div class="col-md-1 col-sm-1 col-xs-1">
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
 							취소</button>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						
 					</div>
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
@@ -485,12 +485,12 @@ ul.tabs li.current {
 												<option value="3">댄스</option>
 											</select>
 										</div>
-										<td></td>
+									<td></td>
 									</td>
 									<td></td>
 									<td></td>
 								</tr>
-								
+
 								<tr>
 
 									<td class="font-f">나이</td>
@@ -501,18 +501,11 @@ ul.tabs li.current {
 												onkeyup="javascript:remove_char(event);"
 												oninput="javascript:chk_num_len(this); return false;">
 										</div></td>
-										<td></td>
+									<td></td>
 									<td></td>
 									<td></td>
 								</tr>
-								
-								
-								
-								
-								
-								
-								
-								
+
 								<tr>
 
 									<td class="font-f">신장(cm)/체중(kg)</td>
@@ -555,16 +548,14 @@ ul.tabs li.current {
 						</form>
 					</div>
 
-					
-						
-						<div class="row">
+
+
+					<div class="row">
 						<div class="col-md-2 col-sm-2 col-xs-2">
-							<button class="btn btn-primary" id="btn_save_apply">지원서
-								저장</button>
-						</div>
-						<div class="col-md-1 col-sm-1 col-xs-1">
 							<button class="btn btn-primary" id="btn_cancle_apply">지원
 								취소</button>
+						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1">
 						</div>
 						<div class="col-md-5 col-sm-5 col-xs-5"></div>
 						<div class="col-md-2 col-sm-2 col-xs-2">
@@ -577,8 +568,8 @@ ul.tabs li.current {
 								단계</button>
 						</div>
 					</div>
-					
-					
+
+
 				</div>
 			</div>
 			<div id="tab-4" class="tab-content">
@@ -597,10 +588,10 @@ ul.tabs li.current {
 							</div></td>
 						<td>- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)</td>
 						<td></td>
-						
+
 					</tr>
-					
-						<tr>
+
+					<tr>
 						<td class="font-f">영상첨부(필수)</td>
 						<td></td>
 						<td></td>
@@ -613,24 +604,22 @@ ul.tabs li.current {
 							나오게 촬영한 노래/랩 영상 첨부<br> - <strong>댄스 부문</strong>: 1분 30초 내에
 							밝은 곳, 전신이 나오게 촬영한 댄스 영상 첨부<br> - <strong>외모 부문</strong>: 1분
 							내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자기소개 영상 첨부<br> - <strong>연기
-								부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자유연기 영상 첨부</td>
+								부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자유연기 영상 첨부
+						</td>
 						<td></td>
-						
+
 					</tr>
-					
+
 
 				</table>
 
 
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn btn-primary" id="btn_save_apply">지원서
-							저장</button>
-					</div>
-					<div class="col-md-1 col-sm-1 col-xs-1">
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
 							취소</button>
 					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1"></div>
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_next_minus3" rel="step2">이전
@@ -652,58 +641,57 @@ ul.tabs li.current {
 						<td class="font-f">이름</td>
 						<td>${member.mem_name}</td>
 						<td></td>
-						
-						
+
+
 					</tr>
 					<tr>
 						<td class="font-f">분야</td>
 						<td></td>
 						<td></td>
-						
-						
+
+
 					</tr>
 					<tr>
 						<td class="font-f">취미/특기</td>
 						<td></td>
 						<td></td>
-						
-						
+
+
 					</tr>
 					<tr>
 						<td class="font-f">나이(만 나이)</td>
 						<td></td>
 						<td></td>
-						
-						
+
+
 					</tr>
 					<tr>
 						<td class="font-f">신장/체중</td>
 						<td></td>
 						<td></td>
-						
+
 					</tr>
 					<tr>
 						<td class="font-f">대표사진</td>
 						<td></td>
 						<td></td>
-						
-						
+
+
 					</tr>
 				</table>
-				<br>
-				<br>
-				
+				<br> <br>
+
 				<table class="table table-hover">
 					<tr>
 						<td class="font-f">대표영상</td>
 						<td><div class="video-embed-area">
-                                <video src="" controls="" muted=""></video>
-                            </div></td>
+								<video src="" controls="" muted=""></video>
+							</div></td>
 						<td></td>
-						
-						
+
+
 					</tr>
-					
+
 				</table>
 
 				<div class="row">
@@ -711,7 +699,12 @@ ul.tabs li.current {
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
 							취소</button>
 					</div>
-					<div class="col-md-7 col-sm-7 col-xs-7"></div>
+					<div class="col-md-1 col-sm-1 col-xs-1" style="margin-left:40px">
+						<button class="btn btn-primary" id="btn_cancle_apply">지원
+							정보 저장</button>
+					</div>
+					
+					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_next_minus4" rel="step2">이전
 							단계</button>

@@ -10,22 +10,22 @@
 			<div class="author-image text img d-flex">
 				<section class="home-slider js-fullmainheight owl-carousel">
 					<div class="slider-item js-fullmainheight"
-						style="background-image: url(${pageContext.request.contextPath}/images/star/${star.st_pic});">
+						style="background-image: url(${pageContext.request.contextPath}/images/star/${stVo.st_pic});">
 					</div>
 
 					<div class="slider-item js-fullmainheight"
-						style="background-image:url(${pageContext.request.contextPath}/images/star/${star.st_banner});">
+						style="background-image:url(${pageContext.request.contextPath}/images/star/${stVo.st_banner});">
 					</div>
 				</section>
 			</div>
 			<div class="author-info-profile text p-3 p-md-5">
 				<div class="desc">
 					<span class="subheading">Hello! I'm</span>
-					<h1 class="big-letter">${star.st_name}</h1>
+					<h1 class="big-letter">${stVo.st_name}</h1>
 					<h1 class="mb-4">
-						<span>${star.st_name}</span>&nbsp;Your Star. <!-- <span>I Capture Life</span> -->
+						<span>${stVo.st_name}</span>&nbsp;Your Star. <!-- <span>I Capture Life</span> -->
 					</h1>
-					<p class="mb-4">${star.st_introduce}</p>
+					<p class="mb-4">${stVo.st_introduce}</p>
 					<h3 class="signature h1">Enter One</h3>
 					<ul class="ftco-social mt-3">
 						<li class="ftco-animate"><a href="#"><span

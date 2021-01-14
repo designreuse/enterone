@@ -107,8 +107,32 @@ public class MypageController {
 
 	// my스타 메인
 	@RequestMapping(value = "/mystar")
-	public ModelAndView mystar(HttpServletResponse response) throws IOException {
-		return new ModelAndView("mypage/my_star");
+		public String selectAllMyStar(Model model, Star star, HttpSession session, HttpServletRequest request,Fan fan, HttpServletResponse response) throws IOException {
+			Member member = (Member) session.getAttribute("member");
+			star.setMem_id(member.getMem_id());
+			String strp = request.getParameter("p");
+			int p = 1;
+			if (strp != null && !strp.equals("")) {
+				p = Integer.parseInt(strp);
+			}
+
+			Paging paging = new Paging();
+
+			paging.setPageUnit(4); // 한페이지에 5건씩. 생략시 기본10
+			paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+			paging.setPage(p); // 현재 페이지 지정
+
+			star.setSt_first(paging.getFirst());
+			star.setSt_last(paging.getLast());
+
+			paging.setTotalRecord(myMapper.selectAllStarpag(star));
+
+			System.out.println(paging);
+
+			model.addAttribute("paging", paging);
+			model.addAttribute("starlist", myMapper.selectStar(star));
+			
+			return "mypage/my_star";
 	}
 
 	// my연습생 메인
@@ -258,4 +282,10 @@ public class MypageController {
 		System.out.println(qna);
 		return new ModelAndView("redirect:my1o1");
 }
+	
+	
+	
+	
+	
+	
 	}

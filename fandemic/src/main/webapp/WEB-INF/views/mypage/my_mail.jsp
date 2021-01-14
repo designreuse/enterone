@@ -65,7 +65,7 @@
 <section class="single">
 	<div class="container">
 		<div class="row">
-			<div style="width: 75%">
+			<div class="col-md-12">
 				<div class="line">
 					<div>
 						<a id="rgoods">최근 쪽지</a>
@@ -73,7 +73,7 @@
 				</div>
 
 
-				<div class="row rgoods">
+				<div class="row rgoods" class="col-md-12">
 					<div>
 						<button style="float: right;" type="button"
 							class="btn btn-primary" data-toggle="modal"
