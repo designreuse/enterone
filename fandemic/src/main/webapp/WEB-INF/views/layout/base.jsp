@@ -166,7 +166,7 @@
                      <li><a href="${pageContext.request.contextPath}/sns">S N S</a></li>
                           <c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null }">
 <!--  magz-dropdown 클래스 제거ㅊ -->
-                     <li class="dropdown "><a href="mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
+                     <li class="dropdown "><a href="${pageContext.request.contextPath}/mypagemain">마 이 페 이 지 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                            	<li><a href="${pageContext.request.contextPath}/myupdate"><i class="icon ion-person"></i>
 											회원정보</a></li>

@@ -8,10 +8,6 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/star/{1}.jsp" />
 	</definition>
-		<definition name="mypage/*" template="/WEB-INF/views/layout/mypagedecorator.jsp">
-		<put-attribute name="body"
-			value="/WEB-INF/views/mypage/{1}.jsp" />
-	</definition>
 	
 	<definition name="mgt/company/*" template="/WEB-INF/views/layout/management.jsp">
 		<put-attribute name="body"
