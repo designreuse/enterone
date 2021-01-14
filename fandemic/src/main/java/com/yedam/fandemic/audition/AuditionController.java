@@ -44,6 +44,13 @@ public class AuditionController {
 		return new ModelAndView("audition/audition_apply");
 
 	}
+	
+	//오디션 목록
+	@RequestMapping(value = "/audition/auditionlist") // 주소
+	public ModelAndView auditionlist(HttpServletResponse response) throws IOException {
+		return new ModelAndView("audition/audition_list");
+
+	}
 
 	// 연습생 프로필
 	@RequestMapping(value = "/audition/auditionprofile") // 주소

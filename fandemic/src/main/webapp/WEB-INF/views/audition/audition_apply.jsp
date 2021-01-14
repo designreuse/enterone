@@ -196,7 +196,8 @@ ul.tabs li.current {
 			openDaumZipAddress($("#pro_postcode"), $("#pro_addr1"));
 		});
 		$('#btn_cancle_apply').click(function() {
-			location.href="";
+		//임시로	
+			location.href="${pageContext.request.contextPath}/audition/auditionprofile";
 		});
 		
 
@@ -379,12 +380,10 @@ ul.tabs li.current {
 							</div>
 							<div class="row">
 								<div class="col-md-2 col-sm-2 col-xs-2">
-									<button class="btn btn-primary" id="btn_save_apply">지원서
-										저장</button>
-								</div>
-								<div class="col-md-1 col-sm-1 col-xs-1">
 									<button class="btn btn-primary" id="btn_cancle_apply">지원
 										취소</button>
+								</div>
+								<div class="col-md-1 col-sm-1 col-xs-1">
 								</div>
 								<div class="col-md-7 col-sm-7 col-xs-7"></div>
 								<div class="col-md-2 col-sm-2 col-xs-2">
@@ -440,12 +439,11 @@ ul.tabs li.current {
 				</div>
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn btn-primary" id="btn_save_apply">지원서
-							저장</button>
-					</div>
-					<div class="col-md-1 col-sm-1 col-xs-1">
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
 							취소</button>
+					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1">
+						
 					</div>
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
@@ -554,12 +552,10 @@ ul.tabs li.current {
 
 					<div class="row">
 						<div class="col-md-2 col-sm-2 col-xs-2">
-							<button class="btn btn-primary" id="btn_save_apply">지원서
-								저장</button>
-						</div>
-						<div class="col-md-1 col-sm-1 col-xs-1">
 							<button class="btn btn-primary" id="btn_cancle_apply">지원
 								취소</button>
+						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1">
 						</div>
 						<div class="col-md-5 col-sm-5 col-xs-5"></div>
 						<div class="col-md-2 col-sm-2 col-xs-2">
@@ -620,13 +616,10 @@ ul.tabs li.current {
 
 				<div class="row">
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn btn-primary" id="btn_save_apply">지원서
-							저장</button>
-					</div>
-					<div class="col-md-1 col-sm-1 col-xs-1">
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
 							취소</button>
 					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1"></div>
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_next_minus3" rel="step2">이전
@@ -706,7 +699,12 @@ ul.tabs li.current {
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
 							취소</button>
 					</div>
-					<div class="col-md-7 col-sm-7 col-xs-7"></div>
+					<div class="col-md-1 col-sm-1 col-xs-1" style="margin-left:40px">
+						<button class="btn btn-primary" id="btn_cancle_apply">지원
+							정보 저장</button>
+					</div>
+					
+					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_next_minus4" rel="step2">이전
 							단계</button>
