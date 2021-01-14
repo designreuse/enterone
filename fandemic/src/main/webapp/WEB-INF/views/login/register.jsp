@@ -342,7 +342,7 @@ ul.tabs li.current {
 	}
 	
 	
-function mailCode(memor, email, tag, btnEnd) {
+function mailCode(m1, email, tag, btnEnd) {
 		
 	$.ajax({
         url :'${pageContext.request.contextPath}/mailCode',
@@ -350,7 +350,7 @@ function mailCode(memor, email, tag, btnEnd) {
         data : {email : email },
         
         success:function(data){
-        	if(memor == "m") {
+        	if(m1 == "m") {
         		memEnd(data);
         	} else {
         		comEnd(data);
