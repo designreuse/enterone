@@ -116,14 +116,7 @@ var counter = 0;
 		      replyInsert();//댓글 등록 요청 보내기
 		   }
 		});
-      
-				
-	    //댓글 신고 요청
-		$("body").on("click",".btnNotifyReply",function(){
-			var re_no = $(this).parent().parent().parent().data("no");
-			alert(re_no);
-		});
-		   
+       
 		//댓글 수정 화면 띄우기
 		$("body").on("click",".btnUpdateReply",function(){
 			var replyOrigin = $(this).parent().parent().parent();
@@ -143,7 +136,14 @@ var counter = 0;
 			replyDelete(re_no);
 		});
 		
-		
+		 //댓글 신고 요청
+		$("body").on("click",".btnNotifyReply",function(){
+			var re_no = $(this).parent().parent().parent().data("no");
+			alert(re_no);
+			replyNotify(re_no)
+		});
+		 
+		 
 		
 //해시태그 구현
         // 테스트용
@@ -360,8 +360,10 @@ var counter = 0;
 				if(arr[i]!=null){
 				    console.log(arr[i]);
                     $("#fbo_hashtag_array").append(" <a href='#' class='tag-cloud-link'>"+arr[i]+"</a>");
+                    //수정 뷰에서 기존 태그 출력을 위한 값
                     $("#tag-list").append("<li class='tag-item'>"+arr[i]+"<span class='del-btn' idx='"+i+"'>x</span></li>");
-                    tag[i+20] = arr[i];
+                    tag[i] = arr[i];
+                    counter = i+1;
 				}
 			}		
 		}
@@ -665,6 +667,12 @@ var counter = 0;
 		});
    }
    
+	//댓글 신고 클릭시 정보담기
+	function a(re_no) {
+		/* $("#modalNotifyDefault").find("input:text[name='fbo_no']").val() */
+		$("#modalNotifyDefault").find("input:text[name='re_no']").val(re_no)
+	}
+   
 </script>
 
 <!-- 팬 게시판 게시글 목록 -->
@@ -804,8 +812,8 @@ var counter = 0;
                	<!-- 해시태그 -->
 			    <div class="content">
 			        <div class = "row">
-			            <input type="text" id="tag" size="7" placeholder="태그입력" />
-			            <button type="button" id = "tag-form">누르면 태그값 보임</button>
+			            <input type="text" id="tag" size="25" placeholder="태그입력" />
+			           <!--  <button type="button" id = "tag-form">누르면 태그값 보임</button> -->
 			        </div>
 			        <div class = "row">
 			        	<ul id="tag-list">
@@ -844,23 +852,29 @@ var counter = 0;
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
+					<div id = "modalNotifyDefault" style="display:none;">
+						 <input name = "re_no" />
+						 <input name = "fbo_no" />
+					</div>
+					<div class = " form-group">
 						<label for="recipient-name" class="col-form-label">신고 이유</label>
 						<select name = "nof_type">
-							<option>욕설/비방</option>
+							<option>욕설,비방</option>
 							<option>광고</option>
 							<option>허위정보</option>
 							<option>음란물</option>
 							<option>기타</option>
 						</select>
-
+					</div>
+					
+					<div class = " form-group">
 						<label for="recipient-name" class="col-form-label">신고 내용</label>
-						<input type="text" name="nof_content">
+						<textarea name="nof_content" style = "width:100%" rows = 7></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-					<button type="button" class="btn btn-primary" id ="channelJoinAction">가입</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary">신고</button>
 				</div>
 			</div>
 		</div>
