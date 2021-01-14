@@ -24,11 +24,9 @@ public class UntactController {
 	
 	@RequestMapping(value = "/untact")
 	public ModelAndView test(Model model, HttpServletRequest request) throws IOException {
-		
-		
+
 		// all 리스트
 		model.addAttribute("unList", dao.untactList());
-		
 		//커밍순 리스트
 		return new ModelAndView("untact/untact");
 	}
@@ -38,33 +36,40 @@ public class UntactController {
 	public String untactCode(HttpServletRequest request, RedirectAttributes redirect) throws IOException {
 		
 		String code = request.getParameter("code");
-		
 		if (code.equals("code")) {
 			return "뭐 넘기지";			
 		} else {
 			return null;
 		}
-		
-		
 	}
 	
-	@RequestMapping(value = "/no-tiles/unDetail")
+	
+	
+	@RequestMapping(value = "/starUntact")
+	public ModelAndView test(HttpServletResponse response) throws IOException {
+		return new ModelAndView("untact/starUntact");
+	}
+	
+	@RequestMapping(value = "/unDetail")
 	public ModelAndView unDetail(HttpServletResponse response) throws IOException {
-		return new ModelAndView("no-tiles/unDetail");
+		return new ModelAndView("untact/unDetail");
 	}
 
-	@RequestMapping(value = "/ticket")
-	public ModelAndView test1(HttpServletResponse response) throws IOException {
-		return new ModelAndView("untact/ticket");
-	}
 
-	@RequestMapping(value = "/ticketReserv")
-	public ModelAndView test2(HttpServletResponse response) throws IOException {
-		return new ModelAndView("untact/ticket_reserv");
-	}
-
-	@RequestMapping(value = "/ticketReservList")
-	public ModelAndView test3(HttpServletResponse response) throws IOException {
-		return new ModelAndView("untact/ticket_reserv_list");
-	}
+//	@RequestMapping(value = "/ticket")
+//	public ModelAndView test1(HttpServletResponse response) throws IOException {
+//		return new ModelAndView("untact/ticket");
+//	}
+//
+//	@RequestMapping(value = "/ticketReserv")
+//	public ModelAndView test2(HttpServletResponse response) throws IOException {
+//		return new ModelAndView("untact/ticket_reserv");
+//	}
+//
+//	@RequestMapping(value = "/ticketReservList")
+//	public ModelAndView test3(HttpServletResponse response) throws IOException {
+//		return new ModelAndView("untact/ticket_reserv_list");
+//	}
+	
+	
 }

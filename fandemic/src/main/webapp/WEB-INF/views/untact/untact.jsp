@@ -71,7 +71,8 @@ $(document).ready(function() {
 	            		alert("코드가 일치하지 않습니다.");
 	            	} else {
 	            		alert("입장합니다.");
-	            		window.open("${pageContext.request.contextPath}/no-tiles/unDetail", "", "width=1500, height=900");
+	            		$(location).attr('href','${pageContext.request.contextPath}/unDetail');
+	            		
 	            	}
 	             	
 	            },error:function(){ alert("실패"); }
