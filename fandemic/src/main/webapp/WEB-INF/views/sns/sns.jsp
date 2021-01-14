@@ -14,9 +14,11 @@
 .dropdown-toggle {
 	
 }
-.div-mylist:hover{
-color:blue;
+
+.div-mylist:hover {
+	color: blue;
 }
+
 #profileimg {
 	height: 228px;
 	background: white;
@@ -455,6 +457,8 @@ color:blue;
 													result.sns_title)//
 											modal.find('.content').text(
 													result.sns_content)//
+											modal.find('#reply_sns_no').val(result.sns_no)//
+											modal.find('#reply_mem_id').val(result.mem_id)//
 											modal.modal('show');//
 										}
 									});
@@ -509,8 +513,10 @@ color:blue;
 									})
 						});
 
-		$('.div-mylist').on('click',
-				function(event) {
+		$('.div-mylist')
+				.on(
+						'click',
+						function(event) {
 							var modal = $('#exampleModal9')
 							var no = $(this).data("no");
 							$
@@ -539,11 +545,7 @@ color:blue;
 
 									});
 						})
-		
-		
-		
-		
-		
+
 		// 	쪽지 보내기
 		$('.btnLetter').on('click', function(event) {//
 			var modal = $('#modal-letter');//
@@ -556,58 +558,176 @@ color:blue;
 			modal.modal('show');
 		});
 		// MyPost 목록 보기, YourPost 목록 보기
-		$('.btn-myPost').on('click', function(event) {//
-			var modal = $('#modal-myPost');//
-			var id = $(this).data("id");//
-			$.ajax({//
-				url : '${pageContext.request.contextPath}/mysnslist?mem_id='
-						+ id,
-				dataType : 'json',//
-				success : function(result) {//
-			
-					
-					
-					if (result.snslist[0].mem_pic != null
-							&& result.snslist[0].mem_type == 0) {
-						modal.find('#img-mypost')
-								.attr('src',
-										result.snslist[0].mem_pic)// 멤버사진
-					}
-					if (result.snslist[0].mem_pic == null) {
-						modal
-								.find(
-										'#img-mypost')
-								.attr('src',
-										"${pageContext.request.contextPath}/images/member_pic/no-profile.jpg")// 멤버사진
-					}
-					if (result.snslist[0].mem_pic != null
-							&& result.snslist[0].mem_type == 1) {
-						modal
-								.find(
-										'#img-mypost')
-								.attr(
-										'src',
-										'${pageContext.request.contextPath}/images/member_pic/'
-												+ result.snslist[0].mem_pic)// 멤버사진
-					}
-					modal.find('#label-myid').text(result.snslist[0].mem_id)
-					
-					modal.find('#mypostbox').empty()//
-			for (var i = 0; i < result.snslist.length; i++){
-			var mylist = 
-				'<div class="col-xs div-mylist" data-no="'+result.snslist[i].sns_no+'" style="height: 45px;"></label><label id="label-posttitle" style="margin: 16px;">'+result.snslist[i].sns_title+'</label><label>'+(result.snslist[i].sns_pic == "" || result.snslist[i].sns_pic == null? '사진없음' : '사진있음' )+'</label><a href="#" class="love"><i class="ion-android-favorite-outline"></i><div>'+result.snslist[i].sns_likes+'</div></a></div>'
-				modal.find('#mypostbox').append(mylist)
-				}
-				modal.modal('show');
-				}
-			})
-		})
-		
+		$('.btn-myPost')
+				.on(
+						'click',
+						function(event) {//
+							var modal = $('#modal-myPost');//
+							var id = $(this).data("id");//
+							$
+									.ajax({//
+										url : '${pageContext.request.contextPath}/mysnslist?mem_id='
+												+ id,
+										dataType : 'json',//
+										success : function(result) {//
+
+											if (result.snslist[0].mem_pic != null
+													&& result.snslist[0].mem_type == 0) {
+												modal
+														.find('#img-mypost')
+														.attr(
+																'src',
+																result.snslist[0].mem_pic)// 멤버사진
+											}
+											if (result.snslist[0].mem_pic == null) {
+												modal
+														.find('#img-mypost')
+														.attr('src',
+																"${pageContext.request.contextPath}/images/member_pic/no-profile.jpg")// 멤버사진
+											}
+											if (result.snslist[0].mem_pic != null
+													&& result.snslist[0].mem_type == 1) {
+												modal
+														.find('#img-mypost')
+														.attr(
+																'src',
+																'${pageContext.request.contextPath}/images/member_pic/'
+																		+ result.snslist[0].mem_pic)// 멤버사진
+											}
+											modal.find('#label-myid').text(
+													result.snslist[0].mem_id)
+
+											modal.find('#mypostbox').empty()//
+											for (var i = 0; i < result.snslist.length; i++) {
+												var mylist = '<div class="col-xs div-mylist" data-no="'+result.snslist[i].sns_no+'" style="height: 45px;"></label><label id="label-posttitle" style="margin: 16px;">'
+														+ result.snslist[i].sns_title
+														+ '</label><label>'
+														+ (result.snslist[i].sns_pic == ""
+																|| result.snslist[i].sns_pic == null ? '사진없음'
+																: '사진있음')
+														+ '</label><a href="#" class="love"><i class="ion-android-favorite-outline"></i><div>'
+														+ result.snslist[i].sns_likes
+														+ '</div></a></div>'
+												modal.find('#mypostbox')
+														.append(mylist)
+											}
+											modal.modal('show');
+										}
+									})
+						})
+						
+						
+						//댓글 등록 요청
+						$(".btnFboardReplyInsert").on("click",function(){
+						   checkUnload = false;//경고창 중복 제거
+						   if(replyFormCheck() == true){ //유효성검사
+						      replyInsert();//댓글 등록 요청 보내기
+						   }
+						});
 	}); //end fucn
+					   //댓글 등록 요청
+					   function replyInsert(){
+					      var fbo_no = $("input:text[id='reply_sns_no']").val();   
+					      $.ajax({ 
+					          url: "${pageContext.request.contextPath}/snsreplyinsert",  
+					          type: 'POST',  
+					          data : $("#snsreplyinsert").serialize(),
+					          success: function(response) {
+					             if(response == true) {
+// 					                fboardView(fbo_no);//게시물 재 출력
+					             }
+					          }, 
+					          error:function(xhr, status, message) { 
+					              /* alert(" status: "+status+" er:"+message); */
+					              alert("로그인 후 이용해주세요.");
+					          }
+					       });
+					   }
+					   //댓글 유효성 체크
+					   function replyFormCheck(){
+					      if($("textarea[name='sre_content']").val()==null || $("textarea[name='sre_content']").val()==''){
+					         alert("내용을 입력하세요.")
+					         $("textarea[name='sre_content']").focus();
+					         event.preventDefault();
+					      }else{
+					         return true;
+					      }
+					   }
+					   
+					 //댓글 목록 요청
+					   function replyListView(sns_no) {
+						   $.ajax({
+						      url:'${pageContext.request.contextPath}/replylist',
+						      type:'GET',
+						      data: { sns_no : sns_no },
+						      error:function(xhr,status,msg){
+						         alert("상태값 :" + status + " Http에러메시지 :"+msg);
+						      },
+						      success: replyListViewResult
+						   });
+						}
+					   
+						//댓글 목록 응답
+						function replyListViewResult(data) {
+							$("#replyListView").empty();
+							
+							$.each(data,function(idx,re){
+								console.log(re);
+								if(id == re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
+									var userid = re.mem_id			
+								}else if(ssid == re.st_id){
+									var userid = re.mem_id						
+								}
+								var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
+								
+								
+								
+								
+								if(id != re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
+									var li1 = "";
+									var li2 = "";				
+								}else if(ssid != re.st_id){
+									var li1 = "";
+									var li2 = "";				
+								}
+								
+								else if(id != null || ssid != null){
+									var li1 = "";
+									var li2 = "";		
+								}else{
+									var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
+									var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";	
+								}
+								
+								if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
+									var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
+								}else{
+									var li3 = "";	
+								}
+								var ule = "</ul>";
+								
+								var ul = uls+li1+li2+li3+ule;
+								
+								if(re.fan_name == null || re.fan_name == ""){
+									var name = re.st_name;
+								}else{
+									var name = re.fan_name;
+								}
+								
+								$("<div class = 'replyInfo' data-no="+re.re_no+"><hr>") 
+								.append($('<div class = \'row\'>').html(name + '&nbsp;' +re.re_time))
+								.append($('<div class = \'row replyText\'>').html(re.re_content))
+								.append($('<div class = \'row flex-row-reverse\'>').append(ul))
+								.appendTo('#replyListView');
+							});//each
+						}
+					   
+					   
+					   
 </script>
 
 
-						
+
 
 
 
@@ -710,9 +830,36 @@ color:blue;
 									<div id="ex2" style="height: 62%"></div>
 									<div id="modalimage"></div>
 									<a class="content"></a>
-									
-
 								</div>
+								<div class="col-md-12">
+									<div class="">
+										<div id="replyListView">
+											<!-- 댓글 출력 장소 -->
+										</div>
+										<hr>
+										<form id="snsreplyinsert">
+											<div class="row">
+												<input style="display: none;" name="sns_no" id="reply_sns_no" />
+												<input style="display: none;" name="mem_id" id="reply_mem_id" />
+												<textarea class="col-xl-11 col-md-10 col-12 fboardReply"
+													name="sre_content" rows=3 placeholder="댓글"></textarea>
+												
+												<div class="col-xl-1 col-md-2 col-12 btnFboardReply">
+													<button type="button"
+														class="btnFboardReplyInsert btn btn-primary py-2 px-4">작성</button>
+												</div>
+											</div>
+										</form>
+										<br>
+										<div class="row">
+											<div class="starRight">
+												<button type="button"
+													class="btn btn-primary py-2 px-4 btnFboardListView">목록</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
 							</div>
 							<div class="comentdiv"></div>
 							<div class="modal-footer">
@@ -1383,28 +1530,29 @@ color:blue;
 					</button>
 				</div>
 				<div class="modal-body" id="modal-myPostList">
-						<img id="img-mypost" alt="프로필" src=""><label id="label-myid"> </label>
+					<img id="img-mypost" alt="프로필" src=""><label id="label-myid">
+					</label>
 
-					<div class="mypostbox" id="mypostbox" style="width: 100%; height: 100%">
-					</div>
+					<div class="mypostbox" id="mypostbox"
+						style="width: 100%; height: 100%"></div>
 					<div align="center">
-							<script>
-								function goPage(p) {
-									var mem_id = $("#label-myid").text()
-									location.href = "${pageContext.request.contextPath}/mysnslist/"
-											+ "?p=" + p +"&mem_id=" + mem_id
-								}
-							</script>
+						<script>
+							function goPage(p) {
+								var mem_id = $("#label-myid").text()
+								location.href = "${pageContext.request.contextPath}/mysnslist/"
+										+ "?p=" + p + "&mem_id=" + mem_id
+							}
+						</script>
 
-							<my:paging paging="${paging}" jsfunc="goPage" />
-						</div>
+						<my:paging paging="${paging}" jsfunc="goPage" />
+					</div>
 
 
 
 
 
 				</div>
-				
+
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">닫기</button>

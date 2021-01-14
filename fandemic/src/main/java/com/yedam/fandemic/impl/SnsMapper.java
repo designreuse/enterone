@@ -2,7 +2,9 @@ package com.yedam.fandemic.impl;
 
 import java.util.List;
 
+import com.yedam.fandemic.vo.Reply;
 import com.yedam.fandemic.vo.Sns;
+import com.yedam.fandemic.vo.Sreply;
 
 public interface SnsMapper {
 //SNS INSERT
@@ -32,5 +34,12 @@ public interface SnsMapper {
 	public List<Sns> myPostList(Sns sns);
 	// 멤버별 포스트 페이지네이션
 	public int getsnsCount(Sns sns);
+	
+	
+	// 댓글 인서트 하기
+	public int insertSre(Sreply sreply);
+	
+	// 댓글 조회하기
+	public List<Sreply> selectSre(Sreply sreply);
 	
 }

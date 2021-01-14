@@ -97,7 +97,22 @@
 		WHERE MEM_ID = #{mem_id}
 	</select>
 
-
+<!-- SNS 댓글 인서트하기 -->
+	<insert id="insertSre" parameterType="Sreply">
+	INSERT INTO SREPLY 
+	VALUES 
+		(SRE_SEQ.NEXTVAL, 
+		SYSDATE, 
+		#{sre_content}, 
+		#{sns_no}, 
+		#{mem_id})
+	</insert>
+<!-- 	SNS 댓글 불러오기 -->
+	<select id="selectSre" parameterType="Sreply" resultType="Sreply">
+		SELECT * 
+		FROM SREPLY
+		WHERE SNS_NO = #{sns_no}
+	</select>
 
 
 

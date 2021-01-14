@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -21,7 +22,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.yedam.fandemic.impl.SnsMapper;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
+import com.yedam.fandemic.vo.Reply;
 import com.yedam.fandemic.vo.Sns;
+import com.yedam.fandemic.vo.Sreply;
+import com.yedam.fandemic.vo.Star;
 
 @Controller
 public class SnsController {
@@ -126,5 +130,29 @@ public class SnsController {
 		map.put("snslist", snsdao.myPostList(sns));
 		return map;
 	}
+	//SNS 댓글달기 인서트 아작스로 해야된다...
+	//입력
+	   @RequestMapping(value="/snsreplyinsert", method=RequestMethod.POST)
+	   @ResponseBody
+	   public boolean snsReplyInsert(HttpServletRequest request, Sreply sreply,  HttpSession session) throws IOException {
+	       Member member = (Member) session.getAttribute("member");
+	       if (member != null) {//유저 아이디 확인
+	    	   sreply.setMem_id(member.getMem_id());    	   
+	       }
+	       
+	       snsdao.insertSre(sreply);
+	      return true;
+	   }
+	   
+	 //SNS 달린 댓글 확인...
+		//입력
+	   
+	   @RequestMapping(value="/replylist", method=RequestMethod.GET)
+		@ResponseBody
+		public List<Sreply> replyFboardList(HttpServletRequest request, Model model, Sreply sreply) {
+			sreply.setSns_no(request.getParameter("sns_no"));      
+			return  snsdao.selectSre(sreply);
+		}
+	
 
 }
