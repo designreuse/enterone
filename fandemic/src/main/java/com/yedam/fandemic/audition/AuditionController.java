@@ -26,6 +26,7 @@ import com.yedam.fandemic.service.AuditionService;
 import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
 import com.yedam.fandemic.vo.Cart;
+import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Trainee;
@@ -167,16 +168,26 @@ public class AuditionController {
 		auditionservice.activityUpdate(activity);
 		return "redirect:/audition/auditionwork";
 	}
-	//연습생 활동 지원 글 삭제
-	@RequestMapping(value = "/audition/activitydelete", method = RequestMethod.POST)
-	@ResponseBody
-	public boolean activityDelete(HttpSession session, HttpServletRequest request, Activity activity) throws IOException {
-		Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
-		activity.setMem_id(member.getMem_id());						
+//	//연습생 활동 지원 글 삭제
+//	@RequestMapping(value = "/audition/activitydelete", method = RequestMethod.POST)
+//	@ResponseBody
+//	public boolean activityDelete(HttpSession session, HttpServletRequest request, Activity activity) 
+//	throws IOException {
+//		Member member = (Member)session.getAttribute("member");	// 세션에 저장해둔 member 불러오기
+//		activity.setMem_id(member.getMem_id());						
+//		activity.setAc_no(request.getParameter("ac_no"));
+//		auditionMapper.activityDelete(activity);
+//		return true;
+//	}
+	
+	@RequestMapping(value="/audition/activitydelete", method=RequestMethod.POST)
+	   @ResponseBody
+	   public boolean activitydelete(HttpServletRequest request, Activity activity) throws IOException {
 		activity.setAc_no(request.getParameter("ac_no"));
-		auditionMapper.activityDelete(activity);
-		return true;
-	}
+		auditionservice.activityDelete(activity);
+	      return true;
+	   }
+
 	// 활동 상세 프로필
 	@RequestMapping(value = "/ActivityDetail/{mem_id}")
 	public ModelAndView ActivityDetail(@PathVariable String mem_id, Activity activity, Model model) throws IOException {

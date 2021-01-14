@@ -2,15 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="cf"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
-
-<!-- 주소검색 -->
-<script type="text/JavaScript"
-	src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style type="text/css">
 
@@ -48,27 +45,11 @@
 			UpdateFormCheck(); //유효성체크			
 		});	
 		
-		$('#btndel').on('click', function() {
-			var ac_no = $(this).data("no");
-			// console.log(cart_no)
-			if(confirm("삭제하시겠습니까?") == true){
-				$.ajax({
-					url : '${pageContext.request.contextPath}/audition/activitydelete',
-					type : 'POST', 
-					data : { mem_id : mem_id, ac_no : ac_no },
-					success : function(response) {
-						if(response == true) {
-							alert("삭제되었습니다.");
-							
-						}
-					},
-					error : function(xhr, status, message){
-						alert("status: " + status + ", error: " + message);
-					}
-				});
-			} else {
-				alert("삭제가 취소되었습니다.");
-			}
+		//삭제 요청 버튼
+		$("#btndel").on("click",function(){
+		   if(confirm("글을 삭제하시겠습니까?") == true){
+		      activityDelete();            
+		   }
 		});
 });
 	function UpdateFormCheck() {
@@ -88,6 +69,24 @@
 		}
 
 	}
+	function activityDelete() {
+	      var ac_no = $("input:text[name='ac_no']").val();      
+	      $.ajax({ 
+	          url: "${pageContext.request.contextPath}/audition/activitydelete", 
+	          type: 'POST', 
+	          data : { ac_no : ac_no },
+	          success: function(response) {
+	             if(response == true) {
+	               alert("삭제되었습니다.");
+	               location.href="${pageContext.request.contextPath}/audition/auditionwork";
+	             }
+	          }, 
+	          error:function(xhr, status, message) { 
+	              alert(" status: "+status+" er:"+message);
+	          } 
+	      });
+	   }
+	   
 </script>
 </head>
 <body>
