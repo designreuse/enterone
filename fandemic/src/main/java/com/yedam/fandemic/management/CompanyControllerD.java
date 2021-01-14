@@ -2,6 +2,7 @@ package com.yedam.fandemic.management;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.CompanyServiceD;
 import com.yedam.fandemic.vo.Company;
+import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 
@@ -67,5 +69,19 @@ public class CompanyControllerD {
 	public String letterTrans(Letter letter) {
 		companyService.letterTrans(letter);
 		return "redirect:/management/company/myPageLetterForm";
+	}
+	
+	//차트에 뿌려줄 데이터 검색(월별)
+	@RequestMapping(value="/management/company/Chart")
+	@ResponseBody
+	public List<Gbuyer> getChartData() {
+		return companyService.getCharData();
+	}
+	
+	//일별 매출현황
+	@RequestMapping(value="/management/company/DaySalesList")
+	@ResponseBody
+	public List<Gbuyer> getDaySalesList(){
+		return companyService.getDaySalesList();
 	}
 }

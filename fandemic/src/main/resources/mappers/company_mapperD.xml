@@ -52,4 +52,20 @@
 	 	               			SYSDATE,
 	 	               			#{lett_content})
 	</insert>
+<!-- 차트에 뿌려줄 데이터 -->
+	<select id="getCharData" resultType="Gbuyer">
+		SELECT TO_CHAR(GB_TIME,'YYYY/MM') "GB_TIME",  SUM(GB_PAYMENT) "GB_PAYMENT"
+		FROM GBUYER
+		WHERE TO_CHAR(GB_TIME,'YYYY')='2021'
+		GROUP BY TO_CHAR(GB_TIME,'YYYY/MM')
+	
+	</select>
+<!-- 일별 매출현황 -->
+	<select id="getDaySalesList" resultType="Gbuyer">
+		SELECT TO_CHAR(GB_TIME,'YYYY/MM/DD') "GB_TIME",  SUM(GB_PAYMENT) "GB_PAYMENT"
+		FROM GBUYER
+		WHERE TO_CHAR(GB_TIME,'YYYY')='2021'
+		GROUP BY TO_CHAR(GB_TIME,'YYYY/MM/DD')
+		ORDER BY 1 DESC
+	</select>
 </mapper>
