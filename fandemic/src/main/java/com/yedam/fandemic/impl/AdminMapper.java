@@ -40,6 +40,10 @@ public interface AdminMapper {
 	public int memCnt(); 
 	public int comCnt();
 	public int stCnt(); 
+	
+	
+	//금칙어
+	public List<Filter> filBoard();
 
 	
 	

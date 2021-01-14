@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yedam.fandemic.impl.AdminMapper;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Filter;
@@ -30,6 +32,24 @@ import com.yedam.fandemic.vo.QnA;
 @Controller
 public class AdminController {
 	@Autowired AdminMapper dao;
+	
+	
+	@RequestMapping("/test") // id,pw 찾기 팝업창  
+	public ModelAndView test(Model model) throws IOException{
+		
+		List<Filter> list = new ArrayList<Filter>();
+		list = dao.filBoard();
+		
+		Gson gson = new GsonBuilder().create();
+		
+		String filList = gson.toJson(list);
+		
+		model.addAttribute("filList", filList);
+		return new ModelAndView("admin/test");
+	}
+	
+	
+	
 	
 	@RequestMapping(value="/adminMain")
 	public ModelAndView Main(Model model, QnA qna, HttpServletRequest request) throws IOException{

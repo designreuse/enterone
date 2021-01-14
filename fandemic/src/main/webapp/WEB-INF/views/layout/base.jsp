@@ -208,7 +208,7 @@
                      <h1 class="block-title">Company Info</h1>
                      <div class="block-body">
                         <figure class="foot-logo">
-                           <img src="${pageContext.request.contextPath}/resources/images/logo-light.png" class="img-responsive" alt="Logo">
+                           <img src="${pageContext.request.contextPath}/resources/images/1logo.png" class="img-responsive" alt="Logo">
                         </figure>
                         <p class="brand-description">
                            Magz is a HTML5 &amp; CSS3 magazine template based on Bootstrap 3.
