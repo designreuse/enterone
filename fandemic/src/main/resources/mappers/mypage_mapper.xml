@@ -163,4 +163,10 @@
 		STAR s, fan f
 		WHERE s.st_id = f.st_id and f.mem_id = #{mem_id}
 	</select>
+	
+	<!-- 멤버 탈퇴 -->
+	<delete id="deleteMember" parameterType="Member">
+		DELETE FROM MEMBER
+		WHERE MEM_ID = #{mem_id}
+	</delete>
 </mapper>

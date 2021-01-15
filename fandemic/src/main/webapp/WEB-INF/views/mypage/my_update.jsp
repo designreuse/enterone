@@ -68,6 +68,22 @@
 		$('#btnAddr').on('click', function() {
 			openDaummem_zipAddress()
 		});
+		
+		$(".btnMemberDrop").on("click",function(){
+			var mem_id = "${member.mem_id }";
+			$.ajax({
+				url:"${pageContext.request.contextPath}/deleteMember",
+				data:{mem_id:mem_id},
+				dataType:"json",
+				success:function(response){
+					alert("탈퇴가 완료되었습니다.");
+					location.href="${pageContext.request.contextPath}/";
+				},
+				error:function(response){
+					alert("탈퇴실패")
+				}
+			})
+		})
 
 	});
 
@@ -178,9 +194,9 @@
 								<td colspan="2"><input class="sidebutton btn-primary"
 									style="margin-right: 5%; width: 20%; float: right;"
 									type="submit"  value="수정하기">
-									<input class="sidebutton btn-primary"
+									<input class="btnMemberDrop sidebutton btn-primary"
 									style="margin-right: 1%; width: 20%; float: right;"
-									type="button" onclick="location.href='url부르고'" value="탈퇴하기"></td>
+									type="button"  value="탈퇴하기"></td>
 							</tr>
 						</table>
 					</form>

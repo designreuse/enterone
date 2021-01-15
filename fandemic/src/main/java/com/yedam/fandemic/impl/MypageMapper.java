@@ -32,5 +32,8 @@ public interface MypageMapper {
 	public QnA OneQnASelect (QnA qna); //QnA 단건 조회
 	public int deleteqna (QnA qna);	//QnA 삭제
 	
+	//회원탈퇴
+	public int deleteMember(Member memeber);//회원탈퇴
+	
 	
 }

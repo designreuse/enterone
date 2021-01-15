@@ -283,6 +283,14 @@ public class MypageController {
 		return new ModelAndView("redirect:my1o1");
 }
 	
+	//회원탈퇴
+	@RequestMapping("/deleteMember")
+	@ResponseBody
+	public int deleteMemeber(HttpServletRequest request, Member member) {
+		HttpSession session = request.getSession(false);
+		request.getSession(true).invalidate();
+		return myMapper.deleteMember(member);
+	}
 	
 	
 	
