@@ -39,9 +39,9 @@
 	<!-- qna 리스트 -->
 	<select id="qnaList" resultType="QnA" >
 		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
-	 		SELECT * FROM v_qna ORDER BY 1 
+	 		SELECT * FROM v_qna ORDER BY Q_TIME DESC
 			 ) A ) B WHERE RN BETWEEN #{q_first} AND #{q_last}
-			 ORDER BY Q_TIME DESC
+			 
 	</select>
 	
 	<select id="qnaCnt" resultType="int">

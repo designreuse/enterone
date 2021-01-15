@@ -86,9 +86,26 @@
 	<div>연습생</div>
 </div>
 
-<%-- <c:if test="${fn:length(star) eq 0">
-	<p>검색된 결과가 없습니다.</p>
-</c:if> --%>
+<div align="center">
+	<c:if test="${fn:length(activity) eq 0}">
+		<b>검색된 결과가 없습니다.</b>
+	</c:if>
+</div>
+<div class="row">
+	<div class="col-md-3 col-sm-3 col-xs-3">
+	<c:forEach var="ac" items="${activity}">
+		<div class="thumbnail" style="width: 160px;">
+			<img src="${pageContext.request.contextPath}/images/audition/${ac.TR_PIC}" alt="#" style="padding: 20px; width: 100px; height: 150px;">
+			<div class="caption">
+				<p>${ac.TR_NAME}</p>
+				<p>${ac.MEM_NAME}</p>
+				<p>${ac.TR_BRANCH1} , ${ac.TR_BRANCH2}</p>
+				<!-- <p><i class="ion-android-favorite-outline"></i> 10</p> -->
+			</div>
+		</div>
+	</c:forEach>
+	</div>
+</div>
 
 </div>
 </section>

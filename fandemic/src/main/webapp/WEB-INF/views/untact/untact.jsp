@@ -58,7 +58,7 @@ $(document).ready(function() {
 	$("#btnIn").on('click', function () {
 		var id = '${sessionScope.member.mem_id}';
 		if( id == null || id == '') {
-			alert("로그인 후 이용 할 수 있습니다.");
+			alert("로그인 후 이용 할 수 있으며 일반 회원만 이용가능 합니다.");
 		} else {
 			$.ajax({
 	            url :'${pageContext.request.contextPath}/untactCode',
