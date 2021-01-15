@@ -229,7 +229,7 @@ ul.tabs li.current {
 			
 		} else {
 			 $("#checkId").html("");
-      	     $("#checkId").html("영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.").css("color","red").appendTo("#divId");
+      	     $("#checkId").html("영문자로 시작하는 6자 이상의 영문자 또는 숫자이어야 합니다.").css("color","red").appendTo("#divId");
 		}
 		
 	}

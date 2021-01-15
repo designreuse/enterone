@@ -373,6 +373,11 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 			}		
 		}
 		
+		if(id == data.mem_id && id != null){
+			$("#btnDeleteFboardAction").show()
+			$("#btnUpdateFboard").show()			
+		}
+		
 		//수정 뷰
 		$("input:text[name='fbo_no']").val(data.fbo_no);
 		$("input:text[name='fbo_sub_no']").val(data.fbo_sub_no);
@@ -578,10 +583,6 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 			/* 신고가 보이는 경우 : 다른 '유저'가 쓴글
 			신고가 안보이는 경우 : 내가 쓴글, 스타가 쓴글, 비로그인 */
 			var li3 = "";
-/* 			if(re.st_id == "" || re.st_id != null){
-				li3 = "";
-			} */
-			
 			if(id != null && id != ""){
 				if(id != re.mem_id){
 					if(re.st_id != null && re.st_id != ""){
@@ -806,8 +807,8 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
       <br>
       <div class="row">
          <div class = "starRight">
-            <button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboardAction">삭제</button>
-            <button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard">수정</button>
+            <button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboardAction" style="display:none;">삭제</button>
+            <button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard" style="display:none;">수정</button>
          </div>
       </div>
    </div>

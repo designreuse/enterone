@@ -232,12 +232,13 @@ public class AdminController {
 		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
 		paging.setPage(p); // 현재 페이지 지정
 		
+		paging.setTotalRecord(dao.qnaCnt());
+		
 		qna.setQ_first(paging.getFirst());
 		qna.setQ_last(paging.getLast());
 		
-		paging.setTotalRecord(dao.qnaCnt());
-
 		model.addAttribute("paging",paging);
+		
 		model.addAttribute("qna", dao.qnaList(qna));
 		
 		return "admin/qnaList";

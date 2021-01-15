@@ -810,7 +810,53 @@
 													.append(ul)).appendTo(
 											'#replyListView');
 						});//each
+						
+						
+						
+	
+					
 	}
+	$(function(){
+	    $('.love').click(function(){
+	    	var thisclass = $(this).attr('class');
+	    	var no = $(this).attr('data-no')
+	        if(thisclass == 'love'){
+	    	alert("좋아요 취소")
+	    	$.ajax({
+	    		url : '${pageContext.request.contextPath}/deleteLike',
+	    			type : 'GET',
+	    			data : {sns_ac_no : no},
+	    			success : function(response) {
+	    				if (response == true) {
+	    					// 					                fboardView(fbo_no);//게시물 재 출력
+	    				}
+	    			},
+	    			error : function(xhr, status, message) {
+	    				/* alert(" status: "+status+" er:"+message); */
+	    				alert("로그인 후 이용해주세요.");
+	    			}
+	    			});
+	        } else { //좋아요 누르면
+	        	alert("좋아요")
+	        	$.ajax({
+	        		url : '${pageContext.request.contextPath}/insertLike',
+		    			type : 'GET',
+		    			data : {sns_ac_no : no},
+	    			data :  $(this.form).serialize(),
+	    			success : function(response) {
+	    				if (response == true) {
+	    					// 					                fboardView(fbo_no);//게시물 재 출력
+	    				}
+	    			},
+	    			error : function(xhr, status, message) {
+	    				/* alert(" status: "+status+" er:"+message); */
+	    				alert("로그인 후 이용해주세요.");
+	    			}
+	    		});
+	        }
+	    });
+	});
+
 </script>
 
 
@@ -1116,8 +1162,13 @@
 												<div class="time">${sns.sns_time}</div>
 											</div>
 											<p style="height: 130px; overflow: hidden">${sns.sns_content}</p>
-											<footer>
-												<a href="#" class="love"> <i
+											<footer>			
+										<!-- 좋아요 -->
+										<!-- 좋아요 -->
+										<!-- 좋아요 -->
+										<!-- 좋아요 -->
+										<!-- 좋아요 -->
+												<a href="#" class="love" data-no="${sns.sns_no}"> <i
 													class="ion-android-favorite-outline"></i>
 													<div>${sns.sns_likes}</div>
 												</a>
@@ -1140,9 +1191,10 @@
 												</div>
 												<p>${sns.sns_content}</p>
 												<footer>
-													<a href="#" class="love"><i
-														class="ion-android-favorite-outline"></i>
-														<div>${sns.sns_likes}</div></a>
+												<a href="#" class="love" data-no="${sns.sns_no}"> <i
+													class="ion-android-favorite-outline"></i>
+													<div>${sns.sns_likes}</div>
+												</a>
 												</footer>
 											</div>
 										</div>

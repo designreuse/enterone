@@ -16,7 +16,7 @@ public class Sns {
 	String mem_type;	//멤버타입
 	String mem_time;	//멤버 가입일
 	
-	
+	String sns_ac_no;	//좋아요 게시물번호
 	
 	
 	//페이지 네이션

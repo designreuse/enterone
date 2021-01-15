@@ -79,11 +79,13 @@
 	
 	<!-- 검색 3 연습생 -->
 	<select id="searchAc" resultType="map" parameterType="string">
-		SELECT A.*, M.MEM_NAME FROM ACTIVITY A , MEMBER M
-		WHERE A.MEM_ID = M.MEM_ID
-		AND M.MEM_NAME LIKE '%'|| #{keyword} || '%'
-		OR A.AC_TITLE LIKE '%'|| #{keyword} || '%'
-		ORDER BY A.AC_TIME
+		SELECT T.MEM_ID, M.MEM_NAME, T.TR_NAME, T.TR_PIC, T.TR_BRANCH1, T.TR_BRANCH2 
+		FROM TRAINEE T, MEMBER M
+		WHERE M.MEM_ID = T.MEM_ID
+		AND T.TR_NAME LIKE '%'|| #{keyword} || '%'
+		OR M.MEM_NAME LIKE '%'|| #{keyword} || '%'
+		
+		
 	</select>
 	
 </mapper>

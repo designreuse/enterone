@@ -5,7 +5,7 @@
 <mapper namespace="com.yedam.fandemic.impl.UntactMapper">
 
 	<select id="untactList" resultType="Goods">
-		SELECT ROUND(G.GO_UNTSDATE - SYSDATE) AS DDAY, G.*, S.ST_NAME  FROM GOODS G , STAR S
+		SELECT ROUND(G.GO_UNTEDATE - SYSDATE) AS DDAY, G.*, S.ST_NAME  FROM GOODS G , STAR S
 		WHERE G.ST_ID = S.ST_ID
 		AND GO_TYPE = 'TICKET'
 		ORDER BY GO_UNTSDATE DESC

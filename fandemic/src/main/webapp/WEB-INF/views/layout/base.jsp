@@ -90,11 +90,11 @@
                   </div>
                   <div class="col-md-3 col-sm-12 text-right">
                      <ul class="nav-icons">
-                     	<c:if test="${sessionScope.member.mem_id eq null and sessionScope.company.com_id eq null }" >
+                     	<c:if test="${sessionScope.member.mem_id eq null and sessionScope.company.com_id eq null and sessionScope.star.st_id eq null}" >
 	                        <li><a href="${pageContext.request.contextPath}/register"><i class="ion-person-add"></i><div>회 원 가 입</div></a></li>
 	                        <li><a href="${pageContext.request.contextPath}/login"><i class="ion-person"></i><div>로 그 인</div></a></li>
                         </c:if>
-                        <c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null }">
+                        <c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null or sessionScope.star.st_id ne null}">
                         	<!-- <li><a href="#"><i class="ion-person-add"></i><div>마 이 페 이 지</div></a></li> -->
 	                        <li><a href="${pageContext.request.contextPath}/logout"><i class="ion-person"></i><div>로 그 아 웃</div></a></li>
                         </c:if>
