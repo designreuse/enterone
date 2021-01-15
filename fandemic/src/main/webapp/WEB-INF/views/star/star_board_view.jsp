@@ -18,6 +18,8 @@
 <script>
 var tag = {};
 var counter = 0;
+var id = "${sessionScope.member.mem_id}"//session아이디 값
+var ssid = "${sessionScope.star.st_id}"//session아이디 값
 var st_id = '${sboard.st_id}';
 var sbo_no = '${sboard.sbo_no}';
 var st_name = "${stVo.st_name}";
@@ -26,7 +28,6 @@ var st_name = "${stVo.st_name}";
 		
 		//게시물 수정 페이지 이동 버튼
 		$("#btnUpdateFboard").on("click",function(){
-			
 			location.href = "${pageContext.request.contextPath}/star/starBoard/updateView/" + sbo_no;
 		});
 		
@@ -48,12 +49,6 @@ var st_name = "${stVo.st_name}";
 		   if(replyFormCheck() == true){ //유효성검사
 		      replyInsert(sbo_no);//댓글 등록 요청 보내기
 		   }
-		});
-				
-	    //댓글 신고 요청
-		$("body").on("click",".btnNotifyReply",function(){
-			var re_no = $(this).parent().parent().parent().data("no");
-			alert(re_no);
 		});
 		   
 		//댓글 수정 화면 띄우기
@@ -186,12 +181,16 @@ var st_name = "${stVo.st_name}";
 			}		
 		}
 		
+		if(ssid == data.st_id && ssid != null){
+			$("#btnDeleteFboardAction").show()
+			$("#btnUpdateFboard").show()			
+		}
+
 		//수정 뷰
 		$("input:text[name='sbo_no']").val(data.sbo_no);
 
 		//댓글 defalut값
 		$("input:text[name='sfbo_no']").val(data.sbo_no);
-		
 		$('#sbo_title').focus();
 	}
    
@@ -257,32 +256,50 @@ var st_name = "${stVo.st_name}";
 	//댓글 목록 응답
 	function replyListViewResult(data) {
 		$("#replyListView").empty();
-		var id = "${member.mem_id}"//session아이디 값
-		var ssid = "${star.st_id}"//session아이디 값
 		$.each(data,function(idx,re){
 			
 			var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
 			var li0 = "<li class='hideId' style='display:none;'>"+ re.mem_id +"</li>";
-			
-			
-			if(id == re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
-				var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
-				var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";					
-			}else if(ssid == re.st_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
-				var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
-				var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";					
+			//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
+			if(id == re.mem_id || ssid == re.st_id){//세션아이디 / 작성자 아이디 비교
+				if(id != null){//아이디 null체크
+					var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
+					var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";
+				}else{
+					var li1 = "";
+					var li2 = "";		
+				}
+				if(ssid != null){//아이디 null체크
+					var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
+					var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";
+				}else{
+					var li1 = "";
+					var li2 = "";		
+				}
 			}else{
 				var li1 = "";
 				var li2 = "";		
 			}
 			
-			if(re.st_id != null){//스타 댓글은 신고 못함
-				var li3 = "";	
-			}else if(id == re.mem_id){//자기 글은 신고버튼 못하게 막음
-				var li3 = "";	
-			}else{
-				var li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyModal'>신고</li><span>&nbsp;</span>";
+			/* 신고가 보이는 경우 : 다른 '유저'가 쓴글
+			신고가 안보이는 경우 : 내가 쓴글, 스타가 쓴글, 비로그인 */
+			var li3 = "";
+			if(id != null && id != ""){
+				if(id != re.mem_id){
+					if(re.st_id != null && re.st_id != ""){
+						li3 = "";
+					}else {
+						console.log(ssid + re.st_id + re.mem_id+"====="+id)
+						li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyModal'>신고</li><span>&nbsp;</span>";																					
+					}
+				}
+			}else if(ssid !=null && ssid !=""){
+				if(ssid != re.st_id){
+					li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyModal'>신고</li><span>&nbsp;</span>";
+				}
 			}
+			
+			
 			
 			var ule = "</ul>";
 			
@@ -446,8 +463,8 @@ var st_name = "${stVo.st_name}";
       <br>
       <div class="row">
          <div class = "starRight">
-            <button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboardAction">삭제</button>
-            <button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard">수정</button>
+            <button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboardAction" style="display:none;" >삭제</button>
+            <button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard" style="display:none;">수정</button>
          </div>
       </div>
    </div>
