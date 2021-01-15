@@ -44,19 +44,20 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 	}
    //게시물 목록 요청 결과값
    function aboardListViewResult(data) {
+	   var obj='<a onclick="${pageContext.request.contextPath}/auditionlistDetail/{no}</a>'
 		$("tbody").empty();//이전 입력 데이터 삭제
 		$.each(data,function(idx,item){ //idx는 인덱스 item foreach랑 비슷한거 item 인덱스의 하나하나 값
 		   $('<tr>').addClass('candahar')
 		  .append($('<td>').html(item.abo_no))
-		   .append($('<td>').html(item.abo_title))
+		   .append($('<td>').html(item.abo_title)).append(obj)
 		   .append($('<td>').html(item.abo_subject))
 		   .append($('<td>').html(item.abo_time))
 		   .appendTo('tbody');
 		})
    }
 
-	 /* //게시글 조회 요청
-	   function aboardView(abo_no) {
+	//게시글 조회 요청
+	/*   function aboardView(abo_no) {
 	      $.ajax({
 	         url:'${pageContext.request.contextPath}/Aboard/read',
 	         type:'GET',
@@ -70,10 +71,10 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 	   //게시글 조회 응답
 	/* function aboardViewResult(data) {
 		//게시물 뷰
-		$('#abo_no').text(data.abo_no+ " | ");
-		$('#abo_title').text(data.abo_title+ " | ");
-		$('#abo_subject').text(data.abo_subject + " | ");
-		$('#abo_time').text(data.abo_time + " |");
+		$('#abo_no').text(data.abo_no);
+		$('#abo_title').text(data.abo_title);
+		$('#abo_subject').text(data.abo_subject);
+		$('#abo_time').text(data.abo_time );
 		$('#abo_pic').text(data.abo_pic);
 		$('#abo_content').html(data.abo_content);
 	} */
