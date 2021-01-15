@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yedam.fandemic.service.ReplyService;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Notify;
 import com.yedam.fandemic.vo.Reply;
 import com.yedam.fandemic.vo.Star;
 
@@ -70,6 +71,15 @@ public class SfboReplyController {
 		replyService.deleteReply(reply);
 		return true;
 	}
+	
+	//입력
+	@RequestMapping(value="/star/fanBoard/reply/notify", method=RequestMethod.POST)
+	@ResponseBody
+	public boolean notifyInsert(HttpServletRequest request, Notify notify) throws IOException {
+		notify.setFbo_no(null);
+		replyService.insertNotify(notify);
+	return true;
+   }
 }
 
 

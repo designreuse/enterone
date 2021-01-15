@@ -11,5 +11,5 @@ public class Notify {
 	String fbo_no;		//게시물번호(팬)
 	String re_no;		//댓글번호
 	String nof_content;	//신고세부사유
-	
+	String nof_type;	//신고분류
 }
