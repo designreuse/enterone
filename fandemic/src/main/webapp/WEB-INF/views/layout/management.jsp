@@ -87,6 +87,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="${pageContext.request.contextPath}/management" class="nav-link">Home</a>
       </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="${pageContext.request.contextPath}/management/Logout" class="nav-link">Logout</a>
+      </li>
       <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li> -->
