@@ -141,7 +141,7 @@
                            <li><a href="${pageContext.request.contextPath}/audition/traineeinsert">연습생 등록</a></li>
                            </c:if>
                            <li><a href="${pageContext.request.contextPath}/audition/auditionwork">연습생 활동</a></li>
-                           <li><a href="${pageContext.request.contextPath}/audition/auditionlist"">오디션 공고</a></li>
+                           <li><a href="${pageContext.request.contextPath}/audition/auditionlist">오디션 공고</a></li>
                            
                         </ul>
                      </li>
