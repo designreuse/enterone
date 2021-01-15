@@ -54,7 +54,7 @@ public class AboardController {
 //	      return aboard;
 //	   }
 	//게시물 상세보기 주소
-	@RequestMapping(value = "/auditionlistDetail/{no}")
+	@RequestMapping(value = "/auditionlistDetail/{no}", method = RequestMethod.GET)
 	public ModelAndView auditionlistDetail(@PathVariable String no, Aboard aboard, Model model) throws IOException {
 		// 단건
 		aboard.setAbo_no(no);

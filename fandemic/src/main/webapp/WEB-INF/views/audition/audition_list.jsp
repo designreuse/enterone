@@ -25,8 +25,9 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 	//tr 클릭시 단건 조회
 	$(".trAboardList").on("click","tr",function(){		
 		var abo_no =$(this).children().eq(0).text();
-		console.log(abo_no);
-		aboardView(abo_no);
+		//console.log(abo_no);
+		//aboardView(abo_no);
+		location.href="${pageContext.request.contextPath}/auditionlistDetail/"+abo_no //컨트롤러 no부분
 
 	})			
 		
@@ -44,22 +45,23 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 	}
    //게시물 목록 요청 결과값
    function aboardListViewResult(data) {
-	   var obj='<a onclick="${pageContext.request.contextPath}/auditionlistDetail/{no}</a>'
+	   //var obj='<a href="${pageContext.request.contextPath}/auditionlistDetail/{no}"</a>'
 		$("tbody").empty();//이전 입력 데이터 삭제
 		$.each(data,function(idx,item){ //idx는 인덱스 item foreach랑 비슷한거 item 인덱스의 하나하나 값
 		   $('<tr>').addClass('candahar')
-		  .append($('<td>').html(item.abo_no))
-		   .append($('<td>').html(item.abo_title)).append(obj)
-		   .append($('<td>').html(item.abo_subject))
-		   .append($('<td>').html(item.abo_time))
-		   .appendTo('tbody');
+		  .append($('<td id=\'abo_no\'>').html(item.abo_no))
+		  .append($('<td>').html(item.abo_title))
+		  //.append(obj)
+		  .append($('<td>').html(item.abo_subject))
+		  .append($('<td>').html(item.abo_time))
+		  .appendTo('tbody');
 		})
    }
 
 	//게시글 조회 요청
-	/*   function aboardView(abo_no) {
+	   function aboardView(abo_no) {
 	      $.ajax({
-	         url:'${pageContext.request.contextPath}/Aboard/read',
+	         url:'${pageContext.request.contextPath}/auditionlistDetail/{no}',
 	         type:'GET',
 	         data: { abo_no: abo_no },
 	         error:function(xhr,status,msg){
@@ -67,9 +69,9 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 	         },
 	         success:aboardViewResult
 	      });
-	   } */
+	   } 
 	   //게시글 조회 응답
-	/* function aboardViewResult(data) {
+	 function aboardViewResult(data) {
 		//게시물 뷰
 		$('#abo_no').text(data.abo_no);
 		$('#abo_title').text(data.abo_title);
@@ -77,7 +79,7 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 		$('#abo_time').text(data.abo_time );
 		$('#abo_pic').text(data.abo_pic);
 		$('#abo_content').html(data.abo_content);
-	} */
+	} 
 </script>
 
 <section class="ftco-section-3 aboardListSection">
