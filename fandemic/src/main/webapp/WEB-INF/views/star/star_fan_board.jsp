@@ -282,7 +282,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 	  		order: [ [ 0, "desc" ] ]
 			,"bDestroy": true
 	  	});
-				  	
+
 		$(".fboardListSection").show();
 		$(".fboardInsertSection").hide();
 		$(".fboardViewSection").hide();
@@ -413,7 +413,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		$('#tag-list').empty();
 		$('#fbo_hashtag_array').empty();
 		tag = {};
-		var counter = 0;
+		counter = 0;
 		$('form').each(function() {
 		   this.reset();
 		});      
@@ -597,9 +597,6 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 					li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyModal'>신고</li><span>&nbsp;</span>";
 				}
 			}
-			
-			
-			
 			var ule = "</ul>";
 			
 			var ul = uls+li0+li1+li2+li3+ule;

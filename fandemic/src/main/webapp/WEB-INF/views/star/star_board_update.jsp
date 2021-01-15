@@ -6,37 +6,50 @@
    rel="stylesheet">
 <script
    src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
+<link
+   href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+      crossorigin="anonymous" />
+<script
+      src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
+      crossorigin="anonymous"></script>
+   <script
+      src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
+      crossorigin="anonymous"></script>
 <script>
-	var tag = {};
-	var counter = 0;
-	var st_id = "${stVo.st_id}";
+var tag = {};
+var counter = 0;
+var ssid = "${sessionScope.star.st_id}"//session아이디 값
+var no = "${no}"//스타게시물 번호
 
 	$(function() {
+		sboardView(no);
+		
 		var checkUnload = true; //글 작성중 나가면 사라지는 것 방지
-		start();
 
-		
-		$(window).on("beforeunload", function(){ //글 작성중 나가면 사라지는 것 방지
-			if(checkUnload) return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
-		});
-		
-		//게시물 등록버튼
-		$("#btnInputFboardAction").on("click",function(){
-			checkUnload = false; //경고창 중복 제거
-			if(fboardFormCheck() == true){ //유효성검사
-				sboardInsert() //글 등록 요청 보내기
-			}
+		//게시물 수정 요청 버튼
+		$("#btnUpdateSboardAction").on("click",function(){
+		   checkUnload = false; //경고창 중복 제거
+		   if(fboardFormCheck() == true){ //유효성검사
+		      sboardUpdate(); //글 등록 요청 보내기
+		   }
 		});
 		
 		//게시물 화면 취소버튼
 		$(".btnCancelFboard").on("click",function(){
-			checkUnload = false; //경고창 중복 제거
-			if(confirm("작성중인 글을 종료하시겠습니까?") == true){//취소 확인받기
-				window.history.back();
-			}
+		   checkUnload = false; //경고창 중복 제거
+		   if(confirm("작성중인 글을 종료하시겠습니까?") == true){//취소 확인받기
+		      //게시물 등록 요청
+		      fboardListView();
+		   }
 		});
-
+		
+		//목록보기
+		$(".btnFboardListView").on("click",function(){
+		   checkUnload = false;//경고창 중복 제거
+		   //목록보기 요청
+		   formReset();
+		});
+		
 //해시태그 구현
         // 테스트용
         $("#tag-form").on("click", function (e) {
@@ -55,7 +68,6 @@
 
             // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
             if (e.key === "Enter" || e.keyCode == 32) {
-            	
                 var tagValue = self.val(); // 값 가져오기
                 // 값이 없으면 동작 ㄴㄴ
                 if (tagValue !== "") {
@@ -87,8 +99,59 @@
 //해시태그 종료
 	});
 //버튼 액션 종료
-	
-	//유효성 체크
+
+
+	//게시글 조회 요청
+   function sboardView(no) {
+      $.ajax({
+         url:'${pageContext.request.contextPath}/star/starBoard/read/',
+         type:'GET',
+         data: { sbo_no: no },
+         error:function(xhr,status,msg){
+            alert("상태값 :" + status + " Http에러메시지 :"+msg);
+         },
+         success:sboardViewResult
+      });
+   }
+   //게시글 조회 응답
+	function sboardViewResult(data) {
+
+		//해시태그
+		if(data.sbo_hashtag_array !=null){
+			var arr = new Array(); 
+			arr=data.sbo_hashtag_array;
+			for (var i = 0; i < arr.length; i++) {
+				if(arr[i]!=null){
+                    //수정 뷰에서 기존 태그 출력을 위한 값
+                    $("#tag-list").append("<li class='tag-item'>"+arr[i]+"<span class='del-btn' idx='"+i+"'>x</span></li>");
+                    tag[i] = arr[i];
+                    counter = i+1;
+				}
+			}		
+		}
+		
+		//수정 뷰
+		$("input:text[name='sbo_no']").val(data.sbo_no);
+		$("input:text[name='sbo_title']").val(data.sbo_title);
+		$('#summernote').summernote('code',data.sbo_content)
+		$("input:text[name='sbo_hashtag']").val(data.sbo_hashtag);
+	}
+   
+   
+   
+	//이전 작성글 기록 지우기
+	function formReset(){
+		$('#summernote').summernote('reset');
+		$('#tag-list').empty();
+		$('#sbo_hashtag_array').empty();
+		tag = {};
+		counter = 0;
+		$('form').each(function() {
+		   this.reset();
+		});      
+	}
+   
+//유효성 체크
 	function fboardFormCheck(){
 	   if($("input:text[name='sbo_title']").val()==null || $("input:text[name='sbo_title']").val()==''){
 	      alert("제목을 입력하세요.")
@@ -117,29 +180,28 @@
 	    });
 	}
    
-   //게시글 등록 요청
-   function sboardInsert(){
+   //게시물 수정 요청
+	function sboardUpdate() {		
 		//해시태그 작성된 값 받아서 제출
 		var value = marginTag();
 		$("#rdTag").val(value); 
-		     
-		$.ajax({
-		    url: "${pageContext.request.contextPath}/star/starBoard/insert",  
-		    type: 'POST',  
+			
+		$.ajax({ 
+		    url: "${pageContext.request.contextPath}/star/fanBoard/update/", 
+		    type: 'POST', 
 		    data : $("#form1").serialize(),
 		    success: function(response) {
 		       if(response == true) {
-		         alert("작성되었습니다.")
-		         //fboardListView();//목록출력
-		         location.href = "${pageContext.request.contextPath}/star/starBoard/"+st_id;
+		         alert("수정되었습니다.")
+		         location.href = "${pageContext.request.contextPath}/star/starBoard/"+no;
 		       }
 		    }, 
 		    error:function(xhr, status, message) { 
 		        alert(" status: "+status+" er:"+message);
-		    }
+		    } 
 		});
 	}
-
+   
 </script>
 
 <!-- 글쓰는 공간 -->
@@ -177,13 +239,14 @@
          <div class="row starCenter">
             <div class = "starRight">
                <button type="button" class="btn btn-primary py-2 px-4 btnCancelFboard">취소</button>
-               <button type="button" class="btn btn-primary py-2 px-4" id = "btnInputFboardAction">등록</button>
+               <button type="button" class="btn btn-primary py-2 px-4" id = "btnUpdateSboardAction">수정</button>
             </div>
          </div>
          
       </form>
    </div>
 </section>
+
 
 <!-- 서머노트 -->
 <script>
