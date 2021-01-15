@@ -103,5 +103,15 @@
 	</delete>
 	
 	<!-- 주문 결과 페이지 -->
+	<select id="buyList" resultType="Gbuyer" parameterType="Gbuyer">
+		SELECT GB_NO, MEM_ID, GB_PAYMENT, GB_TIME, GB_NAME, GB_PHONE, GB_EMAIL, GB_ADDRESS, GB_ADDRESS2, GB_ZIPADDRESS
+		FROM GBUYER WHERE MEM_ID = #{mem_id}
+	</select>
+	
+	<!-- 주문 결과 상세 페이지 -->
+<!--	<select id="buyDetailList" resultType="Gbuydetail" parameterType="Gbuydetail">
+		
+	</select> -->
+	
 
 </mapper>

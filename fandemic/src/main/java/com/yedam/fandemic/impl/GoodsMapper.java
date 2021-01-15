@@ -40,9 +40,12 @@ public interface GoodsMapper {
 	public void buyDetailInsert(Gbuydetail gbuydetail);
 	
 	// Cart 비우기
-//	public void cartAllDelete(String mem_id);
+	public void cartAllDelete(String mem_id);
 	
-	// 주문 결과 페이지
+	// 주문 결과 페이지 - 주문 목록
+	public List<Gbuyer> buyList(Gbuyer gbuyer);
+	
+	// 주문 결과 페이지 - 주문 목록 (buyDetailList)
 	
 	// paging
 	public int goCount();	// Goods 목록

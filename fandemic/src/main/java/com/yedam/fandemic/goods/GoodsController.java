@@ -155,9 +155,10 @@ public class GoodsController {
 
 	// 주문
 	@RequestMapping(value = "/goodsBuy/order", method = RequestMethod.POST)
-	public String order(HttpSession session, Gbuyer gbuyer, Gbuydetail gbuydetail) throws IOException {
+	@ResponseBody
+	public Gbuyer order(HttpSession session, Gbuyer gbuyer, Gbuydetail gbuydetail) throws IOException {
 //		logger.info("order");
-		System.out.println(gbuyer);
+		System.out.println("========================" + gbuyer);
 		Member member = (Member) session.getAttribute("member"); // 세션에 저장해둔 member 불러오기
 //		String mem_id = member.getMem_id();
 		
@@ -177,23 +178,30 @@ public class GoodsController {
 		gbuyer.setGb_no(gb_no); // 주문번호
 		gbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 gbuyer에 담기
 		System.out.println("-----------------------------------------------------------------" + gbuyer);
-		goMapper.buyInsert(gbuyer);
 	
 		gbuydetail.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 gbuydetail에 담기
 		gbuydetail.setGb_no(gb_no);
+		System.out.println("-----------------------------------------------------------------" + gbuydetail);
+		
+		goMapper.buyInsert(gbuyer);
 		goMapper.buyDetailInsert(gbuydetail);
+		goMapper.cartAllDelete(member.getMem_id()); // Cart 비우기
 		
-		// Cart 비우기
-//		goMapper.cartAllDelete(member.getMem_id());
-		
-		return "redirect:/goods/goodsBuyDetail";
+		return gbuyer;
 	}
 
 
-	// 결제 결과 화면 (select)
-	@RequestMapping(value = "/goodsBuyDetail")
-	public ModelAndView goodsBuyDetail(HttpServletResponse response) throws IOException {
+	// 주문 결과 페이지 - 주문 목록
+	@RequestMapping(value = "/buyList")
+	public ModelAndView buyList(HttpSession session, Gbuyer gbuyer, Model model) throws IOException {
+		Member member = (Member) session.getAttribute("member");
+		gbuyer.setMem_id(member.getMem_id());
+		
+		model.addAttribute(goMapper.buyList(gbuyer));
 		return new ModelAndView("goods/goods_buy_detail");
 	}
+	
+	
+	// 주문 결과 페이지 - 주문 상세 목록 buyDetailList
 
 }
