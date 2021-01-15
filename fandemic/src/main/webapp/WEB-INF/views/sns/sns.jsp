@@ -45,6 +45,58 @@
 	width: 45%;
 }
 
+.row {
+	margin-left: 0px;
+}
+
+#replyListView {
+	overflow: auto;
+	min-height: 200px;
+	max-height: 600px;
+	overflow-x: hidden
+}
+
+::-webkit-scrollbar {
+	/* 스크롤바 전체 영역 */
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	/* 스크롤이 움직이는 영역  */
+	background-color: #A4B7D4;
+}
+
+::-webkit-scrollbar-thumb {
+	/*  스크롤  */
+	background-color: black;
+	border-radius: 30px;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	/*  스크롤의 화살표가 포함된 영역   */
+	display: block;
+	height: 8px;
+	background-color: #000;
+}
+
+::-webkit-scrollbar-corner {
+	/*  상하+좌우 스크롤이 만나는 공간   */
+	background-color: red;
+}
+/* SNS 상세보기 수정 삭제버튼 */
+.div-snsbtndeleteupdate {
+	padding-bottom: 14px;
+}
+
+.btn-snsbtndelete {
+	float: right;
+}
+
+.btn-snsbtnupdate {
+	float: right;
+}
+
 /* #A4B7D4 */
 </style>
 <script>
@@ -413,6 +465,7 @@
 						function(event) {
 							var modal = $('#exampleModal9')
 							var no = $(this).data("no");
+							replyListView(no);
 							$
 									.ajax({
 										url : '${pageContext.request.contextPath}/onesnsselect?sns_no='
@@ -423,10 +476,20 @@
 													$('#imgtemmm').html());//
 											var imgname = result.sns_pic;//
 											var imgcut = imgname.split(',');//
+											modal.find('#reply_sns_no').val(
+													result.sns_no)//
+											modal.find('#reply_mem_id').val(
+													result.mem_id)//
 											modal.find('.snstitledetail').text(
 													result.sns_title)//
 											modal.find('.content').text(
 													result.sns_content)//
+											modal.find('.btn-snsbtndelete')
+													.val(result.sns_no)//
+											modal.find('.btn-snsbtndelete')
+													.attr('data-id',
+															result.mem_id)//
+
 											modal.find('.appendimmm').empty() //지우는 함수
 											for (var i = 0; i < imgcut.length - 1; i++) {
 												var img = '<div><img class="appendiiimmm" data-u="image" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /><img class="thumthum" data-u="thumb" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /></div>';
@@ -446,6 +509,7 @@
 						function(event) {//
 							var modal = $('#exampleModal9');//
 							var no = $(this).data("no");//
+							replyListView(no);
 							$
 									.ajax({//
 										url : '${pageContext.request.contextPath}/onesnsselect?sns_no='
@@ -457,8 +521,15 @@
 													result.sns_title)//
 											modal.find('.content').text(
 													result.sns_content)//
-											modal.find('#reply_sns_no').val(result.sns_no)//
-											modal.find('#reply_mem_id').val(result.mem_id)//
+											modal.find('#reply_sns_no').val(
+													result.sns_no)//
+											modal.find('#reply_mem_id').val(
+													result.mem_id)//
+											modal.find('.btn-snsbtndelete')
+													.val(result.sns_no)//
+											modal.find('.btn-snsbtndelete')
+													.attr('data-id',
+															result.mem_id)//
 											modal.modal('show');//
 										}
 									});
@@ -519,6 +590,7 @@
 						function(event) {
 							var modal = $('#exampleModal9')
 							var no = $(this).data("no");
+							replyListView(no);
 							$
 									.ajax({
 										url : '${pageContext.request.contextPath}/onesnsselect?sns_no='
@@ -615,115 +687,130 @@
 										}
 									})
 						})
-						
-						
-						//댓글 등록 요청
-						$(".btnFboardReplyInsert").on("click",function(){
-						   checkUnload = false;//경고창 중복 제거
-						   if(replyFormCheck() == true){ //유효성검사
-						      replyInsert();//댓글 등록 요청 보내기
-						   }
-						});
+
+		//댓글 등록 요청
+		$(".btnFboardReplyInsert").on("click", function() {
+			checkUnload = false;//경고창 중복 제거
+			if (replyFormCheck() == true) { //유효성검사
+				replyInsert();//댓글 등록 요청 보내기
+			}
+		});
+		//삭제 버튼을 누르면 뜨는거
+		$("#detail-btn-delete").click(function() {
+			var btn_no = $(this).attr('value') //sns번호 가져옴
+			var btn_id = $(this).attr('data-id')
+			var session_id = '${sessionScope.member.mem_id }';
+			console.log(btn_id, session_id)
+			if (session_id == btn_id) {
+				if (confirm('삭제하시겠습니까?')) {
+					$(location).attr('href','${pageContext.request.contextPath}/deleteSns?sns_no='+btn_no);
+				} else {
+					// no click
+				}
+			} else {
+				alert("글 작성자가 아니거나 로그인하지 않았습니다")
+			}
+		});
 	}); //end fucn
-					   //댓글 등록 요청
-					   function replyInsert(){
-					      var fbo_no = $("input:text[id='reply_sns_no']").val();   
-					      $.ajax({ 
-					          url: "${pageContext.request.contextPath}/snsreplyinsert",  
-					          type: 'POST',  
-					          data : $("#snsreplyinsert").serialize(),
-					          success: function(response) {
-					             if(response == true) {
-// 					                fboardView(fbo_no);//게시물 재 출력
-					             }
-					          }, 
-					          error:function(xhr, status, message) { 
-					              /* alert(" status: "+status+" er:"+message); */
-					              alert("로그인 후 이용해주세요.");
-					          }
-					       });
-					   }
-					   //댓글 유효성 체크
-					   function replyFormCheck(){
-					      if($("textarea[name='sre_content']").val()==null || $("textarea[name='sre_content']").val()==''){
-					         alert("내용을 입력하세요.")
-					         $("textarea[name='sre_content']").focus();
-					         event.preventDefault();
-					      }else{
-					         return true;
-					      }
-					   }
-					   
-					 //댓글 목록 요청
-					   function replyListView(sns_no) {
-						   $.ajax({
-						      url:'${pageContext.request.contextPath}/replylist',
-						      type:'GET',
-						      data: { sns_no : sns_no },
-						      error:function(xhr,status,msg){
-						         alert("상태값 :" + status + " Http에러메시지 :"+msg);
-						      },
-						      success: replyListViewResult
-						   });
-						}
-					   
-						//댓글 목록 응답
-						function replyListViewResult(data) {
-							$("#replyListView").empty();
-							
-							$.each(data,function(idx,re){
-								console.log(re);
-								if(id == re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
-									var userid = re.mem_id			
-								}else if(ssid == re.st_id){
-									var userid = re.mem_id						
-								}
-								var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
-								
-								
-								
-								
-								if(id != re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
-									var li1 = "";
-									var li2 = "";				
-								}else if(ssid != re.st_id){
-									var li1 = "";
-									var li2 = "";				
-								}
-								
-								else if(id != null || ssid != null){
-									var li1 = "";
-									var li2 = "";		
-								}else{
-									var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
-									var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";	
-								}
-								
-								if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
-									var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
-								}else{
-									var li3 = "";	
-								}
-								var ule = "</ul>";
-								
-								var ul = uls+li1+li2+li3+ule;
-								
-								if(re.fan_name == null || re.fan_name == ""){
-									var name = re.st_name;
-								}else{
-									var name = re.fan_name;
-								}
-								
-								$("<div class = 'replyInfo' data-no="+re.re_no+"><hr>") 
-								.append($('<div class = \'row\'>').html(name + '&nbsp;' +re.re_time))
-								.append($('<div class = \'row replyText\'>').html(re.re_content))
-								.append($('<div class = \'row flex-row-reverse\'>').append(ul))
-								.appendTo('#replyListView');
-							});//each
-						}
-					   
-					   
-					   
+	//댓글 등록 요청
+	function replyInsert() {
+		var fbo_no = $("input:text[id='reply_sns_no']").val();
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/snsreplyinsert",
+			type : 'POST',
+			data : $("#snsreplyinsert").serialize(),
+			success : function(response) {
+				if (response == true) {
+					replyListView(fbo_no);
+					// 					                fboardView(fbo_no);//게시물 재 출력
+				}
+			},
+			error : function(xhr, status, message) {
+				/* alert(" status: "+status+" er:"+message); */
+				alert("로그인 후 이용해주세요.");
+			}
+		});
+	}
+	//댓글 유효성 체크
+	function replyFormCheck() {
+		if ($("textarea[name='sre_content']").val() == null
+				|| $("textarea[name='sre_content']").val() == '') {
+			alert("내용을 입력하세요.")
+			$("textarea[name='sre_content']").focus();
+			event.preventDefault();
+		} else {
+			return true;
+		}
+	}
+
+	//댓글 목록 요청
+	function replyListView(no) {
+		$.ajax({
+			url : '${pageContext.request.contextPath}/replylist',
+			type : 'GET',
+			data : {
+				sns_no : no
+			},
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + " Http에러메시지 :" + msg);
+			},
+			success : replyListViewResult
+		});
+	}
+
+	//댓글 목록 응답
+	function replyListViewResult(data) {
+		$("#replyListView").empty();
+		var id = "${member.mem_id}"//session아이디 값
+		$
+				.each(
+						data,
+						function(idx, re) {
+							console.log(re);
+							if (id == re.mem_id) {//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
+								var userid = re.mem_id
+							}
+							var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
+
+							if (id != null) {
+								var li1 = "";
+								var li2 = "";
+							} else {
+								var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
+								var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";
+							}
+
+							if (id != re.mem_id) {//자기 글은 신고버튼 못하게 막음
+								var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
+							} else {
+								var li3 = "";
+							}
+							var ule = "</ul>";
+
+							var ul = uls + li1 + li2 + li3 + ule;
+
+							$(
+									"<div class = 'replyInfo' data-no="+re.sre_no+"><hr>")
+									.append(
+											$('<div class = \'row\'>')
+													.html(
+															name + '&nbsp;'
+																	+ re.mem_id))
+									.append(
+											$('<div class = \'row\'>').html(
+													name + '&nbsp;'
+															+ re.sre_time))
+									.append(
+											$('<div class = \'row replyText\'>')
+													.html(re.sre_content))
+									.append(
+											$(
+													'<div class = \'row flex-row-reverse\'>')
+													.append(ul)).appendTo(
+											'#replyListView');
+						});//each
+	}
 </script>
 
 
@@ -831,6 +918,13 @@
 									<div id="modalimage"></div>
 									<a class="content"></a>
 								</div>
+								<div class="col-md-12 div-snsbtndeleteupdate">
+									<button type="button" id="detail-btn-delete" data-id=""
+										class="btn-snsbtndelete btn btn-primary">삭제하기</button>
+									<button class="btn-snsbtnupdate btn btn-primary">수정하기</button>
+								</div>
+
+
 								<div class="col-md-12">
 									<div class="">
 										<div id="replyListView">
@@ -839,11 +933,12 @@
 										<hr>
 										<form id="snsreplyinsert">
 											<div class="row">
-												<input style="display: none;" name="sns_no" id="reply_sns_no" />
-												<input style="display: none;" name="mem_id" id="reply_mem_id" />
+												<input style="display: none;" name="sns_no"
+													id="reply_sns_no" /> <input style="display: none;"
+													name="mem_id" id="reply_mem_id" />
 												<textarea class="col-xl-11 col-md-10 col-12 fboardReply"
 													name="sre_content" rows=3 placeholder="댓글"></textarea>
-												
+
 												<div class="col-xl-1 col-md-2 col-12 btnFboardReply">
 													<button type="button"
 														class="btnFboardReplyInsert btn btn-primary py-2 px-4">작성</button>
@@ -851,12 +946,6 @@
 											</div>
 										</form>
 										<br>
-										<div class="row">
-											<div class="starRight">
-												<button type="button"
-													class="btn btn-primary py-2 px-4 btnFboardListView">목록</button>
-											</div>
-										</div>
 									</div>
 								</div>
 
@@ -865,7 +954,6 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary" id="">Post</button>
 							</div>
 						</div>
 					</div>

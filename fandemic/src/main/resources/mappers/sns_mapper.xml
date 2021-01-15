@@ -30,6 +30,16 @@
 
 
 	</select>
+	
+<!-- 	SNS 삭제 -->
+	<delete id="deleteSns" parameterType="Sns">
+	DELETE FROM SNS WHERE SNS_NO = #{sns_no}
+	
+	
+	</delete>
+	
+	
+	
 	<!-- 사진 조회 -->
 	<select id="selectMySns" resultType="Sns">
 		SELECT SNS_PIC FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
@@ -111,7 +121,7 @@
 	<select id="selectSre" parameterType="Sreply" resultType="Sreply">
 		SELECT * 
 		FROM SREPLY
-		WHERE SNS_NO = #{sns_no}
+		WHERE SNS_NO = #{sns_no} ORDER BY SRE_TIME
 	</select>
 
 

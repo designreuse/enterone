@@ -13,16 +13,20 @@ public interface SnsMapper {
 	// SNS SELECT
 	public List<Sns> selectSns(Sns sns);
 
+	// SNS 단건조회
+	public Sns OneSnsSelect (Sns sns);
+	
 	// My SNS
 	public List<Sns> selectMySns(Sns sns);
 
 	// My SNS count
 	public int countMySns(Sns sns);
 	
+	// My SNS delete
+	public int deleteSns(Sns sns);	
+	
 	// Like 건수 조회
 	public int countLike(Sns sns);
-	// SNS 단건조회
-	public Sns OneSnsSelect (Sns sns);
 	
 	// Letter Count
 	public int countMyLetter(Sns sns);
@@ -41,5 +45,7 @@ public interface SnsMapper {
 	
 	// 댓글 조회하기
 	public List<Sreply> selectSre(Sreply sreply);
+	
+	
 	
 }

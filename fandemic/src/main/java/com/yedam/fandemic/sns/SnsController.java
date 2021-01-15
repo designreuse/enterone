@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.SnsMapper;
+import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.Reply;
@@ -152,6 +154,16 @@ public class SnsController {
 		public List<Sreply> replyFboardList(HttpServletRequest request, Model model, Sreply sreply) {
 			sreply.setSns_no(request.getParameter("sns_no"));      
 			return  snsdao.selectSre(sreply);
+		}
+	   
+	   //SNS 삭제
+	   @RequestMapping("/deleteSns")
+		@ResponseBody
+		public ModelAndView deleteSns(Model model, Sns sns, HttpServletRequest request) throws IOException{
+			
+			snsdao.deleteSns(sns);
+			
+			return new ModelAndView("redirect:sns");
 		}
 	
 
