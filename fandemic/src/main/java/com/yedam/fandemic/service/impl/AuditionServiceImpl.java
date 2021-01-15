@@ -42,8 +42,18 @@ public class AuditionServiceImpl implements AuditionService {
 		return auditionmapper.activityDelete(activity);
 	}
 	@Override
-	public List<Aboard> auditionlist(Aboard aboard) {
+	public List<Aboard> auditionlist() {
 		
-		return auditionmapper.auditionlist(aboard);
+		return auditionmapper.auditionlist();
+	}
+	@Override
+	public List<Aboard> getComList(Aboard aboard) {
+		
+		return auditionmapper.getComList(aboard);
+	}
+	@Override
+	public Aboard getAboardInfo(Aboard aboard) {
+		
+		return auditionmapper.getAboardInfo(aboard);
 	}
 }

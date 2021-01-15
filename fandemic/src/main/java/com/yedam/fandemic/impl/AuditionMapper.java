@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
-
 import com.yedam.fandemic.vo.Trainee;
 
 public interface AuditionMapper {
@@ -27,9 +26,11 @@ public interface AuditionMapper {
 	//연습생 활동 지원 글 삭제
 	public int activityDelete(Activity activity);
 	//오디션 공고 목록
-	public List<Aboard> auditionlist(Aboard aboard);
-	
-	
+	public List<Aboard> auditionlist();
+	//소속사별 오디션 목록
+	public List<Aboard> getComList(Aboard aboard);
+	//단건 조회
+	public Aboard getAboardInfo(Aboard aboard);
 	
 	
 

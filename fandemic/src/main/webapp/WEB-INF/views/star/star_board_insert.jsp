@@ -14,6 +14,8 @@
 
 	$(function() {
 		var checkUnload = true; //글 작성중 나가면 사라지는 것 방지
+		start();
+
 		
 		$(window).on("beforeunload", function(){ //글 작성중 나가면 사라지는 것 방지
 			if(checkUnload) return "이 페이지를 벗어나면 작성된 내용은 저장되지 않습니다.";
@@ -137,14 +139,15 @@
 		    }
 		});
 	}
-
-   function UpdateStart(){
-	   var content = "${sboVo.sbo_content}"
-	   alert("asdf")
-	   $('#summernote').summernote('code',content)
-   }
    
-   
+	function start(){
+		var nn = "${sboVo.sbo_title}";
+		if(nn == null || nn == ""){
+			$("#btnInputFboardAction").show();
+		}else{
+			$("#btnUpdateFboardAction").show()
+		}
+	}
 </script>
 
 <!-- 글쓰는 공간 -->
@@ -157,7 +160,7 @@
                <input name = "sbo_title" style="width: 100%" placeholder="제목" class="inputFboardTitle" value = "${sboVo.sbo_title}"/>
          </div>
          <br>
-         <textarea id="summernote" name="sbo_content"  class = "inputFboardContent"></textarea>
+         <textarea id="summernote" name="sbo_content"  class = "inputFboardContent">${sboVo.sbo_content}</textarea>
          <br>
          <div class="row starCenter">
             <div class="col-xl-2 col-md-3 col-4">태그</div>
@@ -174,9 +177,7 @@
 			        	</ul>
 			            <input type="hidden" type="text" value="" name="sbo_hashtag" id="rdTag" />
 			        </div>
-			
 			    </div>
-               
             </div>
          </div>
          <br>

@@ -20,9 +20,9 @@
 		});
 		
 		// 실시간 sns 5초마다 업데이트 (50초마다)
-		window.setInterval(function(){
+		/* window.setInterval(function(){
 			newSns();
-		}, 50000);
+		}, 50000); */
 		
 		
 		
@@ -336,7 +336,7 @@ hr {
 
 								<!-- 로그인 -->
 								<c:if
-									test="${sessionScope.member.mem_id eq null and sessionScope.company.com_id eq null }">
+									test="${sessionScope.member.mem_id eq null and sessionScope.company.com_id eq null and sessionScope.star.st_id eq null}">
 									<div class="sc_login" >
 										<div class="sub_area">
 											<a class="btn btn-primary btn-block" id="homeLogin"
@@ -351,7 +351,7 @@ hr {
 								
 								<!-- 프로필 -->
 								<c:if
-									test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null }">
+									test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null or sessionScope.star.st_id ne null}">
 									<div class="featured-author-cover" style="background-image: url('images/news/img15.jpg');">
 										<div class="badges">
 											<div class="badge-item">
@@ -370,14 +370,19 @@ hr {
 													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.member.mem_pic}" alt="member_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'">
 												</c:if>
 												<!-- 기업로그인 -->
-												<c:if test="${sessionScope.member.mem_pic eq null }">
+												<c:if test="${sessionScope.company.com_pic ne null }">
 													<img src="${pageContext.request.contextPath}/images/member_pic/${sessionScope.company.com_pic}" alt="company_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" >
+												</c:if>
+												<!-- 스타로그인 -->
+												<c:if test="${sessionScope.star.st_id ne null }">
+													<img src="${pageContext.request.contextPath}/images/star/${sessionScope.star.st_pic}" alt="star_profile" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" >
 												</c:if>
 											</figure>
 											
 											<div class="featured-author-info">
 												<h2 class="name" style="color: black;">${sessionScope.member.mem_name}</h2>
 												<h2 class="name" style="color: black;">${sessionScope.company.com_name}</h2>
+												<h2 class="name" style="color: black;">${sessionScope.star.st_name}</h2>
 												<c:if test="${sessionScope.member.mem_type ne 0 }">
 													<div class="desc" style="color: #f73f52;">${sessionScope.member.mem_id}</div>
 												</c:if>

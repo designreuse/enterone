@@ -85,15 +85,4 @@ public class CompanyController {
 		model.addAttribute("companyNotice", cnoticeDao.getCnoticeDetail(cnocVo));
 		return new ModelAndView("company/company_notify_detail");
 	}
-	
-	
-	@RequestMapping(value="/company/starProfile")
-	public ModelAndView companyStarProfile(HttpServletResponse response) throws IOException{
-		return new ModelAndView("company/company_star_profile");
-	}
-	
-	@RequestMapping(value="/company/starMembers")
-	public ModelAndView companyStarMembers(HttpServletResponse response) throws IOException{
-		return new ModelAndView("company/company_star_members");
-	}
 }
