@@ -134,13 +134,17 @@ public class StarController {
 	
 	//팬게시판 이동
 	@RequestMapping(value = "/star/fanBoard/{id}")
-	public ModelAndView starFanBoard(@PathVariable String id, Star stVo, Company comVo, Model model) throws IOException {
+	public ModelAndView starFanBoard(@PathVariable String id, Star stVo, Company comVo, ModelAndView mav) throws IOException {
+		
 		stVo.setSt_id(id);
-		model.addAttribute("stVo", starService.getStarMain(stVo));
+		mav.addObject("stVo", starService.getStarMain(stVo));
+		
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
-		model.addAttribute("company", starService.getProfileCompany(comVo));
-		return new ModelAndView("star/star_fan_board");
+		mav.addObject("company", starService.getProfileCompany(comVo));
+		
+		mav.setViewName("star/star_fan_board");
+		return mav;
 	}
 	
 	//사진게시판 이동
