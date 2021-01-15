@@ -48,24 +48,16 @@
 					<div class="product__details__pic">
 						<div class="product__details__pic__item">
 							<img class="product__details__pic__item--large"
-								src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}"
+								src="${pageContext.request.contextPath}/images/audition/${Aboard.abo_file}"
 								alt="사진" style="height: 555px;">
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
 					<div class="product__details__text">
-						<h3>${activity.ac_title}</h3>
-						<div>${activity.ac_content}</div>
-						<div>${activity.ac_time}</div>
-						<ul>
-							<li><b>좋아요 수</b> <span></span></li>
-							<li><b>조회수</b> <span></span></li>
-						</ul>
-						<div class="product__details_orderform">
-							<div class="product__details__quantity"></div>
-							<button type="button" class="primary-btn" id="like">좋아요</button>
-						</div>
+						<h3>${Aboard.abo_title}</h3>
+						<div>${Aboard.abo_content}</div>
+						<div>${Aboard.abo_subject}</div>
 
 						<div class="row">
 							<div class="starRight">
