@@ -165,6 +165,26 @@ public class SnsController {
 			
 			return new ModelAndView("redirect:sns");
 		}
-	
+	   
+	   
+	   //SNS 좋아요 기능 인서트
+		   @RequestMapping(value="/insertLike", method=RequestMethod.GET)
+		   @ResponseBody
+		   public boolean insertLike(HttpServletRequest request, Sns sns, HttpSession session) throws IOException {
+		       Member member = (Member) session.getAttribute("member");
+		       sns.setSns_ac_no(request.getParameter("sns_ac_no"));
+		       sns.setMem_id(member.getMem_id());
+		       snsdao.insertLike(sns);
+		      return true;
+		   }
+	 @RequestMapping(value="/deleteLike", method=RequestMethod.GET)
+		   @ResponseBody
+		   public boolean deleteLike(HttpServletRequest request, Sns sns, HttpSession session) throws IOException {
+		       Member member = (Member) session.getAttribute("member");
+		       sns.setSns_ac_no(request.getParameter("sns_ac_no"));
+		       sns.setMem_id(member.getMem_id());
+		       snsdao.deleteLike(sns);
+		      return true;
+		   }
 
 }

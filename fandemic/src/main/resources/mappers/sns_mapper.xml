@@ -124,7 +124,16 @@
 		WHERE SNS_NO = #{sns_no} ORDER BY SRE_TIME
 	</select>
 
-
+<!-- 좋아요 인서트 -->
+	<insert id="insertLike" parameterType="Sns">
+	INSERT INTO SLIKEIT (SNS_AC_NO, MEM_ID)
+	VALUES (#{sns_ac_no}, #{mem_id})
+	
+	
+	</insert>
+	<delete id="deleteLike" parameterType="Sns">
+	DELETE FROM SLIKEIT WHERE SNS_AC_NO = #{sns_ac_no} AND MEM_ID = #{mem_id}
+	</delete>
 
 
 

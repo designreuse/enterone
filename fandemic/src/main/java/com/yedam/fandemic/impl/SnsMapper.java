@@ -46,6 +46,9 @@ public interface SnsMapper {
 	// 댓글 조회하기
 	public List<Sreply> selectSre(Sreply sreply);
 	
-	
+	// 좋아요 인서트 하기
+	public int insertLike(Sns Sns);
+	// 좋아요 인서트 하기
+	public int deleteLike(Sns Sns);
 	
 }
