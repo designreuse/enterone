@@ -37,4 +37,24 @@
 		DELETE FROM reply 
 		WHERE re_no = #{re_no}
 	</delete>
+	
+	
+	<insert id="insertNotify" parameterType="Notify">
+		INSERT INTO notify(	nof_no,
+							mem_id,
+							<if test = "sbo_no != null">sbo_no,</if>
+							<if test = "fbo_no != null">fbo_no,</if>
+							<if test = "re_no != null">re_no,</if>
+							nof_content,
+							nof_type
+							) 
+					VALUES(	nof_seq.NEXTVAL,
+							#{mem_id},
+							<if test = "sbo_no != null">#{sbo_no},</if>
+							<if test = "fbo_no != null">#{fbo_no},</if>
+							<if test = "re_no != null">#{re_no},</if>
+							#{nof_content},
+							#{nof_type}
+							)
+	</insert>
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.yedam.fandemic.impl.ReplyMapper;
 import com.yedam.fandemic.service.ReplyService;
+import com.yedam.fandemic.vo.Notify;
 import com.yedam.fandemic.vo.Reply;
 
 @Service
@@ -36,6 +37,11 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public int deleteReply(Reply reply) {
 		return replyDAO.deleteReply(reply);
+	}
+
+	@Override
+	public int insertNotify(Notify notify) {
+		return replyDAO.insertNotify(notify);
 	}
 
 }

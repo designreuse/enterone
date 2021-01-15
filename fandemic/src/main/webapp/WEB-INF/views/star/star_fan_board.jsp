@@ -18,6 +18,8 @@
 <script>
 var tag = {};
 var counter = 0;
+var id = "${member.mem_id}"//session아이디 값
+var ssid = "${star.st_id}"//session아이디 값
 
 	$(function() {
 		//화면 시작 시 목록 출력
@@ -136,13 +138,17 @@ var counter = 0;
 			replyDelete(re_no);
 		});
 		
-		 //댓글 신고 요청
+		 //댓글 신고에 디폴트값 등록
 		$("body").on("click",".btnNotifyReply",function(){
-			var re_no = $(this).parent().parent().parent().data("no");
-			alert(re_no);
-			replyNotify(re_no)
+			var noti = $(this).parent().parent();
+			replyNotifyView(noti);
 		});
-		 
+		
+		 //댓글 신고 요청
+		$("body").on("click","#notifyInsertAction",function(){
+			replyNotifyAction();
+		});
+		
 		 
 		
 //해시태그 구현
@@ -358,7 +364,6 @@ var counter = 0;
 			arr=data.fbo_hashtag_array;
 			for (var i = 0; i < arr.length; i++) {
 				if(arr[i]!=null){
-				    console.log(arr[i]);
                     $("#fbo_hashtag_array").append(" <a href='#' class='tag-cloud-link'>"+arr[i]+"</a>");
                     //수정 뷰에서 기존 태그 출력을 위한 값
                     $("#tag-list").append("<li class='tag-item'>"+arr[i]+"<span class='del-btn' idx='"+i+"'>x</span></li>");
@@ -403,6 +408,7 @@ var counter = 0;
 		$('#tag-list').empty();
 		$('#fbo_hashtag_array').empty();
 		tag = {};
+		var counter = 0;
 		$('form').each(function() {
 		   this.reset();
 		});      
@@ -544,25 +550,36 @@ var counter = 0;
 	//댓글 목록 응답
 	function replyListViewResult(data) {
 		$("#replyListView").empty();
-		
+		id = "${member.mem_id}"//session아이디 값
+		ssid = "${star.st_id}"//session아이디 값
 		$.each(data,function(idx,re){
-			var id = "${member.mem_id}"//session아이디 값
+			
 			var uls = "<ul class = 'replyUl'>";// 작성된 댓글 아래 달아주는 버튼들
+			var li0 = "<li class='hideId' style='display:none;'>"+ re.mem_id +"</li>";
+			
+			
 			if(id == re.mem_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
+				var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
+				var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";					
+			}else if(ssid == re.st_id){//로그인 아이디와 작성자 비교 후 수정,삭제 창 보여주기
 				var li1 = "<li class='btnUpdateReply'>수정</li><span>&nbsp;</span>";
 				var li2 = "<li class='btnDeleteReply'>삭제</li><span>&nbsp;</span>";					
 			}else{
 				var li1 = "";
 				var li2 = "";		
 			}
-			if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
+			
+			if(re.st_id != null){//스타 댓글은 신고 못함
+				var li3 = "";	
+			}else if(id != re.mem_id){//자기 글은 신고버튼 못하게 막음
 				var li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyModal'>신고</li><span>&nbsp;</span>";
 			}else{
 				var li3 = "";	
 			}
+			
 			var ule = "</ul>";
 			
-			var ul = uls+li1+li2+li3+ule;
+			var ul = uls+li0+li1+li2+li3+ule;
 			
 			if(re.fan_name == null || re.fan_name == ""){
 				var name = re.st_name;
@@ -667,12 +684,33 @@ var counter = 0;
 		});
    }
    
-	//댓글 신고 클릭시 정보담기
-	function a(re_no) {
-		/* $("#modalNotifyDefault").find("input:text[name='fbo_no']").val() */
+	//댓글 신고 버튼 시 모달에 값 담음
+	function replyNotifyView(noti) {
+		var re_no = noti.parent().data("no");
+		var mem_id = noti.find(".hideId").html();
 		$("#modalNotifyDefault").find("input:text[name='re_no']").val(re_no)
+		$("#modalNotifyDefault").find("input:text[name='mem_id']").val(mem_id)
 	}
-   
+	
+	//댓글 신고 요청
+	function replyNotifyAction(){
+	   $.ajax({ 
+	       url: "${pageContext.request.contextPath}/star/fanBoard/reply/notify/",  
+	       type: 'POST',  
+	       data : $("#formNotify").serialize(),
+	       success: function(response) {
+	          if(response == true) {
+	        	  alert("신고가 접수 되었습니다.");
+	        	  $('#notifyModal').modal("hide");
+	          }
+	       }, 
+	       error:function(xhr, status, message) { 
+	           /* alert(" status: "+status+" er:"+message); */
+	           alert("로그인 후 이용해주세요.");
+	       }
+	    });
+	}
+
 </script>
 
 <!-- 팬 게시판 게시글 목록 -->
@@ -835,7 +873,6 @@ var counter = 0;
                <button type="button" class="btn btn-primary py-2 px-4" id = "btnUpdateFboardAction" style="display:none;">수정</button>
             </div>
          </div>
-         
       </form>
    </div>
 </section>
@@ -852,29 +889,32 @@ var counter = 0;
 					</button>
 				</div>
 				<div class="modal-body">
-					<div id = "modalNotifyDefault" style="display:none;">
-						 <input name = "re_no" />
-						 <input name = "fbo_no" />
-					</div>
-					<div class = " form-group">
-						<label for="recipient-name" class="col-form-label">신고 이유</label>
-						<select name = "nof_type">
-							<option>욕설,비방</option>
-							<option>광고</option>
-							<option>허위정보</option>
-							<option>음란물</option>
-							<option>기타</option>
-						</select>
-					</div>
-					
-					<div class = " form-group">
-						<label for="recipient-name" class="col-form-label">신고 내용</label>
-						<textarea name="nof_content" style = "width:100%" rows = 7></textarea>
-					</div>
+					<form id="formNotify">
+						<div id = "modalNotifyDefault" style="display:none;">
+							<input name = "re_no" />
+							<input name = "fbo_no" />
+							<input name = "mem_id" />
+						</div>
+						<div class = " form-group">
+							<label for="recipient-name" class="col-form-label">신고 이유</label>
+							<select name = "nof_type">
+								<option>욕설,비방</option>
+								<option>광고</option>
+								<option>허위정보</option>
+								<option>음란물</option>
+								<option>기타</option>
+							</select>
+						</div>
+						
+						<div class = " form-group">
+							<label for="recipient-name" class="col-form-label">신고 내용</label>
+							<textarea name="nof_content" style = "width:100%" rows = 7></textarea>
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary">신고</button>
+					<button type="button" class="btn btn-primary" id="notifyInsertAction">신고</button>
 				</div>
 			</div>
 		</div>
