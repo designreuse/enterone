@@ -40,7 +40,7 @@ var st_name = "${stVo.st_name}";
 		
 		//목록보기
 		$(".btnFboardListView").on("click",function(){
-			window.history.back();
+			location.href ="${pageContext.request.contextPath}/star/starBoard/"+st_id
 		});
 		
 		//댓글 등록 요청

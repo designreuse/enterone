@@ -39,15 +39,8 @@ var no = "${no}"//스타게시물 번호
 		   checkUnload = false; //경고창 중복 제거
 		   if(confirm("작성중인 글을 종료하시겠습니까?") == true){//취소 확인받기
 		      //게시물 등록 요청
-		      fboardListView();
+			   window.history.back();
 		   }
-		});
-		
-		//목록보기
-		$(".btnFboardListView").on("click",function(){
-		   checkUnload = false;//경고창 중복 제거
-		   //목록보기 요청
-		   formReset();
 		});
 		
 //해시태그 구현
@@ -187,13 +180,13 @@ var no = "${no}"//스타게시물 번호
 		$("#rdTag").val(value); 
 			
 		$.ajax({ 
-		    url: "${pageContext.request.contextPath}/star/fanBoard/update/", 
+		    url: "${pageContext.request.contextPath}/star/starBoard/update/", 
 		    type: 'POST', 
 		    data : $("#form1").serialize(),
 		    success: function(response) {
 		       if(response == true) {
 		         alert("수정되었습니다.")
-		         location.href = "${pageContext.request.contextPath}/star/starBoard/"+no;
+		         location.href = "${pageContext.request.contextPath}/star/starBoard/view/"+no;
 		       }
 		    }, 
 		    error:function(xhr, status, message) { 
@@ -211,6 +204,8 @@ var no = "${no}"//스타게시물 번호
       <hr>
       <form id="form1">
          <div class="col-xl-12 col-md-12 col-12 row">
+         		<input name = "sbo_no" style="display:none;" value = "${no}"/>
+         		
                <input name = "sbo_title" style="width: 100%" placeholder="제목" class="inputFboardTitle" value = "${sboVo.sbo_title}"/>
          </div>
          <br>

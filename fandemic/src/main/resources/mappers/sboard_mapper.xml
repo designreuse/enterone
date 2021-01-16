@@ -54,9 +54,7 @@
 	<!-- 게시물 수정 -->
 	<update id="updateSboard" parameterType="Sboard">
 		UPDATE Sboard 
-		SET 
-			sbo_subject = #{sbo_subject}, 
-			sbo_title = #{sbo_title}, 
+		SET sbo_title = #{sbo_title}, 
 			sbo_content = #{sbo_content}, 
 			sbo_hashtag = #{sbo_hashtag} 
 		WHERE sbo_no = #{sbo_no}
