@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class Sboard {
+	String sbo_re_no;		//페이지네이션
 
 	String sbo_no;		//게시물번호
 	String sbo_title;	//게시물제목

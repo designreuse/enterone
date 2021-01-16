@@ -7,8 +7,13 @@
 	<!-- 전체조회 -->
 	<select id="getSboardList" parameterType="Sboard" resultType="Sboard">
 		SELECT * 
-		FROM sboard
-		WHERE st_id = #{st_id}				
+		FROM (
+		SELECT 
+			ROW_NUMBER() OVER(PARTITION BY st_id ORDER BY sbo_no) sbo_re_no, s.*
+		    FROM sboard s)
+		WHERE (sbo_re_no BETWEEN #{sbo_first} AND #{sbo_last})
+			AND st_id = #{st_id}
+		ORDER BY sbo_re_no DESC
 	</select>
 	
 	<!-- 단건조회 -->

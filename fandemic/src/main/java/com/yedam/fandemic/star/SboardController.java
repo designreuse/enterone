@@ -21,6 +21,7 @@ import com.yedam.fandemic.service.SboardService;
 import com.yedam.fandemic.service.StarService;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fboard;
+import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.Sboard;
 import com.yedam.fandemic.vo.Star;
 
@@ -50,31 +51,31 @@ public class SboardController {
 		return mav;
 	}
 
-	// 스타 글조회 페이지 이동
-	@RequestMapping("/star/starBoard/view/{no}")
-	public ModelAndView starBoardView(@PathVariable String no, HttpSession session, 
-			Sboard sboVo, Company comVo, Star stVo, ModelAndView mav) throws IOException {
-		Star star = (Star) session.getAttribute("star");
-		if(star != null) {
-			mav.addObject("st_id", star.getSt_id());			
+	// 스타 게시물 단건 조회, 페이지 이동
+		@RequestMapping("/star/starBoard/view/{no}")
+		public ModelAndView starBoardView(@PathVariable String no, HttpSession session, 
+				Sboard sboVo, Company comVo, Star stVo, ModelAndView mav) throws IOException {
+			Star star = (Star) session.getAttribute("star");
+			if(star != null) {
+				mav.addObject("st_id", star.getSt_id());			
+			}
+			
+			sboVo.setSbo_no(no);
+			mav.addObject("sboard", sboardService.getSboardInfo(sboVo));
+			sboVo = sboardService.getSboardInfo(sboVo);
+			System.out.println(sboVo);	
+			
+			stVo.setSt_id(sboVo.getSt_id());
+			mav.addObject("stVo", starService.getStarMain(stVo));
+			stVo = starService.getStarMain(stVo);
+			comVo.setCom_id(stVo.getCom_id());
+			mav.addObject("company", starService.getProfileCompany(comVo));
+
+			mav.setViewName("star/star_board_view");
+			return mav;
 		}
-		
-		sboVo.setSbo_no(no);
-		mav.addObject("sboard", sboardService.getSboardInfo(sboVo));
-		sboVo = sboardService.getSboardInfo(sboVo);
-		System.out.println(sboVo);	
-		
-		stVo.setSt_id(sboVo.getSt_id());
-		mav.addObject("stVo", starService.getStarMain(stVo));
-		stVo = starService.getStarMain(stVo);
-		comVo.setCom_id(stVo.getCom_id());
-		mav.addObject("company", starService.getProfileCompany(comVo));
 
-		mav.setViewName("star/star_board_view");
-		return mav;
-	}
-
-	// 게시물 상세보기
+	// 게시물 상세보기 데이터 불러오기 액션
 	@RequestMapping(value = "/star/starBoard/read/", method = RequestMethod.GET)
 	@ResponseBody
 	public Sboard starBoardViewAction(HttpServletRequest request, Sboard sboVo, Model model) throws IOException {

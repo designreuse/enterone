@@ -21,6 +21,7 @@ import com.yedam.fandemic.service.StarServiceD;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.Sboard;
 import com.yedam.fandemic.vo.Schedule;
 import com.yedam.fandemic.vo.Star;
@@ -116,18 +117,45 @@ public class StarController {
 	
 	//스타게시판 이동
 	@RequestMapping(value = "/star/starBoard/{id}")
-	public ModelAndView starBoard(@PathVariable String id, Sboard sboard, Company comVo, Star stVo, ModelAndView mav) throws IOException {
+	public ModelAndView starBoard(@PathVariable String id, HttpServletRequest request, Sboard sboVo, Company comVo, Star stVo, ModelAndView mav) throws IOException {
 
 		stVo.setSt_id(id);
 		mav.addObject("stVo", starService.getStarMain(stVo));
 		
+		sboVo.setSt_id(id);
+		String strp = request.getParameter("p");
+		int p = 1;
+		if(strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+		
+		Paging paging = new Paging();
+		
+		paging.setPageUnit(5); // 한페이지에 15건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+		
+		sboVo.setSbo_first(paging.getFirst());
+		sboVo.setSbo_last(paging.getLast());
+		
+		paging.setTotalRecord(sboardService.getSboardCount(sboVo));
+		
+		System.out.println(paging);
+		
+		mav.addObject("paging", paging);
+
+		mav.addObject("sboard", sboardService.getSboardList(sboVo));
+		
+		
+		
+		
+		
+		
+		
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
 		mav.addObject("company", starService.getProfileCompany(comVo));
-		
-		sboard.setSt_id(id);
-		mav.addObject("sbolist", sboardService.getSboardList(sboard));
-		
+		mav.addObject("sbolist", sboardService.getSboardList(sboVo));
 		mav.setViewName("star/star_board");
 		return mav;
 	}

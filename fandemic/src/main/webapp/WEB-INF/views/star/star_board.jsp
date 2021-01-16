@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 
 <script>
 	$(function() {
@@ -69,15 +70,13 @@
 				<div class="row">
 					<div class="col">
 						<div class="block-27">
-							<ul>
-								<li><a href="#">&lt;</a></li>
-								<li class="active"><span>1</span></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&gt;</a></li>
-							</ul>
+							
+							<script>
+								function goPage(p) {
+									location.href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}?p="+p
+								}
+							</script>
+							<my:paging paging="${paging}" jsfunc="goPage" />
 						</div>
 					</div>
 				</div>

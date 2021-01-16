@@ -67,19 +67,20 @@
 					<div class="col-xl-none col-md-none col-xs-2"></div>
 
 					<div class="col-xl-2 col-md-2 col-xs-10 alignLeft">
-						${cnoc.cnoc_time}</div>
+						${cnoc.cnoc_time}
+					</div>
 				</div>
 			</div>
 		</c:forEach>
 	</div>
-	<div align="center">
-		<script>
-			function goPage(p) {
-				location.href="${pageContext.request.contextPath}/company/notify/${cnotice.com_id}?p="+p
-			}
-		</script>
-
-		<my:paging paging="${paging}" jsfunc="goPage" />
-	</div>
-	</div>
+		<div align="center">
+			<script>
+				function goPage(p) {
+					location.href="${pageContext.request.contextPath}/company/notify/${cnotice.com_id}?p="+p
+				}
+			</script>
+	
+			<my:paging paging="${paging}" jsfunc="goPage" />
+		</div>
+	
 </section>
