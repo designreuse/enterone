@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +15,11 @@
 <link rel="stylesheet" href="resources/owlcss/owl.theme.default.min.css">
 <script src="resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
 
-
-
 <script>
 	$(document).ready(function() {
 
 		$('.owl-carousel').owlCarousel({
+			items : "${cnt}",
 			loop : true,
 
 			margin : 10,
@@ -88,7 +88,11 @@ p {
 	margin-top: 50px;
 }
 </style>
-
+<script>
+	$(".btn-like").click(function() {
+		$(this).toggleClass("done");
+	})
+</script>
 </head>
 <body>
 	<section class="page">
@@ -108,10 +112,15 @@ p {
 				<div>
 					<div class="jumbotron jumbotron-fluid">
 						<div class="owl-carousel owl-theme">
-							<div class="item">
-								<img class="auditionimage"
-									src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}">
-							</div>
+							<%-- <c:forEach var="new" items="${selectnew}">
+								<div>
+									<input type="image" style="width: 200px; height: 260px;"
+										src="${pageContext.request.contextPath}/images/audition/${new.ac_file}">
+									<br>
+									<p>${new.mem_id}</p>
+									<p>${new.ac_likes}</p>
+								</div>
+							</c:forEach> --%>
 							<div class="item">
 								<h4>2</h4>
 							</div>
@@ -172,9 +181,7 @@ p {
 								<input type="text" name="q" class="form-control"
 									placeholder="Type something ..." value="Search">
 								<div class="input-group-btn">
-									<button class="btn btn-primary">
-										<i class="ion-search"></i>
-									</button>
+									<button class="btn btn-primary"></button>
 								</div>
 							</div>
 						</div>
@@ -189,57 +196,36 @@ p {
 										src="${pageContext.request.contextPath}/images/audition/${trainee.tr_pic}"
 										alt="...">
 									<div class="caption">
-										
-										<a href="${pageContext.request.contextPath}/ActivityDetail/${trainee.mem_id}"><p>${sessionScope.member.mem_id}</p></a>
+
+										<a
+											href="${pageContext.request.contextPath}/ActivityDetail/${trainee.mem_id}"><p>${sessionScope.member.mem_id}</p></a>
 										<p>${trainee.tr_name}</p>
 										<p>${trainee.tr_content}</p>
 										<p>${trainee.tr_branch1}</p>
 										<p>${trainee.tr_branch2}</p>
 										<p>
 											<a href="#" class="btn btn-primary" role="button">Button</a>
-											<a href="#" class="btn btn-default" role="button">Button</a>
+
 										</p>
 									</div>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
-
-
-
-
-
-
-
-
-
-
-
-
 				</div>
 			</div>
 		</div>
+			<!-- paging -->
+					<div align="center">
+							<script>
+								function goPage(p) {
+									location.href = "audition/auditionwork?p=" + p
+								}
+							</script>
 
+							<my:paging paging="${paging}" jsfunc="goPage" />
+					</div>
 
-
-		</div>
-
-
-
-
-		<ul class="pagination" style="align: center">
-			<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-			<li class="active"><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">...</a></li>
-			<li><a href="#">10</a></li>
-			<li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-		</ul>
-
-
-
-		</div>
 	</section>
 </body>
 

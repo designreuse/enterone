@@ -22,6 +22,10 @@
 	width: 50%;
 }
 
+#pro_tall1 {
+	width: 70% !important;
+}
+
 .table .table-hover {
 	
 }
@@ -195,11 +199,12 @@ ul.tabs li.current {
 		$('#btn_search_postcode').click(function() {
 			openDaumZipAddress($("#pro_postcode"), $("#pro_addr1"));
 		});
-		$('#btn_cancle_apply').click(function() {
-		//임시로	
-			location.href="${pageContext.request.contextPath}/audition/auditionprofile";
-		});
-		
+		$('#btn_cancle_apply')
+				.click(
+						function() {
+							//임시로	
+							location.href = "${pageContext.request.contextPath}//audition/auditionlist";
+						});
 
 	});
 	function agChk() {
@@ -248,8 +253,8 @@ ul.tabs li.current {
 							<h3 class="title">개인정보 수집 및 이용 동의 (필수)</h3>
 							<div class="agree box-agree">
 
-								본인은 ㈜YG엔터테인먼트(이하 ‘회사’)가 본인이 오디션 지원을 통해 제공하는 개인정보를 아래와 같이 수집 및
-								이용함에 대하여 동의합니다.<br> <br>
+								본인은 ${aboard.com_id}엔터테인먼트(이하 ‘회사’)가 본인이 오디션 지원을 통해 제공하는 개인정보를
+								아래와 같이 수집 및 이용함에 대하여 동의합니다.<br> <br>
 								<table>
 									<tbody>
 										<tr>
@@ -383,8 +388,7 @@ ul.tabs li.current {
 									<button class="btn btn-primary" id="btn_cancle_apply">지원
 										취소</button>
 								</div>
-								<div class="col-md-1 col-sm-1 col-xs-1">
-								</div>
+								<div class="col-md-1 col-sm-1 col-xs-1"></div>
 								<div class="col-md-7 col-sm-7 col-xs-7"></div>
 								<div class="col-md-2 col-sm-2 col-xs-2">
 									<button class="btn btn-primary" id="btn_next_apply1"
@@ -402,12 +406,6 @@ ul.tabs li.current {
 
 					<table class="table table-striped">
 						<tbody>
-							<tr>
-
-								<td class="font-f">이름</td>
-								<td class="font-g">${member.mem_name}</td>
-
-							</tr>
 							<tr>
 
 								<td class="font-f">성별</td>
@@ -442,9 +440,7 @@ ul.tabs li.current {
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
 							취소</button>
 					</div>
-					<div class="col-md-1 col-sm-1 col-xs-1">
-						
-					</div>
+					<div class="col-md-1 col-sm-1 col-xs-1"></div>
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_next_minus1" rel="step2">이전
@@ -471,6 +467,19 @@ ul.tabs li.current {
 							<input type="hidden" id="adt_idx" name="adt_idx" value="1">
 							<input type="hidden" id="pro_idx" name="pro_idx" value="77557">
 							<table class="table table-hover">
+								<tr>
+									<td class="font-f">이름</td>
+									<td><div class="col">
+											<input type="text" id="pro_tall" name="pro_tall"
+												placeholder="이름을 입력하세요" maxlength="5"
+												onkeydown="javascript:return only_num(event);"
+												onkeyup="javascript:remove_char(event);"
+												oninput="javascript:chk_num_len(this); return false;">
+										</div></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
 
 								<tr>
 
@@ -478,7 +487,7 @@ ul.tabs li.current {
 									<td>
 										<div class="col">
 
-											<select id="adf_idx" name="adf_idx" style="width: 50%">
+											<select id="aud_type" name="aud_type" style="width: 50%">
 												<option value="">지원분야 (1지망)</option>
 												<option value="1">보컬</option>
 												<option value="2">랩</option>
@@ -495,7 +504,7 @@ ul.tabs li.current {
 
 									<td class="font-f">나이</td>
 									<td><div class="col">
-											<input type="text" id="pro_tall" name="pro_tall"
+											<input type="text" id="aud_age" name="aud_age"
 												placeholder="만 나이를 입력하세요" maxlength="5"
 												onkeydown="javascript:return only_num(event);"
 												onkeyup="javascript:remove_char(event);"
@@ -510,15 +519,15 @@ ul.tabs li.current {
 
 									<td class="font-f">신장(cm)/체중(kg)</td>
 									<td><div class="col">
-											<input type="text" id="pro_tall" name="pro_tall"
+											<input type="text" id="aud_height" name="aud_height"
 												placeholder="신장 cm 단위. 숫자만 입력" maxlength="5"
 												onkeydown="javascript:return only_num(event);"
 												onkeyup="javascript:remove_char(event);"
 												oninput="javascript:chk_num_len(this); return false;">
 										</div></td>
 									<td><div class="col">
-											<input type="text" id="pro_tall" name="pro_weight"
-												placeholder="체중 kg 단위. 숫자만 입력" maxlength="5"
+											<input type="text" id="aud_weight" name="aud_weight"
+												placeholder="체중 kg 단위. 숫자만 입력" maxlength="10"
 												onkeydown="javascript:return only_num(event);"
 												onkeyup="javascript:remove_char(event);"
 												oninput="javascript:chk_num_len(this); return false;">
@@ -534,7 +543,7 @@ ul.tabs li.current {
 
 									<td>
 										<div class="col">
-											<textarea id="pro_hobby" name="pro_hobby"
+											<textarea id="aud_hobby" name="aud_hobby"
 												aria-label="With textarea"
 												placeholder="예시. 피아노,현대무용,미디,작곡 등" cols="30"></textarea>
 										</div>
@@ -555,8 +564,7 @@ ul.tabs li.current {
 							<button class="btn btn-primary" id="btn_cancle_apply">지원
 								취소</button>
 						</div>
-						<div class="col-md-1 col-sm-1 col-xs-1">
-						</div>
+						<div class="col-md-1 col-sm-1 col-xs-1"></div>
 						<div class="col-md-5 col-sm-5 col-xs-5"></div>
 						<div class="col-md-2 col-sm-2 col-xs-2">
 							<button class="btn btn-primary" id="btn_next_minus2" rel="step2">이전
@@ -578,11 +586,12 @@ ul.tabs li.current {
 
 
 					<tr>
-						<td class="font-f">프로필사진(필수)</td>
+						<td class="font-f">대표사진</td>
 						<td></td>
 						<td></td>
 						<td colspan="2"><div class="invalid-feedback">
-								<button class="btn btn-primary" id="btnfile">파일 첨부</button>
+							 <input type="file" name="ex2_file"
+										id="aud_file"> 
 
 
 							</div></td>
@@ -592,11 +601,12 @@ ul.tabs li.current {
 					</tr>
 
 					<tr>
-						<td class="font-f">영상첨부(필수)</td>
+						<td class="font-f">대표영상</td>
 						<td></td>
 						<td></td>
 						<td colspan="2"><div class="invalid-feedback">
-								<button class="btn btn-primary" id="btnfile">파일 첨부</button>
+								<input type="file" name="ex2_file"
+										id="aud_pic"> 
 
 
 							</div></td>
@@ -646,34 +656,34 @@ ul.tabs li.current {
 					</tr>
 					<tr>
 						<td class="font-f">분야</td>
-						<td></td>
+						<td>${auditon.aud_type}</td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">취미/특기</td>
-						<td></td>
+						<td>${auditon.aud_hobby}</td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">나이(만 나이)</td>
-						<td></td>
+						<td>${auditon.aud_age}</td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">신장/체중</td>
-						<td></td>
-						<td></td>
+						<td>${auditon.aud_height}</td>
+						<td>${auditon.aud_weight}</td>
 
 					</tr>
 					<tr>
 						<td class="font-f">대표사진</td>
-						<td></td>
+						<td>${auditon.aud_pic}</td>
 						<td></td>
 
 
@@ -684,7 +694,7 @@ ul.tabs li.current {
 				<table class="table table-hover">
 					<tr>
 						<td class="font-f">대표영상</td>
-						<td><div class="video-embed-area">
+						<td>${auditon.aud_file}<div class="video-embed-area">
 								<video src="" controls="" muted=""></video>
 							</div></td>
 						<td></td>
@@ -699,11 +709,11 @@ ul.tabs li.current {
 						<button class="btn btn-primary" id="btn_cancle_apply">지원
 							취소</button>
 					</div>
-					<div class="col-md-1 col-sm-1 col-xs-1" style="margin-left:40px">
-						<button class="btn btn-primary" id="btn_cancle_apply">지원
-							정보 저장</button>
+					<div class="col-md-1 col-sm-1 col-xs-1" style="margin-left: 40px">
+						<button class="btn btn-primary" id="btn_save_apply">지원 정보
+							저장</button>
 					</div>
-					
+
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
 						<button class="btn btn-primary" id="btn_next_minus4" rel="step2">이전
@@ -711,7 +721,7 @@ ul.tabs li.current {
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn btn-primary" id="btn_next_apply4" rel="step2">최종
+						<button type="submit" class="btn btn-primary" id="btn_next_apply4" rel="step2">최종
 							지원</button>
 					</div>
 				</div>

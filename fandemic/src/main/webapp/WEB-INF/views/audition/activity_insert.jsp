@@ -78,10 +78,6 @@ body {
 		$("#can").on("click", function() {
 			location.href = "${pageContext.request.contextPath}/audition/auditionwork";
 		});
-	//	$("#sub").on("click", function() {
-		// location.href = "${pageContext.request.contextPath}/audition/activityinsertsend";
-		//});
-		
 	});
 	function WriteFormCheck() {
 		if ($("#ac_title").val() == null || $("#ac_title").val() == '') {

@@ -45,21 +45,13 @@ public class AboardController {
 		System.out.println(aboard);
 		return auditionservice.auditionlist();
 	}
-//	  //게시물 상세보기
-//	   @RequestMapping(value="/Aboard/read", method=RequestMethod.GET)
-//	   @ResponseBody
-//	   public Aboard aboardView(HttpServletRequest request, Aboard aboard, Model model) throws IOException {      
-//		   aboard.setAbo_no(request.getParameter("abo_no"));
-//		   aboard = auditionservice.getAboardInfo(aboard);	      
-//	      return aboard;
-//	   }
 	//게시물 상세보기 주소
 	@RequestMapping(value = "/auditionlistDetail/{no}", method = RequestMethod.GET)
 	public ModelAndView auditionlistDetail(@PathVariable String no, Aboard aboard, Model model) throws IOException {
 		// 단건
 		aboard.setAbo_no(no);
 		model.addAttribute(auditionMapper.getAboardInfo(aboard));
-		return new ModelAndView("audition/audition_detail");
+		return new ModelAndView("audition/audtion_detail");
 	}
 	
 	

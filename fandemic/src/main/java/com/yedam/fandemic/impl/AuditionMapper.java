@@ -2,9 +2,11 @@ package com.yedam.fandemic.impl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
+import com.yedam.fandemic.vo.Audition;
 import com.yedam.fandemic.vo.Trainee;
 
 public interface AuditionMapper {
@@ -31,7 +33,12 @@ public interface AuditionMapper {
 	public List<Aboard> getComList(Aboard aboard);
 	//단건 조회
 	public Aboard getAboardInfo(Aboard aboard);
-	
+	//오디션 지원자 등록
+	public int insertau(Audition audition);
+	//최신순
+	public List<Map<String, Object>> selectnew();
+	//페이징
+	public int getactivityCount(Activity activity);
 	
 
 }

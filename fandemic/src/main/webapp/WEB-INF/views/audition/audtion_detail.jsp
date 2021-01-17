@@ -48,21 +48,23 @@
 					<div class="product__details__pic">
 						<div class="product__details__pic__item">
 							<img class="product__details__pic__item--large"
-								src="${pageContext.request.contextPath}/images/audition/${Aboard.abo_file}"
+								src="${pageContext.request.contextPath}/images/audition/${aboard.abo_pic}"
 								alt="사진" style="height: 555px;">
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6">
 					<div class="product__details__text">
-						<h3>${Aboard.abo_title}</h3>
-						<div>${Aboard.abo_content}</div>
-						<div>${Aboard.abo_subject}</div>
+						<h3>${aboard.abo_title}</h3>
+						<div>${aboard.abo_content}</div>
+						<div>${aboard.abo_subject}</div>
 
 						<div class="row">
 							<div class="starRight">
+							<c:if test="${sessionScope.member.mem_id ne null}">
 								<button type="button" class="btn btn-primary py-2 px-4"
-									id="btnUpdateactivity" onclick="location.href='${pageContext.request.contextPath}/audition/activityupdate'">수정</button>
+									id="btnapply" onclick="location.href='${pageContext.request.contextPath}/audition/auditionapply'">지원하기</button>
+									</c:if>
 							</div>
 						</div>
 					</div>

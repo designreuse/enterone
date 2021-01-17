@@ -28,7 +28,7 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 		//console.log(abo_no);
 		//aboardView(abo_no);
 		location.href="${pageContext.request.contextPath}/auditionlistDetail/"+abo_no //컨트롤러 no부분
-
+		
 	})			
 		
 	});
@@ -118,33 +118,4 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 			</div>
 		</div>
 	</div>
-</section>
-
-<!-- 게시물 상세보기 -->
-<section class="ftco-section-3 fboardViewSection">
-	<div class="container">
-		<hr>
-		<div class="row starCenter">
-			<div class="row">
-				<h5 id="abo_title"></h5>
-			</div>
-		</div>
-		<div class="row">
-			<ul class="aboardUl">
-				<li><span id="abo_subject"></span></li>
-				<li><span id="abo_pic"></span></li>
-				<li><span id="abo_content"></span></li>
-			</ul>
-		</div>
-		<br>
-		<div class="inputAboardContent" id="abo_content"></div>
-		<br> <br>
-		<div class="row">
-			<div class="starRight">
-				<button type="button" class="btn btn-primary py-2 px-4"
-					id="btnapply">지원하기</button>
-			</div>
-		</div>
-	</div>
-
 </section>

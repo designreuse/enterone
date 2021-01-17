@@ -3,6 +3,7 @@ package com.yedam.fandemic.audition;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +26,12 @@ import com.yedam.fandemic.login.Password;
 import com.yedam.fandemic.service.AuditionService;
 import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
+import com.yedam.fandemic.vo.Audition;
 import com.yedam.fandemic.vo.Cart;
 import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.Trainee;
 
 @Controller
@@ -44,6 +47,7 @@ public class AuditionController {
 		return new ModelAndView("audition/audition_apply");
 
 	}
+
 	// 연습생 프로필
 	@RequestMapping(value = "/audition/auditionprofile") // 주소
 	public ModelAndView auditionprofile(HttpServletResponse response) throws IOException {
@@ -97,7 +101,25 @@ public class AuditionController {
 	// 연습생 활동 페이지
 	@RequestMapping(value = "/audition/auditionwork") // 주소
 	public ModelAndView auditionwork(Model model, HttpServletRequest request, Activity activity) throws IOException {
+		
 		model.addAttribute("TrworkList", auditionMapper.selectTr());
+
+		/*
+		 * String strp = request.getParameter("p"); int p = 1; if (strp != null &&
+		 * !strp.equals("")) { p = Integer.parseInt(strp); }
+		 * 
+		 * Paging paging = new Paging(); paging.setPageUnit(12); // 한페이지에 12건씩. 생략시 기본10
+		 * paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10 paging.setPage(p); // 현재
+		 * activity.setAc_first(paging.getFirst()); // paging에 현재 페이지만 넣으면 first,
+		 * activity.setAc_last(paging.getLast());
+		 * paging.setTotalRecord(auditionMapper.getactivityCount(activity));
+		 * 
+		 * model.addAttribute("paging", paging);
+		 * 
+		 * List<Map<String, Object>> list = auditionMapper.selectnew();
+		 * model.addAttribute("selectnew", list); model.addAttribute("cnt",
+		 * list.size());
+		 */
 
 		return new ModelAndView("audition/trainee_list");
 
@@ -116,7 +138,6 @@ public class AuditionController {
 		// request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String sumFile = "";
-		// 이미지파일, 공지사항 첨부파일
 		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
 		for (int i = 0; i < multipartFile.size(); i++) {
 			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
@@ -153,7 +174,7 @@ public class AuditionController {
 		// request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String sumFile = "";
-		// 이미지파일, 공지사항 첨부파일
+
 		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
 		for (int i = 0; i < multipartFile.size(); i++) {
 			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
@@ -168,7 +189,7 @@ public class AuditionController {
 		return "redirect:/audition/auditionwork";
 	}
 
-	//연습생 활동 지원 글 삭제
+	// 연습생 활동 지원 글 삭제
 	@RequestMapping(value = "/audition/activitydelete", method = RequestMethod.POST)
 	@ResponseBody
 	public boolean activitydelete(HttpServletRequest request, Activity activity) throws IOException {
@@ -184,6 +205,32 @@ public class AuditionController {
 		activity.setMem_id(mem_id);
 		model.addAttribute(auditionMapper.activityDetail(activity));
 		return new ModelAndView("audition/trainee_profile");
+	}
+
+	// 오디션 지원자 등록
+	@RequestMapping(value = "/audition/auditioninsertsend")
+	public String Insertau(HttpServletRequest request, Model model, Audition audition)
+			throws IllegalStateException, IOException {
+		// request multipart로 캐스팅
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String sumFile = "";
+		// 이미지파일, 공지사항 첨부파일
+		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
+		for (int i = 0; i < multipartFile.size(); i++) {
+			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
+				String path = request.getSession().getServletContext().getRealPath("/images/audition");
+				System.out.println("path=" + path);
+				multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
+				sumFile = sumFile + multipartFile.get(i).getOriginalFilename() + " ";
+				audition.setAud_pic(sumFile);
+			} else {
+				audition.setAud_pic("");
+			}
+		}
+
+		auditionservice.insertau(audition);
+		model.addAttribute("msg", "등록됐습니다.");
+		return "redirect:/auditionAboard/list";
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
+import com.yedam.fandemic.vo.Audition;
 import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Trainee;
 
@@ -24,4 +25,6 @@ public interface AuditionService {
 	public List<Aboard> getComList(Aboard aboard);
 	//단건조회
 	public Aboard getAboardInfo(Aboard aboard);
+	//오디션 지원자 등록
+	public int insertau(Audition audition);
 }

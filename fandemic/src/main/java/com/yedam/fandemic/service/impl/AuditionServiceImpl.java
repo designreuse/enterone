@@ -9,6 +9,7 @@ import com.yedam.fandemic.impl.AuditionMapper;
 import com.yedam.fandemic.service.AuditionService;
 import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
+import com.yedam.fandemic.vo.Audition;
 import com.yedam.fandemic.vo.Trainee;
 
 
@@ -55,5 +56,10 @@ public class AuditionServiceImpl implements AuditionService {
 	public Aboard getAboardInfo(Aboard aboard) {
 		
 		return auditionmapper.getAboardInfo(aboard);
+	}
+	@Override
+	public int insertau(Audition audition) {
+		// TODO Auto-generated method stub
+		return auditionmapper.insertau(audition);
 	}
 }
