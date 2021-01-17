@@ -194,14 +194,22 @@ public class GoodsController {
 	// 주문 결과 페이지 - 주문 목록
 	@RequestMapping(value = "/buyList")
 	public ModelAndView buyList(HttpSession session, Gbuyer gbuyer, Model model) throws IOException {
-		Member member = (Member) session.getAttribute("member");
-		gbuyer.setMem_id(member.getMem_id());
-		
-		model.addAttribute(goMapper.buyList(gbuyer));
-		return new ModelAndView("goods/goods_buy_detail");
+		Member member = (Member) session.getAttribute("member"); // 세션에 저장해둔 member 불러오기
+		if (member == null) { // 로그인하지 않은 상태이면 로그인 화면으로 이동
+			return new ModelAndView("/login");
+		} else {
+			gbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 cart에 담기
+			model.addAttribute("buyList", goMapper.buyList(gbuyer));
+			return new ModelAndView("goods/goods_buy_detail");
+		}
 	}
 	
 	
 	// 주문 결과 페이지 - 주문 상세 목록 buyDetailList
+
+	
+//	to-do-list	
+//	장바구니에 중복 상품 담을 수 없게
+//	장바구니 0건이면 주문 화면으로 넘어갈 수 없게
 
 }

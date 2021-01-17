@@ -98,12 +98,12 @@ $(document).ready(function() {
 				}, function (rsp) { // callback
 					console.log('------'+rsp+'------');
 					if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-      					var msg = '결제가 완료되었습니다.';
-    					msg += '고유ID : ' + rsp.imp_uid;
-    					msg += '상점 거래ID : ' + rsp.merchant_uid;
-    					msg += '결제 금액 : ' + rsp.paid_amount;
-    					msg += '카드 승인번호 : ' + rsp.apply_num;
-                      	alert(msg);
+      					// var msg = '결제가 완료되었습니다.';
+    					// msg += '고유ID : ' + rsp.imp_uid;
+    					// msg += '상점 거래ID : ' + rsp.merchant_uid;
+    					// msg += '결제 금액 : ' + rsp.paid_amount;
+    					// msg += '카드 승인번호 : ' + rsp.apply_num;
+                      	// alert(msg);
 						// jQuery로 HTTP 요청
 		                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 		                $.ajax({
@@ -120,10 +120,10 @@ $(document).ready(function() {
 			                	   gb_zipaddress : postcode
 		           				 },
 		                   success : function(data) {
-		                	   	alert('결제 성공');
+		                	   	alert('결제가 완료되었습니다.');
 								location.href = "${pageContext.request.contextPath}/buyList"
 		                   }, error : function() {
-		                      	alert('실패');
+		                      	alert('결제에 실패했습니다.');
 		                   }
 		                });
 					} else {
