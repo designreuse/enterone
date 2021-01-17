@@ -252,11 +252,11 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		$.each(data,function(idx,item){
 		   $('<tr>').addClass('candahar')
 		   .append($('<input type=\'hidden\' id=\'fbo_no\'>').val(item.fbo_no))
-		   .append($('<td>').html(item.fbo_sub_no))
+		   .append($('<td>').html(item.fbo_sub_no).addClass('boardColor'))
 		   .append($('<td>').html("[" + item.fbo_subject + "] " + "<span>" + item.fbo_title  + "</span>"))
-		   .append($('<td>').html(item.fan_name))
-		   .append($('<td>').html(item.fbo_time))
-		   .append($('<td>').html(item.fbo_views))
+		   .append($('<td>').html(item.fan_name).addClass('boardCenter'))
+		   .append($('<td>').html(item.fbo_time).addClass('boardColor'))
+		   .append($('<td>').html(item.fbo_views).addClass('boardColor'))
 		   .appendTo('tbody');
 		});//each
 		
@@ -318,11 +318,11 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		$.each(data,function(idx,item){
 		   $('<tr>').addClass('candahar')
 		   .append($('<input type=\'hidden\' id=\'fbo_no\'>').val(item.fbo_no))
-		   .append($('<td>').html(item.fbo_sub_no))
+		   .append($('<td>').html(item.fbo_sub_no).addClass('boardColor'))
 		   .append($('<td>').html("[" + item.fbo_subject + "] " + "<span>" + item.fbo_title  + "</span>"))
-		   .append($('<td>').html(item.fan_name))
-		   .append($('<td>').html(item.fbo_time))
-		   .append($('<td>').html(item.fbo_views))
+		   .append($('<td>').html(item.fan_name).addClass('boardCenter'))
+		   .append($('<td>').html(item.fbo_time).addClass('boardColor'))
+		   .append($('<td>').html(item.fbo_views).addClass('boardColor'))
 		   .appendTo('tbody');
 		});//each
 				  	
@@ -601,10 +601,10 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 			
 			var ul = uls+li0+li1+li2+li3+ule;
 			
-			if(re.fan_name == null || re.fan_name == ""){
-				var name = re.st_name;
-			}else{
-				var name = re.fan_name;
+			if(re.fan_name == null || re.fan_name == ""){//스타이름
+				var name = "<span class = 'replyStarName'>" + re.st_name + "</span>"; 
+			}else{//유저 닉네임
+				var name = "<span class = 'replyFanName'>" + re.fan_name +"</span>";
 			}
 			
 			$("<div class = 'replyInfo' data-no="+re.re_no+"><hr>") 
@@ -780,8 +780,8 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 <section class="ftco-section-3 fboardViewSection"  style="display:none;">
    <div class="container">
       <hr>
-      <div class="row starCenter">
-         <div class="row"><h5 id = "fbo_title"></h5></div>
+      <div class="row">
+         <h5 id = "fbo_title"></h5>
       </div>
       <div class="row">
          <ul class = "fboardUl">

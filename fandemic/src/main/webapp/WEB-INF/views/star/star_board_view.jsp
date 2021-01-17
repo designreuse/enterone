@@ -305,10 +305,10 @@ var st_name = "${stVo.st_name}";
 			
 			var ul = uls+li0+li1+li2+li3+ule;
 			
-			if(re.fan_name == null || re.fan_name == ""){
-				var name = re.st_name;
-			}else{
-				var name = re.fan_name;
+			if(re.fan_name == null || re.fan_name == ""){//스타이름
+				var name = "<span class = 'replyStarName'>" + re.st_name + "</span>"; 
+			}else{//유저 닉네임
+				var name = "<span class = 'replyFanName'>" + re.fan_name +"</span>";
 			}
 			
 			$("<div class = 'replyInfo' data-no="+re.re_no+"><hr>") 
@@ -440,9 +440,7 @@ var st_name = "${stVo.st_name}";
    <input style="display:none;" name = "sbo_no"/>
    <div class="container">
       <hr>
-      <div class="row starCenter">
          <div class="row"><h5 id = "sbo_title"></h5></div>
-      </div>
       <div class="row">
          <ul class = "fboardUl">
              <li><span id ="st_name"></span></li>
