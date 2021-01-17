@@ -56,11 +56,16 @@
 	
 	<!-- sns 오늘날짜 데이터 뿌리기 -->
 	<select id="todaySns" resultType="Sns">
-		SELECT S.*, M.MEM_PIC MEM_PIC, M.MEM_TYPE MEM_TYPE 
+		<!--SELECT S.*, M.MEM_PIC MEM_PIC, M.MEM_TYPE MEM_TYPE 
 		FROM SNS S, MEMBER M 
 		WHERE S.MEM_ID=M.MEM_ID 
 		AND SNS_TIME > TO_CHAR(SYSDATE,'YYYY-MM-DD') 
-		ORDER BY SNS_NO DESC
+		ORDER BY SNS_NO DESC-->
+		SELECT ROW_NUMBER() OVER(ORDER BY  SNS_NO DESC) as no, S.*, M.MEM_PIC MEM_PIC, M.MEM_TYPE MEM_TYPE 
+		FROM SNS S, MEMBER M 
+		WHERE S.MEM_ID=M.MEM_ID
+		
+		
 	</select>
 	
 	<!-- 검색1 스타 -->

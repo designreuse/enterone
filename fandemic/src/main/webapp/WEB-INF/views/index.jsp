@@ -24,6 +24,15 @@
 			newSns();
 		}, 50000); */
 		
+		$('.sscroll').scroll(function(){
+	        var scrollT = $(this).scrollTop(); //스크롤바의 상단위치
+	        var scrollH = $(this).height(); //스크롤바를 갖는 div의 높이
+	        var contentH = $('#divContent').height(); //문서 전체 내용을 갖는 div의 높이
+
+	       if(scrollT + scrollH +1 >= contentH) { // 스크롤바가 아래 쪽에 위치할 때
+	    	   newSns();
+	        } 
+	    });
 		
 		
 		// 차트
@@ -520,6 +529,7 @@ hr {
 					<div id="divContent" > 
 						<table id="snsTbl">
 						<c:forEach items="${snsList}" var="sns">
+						<c:if test="${sns.no <= 15 }">
 							<tr > 
 								<c:if test="${sns.mem_type ne 0 }">
 									<td><img class="snsImg" src="${pageContext.request.contextPath}/images/member_pic/${sns.mem_pic}" onerror="this.src='${pageContext.request.contextPath}/images/member_pic/no-profile.jpg'" style="width: 60px; height: 60px; margin: 20px;"></td><!-- 프로필 사진 -->
@@ -542,9 +552,9 @@ hr {
 									</c:if>
 								</td>
 							</tr>
-							
+							</c:if>
 						</c:forEach>
-							
+						
 						</table>
 						
 					</div>
