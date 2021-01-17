@@ -14,6 +14,7 @@
 	<section class="home">
 		<div class="container">	
 			<div class="row">
+			<h1>구매내역</h1>
 				<ul class="buyList">
 					<c:forEach items="${buyList}" var="buyList">
 						<li>
