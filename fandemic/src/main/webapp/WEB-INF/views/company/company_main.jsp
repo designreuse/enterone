@@ -14,16 +14,13 @@
 				name="pos" id="pos3"> <input type="radio" name="pos"
 				id="pos4">
 			<ul>
-				<li><img class="companyBanner col-md-12 col-sm-12 col-xs-12"
-					src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
-					alt="company_main" /></li>
-				<li><img class="companyBanner col-md-12 col-sm-12 col-xs-12"
-					src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
-					alt="company_main" /></li>
-				<li><img class="companyBanner col-md-12 col-sm-12 col-xs-12"
-					src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
-					alt="company_main" /></li>
-
+				<c:forEach var="company" items="${companyList}" end ="4"> 
+					<li>
+						<img class="companyBanner col-md-12 col-sm-12 col-xs-12"
+						src="${pageContext.request.contextPath}/resources/images/company/${company.com_pic}"
+						onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'" />
+					</li>
+				</c:forEach>
 			</ul>
 
 			<p class="bullet">
@@ -48,8 +45,8 @@
 						<div class="companyContainer">
 							<div class="row">
 								<img class="companyMinBanner col-md-12 col-sm-12 col-xs-12"
-									src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
-									alt="company_main" />
+									src="${pageContext.request.contextPath}/resources/images/company/${company.com_pic}"
+									onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'" />
 							</div>
 							<div class="row companyName">
 								<p>${company.com_name}</p>

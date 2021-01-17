@@ -1,5 +1,41 @@
 @charset "UTF-8";
 
+/* 스타 타일즈 */
+.brand {
+	display: block;
+}
+.brand {
+	float: left;
+	margin: 10px 0;
+}
+
+.brand a {
+	text-decoration: none;
+}
+
+.brand img {
+	width: 100px;
+	display: block;
+	float: left;
+}
+.brand {
+	width: 100px;
+	height: 55px;
+}
+
+.colorlibTop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom : 0;
+	padding: 0 10px;
+	font-size: 17px;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+
 .starCenter {
 	justify-content: center;
 	align-items: center;
@@ -7,6 +43,10 @@
 
 .starRight {
 	margin-left: auto;
+}
+
+.starLeft {
+	margin-right: auto;
 }
 
 .starMargin {
@@ -34,25 +74,44 @@
 	background-color: #f5f5f5;
 }
 
+
+.boardListColor{/* 팬게시판 목록 색상 */
+	color : #808080;
+	text-align : center;
+}
+.boardCenter{
+	text-align : center;
+}
+
+.boardColor{/* 팬게시판 목록 색상 */
+	color : #808080;
+}
+
 /* Datatable th변형 금지 */
 .thList0 {
 	width: 5% !important;
+	color : #A4B7D4;
+	text-align : center;
 }
 
 .thList1 {
 	width: 58% !important;
+	text-align : center;
 }
 
 .thList2 {
 	width: 10% !important;
+	text-align : center;
 }
 
 .thList3 {
 	width: 17% !important;
+	text-align : center;
 }
 
 .thList4 {
 	width: 10% !important;
+	text-align : center;
 }
 
 /* 게시판 댓글 */
@@ -99,12 +158,24 @@
 }
 .btnUpdateReply:hover {
 	cursor: pointer;
+	color : #4176E0;
 }
 .btnDeleteReply:hover {
 	cursor: pointer;
+	color : #4176E0;
 }
 .btnNotifyReply:hover {
 	cursor: pointer;
+	color : #4176E0;
+}
+
+.replyFanName{/* 댓글 이름 */
+	font-weight: bold;
+	font-size : 15px;
+}
+.replyStarName{/* 댓글 이름 */
+	font-weight: bold;
+	color : #4176E0;
 }
 
 /* 해시태그 */
@@ -141,19 +212,23 @@ ul li.tag-item {
 }
 
 /* 페이지네이션 */
+.paginationCenter div{
+	justify-content: center;
+}
+
 .pagination a {
 	color: black;
 	float: left;
-	padding: 8px 16px;
+	padding: 8px 18px;
 	text-decoration: none;
 	transition: background-color .3s;
 	border: 1px solid #ddd;
 }
 
 .pagination a.active {
-	background-color: black;
+	background-color: #4176E0;
 	color: white;
-	border: 1px solid black;
+	border: 1px solid #4176E0;
 }
 
 div #dataTable_filter {
@@ -161,7 +236,20 @@ div #dataTable_filter {
 }
 
 .pagination a:hover:not(.active) {
-	background-color: #ddd;
+	background-color:  #A4B7D4;
+}
+
+.pagination a:hover:not(.active) {
+	color: white;
+}
+
+/* 페이지네이션 데이타 테이블 */
+.page-item.active .page-link {
+    background-color: #4176E0;
+    border-color: #A4B7D4;
+}
+.page-item.active .page-link:hover{
+	color : #4176E0;
 }
 
 /* 스타 게시판 */
@@ -173,4 +261,17 @@ div #dataTable_filter {
     -webkit-box-orient: vertical;
     word-wrap:break-word; 
     line-height: 2em;
+}
+
+.starBoardimg{
+	opacity: 0.7;
+}
+
+#sbo_title{
+	margin-top : 15px;
+	margin-bottom : 15px;
+}
+#fbo_title{
+	margin-top : 15px;
+	margin-bottom : 15px;
 }

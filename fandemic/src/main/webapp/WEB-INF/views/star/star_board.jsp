@@ -18,14 +18,18 @@
 					<button class="btn btn-primary py-2 px-4 btnInputSboardShow"
 					onclick="location.href = '${pageContext.request.contextPath}/star/starBoard/insertView'">글쓰기</button>
 				</div>
-			</div>	
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row d-flex">
 			<div class="row">
 				<c:forEach var="sboard" items="${sbolist}">
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex">
 							<%-- <img class="img img-2"  id='${sboard.sbo_no}' src="" alt="대표 사진이 없습니다"
 							onerror="this.src='${pageContext.request.contextPath}/images/star/${stVo.st_icon}'"> --%>
-							<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}" class="img img-2" id="${sboard.sbo_no}"></a>
+							<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}" class="img img-2 starBoardimg" id="${sboard.sbo_no}"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
 									<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}">${sboard.sbo_title}</a>
@@ -36,7 +40,9 @@
 									</p>
 								</div>
 									<div class="mb-4 sboardPrev" id = "sbo_content" >
-										${sboard.sbo_content}
+										<div>
+											${sboard.sbo_content}										
+										</div>
 									</div>
 								<p>
 									<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}" class="btn-custom">Read More <span
@@ -61,27 +67,34 @@
 								$("#${sboard.sbo_no}").css("background-image" , "url("+list+")");								
 							}
 							$("#sbo_content p img").remove("")//게시글 미리 보기에서 이미지 삭제 
+							$("#sbo_content br").remove("")
+							$("#sbo_content a").remove("")
+							$("#sbo_content span").removeAttr("style")
+							$("#sbo_content p").removeAttr("style")
 						}
 						imgView();
 	        		</script>
 					
 				</c:forEach>
 				<!-- END-->
-				<div class="row">
-					<div class="col">
-						<div class="block-27">
-							
-							<script>
-								function goPage(p) {
-									location.href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}?p="+p
-								}
-							</script>
-							<my:paging paging="${paging}" jsfunc="goPage" />
-						</div>
-					</div>
-				</div>
+				
 			</div>
 			<!-- END COL -->
 		</div>
 	</div>
+	<div class="container">
+		
+			<div class="col">
+				<div class="block-27 paginationCenter">
+					<script>
+						function goPage(p) {
+							location.href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}?p="+p
+						}
+					</script>
+					<my:paging paging="${paging}" jsfunc="goPage" />
+				</div>
+			</div>
+		
+	</div>
+	
 </section>

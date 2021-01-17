@@ -158,6 +158,7 @@
                            <li><a href="${pageContext.request.contextPath}/goodsf?t=ETC">ETC</a></li>
                            <li class="divider"></li>
 						   <li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-heart"></i>장바구니</a></li>
+						   <li><a href="${pageContext.request.contextPath}/buyList"><i class="icon ion-heart"></i>구매내역</a></li>
                         </ul>
                      </li>
                      
