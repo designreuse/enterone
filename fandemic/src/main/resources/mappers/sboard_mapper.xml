@@ -23,6 +23,17 @@
 		WHERE sbo_no = #{sbo_no}
 	</select>
 	
+	<!-- 최신글 하나만 조회 -->
+	<select id="getNewSboard" parameterType="Sboard" resultType="Sboard">
+		SELECT *
+		FROM sboard
+		WHERE sbo_time = (
+						SELECT MAX(sbo_time)
+						FROM sboard
+						WHERE st_id = #{st_id}
+						)
+	</select>
+	
 	<!-- 해시태그로 게시물 목록 조회 -->
 	<select id="getSboardHashtagList" parameterType="Sboard" resultType="Sboard">
 		SELECT * 

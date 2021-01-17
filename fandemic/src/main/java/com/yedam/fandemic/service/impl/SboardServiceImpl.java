@@ -22,7 +22,12 @@ public class SboardServiceImpl implements SboardService{
 	public Sboard getSboardInfo(Sboard sboard) {
 		return sboardDAO.getSboardInfo(sboard);
 	}
-
+	
+	@Override
+	public Sboard getNewSboard(Sboard sboard) {
+		return sboardDAO.getNewSboard(sboard);
+	}
+	
 	@Override
 	public List<Sboard> getSboardHashtagList(Sboard sboard) {
 		return sboardDAO.getSboardHashtagList(sboard);
@@ -47,6 +52,5 @@ public class SboardServiceImpl implements SboardService{
 	public int deleteSboard(Sboard sboard) {
 		return sboardDAO.deleteSboard(sboard);
 	}
-	
-	
+
 }

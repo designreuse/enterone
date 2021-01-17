@@ -57,5 +57,10 @@ public class FboardServiceImpl implements FboardService{
 	public int getFboardCount(Fboard fboard) {
 		return fboardDAO.getFboardCount(fboard);
 	}
+
+	@Override
+	public List<Fboard> getFboardViewsList(Fboard fboard) {
+		return fboardDAO.getFboardViewsList(fboard);
+	}
 	
 }

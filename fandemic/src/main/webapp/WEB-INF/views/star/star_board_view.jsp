@@ -440,7 +440,9 @@ var st_name = "${stVo.st_name}";
    <input style="display:none;" name = "sbo_no"/>
    <div class="container">
       <hr>
-         <div class="row"><h5 id = "sbo_title"></h5></div>
+        <div class="row">
+			<h2 class="mb-3 font-weight-bold" id = "sbo_title"></h2>
+        </div>
       <div class="row">
          <ul class = "fboardUl">
              <li><span id ="st_name"></span></li>

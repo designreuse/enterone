@@ -11,6 +11,15 @@
 		WHERE st_id = #{st_id}				
 	</select>
 	
+	<!-- 조회수 최고 5건 -->
+	<select id="getFboardViewsList" parameterType="Fboard" resultType="Fboard">
+		SELECT * 
+		FROM v_fboList
+		WHERE st_id = #{st_id}
+		AND ROWNUM &lt;= 5
+		ORDER BY fbo_views DESC
+	</select>
+	
 	<!-- 단건조회 -->
 	<select id="getFboardInfo" parameterType="Fboard" resultType="Fboard">
 		SELECT * 

@@ -352,7 +352,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		formReset();//이전 입력 데이터 삭제
 		
 		//게시물 뷰
-		$('#fbo_title').text("[" + data.fbo_subject + "] " + data.fbo_title);
+		$('#fbo_title').text(data.fbo_title);
 		$('#fbo_sub_no').text(data.fbo_sub_no+ " | ");
 		$('#fan_name').text(data.fan_name + " | ");
 		$('#fbo_time').text(data.fbo_time + " | 조회");
@@ -781,7 +781,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
    <div class="container">
       <hr>
       <div class="row">
-         <h5 id = "fbo_title"></h5>
+      		<h2 class="mb-3 font-weight-bold" id = "fbo_title"></h2>
       </div>
       <div class="row">
          <ul class = "fboardUl">

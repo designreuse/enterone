@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yedam.fandemic.service.FboardService;
 import com.yedam.fandemic.service.SboardService;
 import com.yedam.fandemic.service.StarService;
 import com.yedam.fandemic.service.StarServiceD;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
+import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.Sboard;
@@ -34,31 +36,39 @@ public class StarController {
 	StarServiceD starServiceD; 
 	@Autowired
 	SboardService sboardService;
+	@Autowired
+	FboardService fboardService;
 	
 	//스타 메인페이지
 	@RequestMapping(value = "/star/{id}")
-	public ModelAndView starMain(@PathVariable String id, Star stVo, Fan fVo, Company comVo, HttpSession session, Model model) throws IOException {
+	public ModelAndView starMain(@PathVariable String id, Star stVo, Fan fVo, Company comVo, Sboard sbVo, Fboard fbVo, HttpSession session, ModelAndView mav) throws IOException {
 		//채널 가입여부 확인
 		Member member = (Member) session.getAttribute("member");
 		if(member != null) {//로그인 안하면 채널가입 조회 불가
 			fVo.setMem_id(member.getMem_id());
 			fVo.setSt_id(id);
-			model.addAttribute("fan", starService.getFanInfo(fVo));
+			mav.addObject("fan", starService.getFanInfo(fVo));
 		}
 		//스타정보 출력
 		stVo.setSt_id(id);
-		model.addAttribute("stVo", starService.getStarMain(stVo));
+		mav.addObject("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
-		model.addAttribute("company", starService.getProfileCompany(comVo));
+		mav.addObject("company", starService.getProfileCompany(comVo));
 		
 		//통계치 출력
-		model.addAttribute("countFan", starService.getCountFan(stVo));
-		model.addAttribute("countFboard", starService.getCountFboard(stVo));
-		model.addAttribute("countReply", starService.getCountReply(stVo));
-		model.addAttribute("countSboard", starService.getCountSboard(stVo));
+		mav.addObject("countFan", starService.getCountFan(stVo));
+		mav.addObject("countFboard", starService.getCountFboard(stVo));
+		mav.addObject("countReply", starService.getCountReply(stVo));
+		mav.addObject("countSboard", starService.getCountSboard(stVo));
+		
+		sbVo.setSt_id(id);
+		mav.addObject("sbVoNew", sboardService.getNewSboard(sbVo));
+		fbVo.setSt_id(id);
+		mav.addObject("fbVoList", fboardService.getFboardViewsList(fbVo));
 
-		return new ModelAndView("star/star_main");
+		mav.setViewName("star/star_main");	
+		return mav;
 	}
 	
 	//채널 가입 등록
