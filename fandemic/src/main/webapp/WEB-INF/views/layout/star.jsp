@@ -128,41 +128,16 @@
 			<!-- footer -->
 			<footer class="ftco-footer ftco-bg-dark ftco-section">
 				<div class="container px-md-5">
-					<div class="row mb-5">
+				<div class="row">
+					<div class="col-md">
+						<div class ="ftco-footer-widget mb-12 ml-md-12">
+							<h2 class="ftco-heading-2">Have a Questions?</h2>
+						</div>
+					</div>
+				</div>
+					<div class="row">
 						<div class="col-md">
 							<div class="ftco-footer-widget mb-4 ml-md-4">
-								<h2 class="ftco-heading-2">Recent Photos</h2>
-								<ul class="list-unstyled photo">
-									<li><a href="#" class="img"
-										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg);"></a></li>
-									<li><a href="#" class="img"
-										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_2.jpg);"></a></li>
-									<li><a href="#" class="img"
-										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_3.jpg);"></a></li>
-									<li><a href="#" class="img"
-										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_4.jpg);"></a></li>
-									<li><a href="#" class="img"
-										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_5.jpg);"></a></li>
-									<li><a href="#" class="img"
-										style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_6.jpg);"></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md">
-							<div class="ftco-footer-widget mb-4">
-								<h2 class="ftco-heading-2">Archives</h2>
-								<ul class="list-unstyled categories">
-									<li><a href="#">November 2018 <span>(105)</span></a></li>
-									<li><a href="#">October 2018 <span>(212)</span></a></li>
-									<li><a href="#">September 2018 <span>(150)</span></a></li>
-									<li><a href="#">August 2018 <span>(100)</span></a></li>
-									<li><a href="#">July 2018 <span>(200)</span></a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="col-md">
-							<div class="ftco-footer-widget mb-4">
-								<h2 class="ftco-heading-2">Have a Questions?</h2>
 								<div class="block-23 mb-3">
 									<ul>
 										<li>
@@ -171,12 +146,30 @@
 												<span class="text">${company.com_address} <br> ${company.com_address2}</span>
 											</a>
 										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="ftco-footer-widget mb-4">
+								<div class="block-23 mb-3">
+									<ul>
 										<li>
 											<a href="#">
 												<span class="icon icon-phone"></span>
 												<span class="text">${company.com_phone}</span>
 											</a>
 										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md">
+							<div class="ftco-footer-widget mb-4">
+								<div class="block-23 mb-3">
+									<ul>
+										
+										
 										<li>
 											<a href="#">
 												<span class="icon icon-envelope"></span>

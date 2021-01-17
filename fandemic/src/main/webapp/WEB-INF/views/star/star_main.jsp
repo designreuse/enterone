@@ -185,56 +185,33 @@
 			</div>
 		</div>
 		<div class="row no-gutters">
-			<div class="col-sm-12 col-md ftco-animate">
-				<a
-					href="${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg"
-					class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_1.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-12 col-md ftco-animate">
-				<a
-					href="${pageContext.request.contextPath}/resourcesStar/images/image_2.jpg"
-					class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_2.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-12 col-md ftco-animate">
-				<a
-					href="${pageContext.request.contextPath}/resourcesStar/images/image_3.jpg"
-					class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_3.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-12 col-md ftco-animate">
-				<a
-					href="${pageContext.request.contextPath}/resourcesStar/images/image_4.jpg"
-					class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_4.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
-			</div>
-			<div class="col-sm-12 col-md ftco-animate">
-				<a
-					href="${pageContext.request.contextPath}/resourcesStar/images/image_5.jpg"
-					class="insta-img image-popup"
-					style="background-image: url(${pageContext.request.contextPath}/resourcesStar/images/image_5.jpg);">
-					<div class="icon d-flex justify-content-center">
-						<span class="icon-instagram align-self-center"></span>
-					</div>
-				</a>
-			</div>
+			
+			
+			
+			
+			       
+			
+			
+			<c:forEach var="sboard" items="${sbVoPicList}">
+				<div class="col-sm-12 col-md ftco-animate">
+					<a href ="" class="insta-img image-popup" id="${sboard.sbo_no}">
+						<div class="icon d-flex justify-content-center">
+							<span class="icon-instagram align-self-center"></span>
+						</div>
+					</a>
+				</div>
+				<script>
+					var imgView = function() {
+						var sentence = '${sboard.sbo_content}';
+						var start = sentence.indexOf('src="');
+						var end = sentence.indexOf('"', start + 5);
+						var list = sentence.substring(start + 5, end);
+						$("#${sboard.sbo_no}").css("background-image", "url(" + list + ")");
+						$("#${sboard.sbo_no}").attr("href", list);
+					}
+					imgView();
+				</script>
+			</c:forEach>
 		</div>
 	</div>
 </section>

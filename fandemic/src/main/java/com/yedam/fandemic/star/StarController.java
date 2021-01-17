@@ -51,8 +51,9 @@ public class StarController {
 		}
 		//스타정보 출력
 		stVo.setSt_id(id);
-		mav.addObject("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
+		System.out.println(stVo);
+		mav.addObject("stVo", stVo);
 		comVo.setCom_id(stVo.getCom_id());
 		mav.addObject("company", starService.getProfileCompany(comVo));
 		
@@ -66,7 +67,8 @@ public class StarController {
 		mav.addObject("sbVoNew", sboardService.getNewSboard(sbVo));
 		fbVo.setSt_id(id);
 		mav.addObject("fbVoList", fboardService.getFboardViewsList(fbVo));
-
+		sbVo.setSt_id(id);
+		mav.addObject("sbVoPicList", sboardService.getSboardPicList(sbVo));
 		mav.setViewName("star/star_main");	
 		return mav;
 	}

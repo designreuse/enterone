@@ -10,6 +10,7 @@ public interface SboardMapper {
 	public Sboard getSboardInfo(Sboard sboard);
 	public Sboard getNewSboard(Sboard sboard);
 	public List<Sboard> getSboardHashtagList(Sboard sboard);
+	public List<Sboard> getSboardPicList(Sboard sboard);
 	public int getSboardCount(Sboard sboard);
 	public int insertSboard(Sboard sboard);
 	public int updateSboard(Sboard sboard);

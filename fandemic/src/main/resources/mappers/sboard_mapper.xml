@@ -16,6 +16,17 @@
 		ORDER BY sbo_re_no
 	</select>
 	
+	<!-- 사진조회를 위함 -->
+	<select id="getSboardPicList" parameterType="Sboard" resultType="Sboard">
+		SELECT * 
+		FROM (
+		SELECT 
+			ROW_NUMBER() OVER(PARTITION BY st_id ORDER BY sbo_no desc) sbo_re_no, s.*
+		    FROM sboard s)
+		WHERE st_id = #{st_id}
+		ORDER BY sbo_re_no
+	</select>
+	
 	<!-- 단건조회 -->
 	<select id="getSboardInfo" parameterType="Sboard" resultType="Sboard">
 		SELECT * 

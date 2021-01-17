@@ -53,4 +53,9 @@ public class SboardServiceImpl implements SboardService{
 		return sboardDAO.deleteSboard(sboard);
 	}
 
+	@Override
+	public List<Sboard> getSboardPicList(Sboard sboard) {
+		return sboardDAO.getSboardPicList(sboard);
+	}
+
 }
