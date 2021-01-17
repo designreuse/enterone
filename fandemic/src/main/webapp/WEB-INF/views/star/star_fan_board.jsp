@@ -252,11 +252,11 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		$.each(data,function(idx,item){
 		   $('<tr>').addClass('candahar')
 		   .append($('<input type=\'hidden\' id=\'fbo_no\'>').val(item.fbo_no))
-		   .append($('<td>').html(item.fbo_sub_no).addClass('boardColor'))
+		   .append($('<td>').html(item.fbo_sub_no).addClass('boardListColor'))
 		   .append($('<td>').html("[" + item.fbo_subject + "] " + "<span>" + item.fbo_title  + "</span>"))
 		   .append($('<td>').html(item.fan_name).addClass('boardCenter'))
-		   .append($('<td>').html(item.fbo_time).addClass('boardColor'))
-		   .append($('<td>').html(item.fbo_views).addClass('boardColor'))
+		   .append($('<td>').html(item.fbo_time).addClass('boardListColor'))
+		   .append($('<td>').html(item.fbo_views).addClass('boardListColor'))
 		   .appendTo('tbody');
 		});//each
 		
@@ -318,11 +318,11 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		$.each(data,function(idx,item){
 		   $('<tr>').addClass('candahar')
 		   .append($('<input type=\'hidden\' id=\'fbo_no\'>').val(item.fbo_no))
-		   .append($('<td>').html(item.fbo_sub_no).addClass('boardColor'))
+		   .append($('<td>').html(item.fbo_sub_no).addClass('boardListColor'))
 		   .append($('<td>').html("[" + item.fbo_subject + "] " + "<span>" + item.fbo_title  + "</span>"))
 		   .append($('<td>').html(item.fan_name).addClass('boardCenter'))
-		   .append($('<td>').html(item.fbo_time).addClass('boardColor'))
-		   .append($('<td>').html(item.fbo_views).addClass('boardColor'))
+		   .append($('<td>').html(item.fbo_time).addClass('boardListColor'))
+		   .append($('<td>').html(item.fbo_views).addClass('boardListColor'))
 		   .appendTo('tbody');
 		});//each
 				  	
@@ -602,13 +602,13 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 			var ul = uls+li0+li1+li2+li3+ule;
 			
 			if(re.fan_name == null || re.fan_name == ""){//스타이름
-				var name = "<span class = 'replyStarName'>" + re.st_name + "</span>"; 
+				var name = "<i class='icon-star'></i>&nbsp;<span class = 'replyStarName'>" + re.st_name + "</span>"; 
 			}else{//유저 닉네임
 				var name = "<span class = 'replyFanName'>" + re.fan_name +"</span>";
 			}
 			
 			$("<div class = 'replyInfo' data-no="+re.re_no+"><hr>") 
-			.append($('<div class = \'row\'>').html(name + '&nbsp;' +re.re_time))
+			.append($('<div class = \'row\'>').html(name + '&nbsp;&nbsp;&nbsp;' + "<span class = 'boardColor'>" +re.re_time +"</span>"))
 			.append($('<div class = \'row replyText\'>').html(re.re_content))
 			.append($('<div class = \'row flex-row-reverse\'>').append(ul))
 			.appendTo('#replyListView');

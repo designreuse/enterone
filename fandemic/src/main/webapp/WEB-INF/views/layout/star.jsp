@@ -87,6 +87,14 @@
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary"
 			class="js-fullmainheight text-center">
+			<div class="colorlibTop">
+				<div class = "brand">
+					<a href="${pageContext.request.contextPath}/">
+	                   <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Magz Logo">
+	                </a>
+				</div>
+			</div>
+			<br>
 			<h1 id="colorlib-logo">
 				<a href="${pageContext.request.contextPath}/star/${stVo.st_id}"><span class="img"
 					style="background-image: url(${pageContext.request.contextPath}/images/star/${stVo.st_pic}"></span>${stVo.st_name}</a>

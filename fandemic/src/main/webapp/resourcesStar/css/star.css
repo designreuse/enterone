@@ -1,5 +1,41 @@
 @charset "UTF-8";
 
+/* 스타 타일즈 */
+.brand {
+	display: block;
+}
+.brand {
+	float: left;
+	margin: 10px 0;
+}
+
+.brand a {
+	text-decoration: none;
+}
+
+.brand img {
+	width: 100px;
+	display: block;
+	float: left;
+}
+.brand {
+	width: 100px;
+	height: 55px;
+}
+
+.colorlibTop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom : 0;
+	padding: 0 10px;
+	font-size: 17px;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.6);
+}
+
+
 .starCenter {
 	justify-content: center;
 	align-items: center;
@@ -39,12 +75,16 @@
 }
 
 
-.boardColor{/* 팬게시판 목록 색상 */
+.boardListColor{/* 팬게시판 목록 색상 */
 	color : #808080;
 	text-align : center;
 }
 .boardCenter{
 	text-align : center;
+}
+
+.boardColor{/* 팬게시판 목록 색상 */
+	color : #808080;
 }
 
 /* Datatable th변형 금지 */
@@ -118,16 +158,20 @@
 }
 .btnUpdateReply:hover {
 	cursor: pointer;
+	color : #4176E0;
 }
 .btnDeleteReply:hover {
 	cursor: pointer;
+	color : #4176E0;
 }
 .btnNotifyReply:hover {
 	cursor: pointer;
+	color : #4176E0;
 }
 
 .replyFanName{/* 댓글 이름 */
 	font-weight: bold;
+	font-size : 15px;
 }
 .replyStarName{/* 댓글 이름 */
 	font-weight: bold;
