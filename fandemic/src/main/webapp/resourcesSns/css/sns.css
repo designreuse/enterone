@@ -833,21 +833,22 @@ margin-bottom: 32px;
 	border-radius: 70%;
 	object-fit: cover;
 }
-
 .outputimg {
-max-height: 40px;
-   	width: 40px;
-    overflow: hidden;
+	width: 40px;
+	border-radius: 100%;
+	margin: -7px;
 }
 
 .inputdiv {
 	background: #FDFDFD;
 	border-radius: 17px;
 }
-.dropbtn{
+
+.dropbtn {
 	height: 40px;
-   	width: 40px;
-   	margin: 9px 9px 9px 0px;
+	width: 40px;
+	margin: 9px 9px 9px 0px;
+	overflow: hidden;
 }
 
 .clicktextfil {

@@ -33,11 +33,14 @@ import com.yedam.fandemic.vo.Star;
 public class SnsController {
 	@Autowired
 	SnsMapper snsdao;
-
+	
+	
+	//SNS SELECT
 	@RequestMapping(value = "/sns")
 	public String sns(Model model, Sns sns, HttpSession session) throws IOException {
 
-		model.addAttribute("snslist", snsdao.selectSns(sns));
+		model.addAttribute("snslist", snsdao.selectSns(sns));				//SNS 게시글 전체 조회
+		model.addAttribute("selectSnsLike", snsdao.selectSnsLike(sns));
 		Member member = (Member) session.getAttribute("member");
 		// MemberVo를 불러서 Member캐스팅 session에 있는 member를 가져온다.
 
@@ -46,7 +49,7 @@ public class SnsController {
 
 			model.addAttribute("mysnslist", snsdao.selectMySns(sns));			//SNS 사진 조회
 			model.addAttribute("countmysns", snsdao.countMySns(sns));			//내SNS 카운트
-			model.addAttribute("countlike", snsdao.countLike(sns));			//내 좋아요 카운트
+			model.addAttribute("countSnsLike", snsdao.countSnsLike(sns));		//좋아요 카운트
 			model.addAttribute("countmyletter", snsdao.countMyLetter(sns)); 	//쪽지 카운트
 		}
 		return "sns/sns";
@@ -167,7 +170,7 @@ public class SnsController {
 		}
 	   
 	   
-	   //SNS 좋아요 기능 인서트
+	   //SNS 좋아요 기능 추가
 		   @RequestMapping(value="/insertLike", method=RequestMethod.GET)
 		   @ResponseBody
 		   public boolean insertLike(HttpServletRequest request, Sns sns, HttpSession session) throws IOException {
@@ -177,7 +180,8 @@ public class SnsController {
 		       snsdao.insertLike(sns);
 		      return true;
 		   }
-	 @RequestMapping(value="/deleteLike", method=RequestMethod.GET)
+	   //SNS 좋아요 기능 삭제
+		   @RequestMapping(value="/deleteLike", method=RequestMethod.GET)
 		   @ResponseBody
 		   public boolean deleteLike(HttpServletRequest request, Sns sns, HttpSession session) throws IOException {
 		       Member member = (Member) session.getAttribute("member");

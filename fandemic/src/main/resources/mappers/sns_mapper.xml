@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.fandemic.impl.SnsMapper">
-	<!-- SNS 글자 등록 -->
+	<!-- SNS 글 등록 -->
 	<insert id="insertSns" parameterType="Sns">
 		INSERT INTO SNS (
 		sns_no,
@@ -23,15 +23,28 @@
 		#{sns_pic})
 
 	</insert>
+	<!-- SNS 전체조회하기 -->
+	<!-- SNS 글조회 -->
 	<select id="selectSns" resultType="Sns">
-		select s.*, m.mem_pic mem_pic, m.mem_type mem_type from sns s, member m
-		where s.mem_id=m.mem_id order by sns_no desc
-
-
-
+		SELECT * FROM SELECTALLSNS ORDER BY SNS_NO DESC
 	</select>
+	<!-- 내 SNS 카운트 -->
+	<select id="countMySns" resultType="int">
+		select count(*) from selectallsns where mem_id = #{mem_id}
+	</select>
+	<!-- 내가 올린 SNS 좋아요 Count -->	
+	<select id="countSnsLike" resultType="int">
+		SELECT COUNT(*) FROM SELECTALLSNS S, SLIKEIT L WHERE S.SNS_NO = L.SNS_AC_NO AND S.MEM_ID = #{mem_id}
+	</select>
+	<!-- SNS 좋아요 아이디, 번호 조회 -->
+	<select id="selectSnsLike" resultType="Sns">
+	SELECT 
+		* 
+	FROM 
+		SLIKEIT 
+		</select>
 	
-<!-- 	SNS 삭제 -->
+	<!-- SNS 삭제 -->
 	<delete id="deleteSns" parameterType="Sns">
 	DELETE FROM SNS WHERE SNS_NO = #{sns_no}
 	
@@ -43,14 +56,6 @@
 	<!-- 사진 조회 -->
 	<select id="selectMySns" resultType="Sns">
 		SELECT SNS_PIC FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
-	</select>
-	<!-- SNS 카운트 -->
-	<select id="countLike" resultType="int">
-		SELECT SUM(SNS_LIKES) FROM SNS where MEM_ID = #{mem_id}
-	</select>
-	<!-- 좋아요 카운트 -->
-	<select id="countMySns" resultType="int">
-		SELECT COUNT(*) FROM SNS where MEM_ID = #{mem_id}
 	</select>
 	<!-- SNS 단건조회 -->
 	<select id="OneSnsSelect" resultType="sns">

@@ -11,6 +11,14 @@
 	type="text/javascript"></script>
 
 <style>
+#textarea_modaldetail{
+min-height: 100px;
+width: 100%;
+border: none;
+resize: none;
+
+
+}
 .dropdown-toggle {
 	
 }
@@ -21,8 +29,8 @@
 
 #profileimg {
 	height: 228px;
-	background: white;
-	width: 60px;
+	background: white !important;
+	width: 150px;
 }
 
 .profile {
@@ -51,7 +59,6 @@
 
 #replyListView {
 	overflow: auto;
-	min-height: 200px;
 	max-height: 600px;
 	overflow-x: hidden
 }
@@ -696,21 +703,25 @@
 			}
 		});
 		//삭제 버튼을 누르면 뜨는거
-		$("#detail-btn-delete").click(function() {
-			var btn_no = $(this).attr('value') //sns번호 가져옴
-			var btn_id = $(this).attr('data-id')
-			var session_id = '${sessionScope.member.mem_id }';
-			console.log(btn_id, session_id)
-			if (session_id == btn_id) {
-				if (confirm('삭제하시겠습니까?')) {
-					$(location).attr('href','${pageContext.request.contextPath}/deleteSns?sns_no='+btn_no);
-				} else {
-					// no click
-				}
-			} else {
-				alert("글 작성자가 아니거나 로그인하지 않았습니다")
-			}
-		});
+		$("#detail-btn-delete").click(
+				function() {
+					var btn_no = $(this).attr('value') //sns번호 가져옴
+					var btn_id = $(this).attr('data-id')
+					var session_id = '${sessionScope.member.mem_id }';
+					console.log(btn_id, session_id)
+					if (session_id == btn_id) {
+						if (confirm('삭제하시겠습니까?')) {
+							$(location).attr(
+									'href',
+									'${pageContext.request.contextPath}/deleteSns?sns_no='
+											+ btn_no);
+						} else {
+							// no click
+						}
+					} else {
+						alert("글 작성자가 아니거나 로그인하지 않았습니다")
+					}
+				});
 	}); //end fucn
 	//댓글 등록 요청
 	function replyInsert() {
@@ -810,52 +821,51 @@
 													.append(ul)).appendTo(
 											'#replyListView');
 						});//each
-						
-						
-						
-	
-					
-	}
-	$(function(){
-	    $('.love').click(function(){
-	    	var thisclass = $(this).attr('class');
-	    	var no = $(this).attr('data-no')
-	        if(thisclass == 'love'){
-	    	alert("좋아요 취소")
-	    	$.ajax({
-	    		url : '${pageContext.request.contextPath}/deleteLike',
-	    			type : 'GET',
-	    			data : {sns_ac_no : no},
-	    			success : function(response) {
-	    				if (response == true) {
-	    					// 					                fboardView(fbo_no);//게시물 재 출력
-	    				}
-	    			},
-	    			error : function(xhr, status, message) {
-	    				/* alert(" status: "+status+" er:"+message); */
-	    				alert("로그인 후 이용해주세요.");
-	    			}
-	    			});
-	        } else { //좋아요 누르면
-	        	alert("좋아요")
-	        	$.ajax({
-	        		url : '${pageContext.request.contextPath}/insertLike',
-		    			type : 'GET',
-		    			data : {sns_ac_no : no},
-		    			success : function(response) {
-	    				if (response == true) {
-	    					// 					                fboardView(fbo_no);//게시물 재 출력
-	    				}
-	    			},
-	    			error : function(xhr, status, message) {
-	    				/* alert(" status: "+status+" er:"+message); */
-	    				alert("로그인 후 이용해주세요.");
-	    			}
-	    		});
-	        }
-	    });
-	});
 
+	}
+	$(function() {
+		$('.love').click(function() {
+			var thisclass = $(this).attr('class');
+			var no = $(this).attr('data-no')
+			if (thisclass == 'love') {
+				alert("좋아요 취소")
+				$.ajax({
+					url : '${pageContext.request.contextPath}/deleteLike',
+					type : 'GET',
+					data : {
+						sns_ac_no : no
+					},
+					success : function(response) {
+						if (response == true) {
+							// 					                fboardView(fbo_no);//게시물 재 출력
+						}
+					},
+					error : function(xhr, status, message) {
+						/* alert(" status: "+status+" er:"+message); */
+						alert("로그인 후 이용해주세요.");
+					}
+				});
+			} else { //좋아요 누르면
+				alert("좋아요")
+				$.ajax({
+					url : '${pageContext.request.contextPath}/insertLike',
+					type : 'GET',
+					data : {
+						sns_ac_no : no
+					},
+					success : function(response) {
+						if (response == true) {
+							// 					                fboardView(fbo_no);//게시물 재 출력
+						}
+					},
+					error : function(xhr, status, message) {
+						/* alert(" status: "+status+" er:"+message); */
+						alert("로그인 후 이용해주세요.");
+					}
+				});
+			}
+		});
+	});
 </script>
 
 
@@ -908,6 +918,8 @@
 				</div>
 				<c:if test="${member.mem_id ne null or company.com_id ne null }">
 					<div class="inputdiv">
+					
+					
 						<span> <c:if
 								test="${sessionScope.member.mem_pic ne null and sessionScope.member.mem_type eq 0 }">
 								<img class="inputimg" src="${sessionScope.member.mem_pic}"
@@ -961,12 +973,12 @@
 								<div class="mtmtitle">
 									<div id="ex2" style="height: 62%"></div>
 									<div id="modalimage"></div>
-									<a class="content"></a>
+									
+									<textarea class="content" id="textarea_modaldetail" readonly="readonly"></textarea>
 								</div>
 								<div class="col-md-12 div-snsbtndeleteupdate">
 									<button type="button" id="detail-btn-delete" data-id=""
 										class="btn-snsbtndelete btn btn-primary">삭제하기</button>
-									<button class="btn-snsbtnupdate btn btn-primary">수정하기</button>
 								</div>
 
 
@@ -997,6 +1009,7 @@
 							</div>
 							<div class="comentdiv"></div>
 							<div class="modal-footer">
+								
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">Close</button>
 							</div>
@@ -1018,7 +1031,7 @@
 								<tr>
 									<td id="profileimg" rowspan="4" colspan="2"
 										style="background: black"><img class="modalprofileimg"
-										style="max-width: 100%; max-height: 100%" alt=""></td>
+										style="max-width: 80%; max-height: 80%" alt=""></td>
 									<th>아이디</th>
 									<td id="modalprofileid"></td>
 								<tr>
@@ -1119,6 +1132,7 @@
 												src="${pageContext.request.contextPath}/images/member_pic/${sns.mem_pic}"
 												alt="member_profile">
 										</c:if>
+										
 									</button>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 										<button class="dropdown-item showprofilebtn" type="button"
@@ -1161,16 +1175,26 @@
 												<div class="time">${sns.sns_time}</div>
 											</div>
 											<p style="height: 130px; overflow: hidden">${sns.sns_content}</p>
-											<footer>			
-										<!-- 좋아요 -->
-										<!-- 좋아요 -->
-										<!-- 좋아요 -->
-										<!-- 좋아요 -->
-										<!-- 좋아요 -->
-												<a href="#" class="love active" data-no="${sns.sns_no}"> <i
-													class="ion-android-favorite"></i>
-													<div>${sns.sns_likes}</div>
-												</a>
+											<footer>
+												<!-- 좋아요 -->
+												<!-- 좋아요 -->
+												<!-- 좋아요 -->
+												<!-- 좋아요 -->
+												<!-- 좋아요 -->
+												
+												<c:forEach items="${selectSnsLike}" var="snslike" varStatus="status">
+													<c:choose>
+														<c:when test="${snslike.mem_id eq sessionScope.member.mem_id and snslike.sns_ac_no eq sns.sns_no }">
+															<a href="#" class="love active" data-no="${sns.sns_no}">
+																<i class="ion-android-favorite"></i>
+																<div>${sns.sns_likes}</div>
+															</a>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+												
+												
+												
 											</footer>
 										</div>
 									</div>
@@ -1190,20 +1214,18 @@
 												</div>
 												<p>${sns.sns_content}</p>
 												<footer>
-												<!--좋아요 안눌린 상태 -->
-													<c:if ${sns.sns_no }>
-												<a href="#" class="love" data-no="${sns.sns_no}"> <i
-													class="ion-android-favorite-outline"></i>
-													<div>${sns.sns_likes}</div>
-												</a>
-												</c:if>
-											<!--좋아요 눌린 상태 -->
-												<c:if ${sns.sns_no } != ${sns.sns_ac_no }>
-												<a href="#" class="love" data-no="${sns.sns_no}"> <i
-													class="ion-android-favorite-outline"></i>
-													<div>${sns.sns_likes}</div>
-												</a>
-												</c:if>
+												<c:forEach items="${selectSnsLike}" var="snslike">
+													<c:choose>
+														<c:when test="${snslike.mem_id eq sessionScope.member.mem_id and snslike.sns_ac_no eq sns.sns_no }">
+															<a href="#" class="love active" data-no="${sns.sns_no}">
+																<i class="ion-android-favorite"></i>
+																<div>${sns.sns_likes}</div>
+															</a>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+												
+												
 												</footer>
 											</div>
 										</div>
@@ -1259,12 +1281,7 @@
 							<div class="featured-author">
 								<div class="featured-a;;/uthor-inner">
 									<div class="featured-author-cover"
-										style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlxjchU3nSVmv0TUW_Df4YzVhWyWtk3nHy3g&usqp=CAU');">
-										<div class="badges">
-											<div class="badge-item">
-												<i class="ion-star"></i> Featured
-											</div>
-										</div>
+										style=" background-color: dimgrey; border-radius: 20px;">
 										<div class="featured-author-center">
 											<figure class="featured-author-picture">
 												<p>
@@ -1298,7 +1315,7 @@
 									</div>
 									<div class="featured-author-body">
 										<div class="featured-author-count">
-											<div class="item">
+											<div class="item btn-myPost" data-id="${member.mem_id}">
 												<a href="#">
 													<div class="name">Posts</div>
 													<div class="value">${countmysns}</div>
@@ -1307,7 +1324,7 @@
 											<div class="item">
 												<a href="#">
 													<div class="name">Likes</div>
-													<div class="value">${countlike}</div>
+													<div class="value">${countSnsLike}</div>
 												</a>
 											</div>
 											<div class="item letterdiv">
@@ -1652,7 +1669,7 @@
 						<label for="message-text" class="col-form-label ">내용:</label>
 						<textarea class="form-control content" id="message-text"
 							name="lett_content"
-							style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
+							style="margin: 0px -1px 0px 0px; width: 100%; height: 250px; resize: none;"></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -1774,7 +1791,7 @@
             </svg>
 		</div>
 	</div>
-
+<hr>
 
 </div>
 </body>
