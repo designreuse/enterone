@@ -45,10 +45,18 @@ h6 {
 </style>
 <script>
 $(document).ready(function() {
+	
+	
+	var go_no = '';
+	
+	$(".btnDetail").on('click', function () {
+		go_no = $(this).parent().find("b").text(); // code 조회용 go_no 넘기기
+	});
 
 	// 커밍순 슬라이드
+	
 	$('.owl-carousel').owlCarousel({
-		items : 3, // length()로 주ㅓ야지
+		items : "${cnt}" , 
 		loop : true,
 		autoplay : true,
 		autoplayTimeout : 3000,
@@ -56,17 +64,17 @@ $(document).ready(function() {
 	});
 	
 	$("#btnIn").on('click', function () {
+		
 		var id = '${sessionScope.member.mem_id}';
+		
 		if( id == null || id == '') {
 			alert("로그인 후 이용 할 수 있으며 일반 회원만 이용가능 합니다.");
 		} else {
 			$.ajax({
 	            url :'${pageContext.request.contextPath}/untactCode',
 	            type:"post",
-	            data : { code : $("#inCode").val() },
-	            
+	            data : { code : $("#inCode").val() , go_no : go_no}, //go_no 넘겨서 controller에서 비교 후
 	            success:function(data){
-	            	console.log(data)
 	            	if(data == null || data == '' ) {
 	            		alert("코드가 일치하지 않습니다.");
 	            	} else {
@@ -78,12 +86,7 @@ $(document).ready(function() {
 	            },error:function(){ alert("실패"); }
 	         });
 		}
-
-		
 	});
-	
-	
-	
 });
 </script>
 
@@ -99,22 +102,13 @@ $(document).ready(function() {
 						<!-- sysdate 보다 큰 값만 출력 -->
 					</div>
 					<div class="owl-carousel" align="center">
-					
+					<c:forEach var="coming" items="${comingList}">
 						<div>
-							<input type="image" style="width: 200px; height: 260px;"
-								src="https://images.chosun.com/resizer/e_XfBvoOfR92cYym-TkRB4tsKqE=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/RSITTQF5C7LGXQXY5MZ56EGNHE.jpg">
-							<br> <a>이연희</a>
+							<input type="image" style="width: 200px; height: 260px;" src="${pageContext.request.contextPath}/images/goods/${coming.GO_PIC}"> <br> 
+							<p>${coming.ST_NAME}</p>
+							<p>${coming.GO_UNTSDATE}</p>
 						</div>
-						<div>
-							<input type="image" style="width: 200px; height: 260px;"
-								src="https://www.bokjitimes.com/news/photo/202002/22767_15736_3416.jpg"><br>
-							<a>공유</a>
-						</div>
-						<div>
-							<input type="image" style="width: 200px; height: 260px;"
-								src="https://mblogthumb-phinf.pstatic.net/MjAxOTExMTRfMTcg/MDAxNTczNzEzNDIwMzkx.NtThUWxkOC4HvPQeHiEnhifFhrP2UOFgvEf3iOg21M8g.PaBwdhsT-CI9mddL5zTFTGEWfNm2Dsql5WNl6MjbiP8g.JPEG.silverwingkj/BIMO_%EB%B9%84%EB%AA%A8.jpg?type=w800">
-							<br> <a>비모</a>
-						</div>
+					</c:forEach>
 	
 					</div>
 					
@@ -131,9 +125,8 @@ $(document).ready(function() {
 					<article class="col-md-12 article-list">
 						<div class="inner" style="width: 50%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="ticket"> <img
-									src="${pageContext.request.contextPath}/images/goods/${un.go_pic}"
-									style="width: 100%; height: 100%;">
+								<a href="ticket"> 
+									<img src="${pageContext.request.contextPath}/images/goods/${un.go_pic}" style="width: 100%; height: 100%;">
 								</a>
 							</figure>
 							<div class="details" style="margin-left: 210px;">
@@ -151,13 +144,16 @@ $(document).ready(function() {
 									${un.go_name}<br> 
 									${un.go_untsdate} ~ ${un.go_untedate}<br> 
 									${un.go_unttime}
+									<b style="display: none;">${un.go_no}</b>
 								</p>
-								<div style="height: 20%; padding-top: 40px;">
+								
+								<div style="height: 20%; padding-top: 20%;" class="btnDetail">
 									<a class="btn btn-primary more" data-toggle="modal" data-target="#exampleModal" data-what="hello">
 										<div>입장</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
 										</div>
+										
 									</a>
 								</div>
 							</div>

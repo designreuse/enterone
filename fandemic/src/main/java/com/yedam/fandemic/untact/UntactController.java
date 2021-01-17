@@ -1,6 +1,9 @@
 package com.yedam.fandemic.untact;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,6 +31,10 @@ public class UntactController {
 		// all 리스트
 		model.addAttribute("unList", dao.untactList());
 		//커밍순 리스트
+		List<Map<String, Object>> list = dao.comingsoonList();
+		model.addAttribute("comingList", list);
+		model.addAttribute("cnt", list.size());
+		
 		return new ModelAndView("untact/untact");
 	}
 	
@@ -36,12 +43,32 @@ public class UntactController {
 	public String untactCode(HttpServletRequest request, RedirectAttributes redirect) throws IOException {
 		
 		String code = request.getParameter("code");
-		if (code.equals("code")) {
-			return "뭐 넘기지";			
+		
+		String getCode = dao.getUntactCode(request.getParameter("go_no"));
+
+		if (code.equals(getCode)) {
+			return "same";			
 		} else {
 			return null;
 		}
 	}
+	
+	@RequestMapping(value = "/total")
+	public ModelAndView total(HttpServletResponse response) throws IOException {
+		return new ModelAndView("untact/total");
+	}
+	
+	
+	@RequestMapping(value = "/caller")
+	public ModelAndView caller(HttpServletResponse response) throws IOException {
+		return new ModelAndView("untact/caller");
+	}
+	@RequestMapping(value = "/callee")
+	public ModelAndView callee(HttpServletResponse response) throws IOException {
+		return new ModelAndView("untact/callee");
+	}
+	
+	
 	
 	
 	

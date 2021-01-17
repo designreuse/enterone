@@ -4,13 +4,26 @@
 
 <mapper namespace="com.yedam.fandemic.impl.UntactMapper">
 
+	<!--전체 리스트 -->
 	<select id="untactList" resultType="Goods">
-		SELECT ROUND(G.GO_UNTEDATE - SYSDATE) AS DDAY, G.*, S.ST_NAME  FROM GOODS G , STAR S
+		SELECT ROUND(G.GO_UNTEDATE - SYSDATE) AS DDAY, G.GO_PIC, G.GO_NAME, G.GO_UNTTIME, G.GO_NO, TO_CHAR(G.GO_UNTSDATE, 'YYYY-MM-DD') AS GO_UNTSDATE, TO_CHAR(G.GO_UNTEDATE, 'YYYY-MM-DD') AS GO_UNTEDATE,  S.ST_NAME  
+		FROM GOODS G , STAR S
 		WHERE G.ST_ID = S.ST_ID
 		AND GO_TYPE = 'TICKET'
 		ORDER BY GO_UNTSDATE DESC
 	</select>	
 
+	<!-- 코드 가져오기 -->
+	<select id="getUntactCode" resultType="string" parameterType="string">
+		SELECT GO_CODE FROM GOODS WHERE GO_NO = #{go_no}
+	</select>
 	
+	<!--커밍순 -->
+	<select id="comingsoonList" resultType="map">
+		SELECT S.ST_NAME, G.GO_PIC, TO_CHAR(G.GO_UNTSDATE, 'YYYY-MM-DD') AS GO_UNTSDATE
+		FROM GOODS G, STAR S
+		WHERE G.ST_ID = S.ST_ID
+		AND G.GO_UNTSDATE >= SYSDATE
+	</select>
 	
 </mapper>
