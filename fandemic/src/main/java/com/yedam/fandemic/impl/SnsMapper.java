@@ -12,10 +12,10 @@ public interface SnsMapper {
 
 	// SNS SELECT
 	public List<Sns> selectSns(Sns sns);
+	// SNS SELECT
+	public List<Sns> loginselectSns(Sns sns);
 	// SNS Like Count
 	public int countSnsLike(Sns sns);
-	// SNS Like Select
-	public List<Sns> selectSnsLike(Sns sns);
 	// SNS 단건조회
 	public Sns OneSnsSelect (Sns sns);
 	

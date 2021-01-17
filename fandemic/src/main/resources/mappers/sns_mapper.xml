@@ -28,6 +28,15 @@
 	<select id="selectSns" resultType="Sns">
 		SELECT * FROM SELECTALLSNS ORDER BY SNS_NO DESC
 	</select>
+	<!-- SNS 글조회 -->
+	<select id="loginselectSns" resultType="Sns">
+			SELECT 
+			S.* 
+			,(CASE WHEN S.MEM_ID = #{mem_id} THEN 'Y' END) AS LIK
+		FROM 
+			SELECTALLSNS S LEFT OUTER JOIN SLIKEIT L ON S.SNS_NO = L.SNS_AC_NO ORDER BY SNS_NO DESC
+	</select>
+	
 	<!-- 내 SNS 카운트 -->
 	<select id="countMySns" resultType="int">
 		select count(*) from selectallsns where mem_id = #{mem_id}

@@ -1112,6 +1112,7 @@ resize: none;
 				</div>
 				<div class="row" style="padding-bottom: 300px;">
 					<article class="col-md-12 article-list">
+					${loginsnslist}
 						<c:forEach items="${snslist}" var="sns">
 							<span>
 								<div class="dropdown" style="width: 100%;">
@@ -1182,16 +1183,20 @@ resize: none;
 												<!-- 좋아요 -->
 												<!-- 좋아요 -->
 												
-												<c:forEach items="${selectSnsLike}" var="snslike" varStatus="status">
 													<c:choose>
-														<c:when test="${snslike.mem_id eq sessionScope.member.mem_id and snslike.sns_ac_no eq sns.sns_no }">
+														<c:when test="${sns.lik == 'y'}">
 															<a href="#" class="love active" data-no="${sns.sns_no}">
 																<i class="ion-android-favorite"></i>
 																<div>${sns.sns_likes}</div>
 															</a>
 														</c:when>
+														<c:otherwise>
+														<a href="#" class="love" data-no="${sns.sns_no}">
+																<i class="ion-android-favorite-outline"></i>
+																<div>${sns.sns_likes}</div>
+															</a>
+														</c:otherwise>
 													</c:choose>
-												</c:forEach>
 												
 												
 												
@@ -1214,16 +1219,21 @@ resize: none;
 												</div>
 												<p>${sns.sns_content}</p>
 												<footer>
-												<c:forEach items="${selectSnsLike}" var="snslike">
+												${sns.lik }
 													<c:choose>
-														<c:when test="${snslike.mem_id eq sessionScope.member.mem_id and snslike.sns_ac_no eq sns.sns_no }">
+														<c:when test="${sns.lik == 'y'}">
 															<a href="#" class="love active" data-no="${sns.sns_no}">
 																<i class="ion-android-favorite"></i>
 																<div>${sns.sns_likes}</div>
 															</a>
 														</c:when>
+														<c:otherwise>
+														<a href="#" class="love" data-no="${sns.sns_no}">
+																<i class="ion-android-favorite-outline"></i>
+																<div>${sns.sns_likes}</div>
+															</a>
+														</c:otherwise>
 													</c:choose>
-												</c:forEach>
 												
 												
 												</footer>

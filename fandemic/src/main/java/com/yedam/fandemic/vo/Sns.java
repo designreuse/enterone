@@ -15,7 +15,7 @@ public class Sns {
 	String mem_pic;		//멤버사진
 	String mem_type;	//멤버타입
 	String mem_time;	//멤버 가입일
-	
+	String lik;			//좋아요 세션아이디랑 비교해서 버튼 활성화
 	String sns_ac_no;	//좋아요 게시물번호
 	
 	
