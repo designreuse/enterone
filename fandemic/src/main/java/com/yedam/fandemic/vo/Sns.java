@@ -22,4 +22,6 @@ public class Sns {
 	//페이지 네이션
 	private int sns_first;
 	private int sns_last;
+	
+	String no; //0117 추가
 }
