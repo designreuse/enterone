@@ -842,8 +842,7 @@
 	        		url : '${pageContext.request.contextPath}/insertLike',
 		    			type : 'GET',
 		    			data : {sns_ac_no : no},
-	    			data :  $(this.form).serialize(),
-	    			success : function(response) {
+		    			success : function(response) {
 	    				if (response == true) {
 	    					// 					                fboardView(fbo_no);//게시물 재 출력
 	    				}
@@ -1168,8 +1167,8 @@
 										<!-- 좋아요 -->
 										<!-- 좋아요 -->
 										<!-- 좋아요 -->
-												<a href="#" class="love" data-no="${sns.sns_no}"> <i
-													class="ion-android-favorite-outline"></i>
+												<a href="#" class="love active" data-no="${sns.sns_no}"> <i
+													class="ion-android-favorite"></i>
 													<div>${sns.sns_likes}</div>
 												</a>
 											</footer>
@@ -1191,10 +1190,20 @@
 												</div>
 												<p>${sns.sns_content}</p>
 												<footer>
+												<!--좋아요 안눌린 상태 -->
+													<c:if ${sns.sns_no }>
 												<a href="#" class="love" data-no="${sns.sns_no}"> <i
 													class="ion-android-favorite-outline"></i>
 													<div>${sns.sns_likes}</div>
 												</a>
+												</c:if>
+											<!--좋아요 눌린 상태 -->
+												<c:if ${sns.sns_no } != ${sns.sns_ac_no }>
+												<a href="#" class="love" data-no="${sns.sns_no}"> <i
+													class="ion-android-favorite-outline"></i>
+													<div>${sns.sns_likes}</div>
+												</a>
+												</c:if>
 												</footer>
 											</div>
 										</div>
