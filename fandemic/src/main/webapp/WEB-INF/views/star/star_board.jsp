@@ -18,7 +18,11 @@
 					<button class="btn btn-primary py-2 px-4 btnInputSboardShow"
 					onclick="location.href = '${pageContext.request.contextPath}/star/starBoard/insertView'">글쓰기</button>
 				</div>
-			</div>	
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row d-flex">
 			<div class="row">
 				<c:forEach var="sboard" items="${sbolist}">
 					<div class="col-md-12">
@@ -36,7 +40,9 @@
 									</p>
 								</div>
 									<div class="mb-4 sboardPrev" id = "sbo_content" >
-										${sboard.sbo_content}
+										<div>
+											${sboard.sbo_content}										
+										</div>
 									</div>
 								<p>
 									<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}" class="btn-custom">Read More <span
@@ -61,6 +67,10 @@
 								$("#${sboard.sbo_no}").css("background-image" , "url("+list+")");								
 							}
 							$("#sbo_content p img").remove("")//게시글 미리 보기에서 이미지 삭제 
+							$("#sbo_content br").remove("")
+							$("#sbo_content a").remove("")
+							$("#sbo_content span").removeAttr("style")
+							$("#sbo_content p").removeAttr("style")
 						}
 						imgView();
 	        		</script>
