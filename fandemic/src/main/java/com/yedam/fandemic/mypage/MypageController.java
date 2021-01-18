@@ -191,7 +191,37 @@ public class MypageController {
 		model.addAttribute("mymaillist", myMapper.selectMail(letter));
 		return "mypage/my_mail";
 	}
-
+	
+	//보낸쪽지 조회하기
+	@RequestMapping(value = "/yourmail")
+		public String yourmail(Model model, Letter letter, HttpSession session, HttpServletRequest request,
+				HttpServletResponse response) throws IOException {
+	
+			Member member = (Member) session.getAttribute("member");
+			letter.setMem_id(member.getMem_id());
+			String strp = request.getParameter("p");
+			int p = 1;
+			if (strp != null && !strp.equals("")) {
+				p = Integer.parseInt(strp);
+			}
+	
+			Paging paging = new Paging();
+	
+			paging.setPageUnit(15); // 한페이지에 5건씩. 생략시 기본10
+			paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+			paging.setPage(p); // 현재 페이지 지정
+	
+			letter.setLett_first(paging.getFirst());
+			letter.setLett_last(paging.getLast());
+	
+			paging.setTotalRecord(myMapper.getYourletterCount(letter));
+	
+			System.out.println(paging);
+			model.addAttribute("memberidlist", myMapper.selectmemberid(member));
+			model.addAttribute("paging", paging);
+			model.addAttribute("mymaillist", myMapper.selectYourMail(letter));
+			return "mypage/your_mail";
+		}
 	//쪽지 단건조회
 	@ResponseBody
 	@RequestMapping(value = "/onemailselect")
@@ -206,10 +236,13 @@ public class MypageController {
 	@RequestMapping(value = "/sendmail")
 	public ModelAndView sendmail(HttpServletResponse response, Letter letter, Member member, Model model) throws IOException {
 		
-		String sns = letter.getSnsns();
+		String snss = letter.getSnsns();
 		myMapper.SendMail(letter);
-		if(sns.equals("1")) {
+		System.out.println(snss);
+		if(snss.equals("1")) {
 			return new ModelAndView("redirect:sns");
+		} if (snss.equals("2")) {
+			return new ModelAndView("redirect:yourmail");
 		} else {
 			return new ModelAndView("redirect:mymail");
 		}
@@ -219,9 +252,14 @@ public class MypageController {
 	@ResponseBody
 	public ModelAndView deleteMail(Model model, Letter letter, HttpServletRequest request) throws IOException{
 		
+		String sns = letter.getSnsns();
+		System.out.println(sns);
 		myMapper.deletemail(letter);
-		
-		return new ModelAndView("redirect:mymail");
+		if(sns == null ) {
+			return new ModelAndView("redirect:mymail");
+		} else {
+			return new ModelAndView("redirect:yourmail");
+		}
 	}
 	
 	//==================QnA===========================

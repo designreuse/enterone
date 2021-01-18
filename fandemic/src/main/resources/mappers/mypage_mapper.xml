@@ -92,6 +92,22 @@
 		LETTER
 		WHERE MEM_ID = #{mem_id}
 	</select>
+	<!-- 보낸 쪽지 조회 -->
+	<select id="selectYourMail" resultType="letter">
+		SELECT * FROM ( SELECT A.*,
+		ROWNUM RN FROM (
+		SELECT * FROM LETTER Where lett_sid = #{mem_id} ORDER BY
+		lett_no DESC	
+		) A ) B WHERE RN BETWEEN #{lett_first} AND #{lett_last}
+	</select>
+	<!--보낸 쪽지 페이지 네이션 -->
+	<select id="getYourletterCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		LETTER
+		WHERE lett_sid = #{mem_id}
+	</select>
+	
 	<!-- 쪽지단건조회 -->
 	<select id="OneMailSelect" resultType="letter"
 		parameterType="letter">

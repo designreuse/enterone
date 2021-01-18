@@ -2,21 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
-<style>
-.mySlides {
-	display: none
-}
-
-.w3-left, .w3-right, .w3-badge {
-	cursor: pointer
-}
-
-.w3-badge {
-	height: 13px;
-	width: 13px;
-	padding: 0
-}
-</style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resourcesMypage/css/mypageA.css">
 <script>
 	$(
 			function() {
@@ -112,6 +99,35 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="col-md-12">
+
+						<div class="headline">
+							<img alt="" src="">
+							<div class="nav" id="headline-nav">
+								<a class="left carousel-control" role="button" data-slide="prev">
+									<span class="ion-ios-arrow-left" aria-hidden="true"></span> <span
+									class="sr-only">Previous</span>
+								</a> <a class="right carousel-control" role="button"
+									data-slide="next"> <span class="ion-ios-arrow-right"
+									aria-hidden="true"></span> <span class="sr-only">Next</span>
+								</a>
+							</div>
+							<!-- 헤더 밑 슬라이드 info -->
+							<div class="owl-carousel owl-theme" style="margin-top: -20px;"
+								id="headline">
+								<div class="item">
+									<a href="#"><div class="badge">Tip!</div>페이지 관련 문의입니다.</a>
+								</div>
+								<div class="item">
+									<a href="#"><div class="badge">prom</div>스타, 소속사, 굿즈관련 문의는
+										소속사에 문의해주세요! </a>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
 						<h3 class="title">1:1 문의 내역</h3>
 					</div>
 					<div class="form-group col-md-12">

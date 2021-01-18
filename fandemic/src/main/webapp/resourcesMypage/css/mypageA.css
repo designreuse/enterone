@@ -1,0 +1,40 @@
+.pagination li {
+	display: inline-block; 
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid gray;
+  margin: 0 4px;
+}
+
+.pagination a.active {
+  background-color: rgb(53, 52, 52);
+  color: white;
+  border: 1px solid gray;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: lightgray;
+	color: black;
+	}
+	.mySlides {
+	display: none
+}
+
+.w3-left, .w3-right, .w3-badge {
+	cursor: pointer
+}
+
+.w3-badge {
+	height: 13px;
+	width: 13px;
+	padding: 0
+}

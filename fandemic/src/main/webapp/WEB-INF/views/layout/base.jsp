@@ -187,8 +187,14 @@
 											결제내역</a></li>
 							<li><a href="${pageContext.request.contextPath}/myevent"><i class="icon ion-settings"></i>
 											이벤트 참여</a></li>
-							<li><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>
-											쪽지함</a></li>
+							<li class="dropdown"><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>쪽지함</a>
+								 <ul class="dropdown-menu">
+								 <li><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>
+											받은 쪽지함</a></li>
+											<li><a href="${pageContext.request.contextPath}/yourmail"><i class="icon ion-chatbox"></i>
+											보낸 쪽지함</a></li>
+								 </ul>
+							</li>
 							<li><a href="${pageContext.request.contextPath}/my1o1"><i class="icon ion-chatbox"></i>
 											1:1문의 내역</a></li>
 							<li class="divider"></li>

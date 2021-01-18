@@ -70,7 +70,7 @@
 			<div class="col-md-12">
 				<div class="line">
 					<div>
-						<a id="rgoods">최근 쪽지</a>
+						<a id="rgoods">보낸 쪽지</a>
 					</div>
 				</div>
 
@@ -131,6 +131,7 @@
 								<div class="modal-body">
 									<input type="text" class="form-control" id="recipient-name"
 										name="lett_sid" value="${member.mem_id}" style="display: none">
+										<input type="text" 	value="2" name="snsns" style="display: none">
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label">받는사람
 											ID: </label>
@@ -228,6 +229,7 @@
 										<label for="recipient-name" class="col-form-label ">보낸회원
 											ID: </label> <input type="text" class="form-control lett_sid"
 											id="recipient-mname" name="lett_sid">
+											<input type="text" 	value="1" name="snsns" style="display: none">
 									</div>
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label ">쪽지
@@ -242,7 +244,6 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-primary" id="mailreply">답장</button>
 									<button class="btn btn-primary" id="deletemailbtn"
 										onclick="javascript: form.action='${pageContext.request.contextPath}/deletemail'">삭제</button>
 									<button type="button" class="btn btn-secondary"
