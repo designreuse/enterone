@@ -6,6 +6,7 @@ import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Notify;
 
 public interface CompanyServiceD {
 	public Company getMyCompanyInfo(Company company);//마이페이지에 불러올 회사정보 조회
@@ -15,4 +16,5 @@ public interface CompanyServiceD {
 	public int letterTrans(Letter letter); //쪽지보내기
 	public List<Gbuyer> getCharData(); //차트에 뿌려줄 데이터
 	public List<Gbuyer> getDaySalesList();//일별 매출현황
+	public List<Notify> memberReportList(Notify notify); //신고당한놈 리스트 요청
 }

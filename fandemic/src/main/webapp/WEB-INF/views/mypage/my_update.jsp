@@ -70,19 +70,23 @@
 		});
 		
 		$(".btnMemberDrop").on("click",function(){
+			var ck = confirm("정말 탈퇴하시겠습니까?");
+			if(ck==true){
 			var mem_id = "${member.mem_id }";
-			$.ajax({
-				url:"${pageContext.request.contextPath}/deleteMember",
-				data:{mem_id:mem_id},
-				dataType:"json",
-				success:function(response){
-					alert("탈퇴가 완료되었습니다.");
-					location.href="${pageContext.request.contextPath}/";
-				},
-				error:function(response){
-					alert("탈퇴실패")
-				}
-			})
+				$.ajax({
+					url:"${pageContext.request.contextPath}/deleteMember",
+					data:{mem_id:mem_id},
+					dataType:"json",
+					success:function(response){
+						alert("탈퇴가 완료되었습니다.");
+						location.href="${pageContext.request.contextPath}/";
+					},
+					error:function(response){
+						alert("탈퇴실패")
+					}
+				})
+			
+			}
 		})
 
 	});

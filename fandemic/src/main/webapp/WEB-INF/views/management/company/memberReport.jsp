@@ -98,9 +98,10 @@ div #dataTable_filter{
 	
 	//공지사항 목록 조회 요청
 	function memberReportList() {
-		//var com_id = "${company.com_id }";
+		var com_id = "${sessionScope.company.com_id }";
+		//console.log("====="+com_id);
 		$.ajax({
-			url:'${pageContext.request.contextPath}/management/noticesList', //요청할 url
+			url:'${pageContext.request.contextPath}/management/company/memberReportList', //요청할 url
 			type:'POST',
 			data: {com_id:com_id},
 			//contentType:'application/json;charset=utf-8',
@@ -117,12 +118,12 @@ div #dataTable_filter{
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","cnoticeTr")
-			.append($('<td>').html('<input type="checkbox" name="cnoc_nos" value="'+item.cnoc_no+'">'))
-			.append($('<td>').html(item.cnoc_no))
-			.append($('<td>').html('<a href="#">'+item.cnoc_title+'</a>'))
-			.append($('<td>').html(item.com_id))
-			.append($('<td>').html(item.cnoc_time))
-			.append($('<td>').html(item.cnoc_subject))
+			.append($('<td>').html('<input type="checkbox" name="nof_nos" value="'+item.nof_no+'">'))
+			.append($('<td>').html(item.nof_no))
+			.append($('<td>').html(item.nof_content))
+			.append($('<td>').html(item.re_content))
+			.append($('<td>').html(item.mem_id))
+			.append($('<td>').html(item.nof_type))
 			.appendTo('tbody');
 			
 		});//end each
@@ -184,7 +185,7 @@ div #dataTable_filter{
               <div>
               	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
-              		<button type="button" class="btn-register">등록</button>
+              		<!-- <button type="button" class="btn-register">등록</button> -->
               		<!--  <button class="btn-update">수정</button>-->
               		<button type="button" class="btn-delete">삭제</button>
               	</div>

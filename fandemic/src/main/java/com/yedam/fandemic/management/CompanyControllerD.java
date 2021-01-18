@@ -91,4 +91,10 @@ public class CompanyControllerD {
 	public String memberReport(){
 		return "mgt/company/memberReport";
 	}
+	
+	@RequestMapping("/management/company/memberReportList")
+	@ResponseBody
+	public List<Notify> memberReportList(Notify notify){
+		return companyService.memberReportList(notify);
+	}
 }
