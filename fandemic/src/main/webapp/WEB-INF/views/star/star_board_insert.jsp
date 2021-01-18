@@ -119,8 +119,8 @@
    
 	//게시글 필터링
 	function boardFilter(){
-		var statement = $("#summernote").val();
-
+		var statement = $("#summernote").val();//본문
+		
 		var list = ${filList};
 		for(var i=0; i<list.length; i++) {
 			
@@ -132,9 +132,23 @@
 			    console.log(statement);
 			    $('#summernote').summernote('code',statement)
 			}
-		} 
+		}
+		
+		var statement2 = $("input:text[name='sbo_title']").val();//제목
+		for(var i=0; i<list.length; i++) {
+			
+			var keyword = list[i].fil_prohibited;
+			
+			if (statement2.indexOf(keyword) != -1) {
+				var re = new RegExp(keyword, "g");
+			    statement2 = statement2.replace(re, list[i].fil_alternative);
+			    console.log(statement2);
+			    $("input:text[name='sbo_title']").val(statement2)
+			}
+		}
 	}
 	
+
    //게시글 등록 요청
    function sboardInsert(){
 		//해시태그 작성된 값 받아서 제출
@@ -181,7 +195,7 @@
 			    <div class="content">
 			        <div class = "row">
 			            <input type="text" id="tag" size="7" placeholder="태그입력"/>
-			            <button type="button" id = "tag-form">누르면 태그값 보임</button>
+			           <!--  <button type="button" id = "tag-form">누르면 태그값 보임</button> -->
 			        </div>
 			        <div class = "row">
 			        	<ul id="tag-list">

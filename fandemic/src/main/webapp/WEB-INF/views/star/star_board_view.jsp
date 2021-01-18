@@ -166,8 +166,7 @@ var st_name = "${stVo.st_name}";
 		//게시물 뷰
 		$('#sbo_title').text(data.sbo_title);
 		$('#st_name').text(st_name + " | ");
-		$('#sbo_time').text(data.sbo_time + " | 조회");
-		$('#sbo_views').text(data.sbo_views);
+		$('#sbo_time').text(data.sbo_time);
 		$('#sbo_content').html(data.sbo_content);
 		//해시태그
 		if(data.sbo_hashtag_array !=null){
@@ -482,6 +481,7 @@ var st_name = "${stVo.st_name}";
          <div class = "starRight">
             <button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboardAction" style="display:none;" >삭제</button>
             <button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard" style="display:none;">수정</button>
+            <button type="button" class="btn btn-primary py-2 px-4 btnFboardListView">목록</button>
          </div>
       </div>
    </div>

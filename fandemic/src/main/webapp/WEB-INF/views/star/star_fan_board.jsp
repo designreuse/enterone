@@ -99,6 +99,13 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		   }
 		});
 		
+		//게시물 신고 모달 보이는 버튼
+		$("body").on("click",".btnNotifyFboard",function(){
+			var noti = $(this).parent().parent();
+			fboardNotifyView(noti);
+		});
+		
+		
 		//목록보기
 		$(".btnFboardListView").on("click",function(){
 		   checkUnload = false;//경고창 중복 제거
@@ -572,6 +579,14 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
       });
    }
    
+ 	//게시물 신고 버튼 시 모달에 값 담음
+	function fboardNotifyView(noti) {
+		var fbo_no = noti.parent().data("no");
+		var mem_id = noti.find(".hideId").html();
+		$("#modalNotifyDefault").find("input:text[name='fbo_no']").val(fbo_no)
+		$("#modalNotifyDefault").find("input:text[name='mem_id']").val(mem_id)
+	}
+   
    
    
 //댓글
@@ -843,8 +858,10 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
       <br>
       <div class="row">
          <div class = "starRight">
+         	<button type="button" class="btn btn-primary py-2 px-4 btnNotifyFboard" data-toggle="modal" data-target="#notifyModal">신고</button>
             <button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboardAction" style="display:none;">삭제</button>
             <button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard" style="display:none;">수정</button>
+            <button type="button" class="btn btn-primary py-2 px-4 btnFboardListView">목록</button>
          </div>
       </div>
    </div>
