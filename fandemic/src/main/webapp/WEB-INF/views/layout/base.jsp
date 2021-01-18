@@ -51,9 +51,6 @@
     $(function() {
     	$("#search").attr("action", "${pageContext.request.contextPath}/search");
 
-    	$.ajax({
-    		url:
-    	})
     });
 
 </script>

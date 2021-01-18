@@ -66,15 +66,8 @@
 									}
 								});
 
-						$('td')
-								.on(
-										'click',
-										function(event) {
-											$(location)
-													.attr('href',
-															'${pageContext.request.contextPath}/adminQna');
-										});
-
+						$('td').on('click', function(event) {
+							$(location).attr('href','${pageContext.request.contextPath}/adminQna');});
 					});
 </script>
 <style>

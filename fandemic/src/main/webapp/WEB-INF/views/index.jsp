@@ -38,24 +38,41 @@
 		// 차트
 		var ctx = $('#myChart');
 		var myChart = new Chart(ctx, {
-				type : 'pie',
+				type : 'bar',
 				data : {
 					labels : [ '${stCnt[0].ST_NAME}', '${stCnt[1].ST_NAME}', '${stCnt[2].ST_NAME}' ],
 					datasets : [ {
-						label : '#',
+						label : '${stCnt[0].ST_NAME}',
 						data : [ '${stCnt[0].CNT}', '${stCnt[1].CNT}', '${stCnt[2].CNT}' ],
 						backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)"]
 						
 					} ]
 				},      
 				options : {
-					 title: {
-		                    display: true,
-		                    text: 'FAN CLUB TOP3'
-	                }
+					
+					legend : {
+						labels : {
+							fontColor : 'rgba(83, 51, 237, 1)',
+							fontSize : 15
+						}
+					},
+					scales : {
+						xAxes : [ {
+							ticks : {
+								fontColor : 'rgba(27, 163, 156, 1)',
+								fontSize : '15'
+							}
+						} ],
+						yAxes : [ {
+							ticks : {
+								beginAtZero : true,
+								fontColor : 'rgba(246, 36, 89, 1)',
+								fontSize : '15'
+							}
+						} ]
+					}
 				}
 			});
-		
 		
 		// 스타 top3
 		var mem_id = "${sessionScope.member.mem_id}";
@@ -322,7 +339,7 @@ hr {
 
 				</div>
 				<div class="line">
-					<div>????</div>
+					<div>FAN CLUB TOP 3</div>
 				</div>
 				<!-- 차트 -->
 				<div class="row">
@@ -435,8 +452,8 @@ hr {
 
 					</div>
 				</aside>
-				<aside>
-					<div align="center">
+				<aside style="padding: 80px 0px 0px 30px;">
+					<div align="center" >
 						<ul class="tabs" style="padding-bottom: 10px">
 							<li class="tab-link current" data-tab="tab-1"><a
 								style="color: black;"><span>멜론차트</span></a></li>
