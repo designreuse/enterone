@@ -20,6 +20,7 @@ var tag = {};
 var counter = 0;
 var id = "${sessionScope.member.mem_id}"//session아이디 값
 var ssid = "${sessionScope.star.st_id}"//session아이디 값
+var com_id = "${stVo.com_id}"
 
 	$(function() {
 		//화면 시작 시 목록 출력
@@ -98,13 +99,6 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		      fboardListView();
 		   }
 		});
-		
-		//게시물 신고 모달 보이는 버튼
-		$("body").on("click",".btnNotifyFboard",function(){
-			var noti = $(this).parent().parent();
-			fboardNotifyView(noti);
-		});
-		
 		
 		//목록보기
 		$(".btnFboardListView").on("click",function(){
@@ -386,6 +380,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		}
 		
 		//수정 뷰
+		$("#mem_id_defalut").val(data.mem_id);
 		$("input:text[name='fbo_no']").val(data.fbo_no);
 		$("input:text[name='fbo_sub_no']").val(data.fbo_sub_no);
 		$("input:text[name='fbo_title']").val(data.fbo_title);
@@ -579,14 +574,6 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
       });
    }
    
- 	//게시물 신고 버튼 시 모달에 값 담음
-	function fboardNotifyView(noti) {
-		var fbo_no = noti.parent().data("no");
-		var mem_id = noti.find(".hideId").html();
-		$("#modalNotifyDefault").find("input:text[name='fbo_no']").val(fbo_no)
-		$("#modalNotifyDefault").find("input:text[name='mem_id']").val(mem_id)
-	}
-   
    
    
 //댓글
@@ -640,12 +627,12 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 						li3 = "";
 					}else {
 						console.log(ssid + re.st_id + re.mem_id+"====="+id)
-						li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyModal'>신고</li><span>&nbsp;</span>";																					
+						li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyReplyModal'>신고</li><span>&nbsp;</span>";																					
 					}
 				}
 			}else if(ssid !=null && ssid !=""){
 				if(ssid != re.st_id){
-					li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyModal'>신고</li><span>&nbsp;</span>";
+					li3 = "<li class='btnNotifyReply' data-toggle='modal' data-target='#notifyReplyModal'>신고</li><span>&nbsp;</span>";
 				}
 			}
 			var ule = "</ul>";
@@ -762,6 +749,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		/* $(".form-group").empty() */
 		var re_no = noti.parent().data("no");
 		var mem_id = noti.find(".hideId").html();
+		$("#modalNotifyDefault").find("input:text[name='com_id']").val(com_id)
 		$("#modalNotifyDefault").find("input:text[name='re_no']").val(re_no)
 		$("#modalNotifyDefault").find("input:text[name='mem_id']").val(mem_id)
 	}
@@ -775,7 +763,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 	       success: function(response) {
 	          if(response == true) {
 	        	  alert("신고가 접수 되었습니다.");
-	        	  $('#notifyModal').modal("hide");
+	        	  $('#notifyReplyModal').modal("hide");
 	          }
 	       }, 
 	       error:function(xhr, status, message) { 
@@ -858,7 +846,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
       <br>
       <div class="row">
          <div class = "starRight">
-         	<button type="button" class="btn btn-primary py-2 px-4 btnNotifyFboard" data-toggle="modal" data-target="#notifyModal">신고</button>
+         	<button type="button" class="btn btn-primary py-2 px-4 btnFboardNotify" data-toggle='modal' data-target='#notifyBoardModal'>신고</button>
             <button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboardAction" style="display:none;">삭제</button>
             <button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard" style="display:none;">수정</button>
             <button type="button" class="btn btn-primary py-2 px-4 btnFboardListView">목록</button>
@@ -953,13 +941,13 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
    </div>
 </section>
 
-<!-- 모달창 -->
-	<div class="modal fade" id="notifyModal" tabindex="-1" role="dialog"
+<!-- 댓글 신고 모달창 -->
+	<div class="modal fade" id="notifyReplyModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">신고</h5>
+					<h5 class="modal-title" id="exampleModalLabel">댓글 신고</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -968,8 +956,52 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 					<form id="formNotify">
 						<div id = "modalNotifyDefault" style="display:none;">
 							<input name = "re_no" />
-							<input name = "fbo_no" />
+							<input name = "com_id" />
 							<input name = "mem_id" />
+						</div>
+						<div class = "form-group">
+							<label for="recipient-name" class="col-form-label">신고 이유</label>
+							<select name = "nof_type">
+								<option>욕설,비방</option>
+								<option>광고</option>
+								<option>허위정보</option>
+								<option>음란물</option>
+								<option>기타</option>
+							</select>
+						</div>
+						
+						<div class = " form-group">
+							<label for="recipient-name" class="col-form-label">신고 내용</label>
+							<textarea name="nof_content" style = "width:100%" rows = 7></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary" id="notifyInsertAction">신고</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 게시물 신고 모달창 -->
+	<div class="modal fade" id="notifyBoardModal" tabindex="-2" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">게시물 신고</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="formNotify">
+						<div id = "modalNotifyDefault" style="display:none;">
+							<input name = "fbo_no" />
+							<input name = "com_id" />
+							<input name = "mem_id_defalut" />
 						</div>
 						<div class = "form-group">
 							<label for="recipient-name" class="col-form-label">신고 이유</label>

@@ -72,7 +72,7 @@ public class SfboReplyController {
 		return true;
 	}
 	
-	//입력
+	//신고 입력
 	@RequestMapping(value="/star/fanBoard/reply/notify", method=RequestMethod.POST)
 	@ResponseBody
 	public boolean notifyInsert(HttpServletRequest request, Notify notify) throws IOException {
