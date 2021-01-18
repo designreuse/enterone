@@ -6,8 +6,18 @@
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script>
-   $(function(){
-	   
+$(function(){
+	//방문자수조회
+	$.ajax({
+		url:"${pageContext.request.contextPath}/management/company/visitorCnt",
+		dataType:"json",
+		success:function(response){
+			alert("방문자수조회성공")
+		},
+		error:function(response){
+			alert("방문자수조회실패")
+		}
+	})   
 	   
 	$.ajax({
 		url:"${pageContext.request.contextPath}/management/company/DaySalesList",
@@ -17,8 +27,8 @@
 		error:function(response){
 			alert("매출현황에러지롱");
 		}
-	})
-}); 
+	}) //end ajax
+}); //end ready function
    
 function daySalesListResult(data){
 	$("tbody").empty();

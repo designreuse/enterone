@@ -76,4 +76,31 @@
 		AND R.SFBO_NO = F.FBO_NO
 		AND N.COM_ID = #{com_id}
 	</select>
+<!-- 방문자수조회? -->
+	<insert id="insertVisitor" parameterType="Visit">
+		<selectKey order="BEFORE" keyProperty="visit_id" resultType="string">
+			SELECT NVL2(MAX(VISIT_ID), MAX(VISIT_ID)+1, 1)
+			FROM VISIT
+		</selectKey>
+            INSERT INTO VISIT
+            (
+                VISIT_ID,
+                VISIT_IP,
+                VISIT_TIME,
+                <if test="visit_refer != null and visit_refer !=''">
+                VISIT_REFER,
+                </if>
+                VISIT_AGENT
+            )
+            VALUES
+            (
+                #{visit_id},
+                #{visit_ip},
+                SYSDATETIME,
+                <if test="visit_refer != null and visit_refer !=''">
+                #{visit_refer},
+                </if>
+                #{visit_agent}
+            )
+        </insert>
 </mapper>

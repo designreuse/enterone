@@ -12,6 +12,7 @@ import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Notify;
+import com.yedam.fandemic.vo.Visit;
 
 @Service
 public class CompanyServiceImplD  implements CompanyServiceD{
@@ -55,6 +56,11 @@ public class CompanyServiceImplD  implements CompanyServiceD{
 	@Override
 	public List<Notify> memberReportList(Notify notify) {
 		return dao.memberReportList(notify);
+	}
+
+	@Override
+	public int insertVisitor(Visit visit) {
+		return dao.insertVisitor(visit); //방문자수조회
 	}
 	
 	
