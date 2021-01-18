@@ -348,6 +348,15 @@
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/management/company/memberReport" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>신고리스트</p>
+                </a>
+              </li>
+              
+             </ul> 
           </li>
           
           

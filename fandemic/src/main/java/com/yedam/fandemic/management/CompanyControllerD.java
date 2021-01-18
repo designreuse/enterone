@@ -19,6 +19,7 @@ import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Notify;
 
 @Controller
 public class CompanyControllerD {
@@ -84,4 +85,11 @@ public class CompanyControllerD {
 	public List<Gbuyer> getDaySalesList(){
 		return companyService.getDaySalesList();
 	}
+	
+//	//회원 신고 목록 리스트
+//	@RequestMapping("/management/company/memberReport")
+//	public List<Notify> getMemberReportList(){
+//		
+//		return "";
+//	}
 }
