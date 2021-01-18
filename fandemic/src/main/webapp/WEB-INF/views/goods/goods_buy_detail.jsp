@@ -26,7 +26,7 @@
 .primary-btn {
     display: inline-block;
     font-size: 14px;
-    padding: 10px 28px 10px;
+    padding: 10px 15px 10px;
     color: #4176E0;
     background-color: white;
     text-transform: uppercase;
@@ -36,13 +36,35 @@
 .primary-btn:hover {
     display: inline-block;
     font-size: 14px;
-    padding: 10px 28px 10px;
+    padding: 10px 15px 10px;
     color: #022AD5;
     background-color: white;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 2px;
 }
+.modal-dialog {
+	width: 1000px;
+	margin: 15% auto;
+}
+
+/* Important part */
+.modal-content{
+	overflow-y: initial !important;
+}
+.modal-body{
+	height: 250px;
+	overflow-y: auto;
+}
+#tblmodal tbody tr td{
+	border-bottom: 1px solid #ebebeb;
+	padding: 10px 25px 10px 25px; 
+}
+#tblmodal thead tr th {
+	padding: 10px 25px 10px 25px; 
+	border-bottom: 3px solid #ebebeb;
+}
+
 </style>
 </head>
 <body>
@@ -78,7 +100,9 @@
 									<td style="width: 22%;">${buyList.gb_no}</td>
 									<td style="width: 13%;"><b>결제금액</b></td>
 									<td style="width: 22%;"><fmt:formatNumber type="number" value="${buyList.gb_payment}" pattern="##,###" />원</td>
-									<td rowspan="3" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;"><a href="#" class="primary-btn">상세보기</a></td>
+									<td rowspan="3" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
+										<button type="button" class="btn primary-btn" data-toggle="modal" data-target="#exampleModal" data-what="hello">상세보기</button>
+									</td>
 								</tr>
 								<tr>
 									<td style="letter-spacing: 7px;"><b>수령인</b></td>
@@ -97,105 +121,91 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!-- Shoping Cart Section End -->
-	
-
-<%-- 
-<style>
-.tit_month {
-	width: 100%;
-	height: 39px;
-	margin: -9px 0;
-	text-align: center;
-}
-
-.goods_pay_item .goods_item .goods_thumb {
-	overflow: hidden;
-	position: absolute;
-	left: 9px;
-	top: 50%;
-	width: 90px;
-	height: 90px;
-	margin-top: -45px;
-	text-align: center;
-}
-</style>
-</head>
-<body>
-	<section class="home">
-		<div class="container">
+			
+			
+			
+			<!-- 모달창 -->
 			<div class="row">
-				<div class="col-lg-12">
-					<div class="section-title" style="margin-bottom: 0;">
-						<h3 align="center" style="padding-bottom: 15px">구매내역</h3>
-					</div>
+				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				   <div class="modal-dialog" role="document">
+				      <div class="modal-content">
+				         <div class="modal-header">
+				            <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">주문 상세 내역</h5>
+				         </div>
+				         <div class="modal-body">
+				            <div class="form-group">
+				               
+				               
+							<table id="tblmodal">
+								<thead>
+									<tr>
+										<th style="width: 168px; text-align: center;">주문번호</th>
+										<th style="width: 800px;" colspan="5">2020202022020</th>
+									</tr>
+								</thead>
+								
+								<!-- 굿즈 구매 내역 -->
+								<tbody>
+									<tr>
+										<td rowspan="2" style="text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
+											사진
+										</td>
+										<td style="letter-spacing: 7px;"><b>상품명</b></td>
+										<td colspan="3">go_name</td>
+										<td rowspan="2" style="width: 168px; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
+											<button type="button" class="btn primary-btn">재구매</button>
+										</td>
+									</tr>
+									<tr>
+										<td style="border-bottom: 3px solid #ebebeb;"><b>구매수량</b></td>
+										<td style="border-bottom: 3px solid #ebebeb;">cart_qty 개</td>
+										<td style="border-bottom: 3px solid #ebebeb;"><b>구매금액</b></td>
+										<td style="border-bottom: 3px solid #ebebeb;">go_price 원</td>
+									</tr>
+								
+								<!-- 티켓 예매 내역 -->
+									<tr>
+										<td rowspan="3" style="text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
+											사진
+										</td>
+										<td style="letter-spacing: 7px;"><b>공연명</b></td>
+										<td colspan="3">go_name</td>
+										<td rowspan="3" style="width: 168px; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
+											<button type="button" class="btn primary-btn">입장하기</button>
+										</td>
+									</tr>
+									<tr>
+										<td><b>구매수량</b></td>
+										<td>cart_qty 개</td>
+										<td><b>구매금액</b></td>
+										<td>go_price 원</td>
+									</tr>
+									<tr>
+										<td style="border-bottom: 3px solid #ebebeb;"><b>공연기간</b></td>
+										<td style="border-bottom: 3px solid #ebebeb;">go_untsdate ~ go_untedate</td>
+										<td style="border-bottom: 3px solid #ebebeb;"><b>공연시간</b></td>
+										<td style="border-bottom: 3px solid #ebebeb;">go_unttime</td>
+									</tr>
+								</tbody>
+									
+								<tfoot>
+								</tfoot>
+							</table>
+							           
+				               
+				               
+				            </div>
+				         </div>
+				         <div class="modal-footer">
+				            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+				         </div>
+				      </div>
+				   </div>
 				</div>
 			</div>
-
-			<div class="row">
-				<c:forEach var="buyList" items="${buyList}">
-						<div>
-						<p><span>주문번호</span><a href="${pageContext.request.contextPath}/goodsBuyDetail?n=${buyList.gb_no}">${buyList.gb_no}</a></p>
-						<p><span>수령인</span>${buyList.gb_name}</p>
-						<p><span>배송지 전화번호</span>${buyList.gb_phone}</p>
-						<p><span>배송지 주소</span>(${buyList.gb_zipaddress}) ${buyList.gb_address} ${buyList.gb_address2}</p>
-						<p><span>결제 금액</span><fmt:formatNumber pattern="###,###,###" value="${buyList.gb_payment}" /> 원</p>
-					</div>
-					
-
-
-					<div class="tit_month">
-						<h4>2021.01</h4>
-					</div>
-
-
-					<div class="goods_pay_section ">
-						<div class="goods_group">
-							<ul class="goods_group_list">
-
-								<li id="_rowLi20210102182128CHK2021010248182101"
-									class="goods_pay_item ">
-									<div class="goods_item">
-										<a href="#" class="goods_thumb"></a>
-										<div class="goods_info">
-											<a href="#" class="goods">
-												<p class="name">주문번호 : ${buyList.gb_no}</p>
-												<ul class="info">
-													<li><span class="blind">상품금액 </span>
-													<fmt:formatNumber pattern="###,###,###"
-															value="${buyList.gb_payment}" /> 원</li>
-													<li class="date"><span class="blind">상품구매날짜</span>
-														${buyList.gb_time}</li>
-												</ul>
-											</a>
-											<!--N=a:lst.detail-->
-
-											<p class="guide">구매가 완료되었습니다. 이용해주셔서 감사합니다.</p>
-										</div>
-									</div>
-									<div class="seller_item">
-										<div class="inner">
-											<span class="seller">보따리스토어</span> <span class="tel">010-4792-2530</span>
-										</div>
-									</div>
-									<div class="button_item">
-										<div class="area_layer">
-											<a href="#" class="#">재구매</a>
-										</div>
-									</div> <input type="hidden" id="_lastId0"
-									value="20201213100018CHK2020121331855751"> <input
-									type="hidden" id="_hasMore0" value="true"> <input
-									type="hidden" id="_interlockNosForDeliveryTracking0" value="">
-								</li>
-							</ul>
-						</div>
-					</div>
-				</c:forEach>
-
-			</div>
+   
+   
 		</div>
-	</section> --%>
+	</section>
 </body>
 </html>
