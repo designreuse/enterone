@@ -9,6 +9,10 @@
 	.table tr{
 		background-color:rgba(0,0,0,.05);
 	}
+	#art_content{
+		height: 300px;
+		width:100%;
+	}
 </style>
 <script>
 
@@ -107,34 +111,40 @@
 								<tr>
 									<td colspan="2" width="200px" align="right" style="padding-right:10px"><label>스타이름</label></td>
 									<td colspan="2" align="left">								
-					                    <input type="text" style="width:250px" class="st_name" value="${art.st_name}" disabled="disabled">     
+					                    <input type="text" style="width:250px" class="st_name form-control" value="${art.st_name}" disabled="disabled">     
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>작품이름</label></td>
 									<td colspan="2" align="left">
-										<input type="text" style="width:400px" class="art_name" name="art_name">
+										<input type="text" style="width:400px" class="art_name form-control" name="art_name">
 									</td>
 									<td></td>
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>작품분류</label></td>
 									<td colspan="2" align="left">
-									<input type="text" name="art_type" class="art_type" style="width:250px"/>
+									<!-- <input type="text" name="art_type" class="art_type" style="width:250px"/> -->
+										<select name = "art_type" class="art_type custom-select" style="width:250px">
+						                  <option>앨범</option>
+						                  <option>영화</option>
+						                  <option>공연</option>
+						                  <option>방송</option>
+						               </select>
 									</td>
 									<td></td>
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>작품시작일</label></td>
 									<td colspan="2" align="left">
-									<input type="date" name="art_startTime" class="art_startTime" style="width:250px" />
+									<input type="date" name="art_startTime" class="art_startTime form-control" style="width:250px" />
 									</td>
 									<td></td>
 								</tr>
 								<tr>
 									<td colspan="2" align="right" style="padding-right:10px"><label>작품종료일</label></td>
 									<td colspan="2" align="left">
-									<input type="date" name="art_endTime" class="art_endTime" style="width:250px" />
+									<input type="date" name="art_endTime" class="art_endTime form-control" style="width:250px" />
 									</td>
 									<td></td>
 								</tr>
@@ -152,7 +162,7 @@
 								<tr >
 									<td colspan="2" align="right" style="padding-right:10px"><label>작품설명</label></td>
 									<td colspan="2">
-										<textarea id="summernote" name="art_content" class="art_content notice-content"></textarea>
+										<textarea id="art_content" name="art_content" class="art_content form-control"></textarea>
 									</td>
 								</tr>
 								

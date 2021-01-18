@@ -53,7 +53,7 @@ public class CnoticeControllerD {
 	      List<MultipartFile> multipartFile = multipartRequest.getFiles("uploadFile");
 	      for(int i=0; i<multipartFile.size(); i++) {
 		      if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
-		    	  String path = request.getSession().getServletContext().getRealPath("/images");
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/cnotice");
 		    	  System.out.println("path="+path);
 		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
 		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
@@ -66,7 +66,7 @@ public class CnoticeControllerD {
 	      //공지사항 배너
 	      MultipartFile multipartFile1 = multipartRequest1.getFile("uploadbanner");
 		      if (!multipartFile1.isEmpty() && multipartFile1.getSize() > 0) {
-		    	  String path = request.getSession().getServletContext().getRealPath("/images");
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/cnotice");
 		    	  System.out.println("path="+path);
 		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
 		         cnotice.setConc_banner(multipartFile1.getOriginalFilename());
@@ -103,7 +103,7 @@ public class CnoticeControllerD {
 	      List<MultipartFile> multipartFile = multipartRequest.getFiles("uploadFile");
 	      for(int i=0; i<multipartFile.size(); i++) {
 		      if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
-		    	  String path = request.getSession().getServletContext().getRealPath("/images");
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/cnotice");
 		    	  System.out.println("path="+path);
 		         multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
 		         sumFile = sumFile + multipartFile.get(i).getOriginalFilename()+" ";
@@ -115,7 +115,7 @@ public class CnoticeControllerD {
 	      MultipartHttpServletRequest multipartRequest1 = (MultipartHttpServletRequest) request;
 	      MultipartFile multipartFile1 = multipartRequest1.getFile("uploadbanner");
 		      if (!multipartFile1.isEmpty() && multipartFile1.getSize() > 0) {
-		    	  String path = request.getSession().getServletContext().getRealPath("/images");
+		    	  String path = request.getSession().getServletContext().getRealPath("/images/cnotice");
 		    	  System.out.println("path="+path);
 		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
 		         cnotice.setConc_banner(multipartFile1.getOriginalFilename());

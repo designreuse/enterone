@@ -116,24 +116,27 @@ $('#deleteEvent').on('click', function () {
     
 	//console.log("삭제확인-------------")
 	//console.log($(this).data('id'))//먼데이게...
+	var ck = confirm("수정하시겠습니까?");
+	if(ck=true){		
     //삭제시
-    $.ajax({
-        type: "post",
-        url: "deleteSchedule",
-        data: {
-            sch_no: $(this).data('id')
-        },
-        success: function (response) {
-            alert('삭제되었습니다.');
-            $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
-   			 eventModal.modal('hide');
-   			 
-   			 $('#calendar').fullCalendar('removeEvents');
-	         $('#calendar').fullCalendar('refetchEvents');
-        },
-        error:function(response){
-        	alert("삭제 오류");
-        }
-    }); //end ajax
+	    $.ajax({
+	        type: "post",
+	        url: "deleteSchedule",
+	        data: {
+	            sch_no: $(this).data('id')
+	        },
+	        success: function (response) {
+	            alert('삭제되었습니다.');
+	            $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
+	   			 eventModal.modal('hide');
+	   			 
+	   			 $('#calendar').fullCalendar('removeEvents');
+		         $('#calendar').fullCalendar('refetchEvents');
+	        },
+	        error:function(response){
+	        	alert("삭제 오류");
+	        }
+	    }); //end ajax
+	}
 
 }); //end 삭제벝튼
