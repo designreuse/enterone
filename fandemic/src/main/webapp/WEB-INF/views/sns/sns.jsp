@@ -827,7 +827,10 @@ resize: none;
 		$('.love').click(function() {
 			var thisclass = $(this).attr('class');
 			var no = $(this).attr('data-no')
-			if (thisclass == 'love') {
+			if (no == 'mysns'){
+				alert("죄송합니다. 자신의 글에는 '좋아요'가 집계되지 않습니다.");
+			} else {			
+				if (thisclass == 'love') {
 				alert("좋아요 취소")
 				$.ajax({
 					url : '${pageContext.request.contextPath}/deleteLike',
@@ -864,25 +867,12 @@ resize: none;
 					}
 				});
 			}
+			}
+
 		});
 	});
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </head>
-
 <section class="home">
 	<div class="container">
 		<div class="row">
@@ -918,8 +908,6 @@ resize: none;
 				</div>
 				<c:if test="${member.mem_id ne null or company.com_id ne null }">
 					<div class="inputdiv">
-					
-					
 						<span> <c:if
 								test="${sessionScope.member.mem_pic ne null and sessionScope.member.mem_type eq 0 }">
 								<img class="inputimg" src="${sessionScope.member.mem_pic}"
@@ -944,15 +932,6 @@ resize: none;
 						</span>
 					</div>
 				</c:if>
-
-
-				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
-				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
-				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
-				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
-				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
-				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
-				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
 				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
 				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
 				<!-- SNS상세정보 모달창 inputdiv눌렀을때 -->
@@ -980,8 +959,6 @@ resize: none;
 									<button type="button" id="detail-btn-delete" data-id=""
 										class="btn-snsbtndelete btn btn-primary">삭제하기</button>
 								</div>
-
-
 								<div class="col-md-12">
 									<div class="">
 										<div id="replyListView">
@@ -1005,7 +982,6 @@ resize: none;
 										<br>
 									</div>
 								</div>
-
 							</div>
 							<div class="comentdiv"></div>
 							<div class="modal-footer">
@@ -1051,8 +1027,6 @@ resize: none;
 						</div>
 					</div>
 				</div>
-
-
 				<!-- SNS등록 모달창 -->
 				<div class="modal" id="exampleModal5" style="z-index: 1200;">
 					<div class="modal-dialog">
@@ -1112,7 +1086,6 @@ resize: none;
 				</div>
 				<div class="row" style="padding-bottom: 300px;">
 					<article class="col-md-12 article-list">
-					${loginsnslist}
 						<c:forEach items="${snslist}" var="sns">
 							<span>
 								<div class="dropdown" style="width: 100%;">
@@ -1133,7 +1106,6 @@ resize: none;
 												src="${pageContext.request.contextPath}/images/member_pic/${sns.mem_pic}"
 												alt="member_profile">
 										</c:if>
-										
 									</button>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 										<button class="dropdown-item showprofilebtn" type="button"
@@ -1150,12 +1122,9 @@ resize: none;
 									<input class="clickcontentdetail" value="${sns.sns_title}"
 										readonly="readonly">
 								</div>
-
 							</span>
 							<c:if test="${not empty sns.sns_pic}">
-
 								<div class="outputdiv" data-no="${sns.sns_no}">
-
 									<div class="inner cinner">
 										<figure>
 											<div class="w3-content w3-section" style="max-width: 500px">
@@ -1167,7 +1136,6 @@ resize: none;
 												</c:forTokens>
 											</div>
 										</figure>
-
 										<div class="details" id="clickdiv">
 											<div class="detail">
 												<div class="category">
@@ -1182,11 +1150,16 @@ resize: none;
 												<!-- 좋아요 -->
 												<!-- 좋아요 -->
 												<!-- 좋아요 -->
-												
 													<c:choose>
-														<c:when test="${sns.lik == 'y'}">
+														<c:when test="${sns.lik == 'Y' and sns.mem_id != sessionScope.member.mem_id}">
 															<a href="#" class="love active" data-no="${sns.sns_no}">
 																<i class="ion-android-favorite"></i>
+																<div>${sns.sns_likes}</div>
+															</a>
+														</c:when>
+														<c:when test="${sns.lik == 'Y' and sns.mem_id == sessionScope.member.mem_id}">
+															<a href="#" class="love" data-no="mysns">
+																<i class="ion-android-favorite-outline"></i>
 																<div>${sns.sns_likes}</div>
 															</a>
 														</c:when>
@@ -1197,9 +1170,6 @@ resize: none;
 															</a>
 														</c:otherwise>
 													</c:choose>
-												
-												
-												
 											</footer>
 										</div>
 									</div>
@@ -1219,11 +1189,16 @@ resize: none;
 												</div>
 												<p>${sns.sns_content}</p>
 												<footer>
-												${sns.lik }
-													<c:choose>
-														<c:when test="${sns.lik == 'y'}">
+												<c:choose>
+														<c:when test="${sns.lik == 'Y' and sns.mem_id != sessionScope.member.mem_id}">
 															<a href="#" class="love active" data-no="${sns.sns_no}">
 																<i class="ion-android-favorite"></i>
+																<div>${sns.sns_likes}</div>
+															</a>
+														</c:when>
+														<c:when test="${sns.lik == 'Y' and sns.mem_id == sessionScope.member.mem_id}">
+															<a href="#" class="love" data-no="mysns">
+																<i class="ion-android-favorite-outline"></i>
 																<div>${sns.sns_likes}</div>
 															</a>
 														</c:when>
@@ -1234,16 +1209,12 @@ resize: none;
 															</a>
 														</c:otherwise>
 													</c:choose>
-												
-												
 												</footer>
 											</div>
 										</div>
 									</div>
 								</div>
 							</c:if>
-
-
 						</c:forEach>
 						<script type="text/javascript">
 							var slideIndex = [];

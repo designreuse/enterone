@@ -30,11 +30,17 @@
 	</select>
 	<!-- SNS 글조회 -->
 	<select id="loginselectSns" resultType="Sns">
-			SELECT 
-			S.* 
-			,(CASE WHEN S.MEM_ID = #{mem_id} THEN 'Y' END) AS LIK
-		FROM 
-			SELECTALLSNS S LEFT OUTER JOIN SLIKEIT L ON S.SNS_NO = L.SNS_AC_NO ORDER BY SNS_NO DESC
+		SELECT 	DISTINCT S.* ,(CASE 
+WHEN l.MEM_ID = #{mem_id} or s.mem_id = #{mem_id} THEN 'Y'
+WHEN l.MEM_ID != #{mem_id} and s.mem_id != #{mem_id} THEN 'N'
+END) AS LIK
+FROM 
+    SELECTALLSNS S 
+LEFT OUTER JOIN
+    SLIKEIT L 
+ON 
+    S.SNS_NO = L.SNS_AC_NO AND l.mem_id = #{mem_id}
+ORDER BY SNS_NO DESC
 	</select>
 	
 	<!-- 내 SNS 카운트 -->
