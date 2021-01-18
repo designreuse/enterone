@@ -1,10 +1,17 @@
 package com.yedam.fandemic.login;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -121,17 +128,17 @@ public class LoginController {
 	// 개인 pw
 	@RequestMapping("/memPwFind")
 	@ResponseBody
-	public String memPwFind(@ModelAttribute Mail mail, HttpServletRequest request, Model model, Member member) throws IOException{
+	public String memPwFind(@ModelAttribute Mail mail, HttpServletRequest request, Model model, Member member) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
 			
 		member.setMem_id(request.getParameter("mem_id"));
 		member.setMem_email(request.getParameter("mem_email"));
 		member = memMapper.memPwFind(member);
 		
 		if(member != null) {
-			
 			String pwKey = Password.getRamdomPw(6);
 			
-			member.setMem_pw(Password.encrypt(pwKey)); //임시비번 넣어서
+			Password pw = new Password();
+			member.setMem_pw(pw.encrypt(pwKey)); //임시비번 넣어서
 			memMapper.pwUpdate(member); //업데이트 하고
 			
 			mail.setSenderName("엔터원");
@@ -166,7 +173,7 @@ public class LoginController {
 	// 기업 pw
 	@RequestMapping("/comPwFind")
 	@ResponseBody
-	public String comPwFind(@ModelAttribute Mail mail, HttpServletRequest request, Model model, Company company) throws IOException{
+	public String comPwFind(@ModelAttribute Mail mail, HttpServletRequest request, Model model, Company company) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
 			
 		company.setCom_id(request.getParameter("com_id"));
 		company.setCom_email(request.getParameter("com_email"));
@@ -175,7 +182,9 @@ public class LoginController {
 		if(company != null) {
 			
 			String pwKey = Password.getRamdomPw(6);
-			company.setCom_pw(Password.encrypt(pwKey)); //임시비번 넣어서
+			
+			Password pw = new Password();
+			company.setCom_pw(pw.encrypt(pwKey)); //임시비번 넣어서
 			memMapper.pwUpdateCom(company);
 			
 			mail.setSenderName("엔터원");
@@ -215,9 +224,10 @@ public class LoginController {
 	    
 	// 개인 로그인
 	@RequestMapping(value="/memberLogin")
-	public String memberLogin(HttpServletRequest request, HttpSession session,  Model model, Member member, RedirectAttributes redirect) throws IOException{
-
-		member.setMem_pw(Password.encrypt(member.getMem_pw())); //비번 암호화
+	public String memberLogin(HttpServletRequest request, HttpSession session,  Model model, Member member, RedirectAttributes redirect) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
+		
+		Password pw = new Password();
+		member.setMem_pw(pw.encrypt(member.getMem_pw())); //비번 암호화
 		
 		member = memMapper.memLogin(member);
 		
@@ -237,9 +247,10 @@ public class LoginController {
 	
 	//소속사
 	@RequestMapping(value="/companyLogin")
-	public String companyLogin(Model model, Company company, HttpSession session, RedirectAttributes redirect) {
-
-		company.setCom_pw(Password.encrypt(company.getCom_pw()));
+	public String companyLogin(Model model, Company company, HttpSession session, RedirectAttributes redirect) throws UnsupportedEncodingException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
+		
+		Password pw = new Password();
+		company.setCom_pw(pw.encrypt(company.getCom_pw()));
 		
 		company = memMapper.comLogin(company); 
 		
@@ -272,11 +283,12 @@ public class LoginController {
 	
 	//스타 로그인 보류
 	@RequestMapping(value="/starLogin")
-	public String starLogin(HttpServletRequest request, Model model, Star star,  HttpSession session, RedirectAttributes redirect) throws IOException{
+	public String starLogin(HttpServletRequest request, Model model, Star star,  HttpSession session, RedirectAttributes redirect) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
 		System.out.println("스타로그인");
 		
 		star.setSt_id(request.getParameter("com_id"));
-		star.setSt_pw(Password.encrypt(request.getParameter("com_pw")));
+		Password pw = new Password();
+		star.setSt_pw(pw.encrypt(request.getParameter("com_pw")));
 		
 		star = memMapper.starLogin(star);
 		
@@ -340,7 +352,7 @@ public class LoginController {
 	
 	// 개인 회원가입 처리
 	@RequestMapping("/memRegister")
-	public String memRegister(RedirectAttributes redirect, Model model,  Company company, Member member, Errors errors) throws IOException{
+	public String memRegister(RedirectAttributes redirect, Model model,  Company company, Member member, Errors errors) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
 		
 		new MemberValidator().validate(member, errors);
 		
@@ -348,8 +360,8 @@ public class LoginController {
 			
 			return "login/register";
 		}
-
-		member.setMem_pw(Password.encrypt(member.getMem_pw()));
+		Password pw = new Password();
+		member.setMem_pw(pw.encrypt(member.getMem_pw()));
 		
 		memMapper.memInsert(member);
 		redirect.addAttribute("login", "insert");
@@ -361,7 +373,7 @@ public class LoginController {
 	
 	// 기업 회원가입
 	@RequestMapping("/comRegister")
-	public String comRegister(RedirectAttributes redirect, Model model, Member member,  Company company, Errors errors) throws IOException{
+	public String comRegister(RedirectAttributes redirect, Model model, Member member,  Company company, Errors errors) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
 		
 		new CompanyValidator().validate(company, errors);
 		model.addAttribute("tab", "tab-2");
@@ -371,8 +383,8 @@ public class LoginController {
 			return "login/register";
 			
 		}
-
-		company.setCom_pw(Password.encrypt(company.getCom_pw()));
+		Password pw = new Password();
+		company.setCom_pw(pw.encrypt(company.getCom_pw()));
 		
 		memMapper.comInsert(company);
 		redirect.addAttribute("login", "insert");

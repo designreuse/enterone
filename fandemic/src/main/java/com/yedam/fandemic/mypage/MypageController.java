@@ -2,7 +2,13 @@ package com.yedam.fandemic.mypage;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -84,7 +90,7 @@ public class MypageController {
 	// my정보 수정 update처리
 	@RequestMapping(value = "/myupdate2")
 	public String myupdate2(Model model, HttpServletResponse response, HttpServletRequest request, Member member,
-			HttpSession session) throws IOException {
+			HttpSession session) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
 
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		// 이미지파일
@@ -98,7 +104,8 @@ public class MypageController {
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 			member.setMem_pic(multipartFile.getOriginalFilename());
 		}
-		member.setMem_pw(Password.encrypt(member.getMem_pw()));
+		Password pw = new Password(); // 민 - pw 암호화 수정 0118 
+		member.setMem_pw(pw.encrypt(member.getMem_pw()));
 		myMapper.memUpdate(member);
 		session.setAttribute("member", member);
 		return "mypage/my_update";

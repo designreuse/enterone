@@ -164,14 +164,15 @@ public class MainController {
 	@PostMapping("/proUpdate")   
 	public String proUpdate(Model model, HttpServletRequest request, Member member, HttpSession session) throws IllegalStateException, IOException {
 		
-		String path = request.getSession().getServletContext().getRealPath("/images/member_pic");
+		
 		member = (Member)session.getAttribute("member");
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request; // request 를 multipart로 캐스팅
 		MultipartFile multipartFile = multipartRequest.getFile("profile");
 		
 		if(! multipartFile.isEmpty() && multipartFile.getSize() > 0) { // 임시폴더에 업로드된 파일을 실제 폴더로 transfer 이동
-			
+			String path = request.getSession().getServletContext().getRealPath("/images/member_pic");
+			System.out.println("====path : " + path);
 			multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename())); 
 			member.setMem_pic(multipartFile.getOriginalFilename());
 		}
