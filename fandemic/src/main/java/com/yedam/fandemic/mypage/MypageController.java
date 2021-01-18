@@ -110,7 +110,7 @@ public class MypageController {
 		session.setAttribute("member", member);
 		return "mypage/my_update";
 
-	}
+	}    
 
 	// my스타 메인
 	@RequestMapping(value = "/mystar")
