@@ -37,6 +37,14 @@
 			/* alert("등록버튼눌림"); */
 			CnoticeFormCheck(); //유효성검사
 		});
+		
+		//이미지 미리보기삭제
+		$("body").on("click",".cnoticeImg_del",function(){
+			$("#image_container2 img").remove();
+			$("#image_container2 button").remove();
+			$("#uploadbanner").val("");
+			
+		})
 	});//end ready function
 	
 	function CnoticeFormCheck(){
@@ -51,6 +59,20 @@
 			event.preventDefault();
 		}
 		
+	}
+	
+	function setThumbnail2(event) { //event라함은 이벤트 대상을 의미하는듯
+		$("#image_container2 img").remove();
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			var img = $("<img>").attr("src",event.target.result).css({"width":"100%","height":"350px"});
+			var btnDel = $("<button>").attr({"type":"button", "class":"cnoticeImg_del"}).text("X");
+			$("#image_container2").append(img).append(btnDel);			
+			/* var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img); */
+		}; // end onload
+		reader.readAsDataURL(event.target.files[0]);
 	}
 </script>
  <!-- Content Header (Page header) -->
@@ -122,9 +144,14 @@
                      				</td>
 								</tr>
 								<tr>
-									<td colspan="1" align="left"><label>메인홍보용배너</label></td>
-									<td colspan="3">
-                      					<input type="file" name="uploadbanner" >                     					
+									<td colspan="1" rowspan="2" align="left"><label>메인홍보용배너</label></td>
+									<td colspan="3" rowspan="1">
+                      					<input type="file" name="uploadbanner" id="uploadbanner" onchange="setThumbnail2(event);">                     					
+                     				</td>
+								</tr>
+								<tr>
+									<td>
+                      					<div id="image_container2"></div>                    					
                      				</td>
 								</tr>
 								<tr >

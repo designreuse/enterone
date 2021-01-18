@@ -75,22 +75,27 @@ div #dataTable_filter{
 		
 		//공지사항 삭제
 		$(".btn-delete").on("click",function(){
-			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/noticesDelete",
-				type:"POST",
-				data: $("#frm1").serialize(),
-				dataType: 'json', //결과값 Json형태로
-				success: function(response) {
-			    	if(response != null && response !="") {
-			    		$('#dataTable').DataTable().clear().destroy();
-			    		//$('#dataTable').DataTable().destroy();
-			    		cnoticeList();
-			    	}  
-			    }, 
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    } 
-			});//end ajax
+			var cnoticeDel = confirm("정말 삭제하시겠습니까?");
+			if(cnoticeDel==true){
+				 $.ajax({
+					url:"${pageContext.request.contextPath}/management/noticesDelete",
+					type:"POST",
+					data: $("#frm1").serialize(),
+					dataType: 'json', //결과값 Json형태로
+					success: function(response) {
+				    	if(response != null && response !="") {
+				    		$('#dataTable').DataTable().clear().destroy();
+				    		//$('#dataTable').DataTable().destroy();
+				    		cnoticeList();
+				    	}  
+				    }, 
+				    error:function(xhr, status, message) { 
+				        alert(" status: "+status+" er:"+message);
+				    } 
+				});//end ajax
+			}
+			
+			
 		});
 		
 	}); //end document ready

@@ -53,6 +53,12 @@
 			alert("소개글을 입력하세요.")
 			$("table .st_introduce").focus();
 			event.preventDefault();
+		}else{
+			var ck = confirm("수정하시겠습니까?");
+		
+			if(ck==false){
+				event.preventDefault();
+			}
 		}
 		
 	}
@@ -155,7 +161,7 @@
 								
 								<tr >
 									<td colspan="4" align="right" style="padding:5px;">
-									<button type="submit" id="btnCnotice-register" class="btn btn-primary pull-right">등록</button>
+									<button type="submit" id="btnCnotice-register" class="btn btn-primary pull-right">수정</button>
 									<input type="button" id="btnCancel" class="btn btn-primary pull-right" value="취소" /></td>
 								</tr>
 								
