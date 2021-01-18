@@ -68,7 +68,7 @@ public class AuditionController {
 
 		Member member = (Member) session.getAttribute("member");
 		trainee.setMem_id(member.getMem_id());
-		model.addAttribute("TrList", auditionMapper.traineeUpdate(trainee));
+		model.addAttribute("TrList", auditionMapper.traineeUpdateselect(trainee));
 		return new ModelAndView("mypage/my_trainee_update");
 	}
 

@@ -179,7 +179,7 @@
 											회원정보</a></li>
 							<li><a href="${pageContext.request.contextPath}/mystar"><i class="icon ion-heart"></i> 내
 											스타</a></li>
-							<li><a href="${pageContext.request.contextPath}/mytrainee"><i class="icon ion-chatbox"></i>
+							<li><a href="${pageContext.request.contextPath}/audition/traineeupdate"><i class="icon ion-chatbox"></i>
 											연습생</a></li>
 							<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-key"></i>
 											장바구니</a></li>

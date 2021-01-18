@@ -32,9 +32,13 @@
 		#{tr_branch2})
 	</insert>
 	
-	
-	
-	
+	<!-- 연습생 정보 수정하기 위한 select -->
+	<select id="traineeUpdateselect" parameterType="Trainee"
+		resultType="Trainee">
+		SELECT *
+		FROM TRAINEE
+		WHERE MEM_ID=#{mem_id}
+	</select>
 	<!-- 연습생 수정 -->
 	<update id="traineeUpdate" parameterType="Trainee">
 	UPDATE TRAINEE SET TR_PIC=#{tr_pic},

@@ -42,6 +42,7 @@ public interface AuditionMapper {
 	//연습생 목록
 	public List<Trainee> selecttr();
 	//연습생 수정
-	public int traineeUpdate(Trainee trainee); 
-
+	public void traineeUpdate(Trainee trainee); 
+	//수정을 위한 연습생 select
+	public Trainee traineeUpdateselect(Trainee trainee);
 }
