@@ -79,7 +79,7 @@ public class AuditionController {
 		// request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String sumFile = "";
-
+		
 		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
 		for (int i = 0; i < multipartFile.size(); i++) {
 			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
