@@ -39,13 +39,22 @@ public class SnsController {
 	@RequestMapping(value = "/sns")
 	public String sns(Model model, Sns sns, HttpSession session) throws IOException {
 
-		model.addAttribute("snslist", snsdao.selectSns(sns));				//SNS 게시글 전체 조회
+//		model.addAttribute("snslist", snsdao.selectSns(sns));				//SNS 게시글 전체 조회
 		Member member = (Member) session.getAttribute("member");
+		
+		if (member != null) {
+			sns.setMem_id(member.getMem_id());
+			model.addAttribute("snslist", snsdao.loginselectSns(sns)); //로그인후 select
+		} else {
+			model.addAttribute("snslist", snsdao.selectSns(sns));
+		}
+		
+		
+		
+					
 		// MemberVo를 불러서 Member캐스팅 session에 있는 member를 가져온다.
 
 		if (member != null) {
-			sns.setMem_id(member.getMem_id());
-			model.addAttribute("loginsnslist", snsdao.loginselectSns(sns));			//로그인후 select
 			model.addAttribute("mysnslist", snsdao.selectMySns(sns));			//SNS 사진 조회
 			model.addAttribute("countmysns", snsdao.countMySns(sns));			//내SNS 카운트
 			model.addAttribute("countSnsLike", snsdao.countSnsLike(sns));		//좋아요 카운트
