@@ -1,10 +1,13 @@
 package com.yedam.fandemic.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yedam.fandemic.impl.StarMapper;
 import com.yedam.fandemic.service.StarService;
+import com.yedam.fandemic.vo.Art;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Star;
@@ -51,6 +54,11 @@ public class StarServiceImpl implements StarService{
 	@Override
 	public int getCountSboard(Star star) {
 		return starDAO.getCountSboard(star);
+	}
+
+	@Override
+	public List<Art> getStarArtList(Art art) {
+		return starDAO.getStarArtList(art);
 	}
 
 

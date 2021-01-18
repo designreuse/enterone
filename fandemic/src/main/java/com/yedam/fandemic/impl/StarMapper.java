@@ -1,5 +1,8 @@
 package com.yedam.fandemic.impl;
 
+import java.util.List;
+
+import com.yedam.fandemic.vo.Art;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Star;
@@ -13,5 +16,5 @@ public interface StarMapper {
 	public int getCountFboard(Star star);
 	public int getCountReply(Star star);
 	public int getCountSboard(Star star);
-
+	public List<Art> getStarArtList(Art art);
 }

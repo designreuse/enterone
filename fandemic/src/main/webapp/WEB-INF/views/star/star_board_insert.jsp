@@ -117,12 +117,32 @@
 	    });
 	}
    
+	//게시글 필터링
+	function boardFilter(){
+		var statement = $("#summernote").val();
+
+		var list = ${filList};
+		for(var i=0; i<list.length; i++) {
+			
+			var keyword = list[i].fil_prohibited;
+			
+			if (statement.indexOf(keyword) != -1) {
+				var re = new RegExp(keyword, "g");
+			    statement = statement.replace(re, list[i].fil_alternative);
+			    console.log(statement);
+			    $('#summernote').summernote('code',statement)
+			}
+		} 
+	}
+	
    //게시글 등록 요청
    function sboardInsert(){
 		//해시태그 작성된 값 받아서 제출
 		var value = marginTag();
 		$("#rdTag").val(value); 
-		     
+		
+		boardFilter();//비속어 필터링
+		
 		$.ajax({
 		    url: "${pageContext.request.contextPath}/star/starBoard/insert",  
 		    type: 'POST',  
