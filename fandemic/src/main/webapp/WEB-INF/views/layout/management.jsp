@@ -88,6 +88,9 @@
         <a href="${pageContext.request.contextPath}/management" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
+        <a href="${pageContext.request.contextPath}/" class="nav-link">Main</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
         <a href="${pageContext.request.contextPath}/management/Logout" class="nav-link">Logout</a>
       </li>
       <!-- <li class="nav-item d-none d-sm-inline-block">
@@ -221,7 +224,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="${pageContext.request.contextPath}/resourcesAdmin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light"><!-- 소속사ID -->${company.com_id }</span>
     </a>
