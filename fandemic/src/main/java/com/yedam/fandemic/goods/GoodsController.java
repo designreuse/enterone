@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yedam.fandemic.impl.GoodsMapper;
 import com.yedam.fandemic.vo.Cart;
+import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Gbuydetail;
 import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Goods;
@@ -190,7 +191,6 @@ public class GoodsController {
 		return gbuyer;
 	}
 
-
 	// 주문 결과 페이지 - 주문 목록
 	@RequestMapping(value = "/buyList")
 	public ModelAndView buyList(HttpSession session, Gbuyer gbuyer, Model model) throws IOException {
@@ -198,14 +198,14 @@ public class GoodsController {
 		if (member == null) { // 로그인하지 않은 상태이면 로그인 화면으로 이동
 			return new ModelAndView("/login");
 		} else {
-			gbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 cart에 담기
+			gbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 gbuyer에 담기
 			model.addAttribute("buyList", goMapper.buyList(gbuyer));
 			return new ModelAndView("goods/goods_buy_detail");
 		}
 	}
 	
-	
-	// 주문 결과 페이지 - 주문 상세 목록 buyDetailList
+	// 주문 결과 상세 모달
+
 
 	
 //	to-do-list	
