@@ -18,7 +18,7 @@ public interface AuditionMapper {
 	//연습생 활동 글 등록
 	public int insertac(Activity activity);
 	//연습생 활동 글 전체 조회
-	public List<Trainee> selectTr();
+	public List<Activity> selectac();
 	//연습생 활동 상세 프로필
 	public Activity activityDetail(Activity activity);
 	//연습생 활동 지원 글 수정
@@ -39,6 +39,9 @@ public interface AuditionMapper {
 	public List<Map<String, Object>> selectnew();
 	//페이징
 	public int getactivityCount(Activity activity);
-	
+	//연습생 목록
+	public List<Trainee> selecttr();
+	//연습생 수정
+	public int traineeUpdate(Trainee trainee); 
 
 }

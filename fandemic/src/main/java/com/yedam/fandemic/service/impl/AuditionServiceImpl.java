@@ -67,4 +67,14 @@ public class AuditionServiceImpl implements AuditionService {
 		// TODO Auto-generated method stub
 		return auditionmapper.getactivityCount(activity);
 	}
+	@Override
+	public List<Activity> selectac(Activity activity) {
+		// TODO Auto-generated method stub
+		return auditionmapper.selectac();
+	}
+	@Override
+	public int traineeUpdate(Trainee trainee) {
+		
+		return auditionmapper.traineeUpdate(trainee);
+	}
 }
