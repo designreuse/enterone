@@ -109,31 +109,31 @@
 		INSERT INTO AUDITION
 		(
 		AUD_NO,
-		COM_ID,
-		MEM_ID,
-		ABO_NO,
-		MEM_NAME,
 		AUD_TYPE,
 		AUD_HOBBY,
-		AUD_AGE,
 		AUD_HEIGHT,
 		AUD_WEIGHT,
 		AUD_FILE,
-		AUD_PIC
+		AUD_PIC,
+		COM_ID,	
+		MEM_ID,
+		ABO_NO,
+		AUD_AGE,
+		MEM_NAME
 		)
 		VALUES (
 		AUD_SEQ.NEXTVAL,
-		#{com_id},
-		#{mem_id},
-		#{abo_no},
-		#{mem_name},
 		#{aud_type},
 		#{aud_hobby},
-		#{aud_age},
 		#{aud_height},
 		#{aud_weight},
 		#{aud_file},
-		#{aud_pic}
+		#{aud_pic},
+		#{com_id},
+		#{mem_id},
+		#{abo_no},
+		#{aud_age},
+		#{mem_name}
 		)
 
 	</insert>

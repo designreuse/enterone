@@ -102,24 +102,26 @@ public class AuditionController {
 	@RequestMapping(value = "/audition/auditionwork") // 주소
 	public ModelAndView auditionwork(Model model, HttpServletRequest request, Activity activity) throws IOException {
 		
-		model.addAttribute("TrworkList", auditionMapper.selectTr());
+		
 
-		/*
-		 * String strp = request.getParameter("p"); int p = 1; if (strp != null &&
-		 * !strp.equals("")) { p = Integer.parseInt(strp); }
-		 * 
-		 * Paging paging = new Paging(); paging.setPageUnit(12); // 한페이지에 12건씩. 생략시 기본10
-		 * paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10 paging.setPage(p); // 현재
-		 * activity.setAc_first(paging.getFirst()); // paging에 현재 페이지만 넣으면 first,
-		 * activity.setAc_last(paging.getLast());
-		 * paging.setTotalRecord(auditionMapper.getactivityCount(activity));
-		 * 
-		 * model.addAttribute("paging", paging);
-		 * 
-		 * List<Map<String, Object>> list = auditionMapper.selectnew();
-		 * model.addAttribute("selectnew", list); model.addAttribute("cnt",
-		 * list.size());
-		 */
+		
+		
+//		  String strp = request.getParameter("p"); int p = 1; if (strp != null &&
+//		  !strp.equals("")) { p = Integer.parseInt(strp); }
+//		  
+//		  Paging paging = new Paging(); paging.setPageUnit(12); // 한페이지에 12건씩. 생략시 기본10
+//		  paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10 paging.setPage(p); // 현재
+//		  activity.setAc_first(paging.getFirst()); // paging에 현재 페이지만 넣으면 first,
+//		  activity.setAc_last(paging.getLast());
+//		  paging.setTotalRecord(auditionMapper.getactivityCount(activity));
+//		  
+//		  model.addAttribute("paging", paging);
+//		  
+//		  
+//		  List<Map<String, Object>> list = auditionMapper.selectnew();
+//		  model.addAttribute("selectnew", list); model.addAttribute("cnt",list.size());
+		  model.addAttribute("TrworkList", auditionMapper.selectTr());
+		 
 
 		return new ModelAndView("audition/trainee_list");
 
@@ -214,7 +216,6 @@ public class AuditionController {
 		// request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String sumFile = "";
-		// 이미지파일, 공지사항 첨부파일
 		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
 		for (int i = 0; i < multipartFile.size(); i++) {
 			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
@@ -223,8 +224,10 @@ public class AuditionController {
 				multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
 				sumFile = sumFile + multipartFile.get(i).getOriginalFilename() + " ";
 				audition.setAud_pic(sumFile);
+				audition.setAud_file(sumFile);
 			} else {
 				audition.setAud_pic("");
+				audition.setAud_file("");
 			}
 		}
 

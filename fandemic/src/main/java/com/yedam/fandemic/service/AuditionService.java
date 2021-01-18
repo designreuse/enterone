@@ -27,4 +27,6 @@ public interface AuditionService {
 	public Aboard getAboardInfo(Aboard aboard);
 	//오디션 지원자 등록
 	public int insertau(Audition audition);
+	//페이징네이션
+	public int getactivityCount(Activity activity);
 }
