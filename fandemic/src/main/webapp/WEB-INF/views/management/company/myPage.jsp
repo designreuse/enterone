@@ -77,7 +77,7 @@
 		$("#image_container img").remove();
 		var reader = new FileReader();
 		reader.onload = function(event) {
-			var img = $("<img>").attr("src",event.target.result);
+			var img = $("<img>").attr("src",event.target.result).css("height","300px");
 			$("#image_container").append(img);			
 			/* var img = document.createElement("img"); 
 			img.setAttribute("src", event.target.result);
@@ -200,7 +200,7 @@
 								</tr>
 								<tr>
 									<td colspan="2">
-                      					<div id="image_container"><img src="${pageContext.request.contextPath}/images/company/${company.com_pic}"></div>                    					
+                      					<div id="image_container"><img src="${pageContext.request.contextPath}/images/company/${company.com_pic}" style="height: 300px;"></div>                    					
                      				</td>
 								</tr>
 								<tr >

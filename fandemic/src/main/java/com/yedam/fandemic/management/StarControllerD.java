@@ -264,4 +264,11 @@ public class StarControllerD {
 	public List<Fan> getStarFanList(Fan fan){
 		return starService.getStarFanList(fan);
 	}
+	
+	//스타 팬의 블랙리스트 해제
+	@RequestMapping("/management/star/starFanBlack")
+	@ResponseBody
+	public int starFanBlack(Fan fan) {
+		return starService.starFanBlack(fan);
+	}
 }

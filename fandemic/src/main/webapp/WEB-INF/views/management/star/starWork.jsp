@@ -65,22 +65,25 @@ div #dataTable_filter{
 		
 		/*********** 스타회원 삭제*************/
 		$(".btn-delete").on("click",function(){ //체크박스 선택후 삭제버튼 클릭시 이벤트
-			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/star/starWorkDelete",
-				type:"POST",
-				data: $("#frm1").serialize(),  //from data 순서대로 읽어서 값던진다.
-				dataType: 'json', //결과값 Json형태로
-				success: function(response) {
-			    	if(response != null && response !="") {
-			    		alert("삭제되었습니다.");
-			    		$('#dataTable').DataTable().clear().destroy();
-			    		starWorkList();
-			    	}  
-			    }, 
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    } 
-			});//end ajax
+			var ck = confirm("수정하시겠습니까?");
+			if(ck==true){
+				 $.ajax({
+					url:"${pageContext.request.contextPath}/management/star/starWorkDelete",
+					type:"POST",
+					data: $("#frm1").serialize(),  //from data 순서대로 읽어서 값던진다.
+					dataType: 'json', //결과값 Json형태로
+					success: function(response) {
+				    	if(response != null && response !="") {
+				    		alert("삭제되었습니다.");
+				    		$('#dataTable').DataTable().clear().destroy();
+				    		starWorkList();
+				    	}  
+				    }, 
+				    error:function(xhr, status, message) { 
+				        alert(" status: "+status+" er:"+message);
+				    } 
+				});//end ajax
+			}
 		});
 		
 		

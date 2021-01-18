@@ -56,58 +56,41 @@ div #dataTable_filter{
 			location.href="${pageContext.request.contextPath}/management/star/starInsertForm";
 		});
 		
-		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
+		/* var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
 		table.on("click","tr a",function(){ //스타회원 ID값 클릭시 이벤트
 			//alert($(this).parent().next().text());//
-			var st_id = $(this).parent().next().text();
-			location.href="${pageContext.request.contextPath}/management/star/starDetail?st_id="+st_id;	
-		});//end 게시물 제목 클릭
+			var mem_id = $(this).parent().next().text();
+			location.href="${pageContext.request.contextPath}/management/star/starFanInfoDetail?mem_id="+mem_id;	
+		});//end 게시물 제목 클릭 */
 		
-		/*********** 스타회원 삭제*************/
-		$(".btn-delete").on("click",function(){ //체크박스 선택후 삭제버튼 클릭시 이벤트
-			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/star/starDelete",
-				type:"POST",
-				data: $("#frm1").serialize(),  //from data 순서대로 읽어서 값던진다.
-				dataType: 'json', //결과값 Json형태로
-				success: function(response) {
-			    	if(response != null && response !="") {
-			    		alert("삭제되었습니다.");
-			    		$('#dataTable').DataTable().clear().destroy();
-			    		starMemberList();
-			    	}  
-			    }, 
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    } 
-			});//end ajax
-		});
 		
-		/*********** 스타 스케줄 등록  **************/
-		$("body").on("click",".btn-starSchedule",function(){
-			//alert("경고"+$(this).parent().prev().prev().prev().text())
-			var st_id = $(this).parent().prev().prev().prev().text();
-			var st_name = $(this).parent().prev().prev().prev().prev().text();
-			location.href="${pageContext.request.contextPath}/management/star/starSchedule?st_id="+st_id+"&st_name="+st_name;
-		});
 		
-		/**********************************/
-		/*********** 스타 작품 등록  ************/
-		/**********************************/
-		$("body").on("click",".btn-starWork",function(){
-			var st_id = $(this).parent().prev().prev().prev().text();
-			var st_name = $(this).parent().prev().prev().prev().prev().text();
-			location.href="${pageContext.request.contextPath}/management/star/starWork?st_id="+st_id+"&st_name="+st_name;
-		});
 		
-		/**********************************/
-		/*********** 스타별팬형황 ************/
-		/**********************************/
-		$("body").on("click",".btn-fanInfo",function(){
-			var st_id = $(this).parent().prev().prev().prev().text();
-			var st_name = $(this).parent().prev().prev().prev().prev().text();
-			location.href="${pageContext.request.contextPath}/management/star/starFanInfo?st_id="+st_id+"&st_name="+st_name;
-		});
+		/****************************************/
+		/*********** 스타 팬 블랙리스트 해제  ************/
+		/****************************************/
+		$("body").on("click",".btn_fanBlack",function(){
+			//var mem_id = $(this).parent().prev().prev().prev().prev().text();
+			var ck = confirm("해제하시겠습니까?");
+			if(ck==true){
+				$.ajax({
+					url:"${pageContext.request.contextPath}/management/star/starFanBlack",
+					type:"POST",
+					data: $("#frm1").serialize(),  //from data 순서대로 읽어서 값던진다.
+					dataType: 'json', //결과값 Json형태로
+					success: function(response) {
+				    	if(response != null && response !="") {
+				    		alert("해제되었습니다.");
+				    		$('#dataTable').DataTable().clear().destroy();
+				    		starFanList();
+				    	}  
+				    }, 
+				    error:function(xhr, status, message) { 
+				        alert(" status: "+status+" er:"+message);
+				    } 
+				});//end ajax
+			}
+		})
 		
 	}); //end document ready
 	
@@ -132,8 +115,8 @@ div #dataTable_filter{
 			$("tbody").empty();
 			$.each(data,function(idx,item){//idx=index, item=value
 				$('<tr>').attr("class","starMemberTr")
-				.append($('<td>').html('<input type="checkbox" name="fan_noㄴ" value="'+item.fan_no+'">'))
-				.append($('<td>').html('<a href="#">'+item.fan_no+'</a>'))
+				.append($('<td>').html('<input type="checkbox" name="fan_nos" value="'+item.fan_no+'">'))
+				.append($('<td>').html(item.fan_no))
 				.append($('<td>').html(item.mem_id))
 				.append($('<td>').html("${star.st_name}"))
 				.append($('<td>').html(item.fan_name))
@@ -196,8 +179,8 @@ div #dataTable_filter{
               <div>
               	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
-              		<!-- <button type="button" class="btn-register">등록</button>
-              		<button type="button" class="btn-delete">삭제</button> -->
+              		<button type="button" class="btn_fanBlack">블랙리스트 해제</button>
+              		<!-- <button type="button" class="btn-delete">삭제</button> -->
               	</div>
               </div>
             </div>

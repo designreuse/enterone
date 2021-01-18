@@ -11,4 +11,6 @@ public class Fan {
 	String fan_name;	//닉네임
 	String fan_block;	//블랙리스트
 	
+	String[] fan_nos; //다중삭제시 이용
+	
 }

@@ -116,8 +116,9 @@ $('#deleteEvent').on('click', function () {
     
 	//console.log("삭제확인-------------")
 	//console.log($(this).data('id'))//먼데이게...
+	//alert("확인");
 	var ck = confirm("수정하시겠습니까?");
-	if(ck=true){		
+	if(ck==true){		
     //삭제시
 	    $.ajax({
 	        type: "post",

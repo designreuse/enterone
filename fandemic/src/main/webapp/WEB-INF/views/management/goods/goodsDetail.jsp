@@ -159,6 +159,11 @@
 			alert("상품 설명을 입력하세요.")
 			$("table .go_content").focus();
 			event.preventDefault();
+		}else{
+			var ck = confirm("수정하시겠습니까?")
+			if(ck==false){
+				event.preventDefault();
+			}
 		}
 	}//end 유효성검사
 	
@@ -198,6 +203,11 @@
 			alert("행사 설명을 입력하세요.")
 			$("table .go_content").focus();
 			event.preventDefault();
+		}else{
+			var ck = confirm("수정하시겠습니까?")
+			if(ck==false){
+				event.preventDefault();
+			}
 		}
 	}//end 유효성검사
 	

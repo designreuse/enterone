@@ -332,15 +332,15 @@
           </li>
           
           <!--언택트행사관리  -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 	언택트행사관리
-                <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
+                <span class="right badge badge-danger">메일같은거오면 왔다고 알림창띠우는그런기능</span>
               </p>
             </a>
-          </li>
+          </li> -->
           
           <!--팬관리  -->
           <li class="nav-item">
@@ -348,6 +348,7 @@
               <i class="nav-icon fas fa-th"></i>
               <p>
                 	팬관리
+                <i class="fas fa-angle-left right"></i>		
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>

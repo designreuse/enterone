@@ -111,21 +111,24 @@ div #dataTable_filter{
 		
 		//굿즈,행사 사항 삭제
 		$(".btn-delete").on("click",function(){
-			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/goods/goodsDelete",
-				type:"POST",
-				data: $("#frm1").serialize(), //form 값을 순서대로 읽어서 전송, 선택한체크박스의 값도넘김
-				dataType: 'json', //결과값 Json형태로
-				success: function(response) {
-			    	if(response != null && response !="") {
-			    		$('#dataTable').DataTable().clear().destroy();
-			    		goodsList();
-			    	}  
-			    }, 
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    } 
-			});//end ajax
+			var ck = confirm("삭제하시겠습니까?")
+			if(ck==true){
+				 $.ajax({
+					url:"${pageContext.request.contextPath}/management/goods/goodsDelete",
+					type:"POST",
+					data: $("#frm1").serialize(), //form 값을 순서대로 읽어서 전송, 선택한체크박스의 값도넘김
+					dataType: 'json', //결과값 Json형태로
+					success: function(response) {
+				    	if(response != null && response !="") {
+				    		$('#dataTable').DataTable().clear().destroy();
+				    		goodsList();
+				    	}  
+				    }, 
+				    error:function(xhr, status, message) { 
+				        alert(" status: "+status+" er:"+message);
+				    } 
+				});//end ajax
+			}
 		});
 		
 		/* $(".btnModal-cancel").on("click",function(){
