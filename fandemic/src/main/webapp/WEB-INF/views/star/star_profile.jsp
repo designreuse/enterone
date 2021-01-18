@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <section class="ftco-section-no-padding bg-light">
 	<div class="hero-wrap-profile">
@@ -21,7 +22,8 @@
 					<span class="subheading">Hello! I'm</span>
 					<h1 class="big-letter">${stVo.st_name}</h1>
 					<h1 class="mb-4">
-						<span>${stVo.st_name}</span>&nbsp;Your Star. <!-- <span>I Capture Life</span> -->
+						<span>${stVo.st_name}</span>&nbsp;Your Star.
+						<!-- <span>I Capture Life</span> -->
 					</h1>
 					<p class="mb-4">${stVo.st_introduce}</p>
 					<h3 class="signature h1">Enter One</h3>
@@ -40,92 +42,36 @@
 </section>
 <section class="ftco-section">
 	<div class="container">
-        <div class="ftco-animate fadeInUp ftco-animated">
-          <h1 class="bread">작품활동</h1>
-        </div>
+		<div class="ftco-animate fadeInUp ftco-animated">
+			<h1 class="bread">작품활동</h1>
+		</div>
 	</div>
-	<br>
-	<br>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-        <div class="media block-6 services py-4 d-block">
-          <div class="d-flex justify-content-start">
-          	<div class="icon d-flex align-items-center justify-content-center">
-          		<span class="flaticon-big-lens"></span>
-          	</div>
-          </div>
-          <div class="media-body p-2 mt-2">
-            <h3 class="heading mb-3">Pounds Of Equipment</h3>
-            <p>A small river named Duden flows by their place and supplies.</p>
-          </div>
-        </div>      
-      </div>
-      <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-        <div class="media block-6 services py-4 d-block">
-          <div class="d-flex justify-content-start">
-          	<div class="icon d-flex align-items-center justify-content-center">
-          		<span class="flaticon-printing-photo"></span>
-          	</div>
-          </div>
-          <div class="media-body p-2 mt-2">
-            <h3 class="heading mb-3">Photo Print</h3>
-            <p>A small river named Duden flows by their place and supplies.</p>
-          </div>
-        </div>      
-      </div>
-      <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-        <div class="media block-6 services py-4 d-block">
-          <div class="d-flex justify-content-start">
-          	<div class="icon d-flex align-items-center justify-content-center">
-          		<span class="flaticon-focusing-target"></span>
-          	</div>
-          </div>
-          <div class="media-body p-2 mt-2">
-            <h3 class="heading mb-3">Client Focus</h3>
-            <p>A small river named Duden flows by their place and supplies.</p>
-          </div>
-        </div>      
-      </div>
-      <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-        <div class="media block-6 services py-4 d-block">
-          <div class="d-flex justify-content-start">
-          	<div class="icon d-flex align-items-center justify-content-center">
-          		<span class="flaticon-camera"></span>
-          	</div>
-          </div>
-          <div class="media-body p-2 mt-2">
-            <h3 class="heading mb-3">Studio Sessions</h3>
-            <p>A small river named Duden flows by their place and supplies.</p>
-          </div>
-        </div>    
-      </div>
-      <div class="col-md-4 d-flex align-sel Searchf-stretch ftco-animate">
-        <div class="media block-6 services py-4 d-block">
-          <div class="d-flex justify-content-start">
-          	<div class="icon d-flex align-items-center justify-content-center">
-          		<span class="flaticon-polaroid-pictures"></span>
-          	</div>
-          </div>
-          <div class="media-body p-2 mt-2">
-            <h3 class="heading mb-3">Polaroid Pictures</h3>
-            <p>A small river named Duden flows by their place and supplies.</p>
-          </div>
-        </div>      
-      </div>
-      <div class="col-md-4 d-flex align-self-stretch ftco-animate">
-        <div class="media block-6 services py-4 d-block">
-          <div class="d-flex justify-content-start">
-          	<div class="icon d-flex align-items-center justify-content-center">
-          		<span class="flaticon-film"></span>
-         	</div>
-         </div>
-         <div class="media-body p-2 mt-2">
-           <h3 class="heading mb-3">Old Fill Roll</h3>
-           <p>A small river named Duden flows by their place and supplies.</p>
-         </div>
-       </div>
-     </div>
-   </div>
-  </div>
+	<br> <br>
+	<div class="container">
+		<div class="row justify-content-center mb-2 pb-3">
+			<div
+				class="col-md-7 heading-section heading-section-2 text-center ftco-animate">
+				<h2 class="mb-4">Music</h2>
+			</div>
+		</div>
+		<div class="row">
+			<c:forEach var="artVo" items="${artVoList}">
+				<div class="col-md-4 d-flex align-self-stretch ftco-animate">
+					<div class="media block-6 services py-4 d-block">
+						<div class="d-flex justify-content-start">
+							<div class="ArtPic">
+ 								<div class="flaticon-big-lens" 
+ 								style="background-image: url(${pageContext.request.contextPath}/images/star/art/${artVo.art_pic});"></div>
+							</div>
+						</div>
+						<div class="media-body p-2 mt-2">
+							<h3 class="heading mb-3">${artVo.art_name}</h3>
+							<p>${artVo.art_startTime} ~ ${artVo.art_endTime}</p>
+							<p>${artVo.art_content}</p>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+	</div>
 </section>

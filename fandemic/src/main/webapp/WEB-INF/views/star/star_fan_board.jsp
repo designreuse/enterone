@@ -434,6 +434,41 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 	      return true;
 	   }
 	}
+	
+	//게시글 필터링
+	function boardFilter(){
+		var statement = $("#summernote").val();
+
+		var list = ${filList};
+		for(var i=0; i<list.length; i++) {
+			
+			var keyword = list[i].fil_prohibited;
+			
+			if (statement.indexOf(keyword) != -1) {
+				var re = new RegExp(keyword, "g");
+			    statement = statement.replace(re, list[i].fil_alternative);
+			    console.log(statement);
+			    $('#summernote').summernote('code',statement)
+			}
+		}
+	}
+	
+	//댓글 필터링
+	function replyFilter(){
+		var statement = $(".filterReplyCode").val();
+		var list = ${filList};
+		for(var i=0; i<list.length; i++) {
+			
+			var keyword = list[i].fil_prohibited;
+			
+			if (statement.indexOf(keyword) != -1) {
+				var re = new RegExp(keyword, "g");
+			    statement = statement.replace(re, list[i].fil_alternative);
+			    console.log(statement);
+			    $(".filterReplyCode").val(statement)
+			}
+		} 
+	}
    
 // 해시태그
 	function addTag (value) {
@@ -453,6 +488,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		//해시태그 작성된 값 받아서 제출
 		var value = marginTag();
 		$("#rdTag").val(value); 
+		boardFilter();//필터링
 		     
 		$.ajax({
 		    url: "${pageContext.request.contextPath}/star/fanBoard",  
@@ -484,10 +520,10 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
    //게시물 수정 요청
 	function fboardUpdate() {
 		var fbo_no = $("input:text[name='fbo_no']").val();
-		
 		//해시태그 작성된 값 받아서 제출
 		var value = marginTag();
 		$("#rdTag").val(value); 
+		boardFilter();//필터링
 			
 		$.ajax({ 
 		    url: "${pageContext.request.contextPath}/star/fanBoard/update/", 
@@ -620,6 +656,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
    
    //댓글 등록 요청
    function replyInsert(){
+	   replyFilter();
       var fbo_no = $("input:text[name='fbo_no']").val();   
       $.ajax({ 
           url: "${pageContext.request.contextPath}/star/fanBoard/reply",  
@@ -657,7 +694,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 		var re_no = replyOrigin.data("no"); 
 		var re_content = replyOrigin.find(".replyText").text() //새 textarea안에 기존 작성값 입력
 		
-		var textarea = "<hr><div class = 'row'><textarea class = 'col-xl-11 col-md-10 col-12 fboardReplyUpdate fboardReply' name='re_content' rows = 3 data-no="+re_no+">"
+		var textarea = "<hr><div class = 'row'><textarea class = 'col-xl-11 col-md-10 col-12 fboardReplyUpdate fboardReply filterReplyCode' name='re_content' rows = 3 data-no="+re_no+">"
 		var div = "</textarea><div class = 'col-xl-1 col-md-2 col-12 btnFboardReply'>";
 		var btn = "<button type='button'  class='btnFboardReplyUpdate btn btn-primary py-2 px-4'>수정</button></div>";		
 		var dib = textarea + re_content + div + btn;
@@ -666,6 +703,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 
 	//댓글 수정 요청 
 	function replyUpdate(reply) {
+		replyFilter();
 		var fbo_no = $("input:text[name='fbo_no']").val();
 		var re_no = reply.data("no");
 		var re_content = reply.parent().find(".fboardReplyUpdate").val();
@@ -706,6 +744,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
    
 	//댓글 신고 버튼 시 모달에 값 담음
 	function replyNotifyView(noti) {
+		/* $(".form-group").empty() */
 		var re_no = noti.parent().data("no");
 		var mem_id = noti.find(".hideId").html();
 		$("#modalNotifyDefault").find("input:text[name='re_no']").val(re_no)
@@ -819,7 +858,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
       <form id="formReply">
          <div class = "row">
             <input style="display:none;" name = "sfbo_no" />
-            <textarea class = "col-xl-11 col-md-10 col-12 fboardReply" name="re_content" rows = 3 placeholder="댓글"></textarea>
+            <textarea class = "col-xl-11 col-md-10 col-12 fboardReply filterReplyCode" name="re_content" rows = 3 placeholder="댓글"></textarea>
             <div class = "col-xl-1 col-md-2 col-12 btnFboardReply">
                <button type="button"  class="btnFboardReplyInsert btn btn-primary py-2 px-4">작성</button>
             </div>
@@ -915,7 +954,7 @@ var ssid = "${sessionScope.star.st_id}"//session아이디 값
 							<input name = "fbo_no" />
 							<input name = "mem_id" />
 						</div>
-						<div class = " form-group">
+						<div class = "form-group">
 							<label for="recipient-name" class="col-form-label">신고 이유</label>
 							<select name = "nof_type">
 								<option>욕설,비방</option>

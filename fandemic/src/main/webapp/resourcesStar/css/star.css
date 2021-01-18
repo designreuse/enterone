@@ -63,7 +63,15 @@
 	text-align: right !important;
 	width: 100%;
 }
-
+/* 스타작품 */
+.ArtPic{
+	justify-content: center;
+	align-items: center;
+}
+.ArtPic img{
+	width: 100px;
+	height: 100px
+}
 /* 팬 게시판 목록 */
 .candahar td span:hover {
 	text-decoration: underline;

@@ -2,6 +2,7 @@ package com.yedam.fandemic.star;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,10 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.yedam.fandemic.impl.AdminMapper;
 import com.yedam.fandemic.service.SboardService;
 import com.yedam.fandemic.service.StarService;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fboard;
+import com.yedam.fandemic.vo.Filter;
 import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.Sboard;
 import com.yedam.fandemic.vo.Star;
@@ -31,7 +36,9 @@ public class SboardController {
 	StarService starService;
 	@Autowired
 	SboardService sboardService;
-
+	@Autowired 
+	AdminMapper adminService;
+	
 	// 스타 글등록 페이지 이동
 	@RequestMapping("/star/starBoard/insertView")
 	public ModelAndView starBoardInsertView(HttpSession session, Company comVo, Star stVo, ModelAndView mav)
@@ -45,9 +52,14 @@ public class SboardController {
 
 		comVo.setCom_id(stVo.getCom_id());
 		mav.addObject("company", starService.getProfileCompany(comVo));
-
+		
+		List<Filter> list = new ArrayList<Filter>();
+		list = adminService.filBoard();
+		Gson gson = new GsonBuilder().create();
+		String filList = gson.toJson(list);
+		mav.addObject("filList", filList);
+		
 		mav.setViewName("star/star_board_insert");
-
 		return mav;
 	}
 
@@ -70,7 +82,13 @@ public class SboardController {
 			stVo = starService.getStarMain(stVo);
 			comVo.setCom_id(stVo.getCom_id());
 			mav.addObject("company", starService.getProfileCompany(comVo));
-
+			
+			List<Filter> list = new ArrayList<Filter>();
+			list = adminService.filBoard();
+			Gson gson = new GsonBuilder().create();
+			String filList = gson.toJson(list);
+			mav.addObject("filList", filList);
+			
 			mav.setViewName("star/star_board_view");
 			return mav;
 		}
@@ -116,8 +134,15 @@ public class SboardController {
 			comVo.setCom_id(stVo.getCom_id());
 			mav.addObject("company", starService.getProfileCompany(comVo));
 			mav.addObject("no", no);
+			
+			List<Filter> list = new ArrayList<Filter>();
+			list = adminService.filBoard();
+			Gson gson = new GsonBuilder().create();
+			String filList = gson.toJson(list);
+			mav.addObject("filList", filList);
+			
 			mav.setViewName("star/star_board_update");
-
+			
 			return mav;
 		}
 	
@@ -128,7 +153,7 @@ public class SboardController {
 	// 스타가 글 등록
 	@RequestMapping(value = "/star/starBoard/insert", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean starBoardView(HttpServletRequest request, Sboard sboVo, HttpSession session) throws IOException {
+	public boolean starBoardInsert(HttpServletRequest request, Sboard sboVo, HttpSession session) throws IOException {
 		Star star = (Star) session.getAttribute("star");
 		sboVo.setSt_id(star.getSt_id());
 		sboardService.insertSboard(sboVo);

@@ -237,7 +237,22 @@ var st_name = "${stVo.st_name}";
 	}
    
 
-  
+	//댓글 필터링
+	function replyFilter(){
+		var statement = $(".filterReplyCode").val();
+		var list = ${filList};
+		for(var i=0; i<list.length; i++) {
+			
+			var keyword = list[i].fil_prohibited;
+			
+			if (statement.indexOf(keyword) != -1) {
+				var re = new RegExp(keyword, "g");
+			    statement = statement.replace(re, list[i].fil_alternative);
+			    console.log(statement);
+			    $(".filterReplyCode").val(statement)
+			}
+		} 
+	}
    
 //댓글
 	//댓글 목록 요청
@@ -324,6 +339,7 @@ var st_name = "${stVo.st_name}";
    
    //댓글 등록 요청
    function replyInsert(sbo_no){
+	   replyFilter();
       $.ajax({ 
           url: "${pageContext.request.contextPath}/star/fanBoard/reply",  
           type: 'POST',  
@@ -359,7 +375,7 @@ var st_name = "${stVo.st_name}";
 		var re_no = replyOrigin.data("no"); 
 		var re_content = replyOrigin.find(".replyText").text() //새 textarea안에 기존 작성값 입력
 		
-		var textarea = "<hr><div class = 'row'><textarea class = 'col-xl-11 col-md-10 col-12 fboardReplyUpdate fboardReply' name='re_content' rows = 3 data-no="+re_no+">"
+		var textarea = "<hr><div class = 'row'><textarea class = 'col-xl-11 col-md-10 col-12 fboardReplyUpdate fboardReply filterReplyCode' name='re_content' rows = 3 data-no="+re_no+">"
 		var div = "</textarea><div class = 'col-xl-1 col-md-2 col-12 btnFboardReply'>";
 		var btn = "<button type='button'  class='btnFboardReplyUpdate btn btn-primary py-2 px-4'>수정</button></div>";		
 		var dib = textarea + re_content + div + btn;
@@ -368,6 +384,7 @@ var st_name = "${stVo.st_name}";
 
 	//댓글 수정 요청 
 	function replyUpdate(reply) {
+		replyFilter();
 		var sbo_no = $("input:text[name='sbo_no']").val();
 		var re_no = reply.data("no");
 		var re_content = reply.parent().find(".fboardReplyUpdate").val();
@@ -478,7 +495,7 @@ var st_name = "${stVo.st_name}";
       <form id="formReply">
          <div class = "row">
             <input style="display:none;" name = "sfbo_no" />
-            <textarea class = "col-xl-11 col-md-10 col-12 fboardReply" name="re_content" rows = 3 placeholder="댓글"></textarea>
+            <textarea class = "col-xl-11 col-md-10 col-12 fboardReply filterReplyCode" name="re_content" rows = 3 placeholder="댓글"></textarea>
             <div class = "col-xl-1 col-md-2 col-12 btnFboardReply">
                <button type="button"  class="btnFboardReplyInsert btn btn-primary py-2 px-4">작성</button>
             </div>

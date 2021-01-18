@@ -193,6 +193,7 @@
 			
 			
 			<c:forEach var="sboard" items="${sbVoPicList}">
+				
 				<div class="col-sm-12 col-md ftco-animate">
 					<a href ="" class="insta-img image-popup" id="${sboard.sbo_no}">
 						<div class="icon d-flex justify-content-center">
@@ -200,17 +201,25 @@
 						</div>
 					</a>
 				</div>
+				
 				<script>
 					var imgView = function() {
 						var sentence = '${sboard.sbo_content}';
 						var start = sentence.indexOf('src="');
 						var end = sentence.indexOf('"', start + 5);
 						var list = sentence.substring(start + 5, end);
-						$("#${sboard.sbo_no}").css("background-image", "url(" + list + ")");
-						$("#${sboard.sbo_no}").attr("href", list);
+						
+						if (list.length < 130) {
+							$("#${sboard.sbo_no}").parent().remove();
+						} else if(list != null){
+							$("#${sboard.sbo_no}").css("background-image", "url(" + list + ")");
+							$("#${sboard.sbo_no}").attr("href", list);
+						}
 					}
 					imgView();
 				</script>
+				
+				
 			</c:forEach>
 		</div>
 	</div>

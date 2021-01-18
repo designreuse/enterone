@@ -1,6 +1,7 @@
 package com.yedam.fandemic.star;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +16,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.yedam.fandemic.impl.AdminMapper;
 import com.yedam.fandemic.service.FboardService;
 import com.yedam.fandemic.service.SboardService;
 import com.yedam.fandemic.service.StarService;
 import com.yedam.fandemic.service.StarServiceD;
+import com.yedam.fandemic.vo.Art;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Fboard;
+import com.yedam.fandemic.vo.Filter;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.Sboard;
@@ -38,6 +44,8 @@ public class StarController {
 	SboardService sboardService;
 	@Autowired
 	FboardService fboardService;
+	@Autowired
+	AdminMapper adminService;
 	
 	//스타 메인페이지
 	@RequestMapping(value = "/star/{id}")
@@ -49,6 +57,7 @@ public class StarController {
 			fVo.setSt_id(id);
 			mav.addObject("fan", starService.getFanInfo(fVo));
 		}
+		
 		//스타정보 출력
 		stVo.setSt_id(id);
 		stVo = starService.getStarMain(stVo);
@@ -89,14 +98,17 @@ public class StarController {
 	
 	//스타프로필 이동
 	@RequestMapping(value = "/star/profile/{id}")
-	public ModelAndView starProfile(@PathVariable String id, Company comVo, Star stVo, Model model) throws IOException {
+	public ModelAndView starProfile(@PathVariable String id, Company comVo, Star stVo, Art artVo, ModelAndView mav) throws IOException {
 		stVo.setSt_id(id);
-		model.addAttribute("stVo", starService.getStarMain(stVo));
+		mav.addObject("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
-		model.addAttribute("company", starService.getProfileCompany(comVo));
-		
-		return new ModelAndView("star/star_profile");
+		mav.addObject("company", starService.getProfileCompany(comVo));
+		artVo.setSt_id(id);
+		mav.addObject("artVoList", starService.getStarArtList(artVo));
+		mav.setViewName("star/star_profile");	
+
+		return mav;
 	}
 	
 	//스타스케줄 이동
@@ -182,6 +194,12 @@ public class StarController {
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
 		mav.addObject("company", starService.getProfileCompany(comVo));
+		//필터링
+		List<Filter> list = new ArrayList<Filter>();
+		list = adminService.filBoard();
+		Gson gson = new GsonBuilder().create();
+		String filList = gson.toJson(list);
+		mav.addObject("filList", filList);
 		
 		mav.setViewName("star/star_fan_board");
 		return mav;

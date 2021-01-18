@@ -159,6 +159,24 @@ var no = "${no}"//스타게시물 번호
 	      return true;
 	   }
 	}
+	
+	//게시글 필터링
+	function boardFilter(){
+		var statement = $("#summernote").val();
+
+		var list = ${filList};
+		for(var i=0; i<list.length; i++) {
+			
+			var keyword = list[i].fil_prohibited;
+			
+			if (statement.indexOf(keyword) != -1) {
+				var re = new RegExp(keyword, "g");
+			    statement = statement.replace(re, list[i].fil_alternative);
+			    console.log(statement);
+			    $('#summernote').summernote('code',statement)
+			}
+		} 
+	}
    
 // 해시태그
 	function addTag (value) {
@@ -177,6 +195,7 @@ var no = "${no}"//스타게시물 번호
 	function sboardUpdate() {		
 		//해시태그 작성된 값 받아서 제출
 		var value = marginTag();
+		boardFilter();
 		$("#rdTag").val(value); 
 			
 		$.ajax({ 

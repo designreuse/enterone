@@ -17,7 +17,7 @@
 				<c:forEach var="company" items="${companyList}" end ="4"> 
 					<li>
 						<img class="companyBanner col-md-12 col-sm-12 col-xs-12"
-						src="${pageContext.request.contextPath}/resources/images/company/${company.com_pic}"
+						src="${pageContext.request.contextPath}/images/company/${company.com_pic}"
 						onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'" />
 					</li>
 				</c:forEach>
@@ -45,7 +45,7 @@
 						<div class="companyContainer">
 							<div class="row">
 								<img class="companyMinBanner col-md-12 col-sm-12 col-xs-12"
-									src="${pageContext.request.contextPath}/resources/images/company/${company.com_pic}"
+									src="${pageContext.request.contextPath}/images/company/${company.com_pic}"
 									onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'" />
 							</div>
 							<div class="row companyName">
