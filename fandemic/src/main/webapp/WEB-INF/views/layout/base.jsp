@@ -51,6 +51,9 @@
     $(function() {
     	$("#search").attr("action", "${pageContext.request.contextPath}/search");
 
+    	$.ajax({
+    		url:
+    	})
     });
 
 </script>
@@ -96,6 +99,12 @@
                         </c:if>
                         <c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null or sessionScope.star.st_id ne null}">
                         	<!-- <li><a href="#"><i class="ion-person-add"></i><div>마 이 페 이 지</div></a></li> -->
+                        	<c:if test="${sessionScope.company.com_id != null and sessionScope.company.com_class== '1'}">
+                        	<li><a href="${pageContext.request.contextPath}/management"><i class="ion-person"></i><div>관리자페이지</div></a></li>
+                        	</c:if>
+                        	<c:if test="${sessionScope.company.com_id != null and sessionScope.company.com_class== '0'}">
+                        	<li><a href="${pageContext.request.contextPath}/adminMain"><i class="ion-person"></i><div>관리자페이지</div></a></li>
+                        	</c:if>
 	                        <li><a href="${pageContext.request.contextPath}/logout"><i class="ion-person"></i><div>로 그 아 웃</div></a></li>
                         </c:if>
                         
