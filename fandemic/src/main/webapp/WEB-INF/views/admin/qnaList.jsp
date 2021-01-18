@@ -99,7 +99,7 @@ $(document).ready(function() {
 
 
 <section class="content">
-<div style="padding: 10px 20px 10px 20px;">
+<div style="padding: 10px 150px 10px 20px;">
 	<h1 style="margin-top: 30px;" align="center">문의내역</h1>
 	<table class="table table-hover" style="margin: 40px 40px 0px 40px;">
 		<thead>

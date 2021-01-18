@@ -99,7 +99,7 @@
 				<a href="${pageContext.request.contextPath}/star/${stVo.st_id}"><span class="img"
 					style="background-image: url(${pageContext.request.contextPath}/images/star/${stVo.st_pic}"></span>${stVo.st_name}</a>
 			</h1>
-			<button type="button" class="btn btn-primary" id = "joinModal" data-toggle="modal"
+			<button type="button" class="btn btn-primary absoluteLeft" id = "joinModal" data-toggle="modal"
 				data-target="#exampleModal" data-what="hello"  style="display:none;">채널가입</button>
 
 			<br> <br>

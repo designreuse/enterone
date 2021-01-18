@@ -155,13 +155,15 @@
 								</tr>
 								<!-- 이 밑쪽은 지원자가업로드한 영상이나 이미지 출력 -->
 								<tr >
-									<td colspan="1" align="left"><label>파일</label></td>
+									<td colspan="1" align="left"><label>영상</label></td>
 									<td colspan="3">
 										<div class="aud_file">
+										<c:if test="${audition.aud_file != null}">
 											<video autoplay controls loop muted poster="aaa" preload="auto">
 											  <source src="${pageContext.request.contextPath}/media/${audition.aud_file}" type="video/mp4">
 											  
 											</video>
+										</c:if>
 										</div>
 									</td>
 									
@@ -169,7 +171,7 @@
 								<tr>
 									<td colspan="1" align="left"><label>사진</label></td>
 									<td colspan="3">
-										<div class="aud_pic"><img src="${pageContext.request.contextPath}/images/audition/${audition.aud_pic }"></div>
+										<div class="aud_pic"><img src="${pageContext.request.contextPath}/images/audition/${audition.aud_pic }" alt="등록된 사진이 없습니다."></div>
 									</td>
 								</tr>
 								

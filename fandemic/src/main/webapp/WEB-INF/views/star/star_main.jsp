@@ -192,7 +192,7 @@
 			       
 			
 			
-			<c:forEach var="sboard" items="${sbVoPicList}">
+			<c:forEach var="sboard" items="${sbVoPicList}" begin="1">
 				
 				<div class="col-sm-12 col-md ftco-animate">
 					<a href ="" class="insta-img image-popup" id="${sboard.sbo_no}">

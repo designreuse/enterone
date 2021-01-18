@@ -86,10 +86,15 @@ public class CompanyControllerD {
 		return companyService.getDaySalesList();
 	}
 	
-//	//회원 신고 목록 리스트
-//	@RequestMapping("/management/company/memberReport")
-//	public List<Notify> getMemberReportList(){
-//		
-//		return "";
-//	}
+	//회원 신고 목록 리스트
+	@RequestMapping("/management/company/memberReport")
+	public String memberReport(){
+		return "mgt/company/memberReport";
+	}
+	
+	@RequestMapping("/management/company/memberReportList")
+	@ResponseBody
+	public List<Notify> memberReportList(Notify notify){
+		return companyService.memberReportList(notify);
+	}
 }

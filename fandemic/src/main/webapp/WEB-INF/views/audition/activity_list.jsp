@@ -103,11 +103,11 @@ p {
 					style="color: black; font-size: 50px; margin-top: 5px;">연습생 활동</h1>
 				<div>
 					<button type="button" class="btn btn-primary" id="but">TOP05/NEW05</button>
-					<c:if test="${sessionScope.member.mem_id ne null}">
+					<%-- <c:if test="${trainee.mem_id ne null}"> --%>  <%--$는 컨트롤러에서 넘어오는거 --%>
 						<button type="button" class="btn btn-primary" id="but2"
 							style="float: right; margin-top: -58px;"
 							onclick="location.href='activityinsert'">글 등록</button>
-					</c:if>
+					<%--  </c:if> --%>
 				</div>
 				<div>
 					<div class="jumbotron jumbotron-fluid">
@@ -176,33 +176,23 @@ p {
 							</div>
 
 						</div>
-						<div class="col-md-3 col-sm-3 col-xs-3">
-							<div class="input-group">
-								<input type="text" name="q" class="form-control"
-									placeholder="Type something ..." value="Search">
-								<div class="input-group-btn">
-									<button class="btn btn-primary"></button>
-								</div>
-							</div>
-						</div>
+						<div class="col-md-3 col-sm-3 col-xs-3"></div>
 					</div>
 				</div>
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<div class="row">
-						<c:forEach var="trainee" items="${TrworkList}">
+						<c:forEach var="activity" items="${AcworkList}">
 							<div class="col-md-3 col-sm-3 col-xs-3">
 								<div class="thumbnail">
 									<img
-										src="${pageContext.request.contextPath}/images/audition/${trainee.tr_pic}"
+										src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}"
 										alt="...">
 									<div class="caption">
-
 										<a
-											href="${pageContext.request.contextPath}/ActivityDetail/${trainee.mem_id}"><p>${sessionScope.member.mem_id}</p></a>
-										<p>${trainee.tr_name}</p>
-										<p>${trainee.tr_content}</p>
-										<p>${trainee.tr_branch1}</p>
-										<p>${trainee.tr_branch2}</p>
+											href="${pageContext.request.contextPath}/ActivityDetail/${activity.ac_title}"><p>${sessionScope.member.mem_id}</p></a>
+										<p>${activity.ac_content}</p>
+										<p>${activity.ac_hits}</p>
+										<p>${activity.ac_likes}</p>
 										<p>
 											<a href="#" class="btn btn-primary" role="button">Button</a>
 

@@ -12,6 +12,29 @@
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script
 	src="${pageContext.request.contextPath}/resourcesGoods/js/index.js"></script>
+
+<script>
+$(document).ready(function() {
+/*	
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget); // Button that triggered the modal
+		  var recipient = button.data('whatever'); // Extract info from data-* attributes
+		  var modal = $(this);
+		  modal.find('.modal-title').text('New message to ' + recipient);
+		  modal.find('.modal-body input').val(recipient);
+	});
+*/	
+	$('.buyDetail').on('click', function() {
+		var $button = $(this);
+		var gb_no = $button.parent().parent().parent().data();
+		console.log(gb_no);
+	});
+	
+	
+});
+
+</script>
+
 <style>
 *, ::after, ::before {
 	box-sizing: border-box;
@@ -47,7 +70,6 @@
 	width: 1000px;
 	margin: 15% auto;
 }
-
 /* Important part */
 .modal-content{
 	overflow-y: initial !important;
@@ -64,7 +86,9 @@
 	padding: 10px 25px 10px 25px; 
 	border-bottom: 3px solid #ebebeb;
 }
-
+#tblmodal tfoot tr td {
+	padding: 10px 25px 10px 25px; 
+}
 </style>
 </head>
 <body>
@@ -97,11 +121,11 @@
 										<fmt:parseDate value="${buyList.gb_time}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="HH시 mm분" value="${date}" />
 									</td>
 									<td style="width: 13%;"><b>주문번호</b></td>
-									<td style="width: 22%;">${buyList.gb_no}</td>
+									<td style="width: 22%;" id="${buyList.gb_no}">${buyList.gb_no}</td>
 									<td style="width: 13%;"><b>결제금액</b></td>
 									<td style="width: 22%;"><fmt:formatNumber type="number" value="${buyList.gb_payment}" pattern="##,###" />원</td>
 									<td rowspan="3" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
-										<button type="button" class="btn primary-btn" data-toggle="modal" data-target="#exampleModal" data-what="hello">상세보기</button>
+										<button type="button" class="btn primary-btn buyDetail" data-toggle="modal" data-target="#exampleModal">상세보기</button>
 									</td>
 								</tr>
 								<tr>
@@ -189,6 +213,11 @@
 								</tbody>
 									
 								<tfoot>
+									<tr>
+										<td colspan="4"></td>
+										<td><b>결제 합계 금액</b></td>
+										<td style="text-align: right;">gb_payment 원</td>
+									</tr>
 								</tfoot>
 							</table>
 							           

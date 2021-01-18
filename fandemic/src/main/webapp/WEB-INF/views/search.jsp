@@ -4,6 +4,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/company.css">
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<style>
+	p {
+		align : center;
+	}
+</style>
 
 
 
@@ -92,19 +97,26 @@
 	</c:if>
 </div>
 <div class="row">
-	<div class="col-md-3 col-sm-3 col-xs-3">
 	<c:forEach var="ac" items="${activity}">
-		<div class="thumbnail" style="width: 160px;">
-			<img src="${pageContext.request.contextPath}/images/audition/${ac.TR_PIC}" alt="#" style="padding: 20px; width: 100px; height: 150px;">
-			<div class="caption">
+	<div class="col-md-3 col-sm-3 col-xs-6">
+		<div class="thumbnail" style="width: 200px;">
+			<div class="row">
+				<img src="${pageContext.request.contextPath}/images/audition/${ac.TR_PIC}" style="padding-top: 10px; width: 150px; height: 150px;">
+			</div>
+			<div class="caption" style="padding-top: 20px;">
 				<p>${ac.TR_NAME}</p>
 				<p>${ac.MEM_NAME}</p>
-				<p>${ac.TR_BRANCH1} , ${ac.TR_BRANCH2}</p>
-				<!-- <p><i class="ion-android-favorite-outline"></i> 10</p> -->
+				<c:if test="${ac.TR_BRANCH2 ne null }">
+					<p>${ac.TR_BRANCH1} &nbsp;&nbsp; ${ac.TR_BRANCH2}</p>
+				</c:if>
+				<c:if test="${ac.TR_BRANCH2 eq null }">
+					<p>${ac.TR_BRANCH1}</p>
+				</c:if>
 			</div>
 		</div>
-	</c:forEach>
 	</div>
+	</c:forEach>
+
 </div>
 
 </div>

@@ -24,4 +24,5 @@ public interface StarServiceD {
 	public Art starWorkDetail(Art art); //스타작품 상세보기
 	public int updateStarWork(Art art); //스타작품 수정
 	public List<Fan> getStarFanList(Fan fan);//스타 팬 리스트 요청
+	public int starFanBlack(Fan fan); //스타 팬 블랙리스트 해제
 }

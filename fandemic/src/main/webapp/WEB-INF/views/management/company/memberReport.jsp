@@ -45,7 +45,7 @@ div #dataTable_filter{
 <script>
 	$(function() {
 		
-		cnoticeList();//공지사항 목록요청
+		memberReportList();//신고 목록 요청
 		$(".pagination a").on("click",function(){
 			$(".pagination a").removeClass("active");
 			$(this).addClass("active");
@@ -97,10 +97,11 @@ div #dataTable_filter{
 	
 	
 	//공지사항 목록 조회 요청
-	function cnoticeList() {
-		var com_id = "${company.com_id }";
+	function memberReportList() {
+		var com_id = "${sessionScope.company.com_id }";
+		//console.log("====="+com_id);
 		$.ajax({
-			url:'${pageContext.request.contextPath}/management/noticesList', //요청할 url
+			url:'${pageContext.request.contextPath}/management/company/memberReportList', //요청할 url
 			type:'POST',
 			data: {com_id:com_id},
 			//contentType:'application/json;charset=utf-8',
@@ -108,21 +109,21 @@ div #dataTable_filter{
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
-			success:cnoticeListResult
+			success:memberReportListResult
 		});
 	}//end cnoticeList
 	
-	function cnoticeListResult(data){
+	function memberReportListResult(data){
 		/* console.log(data); */
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","cnoticeTr")
-			.append($('<td>').html('<input type="checkbox" name="cnoc_nos" value="'+item.cnoc_no+'">'))
-			.append($('<td>').html(item.cnoc_no))
-			.append($('<td>').html('<a href="#">'+item.cnoc_title+'</a>'))
-			.append($('<td>').html(item.com_id))
-			.append($('<td>').html(item.cnoc_time))
-			.append($('<td>').html(item.cnoc_subject))
+			.append($('<td>').html('<input type="checkbox" name="nof_nos" value="'+item.nof_no+'">'))
+			.append($('<td>').html(item.nof_no))
+			.append($('<td>').html(item.nof_content))
+			.append($('<td>').html(item.re_content))
+			.append($('<td>').html(item.mem_id))
+			.append($('<td>').html(item.nof_type))
 			.appendTo('tbody');
 			
 		});//end each
@@ -140,12 +141,13 @@ div #dataTable_filter{
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>공지사항</h1>
+            <h1>신고게시판</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">공지사항</li>
+              <li class="breadcrumb-item">팬관리</li>
+              <li class="breadcrumb-item">신고게시판</li>
             </ol>
           </div>
         </div>
@@ -166,11 +168,11 @@ div #dataTable_filter{
                   <thead>
                     <tr>
                       <th></th>
-                      <th>번호</th>
-                      <th>제목</th>
-                      <th>글쓴이</th>
-                      <th>등록일</th>
-                      <th>분류(이벤트/공지)</th>
+                      <th>신고번호</th>
+                      <th>신고제목</th>
+                      <th>신고내용</th>
+                      <th>신고당한놈</th>
+                      <th>신고분류</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -183,7 +185,7 @@ div #dataTable_filter{
               <div>
               	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
-              		<button type="button" class="btn-register">등록</button>
+              		<!-- <button type="button" class="btn-register">등록</button> -->
               		<!--  <button class="btn-update">수정</button>-->
               		<button type="button" class="btn-delete">삭제</button>
               	</div>

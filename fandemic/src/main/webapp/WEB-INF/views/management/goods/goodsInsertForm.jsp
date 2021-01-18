@@ -52,7 +52,7 @@
 		});
 		
 		//첨부파일(상세) div클릭했을시
-		$(".img-print1").on("click",function(){
+		$(".img-print2").on("click",function(){
 			$(".uploadDetailImg").click();
 		});
 		
@@ -83,6 +83,11 @@
 				$(".hangsa").css("display","none");
 			}
 		});
+	
+		$("body").on("click",".imgDel",function(){
+			console.log($(this).parent());
+			$(this).parent().remove();
+		});
 		
 	});//end ready function
 	
@@ -104,20 +109,28 @@
     }//end 업로드 대표사진 미리보기
     /*************** 상품상세사진 첨부파일,미리보기*****************/
     function changeDetail(event){
+    	var cnt=0;
     	for(var image of event.target.files){
     		var reader = new FileReader();
     		
     		reader.onload = function(event){
             	var img = $("<img>");
+            	var btn = $("<button type='button' class='imgDel'>").text("X");
+            	var div = $("<div style='display:contents' class='btn-"+cnt+"'>");
             	//alert(event.target.result);//주소같은데..?
             	img.attr("src",event.target.result);
             	img.attr({"width":"100px","height":"100px"});
-            	$(".img-print1").append(img);
+            	//var imgPrint = $(".img-print1").append(img);
+            	
+            	//.img-print1을 클릭할때
+            	div.append(img).append(btn);
+            	$(".img-print3").append(div);
+            	cnt++;
             }
     		console.log(image); 
     		reader.readAsDataURL(image);
     	}
-    	$(".img-print1").css("display","inline");
+    	//$(".img-print1").css("display","inline");
     }
 
 	/************굿즈 등록 폼 유효성체크**************/
@@ -305,7 +318,11 @@
                      				</td>
                      				<td width="10%"><label>상품상세사진</label></td>
                      				<td width="40%" align="left"; style="vertical-align:top;">
-                     					<div style="width:100px; height:100px; background-color:white;" class="img-print1"></div>
+                     					<div style="width:100px; height:100px; background-color:white;" class="img-print1">
+                     						<div style="width:100px; height:100px; background-color:white;" class="img-print2"></div>
+                     					</div>
+                     					<div style="width:; height:200px; overflow: auto;" class="img-print3">
+                     					</div>
                      					<input type="file" name="uploadDetailImg" class="uploadDetailImg" style="display:none;" onchange="changeDetail(event)" multiple>  
                      				</td>
 								</tr>

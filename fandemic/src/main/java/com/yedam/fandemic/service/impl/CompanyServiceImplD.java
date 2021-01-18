@@ -11,6 +11,7 @@ import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Notify;
 
 @Service
 public class CompanyServiceImplD  implements CompanyServiceD{
@@ -49,6 +50,11 @@ public class CompanyServiceImplD  implements CompanyServiceD{
 	@Override
 	public List<Gbuyer> getDaySalesList() {
 		return dao.getDaySalesList();
+	}
+
+	@Override
+	public List<Notify> memberReportList(Notify notify) {
+		return dao.memberReportList(notify);
 	}
 	
 	

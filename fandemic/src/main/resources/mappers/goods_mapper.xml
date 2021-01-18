@@ -110,10 +110,17 @@
 		ORDER BY GB_TIME DESC
 	</select>
 	
-	<!-- 주문 결과 상세 페이지 -->
-<!--	<select id="buyDetailList" resultType="Gbuydetail" parameterType="Gbuydetail">
-		
-	</select> -->
-	
+	<!-- 주문 결과 상세 모달창 -->
+	<select id="buyListDetail" resultType="Gbuydetail" parameterType="Gbuydetail">
+		SELECT A.GB_TIME, A.GB_PAYMENT,
+			   B.GB_NO, B.CART_QTY, B.GO_NO,
+			   C.GO_NAME, C.GO_PRICE, C.GO_PIC, C.GO_TYPE, C.GO_UNTSDATE, C.GO_UNTEDATE, C.GO_UNTTIME
+		FROM GBUYER A
+		JOIN GBUYDETAIL B
+		ON A.GB_NO = B.GB_NO
+		JOIN GOODS C
+		ON B.GO_NO = C.GO_NO
+		WHERE A.GB_NO = #{go_no}
+	</select>
 
 </mapper>

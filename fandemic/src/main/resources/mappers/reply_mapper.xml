@@ -46,7 +46,8 @@
 							<if test = "fbo_no != null">fbo_no,</if>
 							<if test = "re_no != null">re_no,</if>
 							nof_content,
-							nof_type
+							nof_type,
+							com_id
 							) 
 					VALUES(	nof_seq.NEXTVAL,
 							#{mem_id},
@@ -54,7 +55,8 @@
 							<if test = "fbo_no != null">#{fbo_no},</if>
 							<if test = "re_no != null">#{re_no},</if>
 							#{nof_content},
-							#{nof_type}
+							#{nof_type},
+							#{com_id}
 							)
 	</insert>
 </mapper>

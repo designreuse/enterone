@@ -138,7 +138,7 @@
 
 			<div class="row">
 				<!-- star filtering -->
-				<div class="col-xs-6 col-md-4 brandLeft" id="sidebar">
+<!--			<div class="col-xs-6 col-md-4 brandLeft" id="sidebar">
 					<aside>
 						<ul class="menu_go">
 							<li class="menu_go_item menu_go_show"><a> <i
@@ -168,6 +168,7 @@
 						</ul>
 					</aside>
 				</div>
+ -->
 
 				<!-- 상품 정보 -->
 				<div class="featured__filter">
@@ -179,13 +180,13 @@
 									<a
 										href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">
 										<h7 class="goods_type">${goods.go_type}</h7>
-										<img alt="이미지"
+										<img onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'"
 										src="${pageContext.request.contextPath}/images/goods/${goods.go_pic}">
 									</a>
 								</div>
 								<div class="featured__item__text">
 									<h6>
-										<a href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">[${goods.st_id}]${goods.go_name}</a>
+										<a href="${pageContext.request.contextPath}/goodsDetail/${goods.go_no}">[${goods.st_id}] ${goods.go_name}</a>
 									</h6>
 									<h5>
 										<fmt:formatNumber value="${goods.go_price}" pattern="##,###" />

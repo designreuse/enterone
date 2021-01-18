@@ -45,7 +45,10 @@ public interface GoodsMapper {
 	// 주문 결과 페이지 - 주문 목록
 	public List<Gbuyer> buyList(Gbuyer gbuyer);
 	
-	// 주문 결과 페이지 - 주문 목록 (buyDetailList)
+	// 주문 결과 상세 모달 (buyListDetail)
+	public List<Gbuydetail> buyListDetail(Gbuydetail gbuydetail);
+	
+	
 	
 	// paging
 	public int goCount();	// Goods 목록

@@ -283,3 +283,11 @@ div #dataTable_filter {
 	margin-top : 15px;
 	margin-bottom : 15px;
 }
+
+
+.absoluteLeft{
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+ 
+}

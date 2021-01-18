@@ -171,7 +171,7 @@
 									<a href="${pageContext.request.contextPath}/goodsDetail/${cart.go_no}">
 									<img
 										src="${pageContext.request.contextPath}/images/goods/${cart.go_pic}"
-										alt="이미지" style="width: 100px; height: 100px;"></a>
+										onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'" style="width: 100px; height: 100px;"></a>
 										<a href="${pageContext.request.contextPath}/goodsDetail/${cart.go_no}"><h5>${cart.go_name}</h5></a>
 									</td>
 									<td class="shoping__cart__price"><fmt:formatNumber type="number" value="${cart.go_price}" pattern="##,###" />원<button value="${cart.go_price}" style="display: none;"></button></td>

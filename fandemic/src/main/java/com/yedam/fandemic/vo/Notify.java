@@ -12,4 +12,8 @@ public class Notify {
 	String re_no;		//댓글번호
 	String nof_content;	//신고세부사유
 	String nof_type;	//신고분류
+	String com_id;		//신고 받는 소속사
+	
+	String re_content;   //댓글 내용
+	String fbo_content;  //팬게시글 내용
 }

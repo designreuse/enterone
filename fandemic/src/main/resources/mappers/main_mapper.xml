@@ -84,11 +84,12 @@
 	
 	<!-- 검색 3 연습생 -->
 	<select id="searchAc" resultType="map" parameterType="string">
-		SELECT T.MEM_ID, M.MEM_NAME, T.TR_NAME, T.TR_PIC, T.TR_BRANCH1, T.TR_BRANCH2 
-		FROM TRAINEE T, MEMBER M
-		WHERE M.MEM_ID = T.MEM_ID
-		AND T.TR_NAME LIKE '%'|| #{keyword} || '%'
-		OR M.MEM_NAME LIKE '%'|| #{keyword} || '%'
+	
+		SELECT MEM_ID, TR_NAME , TR_PIC, TR_BRANCH1, TR_BRANCH2 
+		FROM TRAINEE
+		WHERE TR_NAME LIKE '%'|| #{keyword} || '%'
+		OR TR_BRANCH1 LIKE '%'|| #{keyword} || '%'
+		OR TR_BRANCH2 LIKE '%'|| #{keyword} || '%'
 		
 		
 	</select>

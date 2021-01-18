@@ -192,4 +192,14 @@
 		WHERE ST_ID=#{st_id}
 		ORDER BY FAN_NO
 	</select>
+<!-- 스타 팬 블랙리스트 해제 -->
+	<update id="starFanBlack" parameterType="Fan">
+		UPDATE FAN
+		SET FAN_BLOCK = 0
+		WHERE FAN_NO IN
+		<foreach collection="fan_nos" item="no"
+				open="(" close=")" separator=","> <!-- collection이 필드명 -->
+			#{no}
+		</foreach>
+	</update>
 </mapper>

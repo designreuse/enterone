@@ -10,6 +10,7 @@
 
 </head>
 <style>
+
 #pro_addr1 {
 	width: 100%
 }
@@ -153,6 +154,13 @@ ul.tabs li.current {
 
 			$('.tab-link5').addClass('current');
 			$("#tab-5").addClass('current');
+			
+			$('#mem_name').val();
+			$("#aud_type option:selected").text();
+			$('#aud_age').val();
+			$('#aud_height').val();
+			$('#aud_weight').val();
+			$('#aud_hobby').val();
 
 		});
 
@@ -461,16 +469,11 @@ ul.tabs li.current {
 						<h3>필수입력</h3>
 						<form id="frm" name="frm" method="post"
 							enctype="multipart/form-data" onsubmit="return false;">
-							<input type="hidden" id="pro_last_save_step"
-								name="pro_last_save_step" value="step3"> <input
-								type="hidden" id="mem_idx" name="mem_idx" value="74402">
-							<input type="hidden" id="adt_idx" name="adt_idx" value="1">
-							<input type="hidden" id="pro_idx" name="pro_idx" value="77557">
 							<table class="table table-hover">
 								<tr>
 									<td class="font-f">이름</td>
 									<td><div class="col">
-											<input type="text" id="pro_tall" name="pro_tall"
+											<input type="text" id="mem_name" name="mem_name"
 												placeholder="이름을 입력하세요" maxlength="5"
 												onkeydown="javascript:return only_num(event);"
 												onkeyup="javascript:remove_char(event);"
@@ -502,10 +505,10 @@ ul.tabs li.current {
 
 								<tr>
 
-									<td class="font-f">나이</td>
+									<td class="font-f" >나이</td>
 									<td><div class="col">
 											<input type="text" id="aud_age" name="aud_age"
-												placeholder="만 나이를 입력하세요" maxlength="5"
+												placeholder="만 나이를 입력하세요" maxlength="7"
 												onkeydown="javascript:return only_num(event);"
 												onkeyup="javascript:remove_char(event);"
 												oninput="javascript:chk_num_len(this); return false;">
@@ -591,7 +594,7 @@ ul.tabs li.current {
 						<td></td>
 						<td colspan="2"><div class="invalid-feedback">
 							 <input type="file" name="ex2_file"
-										id="aud_file"> 
+										id="aud_pic"> 
 
 
 							</div></td>
@@ -606,7 +609,7 @@ ul.tabs li.current {
 						<td></td>
 						<td colspan="2"><div class="invalid-feedback">
 								<input type="file" name="ex2_file"
-										id="aud_pic"> 
+										id="aud_file"> 
 
 
 							</div></td>
@@ -649,41 +652,41 @@ ul.tabs li.current {
 				<table class="table table-hover">
 					<tr>
 						<td class="font-f">이름</td>
-						<td>${member.mem_name}</td>
+						<td>$('#mem_name').text()</td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">분야</td>
-						<td>${auditon.aud_type}</td>
+						<td></td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">취미/특기</td>
-						<td>${auditon.aud_hobby}</td>
+						<td></td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">나이(만 나이)</td>
-						<td>${auditon.aud_age}</td>
+						<td></td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">신장/체중</td>
-						<td>${auditon.aud_height}</td>
-						<td>${auditon.aud_weight}</td>
+						<td></td>
+						<td></td>
 
 					</tr>
 					<tr>
 						<td class="font-f">대표사진</td>
-						<td>${auditon.aud_pic}</td>
+						<td></td>
 						<td></td>
 
 

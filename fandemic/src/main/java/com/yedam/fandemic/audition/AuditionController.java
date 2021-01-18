@@ -62,16 +62,46 @@ public class AuditionController {
 
 	}
 
-	// 연습생 활동 글 등록
+	// 연습생 수정 페이지
+	@RequestMapping(value = "/audition/traineeupdate") // 주소
+	public ModelAndView traineeUpdate(Model model, Trainee trainee, HttpSession session) throws IOException {
+
+		Member member = (Member) session.getAttribute("member");
+		trainee.setMem_id(member.getMem_id());
+		model.addAttribute("TrList", auditionMapper.traineeUpdateselect(trainee));
+		return new ModelAndView("mypage/my_trainee_update");
+	}
+
+	// 연습생 수정
+	@RequestMapping(value = "/audition/traineeupdatesend")
+	public String traineeupdate(HttpServletRequest request, Model model, Trainee trainee)
+			throws IllegalStateException, IOException {
+		// request multipart로 캐스팅
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		String sumFile = "";
+		
+		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
+		for (int i = 0; i < multipartFile.size(); i++) {
+			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
+				String path = request.getSession().getServletContext().getRealPath("/images/audition");
+				System.out.println("path=" + path);
+				multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
+				sumFile = sumFile + multipartFile.get(i).getOriginalFilename() + " ";
+				trainee.setTr_pic(sumFile);
+			}
+		}
+		auditionservice.traineeUpdate(trainee);
+		return "redirect:/audition/auditionwork";
+	}
+// 연습생 글 등록
+
 	@RequestMapping(value = "/audition/traineeinsertsend")
 
 	public String Inserttr(HttpServletRequest request, Model model, Trainee trainee)
 			throws IllegalStateException, IOException {
-		System.out.println("++++++");
-		// request multipart로 캐스팅
+		System.out.println("++++++"); // request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String sumFile = "";
-		// 이미지파일, 공지사항 첨부파일
 		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
 		for (int i = 0; i < multipartFile.size(); i++) {
 			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
@@ -101,27 +131,24 @@ public class AuditionController {
 	// 연습생 활동 페이지
 	@RequestMapping(value = "/audition/auditionwork") // 주소
 	public ModelAndView auditionwork(Model model, HttpServletRequest request, Activity activity) throws IOException {
-		
-		model.addAttribute("TrworkList", auditionMapper.selectTr());
+//		  String strp = request.getParameter("p"); int p = 1; if (strp != null &&
+//		  !strp.equals("")) { p = Integer.parseInt(strp); }
+//		  
+//		  Paging paging = new Paging(); paging.setPageUnit(12); // 한페이지에 12건씩. 생략시 기본10
+//		  paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10 paging.setPage(p); // 현재
+//		  activity.setAc_first(paging.getFirst()); // paging에 현재 페이지만 넣으면 first,
+//		  activity.setAc_last(paging.getLast());
+//		  paging.setTotalRecord(auditionMapper.getactivityCount(activity));
+//		  
+//		  model.addAttribute("paging", paging);
+//		  
+//		  
+//		  List<Map<String, Object>> list = auditionMapper.selectnew();
+//		  model.addAttribute("selectnew", list); model.addAttribute("cnt",list.size());
+		model.addAttribute("AcworkList", auditionMapper.selectac());
+		model.addAttribute("trainee", auditionMapper.selecttr());// 세션에 없으면 디비에서 가져와야함 selecttr안에 값들이 들어있음
 
-		/*
-		 * String strp = request.getParameter("p"); int p = 1; if (strp != null &&
-		 * !strp.equals("")) { p = Integer.parseInt(strp); }
-		 * 
-		 * Paging paging = new Paging(); paging.setPageUnit(12); // 한페이지에 12건씩. 생략시 기본10
-		 * paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10 paging.setPage(p); // 현재
-		 * activity.setAc_first(paging.getFirst()); // paging에 현재 페이지만 넣으면 first,
-		 * activity.setAc_last(paging.getLast());
-		 * paging.setTotalRecord(auditionMapper.getactivityCount(activity));
-		 * 
-		 * model.addAttribute("paging", paging);
-		 * 
-		 * List<Map<String, Object>> list = auditionMapper.selectnew();
-		 * model.addAttribute("selectnew", list); model.addAttribute("cnt",
-		 * list.size());
-		 */
-
-		return new ModelAndView("audition/trainee_list");
+		return new ModelAndView("audition/activity_list");
 
 	}
 
@@ -214,7 +241,6 @@ public class AuditionController {
 		// request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String sumFile = "";
-		// 이미지파일, 공지사항 첨부파일
 		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
 		for (int i = 0; i < multipartFile.size(); i++) {
 			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
@@ -223,8 +249,10 @@ public class AuditionController {
 				multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
 				sumFile = sumFile + multipartFile.get(i).getOriginalFilename() + " ";
 				audition.setAud_pic(sumFile);
+				audition.setAud_file(sumFile);
 			} else {
 				audition.setAud_pic("");
+				audition.setAud_file("");
 			}
 		}
 

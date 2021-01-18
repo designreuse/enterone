@@ -89,7 +89,7 @@
 						<div class="product__details__pic__item">
 							<img class="product__details__pic__item--large"
 								src="${pageContext.request.contextPath}/images/goods/${goods.go_pic}"
-								alt="사진" style="height: 555px;">
+								onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'" style="height: 555px;">
 						</div>
 					</div>
 				</div>
@@ -165,7 +165,7 @@
 						<div class="product__details__tab__desc"
 							style="text-align: center;">
 							<p>${goods.go_content}</p>
-							<br> <img alt="상품상세사진"
+							<br> <img onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'"
 								src="${pageContext.request.contextPath}/images/goods/${goods.go_detail}"
 								style="width: 80%;">
 						</div>

@@ -97,6 +97,11 @@ public class StarServiceImplD implements StarServiceD{
 		return starDAO.getStarFanList(fan);
 	}
 
+	@Override
+	public int starFanBlack(Fan fan) {
+		return starDAO.starFanBlack(fan);
+	}
+
 	
 	
 }

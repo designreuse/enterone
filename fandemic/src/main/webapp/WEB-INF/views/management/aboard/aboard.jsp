@@ -82,22 +82,25 @@ div #dataTable_filter{
 		
 		//소속사 오디션 공지사항 삭제
 		$(".btn-delete").on("click",function(){
-			 $.ajax({
-				url:"${pageContext.request.contextPath}/management/aboard/aboardDelete",
-				type:"POST",
-				data: $("#frm1").serialize(),
-				dataType: 'json', //결과값 Json형태로
-				success: function(response) {
-			    	if(response != null && response !="") {
-			    		alert("해당 항목이 삭제되었습니다.");
-			    		$('#dataTable').DataTable().clear().destroy();
-			    		aboardList();
-			    	}  
-			    }, 
-			    error:function(xhr, status, message) { 
-			        alert(" status: "+status+" er:"+message);
-			    } 
-			});//end ajax
+			var ck = confirm("삭제하시겠습니까?");
+			if(ck==true){
+				 $.ajax({
+					url:"${pageContext.request.contextPath}/management/aboard/aboardDelete",
+					type:"POST",
+					data: $("#frm1").serialize(),
+					dataType: 'json', //결과값 Json형태로
+					success: function(response) {
+				    	if(response != null && response !="") {
+				    		alert("해당 항목이 삭제되었습니다.");
+				    		$('#dataTable').DataTable().clear().destroy();
+				    		aboardList();
+				    	}  
+				    }, 
+				    error:function(xhr, status, message) { 
+				        alert(" status: "+status+" er:"+message);
+				    } 
+				});//end ajax
+			}
 		});
 		
 		//소속사 각 오디션별 지원현황
