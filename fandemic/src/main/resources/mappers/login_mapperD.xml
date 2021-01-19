@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.fandemic.impl.LoginMapperD">
+<!-- mybatis사용 -->
+	<insert id="insertSession" parameterType="Visit">
+		<selectKey order="BEFORE" keyProperty="visit_id" resultType="string">
+			SELECT NVL2(MAX(VISIT_ID), MAX(VISIT_ID)+1, 1)
+			FROM VISIT
+		</selectKey>
+			INSERT INTO VISIT(
+								visit_id,
+								visit_time
+			)VALUES(
+								#{visit_id},
+								SYSDATE
+			)
+			
+	</insert>
+</mapper>

@@ -5,9 +5,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -17,39 +14,32 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.yedam.fandemic.config.MvcConfiguration;
 import com.yedam.fandemic.impl.MainMapper;
 import com.yedam.fandemic.impl.MemberMapper;
+import com.yedam.fandemic.service.LoginServiceD;
 import com.yedam.fandemic.service.MailService;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Star;
+import com.yedam.fandemic.vo.Visit;
 
 @Controller
 public class LoginController {
 	@Autowired MemberMapper memMapper;
 	@Autowired MailService mailservice;
 	@Autowired MainMapper mainDao;
-	
+	@Autowired LoginServiceD loginservice; //동 01-19추가
 	
 
-	
 	
 	
 	@RequestMapping("/no-tiles/find") // id,pw 찾기 팝업창  
@@ -224,7 +214,7 @@ public class LoginController {
 	    
 	// 개인 로그인
 	@RequestMapping(value="/memberLogin")
-	public String memberLogin(HttpServletRequest request, HttpSession session,  Model model, Member member, RedirectAttributes redirect) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
+	public String memberLogin(HttpServletRequest request, HttpSession session,  Model model, Member member, RedirectAttributes redirect,Visit visit) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
 		
 		Password pw = new Password();
 		member.setMem_pw(pw.encrypt(member.getMem_pw())); //비번 암호화
@@ -233,7 +223,7 @@ public class LoginController {
 		
 		
 		if ( member != null) {
-			
+			loginservice.insertSession(visit); //로그인시 방문자수 저장
 			session.setAttribute("member", member);
 			return "redirect:index";
 			
