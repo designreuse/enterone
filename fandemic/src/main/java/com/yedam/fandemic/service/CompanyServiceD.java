@@ -15,8 +15,8 @@ public interface CompanyServiceD {
 	public List<Member> getMemberList(); //쪽지보낼 회원목록
 	public int memberCheck(Member member); //쪽지 보낼 회원존재 여부 확인
 	public int letterTrans(Letter letter); //쪽지보내기
-	public List<Gbuyer> getCharData(); //차트에 뿌려줄 데이터
-	public List<Gbuyer> getDaySalesList();//일별 매출현황
+	public List<Gbuyer> getCharData(Gbuyer gbuyer); //차트에 뿌려줄 데이터
+	public List<Gbuyer> getDaySalesList(Gbuyer gbuyer);//일별 매출현황
 	public List<Notify> memberReportList(Notify notify); //신고당한놈 리스트 요청
 	public int insertVisitor(Visit visit); //방문자수조회
 }

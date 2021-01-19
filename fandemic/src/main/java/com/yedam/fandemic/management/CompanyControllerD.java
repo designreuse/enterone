@@ -75,15 +75,15 @@ public class CompanyControllerD {
 	//차트에 뿌려줄 데이터 검색(월별)
 	@RequestMapping(value="/management/company/Chart")
 	@ResponseBody
-	public List<Gbuyer> getChartData() {
-		return companyService.getCharData();
+	public List<Gbuyer> getChartData(Gbuyer gbuyer) {
+		return companyService.getCharData(gbuyer);
 	}
 	
 	//일별 매출현황
 	@RequestMapping(value="/management/company/DaySalesList")
 	@ResponseBody
-	public List<Gbuyer> getDaySalesList(){
-		return companyService.getDaySalesList();
+	public List<Gbuyer> getDaySalesList(Gbuyer gbuyer){
+		return companyService.getDaySalesList(gbuyer);
 	}
 	
 	//회원 신고 목록 페이지 이동

@@ -19,6 +19,8 @@ public class Gbuyer {
 	String gb_email;	//이메일
 	String gb_zipaddress;//우편번호
 	String gb_address;	//기본주소
-	String gb_address2;	//상세주소	
+	String gb_address2;	//상세주소
+	
+	String com_id; //매출현황에 필요
 	
 }

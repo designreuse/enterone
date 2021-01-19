@@ -53,28 +53,33 @@
 	 	               			#{lett_content})
 	</insert>
 <!-- 차트에 뿌려줄 데이터 -->
-	<select id="getCharData" resultType="Gbuyer">
-		SELECT TO_CHAR(GB_TIME,'YYYY/MM') "GB_TIME",  SUM(GB_PAYMENT) "GB_PAYMENT"
-		FROM GBUYER
-		WHERE TO_CHAR(GB_TIME,'YYYY')='2021'
-		GROUP BY TO_CHAR(GB_TIME,'YYYY/MM')
+	<select id="getCharData" parameterType="Gbuyer" resultType="Gbuyer">
+		SELECT GS.COM_ID, TO_CHAR(GB_TIME,'YYYY/MM') "GB_TIME" , SUM(GS.GO_PRICE * GD.CART_QTY) "GB_PAYMENT" 
+		FROM GBUYDETAIL GD, GOODS GS, GBUYER GB
+		WHERE GD.GO_NO= GS.GO_NO
+		AND GB.GB_NO = GD.GB_NO
+		AND TO_CHAR(GB.GB_TIME, 'YYYY') = TO_CHAR(SYSDATE, 'YYYY')
+		GROUP BY TO_CHAR(GB_TIME,'YYYY/MM'), GS.COM_ID
+		HAVING COM_ID=#{com_id}
+		ORDER BY 2
 	
 	</select>
 <!-- 일별 매출현황 -->
-	<select id="getDaySalesList" resultType="Gbuyer">
-		SELECT TO_CHAR(GB_TIME,'YYYY/MM/DD') "GB_TIME",  SUM(GB_PAYMENT) "GB_PAYMENT"
-		FROM GBUYER
-		WHERE TO_CHAR(GB_TIME,'YYYY')='2021'
-		GROUP BY TO_CHAR(GB_TIME,'YYYY/MM/DD')
-		ORDER BY 1 DESC
+	<select id="getDaySalesList" parameterType="Gbuyer" resultType="Gbuyer">
+		SELECT GS.COM_ID, TO_CHAR(GB_TIME,'YYYY/MM/DD') "GB_TIME" , SUM(GS.GO_PRICE * GD.CART_QTY) "GB_PAYMENT" 
+		FROM GBUYDETAIL GD, GOODS GS, GBUYER GB
+		WHERE GD.GO_NO= GS.GO_NO
+		AND GB.GB_NO = GD.GB_NO
+		AND TO_CHAR(GB.GB_TIME, 'YYYY') = TO_CHAR(SYSDATE, 'YYYY')
+		GROUP BY TO_CHAR(GB_TIME,'YYYY/MM/DD'), GS.COM_ID
+		HAVING COM_ID=#{com_id}
+		ORDER BY 2 
 	</select>
 <!-- 신고당한놈들 목록 요청 -->
 	<select id="memberReportList" parameterType="Notify" resultType="Notify">
-		SELECT N.NOF_NO, N.NOF_CONTENT, N.MEM_ID, N.NOF_TYPE, N.RE_NO, R.RE_CONTENT, N.COM_ID, F.ST_ID, F.FBO_CONTENT
-		FROM NOTIFY N , REPLY R, FBOARD F
-		WHERE N.RE_NO = R.RE_NO
-		AND R.SFBO_NO = F.FBO_NO
-		AND N.COM_ID = #{com_id}
+		SELECT * 
+		FROM NOTIFY
+		WHERE COM_ID=#{com_id}
 	</select>
 <!-- 방문자수조회? -->
 	<insert id="insertVisitor" parameterType="Visit">

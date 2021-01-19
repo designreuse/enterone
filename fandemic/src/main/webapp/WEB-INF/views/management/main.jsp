@@ -7,8 +7,10 @@
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script>
 $(function(){
+	var com_id = "${company.com_id }";
+	console.log(com_id);
 	//방문자수조회
-	$.ajax({
+	/* $.ajax({
 		url:"${pageContext.request.contextPath}/management/company/visitorCnt",
 		dataType:"json",
 		success:function(response){
@@ -17,11 +19,13 @@ $(function(){
 		error:function(response){
 			alert("방문자수조회실패")
 		}
-	})   
+	}) */   
 	   
+	//매출현황
 	$.ajax({
 		url:"${pageContext.request.contextPath}/management/company/DaySalesList",
 		dataType:"json",
+		data:{com_id:com_id},
 		success:daySalesListResult
 		,
 		error:function(response){
@@ -46,10 +50,11 @@ google.charts.setOnLoadCallback(drawChart); //차트에 대한 정보를 뿌려�
 
 function drawChart() {
 	var arr = [['월','매출액']];
-	
+	var com_id = "${company.com_id }";
 	$.ajax({
 		url:"${pageContext.request.contextPath}/management/company/Chart",
 		dataType:"json",
+		data: {com_id:com_id},
 		async : false,
 		success:function(response){
 			//alert("차트성공");

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
 	.center {
@@ -119,9 +120,9 @@ div #dataTable_filter{
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","cnoticeTr")
 			.append($('<td>').html('<input type="checkbox" name="nof_nos" value="'+item.nof_no+'">'))
-			.append($('<td>').html(item.nof_no))
+			.append($('<td>').html('<a href="#">'+item.nof_no+'</a>'))
 			.append($('<td>').html(item.nof_content))
-			.append($('<td>').html(item.re_content))
+			.append($('<td>').html(item.st_id))
 			.append($('<td>').html(item.mem_id))
 			.append($('<td>').html(item.nof_type))
 			.appendTo('tbody');
@@ -170,7 +171,7 @@ div #dataTable_filter{
                       <th></th>
                       <th>신고번호</th>
                       <th>신고제목</th>
-                      <th>신고내용</th>
+                      <th>해당팬클럽</th>
                       <th>신고당한놈</th>
                       <th>신고분류</th>
                     </tr>

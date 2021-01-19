@@ -1,5 +1,6 @@
 package com.yedam.fandemic.config;
 
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
@@ -14,7 +15,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.yedam.fandemic.service.CompanyServiceD;
 import com.yedam.fandemic.vo.Visit;
 
-
+@WebListener
 public class SessionListener implements HttpSessionListener{
 	 @Autowired
 	 CompanyServiceD companyService;

@@ -44,13 +44,13 @@ public class CompanyServiceImplD  implements CompanyServiceD{
 	}
 
 	@Override
-	public List<Gbuyer> getCharData() {
-		return dao.getCharData();
+	public List<Gbuyer> getCharData(Gbuyer gbuyer) {
+		return dao.getCharData(gbuyer);
 	}
 
 	@Override
-	public List<Gbuyer> getDaySalesList() {
-		return dao.getDaySalesList();
+	public List<Gbuyer> getDaySalesList(Gbuyer gbuyer) {
+		return dao.getDaySalesList(gbuyer);
 	}
 
 	@Override
