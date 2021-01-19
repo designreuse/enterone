@@ -130,8 +130,13 @@
                <div id="menu-list">
                   <ul class="nav-list">
                      <li class="for-tablet nav-title"><a>Menu</a></li>
-                     <li class="for-tablet"><a href="${pageContext.request.contextPath}/login">Login</a></li>
-                     <li class="for-tablet"><a href="${pageContext.request.contextPath}/register">Register</a></li>
+                     <c:if test="${sessionScope.member.mem_id eq null and sessionScope.company.com_id eq null and sessionScope.star.st_id eq null}" >
+                     	<li class="for-tablet"><a href="${pageContext.request.contextPath}/login">Login</a></li>
+                     	<li class="for-tablet"><a href="${pageContext.request.contextPath}/register">Register</a></li>
+                     </c:if>
+                     <c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null or sessionScope.star.st_id ne null}">
+                     	<li class="for-tablet"><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                     </c:if>
                      
                      
                      <li><a href="${pageContext.request.contextPath}/company">소 속 사</a></li>

@@ -195,10 +195,10 @@ ul.tabs li.current {
 								</div>
 								<div class="title-line">or</div>
 								<a href="${kakao_url}" style="padding: 0px 10px 0px 10px;">
-								<img src="${pageContext.request.contextPath}/images/kakao.png" id="kakao" style="width: 50px; height: 50px; ">
+								<img src="${pageContext.request.contextPath}/images/etc/kakao.png" id="kakao" style="width: 50px; height: 50px; ">
 								</a>
 								<a href="#" style="padding: 0px 10px 0px 10px;">
-								<img src="${pageContext.request.contextPath}/images/google.png" id="google" style="width: 50px; height: 50px;">
+								<img src="${pageContext.request.contextPath}/images/etc/google.png" id="google" style="width: 50px; height: 50px;">
 								</a>
 							</form>
 						</div>

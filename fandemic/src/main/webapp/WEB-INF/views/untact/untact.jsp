@@ -13,30 +13,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: "Cairo", sans-serif;
 }
 
-h1 {
-	font-size: 70px;
-}
-
-h2 {
-	font-size: 36px;
-}
-
-h3 {
-	font-size: 30px;
-}
-
-h4 {
-	font-size: 24px;
-}
-
-h5 {
-	font-size: 18px;
-}
-
-h6 {
-	font-size: 16px;
-}
-
 .btn-primary {
 	background-color: transparent;
 	border-color: #111726;
@@ -51,6 +27,11 @@ $(document).ready(function() {
 	
 	$(".btnDetail").on('click', function () {
 		go_no = $(this).parent().find("b").text(); // code 조회용 go_no 넘기기
+		console.log(go_no);
+		
+		window.open("${pageContext.request.contextPath}/no-tiles/untactCode?go_no=" + go_no , "", "width=500, height=350");
+		
+		
 	});
 
 	// 커밍순 슬라이드
@@ -96,7 +77,7 @@ $(document).ready(function() {
 				<div class="section-title">
 					<h3 align="center" style="padding: 15px">TICKETING</h3>
 				</div>
-				<div class="col-md-12">
+				<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
 					<div class="line">
 						<div>COMING SOON</div>
 						<!-- sysdate 보다 큰 값만 출력 -->
@@ -114,16 +95,18 @@ $(document).ready(function() {
 					
 				</div>
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
 						<div class="line">
 							<div>ALL</div>
 						</div>
 					</div>
 					<!-- 여기에 forEach -->
+			<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
 			<c:forEach var="un" items="${unList}">
 				<c:if test="${un.dday > 0 }">
-					<article class="col-md-12 article-list">
-						<div class="inner" style="width: 50%; float: left;">
+					<article class="col-md-12 col-sm-12 col-xs-12 article-list">
+					
+						<div class="inner" style="width: 100%; float: left;">
 							<figure style="width: 200px; height: 260px;">
 								<a href="ticket"> 
 									<img src="${pageContext.request.contextPath}/images/goods/${un.go_pic}" style="width: 100%; height: 100%;">
@@ -147,8 +130,8 @@ $(document).ready(function() {
 									<b style="display: none;">${un.go_no}</b>
 								</p>
 								
-								<div style="height: 20%; padding-top: 20%;" class="btnDetail">
-									<a class="btn btn-primary more" data-toggle="modal" data-target="#exampleModal" data-what="hello">
+								<div style="height: 20%; padding-top: 5%;" class="btnDetail" >
+									<a class="btn btn-primary more" > <!-- data-toggle="modal" data-target="#exampleModal" data-what="hello" -->
 										<div>입장</div>
 										<div>
 											<i class="ion-ios-arrow-thin-right"></i>
@@ -161,10 +144,10 @@ $(document).ready(function() {
 					</article>
 				</c:if>
 			</c:forEach>
+			</div>		
 					
 					
-
-					<div class="col-md-12 text-center">
+					<div class="text-center">
 						<ul class="pagination">
 							<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
 							<li class="active"><a href="#">1</a></li>

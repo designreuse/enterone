@@ -45,6 +45,8 @@ public class UntactController {
 		String code = request.getParameter("code");
 		
 		String getCode = dao.getUntactCode(request.getParameter("go_no"));
+		
+		System.out.println("===============입력한 코드 : " + code + " db코드 : " + getCode);
 
 		if (code.equals(getCode)) {
 			return "same";			
@@ -53,24 +55,7 @@ public class UntactController {
 		}
 	}
 	
-	@RequestMapping(value = "/total")
-	public ModelAndView total(HttpServletResponse response) throws IOException {
-		return new ModelAndView("untact/total");
-	}
-	
-	
-	@RequestMapping(value = "/caller")
-	public ModelAndView caller(HttpServletResponse response) throws IOException {
-		return new ModelAndView("untact/caller");
-	}
-	@RequestMapping(value = "/callee")
-	public ModelAndView callee(HttpServletResponse response) throws IOException {
-		return new ModelAndView("untact/callee");
-	}
-	
-	
-	
-	
+
 	
 	@RequestMapping(value = "/starUntact")
 	public ModelAndView test(HttpServletResponse response) throws IOException {
@@ -81,22 +66,15 @@ public class UntactController {
 	public ModelAndView unDetail(HttpServletResponse response) throws IOException {
 		return new ModelAndView("untact/unDetail");
 	}
-
-
-//	@RequestMapping(value = "/ticket")
-//	public ModelAndView test1(HttpServletResponse response) throws IOException {
-//		return new ModelAndView("untact/ticket");
-//	}
-//
-//	@RequestMapping(value = "/ticketReserv")
-//	public ModelAndView test2(HttpServletResponse response) throws IOException {
-//		return new ModelAndView("untact/ticket_reserv");
-//	}
-//
-//	@RequestMapping(value = "/ticketReservList")
-//	public ModelAndView test3(HttpServletResponse response) throws IOException {
-//		return new ModelAndView("untact/ticket_reserv_list");
-//	}
 	
+	@RequestMapping(value = "/no-tiles/untactCode")
+	public ModelAndView untactCode(Model model, HttpServletRequest request) throws IOException {
+		
+		String no = request.getParameter("go_no");
+		System.out.println("왜 안되니" + no + "널이야?? 왜??");
+		model.addAttribute("go_no", no);
+	
+		return new ModelAndView("no-tiles/untactCode");
+	}
 	
 }
