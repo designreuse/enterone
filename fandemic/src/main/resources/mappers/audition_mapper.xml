@@ -161,6 +161,26 @@
 		)
 
 	</insert>
+	
+	<!-- insert 하기 위한 select -->
+	<select id="insertselect" parameterType="Aboard"
+		resultType="Aboard">
+		SELECT ABO_NO,
+		COM_ID
+		FROM ABOARD
+		WHERE abo_no = #{abo_no}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 최신순 -->
 	<select id="selectnew" resultType="Activity">
 		SELECT * FROM ACTIVITY ORDER

@@ -16,8 +16,7 @@
 <script
 	src="${pageContext.request.contextPath}/resourcesGoods/js/main.js"></script>
 
-<script>
-	
+<script>	
 </script>
 
 <style>

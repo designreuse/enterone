@@ -57,7 +57,7 @@ public class AuditionController {
 
 	// 연습생 수정 페이지
 	@RequestMapping(value = "/audition/traineeupdate") // 주소
-	public ModelAndView traineeUpdate(Model model, Trainee trainee, HttpSession session) throws IOException {
+	public ModelAndView traineeUpdateselect(Model model, Trainee trainee, HttpSession session) throws IOException {
 
 		Member member = (Member) session.getAttribute("member");
 		trainee.setMem_id(member.getMem_id());
@@ -251,6 +251,7 @@ public class AuditionController {
 
 		auditionservice.insertau(audition);
 		model.addAttribute("msg", "등록됐습니다.");
+		System.out.println("dddd");
 		return "redirect:/auditionAboard/list";
 	}
 

@@ -42,7 +42,7 @@ public class AboardController {
 	@RequestMapping(value = "/auditionAboard/list", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Aboard> aboardList(HttpServletRequest request, Aboard aboard) {
-		System.out.println(aboard);
+		//System.out.println(aboard);
 		return auditionservice.auditionlist();
 	}
 	//게시물 상세보기 주소
@@ -50,6 +50,9 @@ public class AboardController {
 	public ModelAndView auditionlistDetail(@PathVariable String no, Aboard aboard, Model model) throws IOException {
 		// 단건
 		aboard.setAbo_no(no);
+		//aboard.setCom_id();
+		
+		
 		model.addAttribute(auditionMapper.getAboardInfo(aboard));
 		return new ModelAndView("audition/audtion_detail");
 	}

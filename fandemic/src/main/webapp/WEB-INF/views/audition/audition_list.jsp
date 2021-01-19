@@ -27,7 +27,8 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 		var abo_no =$(this).children().eq(0).text();
 		//console.log(abo_no);
 		//aboardView(abo_no);
-		location.href="${pageContext.request.contextPath}/auditionlistDetail/"+abo_no //컨트롤러 no부분
+		location.href='${pageContext.request.contextPath}/auditionlistDetail/'+abo_no; // 파라미터로 넘겨줌
+		//변수이름안에 이름을 담는다
 		
 	})			
 		
@@ -58,8 +59,8 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 		})
    }
 
-	//게시글 조회 요청
-	   function aboardView(abo_no) {
+/* 	//게시글 조회 요청
+ 	   function aboardView(abo_no) {
 	      $.ajax({
 	         url:'${pageContext.request.contextPath}/auditionlistDetail/{no}',
 	         type:'GET',
@@ -69,7 +70,7 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 	         },
 	         success:aboardViewResult
 	      });
-	   } 
+	   }   */
 	   //게시글 조회 응답
 	 function aboardViewResult(data) {
 		//게시물 뷰

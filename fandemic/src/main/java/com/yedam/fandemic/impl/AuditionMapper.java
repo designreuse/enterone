@@ -48,4 +48,7 @@ public interface AuditionMapper {
 	//조회수 증가
 	public int updateActivityhits(Activity activity);
 	
+	public Aboard insertselect(Aboard aboard);
+	
+	
 }

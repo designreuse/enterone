@@ -155,12 +155,37 @@ ul.tabs li.current {
 			$('.tab-link5').addClass('current');
 			$("#tab-5").addClass('current');
 			
-			$('#mem_name').val();
-			$("#aud_type option:selected").text();
-			$('#aud_age').val();
-			$('#aud_height').val();
-			$('#aud_weight').val();
-			$('#aud_hobby').val();
+			var mem_name = $('#mem_name').val();
+			$("#mem_uname").text(mem_name);
+			
+			/* var option= $("#aud_type").val();
+			$("mem_ubranch").val(option); */
+			
+			/* var aud_type = $("#aud_type option:selected").val();
+			$("#mem_ubranch").val(aud_type); */
+			
+			var aud_type = $('#aud_type option:selected').val();
+			$("#mem_ubranch").text(aud_type);
+			
+			
+			var aud_age = $('#aud_age').val();
+			$("#mem_uage").text(aud_age);
+			
+			var height = $('#aud_height').val();
+			$("#mem_uheight").text(height);
+			
+			var weight = $('#aud_weight').val();
+			$("#mem_uweight").text(weight);
+			
+			var pic = $('#aud_pic').val();
+			$("#mem_upic").val(pic);
+			
+			var hobby = $('#aud_hobby').val(); 
+			$("#mem_uhobby").text(hobby)
+			
+			var file=$('#aud_file').val();
+			$("#mem_url").val(file)
+			
 
 		});
 
@@ -207,12 +232,10 @@ ul.tabs li.current {
 		$('#btn_search_postcode').click(function() {
 			openDaumZipAddress($("#pro_postcode"), $("#pro_addr1"));
 		});
-		$('#btn_cancle_apply')
-				.click(
-						function() {
-							//임시로	
-							location.href = "${pageContext.request.contextPath}//audition/auditionlist";
-						});
+		
+		$("#btn_cancle_apply").on("click", function() {
+			location.href = "${pageContext.request.contextPath}/audition/auditionlist";
+		});
 
 	});
 	function agChk() {
@@ -236,10 +259,37 @@ ul.tabs li.current {
 			return true;
 		}
 	}
+	function setThumbnail2(event) { //event라함은 이벤트 대상을 의미하는듯
+	     // $("#image_container2 img").remove();
+	      var reader = new FileReader();
+	      reader.onload = function(event) {
+	         var img = $("<img>").attr("src",event.target.result).css({"width":"100%","height":"350px"});
+	         $("#mem_upic").append(img);        
+	         /* var img = document.createElement("img"); 
+	         img.setAttribute("src", event.target.result);
+	         document.querySelector("div#image_container").appendChild(img); */
+	      }; // end onload
+	      reader.readAsDataURL(event.target.files[0]);
+	   }
+	
+	//동영상
+	function setThumbnail3(event) { //event라함은 이벤트 대상을 의미하는듯
+	      var reader = new FileReader();
+	      reader.onload = function(event) {
+	         var video = $("<video>").attr("src",event.target.result).css({"width":"100%","height":"350px"})
+	         						 .attr("controls","autoplay");
+	         $("#mem_url").append(video);        
+	      }; // end onload
+	      reader.readAsDataURL(event.target.files[0]);
+	   }
+	
+	
+	
 </script>
 <body>
 	<section class="page">
 		<div class="container">
+		<form method="post" action="${pageContext.request.contextPath}/audition/auditioninsertsend" encType="multipart/form-data">
 			<!-- 탭 메뉴 상단 시작 -->
 			<ul class="tabs">
 				<li class="tab-link current" data-tab="tab-1">이용약관</li>
@@ -392,10 +442,7 @@ ul.tabs li.current {
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-2 col-sm-2 col-xs-2">
-									<button class="btn btn-primary" id="btn_cancle_apply">지원
-										취소</button>
-								</div>
+								
 								<div class="col-md-1 col-sm-1 col-xs-1"></div>
 								<div class="col-md-7 col-sm-7 col-xs-7"></div>
 								<div class="col-md-2 col-sm-2 col-xs-2">
@@ -418,7 +465,6 @@ ul.tabs li.current {
 
 								<td class="font-f">성별</td>
 								<td class="font-g">${member.mem_gender}</td>
-
 							</tr>
 							<tr>
 
@@ -444,10 +490,7 @@ ul.tabs li.current {
 					</table>
 				</div>
 				<div class="row">
-					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn btn-primary" id="btn_cancle_apply">지원
-							취소</button>
-					</div>
+					
 					<div class="col-md-1 col-sm-1 col-xs-1"></div>
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
@@ -461,14 +504,13 @@ ul.tabs li.current {
 					</div>
 				</div>
 			</div>
+			
 			<div id="tab-3" class="tab-content">
 				<h1>지원서 입력</h1>
 				<div class="box box-light box-container">
 					<div class="jumbotron">
 
 						<h3>필수입력</h3>
-						<form id="frm" name="frm" method="post"
-							enctype="multipart/form-data" onsubmit="return false;">
 							<table class="table table-hover">
 								<tr>
 									<td class="font-f">이름</td>
@@ -492,9 +534,9 @@ ul.tabs li.current {
 
 											<select id="aud_type" name="aud_type" style="width: 50%">
 												<option value="">지원분야 (1지망)</option>
-												<option value="1">보컬</option>
-												<option value="2">랩</option>
-												<option value="3">댄스</option>
+												<option value="보컬">보컬</option>
+												<option value="랩">랩</option>
+												<option value="댄스">댄스</option>
 											</select>
 										</div>
 									<td></td>
@@ -551,22 +593,20 @@ ul.tabs li.current {
 												placeholder="예시. 피아노,현대무용,미디,작곡 등" cols="30"></textarea>
 										</div>
 									</td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td style="display:hidden"><input type="text" id="com_id" name="com_id"></td>
+									<td style="display:hidden"><input type="text" id="mem_id" name="mem_id"></td>
+									<td style="display:hidden"><input type="text" id="abo_no" name="abo_no"></td>
+									
 								</tr>
 
 							</table>
-						</form>
+						
 					</div>
-
+				</div>
 
 
 					<div class="row">
-						<div class="col-md-2 col-sm-2 col-xs-2">
-							<button class="btn btn-primary" id="btn_cancle_apply">지원
-								취소</button>
-						</div>
+						
 						<div class="col-md-1 col-sm-1 col-xs-1"></div>
 						<div class="col-md-5 col-sm-5 col-xs-5"></div>
 						<div class="col-md-2 col-sm-2 col-xs-2">
@@ -582,7 +622,7 @@ ul.tabs li.current {
 
 
 				</div>
-			</div>
+
 			<div id="tab-4" class="tab-content">
 
 				<table class="table table-hover">
@@ -594,10 +634,7 @@ ul.tabs li.current {
 						<td></td>
 						<td colspan="2"><div class="invalid-feedback">
 							 <input type="file" name="ex2_file"
-										id="aud_pic"> 
-
-
-							</div></td>
+										id="aud_pic" onchange="setThumbnail2(event);"></div></td>
 						<td>- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)</td>
 						<td></td>
 
@@ -609,7 +646,7 @@ ul.tabs li.current {
 						<td></td>
 						<td colspan="2"><div class="invalid-feedback">
 								<input type="file" name="ex2_file"
-										id="aud_file"> 
+										id="aud_file" onchange="setThumbnail3(event);"> 
 
 
 							</div></td>
@@ -628,10 +665,7 @@ ul.tabs li.current {
 
 
 				<div class="row">
-					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button class="btn btn-primary" id="btn_cancle_apply">지원
-							취소</button>
-					</div>
+					
 					<div class="col-md-1 col-sm-1 col-xs-1"></div>
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 					<div class="col-md-2 col-sm-2 col-xs-2">
@@ -652,41 +686,39 @@ ul.tabs li.current {
 				<table class="table table-hover">
 					<tr>
 						<td class="font-f">이름</td>
-						<td>$('#mem_name').text()</td>
+						<td id="mem_uname"></td>
 						<td></td>
-
-
 					</tr>
 					<tr>
 						<td class="font-f">분야</td>
-						<td></td>
+						<td id="mem_ubranch"></td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">취미/특기</td>
-						<td></td>
+						<td id="mem_uhobby"></td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">나이(만 나이)</td>
-						<td></td>
+						<td id="mem_uage"></td>
 						<td></td>
 
 
 					</tr>
 					<tr>
 						<td class="font-f">신장/체중</td>
-						<td></td>
-						<td></td>
+						<td id="mem_uheight"></td>
+						<td id="mem_uweight"></td>
 
 					</tr>
 					<tr>
 						<td class="font-f">대표사진</td>
-						<td></td>
+						<td id="mem_upic"></td>
 						<td></td>
 
 
@@ -697,8 +729,8 @@ ul.tabs li.current {
 				<table class="table table-hover">
 					<tr>
 						<td class="font-f">대표영상</td>
-						<td>${auditon.aud_file}<div class="video-embed-area">
-								<video src="" controls="" muted=""></video>
+						<td id="mem_url"><div class="video-embed-area">
+								
 							</div></td>
 						<td></td>
 
@@ -724,14 +756,19 @@ ul.tabs li.current {
 					</div>
 
 					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button type="submit" class="btn btn-primary" id="btn_next_apply4" rel="step2">최종
+						<button type="submit" class="btn btn-primary" id="btn_next_final" rel="step2">최종
 							지원</button>
+							
+							
 					</div>
+					
 				</div>
+				
 			</div>
 			<!-- 탭 메뉴 내용 끝 -->
+			</form>
 		</div>
-		</div>
+		
 	</section>
 </body>
 </html>
