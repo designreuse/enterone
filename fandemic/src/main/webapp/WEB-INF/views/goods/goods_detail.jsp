@@ -148,7 +148,7 @@
 									</div>
 								</div>
 								<a href="#" class="primary-btn" id="cart">장바구니</a>
-								<a href="#" class="primary-btn" id="buy" style="background-color: #022AD5;">바로구매</a>
+								<!-- <a href="#" class="primary-btn" id="buy" style="background-color: #022AD5;">바로구매</a> -->
 							</div>
 					</div>
 				</div>
