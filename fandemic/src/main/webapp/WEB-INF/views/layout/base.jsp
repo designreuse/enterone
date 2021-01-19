@@ -145,14 +145,14 @@
                         <ul class="dropdown-menu">
                         <c:if test="${sessionScope.member.mem_id ne null}">
                            <li><a href="${pageContext.request.contextPath}/audition/traineeinsert">연습생 등록</a></li>
-                           </c:if>
+                        </c:if>
                            <li><a href="${pageContext.request.contextPath}/audition/auditionwork">연습생 활동</a></li>
                            <li><a href="${pageContext.request.contextPath}/audition/auditionlist">오디션 공고</a></li>
                            
                         </ul>
                      </li>
 <!--                      magz-dropdown 클래스 제거 -->
-                     <li class="dropdown "><a href="${pageContext.request.contextPath}/goods">굿 즈 샵<i class="ion-ios-arrow-right"></i></a>
+                     <li class="dropdown "><a href="${pageContext.request.contextPath}/goods">스 토 어<i class="ion-ios-arrow-right"></i></a>
                      
                         <ul class="dropdown-menu">
                        	   <li><a href="${pageContext.request.contextPath}/goodsf?t=TICKET">TICKET</a></li>

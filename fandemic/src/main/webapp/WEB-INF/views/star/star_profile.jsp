@@ -73,5 +73,27 @@
 				</div>
 			</c:forEach>
 		</div>
+		
+		<div class="row justify-content-center mb-2 pb-3">
+			<div
+				class="col-md-7 heading-section heading-section-2 text-center ftco-animate">
+				<h2 class="mb-4">MOVIE</h2>
+			</div>
+		</div>
+		
+		<div class="row justify-content-center mb-2 pb-3">
+			<div
+				class="col-md-7 heading-section heading-section-2 text-center ftco-animate">
+				<h2 class="mb-4">PERFORMANCE</h2>
+			</div>
+		</div>
+		
+		<div class="row justify-content-center mb-2 pb-3">
+			<div
+				class="col-md-7 heading-section heading-section-2 text-center ftco-animate">
+				<h2 class="mb-4">BROADCAST</h2>
+			</div>
+		</div>
+		
 	</div>
 </section>

@@ -34,7 +34,7 @@
 				<div class="page-description">
 					<div>
 						<img class="col-md-6 col-sm-6 col-xs-12"
-							src="${pageContext.request.contextPath}/resources/images/${companyInfo.com_pic}" 
+							src="${pageContext.request.contextPath}/images/company/${companyInfo.com_pic}" 
 							onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'">
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-12">
