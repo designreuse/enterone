@@ -13,7 +13,7 @@
 			<div class="companySlide">
 				<ul>
 					<li><img class="companyBanner col-md-12 col-sm-12 col-xs-12"
-						src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
+						src="${pageContext.request.contextPath}/images/company/"
 						onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'" /></li>
 				</ul>
 			</div>

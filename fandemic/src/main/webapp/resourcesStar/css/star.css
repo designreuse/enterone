@@ -68,9 +68,11 @@
 	justify-content: center;
 	align-items: center;
 }
+
 .ArtPic img{
-	width: 100px;
-	height: 100px
+	object-fit: cover;
+    width: 300px;
+    height: 100%;
 }
 /* 팬 게시판 목록 */
 .candahar td span:hover {
