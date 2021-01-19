@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.yedam.fandemic.service.CompanyServiceD;
 import com.yedam.fandemic.vo.Company;
+import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
@@ -99,4 +100,33 @@ public class CompanyControllerD {
 		return companyService.memberReportList(notify);
 	}
 	
+	//신고번호에 따른 상세 댓글신고
+	@RequestMapping("/management/notifyDetailR")
+	public String notifyDetailR(Model model, Notify notify) {
+		//companyService.notifyDetailR(notify);
+		model.addAttribute("notifyR",companyService.notifyDetailR(notify));
+		return "mgt/company/notifyDetailR";
+	}
+	
+	//신고번호에 따른 상세 게시글신고
+	@RequestMapping("/management/notifyDetailF")
+	public String notifyDetailF(Model model, Notify notify) {
+		//companyService.notifyDetailF(notify);
+		model.addAttribute("notifyF",companyService.notifyDetailF(notify));
+		return "mgt/company/notifyDetailF";
+	}
+	
+	//관리자가 직접 블랙리스트 추가
+	@RequestMapping("/management/blackRegister")
+	public String blackRegister(Model model, Fan fan) {
+		companyService.blackRegister(fan);
+		return "mgt/company/memberReport";
+	}
+	
+//	//블랙리스트 자동추가(5개신고받으면?)
+//	@RequestMapping("/management/company/blackAdd")
+//	@ResponseBody
+//	public List<Notify> blackAdd() {
+//		return companyService.blackAdd();
+//	}
 }

@@ -45,6 +45,15 @@ div #dataTable_filter{
    <!-- 페이지네이션 날로먹는 빌드 끝 -->
 <script>
 	$(function() {
+		/* //블랙리스트 자동추가~?
+		$.ajax({
+			url:"${pageContext.request.contextPath}/management/company/blackAdd",
+			dataType:"json",
+			success:updateBlack,
+			error:function(response){
+				alert("블랙에러")
+			}
+		}) */
 		
 		memberReportList();//신고 목록 요청
 		$(".pagination a").on("click",function(){
@@ -58,9 +67,15 @@ div #dataTable_filter{
 		
 		var table = $('#dataTable');//datatable(공지사항목록)을 읽어옴
 		table.on("click","tr a",function(){ //게시물 tr에 제목 클릭했을때 ~
-			/* alert($(this).parent().prev().text());//클릭한 tr에 대한 게시물번호 */
-			var cnoc_no = $(this).parent().prev().text();
-			location.href="${pageContext.request.contextPath}/management/noticesDetail?cnoc_no="+cnoc_no;	
+			//alert($(this).parent().text());//클릭한 tr에 대한 게시물번호 
+			var nof_no = $(this).parent().text();
+			var re_no = $(this).parent().next().next().next().next().next().text();
+			var fbo_no = $(this).parent().next().next().next().next().next().next().text();
+			if(re_no != null && re_no != ''){
+				location.href="${pageContext.request.contextPath}/management/notifyDetailR?nof_no="+nof_no+"&re_no="+re_no;
+			}else if(fbo_no != null && fbo_no != ''){
+				location.href="${pageContext.request.contextPath}/management/notifyDetailF?nof_no="+nof_no+"&fbo_no="+fbo_no;
+			}
 		});//end 게시물 제목 클릭
 		
 		
@@ -96,6 +111,12 @@ div #dataTable_filter{
 		
 	}); //end document ready
 	
+	/* //블랙리스트
+	function updateBlack(data){
+		$.each(data,function(idx,item){
+			console.log(item);
+		})
+	} */
 	
 	//공지사항 목록 조회 요청
 	function memberReportList() {
@@ -125,6 +146,8 @@ div #dataTable_filter{
 			.append($('<td>').html(item.st_id))
 			.append($('<td>').html(item.mem_id))
 			.append($('<td>').html(item.nof_type))
+			.append($('<td>').html(item.re_no))
+			.append($('<td>').html(item.fbo_no))
 			.appendTo('tbody');
 			
 		});//end each
@@ -174,6 +197,8 @@ div #dataTable_filter{
                       <th>해당팬클럽</th>
                       <th>신고당한놈</th>
                       <th>신고분류</th>
+                      <th>댓글신고</th>
+                      <th>게시판신고</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -188,7 +213,7 @@ div #dataTable_filter{
               	<div class="cnotices-button">
               		<!-- <button type="button" class="btn-register">등록</button> -->
               		<!--  <button class="btn-update">수정</button>-->
-              		<button type="button" class="btn-delete">삭제</button>
+              		<!-- <button type="button" class="btn-delete">삭제</button> -->
               	</div>
               </div>
             </div>

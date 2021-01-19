@@ -3,6 +3,7 @@ package com.yedam.fandemic.impl;
 import java.util.List;
 
 import com.yedam.fandemic.vo.Company;
+import com.yedam.fandemic.vo.Fan;
 import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
@@ -19,4 +20,9 @@ public interface CompanyMapperD {
 	public List<Gbuyer> getDaySalesList(Gbuyer gbuyer); //일별 매출현황 리스트
 	public List<Notify> memberReportList(Notify notify); //신고당한놈들 목록 요청
 	public int insertVisitor(Visit visit);
+	public Notify notifyDetailR(Notify notify); //신고 상세 댓글
+	public Notify notifyDetailF(Notify notify); //신고 상세 게시글
+	public int blackRegister(Fan fan);//블랙리스트 직접추가
+	public void blackAdd(); //신고 갯수 확인
+	public int updateBlack(List<Notify> notify); //블랙리스트 업데이트
 }

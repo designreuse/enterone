@@ -108,4 +108,40 @@
                 #{visit_agent}
             )
         </insert>
+<!-- 신고상세 댓글-->
+	<select id="notifyDetailR" parameterType="Notify" resultType="Notify">
+		SELECT N.NOF_NO, N.NOF_CONTENT, R.RE_NO, R.RE_CONTENT ,N.NOF_TYPE, N.ST_ID, N.MEM_ID
+		FROM NOTIFY N, REPLY R
+		WHERE N.RE_NO = R.RE_NO
+		AND NOF_NO = #{nof_no}
+	</select>
+	
+<!-- 신고 상세 게시글 -->
+	<select id="notifyDetailF" parameterType="Notify" resultType="Notify">
+		SELECT N.NOF_NO, N.NOF_CONTENT, F.FBO_NO, F.FBO_CONTENT, N.NOF_TYPE, N.ST_ID ,N.MEM_ID
+		FROM NOTIFY N, FBOARD F
+		WHERE N.FBO_NO = F.FBO_NO
+		AND NOF_NO = #{nof_no}
+	</select>
+
+<!-- 블랙리스트 직접 추가 -->
+	<update id="blackRegister" parameterType="Fan">
+		UPDATE FAN
+		SET FAN_BLOCK=1
+		WHERE MEM_ID=#{mem_id}
+		AND ST_ID = #{st_id}
+	</update>
+	
+<!-- 블랙추가할놈들 구함 -->
+	<!-- <select id="blackAdd" resultType="Notify">
+		SELECT MEM_ID, ST_ID, COUNT(*) 
+		FROM NOTIFY
+		GROUP BY MEM_ID,ST_ID
+		HAVING COUNT(*) >5
+	</select>  -->
+
+<!-- 프로시저 -->
+	<insert id="blackAdd" statementType="CALLABLE">
+		{CALL TEST_PROC()}
+	</insert>
 </mapper>
