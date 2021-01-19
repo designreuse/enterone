@@ -78,7 +78,7 @@ $(document).ready(function() {
 				var addr2 = $('#ship_address2').val();
 				var postcode = $('#ship_zipAddress').val();
 				var gb_payment = $('#gb_payment').val().replace(/[^0-9]/g,'');
-				console.log(name+', '+email+', '+tel+', '+addr+', '+addr2+', '+postcode+', '+gb_payment);
+				// console.log(name+', '+email+', '+tel+', '+addr+', '+addr2+', '+postcode+', '+gb_payment);
 				
 				var IMP = window.IMP; // 생략가능
 				IMP.init('imp35170140'); // 가맹점식별코드

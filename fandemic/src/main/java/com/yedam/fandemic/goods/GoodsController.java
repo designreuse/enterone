@@ -3,6 +3,7 @@ package com.yedam.fandemic.goods;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -199,6 +200,7 @@ public class GoodsController {
 			return new ModelAndView("/login");
 		} else {
 			gbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 gbuyer에 담기
+			
 			model.addAttribute("buyList", goMapper.buyList(gbuyer));
 			return new ModelAndView("goods/goods_buy_detail");
 		}
@@ -207,16 +209,14 @@ public class GoodsController {
 	// 주문 결과 상세 모달
 	@RequestMapping(value = "/buyList/detail", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean buyListDetail(HttpSession session, HttpServletRequest request, Model model, Gbuydetail gbuydetail) throws IOException {
+	public List<Gbuydetail> buyListDetail(Model model,HttpSession session, HttpServletRequest request, Gbuydetail gbuydetail) throws IOException {
 		Member member = (Member) session.getAttribute("member"); // 세션에 저장해둔 member 불러오기
 		gbuydetail.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 cart에 담기
 
-		Goods goods = (Goods) request.getAttribute("go_type");
-		gbuydetail.setGo_type(goods.getGo_type());
-
 		gbuydetail.setGb_no(request.getParameter("gb_no"));
-		model.addAttribute("gbuydetail", goMapper.buyListDetail(gbuydetail));
-		return true;
+		//model.addAttribute("gbuydetail", );
+//		
+		return goMapper.buyListDetail(gbuydetail);
 	}
 
 	

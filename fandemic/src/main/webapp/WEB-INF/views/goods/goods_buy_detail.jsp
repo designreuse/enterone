@@ -16,9 +16,11 @@
 <script>
 $(document).ready(function() {
 	
+	var gb_no = 0;
+	
 	$('#exampleModal').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget); // Button that triggered the modal
-		var gb_no = button.data('no'); // Extract info from data-* attributes
+		gb_no = button.data('no'); // Extract info from data-* attributes
 		var modal = $(this);
 		console.log(button + ', '+ gb_no + ', '+ modal);
 		modal.find('.modal-title').text('주문 상세 내역');
@@ -31,11 +33,16 @@ $(document).ready(function() {
 			data : { gb_no : gb_no },
 			success :function(response) {
 				if(response == true) {
-					alert(gb_no + ', ' + go_type + ', ' + "모달 성공적으로 출력해주라,,");
-					location.reload(); //장바구니 화면 재출력
+					alert(gb_no + ', ' + "모달 성공적으로 출력해주라,,");
+					for(var i=0; i<response.length; i++){
+						var td = $('<td />').html().attr()
+						
+						
+					
+					}
 				}
 			}, error : function(xhr, status){
-				alert(gb_no + ', ' + go_type + ', ' + "실패! status: " + status);
+				alert(gb_no + ', ' + "실패! status: " + status);
 			}
 		});
 	});
@@ -102,7 +109,7 @@ $(document).ready(function() {
 </style>
 </head>
 <body>
-	<!-- Shopping Cart Section Begin -->
+	
 	<section class="home">
 		<div class="container">
 			<div class="row">
@@ -148,6 +155,7 @@ $(document).ready(function() {
 									<td style="border-bottom: 3px solid #ebebeb; letter-spacing: 27px;"><b>주소</b></td>
 									<td colspan="3" style="border-bottom: 3px solid #ebebeb;">(${buyList.gb_zipaddress}) ${buyList.gb_address} ${buyList.gb_address2}</td>
 								</tr>
+								
 							</tbody>
 							</c:forEach>
 							
@@ -155,6 +163,12 @@ $(document).ready(function() {
 					</div>
 				</div>
 			</div>
+
+
+
+
+
+
 
 			
 			<!-- 모달창 -->
@@ -177,17 +191,15 @@ $(document).ready(function() {
 									</tr>
 								</thead>
 								
-								<tbody>
 								<c:forEach var="gbuy" items="${gbuydetail}">
-								 <c:set var="goods.go_type" value="TICKET" />
-									<c:choose>
-										<c:when test="${goods.go_type eq 'TICKET'}">
+								<tbody>
 												<tr>
 													<td rowspan="3" style="text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
-														사진
+														<img onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'"
+															src="${pageContext.request.contextPath}/images/goods/${gbuy.go_pic}">
 													</td>
 													<td style="letter-spacing: 7px;"><b>공연명</b></td>
-													<td colspan="3">${gbuy.go_name}</td>
+													<td id="go_name" colspan="3">${gbuy.go_name}</td>
 													<td rowspan="3" style="width: 168px; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
 														<button type="button" class="btn primary-btn">입장하기</button>
 													</td>
@@ -204,8 +216,7 @@ $(document).ready(function() {
 													<td style="border-bottom: 3px solid #ebebeb;"><b>공연시간</b></td>
 													<td style="border-bottom: 3px solid #ebebeb;">${gbuy.go_unttime}</td>
 												</tr>
-										</c:when>
-										<c:otherwise>
+
 
 												<tr>
 													<td rowspan="2" style="text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
@@ -223,11 +234,10 @@ $(document).ready(function() {
 													<td style="border-bottom: 3px solid #ebebeb;"><b>구매금액</b></td>
 													<td style="border-bottom: 3px solid #ebebeb;">${gbuy.go_price} 원</td>
 												</tr>
-										</c:otherwise>
-									</c:choose>
-									</c:forEach>
+
+								
 								</tbody>
-									
+									</c:forEach>
 								<tfoot>
 									<tr>
 										<td colspan="4"></td>
