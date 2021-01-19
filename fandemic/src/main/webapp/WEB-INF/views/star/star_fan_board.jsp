@@ -21,6 +21,7 @@ var counter = 0;
 var id = "${sessionScope.member.mem_id}"//session아이디 값
 var ssid = "${sessionScope.star.st_id}"//session아이디 값
 var com_id = "${stVo.com_id}"
+var sst_id = "${stVo.st_id}"
 
 	$(function() {
 		//화면 시작 시 목록 출력
@@ -608,6 +609,7 @@ var com_id = "${stVo.com_id}"
 		BoardNotifyReset();
 	   	var mem_id_defalut = $("input:text[name='mem_id_defalut']").val();
 		$("#modalBoardNotifyDefault").find("input:text[name='com_id']").val(com_id)
+		$("#modalBoardNotifyDefault").find("input:text[name='st_id']").val(sst_id)
 		$("#modalBoardNotifyDefault").find("#mem_id_defalut").val(mem_id_defalut)
 	}
 	
@@ -808,6 +810,7 @@ var com_id = "${stVo.com_id}"
 		var mem_id = noti.find(".hideId").html();
 		$("#modalNotifyDefault").find("input:text[name='com_id']").val(com_id)
 		$("#modalNotifyDefault").find("input:text[name='re_no']").val(re_no)
+		$("#modalNotifyDefault").find("input:text[name='st_id']").val(sst_id)
 		$("#modalNotifyDefault").find("input:text[name='mem_id']").val(mem_id)
 	}
 	
@@ -1015,6 +1018,7 @@ var com_id = "${stVo.com_id}"
 						<div id = "modalNotifyDefault" style="display:none;">
 							<input name = "re_no" />
 							<input name = "com_id" />
+							<input name = "st_id" />
 							<input name = "mem_id" id = "mem_id_defalut"/>
 						</div>
 						<div class = "form-group">
@@ -1059,6 +1063,7 @@ var com_id = "${stVo.com_id}"
 						<div id = "modalBoardNotifyDefault" style="display:none;">
 							<input name = "fbo_no" />
 							<input name = "com_id" />
+							<input name = "st_id" />
 							<input name = "mem_id" id = "mem_id_defalut"/>
 						</div>
 						<div class = "form-group">

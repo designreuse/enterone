@@ -426,6 +426,10 @@ var st_name = "${stVo.st_name}";
 	function replyNotifyView(noti) {
 		var re_no = noti.parent().data("no");
 		var mem_id = noti.find(".hideId").html();
+		var com_id = "${stVo.com_id}"
+		var sst_id = "${stVo.st_id}"
+		$("#modalNotifyDefault").find("input:text[name='com_id']").val(com_id)
+		$("#modalNotifyDefault").find("input:text[name='st_id']").val(sst_id)
 		$("#modalNotifyDefault").find("input:text[name='re_no']").val(re_no)
 		$("#modalNotifyDefault").find("input:text[name='mem_id']").val(mem_id)
 	}
@@ -527,8 +531,9 @@ var st_name = "${stVo.st_name}";
 					<form id="formNotify">
 						<div id = "modalNotifyDefault" style="display:none;">
 							<input name = "re_no" />
-							<input name = "fbo_no" />
-							<input name = "mem_id" />
+							<input name = "com_id" />
+							<input name = "st_id" />
+							<input name = "mem_id" id = "mem_id_defalut"/>
 						</div>
 						<div class = " form-group">
 							<label for="recipient-name" class="col-form-label">신고 이유</label>

@@ -103,14 +103,16 @@
 							fbo_no,
 							nof_content,
 							nof_type,
-							com_id
+							com_id,
+							st_id
 							) 
 					VALUES(	nof_seq.NEXTVAL,
 							#{mem_id},
 							#{fbo_no},
 							#{nof_content},
 							#{nof_type},
-							#{com_id}
+							#{com_id},
+							#{st_id}
 							)
 	</insert>
 </mapper>
