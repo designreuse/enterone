@@ -118,7 +118,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section-title" style="margin-bottom: 0;">
-						<h3 align="center" style="padding: 15px">GOODS SHOP</h3>
+						<h3 align="center" style="padding: 15px">S T O R E</h3>
 					</div>
 					<div class="featured__controls">
 						<ul>

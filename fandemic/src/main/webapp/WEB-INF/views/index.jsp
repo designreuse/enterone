@@ -229,16 +229,16 @@ ul.tabs li {
 	display: inline-block;  /* 이거 다르게 주면 줄바꿈 될거같은데 */
 	padding: 10px 25px;
 	cursor: pointer;
-	/* border : 1px solid #8ac121; */
+	/* border : 1px solid #4176E0; */
 }
 
 ul.tabs li.current {
-	border-top: 2px solid #8ac121;
+	border-top: 2px solid #4176E0;
 	background: #FDFDFD;
 }
 
 ul.tabs li.current span {
-	color: #8ac121;
+	color: #4176E0;
 }
 
 .tab-content {
@@ -305,11 +305,10 @@ hr {
 					</div>
 					<div class="owl-carousel owl-theme" id="headline">
 						<div class="item">
-							<a href="#"><div class="badge">Tip!</div> Vestibulum ante
-								ipsum primis in faucibus orci</a>
+							<a href="${pageContext.request.contextPath}/company"><div class="badge">W!TH</div> 스타와 팬이 함께하는 우리만의 공간</a>
 						</div>
 						<div class="item">
-							<a href="#">Ut rutrum sodales mauris ut suscipit</a>
+							<a href="${pageContext.request.contextPath}/audition/auditionwork"><div class="badge">HOT</div> 누구나 스타가 될 수 있는 e-One에서 당신의 끼를 보여주세요.</a>
 						</div>
 					</div>
 				</div>
@@ -467,11 +466,11 @@ hr {
 					<!-- 멜론차트 -->
 					<div id="tab-1" class="tab-content current">
 						<div align="right">
-							<a style="color: #00b523;" href="https://www.melon.com/chart/index.htm" target="_blank"> >바로가기</a>
+							<a style="color: #022AD5;" href="https://www.melon.com/chart/index.htm" target="_blank"> >바로가기</a>
 						</div>
 						<table>
 							<c:forEach items="${melon}" var="mel">
-								<tr style="border-bottom: 1pt solid #8ac121;">
+								<tr style="border-bottom: 1pt solid #f2f2f2;">
 									<td style="padding: 5px; width: 50px"><h6>${mel.no}</h6></td>
 									<td style="padding: 5px"><img src="${mel.img}" alt="melon"
 										style="width: 35px; height: 35px;"></td>
@@ -491,11 +490,11 @@ hr {
 
 					<div id="tab-2" class="tab-content" style="width: 90%">
 						<div align="right">
-							<a style="color: #00b523;" href="https://www.kobis.or.kr/kobis/business/stat/boxs/findDailyBoxOfficeList.do" target="_blank"> >바로가기</a>
+							<a style="color: #022AD5;" href="https://www.kobis.or.kr/kobis/business/stat/boxs/findDailyBoxOfficeList.do" target="_blank"> >바로가기</a>
 						</div>
 						<table style="width: 100%">
 							<c:forEach items="${movie}" var="mv">
-								<tr style="border-bottom: 1pt solid #8ac121;">
+								<tr style="border-bottom: 1pt solid #4176E0;">
 									<td style="padding: 5px; width: 50px"><h6>${mv.rank}</h6></td>
 									<td style="padding: 5px;">
 										<div>${mv.movieNm}</div>
@@ -510,11 +509,11 @@ hr {
 
 					<div id="tab-3" class="tab-content" style="width: 90%">
 					<div align="right">
-						<a style="color: #00b523;" href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01" target="_blank"> >바로가기</a>
+						<a style="color: #022AD5;" href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01" target="_blank"> >바로가기</a>
 					</div>
 						<table style="width: 100%">
 							<c:forEach items="${rating}" var="ra">
-								<tr style="border-bottom: 1pt solid #8ac121;">
+								<tr style="border-bottom: 1pt solid #4176E0;">
 									<td style="padding: 5px; width: 50px"><h6>${ra.no}</h6></td>
 									<td style="padding: 5px;">
 										<c:if test="${fn:length(ra.name) > 10 }">
