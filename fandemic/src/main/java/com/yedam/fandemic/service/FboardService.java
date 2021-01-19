@@ -3,6 +3,7 @@ package com.yedam.fandemic.service;
 import java.util.List;
 
 import com.yedam.fandemic.vo.Fboard;
+import com.yedam.fandemic.vo.Notify;
 
 public interface FboardService {
 	public List<Fboard> getFboardList(Fboard fboard);
@@ -15,4 +16,5 @@ public interface FboardService {
 	public int updateFboard(Fboard fboard);
 	public int updateFboardViews(Fboard fboard);
 	public int deleteFboard(Fboard fboard);
+	public int insertfBoardNotify(Notify notify);
 }

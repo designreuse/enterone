@@ -20,6 +20,7 @@ import com.yedam.fandemic.service.FboardService;
 import com.yedam.fandemic.service.StarService;
 import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Member;
+import com.yedam.fandemic.vo.Notify;
 import com.yedam.fandemic.vo.Paging;
 
 @Controller
@@ -114,4 +115,12 @@ public class FboardController {
       fboardService.deleteFboard(fboard);
       return true;
    }
+   
+	//신고 입력
+	@RequestMapping(value="/star/fanBoard/notify", method=RequestMethod.POST)
+	@ResponseBody
+	public boolean notifyInsert(HttpServletRequest request, Notify notify) throws IOException {
+		fboardService.insertfBoardNotify(notify);
+		return true;
+	}
 }

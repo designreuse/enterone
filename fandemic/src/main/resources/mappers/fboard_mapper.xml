@@ -96,4 +96,21 @@
 		DELETE FROM fboard 
 		WHERE fbo_no = #{fbo_no}
 	</delete>
+	
+	<insert id="insertfBoardNotify" parameterType="Notify">
+		INSERT INTO notify(	nof_no,
+							mem_id,
+							fbo_no,
+							nof_content,
+							nof_type,
+							com_id
+							) 
+					VALUES(	nof_seq.NEXTVAL,
+							#{mem_id},
+							#{fbo_no},
+							#{nof_content},
+							#{nof_type},
+							#{com_id}
+							)
+	</insert>
 </mapper>

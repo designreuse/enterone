@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.yedam.fandemic.impl.FboardMapper;
 import com.yedam.fandemic.service.FboardService;
 import com.yedam.fandemic.vo.Fboard;
+import com.yedam.fandemic.vo.Notify;
 
 @Service
 public class FboardServiceImpl implements FboardService{
@@ -61,6 +62,11 @@ public class FboardServiceImpl implements FboardService{
 	@Override
 	public List<Fboard> getFboardViewsList(Fboard fboard) {
 		return fboardDAO.getFboardViewsList(fboard);
+	}
+
+	@Override
+	public int insertfBoardNotify(Notify notify) {
+		return fboardDAO.insertfBoardNotify(notify);
 	}
 	
 }

@@ -91,6 +91,16 @@ var com_id = "${stVo.com_id}"
 		   }
 		});
 		
+		 //게시물 신고에 디폴트값 등록
+		$("body").on("click",".btnFboardNotify",function(){
+			boardNotifyView();
+		});
+		
+		 //게시물 신고 요청
+		$("body").on("click","#notifyBoardInsertAction",function(){
+			boardNotifyAction();
+		});
+		
 		//게시물 화면 취소버튼
 		$(".btnCancelFboard").on("click",function(){
 		   checkUnload = false; //경고창 중복 제거
@@ -380,7 +390,6 @@ var com_id = "${stVo.com_id}"
 		}
 		
 		//수정 뷰
-		$("#mem_id_defalut").val(data.mem_id);
 		$("input:text[name='fbo_no']").val(data.fbo_no);
 		$("input:text[name='fbo_sub_no']").val(data.fbo_sub_no);
 		$("input:text[name='fbo_title']").val(data.fbo_title);
@@ -390,6 +399,9 @@ var com_id = "${stVo.com_id}"
 		
 		//댓글 defalut값
 		$("input:text[name='sfbo_no']").val(data.fbo_no);
+		
+		//게시물 신고 defalut값
+		$("input:text[name='mem_id_defalut']").val(data.mem_id);
 		
 		$(".fboardListSection").hide();
 		$(".fboardInsertSection").hide();
@@ -419,6 +431,23 @@ var com_id = "${stVo.com_id}"
 		$('form').each(function() {
 		   this.reset();
 		});      
+	}
+	
+	//게시물 신고 내용 초기화
+	function BoardNotifyReset(){
+		$("#formBoardNotify").find("input:text[name='com_id']").val("")
+		$("#formBoardNotify").find("#mem_id_defalut").val("")
+		$("#formBoardNotify").find("textarea[name='nof_content']").val("")
+		$("#formBoardNotify").find("select[name='nof_type'] option:eq(0)").prop("selected", true);
+	}
+	
+	//댓글 신고 내용 초기화
+	function ReplyNotifyReset(){
+		$("#formNotify").find("input:text[name='re_no']").val("")  
+		$("#formNotify").find("input:text[name='com_id']").val("")
+		$("#formNotify").find("#mem_id_defalut").val("")
+		$("#formNotify").find("textarea[name='nof_content']").val("")
+		$("#formNotify").find("select[name='nof_type'] option:eq(0)").prop("selected", true);
 	}
    
 //유효성 체크
@@ -573,6 +602,33 @@ var com_id = "${stVo.com_id}"
           } 
       });
    }
+   
+   //게시글 신고 버튼 시 모달에 값 담음
+	function boardNotifyView() {
+		BoardNotifyReset();
+	   	var mem_id_defalut = $("input:text[name='mem_id_defalut']").val();
+		$("#modalBoardNotifyDefault").find("input:text[name='com_id']").val(com_id)
+		$("#modalBoardNotifyDefault").find("#mem_id_defalut").val(mem_id_defalut)
+	}
+	
+	//게시글 신고 요청
+	function boardNotifyAction(){
+	   $.ajax({ 
+	       url: "${pageContext.request.contextPath}/star/fanBoard/notify/",  
+	       type: 'POST',  
+	       data : $("#formBoardNotify").serialize(),
+	       success: function(response) {
+	          if(response == true) {
+	        	  alert("신고가 접수 되었습니다.");
+	        	  $('#notifyBoardModal').modal("hide");
+	          }
+	       }, 
+	       error:function(xhr, status, message) { 
+	           /* alert(" status: "+status+" er:"+message); */
+	           alert("로그인 후 이용해주세요.");
+	       }
+	    });
+	}
    
    
    
@@ -746,7 +802,8 @@ var com_id = "${stVo.com_id}"
    
 	//댓글 신고 버튼 시 모달에 값 담음
 	function replyNotifyView(noti) {
-		/* $(".form-group").empty() */
+		ReplyNotifyReset();
+		
 		var re_no = noti.parent().data("no");
 		var mem_id = noti.find(".hideId").html();
 		$("#modalNotifyDefault").find("input:text[name='com_id']").val(com_id)
@@ -889,6 +946,7 @@ var com_id = "${stVo.com_id}"
          <input style="display:none;" name = "st_id" value="${stVo.st_id}"/>
          <input style="display:none;" name = "fbo_no" />
          <input style="display:none;" name = "fbo_sub_no" />
+         <input style="display:none;" name = "mem_id_defalut" />
          <div class="row starCenter">
             <div class="col-xl-1 col-md-3 col-4">말머리</div>
             <div class="col-xl-2 col-md-9 col-8">
@@ -957,7 +1015,7 @@ var com_id = "${stVo.com_id}"
 						<div id = "modalNotifyDefault" style="display:none;">
 							<input name = "re_no" />
 							<input name = "com_id" />
-							<input name = "mem_id" />
+							<input name = "mem_id" id = "mem_id_defalut"/>
 						</div>
 						<div class = "form-group">
 							<label for="recipient-name" class="col-form-label">신고 이유</label>
@@ -997,11 +1055,11 @@ var com_id = "${stVo.com_id}"
 					</button>
 				</div>
 				<div class="modal-body">
-					<form id="formNotify">
-						<div id = "modalNotifyDefault" style="display:none;">
+					<form id="formBoardNotify">
+						<div id = "modalBoardNotifyDefault" style="display:none;">
 							<input name = "fbo_no" />
 							<input name = "com_id" />
-							<input name = "mem_id_defalut" />
+							<input name = "mem_id" id = "mem_id_defalut"/>
 						</div>
 						<div class = "form-group">
 							<label for="recipient-name" class="col-form-label">신고 이유</label>
@@ -1022,7 +1080,7 @@ var com_id = "${stVo.com_id}"
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary" id="notifyInsertAction">신고</button>
+					<button type="button" class="btn btn-primary" id="notifyBoardInsertAction">신고</button>
 				</div>
 			</div>
 		</div>
