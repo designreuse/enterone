@@ -11,6 +11,14 @@
 	type="text/javascript"></script>
 
 <style>
+#sidebar_noid { 
+background-color: gray;
+    border-radius: 20px;
+    height: 700px;
+    position: fixed;
+    width: 400px;
+    opacity: 80%;
+}
 #textarea_modaldetail{
 min-height: 100px;
 width: 100%;
@@ -1152,14 +1160,8 @@ resize: none;
 												<!-- 좋아요 -->
 													<c:choose>
 														<c:when test="${sns.lik == 'Y' and sns.mem_id != sessionScope.member.mem_id}">
-															<a href="#" class="love active" data-no="${sns.sns_no}">
-																<i class="ion-android-favorite"></i>
-																<div>${sns.sns_likes}</div>
-															</a>
-														</c:when>
-														<c:when test="${sns.lik == 'Y' and sns.mem_id == sessionScope.member.mem_id}">
-															<a href="#" class="love" data-no="mysns">
-																<i class="ion-android-favorite-outline"></i>
+						
+												<i class="ion-android-favorite-outline"></i>
 																<div>${sns.sns_likes}</div>
 															</a>
 														</c:when>
@@ -1253,7 +1255,7 @@ resize: none;
 
 			<!-- 사이드바 구역 -->
 			<!-- 로그인 됨 -->
-			<c:if test="${member.mem_id ne null or company.com_id ne null}">
+			<c:if test="${member.mem_id ne null}">
 
 				<div class="col-xs-6 col-md-4 sidebar" id="sidebar">
 					<div class="sidebar-title for-tablet">Sidebar</div>
@@ -1441,7 +1443,7 @@ resize: none;
 			<!-- 로그인 안됨 -->
 
 
-			<c:if test="${member.mem_id eq null}">
+			<c:if test="${member.mem_id eq null or member.mem_id eq ''}">
 
 				<div class="col-xs-6 col-md-4 sidebar" id="sidebar">
 					<div class="sidebar-title for-tablet">Sidebar</div>
@@ -1450,169 +1452,27 @@ resize: none;
 							<div class="featured-author">
 								<div class="featured-a;;/uthor-inner">
 									<div class="featured-author-cover"
-										style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlxjchU3nSVmv0TUW_Df4YzVhWyWtk3nHy3g&usqp=CAU');">
-										<div class="badges">
-											<div class="badge-item">
-												<i class="ion-star"></i> Featured
-											</div>
-										</div>
+										id="sidebar_noid">
+										
 										<div class="featured-author-center">
 											<figure class="featured-author-picture">
 												<p>
-													<img src="${member.mem_pic}" alt="Sample Article">
+													<img src="${pageContext.request.contextPath}/resources/images/company/Default.png" alt="Sample Article">
 												</p>
 											</figure>
 											<div class="featured-author-info">
-												<h2 class="name">${member.mem_id}</h2>
-												<div class="desc">${member.mem_email}</div>
+												<h2 class="name">개인 회원으로 <br>로그인을 해주세요</h2>
+												<div class="desc"></div>
 											</div>
 										</div>
 									</div>
-									<div class="featured-author-body">
-										<div class="featured-author-count">
-											<div class="item">
-												<a href="#">
-													<div class="name">Posts</div>
-													<div class="value">${countmysns}</div>
-												</a>
-											</div>
-											<div class="item">
-												<a href="#">
-													<div class="name">Likes</div>
-													<div class="value">좋아요 받은 개수</div>
-												</a>
-											</div>
-											letter
-											<div class="letter">
-												<a href="#">
-													<div class="name">쪽지</div>
-													<div class="value">좋아요 받은 개수</div>
-												</a>
-											</div>
-										</div>
-										<div class="featured-author-quote">"Eur costrict mobsa
-											undivani krusvuw blos andugus pu aklosah"</div>
-										<div class="block">
-											<h2 class="block-title">Photos</h2>
-											<div class="block-body">
-												<ul class="item-list-round" data-magnific="gallery">
-													<c:forEach items="${mysnslist }" var="mySns">
-
-														<li><a href="${mySns.sns_pic}"
-															style="background-image: url('/images/snsimage/${mySns.sns_pic}');"></a></li>
-
-
-													</c:forEach>
-												</ul>
-											</div>
-										</div>
-										<div class="featured-author-footer">
-											<a href="#">See All Authors</a>
-										</div>
-									</div>
+									
 								</div>
 							</div>
 						</div>
 					</aside>
-					<aside>
-						<h1 class="aside-title">
-							Popular <a href="#" class="all">See All <i
-								class="ion-ios-arrow-right"></i></a>
-						</h1>
-						<div class="aside-body">
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img src="images/news/img07.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">좋아요 많이 받은 내글 </a>
-										</h1>
-									</div>
-								</div>
-							</article>
-						</div>
-					</aside>
-					<aside>
-						<ul class="nav nav-tabs nav-justified" role="tablist">
-							<li class="active"><a href="#recomended"
-								aria-controls="recomended" role="tab" data-toggle="tab"> <i
-									class="ion-android-star-outline"></i> Random Post
-							</a></li>
-							<li><a href="#comments" aria-controls="comments" role="tab"
-								data-toggle="tab"> <i class="ion-ios-chatboxes-outline"></i>
-									Comments
-							</a></li>
-						</ul>
-
-						<!-- Random Post --------------------------------------------------------------------------------- -->
-						<div class="tab-content">
-							<div class="tab-pane active" id="recomended">
-								<article class="article-fw">
-									<div class="inner">
-										<figure>
-											<a href="single.html"> <img src="images/news/img16.jpg"
-												alt="Sample Article">
-											</a>
-										</figure>
-										<div class="details">
-											<div class="detail">
-												<div class="time">December 31, 2016</div>
-												<div class="category">
-													<a href="category.html">Sport</a>
-												</div>
-											</div>
-											<h1>
-												<a href="single.html">큰 랜덤 포스트</a>
-											</h1>
-											<p>랜덤 포스트 글</p>
-										</div>
-									</div>
-								</article>
-								<div class="line"></div>
-								<article class="article-mini">
-									<div class="inner">
-										<figure>
-											<a href="single.html"> <img src="images/news/img10.jpg"
-												alt="Sample Article">
-											</a>
-										</figure>
-										<div class="padding">
-											<h1>
-												<a href="single.html">램덤 글 출력됨
-													<div class="detail">
-														<div class="category">
-															<a href="category.html">PostDate</a>
-														</div>
-														<div class="time">December 20, 2016</div>
-													</div>
-										</div>
-									</div>
-								</article>
-							</div>
-
 							<!-- 댓글 확인------------------------------------------------------------------------------------------------- -->
-							<div class="tab-pane comments" id="comments">
-								<div class="comment-list sm">
-									<div class="item">
-										<div class="user">
-											<figure>
-												<img src="${member.mem_pic }" alt="User Picture">
-											</figure>
-											<div class="details">
-												<h5 class="name">${member.mem_id }</h5>
-												<div class="description">${member.mem_email }</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
-					</aside>
-				</div>
 			</c:if>
 		</div>
 	</div>
@@ -1634,12 +1494,12 @@ resize: none;
 					<input class="snsns" name="snsns" id="snsns" style="display: none;">
 					<input class="lett_nono" name="lett_no" style="display: none;">
 					<input type="text" class="form-control mem_id" id="mamber-name"
-						name="mem_id" style="display: none">
+						name="lett_sid" style="display: none">
 					<!-- 받은회원, 내 아이디 -->
 					<div class="form-group">
 						<label for="recipient-name" class="col-form-label ">받는회원
 							ID: </label> <input type="text" class="form-control lett_sid"
-							id="recipient-mname" name="lett_sid">
+							id="recipient-mname" name="mem_id">
 					</div>
 					<div class="form-group">
 						<label for="recipient-name" class="col-form-label ">쪽지 제목:

@@ -45,15 +45,10 @@
 	TR_NAME=#{tr_name},
 	TR_BRANCH1=#{tr_branch1},
 	TR_BRANCH2=#{tr_branch2},
-	TR_CONTENT=#{tr_content},
-	WHERE MEM_ID=#{mem_id};
+	TR_CONTENT=#{tr_content}
+	WHERE MEM_ID=#{mem_id}
 	</update>
-	
-	
-	
-	
-	
-	
+
 	<!-- 연습생활동 전체(최신순) 목록 -->
 	<select id="selectac" resultType="Activity">
 		SELECT * FROM ACTIVITY ORDER BY

@@ -25,6 +25,11 @@ public interface MypageMapper {
 	public List<Letter> selectMail(Letter letter); // 쪽지 조회하기
 	public Letter OneMailSelect (Letter letter); //쪽지 단건 조회
 	public int deletemail (Letter letter);	//쪽지 삭제
+//보낸쪽지
+	public int getYourletterCount(Letter letter); //쪽지 페이지네이션
+	public List<Letter> selectYourMail(Letter letter); // 쪽지 조회하기
+	
+	
 // 1o1 (qna)
 	public int SendQnA (QnA qna); //QnA 보내기
 	public int getQnACount(QnA qna); //Qna 페이지네이션

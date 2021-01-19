@@ -32,8 +32,8 @@ public interface AuditionService {
 	//연습생 활동 목록
 	public List<Activity> selectac(Activity activity);
 	//연습생 수정
-	public int traineeUpdate(Trainee trainee);
+	public void traineeUpdate(Trainee trainee);
 	//연습생 수정을 위한 조회
-	public List<Trainee> traineeUpdateselect(Trainee trainee);
+	public Trainee traineeUpdateselect(Trainee trainee);
 	
 }
