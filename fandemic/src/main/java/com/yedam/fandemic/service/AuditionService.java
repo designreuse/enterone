@@ -16,7 +16,7 @@ public interface AuditionService {
 	//활동지원글 수정
 	public int activityUpdate(Activity activity);
 	//연습생 활동 수정을 위한 조회
-	public List<Activity> activityUpdateselect(Activity activity);
+	public Activity activityUpdateselect(Activity activity);
 	//활동지원글 삭제
 	public int activityDelete(Activity activity);
 	//오디션 공고 목록
@@ -35,5 +35,7 @@ public interface AuditionService {
 	public void traineeUpdate(Trainee trainee);
 	//연습생 수정을 위한 조회
 	public Trainee traineeUpdateselect(Trainee trainee);
+	//조회수 증가
+	public int updateActivityhits(Activity activity);
 	
 }

@@ -33,7 +33,7 @@ public class AuditionServiceImpl implements AuditionService {
 		return auditionmapper.activityUpdate(activity);
 	}
 	@Override
-	public List<Activity> activityUpdateselect(Activity activity) {
+	public Activity activityUpdateselect(Activity activity) {
 		
 		return auditionmapper.activityUpdateselect(activity);
 	}
@@ -81,6 +81,12 @@ public class AuditionServiceImpl implements AuditionService {
 	public Trainee traineeUpdateselect(Trainee trainee) {
 		// TODO Auto-generated method stub
 		return auditionmapper.traineeUpdateselect(trainee);
+	}
+
+	@Override
+	public int updateActivityhits(Activity activity) {
+		// TODO Auto-generated method stub
+		return auditionmapper.updateActivityhits(activity);
 	}
 
 }

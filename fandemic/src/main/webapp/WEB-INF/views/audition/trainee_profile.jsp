@@ -17,7 +17,6 @@
 	src="${pageContext.request.contextPath}/resourcesGoods/js/main.js"></script>
 
 <script>
-	
 </script>
 
 <style>
@@ -56,21 +55,22 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="product__details__text">
 						<h3>${activity.ac_title}</h3>
-						<div>${activity.ac_content}</div>
-						<div>${activity.ac_time}</div>
+						<h5>${activity.ac_time}</h5>
+						<div style="margin-top: 35px;">
+						<h4>${activity.ac_content}</h4></div>
+						
 						<ul>
-							<li><b>좋아요 수</b> <span></span></li>
-							<li><b>조회수</b> <span></span></li>
+							<li><b>좋아요 수</b> <span>${activity.ac_likes}</span></li>
+							<li><b>조회수</b> <span>${activity.ac_hits}</span></li>
 						</ul>
-						<div class="product__details_orderform">
-							<div class="product__details__quantity"></div>
-							<button type="button" class="primary-btn" id="like">좋아요</button>
-						</div>
 
 						<div class="row">
-							<div class="starRight">
+							<div class="starRight" style="margin-left: 500px; margin-top: -75px;">
+							<c:if test="${sessionScope.member.mem_id eq activity.mem_id}">
 								<button type="button" class="btn btn-primary py-2 px-4"
-									id="btnUpdateactivity" onclick="location.href='${pageContext.request.contextPath}/audition/activityupdate'">수정</button>
+									id="btnUpdateactivity" onclick="location.href='${pageContext.request.contextPath}/audition/activityupdate'">수정</button></c:if>
+									<button type="button" class="btn btn-primary py-2 px-4" style="margin-top:8px;" onclick="location.href='${pageContext.request.contextPath}/audition/auditionwork'">목록</button>
+									
 							</div>
 						</div>
 					</div>

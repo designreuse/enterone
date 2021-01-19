@@ -31,7 +31,7 @@
 		#{tr_branch1},
 		#{tr_branch2})
 	</insert>
-	
+
 	<!-- 연습생 정보 수정하기 위한 select -->
 	<select id="traineeUpdateselect" parameterType="Trainee"
 		resultType="Trainee">
@@ -41,12 +41,12 @@
 	</select>
 	<!-- 연습생 수정 -->
 	<update id="traineeUpdate" parameterType="Trainee">
-	UPDATE TRAINEE SET TR_PIC=#{tr_pic},
-	TR_NAME=#{tr_name},
-	TR_BRANCH1=#{tr_branch1},
-	TR_BRANCH2=#{tr_branch2},
-	TR_CONTENT=#{tr_content}
-	WHERE MEM_ID=#{mem_id}
+		UPDATE TRAINEE SET TR_PIC=#{tr_pic},
+		TR_NAME=#{tr_name},
+		TR_BRANCH1=#{tr_branch1},
+		TR_BRANCH2=#{tr_branch2},
+		TR_CONTENT=#{tr_content}
+		WHERE MEM_ID=#{mem_id}
 	</update>
 
 	<!-- 연습생활동 전체(최신순) 목록 -->
@@ -79,7 +79,7 @@
 
 	</insert>
 
-	<!-- 연습생 활동 지원 글 수정하기 위한 select -->
+	<!-- 연습생 활동 글 수정하기 위한 select -->
 	<select id="activityUpdateselect" parameterType="Activity"
 		resultType="Activity">
 		SELECT *
@@ -120,7 +120,7 @@
 	<!-- <select id="getComList" parameterType="Aboard" resultType="Aboard"> 
 		SELECT * FROM ABOARD WHERE COM_ID=#{com_id} ORDER BY ABO_NO DESC </select> -->
 
-	<!-- 단건 조회 -->
+	<!-- 오디션 목록 단건 조회 -->
 	<select id="getAboardInfo" parameterType="Aboard"
 		resultType="Aboard">
 		SELECT *
@@ -175,4 +175,10 @@
 		WHERE MEM_ID = #{mem_id}
 	</select>
 
+	<!-- 연습생활동 조회수 -->
+	<update id="updateActivityhits" parameterType="Activity">
+		UPDATE ACTIVITY 
+		SET AC_HITS = AC_HITS+1 
+		WHERE AC_NO=#{ac_no}
+	</update>
 </mapper>

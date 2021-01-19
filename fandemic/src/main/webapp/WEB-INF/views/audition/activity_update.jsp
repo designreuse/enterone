@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="cf"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -98,7 +96,6 @@
 					<div class="col-md-12">
 						<h3 class="title">활동지원 글 수정</h3>
 					</div>
-					<c:forEach var="activity" items="${AcworkList}">
 						<form method="post" id="frm"
 							action="${pageContext.request.contextPath}/audition/activityupdatesend" encType="multipart/form-data">
 							<table class="myinfo" border="1" id="dataTable">
@@ -106,7 +103,7 @@
 									<th class="tilt"><b>게시물번호</b></th>
 									<td colspan="3" class="readolytexttd"><input type="text"
 										class="readolytext form-control" readonly
-										value="${activity.ac_no}" name="ac_no" id="ac_no"></td>
+										value="${AcworkList.ac_no}" name="ac_no" id="ac_no"></td>
 								</tr>
 
 
@@ -114,24 +111,24 @@
 									<td class="tilt" rowspan="9"><img
 										style="max-width: 7cm; max-height: 9cm;" id="ex2_file"
 										name="ac_file"
-										src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}"></td>
+										src="${pageContext.request.contextPath}/images/audition/${AcworkList.ac_file}"></td>
 
 									<th class="tilt"><b>제목</b></th>
 									<td colspan="3" class="readolytexttd"><input type="text" 
-										class="readolytext form-control" value="${activity.ac_title}"
+										class="readolytext form-control" value="${AcworkList.ac_title}"
 										name="ac_title" id="ac_title"></td>
 								</tr>
 
 								<tr>
 									<th class="tilt"><b>내용</b></th>
 									<td><input type="text" name="ac_content" id="ac_content"
-										value="${activity.ac_content}"
+										value="${AcworkList.ac_content}"
 										style="width: 100%; height: 90px;" ></td>
 								</tr>
 								<tr>
 									<th class="tilt"><b>첨부파일</b></th>
 									<td class="readolytexttd"><input type="file"
-										value="${activity.ac_file}" name="ex2_file" id="ac_file"
+										value="${AcworkList.ac_file}" name="ex2_file" id="ac_file"
 										class="form-control" required /></td>
 								</tr>
 
@@ -147,7 +144,6 @@
 								</tr>
 							</table>
 						</form>
-					</c:forEach>
 				</div>
 			</div>
 		</div>

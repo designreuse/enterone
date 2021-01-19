@@ -48,13 +48,6 @@ public class AuditionController {
 
 	}
 
-	// 연습생 프로필
-	@RequestMapping(value = "/audition/auditionprofile") // 주소
-	public ModelAndView auditionprofile(HttpServletResponse response) throws IOException {
-		return new ModelAndView("audition/trainee_profile");
-
-	}
-
 	// 연습생 등록 페이지
 	@RequestMapping(value = "/audition/traineeinsert") // 주소
 	public ModelAndView traineeinsert(HttpServletResponse response) throws IOException {
@@ -79,7 +72,7 @@ public class AuditionController {
 		// request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String sumFile = "";
-		
+
 		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
 		for (int i = 0; i < multipartFile.size(); i++) {
 			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
@@ -120,7 +113,7 @@ public class AuditionController {
 		return "redirect:/audition/auditionwork";
 	}
 
-	// 닉네임인 중복확인
+	// 연습생 닉네임인 중복확인
 	@RequestMapping(value = "/audition/nickCheck")
 	@ResponseBody
 	public int nickId(Model model, Trainee trainee) throws IOException {
@@ -187,16 +180,16 @@ public class AuditionController {
 	// 연습생 활동 글수정 페이지
 	@RequestMapping(value = "/audition/activityupdate")
 	public ModelAndView activityupdate(Model model, Activity activity, HttpSession session) throws IOException {
-
 		Member member = (Member) session.getAttribute("member"); // 세션에 저장해둔 member 불러오기
 		activity.setMem_id(member.getMem_id()); // activity에 아이디를 넣은거
 		model.addAttribute("AcworkList", auditionMapper.activityUpdateselect(activity));
+
 		return new ModelAndView("audition/activity_update");
 	}
 
 	// 연습생 활동 글 수정
 	@RequestMapping(value = "/audition/activityupdatesend")
-	public String UpdateAboard(HttpServletRequest request, Model model, Activity activity)
+	public String UpdateActivity(HttpServletRequest request, Model model, Activity activity)
 			throws IllegalStateException, IOException {
 		// request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -230,7 +223,7 @@ public class AuditionController {
 	public ModelAndView ActivityDetail(@PathVariable String mem_id, Activity activity, Model model) throws IOException {
 		// 단건
 		activity.setMem_id(mem_id);
-		model.addAttribute(auditionMapper.activityDetail(activity));
+		model.addAttribute("activity", auditionMapper.activityDetail(activity));
 		return new ModelAndView("audition/trainee_profile");
 	}
 
@@ -259,6 +252,15 @@ public class AuditionController {
 		auditionservice.insertau(audition);
 		model.addAttribute("msg", "등록됐습니다.");
 		return "redirect:/auditionAboard/list";
+	}
+
+	// 연습생 활동 조회수 증가
+	@RequestMapping(value = "/audtion/hitsUpdate", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean hitsUpdate(HttpServletRequest request, Activity activity) throws IOException {
+		activity.setAc_no(request.getParameter("ac_no"));
+		auditionservice.updateActivityhits(activity);
+		return true;
 	}
 
 }

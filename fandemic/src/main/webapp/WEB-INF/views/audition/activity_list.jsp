@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="resources/owlcss/owl.theme.default.min.css">
 <script src="resources/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
 
+
 <script>
 	$(document).ready(function() {
 
@@ -37,7 +38,35 @@
 			},
 			scrollPerPage : true
 		})
+	$(".hits").click(function(e){
+		var ac_no = $(this).siblings().first().html();
+		updateActivityhits(ac_no);
 	});
+		
+		$(".btn-like").click(function() {
+			$(this).toggleClass("done");
+		})
+		
+		
+		
+		
+	});
+
+	//게시물 조회수 증가
+	function updateActivityhits(ac_no) {
+	   $.ajax({ 
+	       url: "${pageContext.request.contextPath}/audtion/hitsUpdate", 
+	       type: 'POST', 
+	       data : { ac_no : ac_no },
+	       success:function(result) {
+	    	   console.log(result)
+	       },
+	       error:function(xhr, status, message) { 
+	           alert(" status: "+status+" er:"+message);
+	       } 
+	   });
+	}
+
 </script>
 <style>
 p {
@@ -87,12 +116,23 @@ p {
 .text-center {
 	margin-top: 50px;
 }
+.btn-like {
+  color: transparent;
+  text-shadow: 0 0 2px rgba(255,255,255,.7), 0 0 0 #000;
+}
+.btn-like:hover {
+  text-shadow: 0 0 0 #ea0;
+}
+.btn-like.done {
+  color: inherit;
+  text-shadow: 0;
+}
+.btn-like.done:hover {
+  color: transparent;
+  text-shadow: 0 0 0 #777;
+}
 </style>
-<script>
-	$(".btn-like").click(function() {
-		$(this).toggleClass("done");
-	})
-</script>
+
 </head>
 <body>
 	<section class="page">
@@ -103,10 +143,11 @@ p {
 					style="color: black; font-size: 50px; margin-top: 5px;">연습생 활동</h1>
 				<div>
 					<button type="button" class="btn btn-primary" id="but">TOP05/NEW05</button>
-					<%-- <c:if test="${trainee.mem_id ne null}"> --%>  <%--$는 컨트롤러에서 넘어오는거 --%>
-						<button type="button" class="btn btn-primary" id="but2"
-							style="float: right; margin-top: -58px;"
-							onclick="location.href='activityinsert'">글 등록</button>
+					<%-- <c:if test="${trainee.mem_id ne null}"> --%>
+					<%--$는 컨트롤러에서 넘어오는거 --%>
+					<button type="button" class="btn btn-primary" id="but2"
+						style="float: right; margin-top: -58px;"
+						onclick="location.href='activityinsert'">글 등록</button>
 					<%--  </c:if> --%>
 				</div>
 				<div>
@@ -153,68 +194,64 @@ p {
 				</div>
 				<div>
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="col-md-3 col-sm-3 col-xs-3">
-							<button type="button" class="btn btn-primary" id="but1">전체</button>
-							<button type="button" class="btn btn-primary" id="but1">연습생
-								활동</button>
-						</div>
 						<div class="col-md-3 col-sm-3 col-xs-3"></div>
 
-
+						<div class="col-md-3 col-sm-3 col-xs-3"></div>
+						<div class="col-md-3 col-sm-3 col-xs-3"></div>
 						<div class="col-md-3 col-sm-3 col-xs-3">
-							<div class="dropdown">
+							<div class="dropdown" ">
 								<button class="btn btn-primary dropdown-toggle" type="button"
-									id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="true">
-									최신순/인기순 <span class="caret"></span>
+									data-toggle="dropdown" style="margin-left:170px">
+									전체 <span class="caret"></span>
 								</button>
-								<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<ul class="dropdown-menu">
 									<li><a href="#">최신순</a></li>
 									<li><a href="#">인기순</a></li>
-									<li role="separator" class="divider"></li>
 								</ul>
 							</div>
-
 						</div>
-						<div class="col-md-3 col-sm-3 col-xs-3"></div>
-					</div>
-				</div>
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<div class="row">
-						<c:forEach var="activity" items="${AcworkList}">
-							<div class="col-md-3 col-sm-3 col-xs-3">
-								<div class="thumbnail">
-									<img
-										src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}"
-										alt="...">
-									<div class="caption">
-										<a
-											href="${pageContext.request.contextPath}/ActivityDetail/${activity.ac_title}"><p>${sessionScope.member.mem_id}</p></a>
-										<p>${activity.ac_content}</p>
-										<p>${activity.ac_hits}</p>
-										<p>${activity.ac_likes}</p>
-										<p>
-											<a href="#" class="btn btn-primary" role="button">Button</a>
 
-										</p>
-									</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<c:forEach var="activity" items="${AcworkList}">
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<div class="thumbnail">
+								<img
+									src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}"
+									alt="...">
+								<div class="caption">
+									<p style="display:none">${activity.ac_no}</p>
+									<a class="hits" href="${pageContext.request.contextPath}/ActivityDetail/${activity.mem_id}">
+									<p>${activity.mem_id}</p></a>
+									<p>${activity.ac_title}</p>
+									<p>${activity.ac_hits}</p>
+									<p>${activity.ac_likes}</p>
+									<p>
+										<button class="btn-like">👍</button>
+
+									</p>
 								</div>
 							</div>
-						</c:forEach>
-					</div>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
-			<!-- paging -->
-					<div align="center">
-							<script>
-								function goPage(p) {
-									location.href = "audition/auditionwork?p=" + p
-								}
-							</script>
+		</div>
+		<!-- paging -->
+		<div align="center">
+			<script>
+				function goPage(p) {
+					location.href = "audition/auditionwork?p=" + p
+				}
+			</script>
 
-							<my:paging paging="${paging}" jsfunc="goPage" />
-					</div>
+			<my:paging paging="${paging}" jsfunc="goPage" />
+		</div>
 
 	</section>
 </body>
