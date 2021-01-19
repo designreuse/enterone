@@ -447,6 +447,7 @@ resize: none;
 				processData : false,
 				success : function(ret) {
 					alert("완료");
+					location.reload();
 				}
 			});
 		});
@@ -879,6 +880,25 @@ resize: none;
 
 		});
 	});
+	$(function(){
+		  var div = $('.sidebar_id'); //헤더를 변수에 넣기
+		  var block = $('.block');
+		  var page = $('.sidebar_id'); //색상이 변할 부분
+		  var pageOffsetTop = page.offset().top; //색상 변할 부분의 top값 구하기
+		  $(window).resize(function(){ //반응형을 대비하여 리사이즈시 top값을 다시 계산
+		    pageOffsetTop = page.offset().top;
+		  });
+		  
+		  $(window).on('scroll', function(){
+		    if($(window).scrollTop() >= pageOffsetTop) { // 스크롤이 page보다 밑에 내려가면
+		      div.addClass('sidebar_iddown'); //클래스 추가
+		      block.addClass('block_iddown');
+		    } else { // 스크롤 올릴 때
+		      div.removeClass('sidebar_iddown'); //클래스 제거
+		      block.removeClass('block_iddown');
+		    }
+		  });
+		});
 </script>
 </head>
 <section class="home">
@@ -1097,6 +1117,7 @@ resize: none;
 						<c:forEach items="${snslist}" var="sns">
 							<span>
 								<div class="dropdown" style="width: 100%;">
+									
 									<button class="dropbtn" type="button" id="dropdownMenu2"
 										data-toggle="dropdown" aria-haspopup="true"
 										aria-expanded="false">
@@ -1115,6 +1136,7 @@ resize: none;
 												alt="member_profile">
 										</c:if>
 									</button>
+									<a id="a_drop_btn" id="dropdownMenu2">${sns.mem_id}</a>
 									<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 										<button class="dropdown-item showprofilebtn" type="button"
 											id="showprofilebtn" data-id="${sns.mem_id}">프로필 보기</button>
@@ -1132,6 +1154,7 @@ resize: none;
 								</div>
 							</span>
 							<c:if test="${not empty sns.sns_pic}">
+								<div id="hoverdiv">
 								<div class="outputdiv" data-no="${sns.sns_no}">
 									<div class="inner cinner">
 										<figure>
@@ -1160,8 +1183,14 @@ resize: none;
 												<!-- 좋아요 -->
 													<c:choose>
 														<c:when test="${sns.lik == 'Y' and sns.mem_id != sessionScope.member.mem_id}">
-						
-												<i class="ion-android-favorite-outline"></i>
+															<a href="#" class="love active" data-no="${sns.sns_no}">
+																<i class="ion-android-favorite"></i>
+																<div>${sns.sns_likes}</div>
+															</a>
+														</c:when>
+														<c:when test="${sns.lik == 'Y' and sns.mem_id == sessionScope.member.mem_id}">
+															<a href="#" class="love" data-no="mysns">
+																<i class="ion-android-favorite-outline"></i>
 																<div>${sns.sns_likes}</div>
 															</a>
 														</c:when>
@@ -1176,12 +1205,14 @@ resize: none;
 										</div>
 									</div>
 								</div>
+								</div>
 							</c:if>
 							<c:if test="${empty sns.sns_pic}">
 								<div class="outputdiv2" data-no="${sns.sns_no}">
 
-									<div class="inner">
-										<div class="inner" style="padding-bottom: 40px;">
+									<div class="inner ">
+							<div id="hoverdiv">
+										<div class="inner cinner">
 											<div class="details" style="padding: 9px; margin: 0px;">
 												<div class="detail">
 													<div class="category">
@@ -1215,6 +1246,7 @@ resize: none;
 											</div>
 										</div>
 									</div>
+								</div>
 								</div>
 							</c:if>
 						</c:forEach>
@@ -1262,9 +1294,8 @@ resize: none;
 					<aside>
 						<div class="aside-body">
 							<div class="featured-author">
-								<div class="featured-a;;/uthor-inner">
-									<div class="featured-author-cover"
-										style=" background-color: dimgrey; border-radius: 20px;">
+								<div class="sidebar_id">
+									<div class="featured-author-cover">
 										<div class="featured-author-center">
 											<figure class="featured-author-picture">
 												<p>
@@ -1296,7 +1327,7 @@ resize: none;
 											</div>
 										</div>
 									</div>
-									<div class="featured-author-body">
+									<div class="featured-author-body" style=" border-radius: 20px;">
 										<div class="featured-author-count">
 											<div class="item btn-myPost" data-id="${member.mem_id}">
 												<a href="#">
@@ -1334,104 +1365,6 @@ resize: none;
 										</div>
 										<div class="featured-author-footer">
 											<a href="#">See All Authors</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</aside>
-					<aside>
-						<h1 class="aside-title">
-							Popular <a href="#" class="all">See All <i
-								class="ion-ios-arrow-right"></i></a>
-						</h1>
-						<div class="aside-body">
-							<article class="article-mini">
-								<div class="inner">
-									<figure>
-										<a href="single.html"> <img src="images/news/img07.jpg"
-											alt="Sample Article">
-										</a>
-									</figure>
-									<div class="padding">
-										<h1>
-											<a href="single.html">좋아요 많이 받은 내글 </a>
-										</h1>
-									</div>
-								</div>
-							</article>
-						</div>
-					</aside>
-					<aside>
-						<ul class="nav nav-tabs nav-justified" role="tablist">
-							<li class="active"><a href="#recomended"
-								aria-controls="recomended" role="tab" data-toggle="tab"> <i
-									class="ion-android-star-outline"></i> Random Post
-							</a></li>
-							<li><a href="#comments" aria-controls="comments" role="tab"
-								data-toggle="tab"> <i class="ion-ios-chatboxes-outline"></i>
-									Comments
-							</a></li>
-						</ul>
-
-						<!-- Random Post --------------------------------------------------------------------------------- -->
-						<div class="tab-content">
-							<div class="tab-pane active" id="recomended">
-								<article class="article-fw">
-									<div class="inner">
-										<figure>
-											<a href="single.html"> <img src="images/news/img16.jpg"
-												alt="Sample Article">
-											</a>
-										</figure>
-										<div class="details">
-											<div class="detail">
-												<div class="time">December 31, 2016</div>
-												<div class="category">
-													<a href="category.html">Sport</a>
-												</div>
-											</div>
-											<h1>
-												<a href="single.html">큰 랜덤 포스트</a>
-											</h1>
-											<p>랜덤 포스트 글</p>
-										</div>
-									</div>
-								</article>
-								<div class="line"></div>
-								<article class="article-mini">
-									<div class="inner">
-										<figure>
-											<a href="single.html"> <img src="images/news/img10.jpg"
-												alt="Sample Article">
-											</a>
-										</figure>
-										<div class="padding">
-											<h1>
-												<a href="single.html">램덤 글 출력됨
-													<div class="detail">
-														<div class="category">
-															<a href="category.html">PostDate</a>
-														</div>
-														<div class="time">December 20, 2016</div>
-													</div>
-										</div>
-									</div>
-								</article>
-							</div>
-
-							<!-- 댓글 확인------------------------------------------------------------------------------------------------- -->
-							<div class="tab-pane comments" id="comments">
-								<div class="comment-list sm">
-									<div class="item">
-										<div class="user">
-											<figure>
-												<img src="${member.mem_pic }" alt="User Picture">
-											</figure>
-											<div class="details">
-												<h5 class="name">${member.mem_id }</h5>
-												<div class="description">${member.mem_email }</div>
-											</div>
 										</div>
 									</div>
 								</div>

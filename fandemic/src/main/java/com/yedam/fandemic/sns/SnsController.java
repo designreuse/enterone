@@ -66,7 +66,7 @@ public class SnsController {
 	// SNS 등록
 	@RequestMapping(value = "/sns/snsInsert")
 	@ResponseBody
-	public boolean snsInsert(HttpServletRequest request, Sns sns) throws IllegalStateException, IOException {
+	public String snsInsert(HttpServletRequest request, Sns sns) throws IllegalStateException, IOException {
 		// request multipart로 캐스팅
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		// 이미지파일
@@ -88,7 +88,7 @@ public class SnsController {
 		sns.setSns_pic(imgname);
 
 		snsdao.insertSns(sns);
-		return true;
+		return "redirect:sns";
 	}
 
 	// SNS 단건조회

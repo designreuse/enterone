@@ -712,7 +712,7 @@ left: 0px;
 }
 
 .outputdiv {
-height:	277px;
+height:	210px;
 margin-bottom: 32px;
 }
 
@@ -835,6 +835,7 @@ margin-bottom: 32px;
 }
 .outputimg {
 	width: 40px;
+	height: 40px;
 	border-radius: 100%;
 	margin: -7px;
 }
@@ -861,10 +862,14 @@ margin-bottom: 32px;
 	margin: 12px;
 	padding: 12px;
 }
-
+#a_drop_btn {
+	font-size: 20px;
+    color: #696969;
+	
+}
 .clickcontentdetail {
 	height: 40px;
-	width: 90%;
+	width: 100%;
 	font-size: 20px;
 	border: 0;
 	border-radius: 11px;
@@ -876,15 +881,35 @@ margin-bottom: 32px;
 .cinner {
 	border-radius: 10px;
 	background-color: floralwhite;
-	margin-bottom: 50px;
 	height: 100%;
 	border-radius: 15px;
+}
+#hoverdiv:hover {
+	border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-top: 5px;
+    background-color: #3c763d42;;
+    
 }
 /* 상세정보 모달창 이미지 테그 */
 .imgdetailimg {
 max-width: 100% !important;
 	max-height: 100% !important;
 	overflow: hidden;
+}
+.sidebar_id {
+    background-color: gray;
+    border-radius: 20px;
+    padding-bottom: 30px;
+    
+    width: 400px;
+}
+.sidebar_iddown {
+margin-top: -130px;	
+position: fixed;
+}
+.block_iddown{
+	    height: 500px;
 }
 .appendiiimmm {
 	max-width: 100% !important;
