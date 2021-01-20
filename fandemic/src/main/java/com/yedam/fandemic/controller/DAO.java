@@ -13,7 +13,8 @@ import java.sql.DatabaseMetaData;
 
 public class DAO {  
    
-  final static String DB_URL="jdbc:oracle:thin:@fandemic_high?TNS_ADMIN=C://Users//test//wallet_dbname";
+  final static String DB_URL="jdbc:oracle:thin:@fandemic_medium?TNS_ADMIN=/home/oem/wallet_dbname";
+//  C://Users//test//wallet_dbname
   final static String DB_USER = "admin";
   final static String DB_PASSWORD = "Vudrkd12341234";
   public static void main(String args[]) throws SQLException {
