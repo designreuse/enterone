@@ -92,13 +92,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>스타관리</h1>
+            <h1>Mypage</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item">스타관리</li>
-              <li class="breadcrumb-item">스타회원등록</li>
+              <li class="breadcrumb-item">소속사정보관리</li>
+              <li class="breadcrumb-item">Mypage</li>
             </ol>
           </div>
         </div>
@@ -109,7 +109,7 @@
 		<div class="col-md-12">
 			<div class="card card-outline card-info">
 				<div class="card-header">
-					<h3 class="card-title">스타회원등록</h3>
+					<h3 class="card-title"></h3>
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
