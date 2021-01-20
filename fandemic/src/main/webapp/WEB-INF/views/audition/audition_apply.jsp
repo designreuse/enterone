@@ -158,40 +158,35 @@ ul.tabs li.current {
 			$('.tab-link5').addClass('current');
 			$("#tab-5").addClass('current');
 
-			var mem_name = $('#mem_name').val();
-			$("#mem_uname").text(mem_name);
+			 var mem_name = $('#mem_name').val();
+	         $("#mem_uname").text(mem_name);
 
-			/* var option= $("#aud_type").val();
-			$("mem_ubranch").val(option); */
+	         var aud_type = $('#aud_type option:selected').val();
+	         $("#mem_ubranch").text(aud_type);
 
-			/* var aud_type = $("#aud_type option:selected").val();
-			$("#mem_ubranch").val(aud_type); */
+	         var aud_age = $('#aud_age').val();
+	         $("#mem_uage").text(aud_age);
 
-			var aud_type = $('#aud_type option:selected').val();
-			$("#mem_ubranch").text(aud_type);
+	         var height = $('#aud_height').val();
+	         $("#mem_uheight").text(height);
 
-			var aud_age = $('#aud_age').val();
-			$("#mem_uage").text(aud_age);
+	         var weight = $('#aud_weight').val();
+	         $("#mem_uweight").text(weight);
 
-			var height = $('#aud_height').val();
-			$("#mem_uheight").text(height);
+	         var pic = $('#aud_pic').val();
+	         $("#mem_upic").val(pic);
 
-			var weight = $('#aud_weight').val();
-			$("#mem_uweight").text(weight);
+	         var hobby = $('#aud_hobby').val();
+	         $("#mem_uhobby").text(hobby)
 
-			var pic = $('#aud_pic').val();
-			$("#mem_upic").val(pic);
-
-			var hobby = $('#aud_hobby').val();
-			$("#mem_uhobby").text(hobby)
-
-			var file = $('#aud_file').val();
-			$("#mem_url").val(file)
+	         var file = $('#aud_file').val();
+	         $("#mem_url").val(file)
+			
+			
 
 		});
 
 		$("#btn_next_minus1").on("click", function() {
-
 			$('.tab-content').removeClass('current');
 			$('.tab-link2').removeClass('current');
 
@@ -241,7 +236,20 @@ ul.tabs li.current {
 							location.href = "${pageContext.request.contextPath}/audition/auditionlist";
 						});
 
+		$("#btn_next_final").on("click",function() {
+			 $.ajax({
+	              url: '${pageContext.request.contextPath}/audition/auditioninsertsend' ,
+	              data : $("#frm").serialize(), 
+	              success: function() {
+	                 alert("지원이 완료되었습니다.");
+	                 location.href="${pageContext.request.contextPath}/auditionAboard/list";
+	              }
+		});
+		
+		
 	});
+		
+	});		
 	function agChk() {
 		var ccc = $(':radio[name="pro_terms_privacy_must_yn"]:checked').val();
 		if (ccc == 'N') {
@@ -280,7 +288,7 @@ ul.tabs li.current {
 	}
 
 	//동영상
-	function setThumbnail3(event) { //event라함은 이벤트 대상을 의미하는듯
+ 	function setThumbnail3(event) { //event라함은 이벤트 대상을 의미하는듯
 		var reader = new FileReader();
 		reader.onload = function(event) {
 			var video = $("<video>").attr("src", event.target.result).css({
@@ -291,13 +299,13 @@ ul.tabs li.current {
 		}; // end onload
 		reader.readAsDataURL(event.target.files[0]);
 	}
+
+
 </script>
 <body>
 	<section class="page">
 		<div class="container">
-			<form method="post"
-				action="${pageContext.request.contextPath}/audition/auditioninsertsend"
-				encType="multipart/form-data">
+			
 				<!-- 탭 메뉴 상단 시작 -->
 				<ul class="tabs">
 					<li class="tab-link current" data-tab="tab-1">이용약관</li>
@@ -496,13 +504,13 @@ ul.tabs li.current {
 							</tbody>
 						</table>
 					</div>
-					<div class="row" style="margin-left: 400px;">
-
+					<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12"></div>
 						<div class="col-md-1 col-sm-1 col-xs-1"></div>
 						<div class="col-md-5 col-sm-5 col-xs-5"></div>
 						<div>
 							<div class="col-md-2 col-sm-2 col-xs-2">
-								<button class="btn btn-primary" id="btn_next_minus1" rel="step2">이전
+								<button type="button" class="btn btn-primary" id="btn_next_minus1" rel="step2">이전
 									단계</button>
 							</div>
 
@@ -513,7 +521,7 @@ ul.tabs li.current {
 						</div>
 					</div>
 				</div>
-				<form method="post" encType="multipart/form-data">
+				<form method="post" id="frm" encType="multipart/form-data">
 					<div id="tab-3" class="tab-content">
 
 						<h1>지원서 입력</h1>
@@ -603,12 +611,7 @@ ul.tabs li.current {
 													placeholder="예시. 피아노,현대무용,미디,작곡 등" cols="30"></textarea>
 											</div>
 										</td>
-										<td style="display: none"><input type="text"
-											id="com_id" name="com_id"></td>
-										<td style="display: none"><input type="text"
-											id="mem_id" name="mem_id"></td>
-										<td style="display: none"><input type="text"
-											id="abo_no" name="abo_no"></td>
+											<td></td>
 											<td></td>
 											<td></td>
 											<td></td>
@@ -620,18 +623,18 @@ ul.tabs li.current {
 							</div>
 						</div>
 
-					<div>
-						<div class="row">
 
-							<div class="col-md-1 col-sm-1 col-xs-1"></div>
-							<div class="col-md-5 col-sm-5 col-xs-5"></div>
+						<div class="row" style="maring-left:400px;">
+							<div class="col-md-12 col-sm-12 col-xs-12"></div>
+							<div class="col-md-6 col-sm-6 col-xs-6"></div>
+							<div class="col-md-4 col-sm-4 col-xs-4"></div>
 							
-								<div class="col-md-2 col-sm-2 col-xs-2">
+								<div class="col-md-1 col-sm-1 col-xs-1">
 									<button type="button" class="btn btn-primary"
 										id="btn_next_minus2" rel="step2">이전 단계</button>
 								</div>
 
-								<div class="col-md-2 col-sm-2 col-xs-2">
+								<div class="col-md-1 col-sm-1 col-xs-1">
 									<button type="button" class="btn btn-primary"
 										id="btn_next_apply3" rel="step2">다음단계</button>
 								</div>
@@ -649,7 +652,7 @@ ul.tabs li.current {
 								<td></td>
 								<td></td>
 								<td colspan="2"><div class="invalid-feedback">
-										<input type="file" name="ex2_file" id="aud_pic"
+										<input type="file" name="aud_pic" id="aud_pic"
 											onchange="setThumbnail2(event);">
 									</div></td>
 								<td>- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)</td>
@@ -662,7 +665,7 @@ ul.tabs li.current {
 								<td></td>
 								<td></td>
 								<td colspan="2"><div class="invalid-feedback">
-										<input type="file" name="ex2_file" id="aud_file"
+										<input type="file" name="aud_file" id="aud_file"
 											onchange="setThumbnail3(event);">
 
 
@@ -759,10 +762,7 @@ ul.tabs li.current {
 							<button class="btn btn-primary" id="btn_cancle_apply">지원
 								취소</button>
 						</div>
-						<div class="col-md-1 col-sm-1 col-xs-1" style="margin-left: 40px">
-							<button class="btn btn-primary" id="btn_save_apply">지원
-								정보 저장</button>
-						</div>
+						
 
 						<div class="col-md-5 col-sm-5 col-xs-5"></div>
 						<div class="col-md-2 col-sm-2 col-xs-2">
@@ -773,15 +773,10 @@ ul.tabs li.current {
 						<div class="col-md-2 col-sm-2 col-xs-2">
 							<button type="submit" class="btn btn-primary" id="btn_next_final"
 								rel="step2">최종 지원</button>
-
-
 						</div>
-
 					</div>
-
 				</div>
 				<!-- 탭 메뉴 내용 끝 -->
-			</form>
 		</div>
 
 	</section>

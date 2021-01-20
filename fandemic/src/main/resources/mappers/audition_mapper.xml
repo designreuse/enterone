@@ -137,7 +137,6 @@
 		AUD_HOBBY,
 		AUD_HEIGHT,
 		AUD_WEIGHT,
-		AUD_FILE,
 		AUD_PIC,
 		COM_ID,
 		MEM_ID,
@@ -151,7 +150,6 @@
 		#{aud_hobby},
 		#{aud_height},
 		#{aud_weight},
-		#{aud_file},
 		#{aud_pic},
 		#{com_id},
 		#{mem_id},
@@ -165,8 +163,7 @@
 	<!-- insert 하기 위한 select -->
 	<select id="insertselect" parameterType="Aboard"
 		resultType="Aboard">
-		SELECT ABO_NO,
-		COM_ID
+		SELECT ABO_NO,COM_ID
 		FROM ABOARD
 		WHERE abo_no = #{abo_no}
 	</select>

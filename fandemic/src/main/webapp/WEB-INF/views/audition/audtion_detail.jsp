@@ -62,7 +62,7 @@
 							<div class="starRight">
 							<c:if test="${sessionScope.member.mem_id ne null}">
 								<button type="button" class="btn btn-primary py-2 px-4"
-									id="btnapply" onclick="location.href='${pageContext.request.contextPath}/audition/auditionapply'">지원하기</button>
+									id="btnapply" onclick="location.href='${pageContext.request.contextPath}/audition/auditionapply?no='+${aboard.abo_no}">지원하기</button>
 									</c:if>
 							</div>
 						</div>

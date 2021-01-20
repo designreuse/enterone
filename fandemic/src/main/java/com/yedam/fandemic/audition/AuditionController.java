@@ -41,13 +41,11 @@ public class AuditionController {
 	AuditionService auditionservice;
 	@Autowired
 	AuditionMapper auditionMapper;
+	
+	String no=null;
 
-	// 오디션 지원
-	@RequestMapping(value = "/audition/auditionapply") // 주소
-	public ModelAndView auditioninsert(HttpServletResponse response) throws IOException {
-		return new ModelAndView("audition/audition_apply");
 
-	}
+	
 
 	// 연습생 등록 페이지
 	@RequestMapping(value = "/audition/traineeinsert") // 주소
@@ -227,37 +225,44 @@ public class AuditionController {
 		model.addAttribute("activity", auditionMapper.activityDetail(activity));
 		return new ModelAndView("audition/trainee_profile");
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "/audition/auditionapply") // 주소
+	public ModelAndView auditioninsert(HttpServletResponse response ,HttpServletRequest request) throws IOException {
+		 no = request.getParameter("no");
+		
+		return new ModelAndView("audition/audition_apply");
+
+	}
 
 	// 오디션 지원자 등록
 	@RequestMapping(value = "/audition/auditioninsertsend")
-	public String Insertau(HttpServletRequest request, Model model, Audition audition,HttpSession session,Aboard aboard)
+	public String Insertau(HttpServletRequest request, Model model, Audition audition,HttpSession session, Aboard aboard)
 			throws IllegalStateException, IOException {
-			Member member = (Member) session.getAttribute("member");
-			
-			auditionMapper.insertselect(aboard);
-			String id = member.getMem_id();
-			member.setMem_id(id);
-			audition.setCom_id(aboard.getCom_id());
-			audition.setAud_no(audition.getAud_no());
+			Member member = (Member) session.getAttribute("member"); //세션 멤버에서 가져와서 멤버컬럼을 다 가져옴
 
-		
-		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-		String sumFile = "";
-		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
-		for (int i = 0; i < multipartFile.size(); i++) {
-			if (!multipartFile.get(i).isEmpty() && multipartFile.get(i).getSize() > 0) {
-				String path = request.getSession().getServletContext().getRealPath("/images/audition");
+			audition.setMem_id(member.getMem_id());//거기서 아이디만 가져와서 값 담아주고
+			System.out.println("=========="+no);
+			aboard.setAbo_no(no);//어보드에서 가져온 no를 넣고
+			aboard=auditionMapper.insertselect(aboard);//리턴값
+			audition.setCom_id(aboard.getCom_id());//com_id		
+			//auditionMapper.insertau(audition);
+			
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			// 이미지파일
+			MultipartFile multipartFile = multipartRequest.getFile("aud_pic");
+
+			if (!multipartFile.isEmpty() && multipartFile.getSize() > 0) {
+				String path = request.getSession().getServletContext().getRealPath("/images/aud_pic");
+
 				System.out.println("path=" + path);
-				multipartFile.get(i).transferTo(new File(path, multipartFile.get(i).getOriginalFilename()));
-				sumFile = sumFile + multipartFile.get(i).getOriginalFilename() + " ";
-				audition.setAud_pic(sumFile);
-				audition.setAud_file(sumFile);
-			} else {
-				audition.setAud_pic("");
-				audition.setAud_file("");
-			}
+
+				multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+				audition.setAud_pic(multipartFile.getOriginalFilename());
 		}
-//
+		//System.out.println("ddddd");
 		auditionservice.insertau(audition);
 		model.addAttribute("msg", "등록됐습니다.");
 		System.out.println("dddd");
