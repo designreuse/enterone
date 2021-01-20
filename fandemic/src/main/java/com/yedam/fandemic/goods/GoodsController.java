@@ -26,6 +26,7 @@ import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
+import com.yedam.fandemic.vo.Tbuyer;
 
 @Controller
 public class GoodsController {
@@ -102,8 +103,64 @@ public class GoodsController {
 		System.out.println("====================" + no + request.getParameter("cart_qty"));
 		goMapper.cartInsert(cart);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-	// Goods 상세화면 - 구매정보 insert
+	// Goods 상세화면 (ticket) - 구매정보 insert
+	
+	// 주문
+	@RequestMapping(value = "/ticketorder", method = RequestMethod.POST)
+	@ResponseBody
+	public Tbuyer tbuyInsert(HttpServletRequest request, HttpSession session, Tbuyer tbuyer) throws IOException {
+//		logger.info("order");
+		System.out.println("========================" + tbuyer);
+		Member member = (Member) session.getAttribute("member"); // 세션에 저장해둔 member 불러오기
+//		String mem_id = member.getMem_id();
+		
+		//주문번호(orderId) 생성을 위한 로직
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String ymd = ym +  new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String tbNo = "";
+		
+		for(int i = 1; i <= 6; i ++) {
+			tbNo += (int)(Math.random() * 10);
+		}
+		 
+		String tb_no = ymd + "_" + tbNo;
+		
+		tbuyer.setTb_no(tb_no); // 주문번호
+//		tbuyer.setGo_no(request.getParameter(go_); // 상품번호
+		tbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 tbuyer에 담기
+		System.out.println("-----------------------------------------------------------------" + tbuyer);
+		
+		goMapper.tbuyInsert(tbuyer); // tbuyer에 예매정보 insert
+//		goMapper.cartAllDelete(member.getMem_id()); // Goods 재고 -1
+		
+		return tbuyer;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 장바구니 화면 - 목록
 	@RequestMapping(value = "/cart")

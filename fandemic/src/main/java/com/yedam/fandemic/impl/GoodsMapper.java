@@ -6,6 +6,7 @@ import com.yedam.fandemic.vo.Cart;
 import com.yedam.fandemic.vo.Gbuydetail;
 import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Goods;
+import com.yedam.fandemic.vo.Tbuyer;
 
 public interface GoodsMapper {
 	
@@ -35,6 +36,9 @@ public interface GoodsMapper {
 	
 	// 주문 insert
 	public void buyInsert(Gbuyer gbuyer);
+	
+	// 주문 insert - 예매(ticket)
+	public void tbuyInsert(Tbuyer tbuyer);
 
 	// 주문상세 insert
 	public void buyDetailInsert(Gbuydetail gbuydetail);

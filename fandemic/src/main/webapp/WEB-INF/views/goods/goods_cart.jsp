@@ -202,7 +202,7 @@
 						<ul>
 							<li>결제 예정 금액 <span><fmt:formatNumber var="totalsum" value="${totalsum}" pattern="##,###" /><c:out value="${totalsum}원"/></span></li>
 						</ul>
-						<a href="${pageContext.request.contextPath}/goodsBuy" class="primary-btn">결제하기</a>
+						<a href="${pageContext.request.contextPath}/goodsBuy" class="primary-btn">주문하기</a>
 					</div>
 				</div>
 			</div>

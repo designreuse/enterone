@@ -32,16 +32,16 @@ $(document).ready(function() {
 			type : 'POST',
 			data : { gb_no : gb_no },
 			success :function(response) {
+				console.log(response.gbd_no);
 				if(response == true) {
 					alert(gb_no + ', ' + "모달 성공적으로 출력해주라,,");
-					for(var i=0; i<response.length; i++){
-						var td = $('<td />').html().attr()
+					console.log(response.gb_no);
+					//	var td = $('<td />').html().attr()
 						
 						
 					
 					}
-				}
-			}, error : function(xhr, status){
+				}, error : function(xhr, status){
 				alert(gb_no + ', ' + "실패! status: " + status);
 			}
 		});

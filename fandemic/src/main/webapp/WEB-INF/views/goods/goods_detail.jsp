@@ -12,7 +12,7 @@
 <!-- Js Plugins -->
 <script src="${pageContext.request.contextPath}/resourcesGoods/js/owl.carousel.min.js"></script>
 <script src="${pageContext.request.contextPath}/resourcesGoods/js/main.js"></script>
-
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
 
 	$(function() {
@@ -53,9 +53,70 @@
 				data : { go_no : '${goods.go_no}', cart_qty : amount },
 				success :
 					alert("장바구니에 추가되었습니다.")
-					
 			})
 		})
+		
+		/*-------------------
+		예매 결제 진행
+		--------------------- */
+		$('#buy').on('click', function() {
+
+			var result = confirm("본 상품의 예매 정보는 기존 등록된 연락처와 메일주소로 전송됩니다. 연락처, 메일주소, 상품명, 가격 정보를 확인하였으며 결제 진행에 동의하십니까?");
+			if(result){
+			    alert("결제를 진행합니다.");
+			    
+				var tb_payment = $('.product__details__price').text().replace(/[^0-9]/g,''); // 결제금액
+				var go_no = $('#go_no').val();// 상품번호
+				console.log(tb_payment + ' ' + go_no);
+				
+				var IMP = window.IMP; // 생략가능
+				IMP.init('imp35170140'); // 가맹점식별코드
+				
+				// 결제창 호출코드 IMP.request_pay(param, callback)
+				IMP.request_pay({
+					pg: 'inicis',
+					pay_method: 'card',
+					merchant_uid: 'merchant_' + new Date().getTime(),
+					name: '주문명:티켓결제테스트', //결제창에서 보여질 이름
+					amount: 100, //결제 금액
+				}, function (rsp) { // callback
+					console.log('------'+rsp+'------');
+					if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
+      					// var msg = '결제가 완료되었습니다.';
+    					// msg += '고유ID : ' + rsp.imp_uid;
+    					// msg += '상점 거래ID : ' + rsp.merchant_uid;
+    					// msg += '결제 금액 : ' + rsp.paid_amount;
+    					// msg += '카드 승인번호 : ' + rsp.apply_num;
+                      	// alert(msg);
+						// jQuery로 HTTP 요청
+		                //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+		                $.ajax({
+		                   url: "${pageContext.request.contextPath}/ticketorder", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+		                   type: 'POST',
+		                   dataType: 'json',
+		                   data: {
+			                	   tb_payment : tb_payment, //기타 필요한 데이터가 있으면 추가 전달
+			                	   go_no : go_no
+		           				 },
+		                   success : function(data) {
+		                	   	alert('결제가 완료되었습니다.');
+		                	   	location.reload();
+		                   }, error : function() {
+		                      	alert('결제에 실패했습니다.');
+		                   }
+		                });
+					} else {
+						var msg = '결제에 실패하였습니다. ';
+						msg += '에러내용 : ' + rsp.error_msg;
+						alert(msg);
+					}
+				}); // IMP.request_pay 끝
+			    
+			}else{
+			    alert("결제가 취소되었습니다.");
+			}
+		
+		});
 		
 	});
 
@@ -95,7 +156,7 @@
 				</div>
 				<div class="col-lg-6 col-md-6">
 					<div class="product__details__text">
-							<h3>${goods.go_name}</h3>
+							<h3>${goods.go_name}<input type="text" id="go_no" value="${goods.go_no}" hidden=""></h3>
 							<div class="product__details__price">
 								<fmt:formatNumber value="${goods.go_price}" pattern="##,###" />
 								원
@@ -137,19 +198,27 @@
 									</ul>
 								</c:otherwise>
 							</c:choose>
-
 							<div class="product__details_orderform">
 								<div class="product__details__quantity">
+
+								<c:choose>
+									<c:when test="${goods.go_type eq 'TICKET'}">
+									<a href="#" class="primary-btn" id="buy" 
+									   data-no="${goods.go_no}" data-name="${goods.go_name}" data-price="${goods.go_price}"
+									   style="background-color: #022AD5;">바로결제</a>
+									</c:when>
+	
+									<c:otherwise>
 									<div class="quantity">
 										<div class="pro-qty">
-										
 											<input type="text" value="1" id="go_qty">
 										</div>
 									</div>
-								</div>
-								<a href="#" class="primary-btn" id="cart">장바구니</a>
-								<!-- <a href="#" class="primary-btn" id="buy" style="background-color: #022AD5;">바로구매</a> -->
+									<a href="#" class="primary-btn" id="cart">장바구니</a>
+									</c:otherwise>
+								</c:choose>
 							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-12">

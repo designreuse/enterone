@@ -82,6 +82,12 @@
 		WHERE C.MEM_ID = #{mem_id}
 	</select>
 	
+	<!-- 예매 완료시 주문 정보(tbuyer) 테이블에 insert-->
+ 	<insert id="tbuyInsert" parameterType="Tbuyer">
+		INSERT INTO TBUYER (TB_NO, GO_NO, MEM_ID, TB_TIME, TB_PAYMENT)
+		VALUES (#{tb_no}, #{go_no}, #{mem_id}, sysdate, #{tb_payment})
+	</insert>
+	
 	<!-- 결제 완료시 주문 정보(gbuyer) 테이블에 insert-->
  	<insert id="buyInsert" parameterType="Gbuyer">
 		INSERT INTO GBUYER (GB_NO, MEM_ID, GB_PAYMENT, GB_TIME, GB_NAME, GB_PHONE, GB_EMAIL, GB_ADDRESS, GB_ADDRESS2, GB_ZIPADDRESS)
