@@ -32,6 +32,7 @@ import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
+import com.yedam.fandemic.vo.Star;
 import com.yedam.fandemic.vo.Trainee;
 
 @Controller
@@ -229,9 +230,17 @@ public class AuditionController {
 
 	// 오디션 지원자 등록
 	@RequestMapping(value = "/audition/auditioninsertsend")
-	public String Insertau(HttpServletRequest request, Model model, Audition audition)
+	public String Insertau(HttpServletRequest request, Model model, Audition audition,HttpSession session,Aboard aboard)
 			throws IllegalStateException, IOException {
-		// request multipart로 캐스팅
+			Member member = (Member) session.getAttribute("member");
+			
+			auditionMapper.insertselect(aboard);
+			String id = member.getMem_id();
+			member.setMem_id(id);
+			audition.setCom_id(aboard.getCom_id());
+			audition.setAud_no(audition.getAud_no());
+
+		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String sumFile = "";
 		List<MultipartFile> multipartFile = multipartRequest.getFiles("ex2_file");
@@ -248,7 +257,7 @@ public class AuditionController {
 				audition.setAud_file("");
 			}
 		}
-
+//
 		auditionservice.insertau(audition);
 		model.addAttribute("msg", "등록됐습니다.");
 		System.out.println("dddd");

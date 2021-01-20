@@ -50,9 +50,6 @@ public class AboardController {
 	public ModelAndView auditionlistDetail(@PathVariable String no, Aboard aboard, Model model) throws IOException {
 		// 단건
 		aboard.setAbo_no(no);
-		//aboard.setCom_id();
-		
-		
 		model.addAttribute(auditionMapper.getAboardInfo(aboard));
 		return new ModelAndView("audition/audtion_detail");
 	}

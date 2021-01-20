@@ -171,15 +171,7 @@
 		WHERE abo_no = #{abo_no}
 	</select>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	<!-- 최신순 -->
 	<select id="selectnew" resultType="Activity">
