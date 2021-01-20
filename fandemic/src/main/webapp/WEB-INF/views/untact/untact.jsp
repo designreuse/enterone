@@ -23,16 +23,16 @@ h1, h2, h3, h4, h5, h6 {
 $(document).ready(function() {
 	
 	$(".btnDetail").on('click', function () {
+				
+ 		var id = '${sessionScope.member.mem_id}';
+		var mem_id = $(this).parent().parent().parent().find("q").text();
 		
-		var id = '${sessionScope.member.mem_id}';
-		var mem_id = $(this).parent().find("q").text();
-		
-		if (id == mem_id ) {
+		if (id != mem_id ) {
+			alert("구입한 회원만 이용가능 합니다.");
+		} else {
 			alert("입장합니다.");
 			$(location).attr('href','https://192.168.0.58:18/caller.html');
-		} else {
-			alert("구입한 회원만 이용가능 합니다.");
-		}
+		}  
 	});
 
 	// 커밍순 슬라이드
@@ -108,13 +108,12 @@ $(document).ready(function() {
 									<q style="display: none;">${un.MEM_ID}</q>
 								</p>
 								
-								<div style="height: 20%; padding-top: 5%;" class="btnDetail" >
-									<a class="btn btn-primary more" > <!-- data-toggle="modal" data-target="#exampleModal" data-what="hello" -->
+								<div style="height: 20%; padding-top: 5%;" >
+									<a class="btn btn-primary more" >
 										<div>입장</div>
-										<div>
+										<div class="btnDetail">
 											<i class="ion-ios-arrow-thin-right"></i>
 										</div>
-										
 									</a>
 								</div>
 							</div>
