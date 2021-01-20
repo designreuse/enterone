@@ -70,6 +70,7 @@
 		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
 	 		SELECT ROWNUM FIL_NO, F.* FROM FILTER F ORDER BY FIL_PROHIBITED DESC
 			 ) A ) B WHERE RN BETWEEN #{fil_first} AND #{fil_last}
+			 ORDER BY 1
 	</select> 
 	
 	<!-- 금칙어 page -->

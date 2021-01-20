@@ -106,8 +106,16 @@ public class KakaoLoginController {
 	
 	//구글 회원가입?
 	
-	@RequestMapping("/googleRegister")
+	@RequestMapping("/googleLogin")
 	public String googleRegister(Model model, HttpSession session,  Member member) throws IOException{
+		
+		
+		
+		
+		
+		
+		
+		
 		System.out.println("============구글 들어옴");
 		
 		return "redirect:index";  // 세션에 member 담고 바로 index로 가기

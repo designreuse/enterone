@@ -40,11 +40,11 @@
 		var myChart = new Chart(ctx, {
 				type : 'bar',
 				data : {
-					labels : [ '${stCnt[0].ST_NAME}', '${stCnt[1].ST_NAME}', '${stCnt[2].ST_NAME}' ],
+					labels : [ '${stCnt[0].ST_NAME}', '${stCnt[1].ST_NAME}', '${stCnt[2].ST_NAME}', '${stCnt[3].ST_NAME}', '${stCnt[4].ST_NAME}' ],
 					datasets : [ {
-						label : '${stCnt[0].ST_NAME}',
-						data : [ '${stCnt[0].CNT}', '${stCnt[1].CNT}', '${stCnt[2].CNT}' ],
-						backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)"]
+						label : '팬클럽',
+						data : [ '${stCnt[0].CNT}', '${stCnt[1].CNT}', '${stCnt[2].CNT}', '${stCnt[3].CNT}', '${stCnt[4].CNT}'],
+						backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)" , "rgba(100, 255, 100, 0.5)" ,"rgba(255, 100, 255, 0.5)"]
 						
 					} ]
 				},      
@@ -338,7 +338,7 @@ hr {
 
 				</div>
 				<div class="line">
-					<div>FAN CLUB TOP 3</div>
+					<div>FAN CLUB TOP 5</div>
 				</div>
 				<!-- 차트 -->
 				<div class="row">

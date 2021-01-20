@@ -33,10 +33,6 @@ $(document).ready(function() {
 
 	}); 
 	
-	/* $('#btnAddr').on('click',function(){ 
-		openDaumZipAddress($("#mem_zipAddress"), $("#mem_address"), $("#mem_address2"));
-		
-	});   */
 	
 	$('#memEmail').on('click',function(){
 		memMail();
@@ -142,22 +138,6 @@ function memMail() {
 								<form:input type="button" path="" value="중복확인" id="memEmail" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 							</div>
 						</div>
-
-
-						<%-- <div class="form-group">
-							<label>주소</label><br>
-							
-							<div style="position:relative">
-								<form:input type="text" id="mem_address" path="mem_address" class="form-control"  style="papadding: 50px; display: inline-block; " readonly="true"/>
-								<form:input type="button" path="" value="주소검색" id="btnAddr" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
-							</div>
-							
-							<form:input type="text" id="mem_address2" path="mem_address2" class="form-control" style="display:none; margin: 5px 0px;" />
-							<form:errors path="mem_address2" cssClass="error" htmlEscape="false"/> <br>
-							
-							<label>우편번호</label> &nbsp; &nbsp;
-							<form:input type="text" id="mem_zipAddress" path="mem_zipAddress" class="form-control" style="margin: 5px; display: inline-block; width: 250px" readonly="true"/>
-						</div> --%>
 
 						<div class="form-group text-right">
 							<button class="btn btn-primary btn-block" id="btnAddMem" disabled="disabled">확인</button>

@@ -93,9 +93,13 @@
 		     });
 			 
 			 if(chkArray.length === 0) {
-				 alert("삭제할 데이터를 체크하세요.") ; 
-				 $('#prohibited').val("").attr("readonly",false);
-	    		 $('#alternative').val("");
+				 
+				 if( $("#prohibited").val() != null || $("#prohibited").val() != '' ) {
+					 $('#prohibited').val("").attr("readonly",false);
+		    		 $('#alternative').val("");
+				 } else {
+					 alert("삭제할 데이터를 체크하세요.") ; 
+				 }
 				 
 			 } else {
 				 $.ajax({

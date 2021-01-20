@@ -24,7 +24,7 @@ $("#btnIn").on('click', function () {
             		alert("코드가 일치하지 않습니다.");
             	} else {
             		alert("입장합니다.");
-            		$(location).attr('href','https://192.168.1.65:18/caller.html');
+            		$(location).attr('href','https://192.168.1.66:18/caller.html');
             		
             	}
              	
