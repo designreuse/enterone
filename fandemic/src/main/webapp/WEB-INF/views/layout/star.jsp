@@ -87,13 +87,13 @@
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary"
 			class="js-fullmainheight text-center">
-			<div class="colorlibTop">
+			<%-- <div class="colorlibTop">
 				<div class = "brand">
 					<a href="${pageContext.request.contextPath}/">
-	                   <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Magz Logo">
+	                   <img src="${pageContext.request.contextPath}/resources/images/minLogo.png" alt="Magz Logo">
 	                </a>
 				</div>
-			</div>
+			</div> --%>
 			<br>
 			<h1 id="colorlib-logo">
 				<a href="${pageContext.request.contextPath}/star/${stVo.st_id}"><span class="img"
@@ -112,7 +112,7 @@
 					<li><a href="#">스타라이브</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}">스타게시판</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/fanBoard/${stVo.st_id}">팬게시판</a></li>
-					<li><a href="${pageContext.request.contextPath}/star/album/${stVo.st_id}">사진게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/">채널 나가기</a></li>
 				</ul>
 			</nav>
 		</aside>
