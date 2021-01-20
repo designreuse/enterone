@@ -11,6 +11,12 @@
 	type="text/javascript"></script>
 
 <style>
+.sretime {
+    color: #111726;
+    font-size: smaller;
+    float: right;
+    padding-right: 28px;
+}
 #sidebar_noid { 
 background-color: gray;
     border-radius: 20px;
@@ -802,7 +808,7 @@ resize: none;
 							}
 
 							if (id != re.mem_id) {//자기 글은 신고버튼 못하게 막음
-								var li3 = "<li class='btnNotifyReply'>신고</li><span>&nbsp;</span>";
+								var li3 = "";
 							} else {
 								var li3 = "";
 							}
@@ -813,16 +819,16 @@ resize: none;
 							$(
 									"<div class = 'replyInfo' data-no="+re.sre_no+"><hr>")
 									.append(
-											$('<div class = \'row\'>')
+											$('<div class = \'row\' style="float:left">')
 													.html(
-															name + '&nbsp;'
+															'ID : '+ name + '&nbsp;'
 																	+ re.mem_id))
 									.append(
-											$('<div class = \'row\'>').html(
-													name + '&nbsp;'
-															+ re.sre_time))
+											$('<div class = \'row sretime\'>').html(
+													name + '&nbsp;' + '&nbsp;' + '&nbsp;' + '&nbsp;' + '&nbsp;' + '&nbsp;' + '&nbsp;DATE : '
+															+ re.sre_time +'<br>'))
 									.append(
-											$('<div class = \'row replyText\'>')
+											$('<br><div class = \'row replyText\'>')
 													.html(re.sre_content))
 									.append(
 											$(
@@ -934,7 +940,7 @@ resize: none;
 						</div>
 					</div>
 				</div>
-				<c:if test="${member.mem_id ne null or company.com_id ne null }">
+				<c:if test="${member.mem_id ne null}">	
 					<div class="inputdiv">
 						<span> <c:if
 								test="${sessionScope.member.mem_pic ne null and sessionScope.member.mem_type eq 0 }">
@@ -993,6 +999,7 @@ resize: none;
 											<!-- 댓글 출력 장소 -->
 										</div>
 										<hr>
+										<c:if test="${member.mem_id ne null}">	
 										<form id="snsreplyinsert">
 											<div class="row">
 												<input style="display: none;" name="sns_no"
@@ -1007,6 +1014,7 @@ resize: none;
 												</div>
 											</div>
 										</form>
+										</c:if>
 										<br>
 									</div>
 								</div>
@@ -1141,11 +1149,13 @@ resize: none;
 										<button class="dropdown-item showprofilebtn" type="button"
 											id="showprofilebtn" data-id="${sns.mem_id}">프로필 보기</button>
 										<br>
+<c:if test="${member.mem_id ne null}">										
 										<button class="dropdown-item btnLetter" type="button"
 											id="btnLetter12" data-id="${sns.mem_id}"
-											data-sid="${sessionScope.member.mem_id }" data-snssns="1">쪽지
-											보내기</button>
+											data-sid="${sessionScope.member.mem_id }" data-snssns="1">쪽지 보내기</button>
+											
 										<br>
+										</c:if>
 										<button class="dropdown-item btn-myPost" type="button"
 											data-id="${sns.mem_id}">게시글 보기</button>
 									</div>
