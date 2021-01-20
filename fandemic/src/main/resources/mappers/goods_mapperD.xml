@@ -92,4 +92,13 @@
 		</set>
 		WHERE GO_NO= #{go_no}
 	</update>
+<!-- 언택트행사 목록만 -->
+	<select id="goodsUntactList" parameterType="Goods" resultType="Goods">
+		SELECT G.GO_NO, G.GO_NAME, G.GO_PRICE, S.ST_NAME,  G.GO_STOCK, G.GO_TYPE, G.GO_UNTSDATE, G.GO_UNTEDATE, g.GO_UNTTIME
+		FROM GOODS G, STAR S
+		WHERE G.ST_ID = S.ST_ID
+		AND G.COM_ID=#{com_id}
+		AND G.GO_TYPE='TICKET'
+		ORDER BY G.GO_NO DESC
+	</select>
 </mapper>

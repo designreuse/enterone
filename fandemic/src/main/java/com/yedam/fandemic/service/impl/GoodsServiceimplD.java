@@ -51,4 +51,9 @@ public class GoodsServiceimplD implements GoodsServiceD{
 	public int updateGoods(Goods goods) {
 		return dao.updateGoods(goods);
 	}
+
+	@Override
+	public List<Goods> goodsUntactList(Goods goods) {
+		return dao.goodsUntactList(goods);
+	}
 }

@@ -59,7 +59,7 @@ div #dataTable_filter{
 <script>
 	$(function() {
 		
-		goodsList();//굿즈 목록요청
+		goodsUntactList();//굿즈 목록요청
 		$(".pagination a").on("click",function(){
 			$(".pagination a").removeClass("active");
 			$(this).addClass("active");
@@ -135,13 +135,17 @@ div #dataTable_filter{
 			$("#exampleModal").modal("hide");
 			//window.location.reload();
 		}); */
+		
+		$("body").on("click",".btnLive",function(){
+			location.href="https://192.168.0.58:18/callee.html";
+		})
 	}); //end document ready
 	
 	//굿즈 목록 조회 요청
-	function goodsList() {
+	function goodsUntactList() {
 		var com_id = "${company.com_id }";
 		$.ajax({
-			url:'${pageContext.request.contextPath}/management/goods/goodsListAll', //요청할 url
+			url:'${pageContext.request.contextPath}/management/goods/goodsUntactList', //요청할 url
 			type:'POST',
 			data: {com_id:com_id},
 			//contentType:'application/json;charset=utf-8',
@@ -149,23 +153,23 @@ div #dataTable_filter{
 			error:function(xhr,status,msg){
 				alert("상태값 :" + status + " Http에러메시지 :"+msg);
 			},
-			success:GoodsListResult
+			success:GoodsUntactListResult
 		});
 	}//end GoodsList
 	
-	function GoodsListResult(data){
+	function GoodsUntactListResult(data){
 		/* console.log(data); */
 		$("tbody").empty();
 		$.each(data,function(idx,item){//idx=index, item=value
 			$('<tr>').attr("class","cnoticeTr")
 			.append($('<td>').html('<input type="checkbox" name="go_nos" value="'+item.go_no+'">'))
 			.append($('<td>').html(item.go_no))
-			.append($('<td>').html('<a href="#">'+item.go_name+'</a>'))
-			.append($('<td>').html(item.go_price))
+			.append($('<td>').html(item.go_name))
 			.append($('<td>').html(item.st_name))
-			.append($('<td>').html(item.go_stock))
-			.append($('<td>').html(item.go_type))
-			.append($('<td>').html(item.go_time))
+			.append($('<td>').html(item.go_untsdate))
+			.append($('<td>').html(item.go_untedate))
+			.append($('<td>').html(item.go_unttime))
+			.append($('<td>').html('<button type="button" class="btnLive">방송시작'))
 			.appendTo('tbody');
 			
 		});//end each
@@ -208,12 +212,13 @@ div #dataTable_filter{
                     <tr>
                       <th></th>
                       <th>상품번호</th>
-                      <th>상품명</th>
-                      <th>상품가격</th>
+                      <th>행사명</th>
                       <th>해당연예인</th>
-                      <th>재고</th>
-                      <th>상품분류</th>                  
-                      <th>등록일</th>
+                      <th>행사시작일</th>
+                      <th>행사종료일</th>
+                      <th>행사시간</th>
+                      <th></th>
+                      
                     </tr>
                   </thead>
                   <tbody>
@@ -226,9 +231,9 @@ div #dataTable_filter{
               <div>
               	<!-- 페이지네이션 들어가는 자리-->
               	<div class="cnotices-button">
-              		<button type="button" class="btn-register">상품등록</button>
+              		<!-- <button type="button" class="btn-register">상품등록</button> -->
               		<!--  <button class="btn-update">수정</button>-->
-              		<button type="button" class="btn-delete">상품삭제</button>
+              		<!-- <button type="button" class="btn-delete">상품삭제</button> -->
               	</div>
               </div>
             </div>

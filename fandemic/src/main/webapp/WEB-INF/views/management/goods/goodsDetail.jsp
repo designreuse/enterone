@@ -218,13 +218,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6 title-detail">
-            <h1>굿즈관리</h1>
+            <h1>스토어관리</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item">굿즈관리</li>
-              <li class="breadcrumb-item">굿즈등록</li>
+              <li class="breadcrumb-item">스토어관리</li>
+              <li class="breadcrumb-item">상품수정</li>
             </ol>
           </div>
         </div>

@@ -281,15 +281,30 @@
             </a>
           </li>
           
-          <!--굿즈관리  -->
+          <!--스토어관리  -->
           <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/management/goods/goodsList" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                	굿즈관리
+                	스토어관리
+                <i class="fas fa-angle-left right"></i>
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/management/goods/goodsList" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>상품 리스트</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="${pageContext.request.contextPath}/management/goods/goodsUntact" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>언택트 행사</p>
+                </a>
+              </li>
+             </ul>
           </li>
           
           <!--오디션관리  -->

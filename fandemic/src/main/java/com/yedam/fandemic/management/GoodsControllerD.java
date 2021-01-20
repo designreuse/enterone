@@ -123,4 +123,18 @@ public class GoodsControllerD {
 		      goodsServiceD.updateGoods(goods);
 		return "redirect:/management/goods/goodsList";
 	}
+	
+	
+	//언택트 행사 페이지 이동
+	@RequestMapping("/management/goods/goodsUntact")
+	public String goodsUntact() {
+		return "mgt/goods/goodsUntact";
+	}
+	
+	//언택트 행사 할 리스트만 출력
+	@RequestMapping("/management/goods/goodsUntactList")
+	@ResponseBody
+	public List<Goods> goodsUntactList(Goods goods){
+		return goodsServiceD.goodsUntactList(goods);
+	}
 }

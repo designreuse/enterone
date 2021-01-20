@@ -15,4 +15,5 @@ public interface GoodsMapperD {
 	public int deleteGoods(Goods goods); //굿즈,행사목록  삭제
 	public Goods getGoodsDetail(Goods goods); //굿즈 상세정보 요청
 	public int updateGoods(Goods goods); //굿즈,행사 정보 업데이트
+	public List<Goods> goodsUntactList(Goods goods);//언택트행사 의 목록만출력
 }

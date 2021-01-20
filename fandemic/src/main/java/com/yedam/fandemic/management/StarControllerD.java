@@ -2,10 +2,17 @@ package com.yedam.fandemic.management;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.yedam.fandemic.login.Password;
 import com.yedam.fandemic.service.StarServiceD;
 import com.yedam.fandemic.vo.Art;
 import com.yedam.fandemic.vo.Fan;
@@ -36,8 +44,14 @@ public class StarControllerD {
 	//소속사 스타회원 리스트 출력
 	@RequestMapping(value="/management/star/starMemberList")
 	@ResponseBody //결과를 Json형태로 변환
-	public List<Star> getStarMemberList(Star star){
-		return starService.getStarMemberList(star);
+	public List<Star> getStarMemberList(Star star) throws InvalidKeyException, UnsupportedEncodingException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
+		Password pw = new Password();
+		List<Star> list = starService.getStarMemberList(star);
+		for(int i=0; i<list.size(); i++) {
+			list.get(i).setSt_pw(pw.aesDecode(list.get(i).getSt_pw()));
+
+		}
+		return list;
 	}
 	
 	//소속사 스타회원 등록 페이지 이동
