@@ -38,23 +38,7 @@ public class UntactController {
 		return new ModelAndView("untact/untact");
 	}
 	
-	@ResponseBody
-	@RequestMapping(value = "/untactCode")
-	public String untactCode(HttpServletRequest request, RedirectAttributes redirect) throws IOException {
-		
-		String code = request.getParameter("code");
-		
-		String getCode = dao.getUntactCode(request.getParameter("go_no"));
-		
-		System.out.println("===============입력한 코드 : " + code + " db코드 : " + getCode);
 
-		if (code.equals(getCode)) {
-			return "same";			
-		} else {
-			return null;
-		}
-	}
-	
 
 	
 	@RequestMapping(value = "/starUntact")
@@ -66,15 +50,6 @@ public class UntactController {
 	public ModelAndView unDetail(HttpServletResponse response) throws IOException {
 		return new ModelAndView("untact/unDetail");
 	}
-	
-	@RequestMapping(value = "/no-tiles/untactCode")
-	public ModelAndView untactCode(Model model, HttpServletRequest request) throws IOException {
-		
-		String no = request.getParameter("go_no");
-		System.out.println("왜 안되니" + no + "널이야?? 왜??");
-		model.addAttribute("go_no", no);
-	
-		return new ModelAndView("no-tiles/untactCode");
-	}
+
 	
 }

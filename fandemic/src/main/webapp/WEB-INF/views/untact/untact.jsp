@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
 <style>
 .modal-open .modal {
 	padding : 250px;
@@ -32,7 +31,7 @@ $(document).ready(function() {
 		} else {
 			alert("입장합니다.");
 			$(location).attr('href','https://192.168.0.58:18/caller.html');
-		}  
+		} 
 	});
 
 	// 커밍순 슬라이드

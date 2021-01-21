@@ -41,7 +41,6 @@ ul.tabs li.current {
 		
 		// 로그인 했을 때
 		var fail = "${login}";
-		console.log(fail);
 		
 		if (  fail == "fail") {
 			alert("아이디 또는 비밀번호가 일치하지 않습니다.");
@@ -53,8 +52,6 @@ ul.tabs li.current {
 		}
 		
 		$('#mem_id').focus();
-		
-
 		checkUser("개인회원");
 
 		$('ul.tabs li').click(function() { //기업회원, 개인회원 선택클릭
@@ -82,12 +79,7 @@ ul.tabs li.current {
 
 	    });
 		 
-		 //소셜로그인 
-		 $("#kakao").click(function(){
 
-	    });
-
-		
 	}); //end ready function
 	
 	function checkUser(user) {
@@ -103,7 +95,6 @@ ul.tabs li.current {
 		} else { //기업회원일때
 			
 			$('#com_id').focus();
-			
 			checkform($('#comlogin'), $('#com_id'), $('#com_pw')); // 유효성
 
 			//소속사,스타체크
@@ -120,14 +111,10 @@ ul.tabs li.current {
 	function checkId(chk) {
 
 		if (chk == "star") {
-
 			$("#comFrm").attr("action","${pageContext.request.contextPath}/starLogin");
-			
 		} else {
-
 			$("#comFrm").attr("action","${pageContext.request.contextPath}/companyLogin");
 		}
-		
 	}
 	
 	
@@ -141,17 +128,13 @@ ul.tabs li.current {
 				$(id).focus();
 				event.preventDefault();
 				
-				
 			} else if ($(pw).val() == null || $(pw).val() == '') {
 				alert("비밀번호를 입력하세요");
 				$(pw).focus();
 				event.preventDefault();
 			}
-			
 		});
 	}
-
-	
 	
 </script>
 
@@ -247,39 +230,5 @@ ul.tabs li.current {
 			</div>
 		</div>
 	</div>
-	
-	
-		
-	
-	
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 </section>

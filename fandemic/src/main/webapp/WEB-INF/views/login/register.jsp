@@ -122,15 +122,13 @@ ul.tabs li.current {
 		});
 		
 		
-		//메일 중복확인
+		//인증메일 보내기
 		$("#btnMemMail").on('click', function () {
-			memMail();
-			
+			mailCode("m",$("#modalMemMail").val(), $("#chkMemMail"), $("#btnMemEnd") );
 		});
 		
 		$("#btnComMail").on('click', function () {
-			comMail();
-			
+			mailCode("c",$("#modalComMail").val(), $("#chkComMail"), $("#btnComEnd") );
 		});
 
 		// 유효성
@@ -265,82 +263,7 @@ ul.tabs li.current {
      	    $("#checkIdcom").html("영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.").css("color","red").appendTo("#comDiv")
 		} 
 	}
-	
-	// 이메일 중복확인
-	function memMail() {
-		
-		var mem_email = $("#modalMemMail").val(); 
-		var regexPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
-		
-		if (regexPattern.test(mem_email)) {
-			$.ajax({
-	            url :'${pageContext.request.contextPath}/memMail',
-	            type:"post",
-	            data : {mem_email : mem_email },
-	            
-	            success:function(data){
-	            	
-	               if (data == 0) {
-	            	   $("#chkMemMail").html("");
-	            	   $("#chkMemMail").html("사용 가능한 메일입니다. <br> 인증번호가 전송됩니다.").css({"color":"blue"},{"display" : ""});
-	            	   $('#btnMem').attr("disabled", false);
-	            	   // 중복확인 되면 바로 인증번호 전송
-	            	   mailCode("m",$("#modalMemMail").val(), $("#chkMemMail"), $("#btnMemEnd") );
-	            	   
-	               } else if (data == 1){
-	            	   $("#chkMemMail").html("");
-	            	   $("#chkMemMail").html("중복된 메일입니다.").css({"color":"red"},{"display" : ""});
-	            	   $('#btnMem').attr("disabled", true);
-	               } 
 
-	            },error:function(){ alert("실패"); }
-	         });
-		} else {
-			$("#chkMemMail").html("");
-     	    $("#chkMemMail").html("형식을 확인하세요.").css({"color":"red"},{"display" : ""});
-     	    $('#btnMem').attr("disabled", true);
-		}
-
-		
-	}
-	
-	function comMail() {
-		
-		var com_email = $("#modalComMail").val(); 
-		var regexPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
-
-		if (regexPattern.test(com_email)) {
-
-			$.ajax({
-	            url :'${pageContext.request.contextPath}/comMail',
-	            type:"post",
-	            data : {com_email : com_email },
-	            
-	            success:function(data){
-	
-	               if (data == 0) {
-	            	   $("#chkComMail").html("");
-	            	   $("#chkComMail").html("사용 가능한 메일입니다. <br> 인증번호가 전송됩니다.").css({"color":"blue"},{"display" : ""});
-	            	   $('#btnCom').attr("disabled", false);
-	            	   // 중복확인 되면 바로 인증번호 전송
-	            	   mailCode("c",$("#modalComMail").val(), $("#chkComMail"), $("#btnComEnd") );
-	            	   
-	               } else if (data == 1){
-	            	   $("#chkComMail").html("");
-	            	   $("#chkComMail").html("중복된 메일입니다.").css({"color":"red"},{"display" : ""});
-	            	   $('#btnCom').attr("disabled", true);
-	               } 
-	
-	            },error:function(){ alert("실패"); }
-	         });
-		} else {
-			$("#chkComMail").html("");
-     	    $("#chkComMail").html("형식을 확인하세요.").css({"color":"red"},{"display" : ""});
-     	    $('#btnCom').attr("disabled", true);
-		}
-	}
-	
-	
 function mailCode(m1, email, tag, btnEnd) {
 		
 	$.ajax({
@@ -350,11 +273,10 @@ function mailCode(m1, email, tag, btnEnd) {
         
         success:function(data){
         	if(m1 == "m") {
-        		memEnd(data);
+        		memEnd(data); // 인증코드 검사
         	} else {
         		comEnd(data);
         	}
-        	
 			$("#resultCode").html(data);
 			$(tag).html("");
      	    $(tag).html("인증번호가 발급되었습니다.").css({"color":"blue"},{"display" : ""});
@@ -556,7 +478,7 @@ function comEnd(data) {
 				<div class="modal-body" align="center" >
 					<div class="form-group">
 						<input type="text" id="modalMemMail" class="form-control" placeholder="메일 주소 입력">
-						<input type="button" value="중복확인" id="btnMemMail" class="btn btn-primary btn-sm" style="position:absolute;right:20px;top:25%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 5px 7px;font-size:12px;cursor:pointer;" />
+						<input type="button" value="메일받기" id="btnMemMail" class="btn btn-primary btn-sm" style="position:absolute;right:20px;top:25%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 5px 7px;font-size:12px;cursor:pointer;" />
 						<p></p>
 						<input type="text" id="memCode" class="form-control" placeholder="인증번호 입력">
 						
@@ -585,7 +507,7 @@ function comEnd(data) {
 				<div class="modal-body" align="center" >
 					<div class="form-group">
 						<input type="text" id="modalComMail" class="form-control" placeholder="메일 주소 입력">
-						<input type="button" name="" value="중복확인" id="btnComMail" class="btn btn-primary btn-sm" style="position:absolute;right:20px;top:25%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 5px 7px;font-size:12px;cursor:pointer;" />
+						<input type="button" name="" value="메일받기" id="btnComMail" class="btn btn-primary btn-sm" style="position:absolute;right:20px;top:25%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 5px 7px;font-size:12px;cursor:pointer;" />
 						<p></p>
 						<input type="text" id="comCode" class="form-control" placeholder="인증번호 입력">
 						

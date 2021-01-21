@@ -317,22 +317,22 @@ hr {
 
 					<c:forEach items="${goods}" var="gos">
 						<div class="item">
+
 							<article class="featured">
 								<div class="overlay"></div>
 								<figure class="ffffsf">
-									<img
-										src="${pageContext.request.contextPath}/images/goods/${gos.go_pic} "
-										alt="TICKET" style="width: 500px; height: 800px;">
+									<img src="${pageContext.request.contextPath}/images/goods/${gos.go_pic} " alt="TICKET" style="width: 500px; height: 800px;">
 								</figure>
 								<div class="details">
-									<div style="color: white;" class="#">${gos.st_id}</div>
+									<div style="color: white;" >${gos.st_id}</div>
 									<h1>
-										<a href="#">${gos.go_name}</a>
+										<a href="${pageContext.request.contextPath}/goodsDetail/${gos.go_no}">${gos.go_name}</a>
 									</h1>
 									<!-- 클릭한 행사 상세페이지로 이동시킬꺼야 -->
 									<div style="color: white;" class="#">${fn:substring(gos.go_untsdate,0,10)}</div>
 								</div>
 							</article>
+	
 						</div>
 					</c:forEach>
 
@@ -494,7 +494,7 @@ hr {
 						</div>
 						<table style="width: 100%">
 							<c:forEach items="${movie}" var="mv">
-								<tr style="border-bottom: 1pt solid #4176E0;">
+								<tr style="border-bottom: 1pt solid #f2f2f2;">
 									<td style="padding: 5px; width: 50px"><h6>${mv.rank}</h6></td>
 									<td style="padding: 5px;">
 										<div>${mv.movieNm}</div>
@@ -509,11 +509,11 @@ hr {
 
 					<div id="tab-3" class="tab-content" style="width: 90%">
 					<div align="right">
-						<!-- <a style="color: #022AD5;" href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01" target="_blank"> >바로가기</a> -->
+						<a style="color: #022AD5;" href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01" target="_blank"> >바로가기</a>
 					</div>
 						<table style="width: 100%">
 							<c:forEach items="${rating}" var="ra">
-								<tr style="border-bottom: 1pt solid #4176E0;">
+								<tr style="border-bottom: 1pt solid #f2f2f2;">
 									<td style="padding: 5px; width: 50px"><h6>${ra.no}</h6></td>
 									<td style="padding: 5px;">
 										<c:if test="${fn:length(ra.name) > 10 }">
