@@ -186,7 +186,7 @@ public class LoginController {
 			mail.setSenderName("엔터원");
 			mail.setSenderMail("haez119@gmail.com");
 			mail.setReceiveMail(company.getCom_email());
-			mail.setSubject("요청하신 비밀번호입니다.");
+			mail.setSubject("임시 비밀번호가 발급되었습니다.");
 			
 			String mainCon = "<h2>안녕하세요 " + company.getCom_id() +" 님 </h2><br><br>" 
 					+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>'" + pwKey +"'</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다.</p><br>"

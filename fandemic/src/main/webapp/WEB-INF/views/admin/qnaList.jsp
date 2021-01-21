@@ -182,7 +182,7 @@ $(document).ready(function() {
 <div align="center" style="padding-top: 30px;">
 	<script>
 		function goPage(p) {
-			location.href="adminQna?p="+p
+			location.href="${pageContext.request.contextPath}/adminQna?p="+p
 		}
 	</script>
 	
