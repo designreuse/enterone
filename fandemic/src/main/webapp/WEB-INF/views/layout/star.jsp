@@ -30,7 +30,9 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/star.css">
 	<script>
 		$(function() {
-			var id = "${member.mem_id}"
+			var id = "${sessionScope.member.mem_id}"
+			var cid = "${sessionScope.company.com_id}"
+			var sid = "${sessionScope.star.st_id}"
 			//메인페이지 이동 버튼
 			$("#btnGoMain").on("click",function(){
 				location.href = "${pageContext.request.contextPath}/"
@@ -38,8 +40,12 @@
 			//세션 아이디가 없을때 활동 못하게 막음
 			$("body").on('click', 'a',function(e){
 				if(id == null || id == ""){
-					$("a").removeAttr("href")
-					alert("로그인 후 이용해주세요");
+					if(cid == null || cid == ""){
+						if(sid == null || sid == ""){
+							$("a").removeAttr("href")
+							alert("로그인 후 이용해주세요");
+						}
+					}
 				}
 			});
 		})
@@ -74,10 +80,8 @@
 					<li><a href="${pageContext.request.contextPath}/star/${stVo.st_id}">Home</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/profile/${stVo.st_id}">소개</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/schedule/${stVo.st_id}">스케줄</a></li>
-					<li><a href="#">스타라이브</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}">스타게시판</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/fanBoard/${stVo.st_id}">팬게시판</a></li>
-					<li><a href="${pageContext.request.contextPath}/" class = "goMain">채널 나가기</a></li>
 				</ul>
 			</nav>
 			

@@ -27,6 +27,10 @@ var sst_id = "${stVo.st_id}"
 		//화면 시작 시 목록 출력
 		fboardListView();
 		
+		if(id != null && id != ""){
+			$(".btnInputFboardShow").show()
+		}
+		
 		//말머리 별 게시글 목록 검색
 		$(".subFboardList").on("click","a",function(){
 		   var fbo_subject = $(this).html();
@@ -841,7 +845,7 @@ var sst_id = "${stVo.st_id}"
       <div class="row d-flex">
          <div class="col-lg-12">
             <div class="sidebar-box ftco-animate">
-               <h3 class="sidebar-heading">Tag Cloud</h3>
+               <!-- <h3 class="sidebar-heading">Tag Cloud</h3> -->
                <ul class="tagcloud subFboardList">
                		<a href="#" class="tag-cloud-link">전체</a>
 					<a href="#" class="tag-cloud-link">자유</a>
@@ -850,7 +854,7 @@ var sst_id = "${stVo.st_id}"
 					<a href="#" class="tag-cloud-link">유머</a>
 					<a href="#" class="tag-cloud-link">장터</a>
                </ul>
-               <button class="btn btn-primary py-2 px-4 btnInputFboardShow">글쓰기</button>
+               <button class="btn btn-primary py-2 px-4 btnInputFboardShow" style="display:none;">글쓰기</button>
             </div>
 
             <br>
@@ -906,7 +910,7 @@ var sst_id = "${stVo.st_id}"
       <br>
       <div class="row">
          <div class = "starRight">
-         	<button type="button" class="btn btn-primary py-2 px-4 btnFboardNotify" data-toggle='modal' data-target='#notifyBoardModal'>신고</button>
+         	<button type="button" class="btn btn-primary py-2 px-4 btnFboardNotify" data-toggle='modal' data-target='#notifyBoardModal' style="display:none;">신고</button>
             <button type="button"  class="btn btn-primary py-2 px-4" id="btnDeleteFboardAction" style="display:none;">삭제</button>
             <button type="button"  class="btn btn-primary py-2 px-4" id="btnUpdateFboard" style="display:none;">수정</button>
             <button type="button" class="btn btn-primary py-2 px-4 btnFboardListView">목록</button>
