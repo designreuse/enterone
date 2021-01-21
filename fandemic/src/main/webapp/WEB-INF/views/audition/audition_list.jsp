@@ -106,7 +106,7 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 							<th class="thList0">번호</th>
 							<th class="thList1">게시물제목</th>
 							<th class="thList2">게시물말머리</th>
-							<th class="thList3">게시물작성일</th>
+							<th class="thList3">공고일</th>
 						</tr>
 					</thead>
 					<tbody>

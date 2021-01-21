@@ -46,11 +46,14 @@
 				${companyNotice.cnoc_content}
 			</div>
 			<br>
-			<hr>
-			<br>
-			<div class="row alignLeft textbox">
-				첨부파일
-			</div>
+			<c:if test="${companyNotice.cnoc_file ne null}">
+				<hr>
+				<br>
+				<div class="row alignLeft textbox">
+					첨부파일 다운로드 : 
+					<a href="${pageContext.request.contextPath}/cnotice/filedown?uFile=${companyNotice.cnoc_file}"> ${companyNotice.cnoc_file} </a>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </section>
