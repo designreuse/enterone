@@ -88,6 +88,13 @@
 		VALUES (#{tb_no}, #{go_no}, #{mem_id}, sysdate, #{tb_payment})
 	</insert>
 	
+	<!-- 예매 개수 카운트 -->
+	<select id="tbuyCount" resultType="int">
+		SELECT COUNT(*) count
+		FROM TBUYER 
+		WHERE GO_NO = #{go_no}
+	</select>
+	
 	<!-- 결제 완료시 주문 정보(gbuyer) 테이블에 insert-->
  	<insert id="buyInsert" parameterType="Gbuyer">
 		INSERT INTO GBUYER (GB_NO, MEM_ID, GB_PAYMENT, GB_TIME, GB_NAME, GB_PHONE, GB_EMAIL, GB_ADDRESS, GB_ADDRESS2, GB_ZIPADDRESS)

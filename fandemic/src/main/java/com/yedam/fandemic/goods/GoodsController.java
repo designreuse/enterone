@@ -87,6 +87,7 @@ public class GoodsController {
 	public ModelAndView goodsDetail(@PathVariable String no, Goods goods, Model model) throws IOException {
 		// 단건
 		goods.setGo_no(no);
+		model.addAttribute("tbuyCount", goMapper.tbuyCount(goods));
 		model.addAttribute(goMapper.goodsDetail(goods));
 		return new ModelAndView("goods/goods_detail");
 	}
@@ -103,13 +104,6 @@ public class GoodsController {
 		System.out.println("====================" + no + request.getParameter("cart_qty"));
 		goMapper.cartInsert(cart);
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -151,11 +145,6 @@ public class GoodsController {
 		
 		return tbuyer;
 	}
-	
-	
-	
-	
-	
 	
 	
 	

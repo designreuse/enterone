@@ -178,6 +178,7 @@
 										<li><b>주최</b> <span>${goods.com_id}</span></li>
 										<li
 											style="font-size: 15px; line-height: 25px; margin-top: 20px;">
+											<span>※ 본 콘텐츠는 1인 1매만 구매 가능합니다.</span><br>
 											<span>※ 본 콘텐츠는 생중계 프로그램으로 정확한 시작 및 종료 시각은 연결 상황에 따라
 												변동될 수 있으며, 통신 환경에 따라 음향 및 화면 중계가 고르지 않을 수 있는 점 양해 부탁드립니다.</span>
 										</li>
@@ -200,12 +201,17 @@
 							</c:choose>
 							<div class="product__details_orderform">
 								<div class="product__details__quantity">
-
 								<c:choose>
 									<c:when test="${goods.go_type eq 'TICKET'}">
-									<a href="#" class="primary-btn" id="buy" 
-									   data-no="${goods.go_no}" data-name="${goods.go_name}" data-price="${goods.go_price}"
-									   style="background-color: #022AD5;">바로결제</a>
+										<c:if test="${tbuyCount < 1}">
+											<a href="#" class="primary-btn" id="buy" 
+											   data-no="${goods.go_no}" data-name="${goods.go_name}" data-price="${goods.go_price}"
+											   style="background-color: #022AD5;">바로결제</a>
+										</c:if>
+										<c:if test="${tbuyCount >= 1}">
+											<a href="#" class="primary-btn" id="buy1" style="background-color: #f2f2f2; color: black;">매 진</a>
+											<span style="color: #ff6347;">이 상품은 더이상 구매하실 수 없습니다. <span>
+										</c:if>
 									</c:when>
 	
 									<c:otherwise>
