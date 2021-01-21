@@ -25,6 +25,12 @@ a {
 					</div>
 					<!-- 내 스타 다 띄우기 -->
 					<div class="col-xs-12">
+					<c:choose>
+					<c:when test="${starlist eq null or starlist eq '[]'}">
+						<h1>아웃띠 가입된 팬클럽이 없네요 | ༼☯﹏☯༽ |</h1>
+						</c:when>
+						<c:otherwise>
+						
 						<c:forEach items="${starlist}" var="star">
 							<div class="col-md-3 col-sm-4 col-xs-6">
 								<div class="companyContainer">
@@ -50,6 +56,9 @@ a {
 								</div>
 							</div>
 						</c:forEach>
+						</c:otherwise>
+						</c:choose>
+						
 					</div>
 					<div align="center">
 						<script>
