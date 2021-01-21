@@ -139,6 +139,8 @@ public class AuditionController {
 //		  model.addAttribute("selectnew", list); model.addAttribute("cnt",list.size());
 		model.addAttribute("AcworkList", auditionMapper.selectac());
 		model.addAttribute("trainee", auditionMapper.selecttr());// 세션에 없으면 디비에서 가져와야함 selecttr안에 값들이 들어있음
+		
+		model.addAttribute("selectnew", auditionMapper.selectnew());
 
 		return new ModelAndView("audition/activity_list");
 

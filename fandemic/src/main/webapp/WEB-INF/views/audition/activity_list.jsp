@@ -20,8 +20,8 @@
 	$(document).ready(function() {
 
 		$('.owl-carousel').owlCarousel({
-			items : "${cnt}",
-			loop : true,
+			items : 5,
+			loop : false,
 
 			margin : 10,
 
@@ -69,6 +69,12 @@
 
 </script>
 <style>
+.yezi{
+	height: 200px;
+    overflow: hidden;
+    width: 100%;
+}
+
 p {
 	font-size: medium;
 }
@@ -142,7 +148,7 @@ p {
 				<h1 align="center"
 					style="color: black; font-size: 50px; margin-top: 5px;">연습생 활동</h1>
 				<div>
-					<button type="button" class="btn btn-primary" id="but">TOP05/NEW05</button>
+					<button type="button" class="btn btn-primary" id="but">NEW05</button>
 					<%-- <c:if test="${trainee.mem_id ne null}"> --%>
 					<%--$는 컨트롤러에서 넘어오는거 --%>
 					<button type="button" class="btn btn-primary" id="but2"
@@ -153,42 +159,13 @@ p {
 				<div>
 					<div class="jumbotron jumbotron-fluid">
 						<div class="owl-carousel owl-theme">
-							<%-- <c:forEach var="new" items="${selectnew}">
-								<div>
+						<c:forEach var="activity" items="${selectnew}">
+								<div class="item" >
 									<input type="image" style="width: 200px; height: 260px;"
-										src="${pageContext.request.contextPath}/images/audition/${new.ac_file}">
+										src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}">
 									<br>
-									<p>${new.mem_id}</p>
-									<p>${new.ac_likes}</p>
 								</div>
-							</c:forEach> --%>
-							<div class="item">
-								<h4>2</h4>
-							</div>
-							<div class="item">
-								<h4>3</h4>
-							</div>
-							<div class="item">
-								<h4>4</h4>
-							</div>
-							<div class="item">
-								<h4>5</h4>
-							</div>
-							<div class="item">
-								<h4>6</h4>
-							</div>
-							<div class="item">
-								<h4>7</h4>
-							</div>
-							<div class="item">
-								<h4>8</h4>
-							</div>
-							<div class="item">
-								<h4>9</h4>
-							</div>
-							<div class="item">
-								<h4>10</h4>
-							</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -218,11 +195,13 @@ p {
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="row">
 					<c:forEach var="activity" items="${AcworkList}">
-						<div class="col-md-3 col-sm-3 col-xs-3">
+						<div class="col-md-3 col-sm-3 col-xs-3" style="width: 25%;">
 							<div class="thumbnail">
-								<img
+								<div class="yezi">
+								<img style="height: 100%;"
 									src="${pageContext.request.contextPath}/images/audition/${activity.ac_file}"
 									alt="...">
+									</div>
 								<div class="caption">
 									<p style="display:none">${activity.ac_no}</p>
 									<a class="hits" href="${pageContext.request.contextPath}/ActivityDetail/${activity.mem_id}">
