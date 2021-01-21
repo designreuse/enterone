@@ -30,4 +30,7 @@ public class Member {
 	private int mem_first; // 페이지네이션
 	private int mem_last;
 	
+	// 유효성 용
+	String memPwd;
+	
 }

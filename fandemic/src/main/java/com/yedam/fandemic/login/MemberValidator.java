@@ -40,9 +40,11 @@ public class MemberValidator implements Validator {
 		Member member = (Member) target;
 		
 		// 널 값
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_id", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_name", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_pw", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_birth", "required", notnull);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_email", "required", notnull);
 		
 //		if(member.getMem_email() == null || member.getMem_email().trim().isEmpty() ) {
 //			errors.rejectValue("mem_email", "required",notnull);

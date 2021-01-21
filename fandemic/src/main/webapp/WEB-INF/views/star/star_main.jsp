@@ -6,22 +6,17 @@
 
 
 	$(function() {	
-		var id = "${member.mem_id}"
+		var id = "${sessionScope.member.mem_id}"
 		var fan = "${fan.mem_id}"
 		var fan_block = "${fan.fan_block}"
 		start(id, fan);
 		
-		
-		
-		
-		
+
 		$("#channelJoinAction").on("click",function(){
 			if(replyFormCheck()==true){
 				fboardListView();
 			}
 		});
-		
-
 		
 		//메인에서 다 못들어오게 필터링
 		$("body").on('click', 'a',function(e){

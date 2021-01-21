@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/company.css">
 
@@ -7,13 +8,16 @@
 <section class="page">
 	<div class="container">
 		<div class="row">
-			<div class="companySlide">
-				<ul>
-					<li><img class="companyBanner col-md-12 col-sm-12 col-xs-12"
-						src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
-						alt="company_main" /></li>
-				</ul>
-			</div>
+			<div class="starSlide">
+			    <ul>
+			    	<c:forEach var="comBa" items="${comBanner}" end = "3">
+			      		<li><img class = "companyStarBanner col-md-12 col-sm-12 col-xs-12" src="${pageContext.request.contextPath}/images/cnotice/${comBa.conc_banner}"
+								onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'"
+								/>
+						</li>
+		   			</c:forEach>
+			    </ul>
+			  </div>
 		</div>
 	</div>
 	<div class="container">

@@ -44,6 +44,7 @@ public class SocialValidator implements Validator {
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_name", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_birth", "required", notnull);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_email", "required", notnull);
 		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mem_address2", "required", notnull);
 
 		

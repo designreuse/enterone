@@ -21,5 +21,8 @@ public class Company {
 	
 	private int com_first; // 페이지네이션
 	private int com_last;
-
+	
+	
+	// 유효성 검사
+	String com_pwCheck;
 }

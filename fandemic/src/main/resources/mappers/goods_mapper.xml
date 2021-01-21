@@ -88,7 +88,7 @@
 		VALUES (#{tb_no}, #{go_no}, #{mem_id}, sysdate, #{tb_payment})
 	</insert>
 	
-	<!-- 예매 개수 카운트 -->
+	<!-- 예매 개수 카운트 (매진 처리) -->
 	<select id="tbuyCount" resultType="int">
 		SELECT COUNT(*) count
 		FROM TBUYER 

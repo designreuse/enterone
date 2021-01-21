@@ -13,4 +13,5 @@ public interface CompanyMapper {
 	
 	public int getCnoticeCount(Cnotice cnotice); //공지사항 페이지네이션
 	public List<Cnotice> getCnoticeListPaging(Cnotice cnotice); //공지사항 페이지네이션 처리 후 출력
+	public List<Cnotice> getCnoticeBanner(Cnotice cnotice); //공지사항 배너리스트
 }

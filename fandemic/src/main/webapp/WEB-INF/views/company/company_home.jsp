@@ -8,7 +8,7 @@
 
 
 <section class="page">
-	<div class="container">
+	<%-- <div class="container">
 		<div class="row">
 			<div class="companySlide">
 				<ul>
@@ -18,7 +18,24 @@
 				</ul>
 			</div>
 		</div>
+	</div> --%>
+	<div class="container">
+		<div class="row">
+			<div class="starSlide">
+			    <ul>
+			    	<c:forEach var="star" items="${companyStars}" end = "3">
+			      		<li><img class = "companyStarBanner col-md-12 col-sm-12 col-xs-12" src="${pageContext.request.contextPath}/images/star/${star.st_pic}"
+								onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'"
+								/>
+						</li>
+		   			</c:forEach>
+			    </ul>
+			  </div>
+		</div>
 	</div>
+	
+	
+	
 	<div class="container">
 		<div class="nav-tabs-group">
 			<ul class="nav-tabs-list">

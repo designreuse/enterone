@@ -4,13 +4,27 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 
 <section class="ftco-section-3">
+	<script>
+		$(function() {
+			var sid = "${sessionScope.star.st_id}"
+			var ssid = "${stVo.st_id}"
+			//스타회원이 아니라면 글쓰기 막음
+
+			if(sid != null && sid != ""){
+				if(sid == ssid){
+					$(".btnInputSboardShow").show()
+				}
+			}
+
+		})
+	</script>
 	
 	<div class="container">
 		<div class="row d-flex">
 			<div class="row">
 				<div class="sidebar-box ftco-animate">
 					<button class="btn btn-primary py-2 px-4 btnInputSboardShow"
-					onclick="location.href = '${pageContext.request.contextPath}/star/starBoard/insertView'">글쓰기</button>
+					onclick="location.href = '${pageContext.request.contextPath}/star/starBoard/insertView'" style="display:none;">글쓰기</button>
 				</div>
 			</div>
 		</div>
