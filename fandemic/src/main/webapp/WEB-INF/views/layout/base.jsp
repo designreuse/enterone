@@ -148,7 +148,7 @@
 <!--                      magz-dropdown 클래스 제거 -->
                      <li class="dropdown"><a href="${pageContext.request.contextPath}/audition/auditionwork">연 습 생<i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
-                        <c:if test="${sessionScope.member.mem_id ne null and sessionScope.trainee.mem_id eq null}">
+                        <c:if test="${sessionScope.member.mem_id ne null and trainee.mem_id eq null}">
                            <li><a href="${pageContext.request.contextPath}/audition/traineeinsert">연습생 등록</a></li>
                         </c:if>
                            <li><a href="${pageContext.request.contextPath}/audition/auditionwork">연습생 활동</a></li>
@@ -190,8 +190,8 @@
 											장바구니</a></li>
 							<li><a href="${pageContext.request.contextPath}/mypurchase"><i class="icon ion-key"></i>
 											결제내역</a></li>
-							<li><a href="${pageContext.request.contextPath}/myevent"><i class="icon ion-settings"></i>
-											이벤트 참여</a></li>
+							<li><a href="${pageContext.request.contextPath}/untact"><i class="icon ion-settings"></i>
+											언택트 티켓</a></li>
 							<li class="dropdown"><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>쪽지함</a>
 								 <ul class="dropdown-menu">
 								 <li><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>

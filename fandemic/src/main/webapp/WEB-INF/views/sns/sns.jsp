@@ -445,6 +445,7 @@ resize: none;
 				if (file.upload != 'disable') //삭제하지 않은 이미지만 업로드 항목으로 추가
 					formData.append('upload-file', file, file.name);
 			});
+			
 			$.ajax({
 				url : 'sns/snsInsert',
 				data : formData,
@@ -454,6 +455,10 @@ resize: none;
 				success : function(ret) {
 					alert("완료");
 					location.reload();
+				},
+				error : function(ter){
+					alert("글 등록 실패");
+					alert("제목이 입력되었는지 확인해주세요");
 				}
 			});
 		});
@@ -481,10 +486,7 @@ resize: none;
 			modal.modal('show');
 		})
 		// SNS상세정보 사진O 모달창 띄우기
-		$('.outputdiv')
-				.on(
-						'click',
-						function(event) {
+		$('.btnoutputdiv').on('click',	function(event) {
 							var modal = $('#exampleModal9')
 							var no = $(this).data("no");
 							replyListView(no);
@@ -650,6 +652,7 @@ resize: none;
 			modal.find('#mamber-name').val(sid)
 			modal.find('#snsns').val(snssns)
 			modal.modal('show');
+			
 		});
 		// MyPost 목록 보기, YourPost 목록 보기
 		$('.btn-myPost')
@@ -820,12 +823,10 @@ resize: none;
 									"<div class = 'replyInfo' data-no="+re.sre_no+"><hr>")
 									.append(
 											$('<div class = \'row\' style="float:left">')
-													.html(
-															'ID : '+ name + '&nbsp;'
-																	+ re.mem_id))
+													.html(name + '&nbsp;'+ re.mem_id))
 									.append(
 											$('<div class = \'row sretime\'>').html(
-													name + '&nbsp;' + '&nbsp;' + '&nbsp;' + '&nbsp;' + '&nbsp;' + '&nbsp;' + '&nbsp;DATE : '
+													name + '&nbsp;' + '&nbsp;'
 															+ re.sre_time +'<br>'))
 									.append(
 											$('<br><div class = \'row replyText\'>')
@@ -1164,13 +1165,13 @@ resize: none;
 								</div>
 							</span>
 							<c:if test="${not empty sns.sns_pic}">
-								<div id="hoverdiv">
 								<div class="outputdiv" data-no="${sns.sns_no}">
+								
 									<div class="inner cinner">
 										<figure>
 											<div class="w3-content w3-section" style="max-width: 500px">
 												<c:forTokens var="cutimg" items="${sns.sns_pic}" delims=",">
-													<a href="single.html"> <img class="mySlides"
+													<a> <img class="mySlides"
 														src="${pageContext.request.contextPath}/images/snsimage/${cutimg}"
 														alt="사진이 출력되는 곳" style="width: 100%; display: none;">
 													</a>
@@ -1211,17 +1212,16 @@ resize: none;
 															</a>
 														</c:otherwise>
 													</c:choose>
+													<input type="button" class="btn btn-primary btnoutputdiv" data-no="${sns.sns_no}" value="상세보기">
 											</footer>
 										</div>
 									</div>
-								</div>
 								</div>
 							</c:if>
 							<c:if test="${empty sns.sns_pic}">
 								<div class="outputdiv2" data-no="${sns.sns_no}">
 
 									<div class="inner ">
-							<div id="hoverdiv">
 										<div class="inner cinner">
 											<div class="details" style="padding: 9px; margin: 0px;">
 												<div class="detail">
@@ -1252,10 +1252,10 @@ resize: none;
 															</a>
 														</c:otherwise>
 													</c:choose>
+													<input type="button" class="btn btn-primary btnoutputdiv" data-no="${sns.sns_no}" value="상세보기">
 												</footer>
 											</div>
 										</div>
-									</div>
 								</div>
 								</div>
 							</c:if>
