@@ -146,6 +146,15 @@ public class StarController {
 		stVo.setSt_id(id);
 		mav.addObject("stVo", starService.getStarMain(stVo));
 		
+		
+		String sbo_hashtag = request.getParameter("hashtag");
+		if(sbo_hashtag != null) {
+			sbo_hashtag = "#" + sbo_hashtag;
+			sboVo.setSbo_hashtag(sbo_hashtag);	
+			System.out.println(sbo_hashtag);
+		}
+		
+		
 		sboVo.setSt_id(id);
 		String strp = request.getParameter("p");
 		int p = 1;

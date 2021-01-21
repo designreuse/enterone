@@ -31,7 +31,8 @@
 	<select id="getFboardHashtagList" parameterType="Fboard" resultType="Fboard">
 		SELECT * 
 		FROM v_fbolist 
-		WHERE st_id = #{st_id} and fbo_hashtag like '%' || #{fbo_hashtag} || '%'
+		WHERE st_id = #{st_id} 
+			AND fbo_hashtag like '%' || #{fbo_hashtag} || '%'
 	</select>
 	
 	<!-- 말머리로 게시물 목록 조회 -->
