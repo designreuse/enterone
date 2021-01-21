@@ -62,9 +62,9 @@
 
 					<div class="col-xl-1 col-md-1 col-xs-2">${cnoc.cnoc_sub_no}</div>
 					<div class="col-xl-9 col-md-9 col-xs-10 alignLeft">
-						<a href="${pageContext.request.contextPath}/company/notifyDetail/${cnoc.cnoc_no}"
-							style='cursor: pointer; color: black;'>[${cnoc.cnoc_subject}]
-							${cnoc.cnoc_title}</a>
+						<a href="${pageContext.request.contextPath}/company/notifyDetail/${cnotice.com_id}?no=${cnoc.cnoc_no}"
+							style='cursor: pointer; color: black;'>
+							[${cnoc.cnoc_subject}] ${cnoc.cnoc_title}</a>
 					</div>
 					<div class="col-xl-none col-md-none col-xs-2"></div>
 
