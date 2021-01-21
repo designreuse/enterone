@@ -1,12 +1,15 @@
 package com.yedam.fandemic.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yedam.fandemic.vo.Fan;
+import com.yedam.fandemic.vo.Goods;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.QnA;
 import com.yedam.fandemic.vo.Star;
+import com.yedam.fandemic.vo.Untact;
 
 public interface MypageMapper {
 // 	메인페이지
@@ -40,5 +43,10 @@ public interface MypageMapper {
 	//회원탈퇴
 	public int deleteMember(Member memeber);//회원탈퇴
 	
+	//언텍트 조회
+	
+	public int unCnt(); //페이지 네이션
+	public List<Untact> untactList(Untact untact); //내가 모든 언텍트
+	public List<Map<String, Object>> comingsoonList(); //다가오는 언텍트 이벤트 출력
 	
 }

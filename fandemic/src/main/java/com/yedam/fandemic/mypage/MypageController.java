@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
+import java.util.Map;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -30,6 +32,7 @@ import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.QnA;
 import com.yedam.fandemic.vo.Star;
+import com.yedam.fandemic.vo.Untact;
 
 @Controller
 public class MypageController {
@@ -337,6 +340,35 @@ public class MypageController {
 		return myMapper.deleteMember(member);
 	}
 	
+	//MY Untack Ticket 확인, 참여 할수있음
+	@RequestMapping(value = "/myUntact")
+	public ModelAndView myUntact(HttpServletResponse response, Untact untact, Model model) throws IOException {
+		String strp = request.getParameter("p");
+		int p = 1;
+		          
+		if(strp != null && !strp.equals("")) {
+			p = Integer.parseInt(strp);
+		}
+		Paging paging = new Paging();
+		
+		paging.setPageUnit(3); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
+		paging.setPage(p); // 현재 페이지 지정
+		
+		untact.setU_first(paging.getFirst());
+		untact.setU_last(paging.getLast());
+		
+		paging.setTotalRecord(myMapper.unCnt());
+		
+		model.addAttribute("paging",paging);
+		model.addAttribute("unList", myMapper.untactList(untact));
+		
+		//커밍순 리스트
+		List<Map<String, Object>> list = myMapper.comingsoonList();
+		model.addAttribute("comingList", list);
+		model.addAttribute("cnt", list.size());
+		return new ModelAndView("untact/myUntact");
+	}
 	
 	
 	

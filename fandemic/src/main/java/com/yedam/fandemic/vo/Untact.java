@@ -17,6 +17,8 @@ public class Untact {
 	String com_id;		//소속사ID
 	String unt_content;	//행사내용
 	
+	String mem_id;
+	
 	int u_first;
 	int u_last;
 	
