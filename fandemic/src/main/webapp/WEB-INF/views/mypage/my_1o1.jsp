@@ -36,14 +36,13 @@
 								})
 			})
 </script>
-
 <body>
 	<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document" style="padding-top: 10%;">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">새 쪽지 작성</h5>
+					<h5 class="modal-title" id="exampleModalLabel">문의 상세 내역</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -63,24 +62,26 @@
 									name="lett_content"
 									style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
 							</div>
-
+							<c:if test="${empty qna.q_answer}">
 							<div class="form-group">
 								<label for="recipient-name" class="col-form-label">답변:</label>
 								<textarea class="form-control answer" id="message-text"
 									name="lett_content"
 									style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
 							</div>
-
+							</c:if>
 							<div class="form-group aadaa">
 								<label for="recipient-name" class="col-form-label ">보낸
 									시간:</label> <input type="text" class="form-control time"
 									id="recipient-name" name="lett_sid">
 							</div>
+							<c:if test="${empty qna.q_answer}">
 							<div class="form-group">
 								<label for="recipient-name" class="col-form-label ">답변
 									시간</label> <input type="text" class="form-control atime"
 									id="recipient-name" name="lett_sid">
 							</div>
+							</c:if>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary">삭제</button>
@@ -93,13 +94,9 @@
 		</div>
 	</div>
 
-	<section class="single">
+	<section class="single" style="min-height: 1200px; padding-top: 0px">
 
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="col-md-12">
-
 						<div class="headline">
 							<img alt="" src="">
 							<div class="nav" id="headline-nav">
@@ -123,6 +120,10 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+				<div class="col-md-12">
+					<div class="col-md-12">
+
 
 
 
@@ -142,6 +143,9 @@
 								<td width="35%">내용</td>
 								<td width="5%">읽음</td>
 							</tr>
+							
+							<c:choose>
+							<c:when test="${qnalist ne '[]'}">
 							<c:forEach items="${qnalist}" var="qna">
 								<tr class="qnainfo" data-no="${qna.q_no }">
 									<td width="5%">${qna.q_no }</td>
@@ -156,6 +160,11 @@
 								    </c:if></td>
 								</tr>
 							</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr><td style="font-size: 25px;" colspan="4" align="center">문의 내역이 없습니다 📪</td>	</tr>
+							</c:otherwise>
+							</c:choose>
 						</table>
 						<div align="center">
 							<script>

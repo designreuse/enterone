@@ -64,7 +64,7 @@
 	//삭제기능
 </script>
 </head>
-<section class="single">
+<section class="single" style="min-height: 1200px">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -88,16 +88,23 @@
 								<th scope="col" width="20%">아이디</th>
 								<th scope="col" width="20%">받은날짜</th>
 							</tr>
-							<c:forEach items="${mymaillist}" var="mail">
-								<tr style="text-align: left;" class="mailinfo"
-									data-no="${mail.lett_no}">
-									<td scope="col" width="5%">${mail.lett_no}</td>
-									<td scope="col" width="30%">${mail.lett_title}</td>
-									<td scope="col" width="20%">${mail.lett_sid}</td>
-									<td scope="col" width="20%">${mail.lett_time}</td>
-								</tr>
-
-							</c:forEach>
+							<c:choose>
+								<c:when test="${mymaillist ne '[]'}">
+									<c:forEach items="${mymaillist}" var="mail">
+										<tr style="text-align: left;" class="mailinfo"
+											data-no="${mail.lett_no}">
+											<td scope="col" width="5%">${mail.lett_no}</td>
+											<td scope="col" width="30%">${mail.lett_title}</td>
+											<td scope="col" width="20%">${mail.lett_sid}</td>
+											<td scope="col" width="20%">${mail.lett_time}</td>
+										</tr>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td style="font-size: 25px;" colspan="4" align="center">(┬┬﹏┬┬) 받은 쪽지가 없습니다 📪</td>	</tr>		
+								</c:otherwise>
+							</c:choose>
 						</table>
 						<div align="center">
 							<script>
@@ -129,6 +136,7 @@
 							</div>
 							<form id="sendmail" name="sendmail" action="sendmail">
 								<div class="modal-body">
+								<input type="text" 	value="3" name="snsns" style="display: none">
 									<input type="text" class="form-control" id="recipient-name"
 										name="lett_sid" value="${member.mem_id}" style="display: none">
 									<div class="form-group">
@@ -227,18 +235,18 @@
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label ">보낸회원
 											ID: </label> <input type="text" class="form-control lett_sid"
-											id="recipient-mname" name="lett_sid">
+											id="recipient-mname" name="lett_sid" readonly="readonly">
 									</div>
 									<div class="form-group">
 										<label for="recipient-name" class="col-form-label ">쪽지
 											제목: </label> <input type="text" class="form-control title"
-											id="recipient-title" name="lett_title">
+											id="recipient-title" name="lett_title" readonly="readonly">
 									</div>
 									<div class="form-group">
 										<label for="message-text" class="col-form-label ">내용:</label>
 										<textarea class="form-control content" id="message-text"
-											name="lett_content"
-											style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
+											name="lett_content" readonly="readonly"
+											style="background-color:white; margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
 									</div>
 								</div>
 								<div class="modal-footer">
