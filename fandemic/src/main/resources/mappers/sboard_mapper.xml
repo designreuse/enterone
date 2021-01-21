@@ -13,6 +13,9 @@
 		    FROM sboard s)
 		WHERE (sbo_re_no BETWEEN #{sbo_first} AND #{sbo_last})
 			AND st_id = #{st_id}
+			<if test="sbo_hashtag != null">
+			AND sbo_hashtag like '%' || #{sbo_hashtag} || '%'
+			</if>
 		ORDER BY sbo_re_no
 	</select>
 	

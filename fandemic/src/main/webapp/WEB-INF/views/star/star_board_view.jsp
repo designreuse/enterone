@@ -41,9 +41,12 @@ var st_name = "${stVo.st_name}";
 		//태그 별 게시글 목록 검색
 		$("#sbo_hashtag_array").on("click","a",function(){
 			var sbo_hashtag = $(this).html();
+			
+			hashtag = sbo_hashtag.substring(1);
+			
 			console.log("===확인1"+st_id)
 			console.log("====확인2"+sbo_hashtag)
-			location.href ="${pageContext.request.contextPath}/star/starBoard?st_id="+st_id + "&sbo_hashtag=" + sbo_hashtag;
+			location.href ="${pageContext.request.contextPath}/star/starBoard/"+st_id + "?hashtag=" + hashtag;
 		})
 		
 		//목록보기
