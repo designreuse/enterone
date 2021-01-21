@@ -182,7 +182,7 @@
 		<div align="center">
 			<script>
 				function goPage(p) {
-					location.href="adminFilter?p="+p
+					location.href="${pageContext.request.contextPath}/adminFilter?p="+p
 				}
 			</script>
 			

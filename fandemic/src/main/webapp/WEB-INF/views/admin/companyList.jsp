@@ -68,7 +68,7 @@
 <div align="center">
 	<script>
 		function goPage(p) {
-			location.href="adminCompany?p="+p
+			location.href="${pageContext.request.contextPath}/adminCompany?p="+p
 		}
 	</script>
 	

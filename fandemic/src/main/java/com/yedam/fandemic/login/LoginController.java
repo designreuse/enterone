@@ -128,8 +128,6 @@ public class LoginController {
 			
 			Password pw = new Password();
 			String enPw = Password.encrypt(pwKey);
-			System.out.println("변경된 비밀번호 : " + pwKey);
-			System.out.println("암호화 된 비밀번호 : " + enPw);
 			
 			member.setMem_pw(enPw); //임시비번 넣어서
 			memMapper.pwUpdate(member); //업데이트 하고
@@ -177,13 +175,18 @@ public class LoginController {
 			String pwKey = Password.getRamdomPw(6);
 			
 			Password pw = new Password();
-			company.setCom_pw(Password.encrypt(pwKey)); //임시비번 넣어서
+			String enPw = Password.encrypt(pwKey);
+			
+			System.out.println("새 비밀번호 : " + pwKey);
+			System.out.println("암호화 비밀번호 : " + enPw);
+			
+			company.setCom_pw(enPw); //임시비번 넣어서
 			memMapper.pwUpdateCom(company);
 			
 			mail.setSenderName("엔터원");
 			mail.setSenderMail("haez119@gmail.com");
 			mail.setReceiveMail(company.getCom_email());
-			mail.setSubject("요청하신 비밀번호입니다.");
+			mail.setSubject("임시 비밀번호가 발급되었습니다.");
 			
 			String mainCon = "<h2>안녕하세요 " + company.getCom_id() +" 님 </h2><br><br>" 
 					+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>'" + pwKey +"'</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다.</p><br>"

@@ -38,7 +38,7 @@ public class UntactController {
 		}
 		Paging paging = new Paging();
 		
-		paging.setPageUnit(3); // 한페이지에 5건씩. 생략시 기본10
+		paging.setPageUnit(5); // 한페이지에 5건씩. 생략시 기본10
 		paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10
 		paging.setPage(p); // 현재 페이지 지정
 		

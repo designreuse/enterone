@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-
 
 
 
@@ -64,29 +61,51 @@ ul.tabs li.current {
 		if(check == "member") {
 			
 			$('#btnId').on('click',function(){ 
-				memIdFind();
+				if($("#idName").val() == null || $("#idName").val() == '') {
+					alert("이름을 입력하세요");
+				} else if($("#idEmail").val() == null || $("#idEmail").val() == '') {
+					alert("이메일을 입력하세요");
+				} else {
+					memIdFind();
+				}
 			});
 			
 			$('#btnPw').on('click',function(){ 
-				memPwFind();
+				if($("#pwId").val() == null || $("#pwId").val() == '') {
+					alert("아이디를 입력하세요");
+				} else if($("#pwEmail").val() == null || $("#pwEmail").val() == '') {
+					alert("이메일을 입력하세요");
+				} else {
+					memPwFind();
+				}
+
 			});
 			
 		} else {
 			$('#btnId').on('click',function(){ 
-				comIdFind();
+
+				if($("#idName").val() == null || $("#idName").val() == '') {
+					alert("이름을 입력하세요");
+				} else if($("#idEmail").val() == null || $("#idEmail").val() == '') {
+					alert("이메일을 입력하세요");
+				} else {
+					comIdFind();
+				}
 			});
+		
 			
-			$('#btnPw').on('click',function(){ 
-				comPwFind();
+			$('#btnPw').on('click',function(){
+				
+				if($("#pwId").val() == null || $("#pwId").val() == '') {
+					alert("아이디를 입력하세요");
+				} else if($("#pwEmail").val() == null || $("#pwEmail").val() == '') {
+					alert("이메일을 입력하세요");
+				} else {
+					comPwFind();
+				}
 			});
-			
+	
 		}
-		
-		
-		
-
-
-		
 	}); //end ready function
 	
 	function memIdFind() {
@@ -169,6 +188,7 @@ ul.tabs li.current {
 	        },error:function(){ alert("실패"); }
 	     });
 	} 
+	
 	function comPwFind() {
 		
 		$.ajax({

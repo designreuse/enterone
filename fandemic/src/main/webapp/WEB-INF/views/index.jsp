@@ -321,7 +321,7 @@ hr {
 							<article class="featured">
 								<div class="overlay"></div>
 								<figure class="ffffsf">
-									<img src="${pageContext.request.contextPath}/images/goods/${gos.go_pic} " alt="TICKET" style="width: 500px; height: 800px;">
+									<img src="${pageContext.request.contextPath}/images/goods/${gos.go_pic}" onerror="this.src='${pageContext.request.contextPath}/images/etc/ticketDefault.jpg'" alt="TICKET" style="width: 500px; height: 800px;">
 								</figure>
 								<div class="details">
 									<div style="color: white;" >${gos.st_id}</div>
@@ -603,5 +603,5 @@ hr {
 		</div>
 	</div>
 	</c:if>
-	
+</div>
 </section>

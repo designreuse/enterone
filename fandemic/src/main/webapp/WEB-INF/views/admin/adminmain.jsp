@@ -151,7 +151,7 @@
 					<div align="center">
 							<script>
 								function goPage(p) {
-									location.href = "adminMain?p=" + p
+									location.href = "${pageContext.request.contextPath}/adminMain?p=" + p
 								}
 							</script>
 

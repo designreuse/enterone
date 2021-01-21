@@ -155,7 +155,7 @@ $(document).ready(function() {
 				<div align="center">
 					<script>
 						function goPage(p) {
-							location.href = "adminMain?p=" + p
+							location.href = "${pageContext.request.contextPath}/untact?p=" + p
 						}
 					</script>
 
