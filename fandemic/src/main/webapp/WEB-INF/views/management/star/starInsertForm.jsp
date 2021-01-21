@@ -38,6 +38,9 @@
 			CnoticeFormCheck(); //유효성검사
 		});
 		
+		$("td .st_id").keyup(function(){
+			$(".st_id_ck").text("");
+		})
 		//ID중복체크 버튼
 		$("td .st_id_ck_btn").on("click",function(){
 			var st_id=$(".st_id").val(); //id값
@@ -93,6 +96,14 @@
 		}else if($("table .st_name").val()==null||$("table .st_name").val()==''){
 			alert("이름을 입력하세요.")
 			$("table .st_name").focus();
+			event.preventDefault();
+		}else if($("table .st_pw").val() != $("table .st_pw_ck").val()){
+			alert("비밀번호가 일치하지 않습니다.")
+			$("table .st_pw").focus();
+			event.preventDefault();
+		}else if($(".st_id_ck").text()!="사용가능한 아이디 입니다."){
+			alert("아이디를 확인하세요.")
+			$("table .st_id").focus();
 			event.preventDefault();
 		}
 		

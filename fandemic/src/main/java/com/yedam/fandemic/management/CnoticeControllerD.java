@@ -98,7 +98,7 @@ public class CnoticeControllerD {
 	public String noticesUpdate(HttpServletRequest request, Model model, Cnotice cnotice) throws IllegalStateException, IOException  {
 		// request multipart로 캐스팅
 	      MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-	      String sumFile=request.getParameter("file_name");
+	      String sumFile="";//request.getParameter("file_name");
 	   // 이미지파일
 	      List<MultipartFile> multipartFile = multipartRequest.getFiles("uploadFile");
 	      for(int i=0; i<multipartFile.size(); i++) {

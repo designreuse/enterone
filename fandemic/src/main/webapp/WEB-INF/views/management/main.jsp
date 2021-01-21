@@ -117,7 +117,7 @@ function drawChart() {
 
 	var options = {
 
-			title: '스토어 매출현황',
+			title: '월 매출현황',
 
 			hAxis: {
 
@@ -155,21 +155,27 @@ function drawChart() {
 	
     <!-- Main content -->
     <section class="content">
-    <p><h2>소속사 팬 TOP3</h2></p>
+    <div class="row">
+    
     	<!-- 차트 -->
 		<div>
 			<div> 
+			<h2>소속사 팬 TOP3</h2>
 				<div align="center" class="chart-container" style=" padding: 20px">
 					<canvas id="myChart"></canvas>
 				</div>
 			</div>
 		</div>
-       <p><h2>스토어 매출현황</h2></p>	
-    	<!-- 구글차트 -->
-       <div id="columnchart_material" style="width: 100%; height: 300px;"></div>
+		
+	    	<!-- 구글차트 -->
+		<div style="width:50%">
+	       <p><h2>스토어 월 매출현황</h2></p>	
+	       <div id="columnchart_material" style="width:100%; height: 100%;"></div>
+	    </div>
+     </div>
        <!-- datatable -->
        <div class="card-body">
-              
+              <p><h2>스토어 일 매출현황</h2></p>	
                 <table id="dataTable" class="table table-bordered table-hover">
                   <thead>
                     <tr>

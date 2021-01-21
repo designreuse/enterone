@@ -11,11 +11,11 @@
 		background-color:rgba(0,0,0,.05);
 	}
 	td .cnoc_file{
-		position: absolute;
+		/* position: absolute; */
 		width: 0;
 		height: 0;
 		padding: 0;
-		overflow: hidden;
+		/* overflow: hidden; */
 		border: 0;
 	}
 	td .upload-name{
@@ -35,6 +35,10 @@
 		background-color:rgba(0,0,0,.05);
 		border: 2px inset rgba(0,0,0,.10);
 		width:100%;
+	}
+	.file_ul{
+		list-style:none;
+		overflow: auto;
 	}
 	
 	
@@ -67,7 +71,7 @@
 			CnoticeFormCheck(); //유효성검사
 		});
 		//파일등록이벤트
-		$(".uploadFile").text("${cnotice.cnoc_file}");
+		/* $(".uploadFile").text("${cnotice.cnoc_file}");
 		
 	 	var fileTarget = $("#file"); //input type=file
 	 	fileTarget.on("change",function(){ // 값이변경되면
@@ -75,8 +79,46 @@
 	 		$(".upload-name").val(cur); //업로드파일명 출력 
 	 		
 	 		
-	 	});
-	
+	 	}); */
+	 	
+	 	$("#file").change(function(){
+	 		//alert("박휴")
+	 		//console.log($(this)[0].files);
+	 		fileList = $(this)[0].files;
+	 		fileListTag="";
+	 		for(i=0; i<fileList.length; i++){
+	 			fileListTag+="<li>" + fileList[i].name+"<input type='button' class='btnFileDel' value='X'></li>";
+	 		}
+	 		$(".file_ul").html(fileListTag);
+	 	})
+	 	
+	 	$("body").on("click",".btnFileDel",function(){
+	 		//alert("ㅇㅇ")
+	 		var dt = new DataTransfer();
+	 		var fileList= $("#file")[0].files;
+	 		console.log("삭제전 리스트:"+fileList);
+	 		var newList = Array.from(fileList);
+	 		console.log("삭제전 리스트를 새리스트로:"+newList);
+	 		//console.log("새리스트:"+newList[1].name);
+	 		//console.log($(this).parent().text()) //삭제할 파일 이름
+	 		for(i=0; i<newList.length; i++){
+	 			if(newList[i].name ==$(this).parent().text()){
+	 			console.log("삭제됨:"+newList[i].name);
+	 				newList.splice(i,1);
+	 			}
+	 		}
+	 		
+	 		$(this).parent().remove();
+	 		for(i=0; i<newList.length; i++){
+	 			//fileList = newList[i];
+	 			dt.items.add(newList[i]);
+	 		}
+	 		//fileList = dt.files;
+	 		$("#file")[0].files=dt.files;
+	 		//fileList = newList.files;
+	 		console.log($("#file")[0].files)
+	 		console.log("===변경되었나?"+$("#file")[0].files)
+	 	})
 	 	//이벤트/공지사항 분류 DB값 지정
 	 	$(".custom-select option").each(function(){
 	 		if($(this).val()=="${cnotice.cnoc_subject}"){
@@ -201,7 +243,7 @@
 									</td>
 								</tr>
 								
-								<tr>
+								<%-- <tr>
 									<td colspan="1" align="left"><label>첨부파일</label></td>
 									<td colspan="3" class="fileboxi">
 										<label class="filebox" for="file">업로드</label>
@@ -213,14 +255,31 @@
                       					
                       					              					
                      				</td>
-								</tr>
+								</tr> --%>
 								<tr>
-									<td colspan="1" rowspan="2" align="left"><label>메인홍보용배너</label></td>
-									<td colspan="3" rowspan="1">
-                      					<input type="file" name="uploadbanner" id="uploadbanner" onchange="setThumbnail2(event);">                     					
+									<td colspan="1" rowspan="2" align="left"><label>첨부파일</label></td>
+									<td colspan="3" rowspan="1" class="fileboxi">
+                      					<input type="file" id="file" class="cnoc_file uploadFile" name="uploadFile" multiple>
+                      					
+                      					              					
                      				</td>
 								</tr>
 								<tr>
+									<td colspan="3" class="fileboxi">
+                      					
+                      					<ul class="file_ul" style="background-color:white; width:100%; height:100px; border:1px solid;">
+                      							<li>${cnotice.cnoc_file }</li>
+                      					</ul>
+                      					              					
+                     				</td>
+								</tr>
+								<tr>
+									<td colspan="1" align="left"><label>메인홍보용배너</label></td>
+									<td colspan="3" >
+                      					<input type="file" name="uploadbanner" id="uploadbanner" onchange="setThumbnail2(event);">                     					
+                     				</td>
+								</tr>
+								<%-- <tr>
 									<td colspan="4">
                       					<div id="image_container2">
                       					<c:if test="${cnotice.conc_banner != null}">
@@ -228,7 +287,7 @@
                       					</c:if>	
                       					</div> 		
                      				</td>
-								</tr>
+								</tr> --%>
 								<tr >
 									<td colspan="4" align="right" style="padding:5px;">
 									<button type="submit" id="btnCnotice-register" class="btn btn-primary pull-right">수정</button>

@@ -321,7 +321,7 @@
 									<td width="10%" align="left"><label>상품대표사진</label></td>
 									<td width="15%">
 										<div style="width:286px; height:286px; background-color:white;" class="img-print">
-										<img class="gc-img"></div>
+										<img src="${pageContext.request.contextPath}/images/goods/${goods.go_pic}" class="gc-img" style="width:250px; height:250px;" alt="사진이없어요"></div>
                       					<input type="file" name="uploadFile" class="uploadFile" style="display:none;" onchange="changeValue(event)">                     					
                      				</td>
                      				<td width="10%"><label>상품상세사진</label></td>

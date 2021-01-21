@@ -53,7 +53,12 @@
 			alert("소개글을 입력하세요.")
 			$("table .st_introduce").focus();
 			event.preventDefault();
-		}else{
+		}else if($("table .st_pw").val()!=$("table .st_pw_ck").val()){
+			alert("비밀번호가 일치하지 않습니다.")
+			$("table .st_pw").focus();
+			event.preventDefault();
+		}
+	    else{
 			var ck = confirm("수정하시겠습니까?");
 		
 			if(ck==false){

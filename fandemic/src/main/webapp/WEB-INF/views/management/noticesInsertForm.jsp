@@ -67,7 +67,8 @@
 		reader.onload = function(event) {
 			var img = $("<img>").attr("src",event.target.result).css({"width":"100%","height":"350px"});
 			var btnDel = $("<button>").attr({"type":"button", "class":"cnoticeImg_del"}).text("X");
-			$("#image_container2").append(img).append(btnDel);			
+			//$("#image_container2").append(img).append(btnDel);		
+			$("#image_container2").val(event.target.result);
 			/* var img = document.createElement("img"); 
 			img.setAttribute("src", event.target.result);
 			document.querySelector("div#image_container").appendChild(img); */

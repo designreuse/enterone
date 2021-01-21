@@ -69,7 +69,7 @@ public class StarControllerD {
 		
 	//소속사 스타회원 등록
 	@RequestMapping(value="/management/star/starMemberInsert")
-	public String starMemberInsert(HttpServletRequest request, Star star) throws IllegalStateException, IOException {
+	public String starMemberInsert(HttpServletRequest request, Star star) throws IllegalStateException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 	      //스타회원 아이콘 사진
 	      MultipartFile uploadIcon = multipartRequest.getFile("uploadIcon");
@@ -102,6 +102,8 @@ public class StarControllerD {
 	      }else {
 	    	  star.setSt_banner("");
 	      }
+	      Password pw = new Password();
+	      star.setSt_pw(pw.encrypt(star.getSt_pw()));
 		starService.InsertStar(star);
 		return "redirect:/management/star/starList"; //스타회원목록 리스트로 
 	}
@@ -116,7 +118,7 @@ public class StarControllerD {
 	
 	//소속사 스타회원 정보 수정할값 DB로 넘기기
 	@RequestMapping(value="/management/star/starMemberUpdate")
-	public String StarMemberUpdate(HttpServletRequest request, Star star) throws IllegalStateException, IOException {
+	public String StarMemberUpdate(HttpServletRequest request, Star star) throws IllegalStateException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 	      //스타회원 아이콘 사진
 	      MultipartFile uploadIcon = multipartRequest.getFile("uploadIcon");
@@ -143,6 +145,8 @@ public class StarControllerD {
 	    	  uploadBanner.transferTo(new File(path, uploadBanner.getOriginalFilename()));
 	         star.setSt_banner(uploadBanner.getOriginalFilename());
 	      }
+	      Password pw = new Password();
+	      star.setSt_pw(pw.encrypt(star.getSt_pw()));
 		starService.updateStarMember(star); //star값 받아서 update문실행
 		return "redirect:/management/star/starList"; //스타회원 목록으로 
 	}
