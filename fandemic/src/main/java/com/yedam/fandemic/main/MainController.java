@@ -64,10 +64,11 @@ public class MainController {
 		
 		
 		// 시청률
-		ArrayList<HashMap<String, String>> rating = new ArrayList<HashMap<String,String>>();
-		TVCrawling tc = new TVCrawling();
-		rating = tc.TvRating();
-		model.addAttribute("rating", rating);
+		/*
+		 * ArrayList<HashMap<String, String>> rating = new
+		 * ArrayList<HashMap<String,String>>(); TVCrawling tc = new TVCrawling(); rating
+		 * = tc.TvRating(); model.addAttribute("rating", rating);
+		 */
 		
 		// 팬 수 (차트)
 		List<HashMap<String, Object>> stCnt = new ArrayList<HashMap<String, Object>>();

@@ -509,7 +509,7 @@ hr {
 
 					<div id="tab-3" class="tab-content" style="width: 90%">
 					<div align="right">
-						<a style="color: #022AD5;" href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01" target="_blank"> >바로가기</a>
+						<!-- <a style="color: #022AD5;" href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01" target="_blank"> >바로가기</a> -->
 					</div>
 						<table style="width: 100%">
 							<c:forEach items="${rating}" var="ra">
