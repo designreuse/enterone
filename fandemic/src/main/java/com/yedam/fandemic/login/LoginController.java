@@ -127,7 +127,11 @@ public class LoginController {
 			String pwKey = Password.getRamdomPw(6);
 			
 			Password pw = new Password();
-			member.setMem_pw(pw.encrypt(pwKey)); //임시비번 넣어서
+			String enPw = Password.encrypt(pwKey);
+			System.out.println("변경된 비밀번호 : " + pwKey);
+			System.out.println("암호화 된 비밀번호 : " + enPw);
+			
+			member.setMem_pw(enPw); //임시비번 넣어서
 			memMapper.pwUpdate(member); //업데이트 하고
 			
 			mail.setSenderName("엔터원");
@@ -173,7 +177,7 @@ public class LoginController {
 			String pwKey = Password.getRamdomPw(6);
 			
 			Password pw = new Password();
-			company.setCom_pw(pw.encrypt(pwKey)); //임시비번 넣어서
+			company.setCom_pw(Password.encrypt(pwKey)); //임시비번 넣어서
 			memMapper.pwUpdateCom(company);
 			
 			mail.setSenderName("엔터원");
