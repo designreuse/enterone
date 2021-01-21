@@ -37,12 +37,12 @@ public interface GoodsMapper {
 	// 주문 insert
 	public void buyInsert(Gbuyer gbuyer);
 	
-	// Goods 상세 페이지 (예매) 카운트
-	public int tbuyCount(Goods goods);
-	
 	// 주문 insert - 예매(ticket)
 	public void tbuyInsert(Tbuyer tbuyer);
 
+	// Goods 상세 페이지 (예매) 카운트
+	public int tbuyCount(Goods goods);
+	
 	// 주문상세 insert
 	public void buyDetailInsert(Gbuydetail gbuydetail);
 	

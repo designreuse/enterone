@@ -102,7 +102,7 @@
 		                	   	alert('결제가 완료되었습니다.');
 		                	   	location.reload();
 		                   }, error : function() {
-		                      	alert('결제에 실패했습니다.');
+		                      	alert('이미 매진된 행사입니다.');
 		                   }
 		                });
 					} else {
@@ -203,26 +203,35 @@
 								<div class="product__details__quantity">
 								<c:choose>
 									<c:when test="${goods.go_type eq 'TICKET'}">
-										<c:if test="${tbuyCount < 1}">
-											<a href="#" class="primary-btn" id="buy" 
-											   data-no="${goods.go_no}" data-name="${goods.go_name}" data-price="${goods.go_price}"
-											   style="background-color: #022AD5;">바로결제</a>
-										</c:if>
-										<c:if test="${tbuyCount >= 1}">
-											<a href="#" class="primary-btn" id="buy1" style="background-color: #f2f2f2; color: black;">매 진</a>
-											<span style="color: #ff6347;">이 상품은 더이상 구매하실 수 없습니다. <span>
-										</c:if>
+										<c:choose>
+											<c:when test="${sessionScope.member.mem_id eq null || sessionScope.member.mem_id eq ''}">
+												<a href="#" class="primary-btn" id="buy1" style="background-color: #f2f2f2; color: black;">구매불가</a>
+												<span style="color: #ff6347;"> 개인 회원 로그인 후 예매 가능합니다. </span>
+											</c:when>
+											<c:otherwise>
+												<c:if test="${tbuyCount < 1}">
+													<a href="#" class="primary-btn" id="buy" 
+													   data-no="${goods.go_no}" data-name="${goods.go_name}" data-price="${goods.go_price}"
+													   style="background-color: #022AD5;">바로결제</a>
+												</c:if>
+												<c:if test="${tbuyCount >= 1}">
+													<a href="#" class="primary-btn" id="buy1" style="background-color: #f2f2f2; color: black;">매 진</a>
+													<span style="color: #ff6347;"> 이 상품은 더이상 구매하실 수 없습니다. </span>
+												</c:if>
+											</c:otherwise>
+										</c:choose>
 									</c:when>
-	
 									<c:otherwise>
-									<div class="quantity">
-										<div class="pro-qty">
-											<input type="text" value="1" id="go_qty">
+										<div class="quantity">
+											<div class="pro-qty" style="margin-right: 20px;">
+												<input type="text" value="1" id="go_qty">
+											</div>
+										<a href="#" class="primary-btn" id="cart">장바구니</a>
 										</div>
-									</div>
-									<a href="#" class="primary-btn" id="cart">장바구니</a>
 									</c:otherwise>
 								</c:choose>
+											
+											
 							</div>
 						</div>
 					</div>
