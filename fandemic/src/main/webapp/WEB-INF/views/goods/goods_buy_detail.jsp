@@ -7,14 +7,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Goods 구매 상세보기 페이지</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-<script
-	src="${pageContext.request.contextPath}/resourcesGoods/js/index.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesGoods/css/style.css">
+<script src="${pageContext.request.contextPath}/resourcesGoods/js/index.js"></script>
 
 <script>
 $(document).ready(function() {
+	
+	var gb_no = "${gb_no}";
+	var tb_no = "${tb_no}";
+	
+	if (tb_no == null || tb_no == "") {
+		
+		$(".goods").addClass("active");
+	} else {
+		$(".cate").removeClass("active");
+		$("#ticket").addClass("active"); // (active)클래스를 넣는다.
+		$("#goods").removeClass("active");
+	} 
+		
+	$(".goods").click(function(){
+		$(location).attr('href','${pageContext.request.contextPath}/buyList');
+    });
+    
+    
+	$(".cate").click(function(){
+		$(location).attr('href','${pageContext.request.contextPath}/reservList');
+    });
+	
 	
 	var gb_no = 0;
 	
@@ -114,9 +133,17 @@ $(document).ready(function() {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="section-title">
-						<h3 align="center" style="padding: 15px">구매내역</h3>
+					<div class="section-title" style="margin-bottom: 5px;">
+						<h3 align="center" style="padding: 15px;">구매내역</h3>
 					</div>
+					
+					<div class="featured__controls" style="margin-bottom: 10px;">
+						<ul>
+							<li id="goods" class="cate goods active"> GOODS 주문 내역 </li>
+							<li id="ticket" class="cate ticket"> TICKET 예매 내역 </li>
+						</ul>
+					</div>
+					
 				</div>
 			</div>
 			<div class="row">
@@ -125,8 +152,7 @@ $(document).ready(function() {
 						<table>
 							<thead>
 								<tr>
-									<th style="text-align: center; border-bottom: 3px solid #ebebeb;">주문일자</th>
-									<th style="text-align: center; border-bottom: 3px solid #ebebeb;" colspan="5">주문내역</th>
+									<th style="text-align: center; border-bottom: 3px solid #ebebeb;" colspan="6"></th>
 								</tr>
 							</thead>
 							
