@@ -5,19 +5,16 @@
 <mapper namespace="com.yedam.fandemic.impl.UntactMapper">
 
 	<!--전체 리스트 -->
-	<select id="untactList" resultType="map">
-	
-		SELECT T.GO_NO, T.MEM_ID ,D.GO_NAME, D.GO_TYPE, D.GO_UNTSDATE, D.GO_UNTTIME, D.ST_ID, ROUND(D.GO_UNTEDATE - SYSDATE) AS DDAY , D.GO_PIC
-		FROM GOODS D , TBUYER T
-		WHERE T.GO_NO = D.GO_NO
-	
-		<!-- SELECT G.GO_NO , D.GO_NAME , B.MEM_ID, D.GO_TYPE, D.GO_UNTSDATE, D.GO_UNTTIME, D.ST_ID, ROUND(D.GO_UNTEDATE - SYSDATE) AS DDAY , D.GO_PIC
-		FROM GBUYDETAIL G , GOODS D , GBUYER B
-		WHERE G.GO_NO = D.GO_NO
-		AND G.GB_NO = B.GB_NO
-		AND D.GO_TYPE = 'TICKET' -->
-
+	<select id="untactList" resultType="map" parameterType="Untact">
+		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
+	 		SELECT * FROM V_UNTACT 
+			 ) A ) B WHERE RN BETWEEN #{u_first} AND #{u_last}
 	</select>	
+	
+	<!-- 전체리스트 페이징 -->
+	<select id="unCnt" resultType="int">
+		SELECT COUNT(*) FROM V_UNTACT
+	</select>
 
 	<!-- 코드 가져오기 -->
 	<select id="getUntactCode" resultType="string" parameterType="string">

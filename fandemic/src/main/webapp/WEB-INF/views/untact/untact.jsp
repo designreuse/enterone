@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <style>
 .modal-open .modal {
 	padding : 250px;
@@ -17,7 +18,36 @@ h1, h2, h3, h4, h5, h6 {
 	border-color: #111726;
 	color: #111726;
 }
+.pagination li {
+	display: inline-block;
+}
+
+.pagination {
+	display: inline-block;
+}
+
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid gray;
+	margin: 0 4px;
+}
+
+.pagination a.active {
+	background-color: #4176E0 ;
+	color: white;
+	border: 1px solid #4176E0 ;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: lightgray;
+	color: black;
+}
 </style>
+
 <script>
 $(document).ready(function() {
 	
@@ -121,19 +151,18 @@ $(document).ready(function() {
 				</c:if>
 			</c:forEach>
 			</div>		
-					
-					
-			<!-- <div class="text-center">
-				<ul class="pagination">
-					<li class="prev"><a href="#"><i class="ion-ios-arrow-left"></i></a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">...</a></li>
-					<li><a href="#">97</a></li>
-					<li class="next"><a href="#"><i class="ion-ios-arrow-right"></i></a></li>
-				</ul>
-			</div> -->
+			<div class="card-footer">
+				<div align="center">
+					<script>
+						function goPage(p) {
+							location.href = "adminMain?p=" + p
+						}
+					</script>
+
+					<my:paging paging="${paging}" jsfunc="goPage" />
+				</div>
+			</div>
+			
 			
 			
 			
