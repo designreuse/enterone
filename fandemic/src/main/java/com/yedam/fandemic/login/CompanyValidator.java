@@ -42,21 +42,22 @@ public class CompanyValidator implements Validator {
 		
 		// 널 값
 		
-		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "com_id", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "com_name", "required", notnull);
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "com_pw", "required", notnull);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "com_email", "required", notnull);
 		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "com_address2", "required", notnull);
 
 		
 		// 널값 and 형식
-		if(company.getCom_email() == null || company.getCom_email().trim().isEmpty() ) {
-			errors.rejectValue("com_email", "required",notnull);
-		} else {
-			Matcher matcher = emailPattern.matcher(company.getCom_email());
-			if( !matcher.matches()) {
-				errors.rejectValue("com_email", "bad", typemsg);
-			}
-		}
+//		if(company.getCom_email() == null || company.getCom_email().trim().isEmpty() ) {
+//			errors.rejectValue("com_email", "required",notnull);
+//		} else {
+//			Matcher matcher = emailPattern.matcher(company.getCom_email());
+//			if( !matcher.matches()) {
+//				errors.rejectValue("com_email", "bad", typemsg);
+//			}
+//		}
 		
 
 		if(company.getCom_phone() == null || company.getCom_phone().trim().isEmpty() ) {

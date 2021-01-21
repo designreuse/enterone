@@ -53,7 +53,6 @@ public class LoginController {
 	public String mailCode(@ModelAttribute Mail mail, HttpServletRequest request, Model model) throws IOException{
 	
 			String code = Password.getRamdomPw(8);
-			System.out.println(request.getParameter("email"));
 			
 			mail.setReceiveMail(request.getParameter("email")); //받는 메일 주소
 			mail.setSenderName("엔터원");
