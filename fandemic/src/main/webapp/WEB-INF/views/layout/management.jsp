@@ -100,6 +100,12 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+	    <li class="#">
+	        <audio autoplay="autoplay" controls>
+	        	<source src="${pageContext.request.contextPath}/audio/릴보이 (lIlBOI)-08-CREDIT (Feat. 염따, 기리보이, Zion.T).mp3" type="audio/mp3" >
+	        	<source src="${pageContext.request.contextPath}/audio/Howie Day-03-Collide.mp3" type="audio/mp3">
+	        </audio>
+	    </li>
        <!-- Navbar Search -->
       <!-- <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -394,7 +400,7 @@
   </div>
   
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2020 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+    <strong> 대구광역시 중구 국채보상로 537 (수동, 5층) &copy; 2020-2021 <a href="#">엔터원</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.1.0-rc
