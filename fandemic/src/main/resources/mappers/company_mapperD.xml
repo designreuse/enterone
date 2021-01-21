@@ -144,4 +144,14 @@
 	<insert id="blackAdd" statementType="CALLABLE">
 		{CALL TEST_PROC()}
 	</insert>
+	
+<!-- 팬클럽top3 -->
+	<select id="fanCount" resultType="map">
+		SELECT COUNT(F.ST_ID) AS CNT, S.ST_NAME 
+		FROM FAN F, STAR S
+		WHERE F.ST_ID = S.ST_ID 
+    	AND S.COM_ID =#{com_id}
+		GROUP BY S.ST_NAME
+		ORDER BY CNT DESC
+	</select>
 </mapper>

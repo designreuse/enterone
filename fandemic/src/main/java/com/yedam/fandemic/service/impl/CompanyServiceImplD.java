@@ -1,5 +1,6 @@
 package com.yedam.fandemic.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,11 @@ public class CompanyServiceImplD  implements CompanyServiceD{
 	@Override
 	public int updateBlack(List<Notify> notify) {
 		return dao.updateBlack(notify);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> fanCount(Company company) {
+		return dao.fanCount(company);
 	}
 	
 	

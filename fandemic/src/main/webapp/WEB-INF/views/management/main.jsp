@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.bundle.min.js'></script>
 <link href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" />
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
@@ -32,6 +33,45 @@ $(function(){
 			alert("매출현황에러지롱");
 		}
 	}) //end ajax
+	
+	// 차트
+	var ctx = $('#myChart');
+	var myChart = new Chart(ctx, {
+			type : 'bar',
+			data : {
+				labels : [ '${stCnt[0].ST_NAME}', '${stCnt[1].ST_NAME}', '${stCnt[2].ST_NAME}'],
+				datasets : [ {
+					label : '팬클럽',
+					data : [ '${stCnt[0].CNT}', '${stCnt[1].CNT}', '${stCnt[2].CNT}'],
+					backgroundColor: ["rgba(255, 0, 0, 0.5)", "rgba(100, 255, 0, 0.5)", "rgba(200, 50, 255, 0.5)" ]
+					
+				} ]
+			},      
+			options : {
+				
+				legend : {
+					labels : {
+						fontColor : 'rgba(83, 51, 237, 1)',
+						fontSize : 15
+					}
+				},
+				scales : {
+					xAxes : [ {
+						ticks : {
+							fontColor : 'rgba(27, 163, 156, 1)',
+							fontSize : '15'
+						}
+					} ],
+					yAxes : [ {
+						ticks : {
+							beginAtZero : true,
+							fontColor : 'rgba(246, 36, 89, 1)',
+							fontSize : '15'
+						}
+					} ]
+				}
+			}
+		});
 }); //end ready function
    
 function daySalesListResult(data){
@@ -77,7 +117,7 @@ function drawChart() {
 
 	var options = {
 
-			title: '굿즈 매출현황',
+			title: '스토어 매출현황',
 
 			hAxis: {
 
@@ -105,9 +145,26 @@ function drawChart() {
 }
 
 </script>
-
+<style>
+	#myChart{
+		width:740px !important;
+		height:370px !important;
+		align:center;
+	}
+</style>
+	
     <!-- Main content -->
     <section class="content">
+    <p><h2>소속사 팬 TOP3</h2></p>
+    	<!-- 차트 -->
+		<div>
+			<div> 
+				<div align="center" class="chart-container" style=" padding: 20px">
+					<canvas id="myChart"></canvas>
+				</div>
+			</div>
+		</div>
+       <p><h2>스토어 매출현황</h2></p>	
     	<!-- 구글차트 -->
        <div id="columnchart_material" style="width: 100%; height: 300px;"></div>
        <!-- datatable -->

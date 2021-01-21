@@ -1,5 +1,6 @@
 package com.yedam.fandemic.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.yedam.fandemic.vo.Company;
@@ -25,5 +26,6 @@ public interface CompanyServiceD {
 	public int blackRegister(Fan fan); //블랙리스트 직접등록
 	public void blackAdd(); //신고 갯수 확인
 	public int updateBlack(List<Notify> list); //블랙리스트 업데이트
+	public List<HashMap<String, Object>> fanCount(Company company);//팬수 차트
 	
 }
