@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -27,57 +28,21 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/icomoon.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/style.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resourcesStar/css/star.css">
-
 	<script>
-		$(function() {	
+		$(function() {
 			var id = "${member.mem_id}"
-			var fan = "${fan.mem_id}"
-			start(id, fan);
-			
-			$("#channelJoinAction").on("click",function(){
-				if(replyFormCheck()==true){
-					fboardListView();
+			//메인페이지 이동 버튼
+			$("#btnGoMain").on("click",function(){
+				location.href = "${pageContext.request.contextPath}/"
+			});
+			//세션 아이디가 없을때 활동 못하게 막음
+			$("body").on('click', 'a',function(e){
+				if(id == null || id == ""){
+					$("a").removeAttr("href")
+					alert("로그인 후 이용해주세요");
 				}
-			});
-		});
-		
-		function start(id,fan){
-			if(id != fan && id != null){
-				$("#joinModal").show();
 			}
-		} 
-		//채널가입 유효성 체크
-		function replyFormCheck(){
-			if($("#channelName").val()==null || $("#channelName").val()==''){
-				alert("내용을 입력하세요.")
-				$("#channelName").focus();
-				event.preventDefault();
-			}else{
-				return true;
-			}
-		}
-		
-		function fboardListView() {
-			//채널 가입
-			var st_id = "${stVo.st_id}";
-			var st_name = "${stVo.st_name}";
-			var fan_name = $("#channelName").val();		
-			$.ajax({
-			    url: "${pageContext.request.contextPath}/star/fanBoard/fanJoin", 
-			    type: 'POST', 
-			    data : { st_id : st_id , fan_name : fan_name }, 
-			    error:function(xhr, status, message) {
-			        alert(" status: "+status+" er:"+message);
-			    },
-			    success: function(response) {
-			    	if(response == true) {
-			    		var text = st_name + "의 채널에 오신것을 환영합니다!"
-			    		alert(text);
-			    		location.href = "${pageContext.request.contextPath}/star/" + st_id;//새로고침
-			    	}
-			    }
-			});
-		}
+		})
 	</script>
 </head>
 
@@ -112,9 +77,19 @@
 					<li><a href="#">스타라이브</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}">스타게시판</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/fanBoard/${stVo.st_id}">팬게시판</a></li>
-					<li><a href="${pageContext.request.contextPath}/">채널 나가기</a></li>
+					<li><a href="${pageContext.request.contextPath}/" class = "goMain">채널 나가기</a></li>
 				</ul>
 			</nav>
+			
+			
+			
+			<div class="colorlib-footer">
+				<button type="button"  class="btn btn-primary py-2 px-4" id = "btnGoMain">채널 나가기</button>
+			</div>
+			
+			
+			
+			
 		</aside>
 		
 		

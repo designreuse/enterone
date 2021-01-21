@@ -2,6 +2,93 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script>
+
+
+	$(function() {	
+		var id = "${member.mem_id}"
+		var fan = "${fan.mem_id}"
+		var fan_block = "${fan.fan_block}"
+		start(id, fan);
+		
+		
+		
+		
+		
+		$("#channelJoinAction").on("click",function(){
+			if(replyFormCheck()==true){
+				fboardListView();
+			}
+		});
+		
+
+		
+		//메인에서 다 못들어오게 필터링
+		$("body").on('click', 'a',function(e){
+			if(id == null || id == ""){
+				$("a").removeAttr("href")
+				alert("로그인 후 이용해주세요");
+			}else if(id != fan && id != null){
+				$("a").removeAttr("href")
+				alert("채널에 가입해주세요");
+			}else if(fan_block == 1){
+				$("a").removeAttr("href")
+				alert("차단된 사용자입니다");
+			}
+		});
+	});
+	
+	function start(id,fan){
+		if(id != fan && id != null){
+			$("#joinModal").show();
+		}
+	} 
+	
+	//채널가입 유효성 체크
+	function replyFormCheck(){
+		if($("#channelName").val()==null || $("#channelName").val()==''){
+			alert("내용을 입력하세요.")
+			$("#channelName").focus();
+			event.preventDefault();
+		}else{
+			return true;
+		}
+	}
+	
+	function fboardListView() {
+		//채널 가입
+		var st_id = "${stVo.st_id}";
+		var st_name = "${stVo.st_name}";
+		var fan_name = $("#channelName").val();		
+		$.ajax({
+		    url: "${pageContext.request.contextPath}/star/fanBoard/fanJoin", 
+		    type: 'POST', 
+		    data : { st_id : st_id , fan_name : fan_name }, 
+		    error:function(xhr, status, message) {
+		        alert(" status: "+status+" er:"+message);
+		    },
+		    success: function(response) {
+		    	if(response == true) {
+		    		var text = st_name + "의 채널에 오신것을 환영합니다!"
+		    		alert(text);
+		    		location.href = "${pageContext.request.contextPath}/star/" + st_id;//새로고침
+		    	}
+		    }
+		});
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+</script>
+	
+	
+	
+	
 <section class="ftco-section-no-padding bg-light">
 	<div class="hero-wrap">
 		<div class="d-flex align-items-center js-fullheight">
