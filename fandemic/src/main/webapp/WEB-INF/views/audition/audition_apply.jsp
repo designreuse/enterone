@@ -236,7 +236,7 @@ ul.tabs li.current {
 							location.href = "${pageContext.request.contextPath}/audition/auditionlist";
 						});
 
-		$("#btn_next_final").on("click",function() {
+ 		 $("#btn_next_final").on("click",function() {
 			 $.ajax({
 	              url: '${pageContext.request.contextPath}/audition/auditioninsertsend' ,
 	              data : $("#frm").serialize(), 
@@ -247,7 +247,7 @@ ul.tabs li.current {
 		});
 		
 		
-	});
+	});  
 		
 	});		
 	function agChk() {
@@ -521,7 +521,6 @@ ul.tabs li.current {
 						</div>
 					</div>
 				</div>
-				<form method="post" id="frm" encType="multipart/form-data">
 					<div id="tab-3" class="tab-content">
 
 						<h1>지원서 입력</h1>
@@ -539,6 +538,8 @@ ul.tabs li.current {
 													onkeyup="javascript:remove_char(event);"
 													oninput="javascript:chk_num_len(this); return false;">
 											</div></td>
+											<td></td>
+											<td></td>
 										<td></td>
 										<td></td>
 										<td></td>
@@ -558,7 +559,8 @@ ul.tabs li.current {
 												</select>
 											</div>
 										<td></td>
-										</td>
+										<td></td>
+										<td></td>
 										<td></td>
 										<td></td>
 									</tr>
@@ -573,6 +575,8 @@ ul.tabs li.current {
 													onkeyup="javascript:remove_char(event);"
 													oninput="javascript:chk_num_len(this); return false;">
 											</div></td>
+										<td></td>
+										<td></td>
 										<td></td>
 										<td></td>
 										<td></td>
@@ -595,6 +599,11 @@ ul.tabs li.current {
 													onkeyup="javascript:remove_char(event);"
 													oninput="javascript:chk_num_len(this); return false;">
 											</div></td>
+											
+											
+										<td></td>
+										<td></td>
+										<td></td>
 										<td></td>
 										<td></td>
 									</tr>
@@ -615,7 +624,8 @@ ul.tabs li.current {
 											<td></td>
 											<td></td>
 											<td></td>
-
+											<td></td>
+											
 									</tr>
 
 								</table>
@@ -652,7 +662,7 @@ ul.tabs li.current {
 								<td></td>
 								<td></td>
 								<td colspan="2"><div class="invalid-feedback">
-										<input type="file" name="aud_pic" id="aud_pic"
+										<input type="file" name="ex2_file" id="aud_pic"
 											onchange="setThumbnail2(event);">
 									</div></td>
 								<td>- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)</td>
@@ -699,47 +709,52 @@ ul.tabs li.current {
 							</div>
 						</div>
 					</div>
-				</form>
-
+			<!-- 	</form> -->
+		<form method="post" id="frm" action="${pageContext.request.contextPath}/audition/auditioninsertsend" encType="multipart/form-data">
 				<div id="tab-5" class="tab-content">
 					<h3>내 지원서</h3>
 					<table class="table table-hover">
 						<tr>
 							<td class="font-f">이름</td>
-							<td id="mem_uname"></td>
+							<td id="mem_uname"><input type='hidden' name='mem_name'></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td class="font-f">분야</td>
-							<td id="mem_ubranch"></td>
+							<td id="mem_ubranch"><input type='hidden' name='aud_type'></td>
 							<td></td>
 
 
 						</tr>
 						<tr>
 							<td class="font-f">취미/특기</td>
-							<td id="mem_uhobby"></td>
+							<td id="mem_uhobby"><input type='hidden' name='aud_hobby' value='${audition.aud_hobby}'></td>
+							<td><input type='hidden' name='abo_no'></td>
 							<td></td>
 
 
 						</tr>
 						<tr>
 							<td class="font-f">나이(만 나이)</td>
-							<td id="mem_uage"></td>
-							<td></td>
+							<td id="mem_uage"><input type='hidden' name='aud_age' value='${audition.aud_age}'></td>
+							<td><input type='hidden' name='mem_id'></td>
 
 
 						</tr>
 						<tr>
 							<td class="font-f">신장/체중</td>
-							<td id="mem_uheight"></td>
-							<td id="mem_uweight"></td>
+							<td id="mem_uheight"><input type='hidden' name='aud_height' value='${audition.aud_height}'></td>
+							<td id="mem_uweight"><input type='hidden' name='aud_weight' value='${audition.aud_weight}'></td>
 
 						</tr>
 						<tr>
 							<td class="font-f">대표사진</td>
-							<td id="mem_upic"></td>
-							<td></td>
+							<td id="mem_upic"><input type='hidden' name='aud_pic' value='${audition.aud_pic}'> </td>
+							<td><input type='hidden' name='aud_no'></td>
 
 
 						</tr>
@@ -749,8 +764,8 @@ ul.tabs li.current {
 					<table class="table table-hover">
 						<tr>
 							<td class="font-f">대표영상</td>
-							<td id="mem_url"><div class="video-embed-area"></div></td>
-							<td></td>
+							<td id="mem_url"><input type='hidden' name='aud_file' value='${audition.aud_file}'><div class="video-embed-area"></div></td>
+							<td><input type='hidden' name='com_id'></td>
 
 
 						</tr>
@@ -771,13 +786,16 @@ ul.tabs li.current {
 						</div>
 
 						<div class="col-md-2 col-sm-2 col-xs-2">
-							<button type="submit" class="btn btn-primary" id="btn_next_final"
+							<button type="button" class="btn btn-primary" id="btn_next_final"
 								rel="step2">최종 지원</button>
 						</div>
 					</div>
-				</div>
+					</div>
+				</form>
+			</div>
+			
 				<!-- 탭 메뉴 내용 끝 -->
-		</div>
+
 
 	</section>
 </body>
