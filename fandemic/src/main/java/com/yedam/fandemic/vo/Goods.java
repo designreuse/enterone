@@ -34,4 +34,6 @@ public class Goods {
 	private int go_last;	//마지막페이지
 	
 	String dday; // 2021-01-11 추가 민
+	
+	int count;
 }
