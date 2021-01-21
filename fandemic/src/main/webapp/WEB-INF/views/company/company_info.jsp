@@ -1,18 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/company.css">
 	
 	
 <section class="page">
 	<div class="container">
 		<div class="row">
-			<div class="companySlide">
-				<ul>
-					<li><img class="companyBanner col-md-12 col-sm-12 col-xs-12"
-						src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
-						onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'" /></li>
-				</ul>
-			</div>
+			<div class="starSlide">
+			    <ul>
+			    	<c:forEach var="star" items="${companyStars}" end = "3">
+			      		<li><img class = "companyStarBanner col-md-12 col-sm-12 col-xs-12" src="${pageContext.request.contextPath}/images/star/${star.st_pic}"
+								onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'"
+								/>
+						</li>
+		   			</c:forEach>
+			    </ul>
+			  </div>
 		</div>
 	</div>
 	<div class="container">
@@ -39,6 +43,7 @@
 					</div>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<h3>${companyInfo.com_name}</h3>
+						<hr>
 						<p>
 							Phone: <span class="bold">${companyInfo.com_phone}</span> 
 							

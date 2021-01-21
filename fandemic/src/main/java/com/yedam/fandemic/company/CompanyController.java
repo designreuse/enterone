@@ -43,9 +43,11 @@ public class CompanyController {
 	
 	//소속사 홈페이지에서 소속사의 소개화면 출력
 	@RequestMapping(value="/company/info/{id}")
-	public ModelAndView companyInfo(@PathVariable String id, Company comVo, Model model) throws IOException{
+	public ModelAndView companyInfo(@PathVariable String id, Company comVo , Star stVo, Model model) throws IOException{
 		comVo.setCom_id(id);
 		model.addAttribute("companyInfo", companyDao.getCompanyInfo(comVo));
+		stVo.setCom_id(id);
+		model.addAttribute("companyStars", companyDao.getCompanyStarMin(stVo));
 		return new ModelAndView("company/company_info");
 	}
 	
@@ -53,6 +55,8 @@ public class CompanyController {
 	@RequestMapping(value="/company/notify/{id}")
 	public ModelAndView companyNotify(@PathVariable String id, HttpServletRequest request, Cnotice cnocVo, Model model) throws IOException{
 		cnocVo.setCom_id(id);
+		
+		model.addAttribute("comBanner", companyDao.getCnoticeBanner(cnocVo));
 		
 		String strp = request.getParameter("p");
 		int p = 1;
@@ -83,6 +87,8 @@ public class CompanyController {
 	public ModelAndView companyNotifyDetail(@PathVariable String no, Cnotice cnocVo, Model model) throws IOException{
 		cnocVo.setCnoc_no(no);
 		model.addAttribute("companyNotice", cnoticeDao.getCnoticeDetail(cnocVo));
+		
+		model.addAttribute("comBanner", companyDao.getCnoticeBanner(cnocVo));
 		return new ModelAndView("company/company_notify_detail");
 	}
 }

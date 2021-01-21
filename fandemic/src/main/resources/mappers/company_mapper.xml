@@ -45,5 +45,12 @@
 		WHERE 	(cnoc_rn BETWEEN #{cnoc_first} AND #{cnoc_last})
 				AND com_id = #{com_id}
 	</select>
-
+	
+	<!-- 공지사항 상단 배너 -->
+	<select id="getCnoticeBanner" resultType="Cnotice" parameterType="Cnotice">
+		SELECT * 
+		FROM cnotice 
+		WHERE com_id = #{com_id} 
+			AND conc_banner is not null
+	</select>
 </mapper>

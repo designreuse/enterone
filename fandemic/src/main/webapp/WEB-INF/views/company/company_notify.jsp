@@ -12,13 +12,16 @@
 <section class="page">
 	<div class="container">
 		<div class="row">
-			<div class="companySlide">
-				<ul>
-					<li><img class="companyBanner col-md-12 col-sm-12 col-xs-12"
-						src="${pageContext.request.contextPath}/resources/images/company/company_main.jpg"
-						alt="company_main" /></li>
-				</ul>
-			</div>
+			<div class="starSlide">
+			    <ul>
+			    	<c:forEach var="comBa" items="${comBanner}" end = "3">
+			      		<li><img class = "companyStarBanner col-md-12 col-sm-12 col-xs-12" src="${pageContext.request.contextPath}/images/cnotice/${comBa.conc_banner}"
+								onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'"
+								/>
+						</li>
+		   			</c:forEach>
+			    </ul>
+			  </div>
 		</div>
 	</div>
 	<div class="container">
@@ -59,9 +62,8 @@
 
 					<div class="col-xl-1 col-md-1 col-xs-2">${cnoc.cnoc_sub_no}</div>
 					<div class="col-xl-9 col-md-9 col-xs-10 alignLeft">
-						<a
-							href="${pageContext.request.contextPath}/company/notifyDetail/${cnoc.cnoc_no}"
-							style='cursor: pointer;'>[${cnoc.cnoc_subject}]
+						<a href="${pageContext.request.contextPath}/company/notifyDetail/${cnoc.cnoc_no}"
+							style='cursor: pointer; color: black;'>[${cnoc.cnoc_subject}]
 							${cnoc.cnoc_title}</a>
 					</div>
 					<div class="col-xl-none col-md-none col-xs-2"></div>

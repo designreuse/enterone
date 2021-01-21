@@ -64,34 +64,34 @@ public class SboardController {
 	}
 
 	// 스타 게시물 단건 조회, 페이지 이동
-		@RequestMapping("/star/starBoard/view/{no}")
-		public ModelAndView starBoardView(@PathVariable String no, HttpSession session, 
-				Sboard sboVo, Company comVo, Star stVo, ModelAndView mav) throws IOException {
-			Star star = (Star) session.getAttribute("star");
-			if(star != null) {
-				mav.addObject("st_id", star.getSt_id());			
-			}
-			
-			sboVo.setSbo_no(no);
-			mav.addObject("sboard", sboardService.getSboardInfo(sboVo));
-			sboVo = sboardService.getSboardInfo(sboVo);
-			System.out.println(sboVo);	
-			
-			stVo.setSt_id(sboVo.getSt_id());
-			mav.addObject("stVo", starService.getStarMain(stVo));
-			stVo = starService.getStarMain(stVo);
-			comVo.setCom_id(stVo.getCom_id());
-			mav.addObject("company", starService.getProfileCompany(comVo));
-			
-			List<Filter> list = new ArrayList<Filter>();
-			list = adminService.filBoard();
-			Gson gson = new GsonBuilder().create();
-			String filList = gson.toJson(list);
-			mav.addObject("filList", filList);
-			
-			mav.setViewName("star/star_board_view");
-			return mav;
+	@RequestMapping("/star/starBoard/view/{no}")
+	public ModelAndView starBoardView(@PathVariable String no, HttpSession session, 
+			Sboard sboVo, Company comVo, Star stVo, ModelAndView mav) throws IOException {
+		Star star = (Star) session.getAttribute("star");
+		if(star != null) {
+			mav.addObject("st_id", star.getSt_id());			
 		}
+		
+		sboVo.setSbo_no(no);
+		mav.addObject("sboard", sboardService.getSboardInfo(sboVo));
+		sboVo = sboardService.getSboardInfo(sboVo);
+		System.out.println(sboVo);	
+		
+		stVo.setSt_id(sboVo.getSt_id());
+		mav.addObject("stVo", starService.getStarMain(stVo));
+		stVo = starService.getStarMain(stVo);
+		comVo.setCom_id(stVo.getCom_id());
+		mav.addObject("company", starService.getProfileCompany(comVo));
+		
+		List<Filter> list = new ArrayList<Filter>();
+		list = adminService.filBoard();
+		Gson gson = new GsonBuilder().create();
+		String filList = gson.toJson(list);
+		mav.addObject("filList", filList);
+		
+		mav.setViewName("star/star_board_view");
+		return mav;
+	}
 
 	// 게시물 상세보기 데이터 불러오기 액션
 	@RequestMapping(value = "/star/starBoard/read/", method = RequestMethod.GET)
@@ -121,31 +121,31 @@ public class SboardController {
 	}
 	
 	// 수정을 위한 게시물 내용출력
-		@RequestMapping("/star/starBoard/updateView/{no}")
-		public ModelAndView starBoardUpdateViewAction(@PathVariable String no, HttpSession session, Sboard sboVo, Company comVo, Star stVo, ModelAndView mav) throws IOException {
+	@RequestMapping("/star/starBoard/updateView/{no}")
+	public ModelAndView starBoardUpdateViewAction(@PathVariable String no, HttpSession session, Sboard sboVo, Company comVo, Star stVo, ModelAndView mav) throws IOException {
 
-			Star star = (Star) session.getAttribute("star");
-			String id = star.getSt_id();
-			
-			stVo.setSt_id(id);
-			mav.addObject("stVo", starService.getStarMain(stVo));
-			stVo = starService.getStarMain(stVo);
+		Star star = (Star) session.getAttribute("star");
+		String id = star.getSt_id();
+		
+		stVo.setSt_id(id);
+		mav.addObject("stVo", starService.getStarMain(stVo));
+		stVo = starService.getStarMain(stVo);
 
-			comVo.setCom_id(stVo.getCom_id());
-			mav.addObject("company", starService.getProfileCompany(comVo));
-			mav.addObject("no", no);
-			
-			List<Filter> list = new ArrayList<Filter>();
-			list = adminService.filBoard();
-			Gson gson = new GsonBuilder().create();
-			String filList = gson.toJson(list);
-			mav.addObject("filList", filList);
-			
-			mav.setViewName("star/star_board_update");
-			
-			return mav;
-		}
-	
+		comVo.setCom_id(stVo.getCom_id());
+		mav.addObject("company", starService.getProfileCompany(comVo));
+		mav.addObject("no", no);
+		
+		List<Filter> list = new ArrayList<Filter>();
+		list = adminService.filBoard();
+		Gson gson = new GsonBuilder().create();
+		String filList = gson.toJson(list);
+		mav.addObject("filList", filList);
+		
+		mav.setViewName("star/star_board_update");
+		
+		return mav;
+	}
+
 	
 	
 	
