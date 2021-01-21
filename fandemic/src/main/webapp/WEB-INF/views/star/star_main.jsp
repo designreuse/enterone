@@ -25,10 +25,7 @@
 		
 		//메인에서 다 못들어오게 필터링
 		$("body").on('click', 'a',function(e){
-			if(id == null || id == ""){
-				$("a").removeAttr("href")
-				alert("로그인 후 이용해주세요");
-			}else if(id != fan && id != null){
+			if(id != fan && id != null){
 				$("a").removeAttr("href")
 				alert("채널에 가입해주세요");
 			}else if(fan_block == 1){
