@@ -211,8 +211,8 @@
 							<thead>
 								<tr>
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="cnoc_no" value="${cnotice.cnoc_no }"/>
-										<input type="text" name="com_id" value="${cnotice.com_id }"/>
+										<input type="hidden" name="cnoc_no" value="${cnotice.cnoc_no }"/>
+										<input type="hidden" name="com_id" value="${cnotice.com_id }"/>
 									</th>
 								</tr>
 							</thead>
@@ -257,14 +257,14 @@
                      				</td>
 								</tr> --%>
 								<tr>
-									<td colspan="1" rowspan="2" align="left"><label>첨부파일</label></td>
-									<td colspan="3" rowspan="1" class="fileboxi">
-                      					<input type="file" id="file" class="cnoc_file uploadFile" name="uploadFile" multiple>
+									<td colspan="1" align="left"><label>첨부파일</label></td>
+									<td colspan="3" class="fileboxi">
+                      					<input type="file" id="file" class="cnoc_file uploadFile" name="uploadFile">
                       					
                       					              					
                      				</td>
 								</tr>
-								<tr>
+								<%-- <tr>
 									<td colspan="3" class="fileboxi">
                       					
                       					<ul class="file_ul" style="background-color:white; width:100%; height:100px; border:1px solid;">
@@ -272,10 +272,10 @@
                       					</ul>
                       					              					
                      				</td>
-								</tr>
+								</tr> --%>
 								<tr>
 									<td colspan="1" align="left"><label>메인홍보용배너</label></td>
-									<td colspan="3" >
+									<td colspan="3" align="left">
                       					<input type="file" name="uploadbanner" id="uploadbanner" onchange="setThumbnail2(event);">                     					
                      				</td>
 								</tr>

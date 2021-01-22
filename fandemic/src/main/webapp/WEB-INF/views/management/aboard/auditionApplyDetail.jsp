@@ -164,6 +164,9 @@
 											  
 											</video>
 										</c:if>
+										<c:if test="${audition.aud_file == null}">
+											등록된 영상이없음
+										</c:if>
 										</div>
 									</td>
 									

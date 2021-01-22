@@ -78,7 +78,7 @@
 							<thead>
 								<tr>
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="com_id" value="${company.com_id }"/>
+										<input type="hidden" name="com_id" value="${company.com_id }"/>
 									</th>
 								</tr>
 							</thead>
@@ -107,7 +107,7 @@
 								
 								<tr>
 									<td colspan="1" align="left"><label>첨부파일</label></td>
-									<td colspan="3">
+									<td colspan="3" align="left">
                       					<input type="file" name="uploadFile" multiple>                     					
                      				</td>
 								</tr>

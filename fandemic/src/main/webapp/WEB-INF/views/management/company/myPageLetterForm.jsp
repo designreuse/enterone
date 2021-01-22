@@ -87,7 +87,7 @@
 							<thead>
 								<tr>
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="com_id" value="${company.com_id }"/>
+										<input type="hidden" name="com_id" value="${company.com_id }"/>
 									</th>
 								</tr>
 							</thead>
@@ -114,7 +114,7 @@
 								</tr>
 								
 								<tr >
-									<td colspan="4" align="right" style="padding:5px;">
+									<td colspan="4" align="left" style="padding:5px;">
 									<button type="submit" id="btnLetter-register" class="btn btn-primary pull-right">보내기</button>
 								</tr>
 							</tbody>

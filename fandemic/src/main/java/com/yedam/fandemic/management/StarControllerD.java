@@ -146,7 +146,12 @@ public class StarControllerD {
 	         star.setSt_banner(uploadBanner.getOriginalFilename());
 	      }
 	      Password pw = new Password();
-	      star.setSt_pw(pw.encrypt(star.getSt_pw()));
+	      System.out.println("암호입력하지않은경우수정"+star.getSt_pw());
+	      if(!star.getSt_pw().equals(null) && !star.getSt_pw().equals("")) {
+	    	  star.setSt_pw(pw.encrypt(star.getSt_pw()));//패스워드가 null이나 nullString이 아닐경우만 암호화
+	    	  System.out.println("암호화됬다"+star.getSt_pw());
+	      }
+	      System.out.println("암호화되지않아야한다"+star.getSt_pw());
 		starService.updateStarMember(star); //star값 받아서 update문실행
 		return "redirect:/management/star/starList"; //스타회원 목록으로 
 	}

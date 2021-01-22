@@ -52,7 +52,7 @@
 		});
 		
 		//첨부파일(상세) div클릭했을시
-		$(".img-print2").on("click",function(){
+		$(".img-print1").on("click",function(){
 			$(".uploadDetailImg").click();
 		});
 		
@@ -109,28 +109,17 @@
     }//end 업로드 대표사진 미리보기
     /*************** 상품상세사진 첨부파일,미리보기*****************/
     function changeDetail(event){
-    	var cnt=0;
-    	for(var image of event.target.files){
-    		var reader = new FileReader();
-    		
-    		reader.onload = function(event){
-            	var img = $("<img>");
-            	var btn = $("<button type='button' class='imgDel'>").text("X");
-            	var div = $("<div style='display:contents' class='btn-"+cnt+"'>");
-            	//alert(event.target.result);//주소같은데..?
-            	img.attr("src",event.target.result);
-            	img.attr({"width":"100px","height":"100px"});
-            	//var imgPrint = $(".img-print1").append(img);
-            	
-            	//.img-print1을 클릭할때
-            	div.append(img).append(btn);
-            	$(".img-print3").append(div);
-            	cnt++;
-            }
-    		console.log(image); 
-    		reader.readAsDataURL(image);
-    	}
-    	//$(".img-print1").css("display","inline");
+var reader = new FileReader();
+        
+        reader.onload = function(event){
+        	var img = $(".gc-img2");
+        	//alert(event.target.result);//주소같은데..?
+        	img.attr("src",event.target.result);
+        	img.attr({"width":"250px","height":"250px"});
+
+        }
+        reader.readAsDataURL(event.target.files[0]);
+
     }
 
 	/************굿즈 등록 폼 유효성체크**************/
@@ -240,7 +229,7 @@
 							<thead>
 								<tr>
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="com_id" value="${company.com_id }"/>
+										<input type="hidden" name="com_id" value="${company.com_id }"/>
 									</th>
 								</tr>
 							</thead>
@@ -318,12 +307,10 @@
                      				</td>
                      				<td width="10%"><label>상품상세사진</label></td>
                      				<td width="40%" align="left"; style="vertical-align:top;">
-                     					<div style="width:100px; height:100px; background-color:white;" class="img-print1">
-                     						<div style="width:100px; height:100px; background-color:white;" class="img-print2"></div>
+                     					<div style="width:286px; height:286px; background-color:white;" class="img-print1">
+                     					<img class="gc-img2">
                      					</div>
-                     					<div style="width:; height:200px; overflow: auto;" class="img-print3">
-                     					</div>
-                     					<input type="file" name="uploadDetailImg" class="uploadDetailImg" style="display:none;" onchange="changeDetail(event)" multiple>  
+                     					<input type="file" name="uploadDetailImg" class="uploadDetailImg" style="display:none;" onchange="changeDetail(event)">  
                      				</td>
 								</tr>
 								<tr >

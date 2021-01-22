@@ -67,6 +67,48 @@
 		}
 		
 	}
+	
+	/***********************************/
+	/*********배너 미리보기 ****************/
+	/***********************************/
+	function setThumbnail(event) { //event라함은 이벤트 대상을 의미하는듯
+		$("#image_container img").remove();
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			var img = $("<img>").attr("src",event.target.result).css("height","150px").css("width","300px");
+			$("#image_container").append(img);			
+			/* var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img); */
+		}; // end onload
+		reader.readAsDataURL(event.target.files[0]);
+	}
+	
+	function setThumbnail2(event) { //event라함은 이벤트 대상을 의미하는듯
+		$("#image_container2 img").remove();
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			var img = $("<img>").attr("src",event.target.result).css("height","150px").css("width","300px");
+			$("#image_container2").append(img);			
+			/* var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img); */
+		}; // end onload
+		reader.readAsDataURL(event.target.files[0]);
+	}
+	
+	function setThumbnail3(event) { //event라함은 이벤트 대상을 의미하는듯
+		$("#image_container3 img").remove();
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			var img = $("<img>").attr("src",event.target.result).css("height","150px").css("width","300px");
+			$("#image_container3").append(img);			
+			/* var img = document.createElement("img"); 
+			img.setAttribute("src", event.target.result);
+			document.querySelector("div#image_container").appendChild(img); */
+		}; // end onload
+		reader.readAsDataURL(event.target.files[0]);
+	}
 </script>
  <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -100,7 +142,7 @@
 							<thead>
 								<tr>									
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="com_id" value="${company.com_id }"/>
+										<input type="hidden" name="com_id" value="${company.com_id }"/>
 									</th>
 								</tr>
 							</thead>
@@ -139,21 +181,36 @@
 									<td></td>
 								</tr>
 								<tr>
-									<td colspan="2" align="right" style="padding-right:10px"><label>아이콘사진</label></td>
-									<td colspan="2">
-                      					<input type="file" name="uploadIcon" >                     					
+									<td colspan="2" rowspan="2" align="right" style="padding-right:10px"><label>아이콘사진</label></td>
+									<td colspan="2" rowspan="1" align="left">
+                      					<input type="file" name="uploadIcon" onchange="setThumbnail(event)">                     					
                      				</td>
 								</tr>
 								<tr>
-									<td colspan="2" align="right" style="padding-right:10px"><label>프로필사진</label></td>
-									<td colspan="2">
-                      					<input type="file" name="uploadProfile" >                     					
+									<td colspan="2" align="left">
+                      					<div id="image_container"><img src="${pageContext.request.contextPath}/images/star/${star.st_icon}" style="width:300px; height:150px;"></div>                    					
                      				</td>
 								</tr>
 								<tr>
-									<td colspan="2" align="right" style="padding-right:10px"><label>배너사진</label></td>
-									<td colspan="2">
-                      					<input type="file" name="uploadBanner" >                     					
+									<td colspan="2" rowspan="2" align="right" style="padding-right:10px"><label>프로필사진</label></td>
+									<td colspan="2" rowspan="1" align="left">
+                      					<input type="file" name="uploadProfile" onchange="setThumbnail2(event)">                     					
+                     				</td>
+								</tr>
+								<tr>
+									<td colspan="2" align="left">
+                      					<div id="image_container2"><img src="${pageContext.request.contextPath}/images/star/${star.st_pic}" style="width:300px; height:150px;"></div>                    					
+                     				</td>
+								</tr>
+								<tr>
+									<td colspan="2" rowspan="2" align="right" style="padding-right:10px"><label>배너사진</label></td>
+									<td colspan="2" rowspan="1" align="left">
+                      					<input type="file" name="uploadBanner" onchange="setThumbnail3(event)">                     					
+                     				</td>
+								</tr>
+								<tr>
+									<td colspan="2" align="left">
+                      					<div id="image_container3"><img src="${pageContext.request.contextPath}/images/star/${star.st_banner}" style="width:300px; height:150px;"></div>                    					
                      				</td>
 								</tr>
 								<tr >

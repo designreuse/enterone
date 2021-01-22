@@ -2,8 +2,14 @@ package com.yedam.fandemic.management;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.yedam.fandemic.login.Password;
 import com.yedam.fandemic.service.CompanyServiceD;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
@@ -35,7 +42,7 @@ public class CompanyControllerD {
 	
 	//소속사 정보 업데이트 
 	@RequestMapping(value="/management/company/updateCompanyUpdate")
-	public String updateCompanyUpdate(HttpServletRequest request, Model model, Company company) throws IllegalStateException, IOException {
+	public String updateCompanyUpdate(HttpServletRequest request, Model model, Company company) throws IllegalStateException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException {
 		//System.out.println("company정보: =="+company);
 		 //공지사항 배너
 	      MultipartHttpServletRequest multipartRequest1 = (MultipartHttpServletRequest) request;
@@ -46,7 +53,11 @@ public class CompanyControllerD {
 		         multipartFile1.transferTo(new File(path, multipartFile1.getOriginalFilename()));
 		         company.setCom_pic(multipartFile1.getOriginalFilename());
 		      }
-		    
+		    Password pw = new Password();
+		    if(!company.getCom_pw().equals(null) && !company.getCom_pw().equals("")) {
+		    	company.setCom_pw(pw.encrypt(company.getCom_pw()));//패스워드가 null이나 nullString이 아닐경우만 암호화
+		    	  System.out.println("암호화됬다"+company.getCom_pw());
+		      }
 		companyService.updateCompanyUpdate(company);
 		model.addAttribute("company",companyService.getMyCompanyInfo(company));
 		return "mgt/company/myPage";

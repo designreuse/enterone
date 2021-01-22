@@ -112,20 +112,17 @@
     }//end 업로드 대표사진 미리보기
     /*************** 상품상세사진 첨부파일,미리보기*****************/
     function changeDetail(event){
-    	for(var image of event.target.files){
-    		var reader = new FileReader();
-    		
-    		reader.onload = function(event){
-            	var img = $("<img>");
-            	//alert(event.target.result);//주소같은데..?
-            	img.attr("src",event.target.result);
-            	img.attr({"width":"100px","height":"100px"});
-            	$(".img-print1").append(img);
-            }
-    		console.log(image); 
-    		reader.readAsDataURL(image);
-    	}
-    	$(".img-print1").css("display","inline");
+    	//alert(event.target.value);//해당 이벤트 target즉 onchange이벤트가 일어난 주체의 value값      
+        var reader = new FileReader();
+        
+        reader.onload = function(event){
+        	var img = $(".gc-img2");
+        	//alert(event.target.result);//주소같은데..?
+        	img.attr("src",event.target.result);
+        	img.attr({"width":"250px","height":"250px"});
+
+        }
+        reader.readAsDataURL(event.target.files[0]);
     }
 
 	/************굿즈 등록 폼 유효성체크**************/
@@ -245,8 +242,8 @@
 							<thead>
 								<tr>
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="com_id" value="${company.com_id }"/>
-										<input type="text" name="go_no" value="${goods.go_no }">
+										<input type="hidden" name="com_id" value="${company.com_id }"/>
+										<input type="hidden" name="go_no" value="${goods.go_no }">
 									</th>
 								</tr>
 							</thead>
@@ -326,8 +323,9 @@
                      				</td>
                      				<td width="10%"><label>상품상세사진</label></td>
                      				<td width="40%" align="left"; style="vertical-align:top;">
-                     					<div style="width:100px; height:100px; background-color:white;" class="img-print1"></div>
-                     					<input type="file" name="uploadDetailImg" class="uploadDetailImg" style="display:none;" onchange="changeDetail(event)" multiple>  
+                     					<div style="width:286px; height:286px; background-color:white;" class="img-print1">
+                     					<img src="${pageContext.request.contextPath}/images/goods/${goods.go_detail}" class="gc-img2" style="width:250px; height:250px;" alt="사진이없어요"></div>
+                     					<input type="file" name="uploadDetailImg" class="uploadDetailImg" style="display:none;" onchange="changeDetail(event)">  
                      				</td>
 								</tr>
 								<tr >

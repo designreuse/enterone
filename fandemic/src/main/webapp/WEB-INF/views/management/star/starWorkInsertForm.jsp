@@ -102,8 +102,8 @@
 							<thead>
 								<tr>									
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="st_id" value="${art.st_id}"/>
-										<input type="text" name="st_name" value="${art.st_name}"/>
+										<input type="hidden" name="st_id" value="${art.st_id}"/>
+										<input type="hidden" name="st_name" value="${art.st_name}"/>
 									</th>
 								</tr>
 							</thead>
@@ -150,12 +150,12 @@
 								</tr>
 								<tr>
 									<td colspan="2" rowspan="2" align="right" style="padding-right:10px"><label>작품사진</label></td>
-									<td colspan="2">
+									<td colspan="2" align="left">
                       					<input type="file" name="uploadImage" onchange="setThumbnail(event);">                     					
                      				</td>
 								</tr>
 								<tr>
-									<td colspan="2">
+									<td colspan="2" align="left">
                       					<div id="image_container"></div>                    					
                      				</td>
 								</tr>

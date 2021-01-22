@@ -11,11 +11,9 @@
 		background-color:rgba(0,0,0,.05);
 	}
 	td .abo_pic{
-		position: absolute;
 		width: 0;
 		height: 0;
 		padding: 0;
-		overflow: hidden;
 		border: 0;
 	}
 	td .upload-name{
@@ -58,7 +56,7 @@
 			/* alert("등록버튼눌림"); */
 			AboardFormCheck(); //유효성검사
 		});
-		//파일등록이벤트
+		/* //파일등록이벤트
 		$(".uploadFile").text("${aboard.abo_pic}");
 		
 	 	var fileTarget = $("#file"); //input type=file
@@ -67,7 +65,7 @@
 	 		$(".upload-name").val(cur); //업로드파일명 출력 
 	 		
 	 		
-	 	});
+	 	});*/
 	
 	 	//이벤트/공지사항 분류 DB값 지정
 	 	$(".custom-select option").each(function(){
@@ -94,6 +92,11 @@
 		else if($("table .abo_content").val()==null||$("table .abo_content").val()==''){
 			alert("내용을 입력하세요.")
 			$("table .abo_content").focus();
+			event.preventDefault();
+		}
+		
+		var ck=confirm("수정하시겠습니까?")
+		if(ck==false){
 			event.preventDefault();
 		}
 		
@@ -131,8 +134,8 @@
 							<thead>
 								<tr>
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="abo_no" value="${aboard.abo_no }"/>
-										<input type="text" name="com_id" value="${aboard.com_id }"/>
+										<input type="hidden" name="abo_no" value="${aboard.abo_no }"/>
+										<input type="hidden" name="com_id" value="${aboard.com_id }"/>
 									</th>
 								</tr>
 							</thead>
@@ -162,15 +165,8 @@
 								
 								<tr>
 									<td colspan="1" align="left"><label>첨부파일</label></td>
-									<td colspan="3" class="fileboxi">
-										<label class="filebox" for="file">업로드</label>
-                      					<input type="file" id="file" class="abo_pic" name="uploadFile" multiple>
-                      					<input class="upload-name" value="파일선택"><br>
-                      					<c:forTokens items="${aboard.abo_pic }" delims=" " var="aboard">
-                      						<input type="text" class="filetext" name="file_name" style="display:;" value="${aboard }"><!--  여기 업로드된 파일 조회목록 -->
-                      					</c:forTokens>
-                      					
-                      					              					
+									<td colspan="3" align="left" class="fileboxi">
+                      					<input type="file" id="file" class="abo_pic" name="uploadFile">
                      				</td>
 								</tr>
 								<tr >

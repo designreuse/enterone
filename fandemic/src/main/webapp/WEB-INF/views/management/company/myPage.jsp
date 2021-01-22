@@ -62,11 +62,23 @@
 	/*********유효성 검사 ****************/
 	/***********************************/
 	function CompanyFormCheck(){ //유효성검사(비번입력했는지안했는지.)
+	
+		
 	    if($("table .com_introduce").val()==null||$("table .com_introduce").val()==""){
 			alert("소개글을 입력하세요.")
 			$("table .com_introduce").focus();
 			event.preventDefault();
+		}else if($(".com_pw").val()!=$(".com_pw_ck").val()){
+			alert("비밀번호를 확인하세요.")
+			$("table .com_pw").focus();
+			event.preventDefault();
+		}else {
+			var ck = confirm("수정하시겠습니까?");
+			if(ck==false){
+				event.preventDefault();
+			}
 		}
+		
 		
 	}
 	

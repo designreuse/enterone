@@ -114,6 +114,11 @@ div #dataTable_filter{
 			/* console.log(data); */
 			$("tbody").empty();
 			$.each(data,function(idx,item){//idx=index, item=value
+				if(item.fan_block=="0"){
+					item.fan_block="N";
+				}else{
+					item.fan_block="Y";
+				}
 				$('<tr>').attr("class","starMemberTr")
 				.append($('<td>').html('<input type="checkbox" name="fan_nos" value="'+item.fan_no+'">'))
 				.append($('<td>').html(item.fan_no))

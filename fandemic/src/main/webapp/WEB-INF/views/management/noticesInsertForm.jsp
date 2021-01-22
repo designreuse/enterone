@@ -45,6 +45,18 @@
 			$("#uploadbanner").val("");
 			
 		})
+		
+		$("#uploadFile").change(function(){
+			fileList = $(this)[0].files;
+			//console.log(fileList[0].name);
+			$("#la").text(fileList[0].name);
+			
+		})
+		
+		$("#uploadbanner").change(function(){
+			fileList = $(this)[0].files;
+			$("#la2").text(fileList[0].name);
+		})
 	});//end ready function
 	
 	function CnoticeFormCheck(){
@@ -108,7 +120,7 @@
 							<thead>
 								<tr>
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="com_id" value="${company.com_id }"/>
+										<input type="hidden" name="com_id" value="${company.com_id }"/>
 									</th>
 								</tr>
 							</thead>
@@ -140,14 +152,23 @@
 								
 								<tr>
 									<td colspan="1" align="left"><label>첨부파일</label></td>
-									<td colspan="3">
-                      					<input type="file" name="uploadFile" multiple>                     					
+									<td colspan="3" align="left">
+									<label class="btn btn-default btn-file"> 
+									파일선택
+                      					<input type="file" id="uploadFile" name="uploadFile">    
+                      					<!-- <div style="display: inline-block; position:relative; width: 300px; left:-189px; background:#transparent;"><label>선택된 파일이없습니다.</label></div> -->                 					
+                     				</label>
+                     				<div style="display: inline-block; position:relative; width: 300px;"><label id="la">파일을 선택하세요.</label></div>
                      				</td>
 								</tr>
 								<tr>
 									<td colspan="1" rowspan="2" align="left"><label>메인홍보용배너</label></td>
-									<td colspan="3" rowspan="1">
-                      					<input type="file" name="uploadbanner" id="uploadbanner" onchange="setThumbnail2(event);">                     					
+									<td colspan="3" rowspan="1" align="left">
+									<label class="btn btn-default btn-file">
+									배너선택
+                      					<input type="file" name="uploadbanner" id="uploadbanner">                     					
+                     				</label>
+                     				<div style="display: inline-block; position:relative; width: 300px;"><label id="la2">파일을 선택하세요.</label></div>
                      				</td>
 								</tr>
 								<tr>
