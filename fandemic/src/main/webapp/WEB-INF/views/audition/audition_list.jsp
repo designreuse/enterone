@@ -5,11 +5,6 @@
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
 	rel="stylesheet">
 <script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<link
-	href="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
-	crossorigin="anonymous" />
-<script
 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
 	crossorigin="anonymous"></script>
 <script

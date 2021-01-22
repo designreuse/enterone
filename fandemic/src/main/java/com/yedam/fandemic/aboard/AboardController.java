@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yedam.fandemic.impl.AuditionMapper;
 import com.yedam.fandemic.service.AuditionService;
 import com.yedam.fandemic.vo.Aboard;
+import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Goods;
 
@@ -30,19 +31,19 @@ public class AboardController {
 	AuditionMapper auditionMapper;
 	@Autowired
 	AuditionService auditionservice;
-
-	// 오디션 게시물 사이트
-	@RequestMapping(value = "/audition/auditionlist") // 주소
-	public ModelAndView auditionlist(HttpServletResponse response) throws IOException {
-		return new ModelAndView("audition/audition_list");
-
+	
+	//오디션 공고
+	@RequestMapping(value="/audition/auditionlist")
+	public ModelAndView auditionlist(Model model, Aboard aboard) throws IOException{
+		model.addAttribute("auditionList", auditionMapper.auditionlist());
+		return new ModelAndView("audition/audition_list2");
 	}
+	
 
 	// 게시물 목록 출력
 	@RequestMapping(value = "/auditionAboard/list", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Aboard> aboardList(HttpServletRequest request, Aboard aboard) {
-		//System.out.println(aboard);
 		return auditionservice.auditionlist();
 	}
 	//게시물 상세보기 주소
