@@ -54,7 +54,7 @@ public class MainController {
 		ArrayList<Melon> melon = new ArrayList<Melon>();
 		MelonCrawling mc = new MelonCrawling();
 		melon = mc.melonTop();
-		if(melon.size() < 1) {  // null 체크
+		if(melon.size() > 1) {  // null 체크
 			model.addAttribute("melon", melon);
 		}
 		
@@ -62,7 +62,7 @@ public class MainController {
 		ArrayList<HashMap<String, String>> movie = new ArrayList<HashMap<String,String>>();
 		MovieAPI api = new MovieAPI();
 		movie = api.requestAPI();
-		if(movie.size() < 1) {
+		if(movie.size() > 1) {
 			model.addAttribute("movie", movie);
 		}
 		
@@ -71,7 +71,7 @@ public class MainController {
 		ArrayList<HashMap<String, String>> rating = new
 		ArrayList<HashMap<String,String>>(); TVCrawling tc = new TVCrawling(); 
 		rating = tc.TvRating(); 
-		if(rating.size() < 1) { 
+		if(rating.size() > 1) { 
 			model.addAttribute("rating", rating);			
 		}
 		 
