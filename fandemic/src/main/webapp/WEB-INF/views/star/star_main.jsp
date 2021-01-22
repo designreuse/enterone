@@ -90,7 +90,7 @@
 						style="background-image: url(${pageContext.request.contextPath}/images/star/${stVo.st_banner});">
 					</div>
 					<div class="slider-item js-fullheight"
-						style="background-image:url(${pageContext.request.contextPath}/images/star/${stVo.st_banner});">
+						style="background-image:url(${pageContext.request.contextPath}/images/star/${stVo.st_pic});">
 					</div>
 				</section>
 			</div>

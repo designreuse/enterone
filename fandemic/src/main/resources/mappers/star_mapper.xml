@@ -75,4 +75,11 @@
 		FROM art
 		WHERE st_id = #{st_id}
 	</select>
+	
+	<!-- 스타 팬 게시판 사진만 출력-->	
+	<select id="getFboardPicList" parameterType="Fboard" resultType="Fboard">
+		SELECT * 
+		FROM v_fbolist 
+		WHERE LENGTH(fbo_content) > 1000
+	</select>
 </mapper>

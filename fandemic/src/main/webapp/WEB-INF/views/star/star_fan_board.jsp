@@ -261,7 +261,7 @@ var sst_id = "${stVo.st_id}"
 
    //게시물 목록 요청 결과값
    function fboardListViewResult(data) {
-	   formReset();//이전 입력 데이터 삭제
+	    formReset();//이전 입력 데이터 삭제
 		pagingReset();
 	
 		$("tbody").empty();//이전 입력 데이터 삭제
@@ -587,7 +587,7 @@ var sst_id = "${stVo.st_id}"
           success: function(response) {
              if(response == true) {
                alert("삭제되었습니다.")
-               fboardListView();//목록출력
+               location.reload();
              }
           }, 
           error:function(xhr, status, message) { 

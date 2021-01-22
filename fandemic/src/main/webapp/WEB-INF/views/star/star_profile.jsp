@@ -85,7 +85,7 @@
 							</div>
 							<div class="media-body p-2 mt-2">
 								<h3 class="heading mb-3 starArtMusic">${artVo.art_name}</h3>
-								<p class ="boardColor">${artVo.art_startTime}  ${artVo.art_endTime}</p>
+								<p class ="boardColor">${artVo.art_startTime}</p>
 								<p>${artVo.art_content}</p>
 							</div>
 						</div>
@@ -149,7 +149,7 @@
 							</div>
 							<div class="media-body p-2 mt-2">
 								<h3 class="heading mb-3 starArtPerformance">${artVo.art_name}</h3>
-								<p class ="boardColor">${artVo.art_startTime}  ${artVo.art_endTime}</p>
+								<p class ="boardColor">${artVo.art_startTime} ~ ${artVo.art_endTime}</p>
 								<p>${artVo.art_content}</p>
 							</div>
 						</div>

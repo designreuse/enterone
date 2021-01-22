@@ -216,13 +216,16 @@ public class StarController {
 	
 	//사진게시판 이동
 	@RequestMapping(value = "/star/album/{id}")
-	public ModelAndView starAlbum(@PathVariable String id, Star stVo, Company comVo, Model model) throws IOException {
+	public ModelAndView starAlbum(@PathVariable String id, Star stVo, Company comVo, Fboard fboard, ModelAndView mav) throws IOException {
 		stVo.setSt_id(id);
-		model.addAttribute("stVo", starService.getStarMain(stVo));
+		mav.addObject("stVo", starService.getStarMain(stVo));
 		stVo = starService.getStarMain(stVo);
 		comVo.setCom_id(stVo.getCom_id());
-		model.addAttribute("company", starService.getProfileCompany(comVo));
-		return new ModelAndView("star/star_album");
+		mav.addObject("company", starService.getProfileCompany(comVo));
+		//이미지 출력
+		mav.addObject("fbVoPicList", starService.getFboardPicList(fboard));
+		mav.setViewName("star/star_album");
+		return mav;
 	}
 	
 }

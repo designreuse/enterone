@@ -80,8 +80,10 @@
 					<li><a href="${pageContext.request.contextPath}/star/${stVo.st_id}">Home</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/profile/${stVo.st_id}">소개</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/schedule/${stVo.st_id}">스케줄</a></li>
-					<li><a href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}">스타게시판</a></li>
-					<li><a href="${pageContext.request.contextPath}/star/fanBoard/${stVo.st_id}">팬게시판</a></li>
+					<li><hr></li>
+					<li><a href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}">스타 게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/fanBoard/${stVo.st_id}">팬 게시판</a></li>
+					<li><a href="${pageContext.request.contextPath}/star/album/${stVo.st_id}">팬 앨범</a></li>
 				</ul>
 			</nav>
 			

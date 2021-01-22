@@ -10,6 +10,7 @@ import com.yedam.fandemic.service.StarService;
 import com.yedam.fandemic.vo.Art;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
+import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Star;
 
 @Service
@@ -59,6 +60,11 @@ public class StarServiceImpl implements StarService{
 	@Override
 	public List<Art> getStarArtList(Art art) {
 		return starDAO.getStarArtList(art);
+	}
+
+	@Override
+	public List<Fboard> getFboardPicList(Fboard fboard) {
+		return starDAO.getFboardPicList(fboard);
 	}
 
 

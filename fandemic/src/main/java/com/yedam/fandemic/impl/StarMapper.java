@@ -5,6 +5,7 @@ import java.util.List;
 import com.yedam.fandemic.vo.Art;
 import com.yedam.fandemic.vo.Company;
 import com.yedam.fandemic.vo.Fan;
+import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Star;
 
 public interface StarMapper {
@@ -17,4 +18,5 @@ public interface StarMapper {
 	public int getCountReply(Star star);
 	public int getCountSboard(Star star);
 	public List<Art> getStarArtList(Art art);
+	public List<Fboard> getFboardPicList(Fboard fboard);
 }
