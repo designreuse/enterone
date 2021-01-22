@@ -100,7 +100,7 @@ var id = "${member.mem_id}"//session 일반유저 아이디 값
 					</ul>
 				</div>
 				<br>
-				<table class="table trAboardList" id="dataTable">
+				<table class="table trAboardList" id="dataTable" style="cursor: pointer">
 					<thead>
 						<tr>
 							<th class="thList0">번호</th>
