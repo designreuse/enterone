@@ -251,20 +251,27 @@ public class AuditionController {
 			aboard=auditionMapper.insertselect(aboard);//리턴값
 			audition.setCom_id(aboard.getCom_id());//com_id		
 			System.out.println("====================="+aboard.getCom_id());
-		
-		  MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request; // request 를 multipart로 캐스팅
-		  MultipartFile multipartFile = multipartRequest.getFile("ex2_file");
-			  System.out.println("사진");
-		if(! multipartFile.isEmpty() && multipartFile.getSize() > 0) { // 임시폴더에 업로드된 파일을 실제 폴더로 transfer 이동
-			System.out.println("if");
-			   String path = request.getSession().getServletContext().getRealPath("/images/audition");
-			  System.out.println("====path : " + path); 
-			  multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
-			  audition.setAud_pic(multipartFile.getOriginalFilename()); 
-		}
+			
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request; // request 를 multipart로 캐스팅
+			
+			if(multipartRequest!=null) {
+				MultipartFile multipartFile = multipartRequest.getFile("aud_pic");
+				System.out.println("사진");
+				
+				if(! multipartFile.isEmpty() && multipartFile.getSize() > 0) { // 임시폴더에 업로드된 파일을 실제 폴더로 transfer 이동
+					System.out.println("if");
+					   String path = request.getSession().getServletContext().getRealPath("/images/audition");
+					  System.out.println("====path : " + path); 
+					  multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
+					  audition.setAud_pic(multipartFile.getOriginalFilename()); 
+				}
+			}
+			
+
+			  
 			 
 		System.out.println("ddddd");
-		auditionservice.insertau(audition);
+		//auditionservice.insertau(audition);
 		model.addAttribute("msg", "등록됐습니다.");
 		System.out.println("dddd");
 		return "redirect:/auditionAboard/list";
