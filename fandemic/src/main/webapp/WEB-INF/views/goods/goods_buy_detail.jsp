@@ -13,58 +13,52 @@
 <script>
 $(document).ready(function() {
 	
-	var gb_no = "${gb_no}";
-	var tb_no = "${tb_no}";
-	
-	if (tb_no == null || tb_no == "") {
-		
-		$(".goods").addClass("active");
-	} else {
-		$(".cate").removeClass("active");
-		$("#ticket").addClass("active"); // (active)클래스를 넣는다.
-		$("#goods").removeClass("active");
-	} 
-		
-	$(".goods").click(function(){
-		$(location).attr('href','${pageContext.request.contextPath}/buyList');
-    });
-    
-    
-	$(".cate").click(function(){
-		$(location).attr('href','${pageContext.request.contextPath}/reservList');
-    });
-	
-	
 	var gb_no = 0;
 	
 	$('#exampleModal').on('show.bs.modal', function (event) {
 		var button = $(event.relatedTarget); // Button that triggered the modal
 		gb_no = button.data('no'); // Extract info from data-* attributes
 		var modal = $(this);
-		console.log(button + ', '+ gb_no + ', '+ modal);
+		console.log('주문번호: ' + gb_no);
 		modal.find('.modal-title').text('주문 상세 내역');
 		modal.find('thead tr .gb_no').text(gb_no);
-		
 		
 		$.ajax({
 			url : '${pageContext.request.contextPath}/buyList/detail',
 			type : 'POST',
 			data : { gb_no : gb_no },
-			success :function(response) {
-				console.log(response.gbd_no);
-				if(response == true) {
-					alert(gb_no + ', ' + "모달 성공적으로 출력해주라,,");
-					console.log(response.gb_no);
-					//	var td = $('<td />').html().attr()
-						
-						
+			success : function (response) {
+				$('.modalbody').empty();
+				for(var i=0; i<response.length; i++){
+					console.log(response[i].go_pic);
+					var price = response[i].go_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					$('.modalbody').append('<tr class="tr1">'
+										 + '<td class="go_pic" rowspan="2"><img style="height: 80px;" src="${pageContext.request.contextPath}/images/goods/'+response[i].go_pic+'"></td>'
+										 + '<td class="go_name"><b>상품명</b></td>'
+										 + '<td class="go_name2" colspan="3">'+response[i].go_name+'</td>'
+										 + '<td class="reorder" rowspan="2">'
+										 + '<a type="button" class="btn primary-btn" href="${pageContext.request.contextPath}/goodsDetail/'+response[i].go_no+'">재구매</button></td>'
+										 + '</tr>'
+										 + '<tr class="tr2">'
+										 + '<td style="border-bottom: 3px solid #ebebeb;"><b>구매수량</b></td>'
+										 + '<td style="border-bottom: 3px solid #ebebeb;">'+response[i].cart_qty+'개</td>'
+										 + '<td style="border-bottom: 3px solid #ebebeb;"><b>구매금액</b></td>'
+										 + '<td style="border-bottom: 3px solid #ebebeb;">'+price+'원</td>'
+										 + '</tr>');
 					
-					}
+				}				
+				modal.find('.pay').text(response[0].gb_payment.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원'); // 결제 합계 금액
+					
+					
 				}, error : function(xhr, status){
 				alert(gb_no + ', ' + "실패! status: " + status);
 			}
 		});
 	});
+	
+	function goBuyDetail() {
+		location.href = "${pageContext.request.contextPath}/goodsDetail/{no}";
+	}
 	
 	
 });
@@ -81,6 +75,20 @@ $(document).ready(function() {
 .shoping__cart__table table tbody tr td {
     padding: 15px 25px 15px 25px;
     border-bottom: 1px solid #ebebeb;
+}
+.go_pic {
+	text-align: center;
+	border-bottom: 3px solid #ebebeb !important;
+	border-right: 1px solid #ebebeb;
+}
+.go_name {
+	letter-spacing: 7px;
+}
+.reorder{
+	width: 168px;
+	text-align: center;
+	border-bottom: 3px solid #ebebeb !important;
+	border-left: 1px solid #ebebeb;
 }
 .primary-btn {
     display: inline-block;
@@ -114,15 +122,15 @@ $(document).ready(function() {
 	height: 250px;
 	overflow-y: auto;
 }
-#tblmodal tbody tr td{
+.tblmodal tbody tr td{
 	border-bottom: 1px solid #ebebeb;
 	padding: 10px 25px 10px 25px; 
 }
-#tblmodal thead tr th {
+.tblmodal thead tr th {
 	padding: 10px 25px 10px 25px; 
 	border-bottom: 3px solid #ebebeb;
 }
-#tblmodal tfoot tr td {
+.tblmodal tfoot tr td {
 	padding: 10px 25px 10px 25px; 
 }
 </style>
@@ -139,8 +147,8 @@ $(document).ready(function() {
 					
 					<div class="featured__controls" style="margin-bottom: 10px;">
 						<ul>
-							<li id="goods" class="cate goods active"> GOODS 주문 내역 </li>
-							<li id="ticket" class="cate ticket"> TICKET 예매 내역 </li>
+							<li id="goods" class="cate goods active"><a href="${pageContext.request.contextPath}/buyList">&nbsp;GOODS 주문 내역&nbsp;</a></li>
+							<li id="ticket" class="cate ticket"><a href="${pageContext.request.contextPath}/reservList">&nbsp;TICKET 예매 내역&nbsp;</a></li>
 						</ul>
 					</div>
 					
@@ -205,11 +213,11 @@ $(document).ready(function() {
 				         <div class="modal-header">
 				            <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;"></h5>
 				         </div>
-				         <div class="modal-body">
+				         <div class="modal-body" style="height: 430px;">
 				            <div class="form-group">
 				               
 				               
-							<table id="tblmodal">
+							<table class="tblmodal">
 								<thead>
 									<tr>
 										<th style="width: 168px; text-align: center;">주문번호</th>
@@ -217,58 +225,30 @@ $(document).ready(function() {
 									</tr>
 								</thead>
 								
-								<c:forEach var="gbuy" items="${gbuydetail}">
-								<tbody>
-												<tr>
-													<td rowspan="3" style="text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
-														<img onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'"
-															src="${pageContext.request.contextPath}/images/goods/${gbuy.go_pic}">
-													</td>
-													<td style="letter-spacing: 7px;"><b>공연명</b></td>
-													<td id="go_name" colspan="3">${gbuy.go_name}</td>
-													<td rowspan="3" style="width: 168px; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
-														<button type="button" class="btn primary-btn">입장하기</button>
-													</td>
-												</tr>
-												<tr>
-													<td><b>구매수량</b></td>
-													<td>${gbuy.cart_qty} 개</td>
-													<td><b>구매금액</b></td>
-													<td>${gbuy.go_price} 원</td>
-												</tr>
-												<tr>
-													<td style="border-bottom: 3px solid #ebebeb;"><b>공연기간</b></td>
-													<td style="border-bottom: 3px solid #ebebeb;">${gbuy.go_untsdate} ~ ${gbuy.go_untedate}</td>
-													<td style="border-bottom: 3px solid #ebebeb;"><b>공연시간</b></td>
-													<td style="border-bottom: 3px solid #ebebeb;">${gbuy.go_unttime}</td>
-												</tr>
-
-
-												<tr>
-													<td rowspan="2" style="text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
-														사진
-													</td>
-													<td style="letter-spacing: 7px;"><b>상품명</b></td>
-													<td colspan="3">${gbuy.go_name}</td>
-													<td rowspan="2" style="width: 168px; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
-														<button type="button" class="btn primary-btn">재구매</button>
-													</td>
-												</tr>
-												<tr>
-													<td style="border-bottom: 3px solid #ebebeb;"><b>구매수량</b></td>
-													<td style="border-bottom: 3px solid #ebebeb;">${gbuy.cart_qty} 개</td>
-													<td style="border-bottom: 3px solid #ebebeb;"><b>구매금액</b></td>
-													<td style="border-bottom: 3px solid #ebebeb;">${gbuy.go_price} 원</td>
-												</tr>
-
-								
+								<tbody class="modalbody">
+									<tr>
+										<td rowspan="2" style="text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
+											사진
+										</td>
+										<td style="letter-spacing: 7px;"><b>상품명</b></td>
+										<td colspan="3">${gbuy.go_name}</td>
+										<td rowspan="2" style="width: 168px; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
+											<button type="button" class="btn primary-btn">재구매</button>
+										</td>
+									</tr>
+									<tr>
+										<td style="border-bottom: 3px solid #ebebeb;"><b>구매수량</b></td>
+										<td style="border-bottom: 3px solid #ebebeb;">${gbuy.cart_qty} 개</td>
+										<td style="border-bottom: 3px solid #ebebeb;"><b>구매금액</b></td>
+										<td style="border-bottom: 3px solid #ebebeb;">${gbuy.go_price} 원</td>
+									</tr>
 								</tbody>
-									</c:forEach>
+
 								<tfoot>
 									<tr>
 										<td colspan="4"></td>
 										<td><b>결제 합계 금액</b></td>
-										<td style="text-align: right;">gb_payment 원</td>
+										<td class="pay" style="text-align: right;"></td>
 									</tr>
 								</tfoot>
 							</table>

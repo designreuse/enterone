@@ -265,7 +265,7 @@ public class GoodsController {
 			tbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 gbuyer에 담기
 			
 			model.addAttribute("reservList", goMapper.reservList(tbuyer));
-			return new ModelAndView("goods/goods_buy_detail");
+			return new ModelAndView("goods/ticket_buy_detail");
 		}
 	}
 	
