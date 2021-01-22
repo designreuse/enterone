@@ -80,6 +80,7 @@
 	<select id="getFboardPicList" parameterType="Fboard" resultType="Fboard">
 		SELECT * 
 		FROM v_fbolist 
-		WHERE LENGTH(fbo_content) > 1000
+		WHERE st_id = #{st_id}
+		AND (LENGTH(fbo_content) > 1000)
 	</select>
 </mapper>

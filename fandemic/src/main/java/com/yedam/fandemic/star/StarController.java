@@ -223,6 +223,7 @@ public class StarController {
 		comVo.setCom_id(stVo.getCom_id());
 		mav.addObject("company", starService.getProfileCompany(comVo));
 		//이미지 출력
+		fboard.setSt_id(id);
 		mav.addObject("fbVoPicList", starService.getFboardPicList(fboard));
 		mav.setViewName("star/star_album");
 		return mav;
