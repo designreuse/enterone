@@ -391,7 +391,12 @@ var sst_id = "${stVo.st_id}"
 		
 		if(id == data.mem_id && id != null){
 			$("#btnDeleteFboardAction").show()
-			$("#btnUpdateFboard").show()			
+			$("#btnUpdateFboard").show()
+			$(".btnFboardNotify").hide()	
+		} else{
+			$("#btnDeleteFboardAction").hide()
+			$("#btnUpdateFboard").hide()
+			$(".btnFboardNotify").show()	
 		}
 		
 		//수정 뷰
