@@ -78,7 +78,13 @@
 	 			$(this).removeAttribute("selected");
 	 		}
 	 	}); */
-	 	
+	 	/*첨부파일 이름 미리보기 */
+		$("#uploadFile").change(function(){
+			fileList = $(this)[0].files;
+			//console.log(fileList[0].name);
+			$("#la").text(fileList[0].name);
+			
+		})
 	 	
 	 	
 	});//end ready function
@@ -166,7 +172,11 @@
 								<tr>
 									<td colspan="1" align="left"><label>첨부파일</label></td>
 									<td colspan="3" align="left" class="fileboxi">
-                      					<input type="file" id="file" class="abo_pic" name="uploadFile">
+									<label class="btn btn-default btn-file">
+									배너선택
+                      					<input type="file" id="uploadFile" class="abo_pic" name="uploadFile">
+                      				</label>
+                      				<div style="display: inline-block; position:relative; width: 300px;"><label id="la">${aboard.abo_pic }</label></div>
                      				</td>
 								</tr>
 								<tr >

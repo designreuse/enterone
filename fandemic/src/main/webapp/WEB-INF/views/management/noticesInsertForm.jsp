@@ -45,7 +45,7 @@
 			$("#uploadbanner").val("");
 			
 		})
-		
+		/*첨부파일 이름 미리보기 */
 		$("#uploadFile").change(function(){
 			fileList = $(this)[0].files;
 			//console.log(fileList[0].name);

@@ -143,6 +143,18 @@
 			$("#uploadbanner").val("");
 			
 		})
+		
+		$("#uploadFile").change(function(){
+			fileList = $(this)[0].files;
+			//console.log(fileList[0].name);
+			$("#la").text(fileList[0].name);
+			
+		})
+		
+		$("#uploadbanner").change(function(){
+			fileList = $(this)[0].files;
+			$("#la2").text(fileList[0].name);
+		})
 	});//end ready function
 	
 	function CnoticeFormCheck(){
@@ -259,9 +271,12 @@
 								<tr>
 									<td colspan="1" align="left"><label>첨부파일</label></td>
 									<td colspan="3" class="fileboxi">
-                      					<input type="file" id="file" class="cnoc_file uploadFile" name="uploadFile">
-                      					
-                      					              					
+                      					<label class="btn btn-default btn-file"> 
+									파일선택
+                      					<input type="file" id="uploadFile" name="uploadFile">    
+                      					<!-- <div style="display: inline-block; position:relative; width: 300px; left:-189px; background:#transparent;"><label>선택된 파일이없습니다.</label></div> -->                 					
+                     				</label>
+                     				<div style="display: inline-block; position:relative; width: 300px;"><label id="la">${cnotice.cnoc_file}</label></div>
                      				</td>
 								</tr>
 								<%-- <tr>
@@ -276,7 +291,11 @@
 								<tr>
 									<td colspan="1" align="left"><label>메인홍보용배너</label></td>
 									<td colspan="3" align="left">
-                      					<input type="file" name="uploadbanner" id="uploadbanner" onchange="setThumbnail2(event);">                     					
+                      					<label class="btn btn-default btn-file">
+									배너선택
+                      					<input type="file" name="uploadbanner" id="uploadbanner">                     					
+                     				</label>
+                     				<div style="display: inline-block; position:relative; width: 300px;"><label id="la2">${cnotice.conc_banner }</label></div>
                      				</td>
 								</tr>
 								<%-- <tr>

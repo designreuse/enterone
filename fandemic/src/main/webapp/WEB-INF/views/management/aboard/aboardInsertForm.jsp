@@ -29,6 +29,14 @@
 		$("#btnAboard-register").on("click",function(){
 			CnoticeFormCheck(); //유효성검사
 		});
+		
+		/*첨부파일 이름 미리보기 */
+		$("#uploadFile").change(function(){
+			fileList = $(this)[0].files;
+			//console.log(fileList[0].name);
+			$("#la").text(fileList[0].name);
+			
+		})
 	});//end ready function
 	
 	//내용 유효성검사
@@ -108,7 +116,11 @@
 								<tr>
 									<td colspan="1" align="left"><label>첨부파일</label></td>
 									<td colspan="3" align="left">
-                      					<input type="file" name="uploadFile" multiple>                     					
+									<label class="btn btn-default btn-file"> 
+									파일선택
+                      					<input type="file" id="uploadFile" name="uploadFile"> 
+                      				</label>      
+                      				<div style="display: inline-block; position:relative; width: 300px;"><label id="la">파일을 선택하세요.</label></div>              					
                      				</td>
 								</tr>
 								<tr >
