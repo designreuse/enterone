@@ -159,6 +159,49 @@ ul.tabs li.current {
 
 		}); 
 		
+		
+		// 인증코드 검사
+		$("#btnMemEnd").on('click', function () {
+			
+			var mailCode = $("#memCode").val();
+			$.ajax({
+	            url :'${pageContext.request.contextPath}/codeCheck',
+	            type:"post",
+	            data : {mailCode : mailCode },
+	            
+	            success:function(data){
+	            	if (data) {
+		            	alert("인증되었습니다.");
+		            	$('#memModal').modal("hide"); 
+	            	} else {
+	            		alert("코드가 일치하지 않습니다.");
+	            	}
+	            },error:function(){ alert("실패"); }
+	         });
+
+		});
+		
+		
+		$("#btnComEnd").on('click', function () {
+			
+			var mailCode = $("#comCode").val();
+			$.ajax({
+	            url :'${pageContext.request.contextPath}/codeCheck',
+	            type:"post",
+	            data : {mailCode : mailCode },
+	            
+	            success:function(data){
+	            	if (data) {
+		            	alert("인증되었습니다.");
+		            	$('#comModal').modal("hide"); 
+	            	} else {
+	            		alert("코드가 일치하지 않습니다.");
+	            	}
+	            },error:function(){ alert("실패"); }
+	         });
+
+		});
+
 	}); //end ready function
 	
 	//메일 중복확인
@@ -180,7 +223,7 @@ ul.tabs li.current {
 	            	   $("#chkMemMail").html("사용 가능한 메일입니다. <br> 인증번호가 전송됩니다.").css({"color":"blue"},{"display" : ""});
 	            	   $('#btnMemEnd').attr("disabled", false);
 	            	   // 중복확인 되면 바로 인증번호 전송
-	            	   mailCode("m",$("#modalMemMail").val(), $("#chkMemMail"), $("#btnMemEnd") );
+	            	   mailCode($("#modalMemMail").val(), $("#chkMemMail"), $("#btnMemEnd") );
 
 	               } else if (data == 1){
 	            	   $("#chkMemMail").html("");
@@ -217,7 +260,7 @@ ul.tabs li.current {
 	            	   $("#chkComMail").html("사용 가능한 메일입니다. <br> 인증번호가 전송됩니다.").css({"color":"blue"},{"display" : ""});
 	            	   $('#btnComEnd').attr("disabled", false);
 	            	   // 중복확인 되면 바로 인증번호 전송
-	            	   mailCode("c",$("#modalComMail").val(), $("#chkComMail"), $("#btnComEnd") );
+	            	   mailCode($("#modalComMail").val(), $("#chkComMail"), $("#btnComEnd") );
 	            	   
 	               } else if (data == 1){
 	            	   $("#chkComMail").html("");
@@ -235,23 +278,16 @@ ul.tabs li.current {
 	}
 	
 	// 메일전송 
-	function mailCode(memor, email, tag, btnEnd) {
+	function mailCode(email, tag, btnEnd) {
 		
 		$.ajax({
 	        url :'${pageContext.request.contextPath}/mailCode',
 	        type:"post",
 	        data : {email : email },
-	        
-	        success:function(data){
+	        success:function(){
 
-	        	if(memor == "m") {
-	        		memEnd(data); // 인증번호 비교하기
-	        	} else {
-	        		comEnd(data);
-	        	}
-				//$("#resultCode").html(data);
-				$(tag).html("");
-	     	    $(tag).html("인증번호가 발급되었습니다.").css({"color":"blue"},{"display" : ""});
+			$(tag).html("");
+     	    $(tag).html("인증번호가 발급되었습니다.").css({"color":"blue"},{"display" : ""});
 	     	    
 	        },error:function(){ alert("실패"); }
 	     });
@@ -380,36 +416,7 @@ ul.tabs li.current {
 		} 
 	}
 
-function memEnd(data) {
-	
-	$("#btnMemEnd").on('click', function () {
-		
-		if ( data == $("#memCode").val() ) {
-			$("#mem_email").val( $("#modalMemMail").val() );
-			alert("인증되었습니다.");
-			$('#memModal').modal("hide"); 
-			
-		} else {
-			alert("코드가 일치하지 않습니다.");
-		}
-	});
-}
-	
-function comEnd(data) {
-	
-	$("#btnComEnd").on('click', function () {
-		
-		if ( data == $("#comCode").val() ) {
-			alert("인증되었습니다.");
-			$("#com_email").val( $("#modalComMail").val() );
-			
-			$('#comModal').modal("hide"); 
-			
-		} else {
-			alert("코드가 일치하지 않습니다.");
-		}
-	});
-}
+
 	
 </script>
 

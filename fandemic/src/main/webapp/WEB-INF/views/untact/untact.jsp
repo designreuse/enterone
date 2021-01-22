@@ -94,7 +94,7 @@ $(document).ready(function() {
 						<div>
 							<input type="image" style="width: 200px; height: 260px;" src="${pageContext.request.contextPath}/images/goods/${coming.GO_PIC}"> <br> 
 							<p>${coming.ST_NAME}</p>
-							<p>${coming.GO_UNTSDATE}</p>
+							<p>${coming.GO_UNTEDATE}</p>
 						</div>
 					</c:forEach>
 	
@@ -110,12 +110,12 @@ $(document).ready(function() {
 					<!-- 여기에 forEach -->
 			<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
 			<c:forEach var="un" items="${unList}">
-				<c:if test="${un.DDAY > 0 }">
+				<c:if test="${un.DDAY >= 0 }">
 					<article class="col-md-12 col-sm-12 col-xs-12 article-list">
 					
 						<div class="inner" style="width: 100%; float: left;">
 							<figure style="width: 200px; height: 260px;">
-								<a href="ticket"> 
+								<a href="${pageContext.request.contextPath}/goodsDetail/${un.GO_NO}"> 
 									<img src="${pageContext.request.contextPath}/images/goods/${un.GO_PIC}" style="width: 100%; height: 100%;">
 								</a>
 							</figure>
@@ -132,7 +132,7 @@ $(document).ready(function() {
 								</h1>
 								<p style="height: 44%">
 									${un.GO_NAME}<br> 
-									${un.GO_UNTSDATE}<br> 
+									${un.GO_UNTSDATE} ~ ${un.GO_UNTEDATE} <br>
 									${un.GO_UNTTIME}
 									<q style="display: none;">${un.MEM_ID}</q>
 								</p>
@@ -150,6 +150,36 @@ $(document).ready(function() {
 					</article>
 				</c:if>
 			</c:forEach>
+			
+			<c:forEach var="un" items="${unList}">
+				<c:if test="${un.DDAY < 0 }">
+				<div class="line"><div>지난 예매</div></div>
+					<article class="col-md-12 col-sm-12 col-xs-12 article-list">
+					
+						<div class="inner" style="width: 100%; float: left;">
+							<figure style="width: 200px; height: 260px;">
+								<a href="${pageContext.request.contextPath}/goodsDetail/${un.GO_NO}"> 
+									<img src="${pageContext.request.contextPath}/images/goods/${un.GO_PIC}" style="width: 100%; height: 100%;">
+								</a>
+							</figure>
+							<div class="details" style="margin-left: 210px;">
+								
+								<h1 style="height: 23%">
+									<a href="ticket">${un.ST_ID }</a>
+								</h1>
+								<p style="height: 44%">
+									${un.GO_NAME} <br> 
+									${un.GO_UNTSDATE} ~ ${un.GO_UNTEDATE} <br>
+									${un.GO_UNTTIME}
+									<q style="display: none;">${un.MEM_ID}</q>
+								</p>
+
+							</div>
+						</div>	
+					</article>
+				</c:if>
+			</c:forEach>
+			
 			</div>		
 			<div class="card-footer">
 				<div align="center">

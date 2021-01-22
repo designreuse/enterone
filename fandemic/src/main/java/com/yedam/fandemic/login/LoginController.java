@@ -39,6 +39,8 @@ public class LoginController {
 	@Autowired MainMapper mainDao;
 	@Autowired LoginServiceD loginservice; //동 01-19추가
 	
+	String mailCode = null;
+	
 
 	
 	
@@ -48,9 +50,24 @@ public class LoginController {
 		return new ModelAndView("no-tiles/find");
 	}
 	
+	// 인증코드 검사
+	@RequestMapping("/codeCheck")
+	@ResponseBody
+	public boolean codeCheck(HttpServletRequest request) {
+		String Code = request.getParameter("mailCode");
+		System.out.println("입력한 코드 : " + Code + "발급된 코드: " + mailCode);
+		if (Code.equals(mailCode)) {
+			System.out.println("값은 재대로 가져오는디 왜 여기 들어오냐고");
+			return true;
+		} else {
+			System.out.println("false로 들어와야지 ??");
+			return false;
+		}
+	}
+
 	@RequestMapping("/mailCode")
 	@ResponseBody
-	public String mailCode(@ModelAttribute Mail mail, HttpServletRequest request, Model model) throws IOException{
+	public void mailCode(@ModelAttribute Mail mail, HttpServletRequest request, Model model) throws IOException{
 	
 			String code = Password.getRamdomPw(8);
 			
@@ -71,8 +88,8 @@ public class LoginController {
 	            e.printStackTrace();
 	            System.out.println("메일실패");
 	        }
-			
-			return code;
+			mailCode = code;
+			//return code;
 		} 
 
 	
@@ -139,7 +156,7 @@ public class LoginController {
 
 			String mainCon = "<h2>안녕하세요 " +  member.getMem_id() +" 님 </h2><br><br>" 
 					+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>'" + pwKey +"'</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다.</p><br>"
-					+ "<h3><a href='http://localhost:1818/fandemic/login'></h3><br><br>"
+					+ "<h3><a href='http://192.168.0.58:1818/fandemic/login'></h3><br><br>"
 					+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다.)";
             
 			mail.setMessage(mainCon);
@@ -190,7 +207,7 @@ public class LoginController {
 			
 			String mainCon = "<h2>안녕하세요 " + company.getCom_id() +" 님 </h2><br><br>" 
 					+ "<p>임시로 발급 드린 비밀번호는 <h2 style='color : blue'>'" + pwKey +"'</h2>이며 로그인 후 마이페이지에서 비밀번호를 변경해주시면 됩니다.</p><br>"
-					+ "<h3><a href='http://localhost:1818/fandemic/login'></h3><br><br>"
+					+ "<h3><a href='http://192.168.0.58:1818/fandemic/login'></h3><br><br>"
 					+ "(혹시 잘못 전달된 메일이라면 이 이메일을 무시하셔도 됩니다.)";
 			
 			mail.setMessage(mainCon);

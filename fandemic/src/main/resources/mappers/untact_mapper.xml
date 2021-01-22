@@ -16,17 +16,12 @@
 		SELECT COUNT(*) FROM V_UNTACT
 	</select>
 
-	<!-- 코드 가져오기 -->
-	<select id="getUntactCode" resultType="string" parameterType="string">
-		SELECT GO_CODE FROM GOODS WHERE GO_NO = #{go_no}
-	</select>
-	
 	<!--커밍순 -->
 	<select id="comingsoonList" resultType="map">
-		SELECT S.ST_NAME, G.GO_PIC, TO_CHAR(G.GO_UNTSDATE, 'YYYY-MM-DD') AS GO_UNTSDATE
+		SELECT S.ST_NAME, G.GO_PIC, TO_CHAR(G.GO_UNTEDATE, 'YYYY-MM-DD') AS GO_UNTEDATE
 		FROM GOODS G, STAR S
 		WHERE G.ST_ID = S.ST_ID
-		AND G.GO_UNTSDATE >= SYSDATE
+		AND G.GO_UNTEDATE >= SYSDATE
 	</select>
 	
 </mapper>

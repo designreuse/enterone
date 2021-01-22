@@ -180,9 +180,9 @@ ul.tabs li.current {
 								<a href="${kakao_url}" style="padding: 0px 10px 0px 10px;">
 								<img src="${pageContext.request.contextPath}/images/etc/kakao.png" id="kakao" style="width: 50px; height: 50px; ">
 								</a>
-								<a href="#" style="padding: 0px 10px 0px 10px;">
+								<%-- <a href="#" style="padding: 0px 10px 0px 10px;">
 								<img src="${pageContext.request.contextPath}/images/etc/google.png" id="google" style="width: 50px; height: 50px;">
-								</a>
+								</a> --%>
 							</form>
 						</div>
 					</div>

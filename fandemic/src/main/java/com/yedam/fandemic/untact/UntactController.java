@@ -28,8 +28,7 @@ public class UntactController {
 	
 	@RequestMapping(value = "/untact")
 	public ModelAndView test(Model model, HttpServletRequest request, Untact untact) throws IOException {
-		
-		
+
 		String strp = request.getParameter("p");
 		int p = 1;
 		          
