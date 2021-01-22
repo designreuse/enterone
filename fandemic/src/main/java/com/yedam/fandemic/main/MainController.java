@@ -51,22 +51,29 @@ public class MainController {
 		model.addAttribute("goods", dao.ticketList()); 
 		
 		// 멜론
-		ArrayList<Melon> list = new ArrayList<Melon>();
+		ArrayList<Melon> melon = new ArrayList<Melon>();
 		MelonCrawling mc = new MelonCrawling();
-		list = mc.melonTop();
-		model.addAttribute("melon", list);
+		melon = mc.melonTop();
+		if(melon.size() < 1) {  // null 체크
+			model.addAttribute("melon", melon);
+		}
 		
 		//영화
 		ArrayList<HashMap<String, String>> movie = new ArrayList<HashMap<String,String>>();
 		MovieAPI api = new MovieAPI();
 		movie = api.requestAPI();
-		model.addAttribute("movie", movie);
+		if(movie.size() < 1) {
+			model.addAttribute("movie", movie);
+		}
 		
 		
 		// 시청률
 		ArrayList<HashMap<String, String>> rating = new
 		ArrayList<HashMap<String,String>>(); TVCrawling tc = new TVCrawling(); 
-		rating = tc.TvRating(); model.addAttribute("rating", rating);
+		rating = tc.TvRating(); 
+		if(rating.size() < 1) { 
+			model.addAttribute("rating", rating);			
+		}
 		 
 		
 		// 팬 수 (차트)

@@ -9,6 +9,9 @@
 <script type="text/JavaScript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <style>
+c {
+	color: red;
+}
 .error {
 	color: red;
 	font-weight: bold;
@@ -35,7 +38,18 @@ $(document).ready(function() {
 	
 	
 	$('#memEmail').on('click',function(){
-		memMail();
+		
+		var mem_email = $("#mem_email").val();
+		var regexPattern = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
+		
+		if( mem_email == null || mem_email == '') {
+			alert("메일을 입력하세요");
+		} else if( ! regexPattern.test(mem_email) ){
+			alert("메일 형식을 확인하세요");
+			$('#btnAddMem').attr("disabled", true);
+		} else {
+			memMail();
+		}
 	});
 	
 	$('#btnAddMem').on('click',function(){ 
@@ -48,22 +62,6 @@ $(document).ready(function() {
 	}); 
 	
 });
-
-/* function openDaumZipAddress(zipAddress, address, address2 ) {
-
-	new daum.Postcode({
-
-		oncomplete:function(data) {
-
-			$(zipAddress).val(data.zonecode); 
-
-			$(address).val(data.address); // 주소
-
-			$(address2).css("display","");
-		}
-
-	}).open();
-} */
 
 function memMail() {
 	
@@ -106,25 +104,25 @@ function memMail() {
 							<form:radiobutton path="mem_gender" value="여" label="여자 " id="female" />
 							</div>
 
-							<label>아이디</label>
+							<label>아이디</label><c>*</c>
 							<div style="position:relative">
 								<form:input value="${member.mem_id}" type="text" path="mem_id" id="mem_id" Class="form-control" style="papadding: 50px; display: inline-block;" readonly="true" />
 							</div>
 						</div>
 						<div class="form-group">
-							<label>이름</label> 
+							<label>이름</label><c>*</c>
 							<form:input value="${member.mem_name}" type="text" path="mem_name" id="mem_name" class="form-control" />
 							<form:errors path="mem_name" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 						<div class="form-group">
-							<label>생년월일</label> 
+							<label>생년월일</label><c>*</c> 
 							<form:input type="date" path="mem_birth" id="mem_birth" class="form-control" value="2000-01-01" />
 							<form:errors path="mem_birth" cssClass="error" htmlEscape="false"/> <br>
 						</div>
 
 						<div class="form-group">
-							<label>연락처</label> 
+							<label>연락처</label><c>*</c>
 							<form:input type="text" path="mem_phone" id="mem_phone" class="form-control" placeholder="ex) 000-0000-0000"/>
 							<form:errors path="mem_phone" cssClass="error" htmlEscape="false"/> <br>
 						</div>
@@ -133,14 +131,16 @@ function memMail() {
 							
 							
 							<div style="position:relative">
-							<label>이메일</label> <b id="chkMemMail"></b>
-								<form:input value="${member.mem_email}" type="text" id="mem_email" path="mem_email" class="form-control" style="papadding: 50px; " readonly="true" placeholder="ex) xxx@xxx.xx"/>
+							<label>이메일</label><c>*</c>
+								<b id="chkMemMail"></b>
+								<form:input value="${member.mem_email}" type="text" id="mem_email" path="mem_email" class="form-control" style="papadding: 50px; " placeholder="ex) xxx@xxx.xx"/>
 								<form:input type="button" path="" value="중복확인" id="memEmail" class="btn btn-primary btn-sm" style="position:absolute;right:10px;top:50%;transform:translate(0,-50%);-webkit-transform:translate(0,-50%);-o-transform:translate(0,-50%);padding: 2px 7px;font-size:12px;cursor:pointer;" /><br>
 							</div>
+							<form:errors path="mem_email" cssClass="error" htmlEscape="false"/>
 						</div>
 
-						<div class="form-group text-right">
-							<button class="btn btn-primary btn-block" id="btnAddMem" disabled="disabled">확인</button>
+						<div class="form-group text-right">  
+							<button class="btn btn-primary btn-block" id="btnAddMem" disabled="disabled" title="중복확인을 하세요">확인</button>
 						</div>
 						<div style="display: none;">
 							<form:input type="text" path="mem_pic" id="mem_pic" class="form-control" value="${member.mem_pic}" />
