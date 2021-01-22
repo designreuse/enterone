@@ -543,17 +543,15 @@ hr {
 
 					<!-- 멜론차트 -->
 					<div id="tab-1" class="tab-content current">
-						<div align="right">
-							<a style="color: #022AD5;"
-								href="https://www.melon.com/chart/index.htm" target="_blank">
-								>바로가기</a>
-						</div>
-						<table>
+									<table>
 							<c:choose>
 								<c:when test="${melon eq null or melon eq '[]'}">
+								<div align="center" style=" padding: 116px;">
 									<a href="https://www.melon.com/chart/index.htm">Melon 서버 오류</a>
+									</div>
 								</c:when>
 								<c:otherwise>
+							
 									<c:forEach items="${melon}" var="mel">
 										<tr style="border-bottom: 1pt solid #f2f2f2;">
 											<td style="padding: 5px; width: 50px"><h6>${mel.no}</h6></td>
@@ -571,24 +569,31 @@ hr {
 												</c:if></td>
 										</tr>
 									</c:forEach>
+								
 								</c:otherwise>
 							</c:choose>
 
 						</table>
+						<div align="right" style="    margin-top: 10px;">
+							<a style="color: #022AD5; font-size: small;"
+								href="https://www.melon.com/chart/index.htm" target="_blank">
+								<img style="vertical-align: top;
+    height: 15px;" src="https://upload.wikimedia.org/wikipedia/ko/d/de/%EB%A9%9C%EB%A1%A0_%28%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%29_%EB%A1%9C%EA%B3%A0.png"> 
+								</a>
+								</div>
 					</div>
 
 					<div id="tab-2" class="tab-content" style="width: 90%">
-						<div align="right">
-							<a style="color: #022AD5;"
-								href="https://www.kobis.or.kr/kobis/business/stat/boxs/findDailyBoxOfficeList.do"
-								target="_blank"> >바로가기</a>
-						</div>
-						<table style="width: 100%">
+						
+						
+								<table style="width: 100%">
 							<c:choose>
 								<c:when test="${movie eq null or movie eq '[]'}">
-									<a
+									<div align="center" style="margin-left: 23px; margin-top: 116px;">
+									<a 
 										href="https://www.kobis.or.kr/kobis/business/stat/boxs/findDailyBoxOfficeList.do">Kobis
 										서버 오류</a>
+										</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${movie}" var="mv">
@@ -605,20 +610,23 @@ hr {
 								</c:otherwise>
 							</c:choose>
 						</table>
+							<div align="right" style="    margin-top: 10px;">
+							<a style="color: #022AD5; font-size: small;"
+								href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01" target="_blank">
+								<img style="vertical-align: bottom; height: 45px;" src="https://mn.kobiz.or.kr/cheditor/attach/UuITzXlMuiVVHjhRaglk.jpg"> 
+								</a>
+								</div>
 					</div>
 
 					<div id="tab-3" class="tab-content" style="width: 90%">
-						<div align="right">
-							<a style="color: #022AD5;"
-								href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01"
-								target="_blank"> >바로가기</a>
-						</div>
-						<table style="width: 100%">
+									<table style="width: 100%">
 							<c:choose>
 								<c:when test="${movie eq null or movie eq '[]'}">
-									<a
-										href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01">Nielsenkorea
-										서버 오류</a>
+									<div align="center" style="margin-left: 23px; margin-top: 116px;">
+										<a
+											href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01">Nielsenkorea
+											서버 오류</a>
+									</div>
 								</c:when>
 								<c:otherwise>
 									<c:forEach items="${rating}" var="ra">
@@ -638,6 +646,12 @@ hr {
 								</c:otherwise>
 							</c:choose>
 						</table>
+							<div align="right" style="    margin-top: 10px;">
+							<a style="color: #022AD5; font-size: small;"
+								href="http://www.nielsenkorea.co.kr/tv_terrestrial_day.asp?menu=Tit_1&sub_menu=1_1&area=01" target="_blank">
+								<img style="height: 25px; vertical-align: inherit;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Nielsen_logo.svg/220px-Nielsen_logo.svg.png"> 
+								</a>
+								</div>
 					</div>
 				</aside>
 
