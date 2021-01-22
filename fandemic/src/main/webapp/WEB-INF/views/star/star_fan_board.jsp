@@ -844,8 +844,9 @@ var sst_id = "${stVo.st_id}"
    <div class="container">
       <div class="row d-flex">
          <div class="col-lg-12">
-            <div class="sidebar-box ftco-animate">
-               <!-- <h3 class="sidebar-heading">Tag Cloud</h3> -->
+            <div class="sidebar-box ftco-animate row">
+                <h3 class="sidebar-heading">Category &nbsp;&nbsp;&nbsp;&nbsp;</h3> 
+               
                <ul class="tagcloud subFboardList">
                		<a href="#" class="tag-cloud-link">전체</a>
 					<a href="#" class="tag-cloud-link">자유</a>
@@ -854,8 +855,8 @@ var sst_id = "${stVo.st_id}"
 					<a href="#" class="tag-cloud-link">유머</a>
 					<a href="#" class="tag-cloud-link">장터</a>
                </ul>
-               <button class="btn btn-primary py-2 px-4 btnInputFboardShow" style="display:none;">글쓰기</button>
             </div>
+               <button class="btn btn-primary py-2 px-4 btnInputFboardShow" style="display:none;">글쓰기</button>
 
             <br>
             

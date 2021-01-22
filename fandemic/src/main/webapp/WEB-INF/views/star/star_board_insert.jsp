@@ -14,7 +14,6 @@
 
 	$(function() {
 		var checkUnload = true; //글 작성중 나가면 사라지는 것 방지
-		start();
 
 		
 		$(window).on("beforeunload", function(){ //글 작성중 나가면 사라지는 것 방지

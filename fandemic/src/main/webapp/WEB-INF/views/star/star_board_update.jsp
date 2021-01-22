@@ -237,7 +237,7 @@ var no = "${no}"//스타게시물 번호
 			    <div class="content">
 			        <div class = "row">
 			            <input type="text" id="tag" size="7" placeholder="태그입력"/>
-			            <button type="button" id = "tag-form">누르면 태그값 보임</button>
+			           <!--  <button type="button" id = "tag-form">누르면 태그값 보임</button> -->
 			        </div>
 			        <div class = "row">
 			        	<ul id="tag-list">
