@@ -34,7 +34,7 @@
 			<div class="row">
 				<c:forEach var="sboard" items="${sbolist}">
 					<div class="col-md-12">
-						<div class="blog-entry ftco-animate d-md-flex">
+						<div class="blog-entry ftco-animate d-md-flex col-xl-12 col-md-12 col-12">
 							<%-- <img class="img img-2"  id='${sboard.sbo_no}' src="" alt="대표 사진이 없습니다"
 							onerror="this.src='${pageContext.request.contextPath}/images/star/${stVo.st_icon}'"> --%>
 							<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}" class="img img-2 starBoardimg" id="${sboard.sbo_no}"></a>
