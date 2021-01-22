@@ -536,12 +536,12 @@ ul.tabs li.current {
 					<div class="col-md-12 col-sm-12 col-xs-12"></div>
 					<div class="col-md-1 col-sm-1 col-xs-1"></div>
 					<div class="col-md-5 col-sm-5 col-xs-5"></div>
-						<div class="col-md-2 col-sm-2 col-xs-2">
+						<div class="col-md-3 col-sm-3 col-xs-3">
 							<button type="button" class="btn btn-primary"
-								id="btn_next_minus1" rel="step2">이전 단계</button>
+								id="btn_next_minus1" rel="step2" style="margin-left: 250px;">이전 단계</button>
 						</div>
 
-						<div class="col-md-2 col-sm-2 col-xs-2">
+						<div class="col-md-3 col-sm-3 col-xs-3">
 							<button type="button" class="btn btn-primary"
 								id="btn_next_apply2" rel="step2">다음 단계</button>
 						</div>
@@ -640,136 +640,135 @@ ul.tabs li.current {
 
 				<div class="row" style="maring-left: 400px;">
 					<div class="col-md-12 col-sm-12 col-xs-12"></div>
-					<div class="col-md-6 col-sm-6 col-xs-6"></div>
-					<div class="col-md-4 col-sm-4 col-xs-4"></div>
+					<div class="col-md-1 col-sm-1 col-xs-1"></div>
+					<div class="col-md-5 col-sm-5 col-xs-5"></div>
 
-					<div class="col-md-1 col-sm-1 col-xs-1">
+					<div class="col-md-3 col-sm-3 col-xs-3">
 						<button type="button" class="btn btn-primary" id="btn_next_minus2"
-							rel="step2">이전 단계</button>
+							rel="step2" style="margin-left:250px">이전 단계</button>
 					</div>
 
-					<div class="col-md-1 col-sm-1 col-xs-1">
+					<div class="col-md-3 col-sm-3 col-xs-3">
 						<button type="button" class="btn btn-primary" id="btn_next_apply3"
 							rel="step2">다음단계</button>
 					</div>
 
 				</div>
 			</div>
-
-			<div id="tab-4" class="tab-content">
-
-				<table class="table table-hover">
-
-
-					<tr>
-						<td class="font-f">대표사진</td>
-						<td></td>
-						<td></td>
-						<td colspan="2"><div class="invalid-feedback">
-								<input type="file" name="ex2_file" id="aud_pic"
-									onchange="setThumbnail2(event);">
-							</div></td>
-						<td>- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)</td>
-						<td></td>
-
-					</tr>
-
-					<tr>
-						<td class="font-f">대표영상</td>
-						<td></td>
-						<td></td>
-						<td colspan="2"><div class="invalid-feedback">
-								<input type="file" name="aud_file" id="aud_file"
-									onchange="setThumbnail3(event);">
-
-
-							</div></td>
-						<td>- <strong>노래/랩 부문</strong>: 1분 30초 내에 밝은 곳, 얼굴 정면으로 상반신까지
-							나오게 촬영한 노래/랩 영상 첨부<br> - <strong>댄스 부문</strong>: 1분 30초 내에
-							밝은 곳, 전신이 나오게 촬영한 댄스 영상 첨부<br> - <strong>외모 부문</strong>: 1분
-							내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자기소개 영상 첨부<br> - <strong>연기
-								부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자유연기 영상 첨부
-						</td>
-						<td></td>
-
-					</tr>
-
-
-				</table>
-
-
-				<div class="row">
-
-					<div class="col-md-1 col-sm-1 col-xs-1"></div>
-					<div class="col-md-5 col-sm-5 col-xs-5"></div>
-					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button type="button" class="btn btn-primary" id="btn_next_minus3"
-							rel="step2">이전 단계</button>
-					</div>
-
-					<div class="col-md-2 col-sm-2 col-xs-2">
-						<button type="button" class="btn btn-primary" id="btn_next_apply4"
-							rel="step2">다음 단계</button>
-					</div>
-				</div>
-			</div>
-			<!--    </form> -->
 			<form method="post" id="frm"
 				action="${pageContext.request.contextPath}/audition/auditioninsertsend"
 				encType="multipart/form-data">
+				<div id="tab-4" class="tab-content">
+
+					<table class="table table-hover">
+
+
+						<tr>
+							<td class="font-f">대표사진</td>
+							<td></td>
+							<td></td>
+							<td colspan="2"><div class="invalid-feedback">
+									<input type="file" name="aud_pic"
+										onchange="setThumbnail2(event);">
+								</div></td>
+							<td>- 과도한 보정이나 어플로 찍은 사진이 아닌 정면 사진 원본으로 첨부 (10MB 이하)</td>
+							<td></td>
+
+						</tr>
+
+						<tr>
+							<td class="font-f">대표영상</td>
+							<td></td>
+							<td></td>
+							<td colspan="2"><div class="invalid-feedback">
+									<input type="file" name="aud_file" id="aud_file"
+										onchange="setThumbnail3(event);">
+
+
+								</div></td>
+							<td>- <strong>노래/랩 부문</strong>: 1분 30초 내에 밝은 곳, 얼굴 정면으로
+								상반신까지 나오게 촬영한 노래/랩 영상 첨부<br> - <strong>댄스 부문</strong>: 1분
+								30초 내에 밝은 곳, 전신이 나오게 촬영한 댄스 영상 첨부<br> - <strong>외모
+									부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자기소개 영상 첨부<br> - <strong>연기
+									부문</strong>: 1분 내에 밝은 곳, 얼굴 정면으로 상반신까지 나오게 촬영한 자유연기 영상 첨부
+							</td>
+							<td></td>
+
+						</tr>
+
+
+					</table>
+					<div class="row" style="maring-left: 400px;">
+						<div class="col-md-12 col-sm-12 col-xs-12"></div>
+						<div class="col-md-1 col-sm-1 col-xs-1"></div>
+						<div class="col-md-5 col-sm-5 col-xs-5"></div>
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<button type="button" class="btn btn-primary"
+								id="btn_next_minus3" rel="step2" style="margin-left: 250px">이전
+								단계</button>
+						</div>
+
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<button type="button" class="btn btn-primary"
+								id="btn_next_apply4" rel="step2">다음 단계</button>
+						</div>
+					</div>
+				</div>
+				<!--    </form> -->
+
 				<div id="tab-5" class="tab-content">
 					<h3>내 지원서</h3>
 					<table class="table table-hover">
 						<tr>
 							<td class="font-f">이름</td>
-							<td colspan="2" id="mem_uname"><input type='hidden' name='mem_name'
-								value='${audition.mem_name}'></td>
+							<td colspan="2" id="mem_uname"><input type='hidden'
+								name='mem_name' value='${audition.mem_name}'></td>
 						</tr>
-						
+
 						<tr>
 							<td class="font-f">분야</td>
-							<td colspan="2" id="mem_ubranch"><input type='hidden' name='aud_type'
-								value='${audition.aud_type}'></td>
+							<td colspan="2" id="mem_ubranch"><input type='hidden'
+								name='aud_type' value='${audition.aud_type}'></td>
 						</tr>
 						<tr>
 							<td class="font-f">취미/특기</td>
-							<td colspan="2" id="mem_uhobby"><input type='hidden' name='aud_hobby'
-								value='${audition.aud_hobby}'></td>
+							<td colspan="2" id="mem_uhobby"><input type='hidden'
+								name='aud_hobby' value='${audition.aud_hobby}'></td>
 							<td><input type='hidden' name='abo_no'></td>
 						</tr>
-						
+
 						<tr>
 							<td class="font-f">나이(만 나이)</td>
-							<td colspan="2" id="mem_uage"><input type='hidden' name='aud_age'
-								value='${audition.aud_age}'></td>
+							<td colspan="2" id="mem_uage"><input type='hidden'
+								name='aud_age' value='${audition.aud_age}'></td>
 
 						</tr>
-						
+
 						<tr>
 							<td class="font-f">신장/체중</td>
-							<td colspan="2" id="mem_uheight"><input type='hidden' name='aud_height'
-								value='${audition.aud_height}'></td>
-							<td colspan="2" id="mem_uweight"><input type='hidden' name='aud_weight'
+							<td colspan="2" id="mem_uheight"><input type='hidden'
+								name='aud_height' value='${audition.aud_height}'></td>
+							<td id="mem_uweight"><input type='hidden' name='aud_weight'
 								value='${audition.aud_weight}'></td>
 						</tr>
-						
+
 						<tr>
 							<td class="font-f">대표사진</td>
-							<td colspan="2" id="mem_upic"><input type='hidden' name='aud_pic'
-								value='${audition.aud_pic}'></td>
+							<td colspan="2" id="mem_upic"><input type='hidden'
+								name='aud_pic' value='${audition.aud_pic}'></td>
 							<td><input type='hidden' name='aud_no'></td>
 
 						</tr>
 					</table>
-					
+
 					<br> <br>
 
 					<table class="table table-hover">
 						<tr>
 							<td class="font-f">대표영상</td>
-							<td colspan="2" id="mem_url"><input type='hidden' name='aud_file'
-								value='${audition.aud_file}'>
-							<div class="video-embed-area"></div></td>
+							<td colspan="2" id="mem_url"><input type='hidden'
+								name='aud_file' value='${audition.aud_file}'>
+								<div class="video-embed-area"></div></td>
 							<td><input type='hidden' name='com_id'></td>
 
 
@@ -777,20 +776,20 @@ ul.tabs li.current {
 
 					</table>
 
-					<div class="row">
+					<div class="row" style="maring-left: 400px;">
+						<div class="col-md-12 col-sm-12 col-xs-12"></div>
 						<div class="col-md-1 col-sm-1 col-xs-1">
-							<button class="btn btn-primary" id="btn_cancle_apply">지원
-								취소</button>
+							<button type="button" class="btn btn-primary"
+								id="btn_cancle_apply">지원취소</button>
 						</div>
-
-
 						<div class="col-md-5 col-sm-5 col-xs-5"></div>
-						<div class="col-md-2 col-sm-2 col-xs-2">
-							<button type="button" class="btn btn-primary" id="btn_next_minus4" rel="step2">이전
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<button type="button" class="btn btn-primary"
+								id="btn_next_minus4" rel="step2" style="margin-left: 250px">이전
 								단계</button>
 						</div>
 
-						<div class="col-md-2 col-sm-2 col-xs-2">
+						<div class="col-md-3 col-sm-3 col-xs-3">
 							<button type="submit" class="btn btn-primary" id="btn_next_final"
 								rel="step2">최종 지원</button>
 						</div>
