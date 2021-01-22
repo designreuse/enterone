@@ -148,7 +148,7 @@ ul.tabs li.current {
 			$('.tab-link4').addClass('current');
 			$("#tab-4").addClass('current');
 
-			//auinsertCheck(event);
+			auinsertCheck();
 
 		});
 
@@ -299,14 +299,14 @@ ul.tabs li.current {
 		reader.readAsDataURL(event.target.files[0]);
 	}
 
-	/* function auinsertCheck(event) {
+	 function auinsertCheck(event) {
 		if($("input:text[name='mem_name']").val()==null || $("input:text[name='mem_name']").val()==''){
 			alert("가명을 입력하세요.")
-			$("input:text[name='mem_name']").focus();
-			event.preventDefault(event);
+		} else {
+			return false;
 		}
 		
-	} */
+	} 
 	
 </script>
 <body>
