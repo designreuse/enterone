@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
-<style>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<style>
 .modal-open .modal {
 	padding : 250px;
 }
@@ -85,26 +86,55 @@ $(document).ready(function() {
 					<h3 align="center" style="padding: 15px">TICKETING</h3>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
-					<div class="line">
-						<div>COMING SOON</div>
-						<!-- sysdate 보다 큰 값만 출력 -->
-					</div>
-					<div class="owl-carousel" align="center">
-					<c:forEach var="coming" items="${comingList}">
-						<div>
-							<input type="image" style="width: 200px; height: 260px;" src="${pageContext.request.contextPath}/images/goods/${coming.GO_PIC}"> <br> 
-							<p>${coming.ST_NAME}</p>
-							<p>${coming.GO_UNTSDATE}</p>
+					<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
+						<div class="line">
+							<div>오늘 예정된 언택트 행사</div>
 						</div>
-					</c:forEach>
-	
 					</div>
+					<!-- 여기에 forEach -->
+			<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
+			<c:forEach var="un" items="${unList}">
+				<c:if test="${un.DDAY == 0 }">
+					<article class="col-md-12 col-sm-12 col-xs-12 article-list">
+					
+						<div class="inner" style="width: 100%; float: left;">
+							<figure style="width: 200px; height: 260px;">
+								<a href="ticket"> 
+									<img src="${pageContext.request.contextPath}/images/goods/${un.GO_PIC}" style="width: 100%; height: 100%;">
+								</a>
+							</figure>
+							<div class="details" style="margin-left: 210px;">
+								<div class="detail">
+								
+									<div class="category" style="font-size: 25px;">
+										<a href="ticket">D DAY</a>
+									</div>
+								
+								</div>
+								<h1 style="height: 23%">
+									<a href="ticket">${un.ST_ID }</a>
+								</h1>
+								<p style="height: 44%">
+									${un.GO_NAME}<br> 
+									${un.GO_UNTSDATE}<br> 
+									${un.GO_UNTTIME}
+									<q style="display: none;">${un.MEM_ID}</q>
+								</p>
+							</div>
+						</div>	
+					</article>
+				</c:if>
+				
+			</c:forEach>
+			</div>		
+		</div>
 					
 				</div>
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
 						<div class="line">
-							<div>ALL</div>
+							<div>예매한 언택트 행사</div>
 						</div>
 					</div>
 					<!-- 여기에 forEach -->
@@ -136,19 +166,11 @@ $(document).ready(function() {
 									${un.GO_UNTTIME}
 									<q style="display: none;">${un.MEM_ID}</q>
 								</p>
-								
-								<div style="height: 20%; padding-top: 5%;" >
-									<a class="btn btn-primary more" >
-										<div>입장</div>
-										<div class="btnDetail">
-											<i class="ion-ios-arrow-thin-right"></i>
-										</div>
-									</a>
-								</div>
 							</div>
 						</div>	
 					</article>
 				</c:if>
+				
 			</c:forEach>
 			</div>		
 			<div class="card-footer">
@@ -162,10 +184,62 @@ $(document).ready(function() {
 					<my:paging paging="${paging}" jsfunc="goPage" />
 				</div>
 			</div>
-			
-			
-			
-			
+		</div>
+		<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
+						<div class="line">
+							<div>참여한 언택트 행사</div>
+						</div>
+					</div>
+					<!-- 여기에 forEach -->
+			<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
+			<c:forEach var="un" items="${unList}">
+				<c:if test="${un.DDAY < 0 }">
+					<article class="col-md-12 col-sm-12 col-xs-12 article-list">
+					
+						<div class="inner" style="width: 100%; float: left;">
+							<figure style="width: 200px; height: 260px;">
+								<a href="ticket"> 
+									<img src="${pageContext.request.contextPath}/images/goods/${un.GO_PIC}" style="width: 100%; height: 100%;">
+								</a>
+							</figure>
+							<div class="details" style="margin-left: 210px;">
+								<div class="detail">
+								
+									<div class="category" style="font-size: 25px;">
+										<a href="ticket">D + ${fn:substring(un.DDAY,1,4)}
+										
+										</a>
+									</div>
+								
+								</div>
+								<h1 style="height: 23%">
+									<a href="ticket">${un.ST_ID }</a>
+								</h1>
+								<p style="height: 44%">
+									${un.GO_NAME}<br> 
+									${un.GO_UNTSDATE}<br> 
+									${un.GO_UNTTIME}
+									<q style="display: none;">${un.MEM_ID}</q>
+								</p>
+							</div>
+						</div>	
+					</article>
+				</c:if>
+				
+			</c:forEach>
+			</div>		
+			<div class="card-footer">
+				<div align="center">
+					<script>
+						function goPage(p) {
+							location.href = "adminMain?p=" + p
+						}
+					</script>
+
+					<my:paging paging="${paging}" jsfunc="goPage" />
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

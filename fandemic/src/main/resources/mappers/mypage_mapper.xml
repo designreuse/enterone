@@ -185,4 +185,36 @@
 		DELETE FROM MEMBER
 		WHERE MEM_ID = #{mem_id}
 	</delete>
+	<!-- 전체리스트 페이징 -->
+	<select id="unCnt" resultType="int">
+		SELECT COUNT(*) FROM V_UNTACT
+	</select>
+
+	<!-- 코드 가져오기 -->
+	<select id="getUntactCode" resultType="string" parameterType="string">
+		SELECT GO_CODE FROM GOODS WHERE GO_NO = #{go_no}
+	</select>
+	<!--전체 리스트 -->
+	<select id="untactList" resultType="map" parameterType="Untact">
+		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
+	 		SELECT * FROM V_UNTACT WHERE MEM_ID = 'ralaxa'
+			 ) A ) B WHERE RN BETWEEN #{u_first} AND #{u_last}
+	</select>	
+		<!--커밍순 -->
+	<select id="comingsoonList" resultType="map">
+		SELECT 
+			S.ST_NAME, 
+			G.GO_PIC, 
+			TO_CHAR(G.GO_UNTSDATE, 'YYYY-MM-DD') AS GO_UNTSDATE
+		FROM 
+			GOODS G, 
+			STAR S , 
+			TBUYER T 
+		WHERE  
+				G.GO_NO = T.GO_NO 
+			AND 
+				T.MEM_ID = 'ralaxa' 
+			AND 
+				S.ST_ID = G.ST_ID
+	</select>
 </mapper>

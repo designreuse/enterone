@@ -342,7 +342,7 @@ public class MypageController {
 	
 	//MY Untack Ticket 확인, 참여 할수있음
 	@RequestMapping(value = "/myUntact")
-	public ModelAndView myUntact(HttpServletResponse response, Untact untact, Model model) throws IOException {
+	public ModelAndView myUntact(HttpServletResponse response, Untact untact, Model model, HttpServletRequest request) throws IOException {
 		String strp = request.getParameter("p");
 		int p = 1;
 		          
