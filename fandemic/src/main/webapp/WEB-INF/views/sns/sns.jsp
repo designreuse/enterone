@@ -1087,14 +1087,15 @@ resize: none;
 													style="display: none;" type="text" id="mem_id"
 													name="mem_id" placeholder="" value="${member.mem_id }"></td>
 											<tr style="height: 30%">
-												<td>
+											<a style="font-size: 55px" onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
+												📷
+												</a><div style="DISPLAY: none">
 													<div class="pickupld" id="drop">
-														사진을 올려주세요
-														<div id="thumbnails"
+														사진을 드래그 해주세요
+													<div id="thumbnails"
 															style="overflow: auto; max-height: 233px; height: 88%;"></div>
 														<a href="#ex7" rel="modal:open"> </a>
-													</div>
-												</td>
+													</div>											
 											<tr style="height: 30%">
 												<td>
 

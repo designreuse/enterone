@@ -35,6 +35,9 @@
 										url : '${pageContext.request.contextPath}/onemailselect?lett_no='
 												+ no,
 										success : function(result) {
+											if (result.lett_sid == null || result.lett_sid == '') {
+												result.lett_sid = '관리자';
+											}
 											modal.find('.mem_id').val(
 													result.mem_id) //받는 회원
 											modal.find('.lett_sid').val(
@@ -45,7 +48,6 @@
 													result.lett_content)
 											modal.find('.lett_nono').val(
 													result.lett_no)
-
 											modal.modal('show');
 										}
 									})
@@ -54,11 +56,15 @@
 
 	// 	답장기능
 	$(function() {
-		$('#mailreply').on('click', function(event) {
+		$('body').on('click','#mailreply', function(event) {
 			var modal = $('#exampleModal3')
+			 if($(".lett_sid").val()=='관리자'){
+				alert("개인회원에게만 답장을 보낼수있습니다.")
+			} else{
 			$('#recipient-rename').val($('#recipient-mname').val())
 			modal.modal('show');
 			$('#member-name').val($('#mamber-name').val())
+			}
 		})
 	})
 	//삭제기능
@@ -95,7 +101,17 @@
 											data-no="${mail.lett_no}">
 											<td scope="col" width="5%">${mail.lett_no}</td>
 											<td scope="col" width="30%">${mail.lett_title}</td>
-											<td scope="col" width="20%">${mail.lett_sid}</td>
+											<td scope="col" width="20%">
+											<c:choose>
+											
+											<c:when test="${mail.lett_sid eq null or mail.lett_sid eq ''}">
+											 관리자
+											</c:when>
+											<c:otherwise>
+											${mail.lett_sid}
+											</c:otherwise>
+											</c:choose>
+											</td>
 											<td scope="col" width="20%">${mail.lett_time}</td>
 										</tr>
 									</c:forEach>
