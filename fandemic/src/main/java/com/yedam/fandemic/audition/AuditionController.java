@@ -243,6 +243,7 @@ public class AuditionController {
 	@RequestMapping(value = "/audition/auditioninsertsend")
 	public String Insertau(HttpServletRequest request, Model model, Audition audition,HttpSession session, Aboard aboard)
 			throws IllegalStateException, IOException {
+		System.out.println(audition);
 			Member member = (Member) session.getAttribute("member"); //세션 멤버에서 가져와서 멤버컬럼을 다 가져옴
 
 			audition.setMem_id(member.getMem_id());//거기서 아이디만 가져와서 값 담아주고
@@ -271,7 +272,7 @@ public class AuditionController {
 			  
 			 
 		System.out.println("ddddd");
-		//auditionservice.insertau(audition);
+		auditionservice.insertau(audition);
 		model.addAttribute("msg", "등록됐습니다.");
 		System.out.println("dddd");
 		return "redirect:/auditionAboard/list";

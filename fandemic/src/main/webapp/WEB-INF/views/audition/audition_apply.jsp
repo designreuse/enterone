@@ -192,6 +192,7 @@ ul.tabs li.current {
 
 			$('.tab-link').addClass('current');
 			$("#tab-1").addClass('current');
+			console.log("dddd"+${no});
 
 		});
 
@@ -655,9 +656,7 @@ ul.tabs li.current {
 
 				</div>
 			</div>
-			<form method="post" id="frm"
-				action="${pageContext.request.contextPath}/audition/auditioninsertsend"
-				encType="multipart/form-data">
+			
 				<div id="tab-4" class="tab-content">
 
 					<table class="table table-hover">
@@ -714,8 +713,10 @@ ul.tabs li.current {
 						</div>
 					</div>
 				</div>
-				<!--    </form> -->
-
+				
+<form method="post" id="frm"
+				action="${pageContext.request.contextPath}/audition/auditioninsertsend"
+				encType="multipart/form-data">
 				<div id="tab-5" class="tab-content">
 					<h3>내 지원서</h3>
 					<table class="table table-hover">
@@ -723,6 +724,7 @@ ul.tabs li.current {
 							<td class="font-f">이름</td>
 							<td colspan="2" id="mem_uname"><input type='hidden'
 								name='mem_name' value='${audition.mem_name}'></td>
+							<td> <input type="text" name='abo_no' value='${no.abo_no}'></td>
 						</tr>
 
 						<tr>
