@@ -54,6 +54,7 @@
 	function start(id,fan){
 		if(id != fan && id != null){
 			$("#joinModal").show();
+			$("#btnChannelChoose").hide();
 		}
 	} 
 	
@@ -303,12 +304,6 @@
 			</div>
 		</div>
 		<div class="row no-gutters">
-			
-			
-			
-			
-			       
-			
 			
 			<c:forEach var="sboard" items="${sbVoPicList}" begin="1" end = "10">
 				

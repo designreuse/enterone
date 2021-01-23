@@ -249,7 +249,7 @@ public class StarController {
 	}
 	
 	//스타채널 별 닉네임 변경
-	@RequestMapping(value = "/star/fanNameUpdate/", method=RequestMethod.GET)
+	@RequestMapping(value = "/star/fanNameUpdate/", method=RequestMethod.POST)
 	@ResponseBody
 	public boolean fanNameUpdate(HttpSession session, Fan fan) throws IOException {
 		Member member = (Member) session.getAttribute("member");
@@ -259,7 +259,7 @@ public class StarController {
 	}
 	
 	//스타채널 탈퇴
-	@RequestMapping(value = "/star/fanOut/", method=RequestMethod.GET)
+	@RequestMapping(value = "/star/fanOut/", method=RequestMethod.POST)
 	@ResponseBody
 	public boolean fanDelete(HttpSession session, Fan fan) throws IOException {
 		Member member = (Member) session.getAttribute("member");
@@ -269,7 +269,7 @@ public class StarController {
 	}
 	
 	//스타채널 탈퇴 시 작성했던 댓글, 게시글 삭제
-	@RequestMapping(value = "/star/fanOutAll/", method=RequestMethod.GET)
+	@RequestMapping(value = "/star/fanOutAll", method=RequestMethod.POST)
 	@ResponseBody
 	public boolean fanFboardReplyDelete(HttpSession session, Fan fan) throws IOException {
 		Member member = (Member) session.getAttribute("member");

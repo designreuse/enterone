@@ -33,6 +33,11 @@
 			var id = "${sessionScope.member.mem_id}"
 			var cid = "${sessionScope.company.com_id}"
 			var sid = "${sessionScope.star.st_id}"
+			
+			if(id != "" || id != null){
+				$("#btnChannelChoose").show();
+			}
+			
 			//메인페이지 이동 버튼
 			$("#btnGoMain").on("click",function(){
 				location.href = "${pageContext.request.contextPath}/"
@@ -48,7 +53,156 @@
 					}
 				}
 			});
+			
+			//채널관리 버튼 누르면 수정/탈퇴 버튼 생성, 10초뒤에 원래 버튼으로 돌아감
+			var timer;
+			$("body").on('click',"#btnChannelChoose",function(e){
+				var a1 = "<a href='#' id='btnChannelUpdate' data-toggle='modal' data-target='#channelUpdateModal'>닉네임수정&nbsp;</a>"
+				var a2 = "<a href='#' id='btnChannelDelete' data-toggle='modal' data-target='#channelDeleteModal'>&nbsp;채널탈퇴</a>"
+				$("#btnChannelChoose").replaceWith(a1+a2)
+				timer = setInterval(makeAlert, 5000);
+			});
+			function makeAlert(){ 
+				$("#btnChannelUpdate").replaceWith("<a href='#' id='btnChannelChoose'>채널관리</a>")
+				$("#btnChannelDelete").replaceWith("")
+				console.log(":asdfasdf")
+				clearInterval(timer);
+			};
+			
+			//채널 닉네임 변경 액션
+			$("body").on('click',"#channelUpdateAction",function(e){
+				
+			})
+			
+			//채널 탈퇴 액션
+			$("body").on('click',"#channelDeleteAction",function(e){
+				
+			})
 		})
+		
+		
+//채널 닉네임 수정		
+		// 닉네임 중복확인
+		function FanNameCheck() {
+			var st_id = "${stVo.st_id}"
+			var fan_name = $("#channelNameUpdate").val()
+			var regexPattern = /^[가-힣a-zA-Z0-9]{1,9}$/g;
+	
+			if (regexPattern.test(fan_name)) {
+	
+				$.ajax({
+		            url :'${pageContext.request.contextPath}/star/fanNameCheck',
+		            type:"GET",
+		            data : {fan_name : fan_name, st_id : st_id},
+		            
+		            success:function(data){
+		            	console.log("성공")		
+		               if (data == 0) {
+		            	   $("#checkFanNameUpdate").html(""); 
+		            	   $("#checkFanNameUpdate").html("사용 가능한 닉네임입니다.").css("color","blue").appendTo("#divIdUpdate");
+		            	   $("#fanReturnUpdate").html("T");
+		            	   
+		            	   
+		               } else {
+		            	   $("#checkFanNameUpdate").html("");
+		            	   $("#checkFanNameUpdate").html("사용 중인 닉네임입니다.").css("color","red").appendTo("#divIdUpdate");
+		            	   $("#fanReturnUpdate").html("F");
+		               }
+		
+		            },error:function(){ alert("접속 실패"); }
+		         });
+				
+			} else {
+				 $("#checkFanNameUpdate").html("");
+	      	     $("#checkFanNameUpdate").html("부적절한 단어입니다.").css("color","red").appendTo("#divId");
+	      	     $("#fanReturnUpdate").html("F");
+			}
+		}
+		
+		//채널 닉네임 수정
+		function channelJoinAction() {
+			var st_id = "${stVo.st_id}";
+			var st_name = "${stVo.st_name}";
+			var fan_name = $("#channelNameUpdate").val();		
+			$.ajax({
+			    url: "${pageContext.request.contextPath}/star/fanNameUpdate/", 
+			    type: 'POST', 
+			    data : { st_id : st_id , fan_name : fan_name }, 
+			    error:function(xhr, status, message) {
+			        alert(" status: "+status+" er:"+message);
+			    },
+			    success: function(response) {
+			    	if(response == true) {
+			    		alert("닉네임이 변경되었습니다.");
+			    		location.href = "${pageContext.request.contextPath}/star/" + st_id;//새로고침
+			    	}
+			    }
+			});
+		}
+		
+//채널 탈퇴	
+		//탈퇴 전 닉네임 체크
+		function FanNameCheck() {
+			var st_id = "${stVo.st_id}"
+			var fan_name = $("#channelNameDelete").val()
+			var regexPattern = /^[가-힣a-zA-Z0-9]{1,9}$/g;
+	
+			if (regexPattern.test(fan_name)) {
+	
+				$.ajax({
+		            url :'${pageContext.request.contextPath}/star/fanNameCheck',
+		            type:"GET",
+		            data : {fan_name : fan_name, st_id : st_id},
+		            
+		            success:function(data){
+		            	console.log("성공")		
+		               if (data == 0) {
+		            	   $("#checkFanNameDelete").html(""); 
+		            	   $("#checkFanNameDelete").html("사용 가능한 닉네임입니다.").css("color","blue").appendTo("#divIdDelete");
+		            	   $("#fanReturnDelete").html("T");
+		            	   
+		            	   
+		               } else {
+		            	   $("#checkFanNameDelete").html("");
+		            	   $("#checkFanNameDelete").html("사용 중인 닉네임입니다.").css("color","red").appendTo("#divIdDelete");
+		            	   $("#fanReturnDelete").html("F");
+		               }
+		
+		            },error:function(){ alert("접속 실패"); }
+		         });
+				
+			} else {
+				 $("#checkFanNameDelete").html("");
+	      	     $("#checkFanNameDelete").html("부적절한 단어입니다.").css("color","red").appendTo("#divIdDelete");
+	      	     $("#fanReturnDelete").html("F");
+			}
+		}
+		
+		//채널 탈퇴
+		function channelJoinAction() {
+			var st_id = "${stVo.st_id}";
+			var st_name = "${stVo.st_name}";
+			var fan_name = $("#channelNameDelete").val();		
+			$.ajax({
+			    url: "${pageContext.request.contextPath}/star/fanOut", 
+			    type: 'POST', 
+			    data : { st_id : st_id , fan_name : fan_name }, 
+			    error:function(xhr, status, message) {
+			        alert(" status: "+status+" er:"+message);
+			    },
+			    success: function(response) {
+			    	if(response == true) {
+			    		alert("채널에서 탈퇴하셨습니다.");
+			    		location.href = "${pageContext.request.contextPath}/star/" + st_id;//새로고침
+			    	}
+			    }
+			});
+		}
+		
+		
+		
+		
+		
 	</script>
 </head>
 
@@ -72,7 +226,6 @@
 			</h1>
 			<button type="button" class="btn btn-primary absoluteLeft" id = "joinModal" data-toggle="modal"
 				data-target="#exampleModal" data-what="hello"  style="display:none;">채널가입</button>
-
 			<br> <br>
 
 			<nav id="colorlib-main-menu" role="navigation">
@@ -84,18 +237,15 @@
 					<li><a href="${pageContext.request.contextPath}/star/starBoard/${stVo.st_id}">스타 게시판</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/fanBoard/${stVo.st_id}">팬 게시판</a></li>
 					<li><a href="${pageContext.request.contextPath}/star/album/${stVo.st_id}">팬 앨범</a></li>
+					<br><br><br><br><br><br>
+					<li><a href="#" id="btnChannelChoose" style="display:none;">채널관리</a></li>
 				</ul>
 			</nav>
-			
 			
 			
 			<div class="colorlib-footer">
 				<button type="button"  class="btn btn-primary py-2 px-4" id = "btnGoMain">채널 나가기</button>
 			</div>
-			
-			
-			
-			
 		</aside>
 		
 		
@@ -186,7 +336,7 @@
 	</div>
 	<!-- 화면 종료 -->
 
-	<!-- 모달창 -->
+	<!-- 채널가입 모달창 -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document"  style="max-width: 400px; width: auto;">
@@ -214,6 +364,73 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	<!-- 닉네임 수정 모달창 -->
+	<div class="modal fade" id="channelUpdateModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document"  style="max-width: 400px; width: auto;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">채널 닉네임 수정</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+							<label for="recipient-name" class="col-form-label">채널 닉네임  &nbsp;:&nbsp;</label>
+							<input type="text" id="channelNameUpdate" maxlength=10 size=20>
+							<input type="button" name="" value="중복확인" id="btnCheckcUpdate" class="btn btn-primary btn-sm" style="font-size:12px;cursor:pointer;" />
+						<br>
+						<b id="checkFanNameUpdate"></b>
+						<b id="fanReturnUpdate" style="display: none;">F</b>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" id ="channelUpdateAction">수정</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 채널 탈퇴 모달창 -->
+	<div class="modal fade" id="channelDeleteModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document"  style="max-width: 400px; width: auto;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">채널 탈퇴</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+							<label for="recipient-name" class="col-form-label">채널 닉네임  &nbsp;:&nbsp;</label>
+							<input type="text" id="channelNameDelete" maxlength=10 size=20>
+							<input type="button" name="" value="확인" id="btnCheckcDelete" class="btn btn-primary btn-sm" style="font-size:12px;cursor:pointer;" />
+						<br>
+						<b id="checkFanNameDelete"></b>
+						<b id="fanReturnDelete" style="display: none;">F</b>
+					</div>
+					<div class="form-group">
+						<label for="recipient-name" class="col-form-label">채널 탈퇴를 원하신다면 채널 닉네임을 입력해주세요.</label>
+						<label for="recipient-name" class="col-form-label">채널 탈퇴 시 작성한 글과 댓글은 모두 삭제됩니다.</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" id ="channelDeleteAction">탈퇴</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
 
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">
