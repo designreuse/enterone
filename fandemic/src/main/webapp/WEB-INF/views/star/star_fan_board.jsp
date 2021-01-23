@@ -707,7 +707,7 @@ var sst_id = "${stVo.st_id}"
 			var ul = uls+li0+li1+li2+li3+ule;
 			
 			if(re.fan_name == null || re.fan_name == ""){//스타이름
-				var name = "<i class='icon-star'></i>&nbsp;<span class = 'replyStarName'>" + re.st_name + "</span>"; 
+				var name = "<i class='icon-star replyStarName'></i>&nbsp;<span class = 'replyStarName'>" + re.st_name + "</span>"; 
 			}else{//유저 닉네임
 				var name = "<span class = 'replyFanName'>" + re.fan_name +"</span>";
 			}

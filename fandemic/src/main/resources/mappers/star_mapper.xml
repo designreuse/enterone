@@ -83,4 +83,54 @@
 		WHERE st_id = #{st_id}
 		AND (LENGTH(fbo_content) > 1000)
 	</select>
+	
+	
+	
+	<!-- 스타채널 닉네임중복체크 -->
+	<select id="getFanNameCheck" parameterType="Fan" resultType="Fan">
+		SELECT * 
+		FROM fan 
+		WHERE fan_name = #{fan_name}
+		AND st_id = #{st_id}
+	</select>
+	
+	<!-- 스타채널 닉네임변경 -->
+	<update id="updateFanName" parameterType="Fan">
+		UPDATE fan 
+		SET fan_name = #{fan_name}
+		WHERE mem_id = #{mem_id}
+		AND st_id = #{st_id}
+	</update>
+	
+	<!-- 스타채널 탈퇴 -->
+	<delete id="deleteFan" parameterType="Fan">
+		DELETE FROM fan 
+		WHERE fan_name = #{fan_name}
+		AND st_id = #{st_id}
+		AND mem_id = #{mem_id}
+	</delete>
+		
+	<!-- 스타채널 탈퇴 시 등록했던 글 삭제 -->
+	<delete id="deleteFanAllFboard" parameterType="Fan">
+		DELETE FROM fboard 
+		WHERE mem_id = #{mem_id}
+		AND st_id = #{st_id}
+	</delete>
+	
+	<!-- 스타채널 탈퇴 시 등록했던 댓글 삭제 -->
+	<delete id="deleteFanAllReply" parameterType="Fan">
+		DELETE FROM reply 
+		WHERE re_no = 	(
+						SELECT re_no 
+						FROM reply 
+						WHERE mem_id = #{mem_id}
+						AND sfbo_no IN 
+										(
+										SELECT fbo_no 
+										FROM fboard 
+										WHERE st_id = #{st_id}
+										)
+						)
+	</delete>
+	
 </mapper>

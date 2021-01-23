@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+c {
+	color: red;
+}
+.error {
+	color: red;
+	font-weight: bold;
+}
+
 /* 스타 타일즈 */
 .brand {
 	display: block;

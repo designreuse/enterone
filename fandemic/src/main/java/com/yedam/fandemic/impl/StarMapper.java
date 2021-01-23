@@ -19,4 +19,9 @@ public interface StarMapper {
 	public int getCountSboard(Star star);
 	public List<Art> getStarArtList(Art art);
 	public List<Fboard> getFboardPicList(Fboard fboard);
+	public Fan getFanNameCheck(Fan fan);
+	public int updateFanName(Fan fan);
+	public int deleteFan(Fan fan);
+	public int deleteFanAllFboard(Fan fan);
+	public int deleteFanAllReply(Fan fan);
 }

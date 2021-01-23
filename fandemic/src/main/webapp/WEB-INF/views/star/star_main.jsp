@@ -5,16 +5,37 @@
 <script>
 
 
+
 	$(function() {	
 		var id = "${sessionScope.member.mem_id}"
 		var fan = "${fan.mem_id}"
 		var fan_block = "${fan.fan_block}"
 		start(id, fan);
 		
-
+		//유효성 검사
+		$('#btnCheckc').on('click',function(){
+			if($("#channelName").val() == null || $("#channelName").val() == '' ) {
+				alert("닉네임을 입력하세요");
+				$("#channelName").focus();
+			} else {
+				FanNameCheck();
+			}
+		});
+		
+		//채널 가입 모달 값 초기화
+		$('#joinModal').on('click',function(){
+			$("#channelName").val("")
+			$("#checkFanName").html("")
+     	   	$("#fanReturn").html("F")
+		});
+		
+		
+		//채널 가입 버튼
 		$("#channelJoinAction").on("click",function(){
-			if(replyFormCheck()==true){
-				fboardListView();
+			if($("#fanReturn").html()=="T"){
+				channelJoinAction();
+			}else{
+				alert("닉네임 중복검사를 해주세요");
 			}
 		});
 		
@@ -36,19 +57,45 @@
 		}
 	} 
 	
-	//채널가입 유효성 체크
-	function replyFormCheck(){
-		if($("#channelName").val()==null || $("#channelName").val()==''){
-			alert("내용을 입력하세요.")
-			$("#channelName").focus();
-			event.preventDefault();
-		}else{
-			return true;
+	// 닉네임 중복확인
+	function FanNameCheck() {
+		var st_id = "${stVo.st_id}"
+		var fan_name = $("#channelName").val()
+		var regexPattern = /^[가-힣a-zA-Z0-9]{1,9}$/g;
+
+		if (regexPattern.test(fan_name)) {
+
+			$.ajax({
+	            url :'${pageContext.request.contextPath}/star/fanNameCheck',
+	            type:"GET",
+	            data : {fan_name : fan_name, st_id : st_id},
+	            
+	            success:function(data){
+	            	console.log("성공")		
+	               if (data == 0) {
+	            	   $("#checkFanName").html(""); 
+	            	   $("#checkFanName").html("사용 가능한 닉네임입니다.").css("color","blue").appendTo("#divId");
+	            	   $("#fanReturn").html("T");
+	            	   
+	            	   
+	               } else {
+	            	   $("#checkFanName").html("");
+	            	   $("#checkFanName").html("사용 중인 닉네임입니다.").css("color","red").appendTo("#divId");
+	            	   $("#fanReturn").html("F");
+	               }
+	
+	            },error:function(){ alert("접속 실패"); }
+	         });
+			
+		} else {
+			 $("#checkFanName").html("");
+      	     $("#checkFanName").html("부적절한 단어입니다.").css("color","red").appendTo("#divId");
+      	     $("#fanReturn").html("F");
 		}
 	}
 	
-	function fboardListView() {
-		//채널 가입
+	//채널 가입
+	function channelJoinAction() {
 		var st_id = "${stVo.st_id}";
 		var st_name = "${stVo.st_name}";
 		var fan_name = $("#channelName").val();		
@@ -68,14 +115,6 @@
 		    }
 		});
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 </script>
 	
 	

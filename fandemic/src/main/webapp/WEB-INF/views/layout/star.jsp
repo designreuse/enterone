@@ -189,7 +189,7 @@
 	<!-- 모달창 -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog" role="document"  style="max-width: 400px; width: auto;">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">채널가입</h5>
@@ -199,8 +199,12 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<label for="recipient-name" class="col-form-label">채널 닉네임  &nbsp;:&nbsp;</label>
-						<input type="text" id="channelName">
+							<label for="recipient-name" class="col-form-label">채널 닉네임  &nbsp;:&nbsp;</label>
+							<input type="text" id="channelName" maxlength=10 size=20>
+							<input type="button" name="" value="중복확인" id="btnCheckc" class="btn btn-primary btn-sm" style="font-size:12px;cursor:pointer;" />
+						<br>
+						<b id="checkFanName"></b>
+						<b id="fanReturn" style="display: none;">F</b>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -210,10 +214,6 @@
 			</div>
 		</div>
 	</div>
-
-
-
-
 
 	<!-- loader -->
 	<div id="ftco-loader" class="show fullscreen">

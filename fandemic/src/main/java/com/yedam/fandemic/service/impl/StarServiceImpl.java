@@ -67,5 +67,30 @@ public class StarServiceImpl implements StarService{
 		return starDAO.getFboardPicList(fboard);
 	}
 
+	@Override
+	public Fan getFanNameCheck(Fan fan) {
+		return starDAO.getFanNameCheck(fan);
+	}
+
+	@Override
+	public int updateFanName(Fan fan) {
+		return starDAO.updateFanName(fan);
+	}
+
+	@Override
+	public int deleteFan(Fan fan) {
+		return starDAO.deleteFan(fan);
+	}
+
+	@Override
+	public int deleteFanAllFboard(Fan fan) {
+		return starDAO.deleteFanAllFboard(fan);
+	}
+
+	@Override
+	public int deleteFanAllReply(Fan fan) {
+		return starDAO.deleteFanAllReply(fan);
+	}
+
 
 }
