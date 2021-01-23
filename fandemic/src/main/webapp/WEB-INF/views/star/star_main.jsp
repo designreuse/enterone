@@ -44,9 +44,11 @@
 			if(id != fan && id != null){
 				$("a").removeAttr("href")
 				alert("채널에 가입해주세요");
+				event.stopImmediatePropagation()
 			}else if(fan_block == 1){
 				$("a").removeAttr("href")
 				alert("차단된 사용자입니다");
+				event.stopImmediatePropagation()
 			}
 		});
 	});

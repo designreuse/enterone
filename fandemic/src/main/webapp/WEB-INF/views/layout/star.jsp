@@ -34,7 +34,7 @@
 			var cid = "${sessionScope.company.com_id}"
 			var sid = "${sessionScope.star.st_id}"
 			
-			if(id != "" || id != null){
+			if(id != "" && id != null){
 				$("#btnChannelChoose").show();
 			}
 			
@@ -49,6 +49,7 @@
 						if(sid == null || sid == ""){
 							$("a").removeAttr("href")
 							alert("로그인 후 이용해주세요");
+							event.stopImmediatePropagation()
 						}
 					}
 				}
@@ -63,7 +64,7 @@
 				timer = setInterval(makeAlert, 5000);
 			});
 			function makeAlert(){ 
-				$("#btnChannelUpdate").replaceWith("<a href='#' id='btnChannelChoose'>채널관리</a>")
+				$("#btnChannelUpdate").replaceWith("<a href='#' id='btnChannelChoose' style='display:none;'>채널관리</a>")
 				$("#btnChannelDelete").replaceWith("")
 				console.log(":asdfasdf")
 				clearInterval(timer);
