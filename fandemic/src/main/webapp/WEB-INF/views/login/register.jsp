@@ -173,6 +173,7 @@ ul.tabs li.current {
 	            	if (data) {
 		            	alert("인증되었습니다.");
 		            	$('#memModal').modal("hide"); 
+		            	$("#mem_email").val( $("#modalMemMail").val() );
 	            	} else {
 	            		alert("코드가 일치하지 않습니다.");
 	            	}
@@ -190,10 +191,11 @@ ul.tabs li.current {
 	            type:"post",
 	            data : {mailCode : mailCode },
 	            
-	            success:function(data){
+	            success:function(data){    
 	            	if (data) {
 		            	alert("인증되었습니다.");
 		            	$('#comModal').modal("hide"); 
+		            	$("#com_email").val( $("#modalComMail").val() );
 	            	} else {
 	            		alert("코드가 일치하지 않습니다.");
 	            	}

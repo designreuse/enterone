@@ -63,7 +63,7 @@
         <a href="${pageContext.request.contextPath}/adminMain" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="${pageContext.request.contextPath}/index" class="nav-link" target="_blank">Main Page</a>
+        <a href="${pageContext.request.contextPath}/index" class="nav-link" >Main Page</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="${pageContext.request.contextPath}/logout" class="nav-link">Logout</a>

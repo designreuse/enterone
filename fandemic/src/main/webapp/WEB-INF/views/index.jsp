@@ -430,11 +430,11 @@ hr {
 									test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null or sessionScope.star.st_id ne null}">
 									<div class="featured-author-cover"
 										style="background-image: url('images/news/img15.jpg');">
-										<div class="badges">
+										<!-- <div class="badges">
 											<div class="badge-item">
 												<i class="ion-star"></i> Featured
 											</div>
-										</div>
+										</div> -->
 										<div class="featured-author-center" id="profile"
 											data-toggle="modal" data-target="#exampleModal"
 											data-what="hello">
