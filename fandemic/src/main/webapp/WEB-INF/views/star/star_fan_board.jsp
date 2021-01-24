@@ -12,7 +12,7 @@
 <script
       src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
       crossorigin="anonymous"></script>
-   <script
+<script
       src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"
       crossorigin="anonymous"></script>
 <script>
@@ -849,20 +849,27 @@ var sst_id = "${stVo.st_id}"
    <div class="container">
       <div class="row d-flex">
          <div class="col-lg-12">
-            <div class="sidebar-box ftco-animate row">
-                <h3 class="sidebar-heading">Category &nbsp;&nbsp;&nbsp;&nbsp;</h3> 
-               
-               <ul class="tagcloud subFboardList">
-               		<a href="#" class="tag-cloud-link">전체</a>
-					<a href="#" class="tag-cloud-link">자유</a>
-					<a href="#" class="tag-cloud-link">정보</a>
-					<a href="#" class="tag-cloud-link">미디어</a>
-					<a href="#" class="tag-cloud-link">유머</a>
-					<a href="#" class="tag-cloud-link">장터</a>
-               </ul>
-            </div>
-               <button class="btn btn-primary py-2 px-4 btnInputFboardShow" style="display:none;">글쓰기</button>
-
+         	<div class = "row">
+	         	<div class="col-lg-6">
+		            <div class="sidebar-box ftco-animate row">
+		                <h3 class="sidebar-heading">Category &nbsp;&nbsp;&nbsp;&nbsp;</h3> 
+		               
+		               <ul class="tagcloud subFboardList">
+		               		<a href="#" class="tag-cloud-link">전체</a>
+							<a href="#" class="tag-cloud-link">자유</a>
+							<a href="#" class="tag-cloud-link">정보</a>
+							<a href="#" class="tag-cloud-link">미디어</a>
+							<a href="#" class="tag-cloud-link">유머</a>
+							<a href="#" class="tag-cloud-link">장터</a>
+		               </ul>
+		            </div>
+	             </div>
+	            <div class="col-lg-6">
+		            <div class = "d-flex flex-row-reverse">
+		               <button class="btn btn-primary py-2 px-4 btnInputFboardShow btnInputStyle" style="display:none;">글쓰기</button>
+		            </div>
+				 </div>
+         	</div>
             <br>
             
             <table class = "table trFboardList" id="dataTable">

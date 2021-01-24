@@ -20,7 +20,7 @@
 	</script>
 	
 	<div class="container">
-		<div class="row d-flex">
+		<div class="d-flex flex-row-reverse">
 			<div class="row">
 				<div class="sidebar-box ftco-animate">
 					<button class="btn btn-primary py-2 px-4 btnInputSboardShow"
@@ -35,8 +35,6 @@
 				<c:forEach var="sboard" items="${sbolist}">
 					<div class="col-md-12">
 						<div class="blog-entry ftco-animate d-md-flex col-xl-12 col-md-12 col-12">
-							<%-- <img class="img img-2"  id='${sboard.sbo_no}' src="" alt="대표 사진이 없습니다"
-							onerror="this.src='${pageContext.request.contextPath}/images/star/${stVo.st_icon}'"> --%>
 							<a href="${pageContext.request.contextPath}/star/starBoard/view/${sboard.sbo_no}" class="img img-2 starBoardimg" id="${sboard.sbo_no}"></a>
 							<div class="text text-2 p-4">
 								<h3 class="mb-2">
@@ -44,7 +42,7 @@
 								</h3>
 								<div class="meta-wrap">
 									<p class="meta">
-										<span>${sboard.sbo_time}</span><span>5 Comment</span>
+										<span>${sboard.sbo_time}</span><!-- <span>5 Comment</span> -->
 									</p>
 								</div>
 									<div class="mb-4 sboardPrev" id = "sbo_content" >
