@@ -161,64 +161,42 @@
 
 	// sns 실시간
 	function newSns() {
-
+		
 		var maxSnsNo = 0;
+		if (maxNo == 0) { maxSnsNo = "${maxSnsNo}"; } 
+		else { maxSnsNo = maxNo; } 
 
-		if (maxNo == 0) {
-			maxSnsNo = "${maxSnsNo}";
-		} else {
-			maxSnsNo = maxNo;
-		}
-
-		$
-				.ajax({
-					url : '${pageContext.request.contextPath}/newSns',
-					type : "post",
-					dataType : 'json',
-					data : {
-						maxSnsNo : maxSnsNo
-					},
-					success : function(data) {
-
-						if (data != null) {
-							$(data)
-									.each(
-											function(index, item) {
-
-												if (item.mem_pic == null) { // 프로필이 null 일 때
-													var imgs = '<img src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg" class="snsImg"><br />';
-
-												} else if (item.mem_type == 0) { // 소셜 로그인 일 때
-													var imgs = '<img src="'+ item.mem_pic + '" class="snsImg"><br />';
-
-												} else { // 소셜ㄴㄴ 프로필 null ㄴㄴ 일 때 
-													var imgs = '<img src="${pageContext.request.contextPath}/images/member_pic/'+ item.mem_pic + '" class="snsImg"><br />';
-												}
-												var tr = $("<tr />");
-												var td = $("<td />");
-												var td2 = $("<td />");
-												$(td).append(imgs);
-												$(td2)
-														.append()
-														.html(
-																"<hr style='background-color: blue'>"
-																		+ item.sns_time
-																		+ "<br>"
-																		+ item.sns_title
-																		+ "<br>"
-																		+ item.sns_content);
-												tr.append(td, td2);
-												$('#snsTbl').append(tr);
-
-												maxNo = item.sns_no;
-											});
-
+		$.ajax({
+			url : '${pageContext.request.contextPath}/newSns',
+			type : "post",
+			dataType : 'json',
+			data : { maxSnsNo : maxSnsNo },
+			success : function(data) {
+				
+				if (data != null) {
+					$(data).each(function(index, item) {
+						if (item.mem_pic == null) { // 프로필이 null 일 때
+							var imgs = '<img src="${pageContext.request.contextPath}/images/member_pic/no-profile.jpg" class="snsImg"><br />';
+						} else if (item.mem_type == 0) { // 소셜 로그인 일 때
+							var imgs = '<img src="'+ item.mem_pic + '" class="snsImg"><br />';
+						} else { // 프로필이 null이 아니고 소셜 로그인도 아닐 때
+							var imgs = '<img src="${pageContext.request.contextPath}/images/member_pic/'+ item.mem_pic + '" class="snsImg"><br />';
 						}
-					},
-					error : function() {
-						alert("실패");
-					}
-				});
+						var tr = $("<tr />");
+						var td = $("<td />");
+						var td2 = $("<td />");
+						$(td).append(imgs);
+						$(td2).append().html("<hr style='background-color: blue'>"+ item.sns_time + "<br>"
+												+ item.sns_title + "<br>" + item.sns_content);
+						tr.append(td, td2);
+						$('#snsTbl').append(tr);
+						maxNo = item.sns_no;
+					});
+
+				}
+			},
+			error : function() {alert("실패");}
+		});
 
 	}
 </script>

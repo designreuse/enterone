@@ -365,7 +365,9 @@ public class LoginController {
 	
 	// 개인 회원가입 처리
 	@RequestMapping("/memRegister")
-	public String memRegister(RedirectAttributes redirect, Model model,  Company company, Member member, Errors errors) throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
+	public String memRegister(RedirectAttributes redirect, Model model,  Company company, Member member, Errors errors) 
+			throws IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, 
+			InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException{
 		
 		new MemberValidator().validate(member, errors);
 		
