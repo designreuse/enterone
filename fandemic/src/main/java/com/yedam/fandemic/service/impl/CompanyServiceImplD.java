@@ -94,6 +94,11 @@ public class CompanyServiceImplD  implements CompanyServiceD{
 	public List<HashMap<String, Object>> fanCount(Company company) {
 		return dao.fanCount(company);
 	}
+
+	@Override
+	public void deleteReport() {
+		dao.deleteReport();
+	}
 	
 	
 
