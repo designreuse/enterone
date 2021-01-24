@@ -105,6 +105,10 @@ c {
 	color : #808080;
 }
 
+.btnInputStyle{
+	margin: 18px 0px 20px 0;
+}
+
 /* Datatable th변형 금지 */
 .thList0 {
 	width: 5% !important;
