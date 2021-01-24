@@ -10,9 +10,9 @@
 	<section class="single">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8">
+				<div class="col-md-8" style="margin: 0px 30%">
 					<div class="col-md-12">
-						<h3 class="title">1:1 문의 등록하기</h3>
+						<h3 style="margin: 10px 0px 10px 68px; " class="title">1:1 문의 등록하기</h3>
 					</div>
 					<div class="form-group col-md-12">
 						<form action="sendqna" class="form-horizontal">
@@ -33,7 +33,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-sm-offset-2 col-sm-10">
-									<button type="submit" class="btn btn-default">보내기</button>
+									<button style="    float: right;" type="submit" class="btn btn-primary">보내기</button>
 								</div>
 							</div>
 						</form>

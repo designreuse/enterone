@@ -135,13 +135,13 @@
 							<tr>
 								<th class="tilt"><b>새 비밀번호</b></th>
 								<td class="readolytexttd"><input type="password"
-									name="mem_pw" id="mem_pw" class="form-control" required  /></td>
+									name="mem_pw" id="mem_pw" class="form-control" /></td>
 							</tr>
 
 							<tr>
 								<th class="tilt"><b>비밀번호 확인</b></th>
 								<td class="readolytexttd"><input type="password"
-									name="reuserPwd" id="pwd2" class="form-control" required /></td>
+									name="reuserPwd" id="pwd2" class="form-control" /></td>
 							</tr>
 							<tr>
 								<td colspan="2">
@@ -193,7 +193,7 @@
 							</tr>
 							<tr>
 								<td><input type="text" name="mem_time" readonly="readonly" class="readolytext form-control" value="${meminfo.mem_time }"> </td>
-								<td colspan="2"><input class="sidebutton btn-primary"
+								<td colspan="2"><input class="sidebutton btn-primary" id="submit"
 									style="margin-right: 5%; width: 20%; float: right;"
 									type="submit"  value="수정하기">
 									<input class="btnMemberDrop sidebutton btn-primary"

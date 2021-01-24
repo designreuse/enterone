@@ -5,36 +5,30 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resourcesMypage/css/mypageA.css">
 <script>
-	$(
-			function() {
-				$('.qnainfo')
-						.on(
-								'click',
-								function(event) {
-									var modal = $('#exampleModal2')
-									var no = $(this).data("no");
-									$
-											.ajax({
-												url : '${pageContext.request.contextPath}/oneqnaselect?q_no='
-														+ no,
-												success : function(result) {
-													modal.find('.no').val(
-															result.q_no)
-													modal.find('.title').val(
-															result.q_title)
-													modal.find('.content').val(
-															result.q_content)
-													modal.find('.answer').val(
-															result.q_answer)
-													modal.find('.time').val(
-															result.q_time)
-													modal.find('.atime').val(
-															result.q_atime)
-													modal.modal('show');
-												}
-											})
+	$(function() {$('.qnainfo').on('click',
+		function(event) {
+						var modal = $('#exampleModal2')
+						var no = $(this).data("no");
+						$.ajax({
+								url : '${pageContext.request.contextPath}/oneqnaselect?q_no='+ no,
+								success : function(result) {
+									modal.find('.no').val(result.q_no)
+									modal.find('.title').val(result.q_title)
+									modal.find('.content').val(result.q_content)
+									if(result.q_answer == null || result.q_answer ==''){
+										modal.find('.andiv').css('display', 'none')
+										modal.find('.andiv2').css('display', 'none')
+									} else{
+										modal.find('.andiv').css('display', '')
+										modal.find('.andiv2').css('display', '')
+									modal.find('.answer').val(result.q_answer)
+									modal.find('.atime').val(result.q_atime)
+									}
+									modal.find('.time').val(result.q_time)
+									modal.modal('show');}
 								})
-			})
+						})
+					})
 </script>
 <body>
 	<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
@@ -62,26 +56,22 @@
 									name="lett_content"
 									style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
 							</div>
-							<c:if test="${empty qna.q_answer}">
-							<div class="form-group">
+							<div class="form-group andiv">
 								<label for="recipient-name" class="col-form-label">답변:</label>
 								<textarea class="form-control answer" id="message-text"
 									name="lett_content"
 									style="margin: 0px -1px 0px 0px; width: 568px; height: 250px; resize: none;"></textarea>
 							</div>
-							</c:if>
 							<div class="form-group aadaa">
 								<label for="recipient-name" class="col-form-label ">보낸
 									시간:</label> <input type="text" class="form-control time"
 									id="recipient-name" name="lett_sid">
 							</div>
-							<c:if test="${empty qna.q_answer}">
-							<div class="form-group">
+							<div class="form-group andiv2">
 								<label for="recipient-name" class="col-form-label ">답변
 									시간</label> <input type="text" class="form-control atime"
 									id="recipient-name" name="lett_sid">
 							</div>
-							</c:if>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary">삭제</button>
@@ -97,7 +87,7 @@
 	<section class="single" style="min-height: 1200px; padding-top: 0px">
 
 		<div class="container">
-						<div class="headline">
+						<div class="headline" >
 							<img alt="" src="">
 							<div class="nav" id="headline-nav">
 								<a class="left carousel-control" role="button" data-slide="prev">

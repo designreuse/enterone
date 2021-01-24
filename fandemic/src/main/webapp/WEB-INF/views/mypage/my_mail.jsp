@@ -287,6 +287,7 @@
 							<form name="replymail" action="sendmail">
 								<input class="no" name="lett_no" id="lett_no" data-no="lett_no"
 									style="display: none">
+									<input type="text" 	value="3" name="snsns" style="display: none">
 								<div class="modal-header">
 									<h5 class="modal-title" id="exampleModalLabel">답장 하기</h5>
 									<button type="button" class="close" data-dismiss="modal"
