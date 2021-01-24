@@ -20,9 +20,41 @@
 	AND F.MEM_ID = #{mem_id}
 	
 	</select>
+	<!-- 주문 결과 페이지 (예매) -->
+	<select id="reservList" resultType="Tbuyer" parameterType="Tbuyer">
+		SELECT T.TB_NO, T.GO_NO, T.MEM_ID, T.TB_TIME, T.TB_PAYMENT, G.GO_NAME, G.GO_PIC, G.GO_UNTSDATE, G.GO_UNTEDATE, G.GO_UNTTIME
+		FROM TBUYER T, GOODS G
+		WHERE T.GO_NO = G.GO_NO AND MEM_ID = #{mem_id}
+		ORDER BY TB_TIME DESC
+	</select>
+	<!-- 주문 결과 상세 모달창 -->
+	<select id="buyListDetail" resultType="Gbuydetail" parameterType="Gbuydetail">
+		SELECT A.GB_TIME, A.GB_PAYMENT, A.MEM_ID,
+			   B.GBD_NO, B.GB_NO, B.CART_QTY, B.GO_NO,
+			   C.GO_NAME, C.GO_PRICE, C.GO_PIC
+		FROM GBUYER A
+		JOIN GBUYDETAIL B
+		ON A.GB_NO = B.GB_NO
+		JOIN GOODS C
+		ON B.GO_NO = C.GO_NO
+		WHERE A.GB_NO = #{gb_no}
+	</select>
+	<!-- 주문 결과 페이지 (굿즈) -->
+	<select id="buyList" resultType="Gbuyer" parameterType="Gbuyer">
+		SELECT GB_NO, MEM_ID, GB_PAYMENT, GB_TIME, GB_NAME, GB_PHONE, GB_EMAIL, GB_ADDRESS, GB_ADDRESS2, GB_ZIPADDRESS
+		FROM GBUYER
+		WHERE MEM_ID = #{mem_id}
+		ORDER BY GB_TIME DESC
+	</select>
 
-
-
+	<select id="memInfo" resultType="Member" parameterType="Member">
+	SELECT 
+		* 
+	FROM 
+		MEMBER 
+	WHERE 
+		MEM_ID = #{mem_id}
+	</select>
 
 
 
