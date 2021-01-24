@@ -7,6 +7,7 @@ import java.util.Map;
 import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
 import com.yedam.fandemic.vo.Audition;
+import com.yedam.fandemic.vo.QnA;
 import com.yedam.fandemic.vo.Trainee;
 
 public interface AuditionMapper {

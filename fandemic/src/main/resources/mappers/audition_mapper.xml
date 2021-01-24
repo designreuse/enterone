@@ -116,10 +116,7 @@
 		SELECT * FROM ABOARD
 		ORDER BY ABO_NO DESC
 	</select>
-	<!-- 소속사별로 게시물 목록 조회 -->
-	<!-- <select id="getComList" parameterType="Aboard" resultType="Aboard"> 
-		SELECT * FROM ABOARD WHERE COM_ID=#{com_id} ORDER BY ABO_NO DESC </select> -->
-
+	
 	<!-- 오디션 목록 단건 조회 -->
 	<select id="getAboardInfo" parameterType="Aboard"
 		resultType="Aboard">
@@ -137,6 +134,7 @@
 		AUD_HOBBY,
 		AUD_HEIGHT,
 		AUD_WEIGHT,
+		AUD_FILE,
 		AUD_PIC,
 		COM_ID,
 		MEM_ID,
@@ -150,6 +148,7 @@
 		#{aud_hobby},
 		#{aud_height},
 		#{aud_weight},
+		#{aud_file},
 		#{aud_pic},
 		#{com_id},
 		#{mem_id},
@@ -176,13 +175,6 @@
 		BY AC_TIME DESC
 	</select>
 
-	<!-- 페이지네이션 -->
-	<select id="getactivityCount" parameterType="Activity"
-		resultType="int">
-		SELECT COUNT(*)
-		FROM ACTIVITY
-		WHERE MEM_ID = #{mem_id}
-	</select>
 
 	<!-- 연습생활동 조회수 -->
 	<update id="updateActivityhits" parameterType="Activity">

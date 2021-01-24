@@ -209,10 +209,6 @@ p {
 									<p>${activity.ac_title}</p>
 									<p>${activity.ac_hits}</p>
 									<p>${activity.ac_likes}</p>
-									<p>
-										<button class="btn-like">👍</button>
-
-									</p>
 								</div>
 							</div>
 						</div>
@@ -221,17 +217,6 @@ p {
 			</div>
 		</div>
 		</div>
-		<!-- paging -->
-		<div align="center">
-			<script>
-				function goPage(p) {
-					location.href = "audition/auditionwork?p=" + p
-				}
-			</script>
-
-			<my:paging paging="${paging}" jsfunc="goPage" />
-		</div>
-
 	</section>
 </body>
 

@@ -53,7 +53,6 @@ public class AboardController {
 		aboard.setAbo_no(no);
 		
 		model.addAttribute("no",auditionMapper.insertselect(aboard));
-		aboard.setAbo_no(no);
 
 		model.addAttribute(auditionMapper.getAboardInfo(aboard));
 		return new ModelAndView("audition/audtion_detail");
