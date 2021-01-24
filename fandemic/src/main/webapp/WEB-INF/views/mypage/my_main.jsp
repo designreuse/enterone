@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="/css/owl.carousel.css">
 <script src="/js/owl.carousel.min.js"></script>
 <style type="text/css">
@@ -9,7 +10,61 @@
 	width: 90%;
 	margin: 1%;
 }
+
 </style>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	var gb_no = 0;
+	
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		gb_no = button.data('no'); // Extract info from data-* attributes
+		var modal = $(this);
+		console.log('주문번호: ' + gb_no);
+		modal.find('.modal-title').text('주문 상세 내역');
+		modal.find('thead tr .gb_no').text(gb_no);
+		
+		$.ajax({
+			url : '${pageContext.request.contextPath}/buyList/detail',
+			type : 'POST',
+			data : { gb_no : gb_no },
+			success : function (response) {
+				$('.modalbody').empty();
+				for(var i=0; i<response.length; i++){
+					console.log(response[i].go_pic);
+					var price = response[i].go_price.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					$('.modalbody').append('<tr class="tr1">'
+										 + '<td class="go_pic" rowspan="2"><img style="height: 80px;" src="${pageContext.request.contextPath}/images/goods/'+response[i].go_pic+'"></td>'
+										 + '<td class="go_name"><b>상품명</b></td>'
+										 + '<td class="go_name2" colspan="3">'+response[i].go_name+'</td>'
+										 + '<td class="reorder" rowspan="2">'
+										 + '<a type="button" class="btn primary-btn" href="${pageContext.request.contextPath}/goodsDetail/'+response[i].go_no+'">재구매</button></td>'
+										 + '</tr>'
+										 + '<tr class="tr2">'
+										 + '<td style="border-bottom: 3px solid #ebebeb;"><b>구매수량</b></td>'
+										 + '<td style="border-bottom: 3px solid #ebebeb;">'+response[i].cart_qty+'개</td>'
+										 + '<td style="border-bottom: 3px solid #ebebeb;"><b>구매금액</b></td>'
+										 + '<td style="border-bottom: 3px solid #ebebeb;">'+price+'원</td>'
+										 + '</tr>');
+					
+				}				
+				modal.find('.pay').text(response[0].gb_payment.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + '원'); // 결제 합계 금액
+					
+					
+				}, error : function(xhr, status){
+				alert(gb_no + ', ' + "실패! status: " + status);
+			}
+		});
+	});
+	
+	function goBuyDetail() {
+		location.href = "${pageContext.request.contextPath}/goodsDetail/{no}";
+	}
+	
+	
+});
+</script>
 	<section class="single">
 		<div class="container">
 			<div class="row">
@@ -35,40 +90,170 @@
 						<div>최근 구매 내역</div>
 					</div>
 					<div class="row">
-						<div>
-							<table style="width: 100%" border="1">
+				<div class="col-lg-12">
+					<div class="shoping__cart__table">
+						<table style="width: 100%;">
+							<thead>
 								<tr>
-									<td colspan="2" width="70%">배송완료/배송중/배송준비중</td>
-									<td width="30%" rowspan="2"><input class="sidebutton btn-primary"
-										type="button" onclick="location.href='#'" value="배송조회"><br>
-										<input class="sidebutton btn-primary" type="button"
-										onclick="location.href='#'" value="교환 신청"><br> <input
-										class="sidebutton btn-primary" type="button" onclick="location.href='#'"
-										value="반품 신청"><br> <input class="sidebutton btn-primary" 
-										type="button" onclick="location.href='#'" value="구매후기 쓰기"><br>
+									<th style="text-align: center; border-bottom: 3px solid #ebebeb;" colspan="6"></th>
+								</tr>
+							</thead>
+							
+							<c:forEach var="buyList" items="${buyList}">
+							<tbody data-no="${buyList.gb_no}">
+								<tr>
+									<td rowspan="3" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
+										<fmt:parseDate value="${buyList.gb_time}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="yyyy.MM.dd" value="${date}" /><br>
+										<fmt:parseDate value="${buyList.gb_time}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="HH시 mm분" value="${date}" />
+									</td>
+									<td style="width: 13%;"><b>주문번호</b></td>
+									<td style="width: 22%;">${buyList.gb_no}</td>
+									<td style="width: 13%;"><b>결제금액</b></td>
+									<td style="width: 22%;"><fmt:formatNumber type="number" value="${buyList.gb_payment}" pattern="##,###" />원</td>
+									<td rowspan="3" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
+										<button type="button" class="btn primary-btn buyDetail" data-no="${buyList.gb_no}" data-toggle="modal" data-target="#exampleModal">상세보기</button>
 									</td>
 								</tr>
 								<tr>
-									<td><img alt="상품이미지"
-										src="https://thumbnail10.coupangcdn.com/thumbnails/remote/96x96ex/image/retail/images/2020/05/07/17/3/9d59a462-8680-4bc2-8ae4-f6177cd7193e.jpg">
-									</td>
-									<td align="right">
-										<h5 style="margin-right: 5%">던킨 딸기 듬뿍 미니도넛 (냉동)</h5> <a
-										style="margin-right: 20px">6,770원 · 1개</a> <input
-										style="margin-right: 5%" width="10%" type="button"
-										onclick="location.href='#'" value="장바구니에 담기">
-									</td>
+									<td style="letter-spacing: 7px;"><b>수령인</b></td>
+									<td>${buyList.gb_name}</td>
+									<td style="letter-spacing: 7px;"><b>연락처</b></td>
+									<td>${buyList.gb_phone}</td>
 								</tr>
-
-							</table>
-						</div>
+								<tr>
+									<td style="border-bottom: 3px solid #ebebeb; letter-spacing: 27px;"><b>주소</b></td>
+									<td colspan="3" style="border-bottom: 3px solid #ebebeb;">(${buyList.gb_zipaddress}) ${buyList.gb_address} ${buyList.gb_address2}</td>
+								</tr>
+								
+							</tbody>
+							</c:forEach>
+							
+						</table>
 					</div>
-<!-- 					<div class="line"> -->
-<!-- 						<div>이벤트 참여 내역</div> -->
-<!-- 					</div> -->
-<!-- 					<div class="row"> -->
-<!-- 						<h1>이벤트</h1> -->
-<!-- 					</div> -->
+				</div>
+			</div>
+
+
+
+
+
+
+
+			
+			<!-- 모달창 -->
+			<div class="row" >
+				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				   <div class="modal-dialog" role="document" style="padding-top: 303px;">
+				      <div class="modal-content">
+				         <div class="modal-header">
+				            <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;"></h5>
+				         </div>
+				         <div class="modal-body" style="height: 430px;">
+				            <div class="form-group">
+				               
+				               
+							<table class="tblmodal">
+								<thead>
+									<tr>
+										<th style="width: 168px; text-align: center;">주문번호</th>
+										<th style="width: 800px;" class="gb_no" colspan="5"></th>
+									</tr>
+								</thead>
+								
+								<tbody class="modalbody">
+									<tr>
+										<td rowspan="2" style="text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
+											사진
+										</td>
+										<td style="letter-spacing: 7px;"><b>상품명</b></td>
+										<td colspan="3">${gbuy.go_name}</td>
+										<td rowspan="2" style="width: 168px; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
+											<button type="button" class="btn primary-btn">재구매</button>
+										</td>
+									</tr>
+									<tr>
+										<td style="border-bottom: 3px solid #ebebeb;"><b>구매수량</b></td>
+										<td style="border-bottom: 3px solid #ebebeb;">${gbuy.cart_qty} 개</td>
+										<td style="border-bottom: 3px solid #ebebeb;"><b>구매금액</b></td>
+										<td style="border-bottom: 3px solid #ebebeb;">${gbuy.go_price} 원</td>
+									</tr>
+								</tbody>
+
+								<tfoot>
+									<tr>
+										<td colspan="4"></td>
+										<td><b>결제 합계 금액</b></td>
+										<td class="pay" style="text-align: right;"></td>
+									</tr>
+								</tfoot>
+							</table>
+							           
+				               
+				               
+				            </div>
+				         </div>
+				         <div class="modal-footer">
+				            <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+				         </div>
+				      </div>
+				   </div>
+				</div>
+			</div>
+					<div class="line">
+						<div>티켓 구매 내역</div>
+					</div>
+					<div class="row">
+				<div class="col-lg-12">
+					<div class="shoping__cart__table">
+						<table style="    width: 100%;">
+							<thead>
+								<tr>
+									<th style="text-align: center; border-bottom: 3px solid #ebebeb;" colspan="7"></th>
+								</tr>
+							</thead>
+							
+							<c:forEach var="reservList" items="${reservList}">
+							<tbody data-no="${reservList.tb_no}">
+								<tr>
+									<td rowspan="4" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb;">
+										<a href="${pageContext.request.contextPath}/goodsDetail/${reservList.go_no}">
+										<img class="product__details__pic__item--large"
+											 src="${pageContext.request.contextPath}/images/goods/${reservList.go_pic}"
+											 onerror="this.src='${pageContext.request.contextPath}/resources/images/company/Default.png'" style="height: 150px;">
+										</a>
+									</td>
+									<td style="width: 12%;"><b>예매번호</b></td>
+									<td colspan="3"><a href="${pageContext.request.contextPath}/goodsDetail/${reservList.go_no}">${reservList.tb_no}</a></td>
+								</tr>
+								<tr>
+									<td style="width: 12%; letter-spacing: 7px"><b>구매일</b></td>
+									<td>
+										<fmt:parseDate value="${reservList.tb_time}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="yyyy년 M월 d일 H시 m분" value="${date}" />
+									</td>
+									<td style="width: 12%;"><b>결제금액</b></td>
+									<td><fmt:formatNumber type="number" value="${reservList.tb_payment}" pattern="##,###" />원</td>
+								</tr>
+								<tr>
+									<td style=" letter-spacing: 27px;"><b>제목</b></td>
+									<td colspan="3">${reservList.go_name}</td>
+								</tr>
+								<tr>
+									<td style="letter-spacing: 7px; border-bottom: 3px solid #ebebeb;"><b>공연일</b></td>
+									<td style="border-bottom: 3px solid #ebebeb;">
+										<fmt:parseDate value="${reservList.go_untsdate}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${date}" /> ~
+										<fmt:parseDate value="${reservList.go_untedate}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="yyyy년 MM월 dd일" value="${date}" />
+									</td>
+									<td style="letter-spacing: 7px; border-bottom: 3px solid #ebebeb;"><b>공연시간</b></td>
+									<td style="width:; border-bottom: 3px solid #ebebeb;">${reservList.go_unttime}</td>
+								</tr>
+								
+							</tbody>
+							</c:forEach>
+							
+						</table>
+					</div>
+				</div>
+			</div>
 					<div class="line">
 						<div>쪽지</div>
 					</div>

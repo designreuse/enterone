@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -27,11 +28,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.yedam.fandemic.impl.MypageMapper;
 import com.yedam.fandemic.login.Password;
 import com.yedam.fandemic.vo.Fan;
+import com.yedam.fandemic.vo.Gbuydetail;
+import com.yedam.fandemic.vo.Gbuyer;
 import com.yedam.fandemic.vo.Letter;
 import com.yedam.fandemic.vo.Member;
 import com.yedam.fandemic.vo.Paging;
 import com.yedam.fandemic.vo.QnA;
 import com.yedam.fandemic.vo.Star;
+import com.yedam.fandemic.vo.Tbuyer;
 import com.yedam.fandemic.vo.Untact;
 
 @Controller
@@ -42,11 +46,14 @@ public class MypageController {
 
 	// mypage메인
 	@RequestMapping(value = "/mypagemain")
-	public ModelAndView mymain(Model model, HttpServletResponse response,  Fan fan, HttpSession session,Letter letter ,Star star , HttpServletRequest request ) throws IOException {
+	public ModelAndView mymain(Model model, Gbuyer gbuyer ,Tbuyer tbuyer , HttpServletResponse response,  Fan fan, HttpSession session,Letter letter ,Star star , HttpServletRequest request ) throws IOException {
 		// 메인 내 스타 목록 출력
 		Member member = (Member) session.getAttribute("member");
+		if (member == null) { // 로그인하지 않은 상태이면 로그인 화면으로 이동
+			return new ModelAndView("/login");
+		} else {
 		// MemberVo를 불러서 Member캐스팅 session에 있는 member를 가져온다.
-		
+		gbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 gbuyer에 담기
 		fan.setMem_id(member.getMem_id());
 		letter.setMem_id(member.getMem_id());
 		String strp = request.getParameter("p");
@@ -64,14 +71,23 @@ public class MypageController {
 		letter.setLett_first(paging.getFirst());
 		letter.setLett_last(paging.getLast());
 
+			
+		
+		
+		tbuyer.setMem_id(member.getMem_id()); // 불러온 member에서 mem_id만 gbuyer에 담기
+		
 		paging.setTotalRecord(myMapper.getletterCount(letter));
 		model.addAttribute("starlist", myMapper.starmainselect(fan));
 		model.addAttribute("paging", paging);
 		model.addAttribute("maillist", myMapper.selectMail(letter));
-				// 만양ㄱ member가 null이 아니면 밑에 실행한다.
+		//GOODS 연동, 
+		//TICKET LIST
+		model.addAttribute("reservList", myMapper.reservList(tbuyer));
+		//GOODS LIST
+		model.addAttribute("buyList", myMapper.buyList(gbuyer));
 		return new ModelAndView("mypage/my_main");
+		}
 	}
-	
 	
 	
 	
@@ -85,9 +101,15 @@ public class MypageController {
 	// my정보 수정 세션값 받아오기
 
 	@RequestMapping(value = "/myupdate")
-	public String myupdate(Model model, HttpServletResponse response) throws IOException {
-
-		return "mypage/my_update";
+	public ModelAndView myupdate(Model model, HttpServletResponse response, HttpSession session) throws IOException {
+		Member member = (Member) session.getAttribute("member");
+		if (member == null) { // 로그인하지 않은 상태이면 로그인 화면으로 이동
+			return new ModelAndView("/login");
+		} else {
+			
+			model.addAttribute("meminfo", myMapper.memInfo(member));
+			return new ModelAndView("mypage/my_update");
+		}
 	}
 
 	// my정보 수정 update처리
@@ -111,7 +133,7 @@ public class MypageController {
 		member.setMem_pw(pw.encrypt(member.getMem_pw()));
 		myMapper.memUpdate(member);
 		session.setAttribute("member", member);
-		return "mypage/my_update";
+		return "redirect:myupdate";
 
 	}       
 
