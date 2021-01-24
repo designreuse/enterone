@@ -71,7 +71,12 @@ public class StarServiceImpl implements StarService{
 	public Fan getFanNameCheck(Fan fan) {
 		return starDAO.getFanNameCheck(fan);
 	}
-
+	
+	@Override
+	public Fan getFanNameOutCheck(Fan fan) {
+		return starDAO.getFanNameOutCheck(fan);
+	}
+	
 	@Override
 	public int updateFanName(Fan fan) {
 		return starDAO.updateFanName(fan);
@@ -91,6 +96,5 @@ public class StarServiceImpl implements StarService{
 	public int deleteFanAllReply(Fan fan) {
 		return starDAO.deleteFanAllReply(fan);
 	}
-
 
 }

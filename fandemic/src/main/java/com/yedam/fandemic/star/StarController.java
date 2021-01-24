@@ -248,6 +248,21 @@ public class StarController {
 		}
 	}
 	
+	//스타채널 별 닉네임 중복체크
+	@RequestMapping(value = "/star/fanNameOutCheck", method=RequestMethod.GET)
+	@ResponseBody
+	public String fanNameOutCheck(HttpSession session, Fan fan) throws IOException {
+		Member member = (Member) session.getAttribute("member");
+		fan.setMem_id(member.getMem_id());
+		fan = starService.getFanNameOutCheck(fan);
+		if ( fan != null) {
+			System.out.println(fan);
+			return fan.getFan_name(); //아이디만 넘김
+		} else {
+			return null;
+		}
+	}
+	
 	//스타채널 별 닉네임 변경
 	@RequestMapping(value = "/star/fanNameUpdate/", method=RequestMethod.POST)
 	@ResponseBody
@@ -258,25 +273,17 @@ public class StarController {
 		return true;
 	}
 	
-	//스타채널 탈퇴
-	@RequestMapping(value = "/star/fanOut/", method=RequestMethod.POST)
+	//스타채널 탈퇴 + 채널에 작성한 글, 댓글 삭제
+	@RequestMapping(value = "/star/fanOut", method=RequestMethod.POST)
 	@ResponseBody
 	public boolean fanDelete(HttpSession session, Fan fan) throws IOException {
 		Member member = (Member) session.getAttribute("member");
 		fan.setMem_id(member.getMem_id());
 		starService.deleteFan(fan);
-		return true;
-	}
-	
-	//스타채널 탈퇴 시 작성했던 댓글, 게시글 삭제
-	@RequestMapping(value = "/star/fanOutAll", method=RequestMethod.POST)
-	@ResponseBody
-	public boolean fanFboardReplyDelete(HttpSession session, Fan fan) throws IOException {
-		Member member = (Member) session.getAttribute("member");
-		fan.setMem_id(member.getMem_id());
-		
 		starService.deleteFanAllFboard(fan);
 		starService.deleteFanAllReply(fan);
 		return true;
 	}
+	
+
 }

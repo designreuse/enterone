@@ -94,6 +94,15 @@
 		AND st_id = #{st_id}
 	</select>
 	
+	<!-- 스타채널 탈퇴시 닉네임체크 -->
+	<select id="getFanNameOutCheck" parameterType="Fan" resultType="Fan">
+		SELECT * 
+		FROM fan 
+		WHERE mem_id = #{mem_id} 
+		AND st_id = #{st_id} 
+		AND fan_name = #{fan_name}
+	</select>
+	
 	<!-- 스타채널 닉네임변경 -->
 	<update id="updateFanName" parameterType="Fan">
 		UPDATE fan 

@@ -12,7 +12,7 @@
 		var fan_block = "${fan.fan_block}"
 		start(id, fan);
 		
-		//유효성 검사
+		//채널 가입 시 중복 체크
 		$('#btnCheckc').on('click',function(){
 			if($("#channelName").val() == null || $("#channelName").val() == '' ) {
 				alert("닉네임을 입력하세요");
