@@ -149,12 +149,12 @@ p {
 					style="color: black; font-size: 50px; margin-top: 5px;">연습생 활동</h1>
 				<div>
 					<button type="button" class="btn btn-primary" id="but">NEW05</button>
-					<%-- <c:if test="${trainee.mem_id ne null}"> --%>
+					<c:if test="${sessionScope.member.mem_id ne null}"> 
 					<%--$는 컨트롤러에서 넘어오는거 --%>
 					<button type="button" class="btn btn-primary" id="but2"
 						style="float: right; margin-top: -58px;"
 						onclick="location.href='activityinsert'">글 등록</button>
-					<%--  </c:if> --%>
+					 </c:if>   
 				</div>
 				<div>
 					<div class="jumbotron jumbotron-fluid">
