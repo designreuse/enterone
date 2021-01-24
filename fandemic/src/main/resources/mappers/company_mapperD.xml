@@ -154,4 +154,12 @@
 		GROUP BY S.ST_NAME
 		ORDER BY CNT DESC
 	</select>
+<!-- 블랙먹으면 해당 아이디 신고내역 삭제 -->
+	<delete id="deleteReport">
+		DELETE FROM NOTIFY
+		WHERE MEM_ID = (SELECT MEM_ID
+						FROM NOTIFY
+						GROUP BY MEM_ID
+						HAVING COUNT(*) > 10)
+	</delete>
 </mapper>

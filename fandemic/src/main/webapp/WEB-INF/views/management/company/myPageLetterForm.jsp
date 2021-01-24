@@ -35,14 +35,19 @@
 		
 		
 		//등록버튼눌렀을경우 
-		$("#btnCnotice-register").on("click",function(){
+		$("#btnLetter-register").on("click",function(){
 			/* alert("등록버튼눌림"); */
 			CnoticeFormCheck(); //유효성검사
 		});
 	});//end ready function
 	
 	function CnoticeFormCheck(){
-		if($("table .lett_title").val()==null || $("table .lett_title").val()==''){
+		if($("table .mem_id").val()==null || $("table .mem_id").val()==''){
+			alert("쪽지 보낼 회원을 입력하세요.");
+			$("table .mem_id").focus();
+			event.preventDefault();
+		}
+		else if($("table .lett_title").val()==null || $("table .lett_title").val()==''){
 			alert("제목을 입력하세요.")
 			$("table .lett_title").focus();
 			event.preventDefault();
@@ -50,6 +55,10 @@
 		else if($("table .lett_content").val()==null||$("table .lett_content").val()==''){
 			alert("내용을 입력하세요.")
 			$("table .lett_content").focus();
+			event.preventDefault();
+		}else if($(".member_check_result").text()!="존재하는 회원입니다."){
+			alert("존재하지 않는 회원에게 쪽지를 보낼 수 없습니다.")
+			$("table .mem_id").focus();
 			event.preventDefault();
 		}
 		

@@ -27,4 +27,5 @@ public interface CompanyMapperD {
 	public void blackAdd(); //신고 갯수 확인
 	public int updateBlack(List<Notify> notify); //블랙리스트 업데이트
 	public List<HashMap<String, Object>> fanCount(Company company);//팬수 차트
+	public void deleteReport(); //블랙당한녀석의 신고내역 삭제
 }
