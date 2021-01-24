@@ -516,7 +516,7 @@ resize: none;
 
 											modal.find('.appendimmm').empty() //지우는 함수
 											for (var i = 0; i < imgcut.length - 1; i++) {
-												var img = '<div><img class="appendiiimmm" data-u="image" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /><img class="thumthum" data-u="thumb" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /></div>';
+												var img = '<div><img style="    background-color: floralwhite;" class="appendiiimmm" data-u="image" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /><img class="thumthum" data-u="thumb" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /></div>';
 												modal.find('.appendimmm')
 														.append(img)
 											}
@@ -696,7 +696,7 @@ resize: none;
 
 											modal.find('#mypostbox').empty()//
 											for (var i = 0; i < result.snslist.length; i++) {
-												var mylist = '<div class="col-xs div-mylist" data-no="'+result.snslist[i].sns_no+'" style="height: 45px;"></label><label id="label-posttitle" style="margin: 16px;">'
+												var mylist = '<div class="col-xs div-mylist btnoutputdiv" data-no="'+result.snslist[i].sns_no+'" style="height: 45px;"></label><label id="label-posttitle" style="margin: 16px;">'
 														+ result.snslist[i].sns_title
 														+ '</label><label>'
 														+ (result.snslist[i].sns_pic == ""
@@ -1147,18 +1147,18 @@ resize: none;
 										</c:if>
 									</button>
 									<a id="a_drop_btn" id="dropdownMenu2">${sns.mem_id}</a>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-										<button class="dropdown-item showprofilebtn" type="button"
+									<div class="dropdown-menu" aria-labelledby="dropdownMenu2" style="min-width: 106px; padding: 6px;">
+										<button class="dropdown-item btn btn-primary showprofilebtn" type="button"
 											id="showprofilebtn" data-id="${sns.mem_id}">프로필 보기</button>
 										<br>
-<c:if test="${member.mem_id ne null}">										
-										<button class="dropdown-item btnLetter" type="button"
+											<c:if test="${member.mem_id ne null}">										
+										<button class="dropdown-item btn btn-primary btnLetter" type="button"
 											id="btnLetter12" data-id="${sns.mem_id}"
 											data-sid="${sessionScope.member.mem_id }" data-snssns="1">쪽지 보내기</button>
 											
 										<br>
 										</c:if>
-										<button class="dropdown-item btn-myPost" type="button"
+										<button class="dropdown-item btn btn-primary btn-myPost" type="button"
 											data-id="${sns.mem_id}">게시글 보기</button>
 									</div>
 									<input class="clickcontentdetail" value="${sns.sns_title}"
@@ -1169,12 +1169,12 @@ resize: none;
 								<div class="outputdiv" data-no="${sns.sns_no}">
 								
 									<div class="inner cinner">
-										<figure>
+										<figure style="background-color:floralwhite">
 											<div class="w3-content w3-section" style="max-width: 500px">
 												<c:forTokens var="cutimg" items="${sns.sns_pic}" delims=",">
 													<a> <img class="mySlides"
-														src="${pageContext.request.contextPath}/images/snsimage/${cutimg}"
-														alt="사진이 출력되는 곳" style="width: 100%; display: none;">
+														src="${pageContext.request.contextPath}/images/snsimage/${cutimg}" onerror="this.src='${pageContext.request.contextPath}/images/snsimage/404.jpg'"
+														alt="사진이 출력되는 곳" style="width: 100%; background-color:floralwhite; display: none;">
 													</a>
 												</c:forTokens>
 											</div>
@@ -1518,10 +1518,10 @@ resize: none;
 <div style="display: none" id="imgtemmm">
 
 	<div id="jssor_1"
-		style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 960px; height: 480px; overflow: hidden; visibility: hidden; background-color: #24262e;">
+		style="    border-radius: 20px; position: relative; margin: 0 auto; top: 0px; left: 0px; width: 960px; height: 480px; overflow: hidden; visibility: hidden; background-color: #fc624d33;">
 		<!-- Loading Screen -->
 		<div data-u="loading" class="jssorl-009-spin"
-			style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
+			style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: #fc624d33;">
 			<img
 				style="margin-top: -19px; position: relative; top: 50%; width: 38px; height: 38px;"
 				src="${pageContext.request.contextPath}/resourcesSns/css/spin.svg" />
@@ -1535,10 +1535,10 @@ resize: none;
 			style="display: none; position: absolute;">web animation composer</a>
 		<!-- Thumbnail Navigator -->
 		<div data-u="thumbnavigator" class="jssort101"
-			style="position: absolute; left: 0px; top: 0px; width: 240px; height: 480px; background-color: #000;"
+			style="position: absolute; left: 0px; top: 0px; width: 240px; height: 480px; background-color: floralwhite;"
 			data-autocenter="2" data-scale-left="0.75">
 			<div data-u="slides">
-				<div data-u="prototype" class="p" style="width: 99px; height: 66px;">
+				<div data-u="prototype" class="p" style="width: 99px; height: 66px; background: floralwhite;">
 					<div data-u="thumbnailtemplate" class="t"></div>
 					<svg viewbox="0 0 16000 16000" class="cv">
                         <circle class="a" cx="8000" cy="8000" r="3238.1"></circle>

@@ -75,11 +75,11 @@
 	
 	<!-- 사진 조회 -->
 	<select id="selectMySns" resultType="Sns">
-		SELECT SNS_PIC FROM SNS WHERE MEM_ID = #{mem_id} order by sns_no desc
+		SELECT * FROM SELECTALLSNS WHERE MEM_ID = #{mem_id} order by sns_no desc
 	</select>
 	<!-- SNS 단건조회 -->
 	<select id="OneSnsSelect" resultType="sns">
-		SELECT * FROM SNS WHERE SNS_NO = #{sns_no}
+		SELECT * FROM SELECTALLSNS WHERE SNS_NO = #{sns_no}
 	</select>
 	<!-- 쪽지 갯수조회 -->
 	<select id="countMyLetter" resultType="int">
@@ -112,15 +112,11 @@
 		SELECT * FROM ( SELECT A.*,
 		ROWNUM RN FROM (
 		SELECT
-		S.*,
-		M.MEM_PIC,
-		M.MEM_TYPE
+		*
 		FROM
-		SNS S,
-		MEMBER M
+		SELECTALLSNS
 		WHERE
-		S.MEM_ID = #{mem_id}
-		AND S.MEM_ID = M.MEM_ID ORDER BY
+		MEM_ID = #{mem_id} ORDER BY
 		SNS_NO DESC
 		) A ) B WHERE RN BETWEEN #{sns_first} AND #{sns_last}
 	</select>
@@ -128,7 +124,7 @@
 	<select id="getsnsCount" resultType="int">
 		SELECT COUNT(*)
 		FROM
-		SNS
+		SELECTALLSNS
 		WHERE MEM_ID = #{mem_id}
 	</select>
 
