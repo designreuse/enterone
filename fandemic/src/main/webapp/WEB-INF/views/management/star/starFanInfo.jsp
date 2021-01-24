@@ -71,6 +71,13 @@ div #dataTable_filter{
 		/****************************************/
 		$("body").on("click",".btn_fanBlack",function(){
 			//var mem_id = $(this).parent().prev().prev().prev().prev().text();
+			//console.log($("input[name='fan_nos']:checked").parent().next().next().next().next().next().text());
+			//블랙여부(Y/N)
+			var blackYN = $("input[name='fan_nos']:checked").parent().next().next().next().next().next().text();
+			var findtextN = "N"
+			if(blackYN.indexOf(findtextN)!= -1){ //문자열에서 N을 찾으면
+				alert("이미 블랙리스트 해제된 회원입니다.");
+			}else{
 			var ck = confirm("해제하시겠습니까?");
 			if(ck==true){
 				$.ajax({
@@ -89,6 +96,7 @@ div #dataTable_filter{
 				        alert(" status: "+status+" er:"+message);
 				    } 
 				});//end ajax
+			}
 			}
 		})
 		
