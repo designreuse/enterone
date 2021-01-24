@@ -64,19 +64,72 @@
 				timer = setInterval(makeAlert, 5000);
 			});
 			function makeAlert(){ 
-				$("#btnChannelUpdate").replaceWith("<a href='#' id='btnChannelChoose' style='display:none;'>채널관리</a>")
+				$("#btnChannelUpdate").replaceWith("<a href='#' id='btnChannelChoose'>채널관리</a>")
 				$("#btnChannelDelete").replaceWith("")
 				console.log(":asdfasdf")
 				clearInterval(timer);
 			};
 			
+			
+			
+			//채널 닉네임 수정 모달 값 초기화
+			$('body').on('click','#btnChannelUpdate',function(){
+				$("#channelNameUpdate").val("")
+				$("#checkFanNameUpdate").html("")
+	     	   	$("#fanReturnUpdate").html("F")
+			});
+			
+			//채널 닉네임 변경 중복체크
+			$('body').on('click','#btnCheckcUpdate',function(){
+				if($("#channelNameUpdate").val() == null || $("#channelNameUpdate").val() == '' ) {
+					alert("닉네임을 입력하세요");
+					$("#channelNameUpdate").focus();
+				} else {
+					FanNameUpdateCheck();
+				}
+			});
+			
 			//채널 닉네임 변경 액션
 			$("body").on('click',"#channelUpdateAction",function(e){
-				
+				if($("#fanReturnUpdate").html()=="T"){
+					channelUpdateAction();
+				}else{
+					alert("닉네임 중복검사를 해주세요");
+				}
 			})
+			
+			
+			
+			//채널 탈퇴 값 초기화
+			$("body").on('click','#btnChannelDelete',function(){
+				$("#channelNameDelete").val("")
+				$("#checkFanNameDelete").html("")
+	     	   	$("#fanReturnDelete").html("F")
+			});
+			
+			//채널 탈퇴 전 확인절차
+			$("body").on('click','#btnCheckcDelete',function(){
+				if($("#channelNameDelete").val() == null || $("#channelNameDelete").val() == '' ) {
+					alert("닉네임을 입력하세요");
+					$("#channelNameDelete").focus();
+				} else {
+					FanNameDeleteCheck();
+				}
+			});
 			
 			//채널 탈퇴 액션
 			$("body").on('click',"#channelDeleteAction",function(e){
+				if($("#fanReturnDelete").html()=="T"){
+					var delConfirm = confirm('탈퇴 시 모든 게시글과 댓글이 삭제됩니다. 정말로 탈퇴 하시겠습니까?');
+					if (delConfirm) {
+						channelOutAction();
+					}
+					else {
+					   alert('삭제가 취소되었습니다.');
+					}
+				}else{
+					alert("자신의 채널 닉네임을 작성해주세요.");
+				}
 				
 			})
 		})
@@ -84,7 +137,7 @@
 		
 //채널 닉네임 수정		
 		// 닉네임 중복확인
-		function FanNameCheck() {
+		function FanNameUpdateCheck() {
 			var st_id = "${stVo.st_id}"
 			var fan_name = $("#channelNameUpdate").val()
 			var regexPattern = /^[가-힣a-zA-Z0-9]{1,9}$/g;
@@ -121,9 +174,8 @@
 		}
 		
 		//채널 닉네임 수정
-		function channelJoinAction() {
+		function channelUpdateAction() {
 			var st_id = "${stVo.st_id}";
-			var st_name = "${stVo.st_name}";
 			var fan_name = $("#channelNameUpdate").val();		
 			$.ajax({
 			    url: "${pageContext.request.contextPath}/star/fanNameUpdate/", 
@@ -143,7 +195,7 @@
 		
 //채널 탈퇴	
 		//탈퇴 전 닉네임 체크
-		function FanNameCheck() {
+		function FanNameDeleteCheck() {
 			var st_id = "${stVo.st_id}"
 			var fan_name = $("#channelNameDelete").val()
 			var regexPattern = /^[가-힣a-zA-Z0-9]{1,9}$/g;
@@ -151,22 +203,21 @@
 			if (regexPattern.test(fan_name)) {
 	
 				$.ajax({
-		            url :'${pageContext.request.contextPath}/star/fanNameCheck',
+		            url :'${pageContext.request.contextPath}/star/fanNameOutCheck',
 		            type:"GET",
 		            data : {fan_name : fan_name, st_id : st_id},
 		            
 		            success:function(data){
-		            	console.log("성공")		
 		               if (data == 0) {
 		            	   $("#checkFanNameDelete").html(""); 
-		            	   $("#checkFanNameDelete").html("사용 가능한 닉네임입니다.").css("color","blue").appendTo("#divIdDelete");
-		            	   $("#fanReturnDelete").html("T");
+		            	   $("#checkFanNameDelete").html("잘못된 닉네임입니다.").css("color","red").appendTo("#divIdDelete");
+		            	   $("#fanReturnDelete").html("F");
 		            	   
 		            	   
 		               } else {
 		            	   $("#checkFanNameDelete").html("");
-		            	   $("#checkFanNameDelete").html("사용 중인 닉네임입니다.").css("color","red").appendTo("#divIdDelete");
-		            	   $("#fanReturnDelete").html("F");
+		            	   $("#checkFanNameDelete").html("닉네임이 확인되었습니다.").css("color","blue").appendTo("#divIdDelete");
+		            	   $("#fanReturnDelete").html("T");
 		               }
 		
 		            },error:function(){ alert("접속 실패"); }
@@ -174,15 +225,14 @@
 				
 			} else {
 				 $("#checkFanNameDelete").html("");
-	      	     $("#checkFanNameDelete").html("부적절한 단어입니다.").css("color","red").appendTo("#divIdDelete");
+	      	     $("#checkFanNameDelete").html("잘못된 닉네임입니다.").css("color","red").appendTo("#divIdDelete");
 	      	     $("#fanReturnDelete").html("F");
 			}
 		}
 		
-		//채널 탈퇴
-		function channelJoinAction() {
+		//채널 탈퇴 + 게시글, 댓글 모두 삭제
+		function channelOutAction() {
 			var st_id = "${stVo.st_id}";
-			var st_name = "${stVo.st_name}";
 			var fan_name = $("#channelNameDelete").val();		
 			$.ajax({
 			    url: "${pageContext.request.contextPath}/star/fanOut", 
@@ -193,13 +243,12 @@
 			    },
 			    success: function(response) {
 			    	if(response == true) {
-			    		alert("채널에서 탈퇴하셨습니다.");
+			    		alert("채널에서 탈퇴되셨습니다.");
 			    		location.href = "${pageContext.request.contextPath}/star/" + st_id;//새로고침
 			    	}
 			    }
 			});
 		}
-		
 		
 		
 		
