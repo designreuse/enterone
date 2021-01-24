@@ -192,7 +192,7 @@ ul.tabs li.current {
 
 			$('.tab-link').addClass('current');
 			$("#tab-1").addClass('current');
-			console.log("dddd"+${no});
+			//console.log("dddd"+${no});
 
 		});
 
@@ -680,7 +680,7 @@ ul.tabs li.current {
 							<td></td>
 							<td></td>
 							<td colspan="2"><div class="invalid-feedback">
-									<input type="file" name="aud_file" id="aud_file"
+									<input type="file" name="ex2_file" id="aud_file"
 										onchange="setThumbnail3(event);">
 
 
@@ -731,6 +731,7 @@ ul.tabs li.current {
 							<td class="font-f">분야</td>
 							<td colspan="2" id="mem_ubranch"><input type='hidden'
 								name='aud_type' value='${audition.aud_type}'></td>
+								<td></td>
 						</tr>
 						<tr>
 							<td class="font-f">취미/특기</td>
@@ -743,7 +744,7 @@ ul.tabs li.current {
 							<td class="font-f">나이(만 나이)</td>
 							<td colspan="2" id="mem_uage"><input type='hidden'
 								name='aud_age' value='${audition.aud_age}'></td>
-
+							<td></td>
 						</tr>
 
 						<tr>

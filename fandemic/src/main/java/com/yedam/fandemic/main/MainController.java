@@ -121,8 +121,9 @@ public class MainController {
 
 	}
 	
-	//스크롤 내릴 때마다 select 다시
 	
+	
+	//스크롤 내릴 때마다 select 다시
 	@RequestMapping("/newSns")
 	@ResponseBody
 	public List<Sns> newSns(HttpServletRequest request) {
@@ -130,11 +131,10 @@ public class MainController {
 		List<Sns> newSns = new ArrayList<Sns>();
 		String maxSnsNo = request.getParameter("maxSnsNo");
 		newSns = dao.newSns(maxSnsNo);
-		
 		return newSns;
-		
-
 	}
+	
+	
 	
 	@RequestMapping("/search")   
 	public ModelAndView search(Model model, HttpServletRequest request) {

@@ -164,34 +164,47 @@ $(document).ready(function() {
 								</tr>
 							</thead>
 							
-							<c:forEach var="buyList" items="${buyList}">
-							<tbody data-no="${buyList.gb_no}">
-								<tr>
-									<td rowspan="3" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
-										<fmt:parseDate value="${buyList.gb_time}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="yyyy.MM.dd" value="${date}" /><br>
-										<fmt:parseDate value="${buyList.gb_time}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="HH시 mm분" value="${date}" />
-									</td>
-									<td style="width: 13%;"><b>주문번호</b></td>
-									<td style="width: 22%;">${buyList.gb_no}</td>
-									<td style="width: 13%;"><b>결제금액</b></td>
-									<td style="width: 22%;"><fmt:formatNumber type="number" value="${buyList.gb_payment}" pattern="##,###" />원</td>
-									<td rowspan="3" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
-										<button type="button" class="btn primary-btn buyDetail" data-no="${buyList.gb_no}" data-toggle="modal" data-target="#exampleModal">상세보기</button>
-									</td>
-								</tr>
-								<tr>
-									<td style="letter-spacing: 7px;"><b>수령인</b></td>
-									<td>${buyList.gb_name}</td>
-									<td style="letter-spacing: 7px;"><b>연락처</b></td>
-									<td>${buyList.gb_phone}</td>
-								</tr>
-								<tr>
-									<td style="border-bottom: 3px solid #ebebeb; letter-spacing: 27px;"><b>주소</b></td>
-									<td colspan="3" style="border-bottom: 3px solid #ebebeb;">(${buyList.gb_zipaddress}) ${buyList.gb_address} ${buyList.gb_address2}</td>
-								</tr>
+							<c:choose>
+								<c:when test="${empty buyList}">
+									<tbody>
+										<tr>
+											<td style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb;">
+												<b>상품 주문 내역이 존재하지 않습니다.</b>
+											</td>
+										</tr>
+									</tbody>
+								</c:when>
 								
-							</tbody>
-							</c:forEach>
+								<c:otherwise>
+									<c:forEach var="buyList" items="${buyList}">
+									<tbody data-no="${buyList.gb_no}">
+										<tr>
+											<td rowspan="3" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb; border-right: 1px solid #ebebeb;">
+												<fmt:parseDate value="${buyList.gb_time}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="yyyy.MM.dd" value="${date}" /><br>
+												<fmt:parseDate value="${buyList.gb_time}" var="date" pattern="yyyy-MM-dd HH:mm:ss" /><fmt:formatDate pattern="HH시 mm분" value="${date}" />
+											</td>
+											<td style="width: 13%;"><b>주문번호</b></td>
+											<td style="width: 22%;">${buyList.gb_no}</td>
+											<td style="width: 13%;"><b>결제금액</b></td>
+											<td style="width: 22%;"><fmt:formatNumber type="number" value="${buyList.gb_payment}" pattern="##,###" />원</td>
+											<td rowspan="3" style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb; border-left: 1px solid #ebebeb;">
+												<button type="button" class="btn primary-btn buyDetail" data-no="${buyList.gb_no}" data-toggle="modal" data-target="#exampleModal">상세보기</button>
+											</td>
+										</tr>
+										<tr>
+											<td style="letter-spacing: 7px;"><b>수령인</b></td>
+											<td>${buyList.gb_name}</td>
+											<td style="letter-spacing: 7px;"><b>연락처</b></td>
+											<td>${buyList.gb_phone}</td>
+										</tr>
+										<tr>
+											<td style="border-bottom: 3px solid #ebebeb; letter-spacing: 27px;"><b>주소</b></td>
+											<td colspan="3" style="border-bottom: 3px solid #ebebeb;">(${buyList.gb_zipaddress}) ${buyList.gb_address} ${buyList.gb_address2}</td>
+										</tr>
+									</tbody>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
 							
 						</table>
 					</div>

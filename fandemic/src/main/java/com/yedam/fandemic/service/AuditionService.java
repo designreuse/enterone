@@ -29,6 +29,7 @@ public interface AuditionService {
 	public int insertau(Audition audition);
 	//페이징네이션
 	public int getactivityCount(Activity activity);
+	
 	//연습생 활동 목록
 	public List<Activity> selectac(Activity activity);
 	//연습생 수정

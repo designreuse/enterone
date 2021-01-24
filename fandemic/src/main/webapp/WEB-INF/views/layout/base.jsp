@@ -33,6 +33,8 @@
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/skins/all.css">
       <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/demo.css">
+      <!-- Favicon -->
+      <link rel="SHORTCUT ICON" href="${pageContext.request.contextPath}/resources/images/favicon.ico">
       
        <!-- JS -->
       <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
@@ -188,7 +190,7 @@
 											연습생</a></li>
 							<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-key"></i>
 											장바구니</a></li>
-							<li><a href="${pageContext.request.contextPath}/mypurchase"><i class="icon ion-key"></i>
+							<li><a href="${pageContext.request.contextPath}/buyList"><i class="icon ion-key"></i>
 											결제내역</a></li>
 							<li><a href="${pageContext.request.contextPath}/myUntact"><i class="icon ion-settings"></i>
 											언택트 티켓</a></li>
@@ -226,10 +228,10 @@
                      <h1 class="block-title">Company Info</h1>
                      <div class="block-body">
                         <figure class="foot-logo">
-                           <img src="${pageContext.request.contextPath}/resources/images/1logo.png" class="img-responsive" alt="Logo">
+                           <img src="${pageContext.request.contextPath}/resources/images/logo1.png" class="img-responsive" alt="Logo">
                         </figure>
                         <p class="brand-description">
-                           Magz is a HTML5 &amp; CSS3 magazine template based on Bootstrap 3.
+                         Enter-One<br> made by Fandemic
                         </p>
                         <a href="page.html" class="btn btn-magz white">About Us <i class="ion-ios-arrow-thin-right"></i></a>
                      </div>
@@ -240,13 +242,15 @@
                      <h1 class="block-title">Popular Tags <div class="right"><a href="#">See All <i class="ion-ios-arrow-thin-right"></i></a></div></h1>
                      <div class="block-body">
                         <ul class="tags">
-                           <li><a href="#">HTML5</a></li>
-                           <li><a href="#">CSS3</a></li>
-                           <li><a href="#">Bootstrap 3</a></li>
-                           <li><a href="#">Web Design</a></li>
-                           <li><a href="#">Creative Mind</a></li>
-                           <li><a href="#">Standing On The Train</a></li>
-                           <li><a href="#">at 6.00PM</a></li>
+                           <li><a href="#">EnterOne</a></li>
+                           <li><a href="#">Fandemic</a></li>
+                           <li><a href="#">Yedam</a></li>
+                           <li><a href="#">박진규</a></li>
+                           <li><a href="#">민해주</a></li>
+                           <li><a href="#">김다희</a></li>
+                           <li><a href="#">동광희</a></li>
+                           <li><a href="#">염평강</a></li>
+                           <li><a href="#">임성은</a></li>
                         </ul>
                      </div>
                   </div>

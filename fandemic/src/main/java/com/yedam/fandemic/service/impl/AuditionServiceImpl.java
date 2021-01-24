@@ -10,6 +10,7 @@ import com.yedam.fandemic.service.AuditionService;
 import com.yedam.fandemic.vo.Aboard;
 import com.yedam.fandemic.vo.Activity;
 import com.yedam.fandemic.vo.Audition;
+import com.yedam.fandemic.vo.Fboard;
 import com.yedam.fandemic.vo.Trainee;
 
 

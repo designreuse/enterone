@@ -44,9 +44,6 @@ public class AuditionController {
 	
 	String no=null;
 
-
-	
-
 	// 연습생 등록 페이지
 	@RequestMapping(value = "/audition/traineeinsert") // 주소
 	public ModelAndView traineeinsert(HttpServletResponse response) throws IOException {
@@ -123,20 +120,6 @@ public class AuditionController {
 	// 연습생 활동 페이지
 	@RequestMapping(value = "/audition/auditionwork") // 주소
 	public ModelAndView auditionwork(Model model, HttpServletRequest request, Activity activity) throws IOException {
-//		  String strp = request.getParameter("p"); int p = 1; if (strp != null &&
-//		  !strp.equals("")) { p = Integer.parseInt(strp); }
-//		  
-//		  Paging paging = new Paging(); paging.setPageUnit(12); // 한페이지에 12건씩. 생략시 기본10
-//		  paging.setPageSize(5); // 페이지 번호 수 이전 123 다음 . 기본10 paging.setPage(p); // 현재
-//		  activity.setAc_first(paging.getFirst()); // paging에 현재 페이지만 넣으면 first,
-//		  activity.setAc_last(paging.getLast());
-//		  paging.setTotalRecord(auditionMapper.getactivityCount(activity));
-//		  
-//		  model.addAttribute("paging", paging);
-//		  
-//		  
-//		  List<Map<String, Object>> list = auditionMapper.selectnew();
-//		  model.addAttribute("selectnew", list); model.addAttribute("cnt",list.size());
 		model.addAttribute("AcworkList", auditionMapper.selectac());
 		model.addAttribute("trainee", auditionMapper.selecttr());// 세션에 없으면 디비에서 가져와야함 selecttr안에 값들이 들어있음
 		
@@ -249,14 +232,14 @@ public class AuditionController {
 			audition.setMem_id(member.getMem_id());//거기서 아이디만 가져와서 값 담아주고
 			System.out.println("=========="+no);
 			aboard.setAbo_no(no);//어보드에서 가져온 no를 넣고
-			aboard=auditionMapper.insertselect(aboard);//리턴값
+			//aboard=auditionMapper.insertselect(aboard);//리턴값
 			audition.setCom_id(aboard.getCom_id());//com_id		
 			System.out.println("====================="+aboard.getCom_id());
 			
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)request; // request 를 multipart로 캐스팅
 			
 			if(multipartRequest!=null) {
-				MultipartFile multipartFile = multipartRequest.getFile("aud_pic");
+				MultipartFile multipartFile = multipartRequest.getFile("ex2_file");
 				System.out.println("사진");
 				
 				if(! multipartFile.isEmpty() && multipartFile.getSize() > 0) { // 임시폴더에 업로드된 파일을 실제 폴더로 transfer 이동
@@ -265,6 +248,7 @@ public class AuditionController {
 					  System.out.println("====path : " + path); 
 					  multipartFile.transferTo(new File(path, multipartFile.getOriginalFilename()));
 					  audition.setAud_pic(multipartFile.getOriginalFilename()); 
+					  audition.setAud_file(multipartFile.getOriginalFilename()); 
 				}
 			}
 			
