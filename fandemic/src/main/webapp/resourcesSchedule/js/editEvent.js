@@ -5,7 +5,7 @@ var editStId = $("#sch_stId");
  * ************** */
 var editEvent = function (event, element, view) {
 
-    $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID ??뭔데이게 ㅋㅋㅋ
+    $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID 
 
     $('.popover.fade.top').remove();
     $(element).popover("hide");
