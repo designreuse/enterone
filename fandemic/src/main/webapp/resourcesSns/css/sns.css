@@ -914,8 +914,11 @@ position: fixed;
 	    height: 500px;
 }
 .appendiiimmm {
-	max-width: 100% !important;
-	max-height: 100% !important;
+	margin-left: auto;
+    margin-right: auto;
+        position: unset !important;
+	width : auto !important;
+	height: 100% !important;
 		overflow: hidden;
 }
 .dropbtn {

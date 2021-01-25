@@ -516,7 +516,7 @@ resize: none;
 
 											modal.find('.appendimmm').empty() //지우는 함수
 											for (var i = 0; i < imgcut.length - 1; i++) {
-												var img = '<div><img style="    background-color: floralwhite;" class="appendiiimmm" data-u="image" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /><img class="thumthum" data-u="thumb" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /></div>';
+												var img = '<div><img style="background-color: floralwhite;" class="appendiiimmm" data-u="image" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /><img class="thumthum" data-u="thumb" src="${pageContext.request.contextPath}/images/snsimage/'+imgcut[i]+'" /></div>';
 												modal.find('.appendimmm')
 														.append(img)
 											}
@@ -1089,7 +1089,7 @@ resize: none;
 											<tr style="height: 30%">
 											<a style="font-size: 55px" onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
 												📷
-												</a><div style="DISPLAY: none">
+												</a><div style="DISPLAY: none;">
 													<div class="pickupld" id="drop">
 														사진을 드래그 해주세요
 													<div id="thumbnails"
@@ -1518,10 +1518,10 @@ resize: none;
 <div style="display: none" id="imgtemmm">
 
 	<div id="jssor_1"
-		style="    border-radius: 20px; position: relative; margin: 0 auto; top: 0px; left: 0px; width: 960px; height: 480px; overflow: hidden; visibility: hidden; background-color: #fc624d33;">
+		style="    border-radius: 20px; position: relative; margin: 0 auto; top: 0px; left: 0px; width: 960px; height: 480px; overflow: hidden; visibility: hidden; background-color: rgba(225 236 241 / 53%);">
 		<!-- Loading Screen -->
 		<div data-u="loading" class="jssorl-009-spin"
-			style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: #fc624d33;">
+			style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(225 236 241 / 53%);">
 			<img
 				style="margin-top: -19px; position: relative; top: 50%; width: 38px; height: 38px;"
 				src="${pageContext.request.contextPath}/resourcesSns/css/spin.svg" />
