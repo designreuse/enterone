@@ -38,7 +38,7 @@ var editEvent = function (event, element, view) {
     eventModal.modal('show');
 
     //업데이트 버튼 클릭시
-    //$('#updateEvent').unbind();
+    $('#updateEvent').unbind();
     $('#updateEvent').on('click', function () { //등록된 일정 수정
 		
 		var ck = confirm("수정하시겠습니까?");
