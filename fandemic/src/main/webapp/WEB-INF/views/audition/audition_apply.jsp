@@ -327,12 +327,15 @@ ul.tabs li.current {
 	}
 </script>
 <body>
+
 	<section class="page">
 		<div class="container">
 
 			<!-- 탭 메뉴 상단 시작 -->
 			<ul class="tabs">
 				<li class="tab-link current" data-tab="tab-1">이용약관</li>
+				<%-- <input type="text" name='abo_no' value='${no}'>
+				<input type="text" name='abo_no' value='${no2}'> --%>
 				<li class="tab-link2" data-tab="tab-2">지원자 정보</li>
 				<li class="tab-link3" data-tab="tab-3">지원서 입력</li>
 				<li class="tab-link4" data-tab="tab-4">파일 업로드</li>
@@ -714,7 +717,7 @@ ul.tabs li.current {
 					</div>
 				</div>
 				
-<form method="post" id="frm"
+				<form method="post" id="frm"
 				action="${pageContext.request.contextPath}/audition/auditioninsertsend"
 				encType="multipart/form-data">
 				<div id="tab-5" class="tab-content">
@@ -724,7 +727,8 @@ ul.tabs li.current {
 							<td class="font-f">이름</td>
 							<td colspan="2" id="mem_uname"><input type='hidden'
 								name='mem_name' value='${audition.mem_name}'></td>
-							<td> <input type="text" name='abo_no' value='${no.abo_no}'></td>
+							<%-- <td> <input type="text" name='abo_no' value='${no.abo_no}'></td> --%>
+<td></td>
 						</tr>
 
 						<tr>

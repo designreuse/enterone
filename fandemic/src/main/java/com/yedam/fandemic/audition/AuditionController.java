@@ -210,10 +210,7 @@ public class AuditionController {
 		model.addAttribute("activity", auditionMapper.activityDetail(activity));
 		return new ModelAndView("audition/trainee_profile");
 	}
-	
-	
-	
-	
+
 	@RequestMapping(value = "/audition/auditionapply") // 주소
 	public ModelAndView auditioninsert(HttpServletResponse response ,HttpServletRequest request) throws IOException {
 		 no = request.getParameter("no");
@@ -224,14 +221,24 @@ public class AuditionController {
 
 	// 오디션 지원자 등록
 	@RequestMapping(value = "/audition/auditioninsertsend")
-	public String Insertau(HttpServletRequest request, Model model, Audition audition,HttpSession session, Aboard aboard)
+	public String Insertau(HttpServletRequest request, Model model, Audition audition,HttpSession session, Aboard aboard,String no)
 			throws IllegalStateException, IOException {
-		System.out.println(audition);
 			Member member = (Member) session.getAttribute("member"); //세션 멤버에서 가져와서 멤버컬럼을 다 가져옴
+
+			
+			  aboard.setAbo_no(no); 
+			  System.out.println("+++++"+no);
+			  
+			model.addAttribute("no",auditionMapper.insertselect(aboard));
+
+			model.addAttribute(auditionMapper.getAboardInfo(aboard));
 
 			audition.setMem_id(member.getMem_id());//거기서 아이디만 가져와서 값 담아주고
 			System.out.println("=========="+no);
-			aboard.setAbo_no(no);//어보드에서 가져온 no를 넣고
+			/*
+			 * aboard.setAbo_no(no);//어보드에서 가져온 no를 넣고
+			 * model.addAttribute("no",auditionMapper.insertselect(aboard));
+			 */
 			//aboard=auditionMapper.insertselect(aboard);//리턴값
 			audition.setCom_id(aboard.getCom_id());//com_id		
 			System.out.println("====================="+aboard.getCom_id());
@@ -251,15 +258,11 @@ public class AuditionController {
 					  audition.setAud_file(multipartFile.getOriginalFilename()); 
 				}
 			}
-			
 
-			  
-			 
-		System.out.println("ddddd");
 		auditionservice.insertau(audition);
 		model.addAttribute("msg", "등록됐습니다.");
-		System.out.println("dddd");
-		return "redirect:/auditionAboard/list";
+
+		return "redirect:/audition/audition_apply";
 	}
 
 	// 연습생 활동 조회수 증가

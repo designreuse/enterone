@@ -101,7 +101,7 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
 	    <li class="#">
-	        <audio autoplay="autoplay" controls>
+	        <audio controls>
 	        	<source src="${pageContext.request.contextPath}/audio/릴보이 (lIlBOI)-08-CREDIT (Feat. 염따, 기리보이, Zion.T).mp3" type="audio/mp3" >
 	        	<source src="${pageContext.request.contextPath}/audio/Howie Day-03-Collide.mp3" type="audio/mp3">
 	        </audio>
@@ -301,7 +301,7 @@
               <li class="nav-item">
                 <a href="${pageContext.request.contextPath}/management/goods/goodsList" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>상품 리스트</p>
+                  <p>상품 관리</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -331,7 +331,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                	소속사정보관리
+                	소속사마이페이지
                 <i class="fas fa-angle-left right"></i>	
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
               </p>
@@ -340,7 +340,7 @@
               <li class="nav-item">
                 <a href="${pageContext.request.contextPath}/management/company/myPage?com_id=${company.com_id }" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>소속사 Mypage</p>
+                  <p>소속사정보</p>
                 </a>
               </li>
               <li class="nav-item">

@@ -41,19 +41,28 @@
 		var myChart = new Chart(ctx, {
 			type : 'bar',
 			data : {
-				labels : [ '${stCnt[0].ST_NAME}', '${stCnt[1].ST_NAME}',
-						'${stCnt[2].ST_NAME}', '${stCnt[3].ST_NAME}',
-						'${stCnt[4].ST_NAME}' ],
+				labels : [ 	'${stCnt[0].ST_NAME}', '${stCnt[1].ST_NAME}',
+							'${stCnt[2].ST_NAME}', '${stCnt[3].ST_NAME}',
+							'${stCnt[4].ST_NAME}', '${stCnt[5].ST_NAME}',
+							'${stCnt[6].ST_NAME}', '${stCnt[7].ST_NAME}',
+							'${stCnt[8].ST_NAME}', '${stCnt[9].ST_NAME}'],
 				datasets : [ {
 					label : '팬클럽',
 					data : [ '${stCnt[0].CNT}', '${stCnt[1].CNT}',
-							'${stCnt[2].CNT}', '${stCnt[3].CNT}',
-							'${stCnt[4].CNT}' ],
-					backgroundColor : [ "rgba(255, 0, 0, 0.5)",
-							"rgba(100, 255, 0, 0.5)",
-							"rgba(200, 50, 255, 0.5)",
-							"rgba(100, 255, 100, 0.5)",
-							"rgba(255, 100, 255, 0.5)" ]
+							 '${stCnt[2].CNT}', '${stCnt[3].CNT}',
+							 '${stCnt[4].CNT}', '${stCnt[5].CNT}',
+							 '${stCnt[6].CNT}', '${stCnt[7].CNT}',
+							 '${stCnt[8].CNT}', '${stCnt[9].CNT}'],
+					backgroundColor : [ "rgba(17, 23, 75, 0.6)",
+										"rgba(24, 33, 107, 0.6)",
+										"rgba(32, 54, 134, 0.6)",
+										"rgba(42, 85, 153, 0.6)",
+										"rgba(52, 116, 172, 0.6)",
+										"rgba(62, 148, 192, 0.6)",
+										"rgba(72, 179, 211, 0.6)",
+										"rgba(120, 198, 208, 0.6)",
+										"rgba(170, 218, 204, 0.6)",
+										"rgba(220, 236, 201, 0.6)"]
 
 				} ]
 			},
@@ -61,21 +70,21 @@
 
 				legend : {
 					labels : {
-						fontColor : 'rgba(83, 51, 237, 1)',
+						fontColor : 'rgba(1, 1, 7, 1)',
 						fontSize : 15
 					}
 				},
 				scales : {
 					xAxes : [ {
 						ticks : {
-							fontColor : 'rgba(27, 163, 156, 1)',
+							fontColor : 'rgba(1, 1, 7, 1)',
 							fontSize : '15'
 						}
 					} ],
 					yAxes : [ {
 						ticks : {
 							beginAtZero : true,
-							fontColor : 'rgba(246, 36, 89, 1)',
+							fontColor : 'rgba(65, 118, 224, 1)',
 							fontSize : '15'
 						}
 					} ]

@@ -14,7 +14,6 @@
 			<div class="row">
 				<h5>[${aboard.abo_subject}] ${aboard.abo_title}</h5>
 			</div>
-			
 			<div class="row alignRight">
 				<p>${aboard.abo_time}</p>
 			</div>
