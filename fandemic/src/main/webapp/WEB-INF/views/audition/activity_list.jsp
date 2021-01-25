@@ -181,10 +181,10 @@ p {
 									data-toggle="dropdown" style="margin-left:170px">
 									전체 <span class="caret"></span>
 								</button>
-								<ul class="dropdown-menu">
+								<!-- <ul class="dropdown-menu">
 									<li><a href="#">최신순</a></li>
 									<li><a href="#">인기순</a></li>
-								</ul>
+								</ul> -->
 							</div>
 						</div>
 
@@ -208,7 +208,6 @@ p {
 									<p>${activity.mem_id}</p></a>
 									<p>${activity.ac_title}</p>
 									<p>${activity.ac_hits}</p>
-									<p>${activity.ac_likes}</p>
 								</div>
 							</div>
 						</div>
