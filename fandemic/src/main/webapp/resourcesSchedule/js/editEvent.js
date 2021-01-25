@@ -38,9 +38,11 @@ var editEvent = function (event, element, view) {
     eventModal.modal('show');
 
     //업데이트 버튼 클릭시
-    $('#updateEvent').unbind();
+    //$('#updateEvent').unbind();
     $('#updateEvent').on('click', function () { //등록된 일정 수정
-
+		
+		var ck = confirm("수정하시겠습니까?");
+		if(ck==true){
         if (editStart.val() > editEnd.val()) {
             alert('끝나는 날짜가 앞설 수 없습니다.');
             return false;
@@ -105,19 +107,19 @@ var editEvent = function (event, element, view) {
             	alert("업데이트 실패");
             }
         }); //end ajax
-
+		}
     });
 };
 
 // 삭제버튼
 $('#deleteEvent').on('click', function () {
     
-    $('#deleteEvent').unbind();
+    //$('#deleteEvent').unbind();
     
 	//console.log("삭제확인-------------")
 	//console.log($(this).data('id'))//먼데이게...
 	//alert("확인");
-	var ck = confirm("수정하시겠습니까?");
+	var ck = confirm("삭제하시겠습니까?");
 	if(ck==true){		
     //삭제시
 	    $.ajax({

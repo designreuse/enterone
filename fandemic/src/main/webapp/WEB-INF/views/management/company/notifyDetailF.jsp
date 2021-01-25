@@ -99,10 +99,10 @@
 							<thead>
 								<tr>
 									<th colspan="4"	style="background-color: #eeeeee; text-align: center;">
-										<input type="text" name="nof_no" value="${notifyF.nof_no }"/>
-										<input type="text" name="com_id" value="${company.com_id}"/>
-										<input type="text" name="mem_id" value="${notifyF.mem_id }"/>
-										<input type="text" name="st_id" value="${notifyF.st_id }" />
+										<input type="hidden" name="nof_no" value="${notifyF.nof_no }"/>
+										<input type="hidden" name="com_id" value="${company.com_id}"/>
+										<input type="hidden" name="mem_id" value="${notifyF.mem_id }"/>
+										<input type="hidden" name="st_id" value="${notifyF.st_id }" />
 									</th>
 								</tr>
 							</thead>
@@ -114,7 +114,7 @@
 				                              disabled="disabled"/>                 
 				                        
 									</td>
-									<td><label>신고당한놈</label></td>
+									<td><label>신고대상자</label></td>
 									<td colspan="3"><input type="text" name="mem_id" class="form-control" value="${notifyF.mem_id}" disabled="disabled"> 
 									</td>
 								</tr>
