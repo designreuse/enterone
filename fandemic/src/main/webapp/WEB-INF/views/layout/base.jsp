@@ -231,9 +231,9 @@
                            <img src="${pageContext.request.contextPath}/resources/images/logo1.png" class="img-responsive" alt="Logo">
                         </figure>
                         <p class="brand-description">
-                         Enter-One<br> made by Fandemic
+                         Project Enter-One<br>Untact-based<br>Integrated Entertainment Platform<br>Made by Fandemic
                         </p>
-                        <a href="page.html" class="btn btn-magz white">About Us <i class="ion-ios-arrow-thin-right"></i></a>
+                        <a href="#" class="btn btn-magz white">About Us <i class="ion-ios-arrow-thin-right"></i></a>
                      </div>
                   </div>
                </div>
@@ -244,7 +244,7 @@
                         <ul class="tags">
                            <li><a href="#">EnterOne</a></li>
                            <li><a href="#">Fandemic</a></li>
-                           <li><a href="#">Yedam</a></li>
+                           <li><a href="http://www.daeguoracle.com" target="_blank">Yedam</a></li>
                            <li><a href="#">박진규</a></li>
                            <li><a href="#">민해주</a></li>
                            <li><a href="https://www.instagram.com/hoihee00" target="_blank">김다희</a></li>
@@ -254,22 +254,7 @@
                         </ul>
                      </div>
                   </div>
-                  <div class="line"></div>
-                  <div class="block">
-                     <h1 class="block-title">Newsletter</h1>
-                     <div class="block-body">
-                        <p>By subscribing you will receive new articles in your email.</p>
-                        <form class="newsletter">
-                           <div class="input-group">
-                              <div class="input-group-addon">
-                                 <i class="ion-ios-email-outline"></i>
-                              </div>
-                              <input type="email" class="form-control email" placeholder="Your mail">
-                           </div>
-                           <button class="btn btn-primary btn-block white">Subscribe</button>
-                        </form>
-                     </div>
-                  </div>
+
                </div>
                <div class="col-md-3 col-sm-6 col-xs-12">
                   <div class="block">
@@ -284,30 +269,6 @@
                               </figure>
                               <div class="padding">
                                  <h1><a href="single.html">Donec consequat lorem quis augue pharetra</a></h1>
-                              </div>
-                           </div>
-                        </article>
-                        <article class="article-mini">
-                           <div class="inner">
-                              <figure>
-                                 <a href="single.html">
-                                    <img src="${pageContext.request.contextPath}/resources/images/news/img14.jpg" alt="Sample Article">
-                                 </a>
-                              </figure>
-                              <div class="padding">
-                                 <h1><a href="single.html">eu dapibus risus aliquam etiam ut venenatis</a></h1>
-                              </div>
-                           </div>
-                        </article>
-                        <article class="article-mini">
-                           <div class="inner">
-                              <figure>
-                                 <a href="single.html">
-                                    <img src="${pageContext.request.contextPath}/resources/images/news/img15.jpg" alt="Sample Article">
-                                 </a>
-                              </figure>
-                              <div class="padding">
-                                 <h1><a href="single.html">Nulla facilisis odio quis gravida vestibulum </a></h1>
                               </div>
                            </div>
                         </article>
