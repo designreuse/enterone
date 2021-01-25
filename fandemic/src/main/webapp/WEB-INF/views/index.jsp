@@ -390,12 +390,12 @@ hr {
 			</div>
 
 			<div class="col-xs-6 col-md-4 sidebar" id="sidebar"
-				style="padding-top: 80px;">
+				style="padding-top: 56px;">
 				<div class="sidebar-title for-tablet">Sidebar</div>
-				<aside>
+				<aside style="margin-bottom: 0;">
 					<div class="aside-body">
 						<div class="featured-author">
-							<div class="featured-author-inner">
+							<div class="featured-author-inner" style="height: 313px;">
 
 								<!-- 로그인 -->
 								<c:if
@@ -416,7 +416,7 @@ hr {
 								<c:if
 									test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null or sessionScope.star.st_id ne null}">
 									<div class="featured-author-cover"
-										style="background-image: url('images/news/img15.jpg');">
+										style="height: 200px; background-image: url('images/news/img15.jpg');">
 										<!-- <div class="badges">
 											<div class="badge-item">
 												<i class="ion-star"></i> Featured
@@ -652,7 +652,7 @@ hr {
 		<article class="featured">
 			<div class="content" style="padding-top: 20px;">
 				<div class="sscroll"
-					style="overflow-y: scroll; width: 100%; height: 300px; padding: 20px;">
+					style="overflow-y: scroll; width: 100%; height: 510px; padding: 20px;">
 					<div id="divContent">
 						<table id="snsTbl">
 							<c:forEach items="${snsList}" var="sns">

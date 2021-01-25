@@ -247,9 +247,9 @@
                            <li><a href="#">Yedam</a></li>
                            <li><a href="#">박진규</a></li>
                            <li><a href="#">민해주</a></li>
-                           <li><a href="#">김다희</a></li>
+                           <li><a href="https://www.instagram.com/hoihee00" target="_blank">김다희</a></li>
                            <li><a href="#">동광희</a></li>
-                           <li><a href="#">염평강</a></li>
+                           <li><a href="https://www.instagram.com/y___p_g" target="_blank">염평강</a></li>
                            <li><a href="#">임성은</a></li>
                         </ul>
                      </div>
