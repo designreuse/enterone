@@ -27,6 +27,7 @@
 		SELECT *
 		FROM star
 		WHERE com_id = #{com_id}
+		ORDER BY st_id
 	</select>
 
 	<!-- 페이지네이션 -->

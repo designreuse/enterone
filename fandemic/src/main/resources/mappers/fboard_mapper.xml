@@ -32,14 +32,15 @@
 		SELECT * 
 		FROM v_fbolist 
 		WHERE st_id = #{st_id} 
-			AND fbo_hashtag like '%' || #{fbo_hashtag} || '%'
+			AND fbo_hashtag LIKE '%' || #{fbo_hashtag} || '%'
 	</select>
 	
 	<!-- 말머리로 게시물 목록 조회 -->
 	<select id="getFboardSubjectList" parameterType="Fboard" resultType="Fboard">
 		SELECT * 
 		FROM v_fbolist 
-		WHERE st_id = #{st_id} and fbo_subject = #{fbo_subject}
+		WHERE st_id = #{st_id} 
+		AND fbo_subject = #{fbo_subject}
 	</select>
 	
 	<!-- 페이지네이션 -->
