@@ -15,7 +15,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.yedam.fandemic.service.CompanyServiceD;
 import com.yedam.fandemic.vo.Visit;
 
-@WebListener
+//@WebListener
 public class SessionListener implements HttpSessionListener{
 	 @Autowired
 	 CompanyServiceD companyService;
