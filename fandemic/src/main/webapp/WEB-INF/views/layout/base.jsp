@@ -145,10 +145,10 @@
                      <li class="dropdown"><a href="${pageContext.request.contextPath}/audition/auditionwork">연 습 생<i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                         <c:if test="${sessionScope.member.mem_id ne null and sessionScope.trainee.mem_id eq null}">
-                           <li><a href="${pageContext.request.contextPath}/audition/traineeinsert">연습생 등록</a></li>
+                           <li><a href="${pageContext.request.contextPath}/audition/traineeinsert"><i class="icon ion-ios-minus-empty"></i>연습생 등록</a></li>
                         </c:if>
-                           <li><a href="${pageContext.request.contextPath}/audition/auditionwork">연습생 활동</a></li>
-                           <li><a href="${pageContext.request.contextPath}/audition/auditionlist">오디션 공고</a></li>
+                           <li><a href="${pageContext.request.contextPath}/audition/auditionwork"><i class="icon ion-ios-minus-empty"></i>연습생 활동</a></li>
+                           <li><a href="${pageContext.request.contextPath}/audition/auditionlist"><i class="icon ion-ios-minus-empty"></i>오디션 공고</a></li>
                            
                         </ul>
                      </li>
@@ -156,16 +156,16 @@
                      <li class="dropdown "><a href="${pageContext.request.contextPath}/goods">스 토 어<i class="ion-ios-arrow-right"></i></a>
                      
                         <ul class="dropdown-menu">
-                       	   <li><a href="${pageContext.request.contextPath}/goodsf?t=TICKET">TICKET</a></li>
-                           <li><a href="${pageContext.request.contextPath}/goodsf?t=CHEERING">CHEERING</a></li>
-                           <li><a href="${pageContext.request.contextPath}/goodsf?t=MUSIC">MUSIC</a></li>
-                           <li><a href="${pageContext.request.contextPath}/goodsf?t=FASHION">FASHION</a></li>
-                           <li><a href="${pageContext.request.contextPath}/goodsf?t=ACC">ACC</a></li>
-                           <li><a href="${pageContext.request.contextPath}/goodsf?t=TECH">TECH</a></li>
-                           <li><a href="${pageContext.request.contextPath}/goodsf?t=ETC">ETC</a></li>
+                       	   <li><a href="${pageContext.request.contextPath}/goodsf?t=TICKET"><i class="icon ion-ios-minus-empty"></i>TICKET</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=CHEERING"><i class="icon ion-ios-minus-empty"></i>CHEERING</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=MUSIC"><i class="icon ion-ios-minus-empty"></i>MUSIC</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=FASHION"><i class="icon ion-ios-minus-empty"></i>FASHION</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=ACC"><i class="icon ion-ios-minus-empty"></i>ACC</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=TECH"><i class="icon ion-ios-minus-empty"></i>TECH</a></li>
+                           <li><a href="${pageContext.request.contextPath}/goodsf?t=ETC"><i class="icon ion-ios-minus-empty"></i>ETC</a></li>
                            <li class="divider"></li>
-						   <li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-heart"></i>장바구니</a></li>
-						   <li><a href="${pageContext.request.contextPath}/buyList"><i class="icon ion-heart"></i>구매내역</a></li>
+						   <li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-ios-cart"></i>장바구니</a></li>
+						   <li><a href="${pageContext.request.contextPath}/buyList"><i class="icon ion-ios-list"></i>구매내역</a></li>
                         </ul>
                      </li>
                      
@@ -178,15 +178,15 @@
 											회원정보</a></li>
 							<li><a href="${pageContext.request.contextPath}/mystar"><i class="icon ion-heart"></i> 내
 											스타</a></li>
-							<li><a href="${pageContext.request.contextPath}/audition/traineeupdate"><i class="icon ion-chatbox"></i>
+							<li><a href="${pageContext.request.contextPath}/audition/traineeupdate"><i class="icon ion-thumbsup"></i>
 											연습생</a></li>
-							<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-key"></i>
+							<li><a href="${pageContext.request.contextPath}/cart"><i class="icon ion-ios-cart"></i>
 											장바구니</a></li>
-							<li><a href="${pageContext.request.contextPath}/buyList"><i class="icon ion-key"></i>
+							<li><a href="${pageContext.request.contextPath}/buyList"><i class="icon ion-ios-list"></i>
 											결제내역</a></li>
-							<li><a href="${pageContext.request.contextPath}/myUntact"><i class="icon ion-settings"></i>
+							<li><a href="${pageContext.request.contextPath}/myUntact"><i class="icon ion-calendar"></i>
 											언택트 티켓</a></li>
-							<li class="dropdown"><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>쪽지함</a>
+							<li class="dropdown"><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-android-chat"></i>쪽지함</a>
 								 <ul class="dropdown-menu">
 								 <li><a href="${pageContext.request.contextPath}/mymail"><i class="icon ion-chatbox"></i>
 											받은 쪽지함</a></li>
@@ -194,7 +194,7 @@
 											보낸 쪽지함</a></li>
 								 </ul>
 							</li>
-							<li><a href="${pageContext.request.contextPath}/my1o1"><i class="icon ion-chatbox"></i>
+							<li><a href="${pageContext.request.contextPath}/my1o1"><i class="icon ion-social-tux"></i>
 											1:1문의 내역</a></li>
 							<li class="divider"></li>
 							<li><a href="${pageContext.request.contextPath}/logout"><i class="icon ion-log-out"></i> 로그아웃</a></li>

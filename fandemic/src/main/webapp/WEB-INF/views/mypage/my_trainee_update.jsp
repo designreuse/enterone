@@ -59,7 +59,6 @@ td {
 				<div class="col-md-8 col-md-offset-2">
 					<h1 class="page-title">연습생 수정</h1>
 					<div class="page-description">
-
 						<form method="post"
 							action="${pageContext.request.contextPath}/audition/traineeupdatesend"
 							encType="multipart/form-data">
