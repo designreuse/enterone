@@ -99,7 +99,7 @@
 								</tr>
 							</thead>
 							<c:choose>
-								<c:when test="${empty buyList}">
+								<c:when test="${empty reservList}">
 									<tbody>
 										<tr>
 											<td style="width: 15%; text-align: center; border-bottom: 3px solid #ebebeb;">
