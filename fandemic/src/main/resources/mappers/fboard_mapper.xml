@@ -14,10 +14,12 @@
 	<!-- 조회수 최고 5건 -->
 	<select id="getFboardViewsList" parameterType="Fboard" resultType="Fboard">
 		SELECT * 
-		FROM v_fboList
-		WHERE st_id = #{st_id}
-		AND ROWNUM &lt;= 5
-		ORDER BY fbo_views DESC
+		FROM (	SELECT fbo_sub_no, fan_name, fbo_no, fbo_title, fbo_subject, fbo_time, fbo_views, fbo_hashtag, st_id, mem_id
+				FROM v_fboList
+				WHERE st_id = #{st_id}
+				ORDER BY fbo_views DESC
+				) a
+		WHERE ROWNUM &lt;= 5
 	</select>
 	
 	<!-- 단건조회 -->
