@@ -53,13 +53,11 @@ td {
 </script>
 </head>
 <body>
-	<section class="page first" style="padding-top: 308px;">
+	<section class="page first" style="padding-top: 200px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<h1 class="page-title">연습생 수정</h1>
-
-					<div class="line thin"></div>
 					<div class="page-description">
 
 						<form method="post"
