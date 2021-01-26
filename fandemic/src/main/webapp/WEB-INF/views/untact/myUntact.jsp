@@ -83,7 +83,7 @@ $(document).ready(function() {
 		<div class="container">
 			<div class="row">
 				<div class="section-title">
-					<h3 align="center" style="padding: 15px">TICKETING</h3>
+					<h3 align="center" style="padding: 15px">언택트 티켓</h3>
 				</div>
 				<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
 					<div class="row">
@@ -121,6 +121,14 @@ $(document).ready(function() {
 									${un.GO_UNTTIME}
 									<q style="display: none;">${un.MEM_ID}</q>
 								</p>
+									<div style="height: 20%; padding-top: 5%;" >
+									<a class="btn btn-primary more" >
+										<div>입장</div>
+										<div class="btnDetail">
+											<i class="ion-ios-arrow-thin-right"></i>
+										</div>
+									</a>
+								</div>
 							</div>
 						</div>	
 					</article>
