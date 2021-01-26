@@ -151,11 +151,11 @@ $(document).ready(function() {
 				</c:if>
 			</c:forEach>
 			
+			<div class="line"><div>지난 예매</div></div>
+			
 			<c:forEach var="un" items="${unList}">
 				<c:if test="${un.DDAY < 0 }">
-				<div class="line"><div>지난 예매</div></div>
 					<article class="col-md-12 col-sm-12 col-xs-12 article-list">
-					
 						<div class="inner" style="width: 100%; float: left;">
 							<figure style="width: 200px; height: 260px;">
 								<a href="${pageContext.request.contextPath}/goodsDetail/${un.GO_NO}"> 

@@ -60,11 +60,11 @@ public class MainController {
 		
 		//영화
 		ArrayList<HashMap<String, String>> movie = new ArrayList<HashMap<String,String>>();
-		MovieAPI api = new MovieAPI();
-		movie = api.requestAPI();
-		if(movie.size() > 1) {
-			model.addAttribute("movie", movie);
-		}
+//		MovieAPI api = new MovieAPI();
+//		movie = api.requestAPI();
+//		if(movie.size() > 1) {
+//			model.addAttribute("movie", movie);
+//		}
 		
 		
 		// 시청률
@@ -87,8 +87,8 @@ public class MainController {
 		snsList = dao.todaySns();
 		
 		if ( snsList.size() != 0) {
-			String maxSnsNo = snsList.get(0).getSns_no();
-			model.addAttribute("maxSnsNo", maxSnsNo); // 이후 등록된 건 조회를 위해 no max값 저장
+			String maxSnsNo = snsList.get(0).getSns_no(); //리스트의 0번 번호가 가장 최근 글 번호
+			model.addAttribute("maxSnsNo", maxSnsNo); // 이후 등록된 건 조회를 최근no 넘겨줌
 			model.addAttribute("snsList", snsList);
 		}
 
