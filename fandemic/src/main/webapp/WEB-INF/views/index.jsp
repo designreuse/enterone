@@ -376,7 +376,7 @@ hr {
 
 				</div>
 				<div class="line">
-					<div>FAN CLUB TOP 5</div>
+					<div>FAN CLUB TOP 10</div>
 				</div>
 				<!-- 차트 -->
 				<div class="row">
