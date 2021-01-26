@@ -229,7 +229,7 @@
 	<!--전체 리스트 -->
 	<select id="untactList" resultType="map" parameterType="Untact">
 		SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (
-	 		SELECT * FROM V_UNTACT WHERE MEM_ID = 'ralaxa'
+	 		SELECT * FROM V_UNTACT WHERE MEM_ID = #{mem_id}
 			 ) A ) B WHERE RN BETWEEN #{u_first} AND #{u_last}
 	</select>	
 		<!--커밍순 -->
@@ -245,7 +245,7 @@
 		WHERE  
 				G.GO_NO = T.GO_NO 
 			AND 
-				T.MEM_ID = 'ralaxa' 
+				T.MEM_ID = #{mem_id}
 			AND 
 				S.ST_ID = G.ST_ID
 	</select>
