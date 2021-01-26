@@ -123,7 +123,7 @@
 						<table class="myinfo" border="1">
 							<tr>
 								<td class="tilt" rowspan="9"><img style="max-width: 7cm; max-height: 9cm;" id="profileimg"
-									name="profileimg" src="${pageContext.request.contextPath}/images/member_pic/${meminfo.mem_pic }"></td>
+									name="profileimg" src="${pageContext.request.contextPath}/images/member_pic/${meminfo.mem_pic }" onerror="this.src='${pageContext.request.contextPath}/images/snsimage/noImage.png'"></td>
 
 								<th class="tilt"><b>이름</b></th>
 								<td colspan="3" class="readolytexttd"><input type="text"
