@@ -169,8 +169,6 @@
                         </ul>
                      </li>
                      
-                     <li><a href="#">연 예 뉴 스</a></li>   
-                     
                      <li><a href="${pageContext.request.contextPath}/sns">S N S</a></li>
                           <c:if test="${sessionScope.member.mem_id ne null or sessionScope.company.com_id ne null }">
 <!--  magz-dropdown 클래스 제거ㅊ -->
