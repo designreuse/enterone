@@ -13,7 +13,7 @@
 	<!-- 행사목록 -->
 	<select id="ticketList" resultType="Goods">
 		<!-- SELECT S.ST_NAME, G.*  FROM STAR S , GOODS G WHERE S.ST_ID = G.ST_ID AND GO_TYPE = 'TICKET' AND GO_UNTSDATE >= SYSDATE -->
-		SELECT S.ST_NAME, G.*  FROM STAR S , GOODS G WHERE S.ST_ID = G.ST_ID AND GO_TYPE = 'TICKET'
+		SELECT S.ST_NAME, G.*  FROM STAR S , GOODS G WHERE S.ST_ID = G.ST_ID AND GO_TYPE = 'TICKET' ORDER BY GO_TIME DESC
 	</select>
 	
 	<!-- 팬클럽top3 -->
