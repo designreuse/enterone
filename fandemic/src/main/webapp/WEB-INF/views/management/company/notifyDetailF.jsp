@@ -130,7 +130,7 @@
 								<tr >
 									<td colspan="1" align="left"><label>신고당한내용</label></td>
 									<td colspan="3">
-										<div style="text-align:left; background-color:#e9ecef;" name="fbo_content" class="fbo_content form-control">${notifyF.fbo_content } </div>
+										<div style="text-align:left; background-color:#e9ecef; height:300px;" name="fbo_content" class="fbo_content form-control">${notifyF.fbo_content } </div>
 									</td>
 								</tr>
 								

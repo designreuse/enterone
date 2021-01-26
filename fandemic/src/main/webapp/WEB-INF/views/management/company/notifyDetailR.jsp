@@ -130,7 +130,7 @@
 								<tr >
 									<td colspan="1" align="left"><label>신고당한내용</label></td>
 									<td colspan="3">
-										<textarea name=re_content class="re_content form-control" disabled="disabled">${notifyR.re_content}</textarea>
+										<textarea style="height:300px;" name=re_content class="re_content form-control" disabled="disabled">${notifyR.re_content}</textarea>
 									</td>
 								</tr>
 								

@@ -195,7 +195,7 @@ div #dataTable_filter{
                       <th>신고번호</th>
                       <th>신고제목</th>
                       <th>해당팬클럽</th>
-                      <th>신고당한놈</th>
+                      <th>신고대상자</th>
                       <th>신고분류</th>
                       <th>댓글신고</th>
                       <th>게시판신고</th>

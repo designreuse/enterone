@@ -202,7 +202,7 @@ div #dataTable_filter{
               		<button type="button" class="btn-register">등록</button>
               		<!--  <button class="btn-update">수정</button>-->
               		<button type="button" class="btn-delete">삭제</button>
-              		<button type="button" class="btn-excel">엑셀</button>
+              		<!-- <button type="button" class="btn-excel">엑셀</button> -->
               	</div>
               </div>
             </div>
