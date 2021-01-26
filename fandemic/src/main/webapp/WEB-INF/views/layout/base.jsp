@@ -49,13 +49,7 @@
       <script src="${pageContext.request.contextPath}/resources/scripts/toast/jquery.toast.min.js"></script>
       <script src="${pageContext.request.contextPath}/resources/js/demo.js"></script>
       <script src="${pageContext.request.contextPath}/resources/js/e-magz.js"></script>
- <script>
-    $(function() {
-    	$("#search").attr("action", "${pageContext.request.contextPath}/search");
 
-    });
-
-</script>
 
 
 </head>
@@ -72,7 +66,7 @@
                      </div>                  
                   </div>
                   <div class="col-md-6 col-sm-12">
-                     <form class="search" id="search">
+                     <form class="search" id="search" action="${pageContext.request.contextPath}/search">
                         <div class="form-group">
                            <div class="input-group">
                               <input type="text" name="keyword" id="keyword" class="form-control" placeholder="검색어">                           
