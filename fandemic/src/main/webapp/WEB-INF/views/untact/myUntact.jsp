@@ -182,7 +182,7 @@ $(document).ready(function() {
 			</c:forEach>
 			</div>		
 			<div class="card-footer">
-				<div align="center">
+				<%-- <div align="center">
 					<script>
 						function goPage(p) {
 							location.href = "adminMain?p=" + p
@@ -190,7 +190,7 @@ $(document).ready(function() {
 					</script>
 
 					<my:paging paging="${paging}" jsfunc="goPage" />
-				</div>
+				</div> --%>
 			</div>
 		</div>
 		<div class="row">
@@ -238,7 +238,7 @@ $(document).ready(function() {
 			</c:forEach>
 			</div>		
 			<div class="card-footer">
-				<div align="center">
+				<%-- <div align="center">
 					<script>
 						function goPage(p) {
 							location.href = "adminMain?p=" + p
@@ -246,7 +246,7 @@ $(document).ready(function() {
 					</script>
 
 					<my:paging paging="${paging}" jsfunc="goPage" />
-				</div>
+				</div> --%>
 			</div>
 		</div>
 	</div>

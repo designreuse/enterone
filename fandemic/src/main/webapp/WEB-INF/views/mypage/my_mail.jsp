@@ -24,14 +24,10 @@
 
 	}
 	$(function() {
-		$('.mailinfo')
-				.on(
-						'click',
-						function(event) {
+		$('.mailinfo').on('click', function(event) {
 							var modal = $('#exampleModal2')
 							var no = $(this).data("no");
-							$
-									.ajax({
+							$.ajax({
 										url : '${pageContext.request.contextPath}/onemailselect?lett_no='
 												+ no,
 										success : function(result) {
