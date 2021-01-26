@@ -175,18 +175,7 @@ p {
 
 						<div class="col-md-3 col-sm-3 col-xs-3"></div>
 						<div class="col-md-3 col-sm-3 col-xs-3"></div>
-						<div class="col-md-3 col-sm-3 col-xs-3">
-							<div class="dropdown" ">
-								<button class="btn btn-primary dropdown-toggle" type="button"
-									data-toggle="dropdown" style="margin-left:170px">
-									전체 <span class="caret"></span>
-								</button>
-								<!-- <ul class="dropdown-menu">
-									<li><a href="#">최신순</a></li>
-									<li><a href="#">인기순</a></li>
-								</ul> -->
-							</div>
-						</div>
+						<div class="col-md-3 col-sm-3 col-xs-3"></div>
 
 					</div>
 
