@@ -51,7 +51,7 @@
 								<div class="row">
 									<table class = "table table-hover" style="text-align: center;">
 										<tr>
-											<td>일정명</td>
+											<td style="width: 82px;">일정명</td>
 											<td>
 												<p id = "edit-title"></p>
 											</td>

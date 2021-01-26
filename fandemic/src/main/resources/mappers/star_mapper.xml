@@ -78,7 +78,7 @@
 	
 	<!-- 스타 팬 게시판 사진만 출력-->	
 	<select id="getFboardPicList" parameterType="Fboard" resultType="Fboard">
-		SELECT * 
+		SELECT fbo_no, fbo_content, fbo_title, fan_name
 		FROM v_fbolist 
 		WHERE st_id = #{st_id}
 		AND (LENGTH(fbo_content) > 1000)

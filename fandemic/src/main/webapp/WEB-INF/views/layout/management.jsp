@@ -268,7 +268,7 @@
           <!-- 공지 -->
           <li class="nav-item">
             <a href="${pageContext.request.contextPath}/management/notices" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon far fa-clipboard"></i>
               <p>
                 	공지사항
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
@@ -279,7 +279,7 @@
           <!--스타관리  -->
           <li class="nav-item">
             <a href="${pageContext.request.contextPath}/management/star/starList" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon far fa-address-card"></i>
               <p>
                 	스타관리
                 <span class="right badge badge-danger"><!-- 메일같은거오면 왔다고 알림창띠우는그런기능 --></span>
@@ -290,7 +290,7 @@
           <!--스토어관리  -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-store"></i>
               <p>
                 	스토어관리
                 <i class="fas fa-angle-left right"></i>
@@ -300,13 +300,13 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="${pageContext.request.contextPath}/management/goods/goodsList" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-cart-plus"></i>
                   <p>상품 관리</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="${pageContext.request.contextPath}/management/goods/goodsUntact" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-ticket-alt"></i>
                   <p>언택트 행사</p>
                 </a>
               </li>
@@ -329,7 +329,7 @@
           <!--소속사정보관리  -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-house-user"></i>
               <p>
                 	소속사마이페이지
                 <i class="fas fa-angle-left right"></i>	
@@ -339,13 +339,13 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="${pageContext.request.contextPath}/management/company/myPage?com_id=${company.com_id }" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far far fa-address-card"></i>
                   <p>소속사정보</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="${pageContext.request.contextPath}/management/company/myPageLetterForm" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-envelope"></i>
                   <p>쪽지보내기</p>
                 </a>
               </li>
@@ -366,7 +366,7 @@
           <!--팬관리  -->
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
                 	팬관리
                 <i class="fas fa-angle-left right"></i>		
@@ -376,7 +376,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="${pageContext.request.contextPath}/management/company/memberReport" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fas fa-angry nav-icon"></i>
                   <p>신고리스트</p>
                 </a>
               </li>
