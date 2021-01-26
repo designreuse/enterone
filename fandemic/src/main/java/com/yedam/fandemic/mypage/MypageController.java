@@ -364,7 +364,12 @@ public class MypageController {
 	
 	//MY Untack Ticket 확인, 참여 할수있음
 	@RequestMapping(value = "/myUntact")
-	public ModelAndView myUntact(HttpServletResponse response, Untact untact, Model model, HttpServletRequest request) throws IOException {
+	public ModelAndView myUntact(HttpServletResponse response, Untact untact, Model model, HttpServletRequest request, HttpSession session) throws IOException {
+		
+		Member member = (Member) session.getAttribute("member");
+		
+		untact.setMem_id(member.getMem_id());
+		
 		String strp = request.getParameter("p");
 		int p = 1;
 		          
@@ -386,7 +391,7 @@ public class MypageController {
 		model.addAttribute("unList", myMapper.untactList(untact));
 		
 		//커밍순 리스트
-		List<Map<String, Object>> list = myMapper.comingsoonList();
+		List<Map<String, Object>> list = myMapper.comingsoonList(untact);
 		model.addAttribute("comingList", list);
 		model.addAttribute("cnt", list.size());
 		return new ModelAndView("untact/myUntact");

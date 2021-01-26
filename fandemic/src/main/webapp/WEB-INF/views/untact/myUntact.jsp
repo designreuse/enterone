@@ -92,7 +92,7 @@ $(document).ready(function() {
 							<div>오늘 예정된 언택트 행사</div>
 						</div>
 					</div>
-					<!-- 여기에 forEach -->
+			<!-- 여기에 forEach -->
 			<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
 			<c:forEach var="un" items="${unList}">
 				<c:if test="${un.DDAY == 0 }">
@@ -181,7 +181,7 @@ $(document).ready(function() {
 				
 			</c:forEach>
 			</div>		
-			<div class="card-footer">
+			<%-- <div class="card-footer">
 				<div align="center">
 					<script>
 						function goPage(p) {
@@ -191,7 +191,7 @@ $(document).ready(function() {
 
 					<my:paging paging="${paging}" jsfunc="goPage" />
 				</div>
-			</div>
+			</div> --%>
 		</div>
 		<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12 xs-12">
@@ -238,7 +238,7 @@ $(document).ready(function() {
 			</c:forEach>
 			</div>		
 			<div class="card-footer">
-				<div align="center">
+				<%-- <div align="center">
 					<script>
 						function goPage(p) {
 							location.href = "adminMain?p=" + p
@@ -246,7 +246,7 @@ $(document).ready(function() {
 					</script>
 
 					<my:paging paging="${paging}" jsfunc="goPage" />
-				</div>
+				</div> --%>
 			</div>
 		</div>
 	</div>

@@ -52,7 +52,7 @@ public interface MypageMapper {
 	
 	public int unCnt(); //페이지 네이션
 	public List<Untact> untactList(Untact untact); //내가 모든 언텍트
-	public List<Map<String, Object>> comingsoonList(); //다가오는 언텍트 이벤트 출력
+	public List<Map<String, Object>> comingsoonList(Untact untact); //다가오는 언텍트 이벤트 출력
 	
 	
 	// 주문 결과 페이지 - 주문 목록
