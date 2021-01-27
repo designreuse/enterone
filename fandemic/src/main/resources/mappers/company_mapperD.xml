@@ -80,6 +80,7 @@
 		SELECT * 
 		FROM NOTIFY
 		WHERE COM_ID=#{com_id}
+		ORDER BY 1 DESC
 	</select>
 <!-- 방문자수조회? -->
 	<insert id="insertVisitor" parameterType="Visit">
